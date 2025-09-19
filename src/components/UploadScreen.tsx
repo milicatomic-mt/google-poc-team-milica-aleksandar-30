@@ -475,11 +475,20 @@ const UploadScreen: React.FC<UploadScreenProps> = ({ mode }) => {
                       <X className="w-4 h-4" />
                     </button>
                     
-                    {/* AI Scanning Animation Overlay */}
+                    {/* AI Wave Scanning Animation Overlay */}
                     {isAnalyzingImage && currentMode === 'campaign' && (
-                      <div className="absolute inset-0 pointer-events-none">
-                        {/* Scanning line */}
-                        <div className="absolute w-full h-1 bg-white scan-line opacity-90 shadow-md"></div>
+                      <div className="absolute inset-0 pointer-events-none bg-black/20 backdrop-blur-sm rounded-xl">
+                        {/* Wave scanning effect */}
+                        <div className="absolute inset-0 overflow-hidden rounded-xl">
+                          <div className="absolute w-full h-8 bg-gradient-to-r from-transparent via-white to-transparent wave-scan opacity-80 blur-sm"></div>
+                        </div>
+                        
+                        {/* Analyzing text overlay */}
+                        <div className="absolute inset-0 flex items-center justify-center">
+                          <div className="bg-white/90 backdrop-blur-md px-4 py-2 rounded-full analyzing-text">
+                            <span className="text-black font-semibold text-sm">Analyzing</span>
+                          </div>
+                        </div>
                       </div>
                     )}
                   </div>

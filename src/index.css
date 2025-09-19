@@ -201,26 +201,46 @@ All colors MUST be HSL.
     50% { opacity: 0.7; }
   }
 
-  /* AI Scanning Animation */
-  @keyframes scan-line {
+  /* AI Wave Scanning Animation */
+  @keyframes wave-scan {
     0% {
-      top: -4px;
+      transform: translateY(-100%) scaleY(0.5);
       opacity: 0;
     }
     10% {
       opacity: 1;
+      transform: translateY(-50%) scaleY(1);
+    }
+    50% {
+      transform: translateY(50%) scaleY(1.5);
     }
     90% {
       opacity: 1;
+      transform: translateY(100%) scaleY(1);
     }
     100% {
-      top: 100%;
+      transform: translateY(150%) scaleY(0.5);
       opacity: 0;
     }
   }
 
-  .scan-line {
-    animation: scan-line 3s infinite ease-in-out;
+  @keyframes analyzing-pulse {
+    0%, 100% {
+      opacity: 0.7;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.05);
+    }
+  }
+
+  .wave-scan {
+    animation: wave-scan 2.5s infinite ease-in-out;
+  }
+
+  .analyzing-text {
+    animation: analyzing-pulse 1.5s infinite ease-in-out;
   }
 }
 
