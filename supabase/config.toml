@@ -1,7 +1,1 @@
 project_id = "cuwkuomczaoxbaysabii"
-
-[functions.generate-campaign]
-verify_jwt = false
-
-[functions.generate-catalog]
-verify_jwt = false
