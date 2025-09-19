@@ -88,6 +88,20 @@ const UploadScreen: React.FC<UploadScreenProps> = ({ mode }) => {
             type: 'success'
           });
           toast.success('Image received from mobile!');
+          
+          // Analyze image with AI for both campaign and catalog modes
+          if (currentMode === 'campaign' || currentMode === 'catalog') {
+            setIsAnalyzingImage(true);
+            try {
+              const suggestions = await analyzeImageWithAI(imageForState);
+              // Store suggestions in state to pass to appropriate screen
+              sessionStorage.setItem('aiSuggestions', JSON.stringify(suggestions));
+            } catch (error) {
+              console.error('Failed to analyze image:', error);
+            } finally {
+              setIsAnalyzingImage(false);
+            }
+          }
         }
 
         // Only auto-continue if explicitly marked as displayed (this won't happen automatically now)
