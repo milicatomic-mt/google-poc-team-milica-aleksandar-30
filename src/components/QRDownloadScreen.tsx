@@ -8,6 +8,14 @@ import { ArrowLeft, Download, Smartphone, Tablet } from "lucide-react";
 import RibbedSphere from "@/components/RibbedSphere";
 import type { CampaignCreationResponse } from "@/types/api";
 
+// UTF-8 safe base64 encoding function
+const utf8ToBase64 = (str: string): string => {
+  // Convert string to UTF-8 bytes, then to base64
+  return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, (match, p1) => {
+    return String.fromCharCode(parseInt(p1, 16));
+  }));
+};
+
 const QRDownloadScreen = () => {
   const navigate = useNavigate();
   const [campaignData, setCampaignData] = useState<CampaignCreationResponse | null>(null);
@@ -103,8 +111,8 @@ const QRDownloadScreen = () => {
 
   // Generate download URLs for QR codes (using the download-content route)
   const baseUrl = window.location.origin;
-  const txtDownloadUrl = campaignData ? `${baseUrl}/download-content?type=txt&data=${encodeURIComponent(btoa(JSON.stringify(campaignData)))}` : '';
-  const jsonDownloadUrl = campaignData ? `${baseUrl}/download-content?type=json&data=${encodeURIComponent(btoa(JSON.stringify(campaignData)))}` : '';
+  const txtDownloadUrl = campaignData ? `${baseUrl}/download-content?type=txt&data=${encodeURIComponent(utf8ToBase64(JSON.stringify(campaignData)))}` : '';
+  const jsonDownloadUrl = campaignData ? `${baseUrl}/download-content?type=json&data=${encodeURIComponent(utf8ToBase64(JSON.stringify(campaignData)))}` : '';
 
   if (!campaignData || !downloadUrls) {
     return (

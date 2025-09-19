@@ -6,6 +6,14 @@ import { Download, CheckCircle, AlertCircle } from "lucide-react";
 import RibbedSphere from "@/components/RibbedSphere";
 import type { CampaignCreationResponse } from "@/types/api";
 
+// UTF-8 safe base64 decoding function
+const base64ToUtf8 = (str: string): string => {
+  // Decode base64 to bytes, then convert to UTF-8 string
+  return decodeURIComponent(Array.prototype.map.call(atob(str), (c: string) => {
+    return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+  }).join(''));
+};
+
 const DownloadContentScreen = () => {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
@@ -36,8 +44,8 @@ const DownloadContentScreen = () => {
     setError(null);
 
     try {
-      // Decode the campaign data
-      const decodedData = atob(decodeURIComponent(encodedData));
+      // Decode the campaign data using UTF-8 safe decoding
+      const decodedData = base64ToUtf8(decodeURIComponent(encodedData));
       const campaignData: CampaignCreationResponse = JSON.parse(decodedData);
 
       let content: string;
