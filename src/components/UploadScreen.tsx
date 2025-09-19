@@ -187,12 +187,12 @@ const UploadScreen: React.FC<UploadScreenProps> = ({ mode }) => {
         setUploadedImage(base64Image);
         toast.success('Image uploaded successfully!');
         
-        // If campaign mode, analyze image with AI for suggestions
-        if (currentMode === 'campaign') {
+        // Analyze image with AI for both campaign and catalog modes
+        if (currentMode === 'campaign' || currentMode === 'catalog') {
           setIsAnalyzingImage(true);
           try {
             const suggestions = await analyzeImageWithAI(base64Image);
-            // Store suggestions in state to pass to campaign prompt screen
+            // Store suggestions in state to pass to appropriate screen
             sessionStorage.setItem('aiSuggestions', JSON.stringify(suggestions));
           } catch (error) {
             console.error('Failed to analyze image:', error);
