@@ -8,6 +8,9 @@ import { QRCodeSVG } from 'qrcode.react';
 import { createQRSession, subscribeToSessionUpdates, QRSession } from '@/lib/qr-session';
 import RibbedSphere from '@/components/RibbedSphere';
 import { supabase } from '@/integrations/supabase/client';
+import sampleHeadphones from '@/assets/sample-headphones.jpg';
+import sampleEnergyDrink from '@/assets/sample-energy-drink.webp';
+import sampleSneakers from '@/assets/sample-sneakers.webp';
 
 interface UploadScreenProps {
   mode?: 'catalog' | 'campaign';
@@ -250,6 +253,24 @@ const UploadScreen: React.FC<UploadScreenProps> = ({ mode }) => {
   const openQrScanner = () => {
     // For now, show a toast message. In a real implementation, this would open QR scanner
     toast.info('QR code scanner coming soon! Use camera or file upload for now.');
+  };
+
+  const handleSampleImageSelect = async (imageSrc: string, fileName: string) => {
+    setIsValidating(true);
+    
+    try {
+      // Fetch the image and convert to File object
+      const response = await fetch(imageSrc);
+      const blob = await response.blob();
+      const file = new File([blob], fileName, { type: blob.type });
+      
+      // Use existing handleFile function
+      await handleFile(file);
+    } catch (error) {
+      console.error('Error loading sample image:', error);
+      toast.error('Failed to load sample image');
+      setIsValidating(false);
+    }
   };
 
   const handleContinue = () => {
@@ -504,27 +525,91 @@ const UploadScreen: React.FC<UploadScreenProps> = ({ mode }) => {
                     <div className="flex-1 h-px bg-muted"></div>
                   </div>
 
-                  <div className="flex gap-3 justify-center">
-                    <Button
-                      size="lg"
-                      onClick={openCamera}
-                      variant="outline"
-                      className="px-6 rounded-full"
-                      disabled={isValidating}
-                    >
-                      <Camera className="mr-2 w-4 h-4" />
-                      Camera
-                    </Button>
-                    <Button
-                      size="lg"
-                      onClick={openFileSelector}
-                      variant="outline"
-                      className="px-6 rounded-full"
-                      disabled={isValidating}
-                    >
-                      <Upload className="mr-2 w-4 h-4" />
-                      Browse Files
-                    </Button>
+                  <div className="space-y-4">
+                    <p className="text-sm text-muted-foreground text-center font-medium">
+                      Try these sample products:
+                    </p>
+                    <div className="grid grid-cols-3 gap-4 max-w-md mx-auto">
+                      <button
+                        onClick={() => handleSampleImageSelect(sampleHeadphones, 'wireless-headphones.jpg')}
+                        disabled={isValidating}
+                        className="group relative overflow-hidden rounded-lg border-2 border-muted hover:border-primary transition-colors disabled:opacity-50"
+                      >
+                        <img 
+                          src={sampleHeadphones} 
+                          alt="Wireless Headphones"
+                          className="w-full aspect-square object-cover group-hover:scale-105 transition-transform"
+                        />
+                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
+                          <span className="text-white text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity">
+                            Select
+                          </span>
+                        </div>
+                      </button>
+                      
+                      <button
+                        onClick={() => handleSampleImageSelect(sampleEnergyDrink, 'energy-drink.webp')}
+                        disabled={isValidating}
+                        className="group relative overflow-hidden rounded-lg border-2 border-muted hover:border-primary transition-colors disabled:opacity-50"
+                      >
+                        <img 
+                          src={sampleEnergyDrink} 
+                          alt="Energy Drink"
+                          className="w-full aspect-square object-cover group-hover:scale-105 transition-transform"
+                        />
+                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
+                          <span className="text-white text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity">
+                            Select
+                          </span>
+                        </div>
+                      </button>
+                      
+                      <button
+                        onClick={() => handleSampleImageSelect(sampleSneakers, 'leather-sneakers.webp')}
+                        disabled={isValidating}
+                        className="group relative overflow-hidden rounded-lg border-2 border-muted hover:border-primary transition-colors disabled:opacity-50"
+                      >
+                        <img 
+                          src={sampleSneakers} 
+                          alt="Leather Sneakers"
+                          className="w-full aspect-square object-cover group-hover:scale-105 transition-transform"
+                        />
+                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
+                          <span className="text-white text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity">
+                            Select
+                          </span>
+                        </div>
+                      </button>
+                    </div>
+                    
+                    <div className="flex items-center space-x-4">
+                      <div className="flex-1 h-px bg-muted"></div>
+                      <span className="text-sm text-muted-foreground font-medium">OR UPLOAD YOUR OWN</span>
+                      <div className="flex-1 h-px bg-muted"></div>
+                    </div>
+
+                    <div className="flex gap-3 justify-center">
+                      <Button
+                        size="lg"
+                        onClick={openCamera}
+                        variant="outline"
+                        className="px-6 rounded-full"
+                        disabled={isValidating}
+                      >
+                        <Camera className="mr-2 w-4 h-4" />
+                        Camera
+                      </Button>
+                      <Button
+                        size="lg"
+                        onClick={openFileSelector}
+                        variant="outline"
+                        className="px-6 rounded-full"
+                        disabled={isValidating}
+                      >
+                        <Upload className="mr-2 w-4 h-4" />
+                        Browse Files
+                      </Button>
+                    </div>
                   </div>
 
                   <p className="text-sm text-muted-foreground">
