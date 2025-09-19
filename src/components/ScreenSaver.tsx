@@ -7,7 +7,7 @@ import RibbedSphere from '@/components/RibbedSphere';
 // Import card images
 import campaignExample1 from '@/assets/campaign-example-1.webp';
 import campaignExample2 from '@/assets/campaign-example-2.webp';
-import adidasShoe from '@/assets/adidas-shoe.webp';
+import adidasShoe from '@/assets/gazelle-shoes.avif';
 import campaignExample4 from '@/assets/campaign-example-4.webp';
 import campaignExample5 from '@/assets/campaign-example-5.webp';
 
