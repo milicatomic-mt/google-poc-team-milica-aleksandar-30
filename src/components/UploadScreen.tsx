@@ -476,7 +476,7 @@ const UploadScreen: React.FC<UploadScreenProps> = ({ mode }) => {
                     </button>
                     
                     {/* AI Wave Scanning Animation Overlay - Material-UI Style */}
-                    {isAnalyzingImage && currentMode === 'campaign' && (
+                    {isAnalyzingImage && (currentMode === 'campaign' || currentMode === 'catalog') && (
                       <div className="absolute inset-0 pointer-events-none bg-black/30 backdrop-blur-sm rounded-xl">
                         {/* Material-UI style wave scanning effect */}
                         <div className="mui-wave-scan absolute inset-0 rounded-xl"></div>
