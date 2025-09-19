@@ -10,7 +10,7 @@ import RibbedSphere from '@/components/RibbedSphere';
 import { supabase } from '@/integrations/supabase/client';
 import sampleHeadphones from '@/assets/sample-headphones.jpg';
 import sampleBodyWash from '@/assets/sample-body-wash.png';
-import sampleSneakers from '@/assets/adidas-sneakers.png';
+import sampleSneakers from '@/assets/black-adidas-sneakers.png';
 
 interface UploadScreenProps {
   mode?: 'catalog' | 'campaign';
