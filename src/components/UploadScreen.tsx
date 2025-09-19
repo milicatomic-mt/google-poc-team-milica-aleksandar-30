@@ -511,15 +511,15 @@ const UploadScreen: React.FC<UploadScreenProps> = ({ mode }) => {
                       </div>
                     </div>
                     
-                    <p className="text-muted-foreground text-sm">
+                    <p className="text-muted-foreground text-base font-medium">
                       {isLoadingSession 
                         ? 'Generating QR code...' 
                         : 'Scan with your phone\'s camera to upload images directly'
                       }
                     </p>
                     
-                    <p className="text-sm text-muted-foreground">
-                      Supports JPG, PNG, WEBP • Max 10MB • Min 300x300px
+                    <p className="text-xs text-muted-foreground">
+                      JPG, PNG, WEBP • Max 10MB • Min 300x300px
                     </p>
                   </div>
 
@@ -533,7 +533,7 @@ const UploadScreen: React.FC<UploadScreenProps> = ({ mode }) => {
                     <p className="text-sm text-muted-foreground text-center font-medium">
                       Try these sample products:
                     </p>
-                    <div className="grid grid-cols-3 gap-4 max-w-md mx-auto">
+                    <div className="grid grid-cols-3 gap-3 max-w-xs mx-auto">
                       <button
                         onClick={() => handleSampleImageSelect(sampleHeadphones, 'wireless-headphones.jpg')}
                         disabled={isValidating}
