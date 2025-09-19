@@ -121,7 +121,7 @@ const WelcomeScreen = () => {
                 <RibbedSphere className="w-full h-full" />
               </div>
               <h2 className="text-3xl font-semibold text-foreground">
-                <TypingText text="What's first on your list?" />
+                <TypingText text="What would you like to try first?" />
               </h2>
             </div>
           </div>
