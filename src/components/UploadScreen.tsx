@@ -469,27 +469,31 @@ const UploadScreen: React.FC<UploadScreenProps> = ({ mode }) => {
                     />
                     <button
                       onClick={handleRemoveImage}
-                      className="absolute top-2 right-2 bg-white text-black rounded-full p-1.5 hover:bg-gray-100 transition-colors shadow-md"
+                      className="absolute top-2 right-2 bg-white text-black rounded-full p-1.5 hover:bg-gray-100 transition-colors shadow-md z-10"
                       title="Remove image"
                     >
                       <X className="w-4 h-4" />
                     </button>
+                    
+                    {/* AI Scanning Animation Overlay */}
+                    {isAnalyzingImage && currentMode === 'campaign' && (
+                      <div className="absolute inset-0 pointer-events-none">
+                        {/* Scanning line */}
+                        <div className="absolute w-full h-0.5 bg-gradient-to-r from-transparent via-primary to-transparent scan-line opacity-80"></div>
+                        
+                        {/* Corner brackets */}
+                        <div className="absolute top-2 left-2 w-4 h-4 border-l-2 border-t-2 border-primary scan-brackets"></div>
+                        <div className="absolute top-2 right-2 w-4 h-4 border-r-2 border-t-2 border-primary scan-brackets"></div>
+                        <div className="absolute bottom-2 left-2 w-4 h-4 border-l-2 border-b-2 border-primary scan-brackets"></div>
+                        <div className="absolute bottom-2 right-2 w-4 h-4 border-r-2 border-b-2 border-primary scan-brackets"></div>
+                        
+                        {/* Subtle grid overlay */}
+                        <div className="absolute inset-0 grid-overlay opacity-20"></div>
+                      </div>
+                    )}
                   </div>
                   <div className="space-y-2">
                     <h3 className="text-lg font-semibold text-foreground">Image Uploaded</h3>
-                    {isAnalyzingImage && currentMode === 'campaign' && (
-                      <div className="space-y-2">
-                        <div className="flex items-center space-x-2">
-                          <div className="w-4 h-4 rounded skeleton-calm"></div>
-                          <div className="h-3 rounded w-32 skeleton-calm"></div>
-                        </div>
-                        <div className="space-y-1">
-                          <div className="h-2 rounded w-24 skeleton-calm"></div>
-                          <div className="h-2 rounded w-28 skeleton-calm"></div>
-                        </div>
-                        <p className="text-xs text-muted-foreground mt-1">Analyzing image...</p>
-                      </div>
-                    )}
                   </div>
                 </div>
               ) : (
