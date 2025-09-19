@@ -83,7 +83,17 @@ const CampaignPromptScreen = () => {
 
   const handleExampleClick = (example: string) => {
     setPrompt(example);
-    textareaRef.current?.focus();
+    // Focus the textarea and adjust its height
+    if (textareaRef.current) {
+      textareaRef.current.focus();
+      // Trigger height adjustment after the value is set
+      setTimeout(() => {
+        if (textareaRef.current) {
+          textareaRef.current.style.height = 'auto';
+          textareaRef.current.style.height = Math.max(120, textareaRef.current.scrollHeight) + 'px';
+        }
+      }, 0);
+    }
   };
 
   const handleContinue = () => {
@@ -99,6 +109,14 @@ const CampaignPromptScreen = () => {
   };
 
   // Auto-focus textarea on mount and load AI suggestions
+  // Auto-adjust height when prompt changes
+  useEffect(() => {
+    if (textareaRef.current && prompt) {
+      textareaRef.current.style.height = 'auto';
+      textareaRef.current.style.height = Math.max(120, textareaRef.current.scrollHeight) + 'px';
+    }
+  }, [prompt]);
+
   useEffect(() => {
     textareaRef.current?.focus();
     
@@ -234,15 +252,15 @@ const CampaignPromptScreen = () => {
             value={prompt}
             onChange={(e) => setPrompt(e.target.value)}
             placeholder={displayedPlaceholder}
-            className="min-h-[80px] text-lg resize-none backdrop-blur-md bg-white/80 rounded-lg shadow-sm border border-white/40 focus-visible:border-primary transition-all duration-smooth placeholder:text-gray-400 p-4"
+            className="min-h-[120px] text-lg resize-none backdrop-blur-md bg-white/80 rounded-lg shadow-sm border border-white/40 focus-visible:border-primary transition-all duration-smooth placeholder:text-gray-400 p-4 leading-relaxed"
             style={{ 
               height: 'auto',
-              minHeight: '80px'
+              minHeight: '120px'
             }}
             onInput={(e) => {
               const target = e.target as HTMLTextAreaElement;
               target.style.height = 'auto';
-              target.style.height = Math.max(80, target.scrollHeight) + 'px';
+              target.style.height = Math.max(120, target.scrollHeight) + 'px';
             }}
             aria-describedby="example-help"
           />
