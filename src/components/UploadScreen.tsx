@@ -481,13 +481,14 @@ const UploadScreen: React.FC<UploadScreenProps> = ({ mode }) => {
                     {isAnalyzingImage && currentMode === 'campaign' && (
                       <div className="space-y-2">
                         <div className="flex items-center space-x-2">
-                          <div className="w-4 h-4 bg-muted rounded animate-pulse"></div>
-                          <div className="h-3 bg-muted rounded w-32 animate-pulse"></div>
+                          <div className="w-4 h-4 bg-muted rounded opacity-60"></div>
+                          <div className="h-3 bg-muted rounded w-32 opacity-60"></div>
                         </div>
                         <div className="space-y-1">
-                          <div className="h-2 bg-muted rounded w-24 animate-pulse"></div>
-                          <div className="h-2 bg-muted rounded w-28 animate-pulse"></div>
+                          <div className="h-2 bg-muted rounded w-24 opacity-40"></div>
+                          <div className="h-2 bg-muted rounded w-28 opacity-40"></div>
                         </div>
+                        <p className="text-xs text-muted-foreground mt-1">Analyzing image...</p>
                       </div>
                     )}
                   </div>
