@@ -234,15 +234,15 @@ const CampaignPromptScreen = () => {
             value={prompt}
             onChange={(e) => setPrompt(e.target.value)}
             placeholder={displayedPlaceholder}
-            className="min-h-[40px] text-lg resize-none bg-white rounded-2xl shadow-xl border border-white/20 focus-visible:border-primary transition-all duration-smooth placeholder:text-gray-400 px-6 py-3"
+            className="min-h-[60px] text-lg resize-none backdrop-blur-md bg-white/80 rounded-lg shadow-sm border border-white/40 focus-visible:border-primary transition-all duration-smooth placeholder:text-gray-400 p-4"
             style={{ 
               height: 'auto',
-              minHeight: '40px'
+              minHeight: '60px'
             }}
             onInput={(e) => {
               const target = e.target as HTMLTextAreaElement;
               target.style.height = 'auto';
-              target.style.height = Math.max(40, target.scrollHeight) + 'px';
+              target.style.height = Math.max(60, target.scrollHeight) + 'px';
             }}
             aria-describedby="example-help"
           />
