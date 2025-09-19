@@ -15,6 +15,7 @@ const CampaignPromptScreen = () => {
   const [currentExampleIndex, setCurrentExampleIndex] = useState(0);
   const [displayedPlaceholder, setDisplayedPlaceholder] = useState('');
   const [isTyping, setIsTyping] = useState(true);
+  const [aiSuggestions, setAiSuggestions] = useState<string[]>([]);
 
   const examples = [
     "Enter your campaign description",
@@ -83,9 +84,22 @@ const CampaignPromptScreen = () => {
     navigate(`/upload/${mode}`);
   };
 
-  // Auto-focus textarea on mount
+  // Auto-focus textarea on mount and load AI suggestions
   useEffect(() => {
     textareaRef.current?.focus();
+    
+    // Load AI suggestions from session storage
+    const suggestions = sessionStorage.getItem('aiSuggestions');
+    if (suggestions) {
+      try {
+        const parsedSuggestions = JSON.parse(suggestions);
+        if (Array.isArray(parsedSuggestions) && parsedSuggestions.length > 0) {
+          setAiSuggestions(parsedSuggestions);
+        }
+      } catch (error) {
+        console.error('Failed to parse AI suggestions:', error);
+      }
+    }
   }, []);
 
   return (
@@ -223,42 +237,63 @@ const CampaignPromptScreen = () => {
         {/* Suggestions Section */}
         <div className="w-full max-w-2xl mx-auto mb-8 animate-fade-in">
           <h3 className="text-lg font-medium text-foreground mb-4 text-center">
-            Not Sure What to Write? Here's How to Start
+            {aiSuggestions.length > 0 ? 'AI-Generated Campaign Ideas Based on Your Image' : 'Not Sure What to Write? Here\'s How to Start'}
           </h3>
           <div className="space-y-3">
-            <button
-              onClick={() => handleExampleClick("Launching a new eco-friendly sneaker for everyday wear.")}
-              className="w-full flex items-start p-4 backdrop-blur-md bg-white/30 hover:bg-white rounded-lg border border-white/40 hover:border-primary transition-all duration-200 text-left group shadow-sm"
-            >
-              <div className="h-4 w-4 mr-3 mt-0.5 flex-shrink-0">
-                <RibbedSphere className="w-full h-full" />
-              </div>
-              <span className="text-foreground group-hover:text-primary">
-                Launching a new eco-friendly sneaker for everyday wear.
-              </span>
-            </button>
-            <button
-              onClick={() => handleExampleClick("Highlighting a limited-edition smartwatch with advanced health tracking.")}
-              className="w-full flex items-start p-4 backdrop-blur-md bg-white/30 hover:bg-white rounded-lg border border-white/40 hover:border-primary transition-all duration-200 text-left group shadow-sm"
-            >
-              <div className="h-4 w-4 mr-3 mt-0.5 flex-shrink-0">
-                <RibbedSphere className="w-full h-full" />
-              </div>
-              <span className="text-foreground group-hover:text-primary">
-                Highlighting a limited-edition smartwatch with advanced health tracking.
-              </span>
-            </button>
-            <button
-              onClick={() => handleExampleClick("Showcasing a sustainable bamboo toothbrush for eco-conscious families.")}
-              className="w-full flex items-start p-4 backdrop-blur-md bg-white/30 hover:bg-white rounded-lg border border-white/40 hover:border-primary transition-all duration-200 text-left group shadow-sm"
-            >
-              <div className="h-4 w-4 mr-3 mt-0.5 flex-shrink-0">
-                <RibbedSphere className="w-full h-full" />
-              </div>
-              <span className="text-foreground group-hover:text-primary">
-                Showcasing a sustainable bamboo toothbrush for eco-conscious families.
-              </span>
-            </button>
+            {aiSuggestions.length > 0 ? (
+              // Show AI-generated suggestions
+              aiSuggestions.map((suggestion, index) => (
+                <button
+                  key={index}
+                  onClick={() => handleExampleClick(suggestion)}
+                  className="w-full flex items-start p-4 backdrop-blur-md bg-gradient-to-r from-indigo-50/80 to-purple-50/80 hover:from-indigo-100/90 hover:to-purple-100/90 rounded-lg border border-indigo-200/60 hover:border-indigo-400/80 transition-all duration-200 text-left group shadow-sm"
+                >
+                  <div className="h-4 w-4 mr-3 mt-0.5 flex-shrink-0">
+                    <RibbedSphere className="w-full h-full" />
+                  </div>
+                  <span className="text-foreground group-hover:text-primary">
+                    {suggestion}
+                  </span>
+                </button>
+              ))
+            ) : (
+              // Fallback to default suggestions
+              <>
+                <button
+                  onClick={() => handleExampleClick("Launching a new eco-friendly sneaker for everyday wear.")}
+                  className="w-full flex items-start p-4 backdrop-blur-md bg-white/30 hover:bg-white rounded-lg border border-white/40 hover:border-primary transition-all duration-200 text-left group shadow-sm"
+                >
+                  <div className="h-4 w-4 mr-3 mt-0.5 flex-shrink-0">
+                    <RibbedSphere className="w-full h-full" />
+                  </div>
+                  <span className="text-foreground group-hover:text-primary">
+                    Launching a new eco-friendly sneaker for everyday wear.
+                  </span>
+                </button>
+                <button
+                  onClick={() => handleExampleClick("Highlighting a limited-edition smartwatch with advanced health tracking.")}
+                  className="w-full flex items-start p-4 backdrop-blur-md bg-white/30 hover:bg-white rounded-lg border border-white/40 hover:border-primary transition-all duration-200 text-left group shadow-sm"
+                >
+                  <div className="h-4 w-4 mr-3 mt-0.5 flex-shrink-0">
+                    <RibbedSphere className="w-full h-full" />
+                  </div>
+                  <span className="text-foreground group-hover:text-primary">
+                    Highlighting a limited-edition smartwatch with advanced health tracking.
+                  </span>
+                </button>
+                <button
+                  onClick={() => handleExampleClick("Showcasing a sustainable bamboo toothbrush for eco-conscious families.")}
+                  className="w-full flex items-start p-4 backdrop-blur-md bg-white/30 hover:bg-white rounded-lg border border-white/40 hover:border-primary transition-all duration-200 text-left group shadow-sm"
+                >
+                  <div className="h-4 w-4 mr-3 mt-0.5 flex-shrink-0">
+                    <RibbedSphere className="w-full h-full" />
+                  </div>
+                  <span className="text-foreground group-hover:text-primary">
+                    Showcasing a sustainable bamboo toothbrush for eco-conscious families.
+                  </span>
+                </button>
+              </>
+            )}
           </div>
         </div>
 

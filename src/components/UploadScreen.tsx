@@ -7,6 +7,7 @@ import { toast } from 'sonner';
 import { QRCodeSVG } from 'qrcode.react';
 import { createQRSession, subscribeToSessionUpdates, QRSession } from '@/lib/qr-session';
 import RibbedSphere from '@/components/RibbedSphere';
+import { supabase } from '@/integrations/supabase/client';
 
 interface UploadScreenProps {
   mode?: 'catalog' | 'campaign';
@@ -27,6 +28,7 @@ const UploadScreen: React.FC<UploadScreenProps> = ({ mode }) => {
   } | null>(null);
   const [qrSession, setQrSession] = useState<QRSession | null>(null);
   const [isLoadingSession, setIsLoadingSession] = useState(true);
+  const [isAnalyzingImage, setIsAnalyzingImage] = useState(false);
   
   const fileInputRef = useRef<HTMLInputElement>(null);
   const cameraInputRef = useRef<HTMLInputElement>(null);
@@ -146,6 +148,24 @@ const UploadScreen: React.FC<UploadScreenProps> = ({ mode }) => {
     });
   };
 
+  const analyzeImageWithAI = async (imageBase64: string): Promise<string[]> => {
+    try {
+      const { data, error } = await supabase.functions.invoke('analyze-image', {
+        body: { imageBase64 }
+      });
+      
+      if (error) {
+        console.error('Error analyzing image:', error);
+        return [];
+      }
+      
+      return data?.suggestions || [];
+    } catch (error) {
+      console.error('Error calling analyze-image function:', error);
+      return [];
+    }
+  };
+
   const handleFile = async (file: File) => {
     setIsValidating(true);
     
@@ -163,6 +183,20 @@ const UploadScreen: React.FC<UploadScreenProps> = ({ mode }) => {
         
         setUploadedImage(base64Image);
         toast.success('Image uploaded successfully!');
+        
+        // If campaign mode, analyze image with AI for suggestions
+        if (currentMode === 'campaign') {
+          setIsAnalyzingImage(true);
+          try {
+            const suggestions = await analyzeImageWithAI(base64Image);
+            // Store suggestions in state to pass to campaign prompt screen
+            sessionStorage.setItem('aiSuggestions', JSON.stringify(suggestions));
+          } catch (error) {
+            console.error('Failed to analyze image:', error);
+          } finally {
+            setIsAnalyzingImage(false);
+          }
+        }
       } else {
         toast.error(validation.message);
       }
@@ -407,6 +441,9 @@ const UploadScreen: React.FC<UploadScreenProps> = ({ mode }) => {
                   </div>
                   <div className="space-y-2">
                     <h3 className="text-lg font-semibold text-foreground">Image Uploaded</h3>
+                    {isAnalyzingImage && currentMode === 'campaign' && (
+                      <p className="text-sm text-muted-foreground">Analyzing image for campaign suggestions...</p>
+                    )}
                     <Button
                       variant="outline"
                       onClick={openFileSelector}
