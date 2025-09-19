@@ -12,6 +12,8 @@ import CampaignResultsScreen from "./components/CampaignResultsScreen";
 import CatalogDetailsScreen from "./components/CatalogDetailsScreen";
 import CatalogResultsScreen from "./components/CatalogResultsScreen";
 import MobileUploadScreen from "./components/MobileUploadScreen";
+import QRDownloadScreen from "./components/QRDownloadScreen";
+import DownloadContentScreen from "./components/DownloadContentScreen";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 
@@ -34,6 +36,8 @@ const App = () => (
           <Route path="/mobile-upload" element={<MobileUploadScreen />} />
           <Route path="/catalog-details" element={<CatalogDetailsScreen />} />
           <Route path="/catalog-results" element={<CatalogResultsScreen />} />
+          <Route path="/qr-download" element={<QRDownloadScreen />} />
+          <Route path="/download-content" element={<DownloadContentScreen />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
