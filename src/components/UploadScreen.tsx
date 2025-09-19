@@ -479,16 +479,7 @@ const UploadScreen: React.FC<UploadScreenProps> = ({ mode }) => {
                     {isAnalyzingImage && currentMode === 'campaign' && (
                       <div className="absolute inset-0 pointer-events-none">
                         {/* Scanning line */}
-                        <div className="absolute w-full h-0.5 bg-gradient-to-r from-transparent via-primary to-transparent scan-line opacity-80"></div>
-                        
-                        {/* Corner brackets */}
-                        <div className="absolute top-2 left-2 w-4 h-4 border-l-2 border-t-2 border-primary scan-brackets"></div>
-                        <div className="absolute top-2 right-2 w-4 h-4 border-r-2 border-t-2 border-primary scan-brackets"></div>
-                        <div className="absolute bottom-2 left-2 w-4 h-4 border-l-2 border-b-2 border-primary scan-brackets"></div>
-                        <div className="absolute bottom-2 right-2 w-4 h-4 border-r-2 border-b-2 border-primary scan-brackets"></div>
-                        
-                        {/* Subtle grid overlay */}
-                        <div className="absolute inset-0 grid-overlay opacity-20"></div>
+                        <div className="absolute w-full h-1 bg-white scan-line opacity-90 shadow-md"></div>
                       </div>
                     )}
                   </div>
