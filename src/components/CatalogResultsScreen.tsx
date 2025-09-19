@@ -4,6 +4,7 @@ import { ArrowLeft, X, Copy, CheckCircle, AlertCircle, Download, ArrowRight } fr
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { Progress } from '@/components/ui/progress';
 import { toast } from 'sonner';
 import {
   Dialog,
@@ -27,6 +28,8 @@ const CatalogResultsScreen: React.FC = () => {
   const [catalogResults, setCatalogResults] = useState<CatalogEnrichmentResponse | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [copiedField, setCopiedField] = useState<string | null>(null);
+  const [currentAction, setCurrentAction] = useState("Preparing catalog generation...");
+  const [progress, setProgress] = useState(0);
 
   useEffect(() => {
     if (!catalogData?.uploadedImage) {
@@ -38,6 +41,22 @@ const CatalogResultsScreen: React.FC = () => {
       try {
         setIsGenerating(true);
         setError(null);
+
+        // Simulate loading steps with progress updates
+        const loadingSteps = [
+          { text: "Preparing catalog generation...", progress: 0 },
+          { text: "Analyzing product image...", progress: 25 },
+          { text: "Generating SEO-optimized content...", progress: 50 },
+          { text: "Creating features and descriptions...", progress: 75 },
+          { text: "Finalizing catalog content...", progress: 90 }
+        ];
+
+        // Update loading steps
+        for (let i = 0; i < loadingSteps.length; i++) {
+          setCurrentAction(loadingSteps[i].text);
+          setProgress(loadingSteps[i].progress);
+          await new Promise(resolve => setTimeout(resolve, 1200)); // Wait 1.2s between steps
+        }
 
         // Save the catalog request to database first
         const catalogRequest: CatalogEnrichmentRequest = {
@@ -52,6 +71,10 @@ const CatalogResultsScreen: React.FC = () => {
 
         // Generate the catalog content using AI
         const results = await generateCatalog(savedRequest.id, catalogRequest);
+
+        // Final progress update
+        setCurrentAction("Complete!");
+        setProgress(100);
 
         setCatalogResults(results);
         toast.success('Catalog content generated successfully!');
@@ -115,25 +138,31 @@ const CatalogResultsScreen: React.FC = () => {
           </header>
 
           <div className="flex-1 flex items-center justify-center">
-            <div className="text-center space-y-8 max-w-md mx-auto">
-              <div className="relative">
-                <div className="animate-spin rounded-full h-20 w-20 border-b-4 border-primary mx-auto"></div>
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-12 h-12 bg-primary/20 rounded-full animate-pulse"></div>
-                </div>
+            <div className="flex flex-col items-center justify-center space-y-8">
+              {/* Animated Sphere - 200x200px */}
+              <div className="w-[200px] h-[200px] animate-fade-in">
+                <RibbedSphere className="w-full h-full" />
               </div>
-              
-              <div className="space-y-4">
-                <h2 className="text-3xl font-bold text-foreground">
-                  Generating Catalog Content
-                </h2>
-                <p className="text-xl text-muted-foreground">
-                  AI is analyzing your product and creating comprehensive catalog content...
+
+              {/* Loading Text */}
+              <div className="text-center animate-fade-in animation-delay-300">
+                <p className="text-2xl font-semibold text-foreground mb-2">
+                  {currentAction}
                 </p>
-                <div className="text-sm text-muted-foreground space-y-1">
-                  <p>✓ Analyzing product image</p>
-                  <p>✓ Generating SEO-optimized content</p>
-                  <p className="animate-pulse">⚡ Creating features and descriptions...</p>
+                <p className="text-lg text-muted-foreground">
+                  Creating your comprehensive catalog content
+                </p>
+              </div>
+
+              {/* Progress Bar */}
+              <div className="w-full max-w-md animate-fade-in animation-delay-500">
+                <Progress 
+                  value={progress} 
+                  className="h-2 bg-muted"
+                />
+                <div className="flex justify-between items-center mt-2 text-sm text-muted-foreground">
+                  <span>{progress}%</span>
+                  <span>Please wait...</span>
                 </div>
               </div>
             </div>

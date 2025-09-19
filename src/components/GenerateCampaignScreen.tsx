@@ -1,18 +1,37 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import RibbedSphere from '@/components/RibbedSphere';
 import { saveCampaignRequest, generateCampaign } from '@/lib/database';
 import type { CampaignCreationRequest } from '@/types/api';
+import { Progress } from '@/components/ui/progress';
 
 const GenerateCampaignScreen = () => {
   const location = useLocation();
   const navigate = useNavigate();
+  const [currentAction, setCurrentAction] = useState("Preparing your content...");
+  const [progress, setProgress] = useState(0);
 
   useEffect(() => {
     const generateContent = async () => {
       try {
         const state = location.state;
         if (!state) return;
+
+        // Simulate loading steps with progress updates
+        const loadingSteps = [
+          { text: "Preparing your content...", progress: 0 },
+          { text: "Analyzing your image...", progress: 25 },
+          { text: "Creating campaign strategy...", progress: 50 },
+          { text: "Generating marketing content...", progress: 75 },
+          { text: "Finalizing your campaign...", progress: 90 }
+        ];
+
+        // Update loading steps
+        for (let i = 0; i < loadingSteps.length; i++) {
+          setCurrentAction(loadingSteps[i].text);
+          setProgress(loadingSteps[i].progress);
+          await new Promise(resolve => setTimeout(resolve, 1200)); // Wait 1.2s between steps
+        }
 
         // This component now only handles campaign generation
         const campaignData: CampaignCreationRequest = {
@@ -26,6 +45,10 @@ const GenerateCampaignScreen = () => {
         
         // Generate the campaign using AI
         await generateCampaign(campaignResult.id, campaignData);
+        
+        // Final progress update
+        setCurrentAction("Complete!");
+        setProgress(100);
         
         // Navigate to results with the campaign ID
         navigate('/campaign-results', { 
@@ -73,32 +96,34 @@ const GenerateCampaignScreen = () => {
         </header>
         
         <div className="flex-1 flex items-center justify-center px-4 py-8">
-          <div className="text-center max-w-2xl mx-auto backdrop-blur-md bg-white/20 border border-white/30 rounded-3xl p-12 shadow-xl">
-        
-        {/* Main Headline */}
-        <h2 className="text-3xl md:text-4xl lg:text-5xl 2xl:text-6xl font-bold text-gray-900 mb-4 leading-tight loading-text-fade-in">
-          Transforming your idea into impactful marketing content…
-        </h2>
-        
-        {/* Animated Sphere Logo */}
-        <div className="flex justify-center items-center my-12 loading-dots-fade-in">
-          <div className="h-16 w-16 drop-shadow-lg">
-            <RibbedSphere className="w-full h-full" />
-          </div>
-        </div>
+          <div className="flex flex-col items-center justify-center space-y-8">
+            {/* Animated Sphere - 200x200px */}
+            <div className="w-[200px] h-[200px] animate-fade-in">
+              <RibbedSphere className="w-full h-full" />
+            </div>
 
-        {/* Subtitle */}
-        <p className="text-lg md:text-xl 2xl:text-2xl text-gray-600 leading-relaxed loading-subtitle-fade-in">
-          Our AI is generating visuals, copy, and campaign assets tailored to your prompt.
-        </p>
+            {/* Loading Text */}
+            <div className="text-center animate-fade-in animation-delay-300">
+              <p className="text-2xl font-semibold text-foreground mb-2">
+                {currentAction}
+              </p>
+              <p className="text-lg text-muted-foreground">
+                Creating your perfect marketing campaign
+              </p>
+            </div>
 
-        {/* Progress Bar */}
-        <div className="mt-8 w-full max-w-md mx-auto loading-progress-fade-in">
-          <div className="h-1 bg-gray-200 rounded-full overflow-hidden">
-            <div className="h-full bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full loading-progress-bar"></div>
+            {/* Progress Bar */}
+            <div className="w-full max-w-md animate-fade-in animation-delay-500">
+              <Progress 
+                value={progress} 
+                className="h-2 bg-muted"
+              />
+              <div className="flex justify-between items-center mt-2 text-sm text-muted-foreground">
+                <span>{progress}%</span>
+                <span>Please wait...</span>
+              </div>
+            </div>
           </div>
-        </div>
-        </div>
         </div>
       </div>
 
