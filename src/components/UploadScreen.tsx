@@ -440,7 +440,7 @@ const UploadScreen: React.FC<UploadScreenProps> = ({ mode }) => {
                                 size={180}
                                 level="L"
                                 includeMargin={true}
-                                fgColor="#6366f1"
+                                fgColor="hsl(238, 83%, 67%)"
                                 bgColor="transparent"
                               />
                             </div>
