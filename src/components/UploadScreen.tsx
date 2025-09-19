@@ -273,6 +273,15 @@ const UploadScreen: React.FC<UploadScreenProps> = ({ mode }) => {
     }
   };
 
+  const handleRemoveImage = () => {
+    setUploadedImage(null);
+    setValidationResult(null);
+    setIsAnalyzingImage(false);
+    // Clear any stored AI suggestions
+    sessionStorage.removeItem('aiSuggestions');
+    toast.success('Image removed');
+  };
+
   const handleContinue = () => {
     if (uploadedImage && validationResult?.isValid) {
       if (currentMode === 'catalog') {
@@ -459,6 +468,13 @@ const UploadScreen: React.FC<UploadScreenProps> = ({ mode }) => {
                       alt="Uploaded product"
                       className="w-full h-full object-cover"
                     />
+                    <button
+                      onClick={handleRemoveImage}
+                      className="absolute top-2 right-2 bg-destructive text-destructive-foreground rounded-full p-1.5 hover:bg-destructive/90 transition-colors"
+                      title="Remove image"
+                    >
+                      <X className="w-4 h-4" />
+                    </button>
                   </div>
                   <div className="space-y-2">
                     <h3 className="text-lg font-semibold text-foreground">Image Uploaded</h3>
