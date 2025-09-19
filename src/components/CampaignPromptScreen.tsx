@@ -16,7 +16,6 @@ const CampaignPromptScreen = () => {
   const [displayedPlaceholder, setDisplayedPlaceholder] = useState('');
   const [isTyping, setIsTyping] = useState(true);
   const [aiSuggestions, setAiSuggestions] = useState<string[]>([]);
-  const [isLoadingAISuggestions, setIsLoadingAISuggestions] = useState(true);
 
   const getExamples = () => {
     if (aiSuggestions.length > 0) {
@@ -320,7 +319,7 @@ const CampaignPromptScreen = () => {
             <Button 
               size="lg"
               onClick={handleContinue}
-              className={`tap-target focus-ring w-96 px-12 bg-indigo-600 hover:bg-indigo-700 text-white transition-opacity duration-300 rounded-full ${prompt.trim() && !isLoadingAISuggestions ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+              className={`tap-target focus-ring w-96 px-12 bg-indigo-600 hover:bg-indigo-700 text-white transition-opacity duration-300 rounded-full ${prompt.trim() ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
               aria-label="Continue to next step"
             >
               <span className="mr-2">Next</span>
