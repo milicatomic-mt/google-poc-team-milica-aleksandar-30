@@ -37,7 +37,7 @@ serve(async (req) => {
           {
             parts: [
               {
-                text: "Analyze this image and generate 4-5 creative marketing campaign prompt suggestions. Each suggestion should be concise (1-2 sentences) and describe a specific marketing campaign that could be created based on what you see in the image. Focus on the product, mood, style, target audience, or key visual elements. Format as an array of strings."
+                text: "Analyze this image and generate 4-5 creative marketing campaign prompt suggestions. Each suggestion must be exactly 2 sentences or less and describe a specific marketing campaign based on what you see. Focus on the product, style, target audience, or key visual elements. Format as an array of strings."
               },
               {
                 inline_data: {

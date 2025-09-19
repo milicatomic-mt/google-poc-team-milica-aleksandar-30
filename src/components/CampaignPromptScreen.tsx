@@ -17,14 +17,27 @@ const CampaignPromptScreen = () => {
   const [isTyping, setIsTyping] = useState(true);
   const [aiSuggestions, setAiSuggestions] = useState<string[]>([]);
 
-  const examples = [
-    "Enter your campaign description",
-    "e.g. Launching a new eco-friendly sneaker for everyday wear.",
-    "Enter your campaign description",
-    "e.g. Highlighting a limited-edition smartwatch with advanced health tracking.",
-    "Enter your campaign description",
-    "e.g. Showcasing a sustainable bamboo toothbrush for eco-conscious families."
-  ];
+  const getExamples = () => {
+    if (aiSuggestions.length > 0) {
+      // Use AI suggestions with "Enter your campaign description" interspersed
+      const examples = [];
+      aiSuggestions.forEach((suggestion, index) => {
+        examples.push("Enter your campaign description");
+        examples.push(`e.g. ${suggestion}`);
+      });
+      return examples;
+    }
+    
+    // Fallback to default examples
+    return [
+      "Enter your campaign description",
+      "e.g. Launching a new eco-friendly sneaker for everyday wear.",
+      "Enter your campaign description", 
+      "e.g. Highlighting a limited-edition smartwatch with advanced health tracking.",
+      "Enter your campaign description",
+      "e.g. Showcasing a sustainable bamboo toothbrush for eco-conscious families."
+    ];
+  };
 
   // Typing animation effect
   useEffect(() => {
@@ -32,6 +45,7 @@ const CampaignPromptScreen = () => {
     let cycleTimeout: NodeJS.Timeout;
     
     const startTyping = () => {
+      const examples = getExamples();
       const currentExample = examples[currentExampleIndex];
       let currentIndex = 0;
       setDisplayedPlaceholder('|');
@@ -65,7 +79,7 @@ const CampaignPromptScreen = () => {
       clearInterval(typingInterval);
       clearTimeout(cycleTimeout);
     };
-  }, [currentExampleIndex]);
+  }, [currentExampleIndex, aiSuggestions]);
 
   const handleExampleClick = (example: string) => {
     setPrompt(example);
