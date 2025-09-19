@@ -483,9 +483,7 @@ const UploadScreen: React.FC<UploadScreenProps> = ({ mode }) => {
                         
                         {/* Analyzing text overlay */}
                         <div className="absolute inset-0 flex items-center justify-center z-10">
-                          <div className="bg-white/90 backdrop-blur-md px-4 py-2 rounded-full analyzing-text">
-                            <span className="text-black font-semibold text-sm">Analyzing</span>
-                          </div>
+                          <span className="text-white font-semibold text-sm analyzing-text">Analyzing</span>
                         </div>
                       </div>
                     )}
