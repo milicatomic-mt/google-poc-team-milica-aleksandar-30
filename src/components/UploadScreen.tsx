@@ -517,6 +517,10 @@ const UploadScreen: React.FC<UploadScreenProps> = ({ mode }) => {
                         : 'Scan with your phone\'s camera to upload images directly'
                       }
                     </p>
+                    
+                    <p className="text-sm text-muted-foreground">
+                      Supports JPG, PNG, WEBP • Max 10MB • Min 300x300px
+                    </p>
                   </div>
 
                   <div className="flex items-center space-x-4">
@@ -581,40 +585,7 @@ const UploadScreen: React.FC<UploadScreenProps> = ({ mode }) => {
                         </div>
                       </button>
                     </div>
-                    
-                    <div className="flex items-center space-x-4">
-                      <div className="flex-1 h-px bg-muted"></div>
-                      <span className="text-sm text-muted-foreground font-medium">OR UPLOAD YOUR OWN</span>
-                      <div className="flex-1 h-px bg-muted"></div>
-                    </div>
-
-                    <div className="flex gap-3 justify-center">
-                      <Button
-                        size="lg"
-                        onClick={openCamera}
-                        variant="outline"
-                        className="px-6 rounded-full"
-                        disabled={isValidating}
-                      >
-                        <Camera className="mr-2 w-4 h-4" />
-                        Camera
-                      </Button>
-                      <Button
-                        size="lg"
-                        onClick={openFileSelector}
-                        variant="outline"
-                        className="px-6 rounded-full"
-                        disabled={isValidating}
-                      >
-                        <Upload className="mr-2 w-4 h-4" />
-                        Browse Files
-                      </Button>
-                    </div>
                   </div>
-
-                  <p className="text-sm text-muted-foreground">
-                    Supports JPG, PNG, WEBP • Max 10MB • Min 300x300px
-                  </p>
                 </div>
               )}
 
