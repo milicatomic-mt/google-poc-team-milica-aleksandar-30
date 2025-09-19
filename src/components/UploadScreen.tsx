@@ -477,33 +477,9 @@ const UploadScreen: React.FC<UploadScreenProps> = ({ mode }) => {
                     
                     {/* AI Scanning Animation Overlay */}
                     {isAnalyzingImage && currentMode === 'campaign' && (
-                      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-                        {/* Particle scanning effect */}
-                        <div className="scan-particles">
-                          {Array.from({ length: 12 }).map((_, i) => (
-                            <div
-                              key={i}
-                              className="scan-particle"
-                              style={{
-                                left: `${(i * 8.33) % 100}%`,
-                                animationDelay: `${i * 0.15}s`
-                              }}
-                            />
-                          ))}
-                        </div>
-                        {/* Secondary wave */}
-                        <div className="scan-particles-secondary">
-                          {Array.from({ length: 8 }).map((_, i) => (
-                            <div
-                              key={i}
-                              className="scan-particle-secondary"
-                              style={{
-                                left: `${(i * 12.5) + 6}%`,
-                                animationDelay: `${i * 0.2 + 1}s`
-                              }}
-                            />
-                          ))}
-                        </div>
+                      <div className="absolute inset-0 pointer-events-none">
+                        {/* Scanning line */}
+                        <div className="absolute w-full h-1 bg-white scan-line opacity-90 shadow-md"></div>
                       </div>
                     )}
                   </div>
