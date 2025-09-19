@@ -9,7 +9,7 @@ import { createQRSession, subscribeToSessionUpdates, QRSession } from '@/lib/qr-
 import RibbedSphere from '@/components/RibbedSphere';
 import { supabase } from '@/integrations/supabase/client';
 import sampleHeadphones from '@/assets/sample-headphones.jpg';
-import sampleEnergyDrink from '@/assets/sample-energy-drink.webp';
+import sampleBodyWash from '@/assets/sample-body-wash.png';
 import sampleSneakers from '@/assets/sample-sneakers.webp';
 
 interface UploadScreenProps {
@@ -568,13 +568,13 @@ const UploadScreen: React.FC<UploadScreenProps> = ({ mode }) => {
                       </button>
                       
                       <button
-                        onClick={() => handleSampleImageSelect(sampleEnergyDrink, 'energy-drink.webp')}
+                        onClick={() => handleSampleImageSelect(sampleBodyWash, 'body-wash.png')}
                         disabled={isValidating}
                         className="group relative overflow-hidden rounded-lg border-2 border-muted hover:border-primary transition-colors disabled:opacity-50"
                       >
                         <img 
-                          src={sampleEnergyDrink} 
-                          alt="Energy Drink"
+                          src={sampleBodyWash} 
+                          alt="Body Wash"
                           className="w-full aspect-square object-cover group-hover:scale-105 transition-transform"
                         />
                         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
