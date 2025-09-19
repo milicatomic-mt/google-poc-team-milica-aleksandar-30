@@ -436,7 +436,6 @@ const UploadScreen: React.FC<UploadScreenProps> = ({ mode }) => {
                     ? 'border-white/60 shadow-elegant-lg bg-white/30' 
                     : 'hover:border-white/50 hover:shadow-elegant-lg hover:bg-white/30'
                 }
-                ${isValidating ? 'animate-pulse' : ''}
               `}
               onDragEnter={handleDrag}
               onDragLeave={handleDrag}
@@ -481,12 +480,12 @@ const UploadScreen: React.FC<UploadScreenProps> = ({ mode }) => {
                     {isAnalyzingImage && currentMode === 'campaign' && (
                       <div className="space-y-2">
                         <div className="flex items-center space-x-2">
-                          <div className="w-4 h-4 bg-muted rounded shimmer"></div>
-                          <div className="h-3 bg-muted rounded w-32 shimmer"></div>
+                          <div className="w-4 h-4 rounded skeleton-calm"></div>
+                          <div className="h-3 rounded w-32 skeleton-calm"></div>
                         </div>
                         <div className="space-y-1">
-                          <div className="h-2 bg-muted rounded w-24 shimmer"></div>
-                          <div className="h-2 bg-muted rounded w-28 shimmer"></div>
+                          <div className="h-2 rounded w-24 skeleton-calm"></div>
+                          <div className="h-2 rounded w-28 skeleton-calm"></div>
                         </div>
                         <p className="text-xs text-muted-foreground mt-1">Analyzing image...</p>
                       </div>
