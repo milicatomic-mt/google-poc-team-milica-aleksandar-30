@@ -470,7 +470,7 @@ const UploadScreen: React.FC<UploadScreenProps> = ({ mode }) => {
                     />
                     <button
                       onClick={handleRemoveImage}
-                      className="absolute top-2 right-2 bg-destructive text-destructive-foreground rounded-full p-1.5 hover:bg-destructive/90 transition-colors"
+                      className="absolute top-2 right-2 bg-white text-black rounded-full p-1.5 hover:bg-gray-100 transition-colors shadow-md"
                       title="Remove image"
                     >
                       <X className="w-4 h-4" />
@@ -479,15 +479,17 @@ const UploadScreen: React.FC<UploadScreenProps> = ({ mode }) => {
                   <div className="space-y-2">
                     <h3 className="text-lg font-semibold text-foreground">Image Uploaded</h3>
                     {isAnalyzingImage && currentMode === 'campaign' && (
-                      <p className="text-sm text-muted-foreground">Analyzing image for campaign suggestions...</p>
+                      <div className="space-y-2">
+                        <div className="flex items-center space-x-2">
+                          <div className="w-4 h-4 bg-muted rounded animate-pulse"></div>
+                          <div className="h-3 bg-muted rounded w-32 animate-pulse"></div>
+                        </div>
+                        <div className="space-y-1">
+                          <div className="h-2 bg-muted rounded w-24 animate-pulse"></div>
+                          <div className="h-2 bg-muted rounded w-28 animate-pulse"></div>
+                        </div>
+                      </div>
                     )}
-                    <Button
-                      variant="outline"
-                      onClick={openFileSelector}
-                      className="text-sm rounded-full"
-                    >
-                      Choose Different Image
-                    </Button>
                   </div>
                 </div>
               ) : (
