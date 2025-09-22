@@ -51,10 +51,14 @@ const AnimatedRibbedSphere = () => {
         varying vec2 vUv;
         
         void main() {
-          // Subtle liquid surface variation
-          float flow1 = sin((vPosition.x + vPosition.y) * 8.0 + time * 1.5) * 0.1;
-          float flow2 = sin((vPosition.y + vPosition.z) * 6.0 + time * 1.2) * 0.08;
-          float surface = (flow1 + flow2) * 0.5 + 0.5;
+          // Create animated ribbed pattern with liquid flow
+          float pattern1 = sin((vPosition.x + vPosition.y) * 15.0 + time * 2.0) * 0.5 + 0.5;
+          float pattern2 = sin((vPosition.y + vPosition.z) * 12.0 + time * 1.8) * 0.3 + 0.7;
+          float pattern3 = sin((vPosition.x + vPosition.z) * 18.0 + time * 2.3) * 0.4 + 0.6;
+          
+          // Combine patterns for complex liquid surface
+          float combinedPattern = (pattern1 + pattern2 + pattern3) / 3.0;
+          combinedPattern = smoothstep(0.3, 0.8, combinedPattern);
           
           // Base color - clean white/light gray
           vec3 baseColor = vec3(0.94, 0.95, 0.97);
@@ -67,8 +71,8 @@ const AnimatedRibbedSphere = () => {
           ));
           float lightIntensity = max(dot(vNormal, lightDirection), 0.0);
           
-          // Add flowing shadow based on surface variation
-          float shadow = surface * 0.1;
+          // Add flowing shadow based on pattern
+          float shadow = combinedPattern * 0.162;
           
           // Create liquid-like color variation
           float colorShift = sin(vPosition.x * 8.0 + time * 1.5) * 0.02;
