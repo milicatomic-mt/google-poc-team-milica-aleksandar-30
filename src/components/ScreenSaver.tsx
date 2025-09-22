@@ -184,11 +184,11 @@ const ScreenSaver = () => {
               <div className="h-12 w-12 sm:h-16 sm:w-16 md:h-20 md:w-20 lg:h-24 lg:w-24 xl:h-28 xl:w-28 mb-8 sm:mb-10 md:mb-12">
                 <RibbedSphere className="w-full h-full" />
               </div>
-              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-bold">
                 <span className="text-black">Bring Your Products to </span><span className="text-indigo-600">Life</span>
               </h1>
             </div>
-            <p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl text-muted-foreground font-medium max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl mx-auto min-h-[2rem] sm:min-h-[2.5rem] lg:min-h-[3rem] xl:min-h-[3.5rem] flex items-center justify-center px-4">
+            <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl text-muted-foreground font-medium max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl mx-auto min-h-[2rem] sm:min-h-[2.5rem] lg:min-h-[3rem] xl:min-h-[3.5rem] flex items-center justify-center px-4">
               {displayedText}
               
             </p>
