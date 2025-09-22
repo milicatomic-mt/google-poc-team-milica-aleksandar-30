@@ -66,13 +66,27 @@ const AnimatedRibbedSphere = () => {
         varying vec2 vUv;
         
         void main() {
-          // Animate the UV coordinates to create flowing effect
-          vec2 animatedUv = vUv;
-          animatedUv.x += sin(vPosition.y * 2.0 + time * 0.5) * 0.05;
-          animatedUv.y += cos(vPosition.x * 2.0 + time * 0.3) * 0.05;
+          // Use spherical UV mapping for full coverage
+          vec3 normalized = normalize(vPosition);
           
-          // Sample the texture with animated UVs
-          vec4 textureColor = texture2D(map, animatedUv);
+          // Convert to spherical coordinates for proper texture mapping
+          float phi = atan(normalized.z, normalized.x) + 3.14159;
+          float theta = acos(normalized.y);
+          
+          vec2 sphericalUv = vec2(
+            phi / (2.0 * 3.14159),
+            theta / 3.14159
+          );
+          
+          // Add subtle animation to the UV coordinates
+          sphericalUv.x += sin(normalized.y * 3.0 + time * 0.4) * 0.02;
+          sphericalUv.y += cos(normalized.x * 3.0 + time * 0.3) * 0.02;
+          
+          // Ensure texture repeats properly across seams
+          sphericalUv = fract(sphericalUv);
+          
+          // Sample the texture
+          vec4 textureColor = texture2D(map, sphericalUv);
           
           // Dynamic lighting calculation
           vec3 lightDirection = normalize(vec3(
