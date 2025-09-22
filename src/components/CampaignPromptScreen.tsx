@@ -246,14 +246,11 @@ const CampaignPromptScreen = () => {
 
         {/* Target Audience Section */}
         <div className="w-full max-w-6xl mx-auto mb-8 animate-fade-in">
-          <h2 className="text-2xl font-semibold text-foreground mb-2 text-center">
-            Define Target Audience
+          <h2 className="text-2xl font-semibold text-foreground mb-8 text-center">
+            Define Target Audience <span className="text-lg text-muted-foreground font-normal">(Optional)</span>
           </h2>
-          <p className="text-lg text-muted-foreground mb-8 text-center">
-            (Optional)
-          </p>
           
-          <div className="space-y-6">
+          <div className="space-y-4">
             {/* Age Groups - First row (4 items) */}
             <div className="grid grid-cols-4 gap-3 max-w-4xl mx-auto">
               {ageGroups.map((age) => (
