@@ -144,26 +144,6 @@ const CatalogDetailsScreen = () => {
           </Button>
         </div>
 
-        {/* Step Indicator - Lower position */}
-        <div className="flex justify-center py-4">
-          <div className="flex items-center space-x-12">
-            {/* Step 1 - Complete */}
-            <div className="flex items-center">
-              <div className="w-8 h-8 rounded-full bg-indigo-500 border-2 border-indigo-500 flex items-center justify-center text-sm font-semibold text-white">
-                ✓
-              </div>
-              <span className="ml-2 text-sm font-medium text-black">Upload Image</span>
-            </div>
-            
-            {/* Step 2 - Current */}
-            <div className="flex items-center">
-              <div className="w-8 h-8 rounded-full bg-white border-2 border-indigo-500 flex items-center justify-center text-sm font-semibold text-indigo-500">
-                2
-              </div>
-              <span className="ml-2 text-sm font-medium text-black">Product Details</span>
-            </div>
-          </div>
-        </div>
 
         {/* Title and Description */}
         <div className="text-center py-4">

@@ -196,34 +196,6 @@ const CampaignPromptScreen = () => {
           </Button>
         </div>
 
-        {/* Step Indicator - Lower position */}
-        <div className="flex justify-center py-4">
-          <div className="flex items-center space-x-12">
-            {/* Step 1 - Completed */}
-            <div className="flex items-center">
-              <div className="w-8 h-8 rounded-full bg-indigo-500 flex items-center justify-center text-sm font-semibold">
-                <Check className="h-4 w-4 text-white" />
-              </div>
-              <span className="ml-2 text-sm font-medium text-black">Upload Image</span>
-            </div>
-            
-            {/* Step 2 - Current */}
-            <div className="flex items-center">
-              <div className="w-8 h-8 rounded-full bg-white border-2 border-indigo-500 flex items-center justify-center text-sm font-semibold text-indigo-500">
-                2
-              </div>
-              <span className="ml-2 text-sm font-medium text-black">Enter Prompt</span>
-            </div>
-            
-            {/* Step 3 - Future */}
-            <div className="flex items-center">
-              <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center text-sm font-semibold text-black">
-                3
-              </div>
-              <span className="ml-2 text-sm font-medium text-black">Target Audience</span>
-            </div>
-          </div>
-        </div>
 
       {/* Main Container - Scrollable */}
       <div className="flex-1 flex flex-col items-center justify-center container-padding py-4 overflow-y-auto">

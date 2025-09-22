@@ -389,43 +389,6 @@ const UploadScreen: React.FC<UploadScreenProps> = ({ mode }) => {
           </div>
         </header>
 
-        {/* Step Indicator - Lower position */}
-        <div className="flex justify-center py-4">
-          <div className="flex items-center space-x-12">
-            {/* Step 1 - Current */}
-            <div className="flex items-center">
-              <div className="w-8 h-8 rounded-full bg-white border-2 border-indigo-500 flex items-center justify-center text-sm font-semibold text-indigo-500">
-                1
-              </div>
-              <span className="ml-2 text-sm font-medium text-black">Upload Image</span>
-            </div>
-            
-            {/* Step 2 - Different for each mode */}
-            <div className="flex items-center">
-              <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center text-sm font-semibold text-black">
-                2
-              </div>
-              <div className="ml-2">
-                <span className="text-sm font-medium text-black">
-                  {currentMode === 'catalog' ? 'Product Details' : 'Enter Prompt'}
-                </span>
-                {currentMode === 'catalog' && (
-                  <span className="ml-1 text-xs text-gray-600"></span>
-                )}
-              </div>
-            </div>
-            
-            {/* Step 3 - Only for campaign mode */}
-            {currentMode === 'campaign' && (
-              <div className="flex items-center">
-                <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center text-sm font-semibold text-black">
-                  3
-                </div>
-                <span className="ml-2 text-sm font-medium text-black">Target Audience</span>
-              </div>
-            )}
-          </div>
-        </div>
 
         {/* Title and Description */}
         <div className="text-center py-4">
@@ -524,15 +487,16 @@ const UploadScreen: React.FC<UploadScreenProps> = ({ mode }) => {
                                 </linearGradient>
                               </defs>
                             </svg>
-                            <div className="qr-code-container">
+                            <div className="qr-code-container flex flex-col items-center">
                               <QRCodeSVG 
                                 value={uploadUrl}
-                                size={180}
+                                size={171}
                                 level="L"
                                 includeMargin={true}
-                                fgColor="hsl(238, 83%, 67%)"
+                                fgColor="#000000"
                                 bgColor="transparent"
                               />
+                              <p className="text-indigo-600 font-semibold text-sm mt-2">SCAN ME</p>
                             </div>
                           </div>
                         ) : (
