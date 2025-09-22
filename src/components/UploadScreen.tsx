@@ -507,12 +507,6 @@ const UploadScreen: React.FC<UploadScreenProps> = ({ mode }) => {
                       </div>
                     </div>
                     
-                    <p className="text-muted-foreground text-base font-medium">
-                      {isLoadingSession 
-                        ? 'Generating QR code...' 
-                        : 'Scan with your phone\'s camera to upload images directly'
-                      }
-                    </p>
                     
                     <p className="text-xs text-muted-foreground">
                       JPG, PNG, WEBP • Max 10MB • Min 300x300px
