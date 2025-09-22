@@ -172,7 +172,7 @@ const CampaignPromptScreen = () => {
 
 
       {/* Main Container - Scrollable */}
-      <div className="flex-1 flex flex-col items-center justify-center container-padding py-4 overflow-y-auto">
+      <div className="flex-1 flex flex-col container-padding py-8 overflow-y-auto">
         
         {/* Header Section */}
         <div className="w-full max-w-6xl mx-auto text-center mb-8 animate-fade-in">
@@ -186,57 +186,55 @@ const CampaignPromptScreen = () => {
 
         {/* Image and Prompt Section */}
         <div className="w-full max-w-6xl mx-auto mb-12 animate-scale-in">
-          <div className="backdrop-blur-md bg-white/80 rounded-2xl shadow-lg border border-white/40 p-8">
-            <div className="flex gap-8 items-start">
-              {/* Image Preview */}
-              <div className="flex-shrink-0">
-                <div className="w-64 h-64 rounded-xl overflow-hidden bg-muted">
-                  {uploadedImage ? (
-                    <img
-                      src={uploadedImage}
-                      alt="Uploaded product"
-                      className="w-full h-full object-cover"
-                    />
-                  ) : (
-                    <div className="w-full h-full flex items-center justify-center text-muted-foreground">
-                      No image available
-                    </div>
-                  )}
-                </div>
-              </div>
-              
-              {/* Prompt Section */}
-              <div className="flex-1">
-                <div className="relative">
-                  <Textarea
-                    ref={textareaRef}
-                    value={prompt}
-                    onChange={(e) => setPrompt(e.target.value)}
-                    placeholder="Enter your campaign description..."
-                    className="min-h-[200px] text-lg resize-none bg-transparent border-0 p-0 focus-visible:ring-0 leading-relaxed"
-                    style={{ 
-                      height: 'auto',
-                      minHeight: '200px'
-                    }}
-                    onInput={(e) => {
-                      const target = e.target as HTMLTextAreaElement;
-                      target.style.height = 'auto';
-                      target.style.height = Math.max(200, target.scrollHeight) + 'px';
-                    }}
+          <div className="flex gap-8 items-start">
+            {/* Image Preview */}
+            <div className="flex-shrink-0">
+              <div className="w-64 h-64 rounded-xl overflow-hidden backdrop-blur-md bg-white/80 border border-white/40 shadow-lg">
+                {uploadedImage ? (
+                  <img
+                    src={uploadedImage}
+                    alt="Uploaded product"
+                    className="w-full h-full object-cover"
                   />
-                  <Button
-                    onClick={handleRegenerate}
-                    disabled={isRegenerating}
-                    className="absolute top-4 right-4 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full px-6 py-2"
-                  >
-                    {isRegenerating ? (
-                      <RefreshCw className="w-4 h-4 animate-spin mr-2" />
-                    ) : (
-                      <RefreshCw className="w-4 h-4 mr-2" />
-                    )}
-                    Regenerate
-                  </Button>
-                </div>
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center text-muted-foreground">
+                    No image available
+                  </div>
+                )}
+              </div>
+            </div>
+            
+            {/* Prompt Section */}
+            <div className="flex-1">
+              <div className="relative backdrop-blur-md bg-white/80 rounded-xl shadow-lg border border-white/40 p-6">
+                <Textarea
+                  ref={textareaRef}
+                  value={prompt}
+                  onChange={(e) => setPrompt(e.target.value)}
+                  placeholder="Enter your campaign description..."
+                  className="min-h-[160px] text-lg resize-none bg-transparent border-0 p-0 focus-visible:ring-0 leading-relaxed"
+                  style={{ 
+                    height: 'auto',
+                    minHeight: '160px'
+                  }}
+                  onInput={(e) => {
+                    const target = e.target as HTMLTextAreaElement;
+                    target.style.height = 'auto';
+                    target.style.height = Math.max(160, target.scrollHeight) + 'px';
+                  }}
+                />
+                <Button
+                  onClick={handleRegenerate}
+                  disabled={isRegenerating}
+                  className="absolute bottom-4 right-4 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full px-6 py-2"
+                >
+                  {isRegenerating ? (
+                    <RefreshCw className="w-4 h-4 animate-spin mr-2" />
+                  ) : (
+                    <RefreshCw className="w-4 h-4 mr-2" />
+                  )}
+                  Regenerate
+                </Button>
               </div>
             </div>
           </div>
@@ -251,9 +249,9 @@ const CampaignPromptScreen = () => {
             (Optional)
           </p>
           
-          <div className="backdrop-blur-md bg-white/80 rounded-2xl shadow-lg border border-white/40 p-8">
+          <div className="space-y-8">
             {/* Age Groups */}
-            <div className="mb-8">
+            <div>
               <div className="flex flex-wrap gap-4 justify-center">
                 {ageGroups.map((age) => (
                   <button
@@ -262,7 +260,7 @@ const CampaignPromptScreen = () => {
                     className={`px-6 py-3 rounded-full text-sm font-medium transition-all duration-200 ${
                       selectedAudiences.includes(age)
                         ? 'bg-indigo-600 text-white shadow-md'
-                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                        : 'bg-white/30 text-foreground hover:bg-white/50 backdrop-blur-sm'
                     }`}
                   >
                     {age}
@@ -281,7 +279,7 @@ const CampaignPromptScreen = () => {
                     className={`px-6 py-3 rounded-full text-sm font-medium transition-all duration-200 ${
                       selectedAudiences.includes(interest)
                         ? 'bg-indigo-600 text-white shadow-md'
-                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                        : 'bg-white/30 text-foreground hover:bg-white/50 backdrop-blur-sm'
                     }`}
                   >
                     {interest}
