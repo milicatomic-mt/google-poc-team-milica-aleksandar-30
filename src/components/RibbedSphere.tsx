@@ -10,7 +10,7 @@ interface RibbedSphereProps {
 const AnimatedRibbedSphere = () => {
   const meshRef = useRef<THREE.Mesh>(null);
 
-  // Create custom shader material for elegant flowing ridges
+  // Create custom shader material for liquid ribbed effect
   const material = useMemo(() => {
     return new THREE.ShaderMaterial({
       uniforms: {
@@ -27,18 +27,17 @@ const AnimatedRibbedSphere = () => {
           vPosition = position;
           vUv = uv;
           
-          // Create elegant spiral ridges like the reference image
-          float angle = atan(position.z, position.x);
-          float spiralFlow = sin(angle * 3.0 + position.y * 4.0 + time * 0.8) * 0.08;
+          // Create liquid-like displacement with multiple wave frequencies
+          float wave1 = sin(position.x * 8.0 + time * 2.0) * 0.03;
+          float wave2 = sin(position.y * 12.0 + time * 1.5) * 0.025;
+          float wave3 = sin(position.z * 10.0 + time * 2.5) * 0.02;
           
-          // Add secondary flowing ridges
-          float ridges = sin((position.x + position.z) * 8.0 + time * 1.2) * 0.06;
+          // Add flowing liquid effect
+          float flow = sin((position.x + position.y) * 6.0 + time * 3.0) * 0.04;
+          float ripple = sin(length(position.xy) * 15.0 - time * 4.0) * 0.015;
           
-          // Subtle breathing effect
-          float breathe = sin(time * 1.5) * 0.02;
-          
-          // Combine displacements for smooth flowing effect
-          float totalDisplacement = spiralFlow + ridges + breathe;
+          // Combine all displacements for liquid effect
+          float totalDisplacement = wave1 + wave2 + wave3 + flow + ripple;
           
           vec3 newPosition = position + normal * totalDisplacement;
           
@@ -52,43 +51,44 @@ const AnimatedRibbedSphere = () => {
         varying vec2 vUv;
         
         void main() {
-          // Create flowing spiral ridge pattern
-          float angle = atan(vPosition.z, vPosition.x);
-          float spiralPattern = sin(angle * 3.0 + vPosition.y * 4.0 + time * 0.8);
+          // Create animated ribbed pattern with liquid flow
+          float pattern1 = sin((vPosition.x + vPosition.y) * 15.0 + time * 2.0) * 0.5 + 0.5;
+          float pattern2 = sin((vPosition.y + vPosition.z) * 12.0 + time * 1.8) * 0.3 + 0.7;
+          float pattern3 = sin((vPosition.x + vPosition.z) * 18.0 + time * 2.3) * 0.4 + 0.6;
           
-          // Secondary ridge pattern
-          float ridgePattern = sin((vPosition.x + vPosition.z) * 8.0 + time * 1.2);
+          // Combine patterns for complex liquid surface
+          float combinedPattern = (pattern1 + pattern2 + pattern3) / 3.0;
+          combinedPattern = smoothstep(0.3, 0.8, combinedPattern);
           
-          // Combine patterns for elegant flowing ridges
-          float combinedPattern = (spiralPattern + ridgePattern) * 0.5;
-          combinedPattern = smoothstep(-0.3, 0.3, combinedPattern);
+          // Base color - clean white/light gray
+          vec3 baseColor = vec3(0.94, 0.95, 0.97);
           
-          // Pure white base color like the reference
-          vec3 baseColor = vec3(0.98, 0.99, 1.0);
+          // Dynamic lighting calculation
+          vec3 lightDirection = normalize(vec3(
+            1.0 + sin(time * 1.2) * 0.3, 
+            1.0 + cos(time * 0.8) * 0.2, 
+            1.0
+          ));
+          float lightIntensity = max(dot(vNormal, lightDirection), 0.0);
           
-          // Soft lighting setup
-          vec3 lightDirection = normalize(vec3(1.0, 1.2, 1.5));
-          float NdotL = max(dot(vNormal, lightDirection), 0.0);
+          // Add flowing shadow based on pattern
+          float shadow = combinedPattern * 0.18;
           
-          // Create ridge shadows for depth
-          float ridgeShadow = combinedPattern * 0.12;
+          // Create liquid-like color variation
+          float colorShift = sin(vPosition.x * 8.0 + time * 1.5) * 0.02;
+          baseColor += vec3(colorShift, colorShift * 0.5, -colorShift * 0.3);
           
-          // Subtle ambient occlusion in recessed areas
-          float ao = 1.0 - (combinedPattern * 0.08);
+          vec3 finalColor = baseColor * (0.65 + lightIntensity * 0.35) - shadow;
           
-          // Calculate final lighting
-          vec3 finalColor = baseColor * (0.75 + NdotL * 0.25) * ao - ridgeShadow;
-          
-          // Soft rim lighting for elegant highlight
+          // Enhanced rim lighting with animation
           float rim = 1.0 - max(dot(vNormal, vec3(0.0, 0.0, 1.0)), 0.0);
-          rim = smoothstep(0.6, 1.0, rim);
-          finalColor += rim * vec3(0.08, 0.08, 0.1);
+          rim = smoothstep(0.5, 1.0, rim);
+          rim *= 1.0 + sin(time * 3.0) * 0.1; // Animated rim
+          finalColor += rim * vec3(0.15, 0.12, 0.1);
           
-          // Subtle specular highlight
-          vec3 viewDirection = normalize(vec3(0.0, 0.0, 1.0));
-          vec3 reflectDirection = reflect(-lightDirection, vNormal);
-          float spec = pow(max(dot(viewDirection, reflectDirection), 0.0), 64.0);
-          finalColor += spec * vec3(0.15, 0.15, 0.15);
+          // Add subtle liquid shine
+          float shine = pow(max(dot(vNormal, lightDirection), 0.0), 32.0);
+          finalColor += shine * vec3(0.1, 0.1, 0.1);
           
           gl_FragColor = vec4(finalColor, 1.0);
         }
