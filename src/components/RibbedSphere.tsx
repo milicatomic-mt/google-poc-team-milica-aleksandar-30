@@ -51,46 +51,63 @@ const AnimatedRibbedSphere = () => {
         varying vec2 vUv;
         
         void main() {
-          // Create animated ribbed pattern with liquid flow
-          float pattern1 = sin((vPosition.x + vPosition.y) * 15.0 + time * 2.0) * 0.5 + 0.5;
-          float pattern2 = sin((vPosition.y + vPosition.z) * 12.0 + time * 1.8) * 0.3 + 0.7;
-          float pattern3 = sin((vPosition.x + vPosition.z) * 18.0 + time * 2.3) * 0.4 + 0.6;
+          // Multiple dynamic light sources for realistic liquid shadows
+          vec3 lightDir1 = normalize(vec3(1.0, 1.0, 1.0));
+          vec3 lightDir2 = normalize(vec3(-0.5, 0.8, 0.6));
+          vec3 lightDir3 = normalize(vec3(0.0, -1.0, 0.5));
           
-          // Combine patterns for complex liquid surface
-          float combinedPattern = (pattern1 + pattern2 + pattern3) / 3.0;
-          combinedPattern = smoothstep(0.3, 0.8, combinedPattern);
+          // Calculate lighting for each light source
+          float light1 = max(dot(vNormal, lightDir1), 0.0);
+          float light2 = max(dot(vNormal, lightDir2), 0.0) * 0.6;
+          float light3 = max(dot(vNormal, lightDir3), 0.0) * 0.4;
           
-          // Base color - clean white/light gray
-          vec3 baseColor = vec3(0.94, 0.95, 0.97);
+          // Combine lighting
+          float totalLight = light1 + light2 + light3;
           
-          // Dynamic lighting calculation
-          vec3 lightDirection = normalize(vec3(
-            1.0 + sin(time * 1.2) * 0.3, 
-            1.0 + cos(time * 0.8) * 0.2, 
-            1.0
-          ));
-          float lightIntensity = max(dot(vNormal, lightDirection), 0.0);
+          // Create realistic liquid shadow mapping
+          vec3 viewDir = normalize(-vPosition);
+          float viewDot = dot(vNormal, viewDir);
           
-          // Add flowing shadow based on pattern
-          float shadow = combinedPattern * 0.162;
+          // Fresnel effect for liquid surface
+          float fresnel = pow(1.0 - abs(viewDot), 2.0);
           
-          // Create liquid-like color variation
-          float colorShift = sin(vPosition.x * 8.0 + time * 1.5) * 0.02;
-          baseColor += vec3(colorShift, colorShift * 0.5, -colorShift * 0.3);
+          // Self-shadowing based on surface curvature
+          float curvature = length(fwidth(vNormal));
+          float selfShadow = 1.0 - smoothstep(0.0, 0.8, curvature * 10.0);
           
-          vec3 finalColor = baseColor * (0.65 + lightIntensity * 0.35) - shadow;
+          // Dynamic shadows that flow across the surface
+          vec3 shadowPos = vPosition + vec3(sin(time * 0.8), cos(time * 1.2), sin(time * 0.6)) * 0.3;
+          float dynamicShadow = sin(shadowPos.x * 4.0 + shadowPos.y * 3.0 + time * 2.0) * 0.5 + 0.5;
+          dynamicShadow = smoothstep(0.2, 0.8, dynamicShadow);
           
-          // Enhanced rim lighting with animation
-          float rim = 1.0 - max(dot(vNormal, vec3(0.0, 0.0, 1.0)), 0.0);
-          rim = smoothstep(0.5, 1.0, rim);
-          rim *= 1.0 + sin(time * 3.0) * 0.1; // Animated rim
-          finalColor += rim * vec3(0.15, 0.12, 0.1);
+          // Ambient occlusion approximation
+          float ao = pow(clamp(viewDot, 0.0, 1.0), 0.8);
           
-          // Add subtle liquid shine
-          float shine = pow(max(dot(vNormal, lightDirection), 0.0), 32.0);
-          finalColor += shine * vec3(0.1, 0.1, 0.1);
+          // Base liquid color - slightly translucent white
+          vec3 baseColor = vec3(0.96, 0.97, 0.98);
           
-          gl_FragColor = vec4(finalColor, 1.0);
+          // Apply shadows and lighting
+          float shadowFactor = selfShadow * dynamicShadow * ao * 0.7 + 0.3;
+          vec3 litColor = baseColor * totalLight * shadowFactor;
+          
+          // Add subsurface scattering effect for liquid
+          float scattering = pow(max(dot(-lightDir1, viewDir), 0.0), 8.0) * fresnel;
+          litColor += vec3(0.1, 0.15, 0.2) * scattering;
+          
+          // Specular highlights for wet surface
+          vec3 reflectDir = reflect(-lightDir1, vNormal);
+          float spec = pow(max(dot(reflectDir, viewDir), 0.0), 64.0);
+          litColor += vec3(0.8, 0.9, 1.0) * spec * 0.6;
+          
+          // Rim lighting for liquid edge definition
+          float rimLight = pow(1.0 - abs(viewDot), 1.5) * 0.4;
+          litColor += vec3(0.4, 0.5, 0.6) * rimLight;
+          
+          // Depth-based darkening for more realistic volume
+          float depth = smoothstep(0.0, 1.0, abs(vPosition.z));
+          litColor *= 0.8 + depth * 0.2;
+          
+          gl_FragColor = vec4(litColor, 1.0);
         }
       `,
     });
