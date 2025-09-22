@@ -344,7 +344,7 @@ const CatalogPromptScreen = () => {
                   placeholder="Enter brand name"
                   value={brandName}
                   onChange={(e) => setBrandName(e.target.value)}
-                  className="h-16 text-lg bg-white/30 border-2 border-gray-200 backdrop-blur-md shadow-sm hover:shadow-md hover:bg-white/40 transition-all duration-200 placeholder:text-gray-500 placeholder:text-lg focus:ring-2 focus:ring-primary/50"
+                  className="h-16 text-lg bg-white/30 border-2 border-gray-200 backdrop-blur-md shadow-sm hover:shadow-md hover:bg-white/40 transition-all duration-200 placeholder:text-gray-400 placeholder:text-lg focus:ring-2 focus:ring-primary/50"
                 />
               </div>
             </div>
