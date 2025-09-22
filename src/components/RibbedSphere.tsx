@@ -51,10 +51,10 @@ const AnimatedRibbedSphere = () => {
         varying vec2 vUv;
         
         void main() {
-          // Create animated ribbed pattern with liquid flow
-          float pattern1 = sin((vPosition.x + vPosition.y) * 15.0 + time * 2.0) * 0.5 + 0.5;
-          float pattern2 = sin((vPosition.y + vPosition.z) * 12.0 + time * 1.8) * 0.3 + 0.7;
-          float pattern3 = sin((vPosition.x + vPosition.z) * 18.0 + time * 2.3) * 0.4 + 0.6;
+          // Create animated ribbed pattern with liquid flow - reduced frequency for fewer stripes
+          float pattern1 = sin((vPosition.x + vPosition.y) * 8.0 + time * 2.0) * 0.5 + 0.5;
+          float pattern2 = sin((vPosition.y + vPosition.z) * 6.0 + time * 1.8) * 0.3 + 0.7;
+          float pattern3 = sin((vPosition.x + vPosition.z) * 10.0 + time * 2.3) * 0.4 + 0.6;
           
           // Combine patterns for complex liquid surface
           float combinedPattern = (pattern1 + pattern2 + pattern3) / 3.0;
