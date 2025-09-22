@@ -247,7 +247,7 @@ const CampaignPromptScreen = () => {
                 <button
                   key={age}
                   onClick={() => toggleAudience(age)}
-                  className={`px-4 py-3 rounded-full border-2 transition-all duration-200 tap-target font-medium backdrop-blur-md text-sm ${
+                  className={`px-2 py-3 rounded-full border-2 transition-all duration-200 tap-target font-medium backdrop-blur-md text-sm ${
                     selectedAudiences.includes(age)
                       ? 'bg-white border-indigo-600 text-indigo-600'
                       : 'bg-white/30 border-gray-200 text-black hover:border-gray-300 hover:shadow-sm hover:bg-white/40'
@@ -264,7 +264,7 @@ const CampaignPromptScreen = () => {
                 <button
                   key={interest}
                   onClick={() => toggleAudience(interest)}
-                  className={`px-4 py-3 rounded-full border-2 transition-all duration-200 tap-target font-medium backdrop-blur-md text-sm ${
+                  className={`px-2 py-3 rounded-full border-2 transition-all duration-200 tap-target font-medium backdrop-blur-md text-sm ${
                     selectedAudiences.includes(interest)
                       ? 'bg-white border-indigo-600 text-indigo-600'
                       : 'bg-white/30 border-gray-200 text-black hover:border-gray-300 hover:shadow-sm hover:bg-white/40'
@@ -281,7 +281,7 @@ const CampaignPromptScreen = () => {
                 <button
                   key={interest}
                   onClick={() => toggleAudience(interest)}
-                  className={`px-4 py-3 rounded-full border-2 transition-all duration-200 tap-target font-medium backdrop-blur-md text-sm ${
+                  className={`px-2 py-3 rounded-full border-2 transition-all duration-200 tap-target font-medium backdrop-blur-md text-sm ${
                     selectedAudiences.includes(interest)
                       ? 'bg-white border-indigo-600 text-indigo-600'
                       : 'bg-white/30 border-gray-200 text-black hover:border-gray-300 hover:shadow-sm hover:bg-white/40'
