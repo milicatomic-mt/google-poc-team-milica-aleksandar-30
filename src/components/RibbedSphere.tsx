@@ -1,8 +1,7 @@
 import React, { useRef, useMemo, useState, useEffect } from 'react';
-import { Canvas, useFrame, useLoader } from '@react-three/fiber';
+import { Canvas, useFrame } from '@react-three/fiber';
 import { Sphere } from '@react-three/drei';
 import * as THREE from 'three';
-import sphereTexture from '@/assets/sphere-texture.png';
 
 interface RibbedSphereProps {
   className?: string;
@@ -10,26 +9,12 @@ interface RibbedSphereProps {
 
 const AnimatedRibbedSphere = () => {
   const meshRef = useRef<THREE.Mesh>(null);
-  
-  // Load the texture
-  const texture = useLoader(THREE.TextureLoader, sphereTexture);
-  
-  // Set texture properties
-  useMemo(() => {
-    if (texture) {
-      texture.wrapS = THREE.RepeatWrapping;
-      texture.wrapT = THREE.RepeatWrapping;
-      texture.minFilter = THREE.LinearFilter;
-      texture.magFilter = THREE.LinearFilter;
-    }
-  }, [texture]);
 
-  // Create custom shader material with texture
+  // Create custom shader material for liquid ribbed effect
   const material = useMemo(() => {
     return new THREE.ShaderMaterial({
       uniforms: {
         time: { value: 0 },
-        map: { value: texture },
       },
       vertexShader: `
         uniform float time;
@@ -42,16 +27,17 @@ const AnimatedRibbedSphere = () => {
           vPosition = position;
           vUv = uv;
           
-          // Subtle liquid-like displacement
-          float wave1 = sin(position.x * 4.0 + time * 1.0) * 0.015;
-          float wave2 = sin(position.y * 6.0 + time * 0.8) * 0.012;
-          float wave3 = sin(position.z * 5.0 + time * 1.2) * 0.01;
+          // Create liquid-like displacement with multiple wave frequencies
+          float wave1 = sin(position.x * 8.0 + time * 2.0) * 0.03;
+          float wave2 = sin(position.y * 12.0 + time * 1.5) * 0.025;
+          float wave3 = sin(position.z * 10.0 + time * 2.5) * 0.02;
           
-          // Gentle flowing effect
-          float flow = sin((position.x + position.y) * 3.0 + time * 1.5) * 0.02;
+          // Add flowing liquid effect
+          float flow = sin((position.x + position.y) * 6.0 + time * 3.0) * 0.04;
+          float ripple = sin(length(position.xy) * 15.0 - time * 4.0) * 0.015;
           
-          // Combine displacements for subtle liquid effect
-          float totalDisplacement = wave1 + wave2 + wave3 + flow;
+          // Combine all displacements for liquid effect
+          float totalDisplacement = wave1 + wave2 + wave3 + flow + ripple;
           
           vec3 newPosition = position + normal * totalDisplacement;
           
@@ -60,62 +46,55 @@ const AnimatedRibbedSphere = () => {
       `,
       fragmentShader: `
         uniform float time;
-        uniform sampler2D map;
         varying vec3 vNormal;
         varying vec3 vPosition;
         varying vec2 vUv;
         
         void main() {
-          // Use spherical UV mapping for full coverage
-          vec3 normalized = normalize(vPosition);
+          // Create animated ribbed pattern with liquid flow
+          float pattern1 = sin((vPosition.x + vPosition.y) * 15.0 + time * 2.0) * 0.5 + 0.5;
+          float pattern2 = sin((vPosition.y + vPosition.z) * 12.0 + time * 1.8) * 0.3 + 0.7;
+          float pattern3 = sin((vPosition.x + vPosition.z) * 18.0 + time * 2.3) * 0.4 + 0.6;
           
-          // Convert to spherical coordinates for proper texture mapping
-          float phi = atan(normalized.z, normalized.x) + 3.14159;
-          float theta = acos(normalized.y);
+          // Combine patterns for complex liquid surface
+          float combinedPattern = (pattern1 + pattern2 + pattern3) / 3.0;
+          combinedPattern = smoothstep(0.3, 0.8, combinedPattern);
           
-          vec2 sphericalUv = vec2(
-            phi / (2.0 * 3.14159),
-            theta / 3.14159
-          );
-          
-          // Add subtle animation to the UV coordinates
-          sphericalUv.x += sin(normalized.y * 3.0 + time * 0.4) * 0.02;
-          sphericalUv.y += cos(normalized.x * 3.0 + time * 0.3) * 0.02;
-          
-          // Ensure texture repeats properly across seams
-          sphericalUv = fract(sphericalUv);
-          
-          // Sample the texture
-          vec4 textureColor = texture2D(map, sphericalUv);
+          // Base color - clean white/light gray
+          vec3 baseColor = vec3(0.94, 0.95, 0.97);
           
           // Dynamic lighting calculation
           vec3 lightDirection = normalize(vec3(
-            1.0 + sin(time * 0.8) * 0.2, 
-            1.0 + cos(time * 0.6) * 0.15, 
+            1.0 + sin(time * 1.2) * 0.3, 
+            1.0 + cos(time * 0.8) * 0.2, 
             1.0
           ));
           float lightIntensity = max(dot(vNormal, lightDirection), 0.0);
           
-          // Use texture as base color
-          vec3 baseColor = textureColor.rgb;
+          // Add flowing shadow based on pattern
+          float shadow = combinedPattern * 0.162;
           
-          // Apply lighting
-          vec3 finalColor = baseColor * (0.7 + lightIntensity * 0.3);
+          // Create liquid-like color variation
+          float colorShift = sin(vPosition.x * 8.0 + time * 1.5) * 0.02;
+          baseColor += vec3(colorShift, colorShift * 0.5, -colorShift * 0.3);
           
-          // Enhanced rim lighting
+          vec3 finalColor = baseColor * (0.65 + lightIntensity * 0.35) - shadow;
+          
+          // Enhanced rim lighting with animation
           float rim = 1.0 - max(dot(vNormal, vec3(0.0, 0.0, 1.0)), 0.0);
-          rim = smoothstep(0.6, 1.0, rim);
-          finalColor += rim * vec3(0.1, 0.1, 0.1);
+          rim = smoothstep(0.5, 1.0, rim);
+          rim *= 1.0 + sin(time * 3.0) * 0.1; // Animated rim
+          finalColor += rim * vec3(0.15, 0.12, 0.1);
           
-          // Add subtle shine on white areas
-          float shine = pow(max(dot(vNormal, lightDirection), 0.0), 16.0) * textureColor.r;
-          finalColor += shine * vec3(0.15, 0.15, 0.15);
+          // Add subtle liquid shine
+          float shine = pow(max(dot(vNormal, lightDirection), 0.0), 32.0);
+          finalColor += shine * vec3(0.1, 0.1, 0.1);
           
           gl_FragColor = vec4(finalColor, 1.0);
         }
       `,
     });
-  }, [texture]);
+  }, []);
 
   // Enhanced rotation with liquid movement
   useFrame((state) => {
