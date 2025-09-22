@@ -27,17 +27,20 @@ const AnimatedRibbedSphere = () => {
           vPosition = position;
           vUv = uv;
           
-          // Create liquid-like displacement with multiple wave frequencies
-          float wave1 = sin(position.x * 8.0 + time * 2.0) * 0.03;
-          float wave2 = sin(position.y * 12.0 + time * 1.5) * 0.025;
-          float wave3 = sin(position.z * 10.0 + time * 2.5) * 0.02;
+          // Create flowing ridge pattern like the reference
+          float angle = atan(position.y, position.x);
+          float height = position.z;
           
-          // Add flowing liquid effect
-          float flow = sin((position.x + position.y) * 6.0 + time * 3.0) * 0.04;
-          float ripple = sin(length(position.xy) * 15.0 - time * 4.0) * 0.015;
+          // Main flowing ridges that wrap around the sphere
+          float ridge1 = sin((angle * 3.0 + height * 2.0) + time * 0.5) * 0.08;
+          float ridge2 = sin((angle * 4.5 + height * 1.5) + time * 0.3) * 0.06;
+          float ridge3 = sin((angle * 2.0 + height * 3.0) + time * 0.7) * 0.04;
           
-          // Combine all displacements for liquid effect
-          float totalDisplacement = wave1 + wave2 + wave3 + flow + ripple;
+          // Add subtle flowing motion
+          float flow = sin(angle * 6.0 + time * 0.8) * 0.02;
+          
+          // Combine ridges for clean flowing pattern
+          float totalDisplacement = ridge1 + ridge2 + ridge3 + flow;
           
           vec3 newPosition = position + normal * totalDisplacement;
           
@@ -51,17 +54,16 @@ const AnimatedRibbedSphere = () => {
         varying vec2 vUv;
         
         void main() {
-          // Create animated ribbed pattern with liquid flow
-          float pattern1 = sin((vPosition.x + vPosition.y) * 15.0 + time * 2.0) * 0.5 + 0.5;
-          float pattern2 = sin((vPosition.y + vPosition.z) * 12.0 + time * 1.8) * 0.3 + 0.7;
-          float pattern3 = sin((vPosition.x + vPosition.z) * 18.0 + time * 2.3) * 0.4 + 0.6;
+          // Create flowing ridge pattern for surface coloring
+          float angle = atan(vPosition.y, vPosition.x);
+          float height = vPosition.z;
           
-          // Combine patterns for complex liquid surface
-          float combinedPattern = (pattern1 + pattern2 + pattern3) / 3.0;
-          combinedPattern = smoothstep(0.3, 0.8, combinedPattern);
+          // Ridge patterns that match the geometry displacement
+          float ridgePattern = sin((angle * 3.0 + height * 2.0) + time * 0.5) * 0.5 + 0.5;
+          ridgePattern = smoothstep(0.2, 0.8, ridgePattern);
           
           // Base color - clean white/light gray
-          vec3 baseColor = vec3(0.94, 0.95, 0.97);
+          vec3 baseColor = vec3(0.96, 0.97, 0.98);
           
           // Dynamic lighting calculation
           vec3 lightDirection = normalize(vec3(
@@ -71,14 +73,10 @@ const AnimatedRibbedSphere = () => {
           ));
           float lightIntensity = max(dot(vNormal, lightDirection), 0.0);
           
-          // Add flowing shadow based on pattern
-          float shadow = combinedPattern * 0.18;
+          // Add subtle shadows for ridge definition
+          float shadow = ridgePattern * 0.15;
           
-          // Create liquid-like color variation
-          float colorShift = sin(vPosition.x * 8.0 + time * 1.5) * 0.02;
-          baseColor += vec3(colorShift, colorShift * 0.5, -colorShift * 0.3);
-          
-          vec3 finalColor = baseColor * (0.65 + lightIntensity * 0.35) - shadow;
+          vec3 finalColor = baseColor * (0.75 + lightIntensity * 0.25) - shadow;
           
           // Enhanced rim lighting with animation
           float rim = 1.0 - max(dot(vNormal, vec3(0.0, 0.0, 1.0)), 0.0);
