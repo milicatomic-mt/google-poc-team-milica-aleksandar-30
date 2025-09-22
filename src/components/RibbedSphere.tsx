@@ -201,16 +201,27 @@ const RibbedSphere: React.FC<RibbedSphereProps> = ({ className = "" }) => {
           powerPreference: "default"
         }}
       >
-        <ambientLight intensity={0.6} />
+        <ambientLight intensity={0.3} />
         <directionalLight 
-          position={[2, 2, 2]} 
-          intensity={0.8}
+          position={[2, 3, 4]} 
+          intensity={1.2}
+          color="#ffffff"
           castShadow
         />
         <directionalLight 
-          position={[-1, -1, 1]} 
-          intensity={0.3}
-          color="#f0f0f0"
+          position={[-1.5, 1, 2]} 
+          intensity={0.6}
+          color="#f8f9fa"
+        />
+        <pointLight 
+          position={[0, 2, 3]} 
+          intensity={0.8}
+          color="#ffffff"
+        />
+        <pointLight 
+          position={[-2, -1, 1]} 
+          intensity={0.4}
+          color="#e9ecef"
         />
         <AnimatedRibbedSphere />
       </Canvas>
