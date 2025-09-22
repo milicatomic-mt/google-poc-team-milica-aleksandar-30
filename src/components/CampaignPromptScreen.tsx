@@ -188,9 +188,9 @@ const CampaignPromptScreen = () => {
         <div className="w-full max-w-6xl mx-auto mb-12 animate-scale-in">
           <div className="backdrop-blur-md bg-white/90 rounded-2xl shadow-lg border border-white/40 p-8">
             <div className="flex gap-8 items-start">
-              {/* Image Preview - 20% smaller */}
+              {/* Image Preview - 5% smaller */}
               <div className="flex-shrink-0">
-                <div className="w-52 h-52 rounded-xl overflow-hidden">
+                <div className="w-48 h-48 rounded-xl overflow-hidden">
                   {uploadedImage ? (
                     <img
                       src={uploadedImage}
@@ -207,44 +207,38 @@ const CampaignPromptScreen = () => {
               
               {/* Prompt Section */}
               <div className="flex-1 relative">
-                {/* Glass effect input field */}
-                <div className="backdrop-blur-md bg-gray-200/60 rounded-xl border border-gray-300/50 p-4 shadow-sm">
+                {/* Glass effect input field - same height as image */}
+                <div className="backdrop-blur-md bg-gray-200/60 rounded-xl border border-white shadow-sm h-48 p-4 relative">
                   <Textarea
                     ref={textareaRef}
                     value={prompt}
                     onChange={(e) => setPrompt(e.target.value)}
                     placeholder="Enter your campaign description..."
-                    className="min-h-[180px] text-lg resize-none bg-transparent border-0 p-0 focus-visible:ring-0 leading-relaxed text-gray-800 placeholder:text-gray-500"
-                    style={{ 
-                      height: 'auto',
-                      minHeight: '180px'
-                    }}
+                    className="h-full w-full text-lg resize-none bg-transparent border-0 p-0 focus-visible:ring-0 leading-relaxed text-gray-800 placeholder:text-gray-500 pr-28"
                     onInput={(e) => {
                       const target = e.target as HTMLTextAreaElement;
-                      target.style.height = 'auto';
-                      target.style.height = Math.max(180, target.scrollHeight) + 'px';
+                      // Remove auto-height adjustment since we want fixed height
                     }}
                   />
+                  {/* Regenerate button inside input at bottom right */}
+                  <Button
+                    onClick={handleRegenerate}
+                    disabled={isRegenerating}
+                    className="absolute bottom-3 right-3 bg-white hover:bg-gray-50 text-indigo-600 border border-gray-200 rounded-full px-4 py-2 text-sm font-medium shadow-sm"
+                  >
+                    {isRegenerating ? (
+                      <>
+                        <RefreshCw className="w-4 h-4 animate-spin mr-2 text-indigo-600" />
+                        Regenerating...
+                      </>
+                    ) : (
+                      <>
+                        <RefreshCw className="w-4 h-4 mr-2 text-indigo-600" />
+                        Regenerate
+                      </>
+                    )}
+                  </Button>
                 </div>
-                {/* Regenerate button styled like screen saver buttons */}
-                <Button
-                  onClick={handleRegenerate}
-                  disabled={isRegenerating}
-                  variant="outline"
-                  className="absolute -bottom-2 right-4 bg-white/20 backdrop-blur-md border-white/30 hover:bg-white/30 text-gray-700 rounded-full px-4 py-2 text-sm font-medium shadow-sm"
-                >
-                  {isRegenerating ? (
-                    <>
-                      <RefreshCw className="w-4 h-4 animate-spin mr-2" />
-                      Regenerating...
-                    </>
-                  ) : (
-                    <>
-                      <RefreshCw className="w-4 h-4 mr-2" />
-                      Regenerate
-                    </>
-                  )}
-                </Button>
               </div>
             </div>
           </div>
