@@ -72,7 +72,7 @@ const AnimatedRibbedSphere = () => {
           float lightIntensity = max(dot(vNormal, lightDirection), 0.0);
           
           // Add flowing shadow based on pattern
-          float shadow = combinedPattern * 0.18;
+          float shadow = combinedPattern * 0.162;
           
           // Create liquid-like color variation
           float colorShift = sin(vPosition.x * 8.0 + time * 1.5) * 0.02;
