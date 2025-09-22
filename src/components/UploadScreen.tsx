@@ -496,7 +496,7 @@ const UploadScreen: React.FC<UploadScreenProps> = ({ mode }) => {
                                 fgColor="#000000"
                                 bgColor="transparent"
                               />
-                              <div className="bg-blue-600 text-white px-4 py-1.5 rounded-full text-sm font-semibold mt-2">
+                              <div className="bg-indigo-600 text-white px-4 py-1.5 rounded-full text-sm font-semibold mt-2">
                                 SCAN ME
                               </div>
                             </div>
