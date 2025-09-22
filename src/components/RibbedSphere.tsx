@@ -60,25 +60,25 @@ const AnimatedRibbedSphere = () => {
           float combinedPattern = (pattern1 + pattern2 + pattern3) / 3.0;
           combinedPattern = smoothstep(0.3, 0.8, combinedPattern);
           
-          // Base color - clean white/light gray
-          vec3 baseColor = vec3(0.94, 0.95, 0.97);
+          // Base color - pure white for natural look
+          vec3 baseColor = vec3(0.98, 0.99, 1.0);
           
           // Dynamic lighting calculation
           vec3 lightDirection = normalize(vec3(
-            1.0 + sin(time * 1.2) * 0.3, 
-            1.0 + cos(time * 0.8) * 0.2, 
+            1.0 + sin(time * 1.2) * 0.2, 
+            1.0 + cos(time * 0.8) * 0.1, 
             1.0
           ));
           float lightIntensity = max(dot(vNormal, lightDirection), 0.0);
           
-          // Add flowing shadow based on pattern
-          float shadow = combinedPattern * 0.18;
+          // Reduce shadow intensity for more natural look
+          float shadow = combinedPattern * 0.08;
           
-          // Create liquid-like color variation
-          float colorShift = sin(vPosition.x * 8.0 + time * 1.5) * 0.02;
-          baseColor += vec3(colorShift, colorShift * 0.5, -colorShift * 0.3);
+          // Subtle color variation for natural texture
+          float colorShift = sin(vPosition.x * 6.0 + time * 1.2) * 0.015;
+          baseColor += vec3(colorShift * 0.5, colorShift * 0.3, -colorShift * 0.2);
           
-          vec3 finalColor = baseColor * (0.65 + lightIntensity * 0.35) - shadow;
+          vec3 finalColor = baseColor * (0.85 + lightIntensity * 0.15) - shadow;
           
           // Enhanced rim lighting with animation
           float rim = 1.0 - max(dot(vNormal, vec3(0.0, 0.0, 1.0)), 0.0);
