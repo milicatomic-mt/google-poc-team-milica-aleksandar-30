@@ -27,14 +27,14 @@ const AnimatedRibbedSphere = () => {
           vPosition = position;
           vUv = uv;
           
-          // Create liquid-like displacement with organic flow
-          float wave1 = sin(position.x * 4.0 + time * 1.5) * 0.04;
-          float wave2 = sin(position.y * 6.0 + time * 1.2) * 0.035;
-          float wave3 = sin(position.z * 5.0 + time * 1.8) * 0.03;
+          // Create liquid-like displacement with multiple wave frequencies
+          float wave1 = sin(position.x * 8.0 + time * 2.0) * 0.03;
+          float wave2 = sin(position.y * 12.0 + time * 1.5) * 0.025;
+          float wave3 = sin(position.z * 10.0 + time * 2.5) * 0.02;
           
-          // Add organic flowing effect
-          float flow = sin((position.x * position.y) * 3.0 + time * 2.0) * 0.05;
-          float ripple = sin(length(position.xy) * 8.0 - time * 3.0) * 0.025;
+          // Add flowing liquid effect
+          float flow = sin((position.x + position.y) * 6.0 + time * 3.0) * 0.04;
+          float ripple = sin(length(position.xy) * 15.0 - time * 4.0) * 0.015;
           
           // Combine all displacements for liquid effect
           float totalDisplacement = wave1 + wave2 + wave3 + flow + ripple;
@@ -51,38 +51,34 @@ const AnimatedRibbedSphere = () => {
         varying vec2 vUv;
         
         void main() {
-          // Create organic swirl patterns like the reference image
-          float swirl1 = sin((vPosition.x * 2.5 + vPosition.y * 1.8) + time * 1.5) * 0.6 + 0.4;
-          float swirl2 = sin((vPosition.y * 2.0 + vPosition.z * 2.2) + time * 1.2) * 0.4 + 0.6;
-          float swirl3 = sin((vPosition.x * 1.8 + vPosition.z * 2.8) + time * 1.8) * 0.5 + 0.5;
+          // Create animated ribbed pattern with liquid flow
+          float pattern1 = sin((vPosition.x + vPosition.y) * 15.0 + time * 2.0) * 0.5 + 0.5;
+          float pattern2 = sin((vPosition.y + vPosition.z) * 12.0 + time * 1.8) * 0.3 + 0.7;
+          float pattern3 = sin((vPosition.x + vPosition.z) * 18.0 + time * 2.3) * 0.4 + 0.6;
           
-          // Add flowing cream-like texture
-          float flow1 = sin(vPosition.x * 3.5 + time * 2.2) * sin(vPosition.y * 2.8 + time * 1.6);
-          float flow2 = cos(vPosition.z * 2.2 + time * 1.9) * sin((vPosition.x + vPosition.y) * 1.5 + time * 2.1);
+          // Combine patterns for complex liquid surface
+          float combinedPattern = (pattern1 + pattern2 + pattern3) / 3.0;
+          combinedPattern = smoothstep(0.3, 0.8, combinedPattern);
           
-          // Combine for organic liquid surface
-          float combinedPattern = (swirl1 + swirl2 + swirl3 + flow1 * 0.3 + flow2 * 0.3) / 3.6;
-          combinedPattern = smoothstep(0.2, 0.9, combinedPattern);
-          
-          // Base color - pure white for natural look
-          vec3 baseColor = vec3(0.98, 0.99, 1.0);
+          // Base color - clean white/light gray
+          vec3 baseColor = vec3(0.94, 0.95, 0.97);
           
           // Dynamic lighting calculation
           vec3 lightDirection = normalize(vec3(
-            1.0 + sin(time * 1.2) * 0.2, 
-            1.0 + cos(time * 0.8) * 0.1, 
+            1.0 + sin(time * 1.2) * 0.3, 
+            1.0 + cos(time * 0.8) * 0.2, 
             1.0
           ));
           float lightIntensity = max(dot(vNormal, lightDirection), 0.0);
           
-          // Reduce shadow intensity for more natural look
-          float shadow = combinedPattern * 0.08;
+          // Add flowing shadow based on pattern
+          float shadow = combinedPattern * 0.18;
           
-          // Subtle color variation for natural texture
-          float colorShift = sin(vPosition.x * 6.0 + time * 1.2) * 0.015;
-          baseColor += vec3(colorShift * 0.5, colorShift * 0.3, -colorShift * 0.2);
+          // Create liquid-like color variation
+          float colorShift = sin(vPosition.x * 8.0 + time * 1.5) * 0.02;
+          baseColor += vec3(colorShift, colorShift * 0.5, -colorShift * 0.3);
           
-          vec3 finalColor = baseColor * (0.85 + lightIntensity * 0.15) - shadow;
+          vec3 finalColor = baseColor * (0.65 + lightIntensity * 0.35) - shadow;
           
           // Enhanced rim lighting with animation
           float rim = 1.0 - max(dot(vNormal, vec3(0.0, 0.0, 1.0)), 0.0);
