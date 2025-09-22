@@ -51,13 +51,21 @@ const AnimatedRibbedSphere = () => {
         varying vec2 vUv;
         
         void main() {
-          // Create animated ribbed pattern with liquid flow
-          float pattern1 = sin((vPosition.x + vPosition.y) * 15.0 + time * 2.0) * 0.5 + 0.5;
-          float pattern2 = sin((vPosition.y + vPosition.z) * 12.0 + time * 1.8) * 0.3 + 0.7;
-          float pattern3 = sin((vPosition.x + vPosition.z) * 18.0 + time * 2.3) * 0.4 + 0.6;
+          // Random noise function for texture variation
+          float noise = fract(sin(dot(vPosition.xy, vec2(12.9898, 78.233))) * 43758.5453);
+          float noise2 = fract(sin(dot(vPosition.xz, vec2(93.9898, 67.345))) * 37583.2341);
           
-          // Combine patterns for complex liquid surface
-          float combinedPattern = (pattern1 + pattern2 + pattern3) / 3.0;
+          // Create animated ribbed pattern with liquid flow (30% increased frequency)
+          float pattern1 = sin((vPosition.x + vPosition.y) * 19.5 + time * (2.0 + noise * 0.5)) * 0.5 + 0.5;
+          float pattern2 = sin((vPosition.y + vPosition.z) * 15.6 + time * (1.8 + noise2 * 0.4)) * 0.3 + 0.7;
+          float pattern3 = sin((vPosition.x + vPosition.z) * 23.4 + time * (2.3 + noise * 0.6)) * 0.4 + 0.6;
+          
+          // Add randomized secondary patterns
+          float randomPattern1 = sin((vPosition.x * noise + vPosition.y) * 16.0 + time * 1.9) * 0.2;
+          float randomPattern2 = cos((vPosition.z * noise2 + vPosition.x) * 14.0 + time * 2.1) * 0.15;
+          
+          // Combine patterns for complex liquid surface with randomization
+          float combinedPattern = (pattern1 + pattern2 + pattern3 + randomPattern1 + randomPattern2) / 5.0;
           combinedPattern = smoothstep(0.3, 0.8, combinedPattern);
           
           // Base color - clean white/light gray
