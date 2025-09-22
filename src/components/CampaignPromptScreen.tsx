@@ -188,9 +188,9 @@ const CampaignPromptScreen = () => {
         <div className="w-full max-w-6xl mx-auto mb-12 animate-scale-in">
           <div className="backdrop-blur-md bg-white/90 rounded-2xl shadow-lg border border-white/40 p-8">
             <div className="flex gap-8 items-start">
-              {/* Image Preview */}
+              {/* Image Preview - 20% smaller */}
               <div className="flex-shrink-0">
-                <div className="w-64 h-64 rounded-xl overflow-hidden">
+                <div className="w-52 h-52 rounded-xl overflow-hidden">
                   {uploadedImage ? (
                     <img
                       src={uploadedImage}
@@ -207,27 +207,31 @@ const CampaignPromptScreen = () => {
               
               {/* Prompt Section */}
               <div className="flex-1 relative">
-                <Textarea
-                  ref={textareaRef}
-                  value={prompt}
-                  onChange={(e) => setPrompt(e.target.value)}
-                  placeholder="Enter your campaign description..."
-                  className="min-h-[200px] text-lg resize-none bg-transparent border-0 p-0 focus-visible:ring-0 leading-relaxed text-gray-800"
-                  style={{ 
-                    height: 'auto',
-                    minHeight: '200px'
-                  }}
-                  onInput={(e) => {
-                    const target = e.target as HTMLTextAreaElement;
-                    target.style.height = 'auto';
-                    target.style.height = Math.max(200, target.scrollHeight) + 'px';
-                  }}
-                />
+                {/* Glass effect input field */}
+                <div className="backdrop-blur-md bg-gray-200/60 rounded-xl border border-gray-300/50 p-4 shadow-sm">
+                  <Textarea
+                    ref={textareaRef}
+                    value={prompt}
+                    onChange={(e) => setPrompt(e.target.value)}
+                    placeholder="Enter your campaign description..."
+                    className="min-h-[180px] text-lg resize-none bg-transparent border-0 p-0 focus-visible:ring-0 leading-relaxed text-gray-800 placeholder:text-gray-500"
+                    style={{ 
+                      height: 'auto',
+                      minHeight: '180px'
+                    }}
+                    onInput={(e) => {
+                      const target = e.target as HTMLTextAreaElement;
+                      target.style.height = 'auto';
+                      target.style.height = Math.max(180, target.scrollHeight) + 'px';
+                    }}
+                  />
+                </div>
+                {/* Regenerate button styled like screen saver buttons */}
                 <Button
                   onClick={handleRegenerate}
                   disabled={isRegenerating}
-                  variant="ghost"
-                  className="absolute bottom-0 right-0 text-indigo-600 hover:text-indigo-700 hover:bg-transparent p-0 h-auto font-medium"
+                  variant="outline"
+                  className="absolute -bottom-2 right-4 bg-white/20 backdrop-blur-md border-white/30 hover:bg-white/30 text-gray-700 rounded-full px-4 py-2 text-sm font-medium shadow-sm"
                 >
                   {isRegenerating ? (
                     <>
@@ -235,7 +239,10 @@ const CampaignPromptScreen = () => {
                       Regenerating...
                     </>
                   ) : (
-                    'Regenerate'
+                    <>
+                      <RefreshCw className="w-4 h-4 mr-2" />
+                      Regenerate
+                    </>
                   )}
                 </Button>
               </div>
@@ -252,43 +259,56 @@ const CampaignPromptScreen = () => {
             (Optional)
           </p>
           
-          <div className="space-y-8">
-            {/* Age Groups */}
-            <div>
-              <div className="flex flex-wrap gap-4 justify-center">
-                {ageGroups.map((age) => (
-                  <button
-                    key={age}
-                    onClick={() => toggleAudience(age)}
-                    className={`px-6 py-3 rounded-full border-2 transition-all duration-200 tap-target font-medium backdrop-blur-md ${
-                      selectedAudiences.includes(age)
-                        ? 'bg-white border-0 text-indigo-600 shadow-lg'
-                        : 'bg-white/30 border-gray-200 text-black hover:border-gray-300 hover:shadow-sm hover:bg-white/40'
-                    }`}
-                  >
-                    {age}
-                  </button>
-                ))}
-              </div>
+          <div className="space-y-6">
+            {/* Age Groups - First row (4 items) */}
+            <div className="grid grid-cols-4 gap-3 max-w-4xl mx-auto">
+              {ageGroups.map((age) => (
+                <button
+                  key={age}
+                  onClick={() => toggleAudience(age)}
+                  className={`px-4 py-3 rounded-full border-2 transition-all duration-200 tap-target font-medium backdrop-blur-md text-sm ${
+                    selectedAudiences.includes(age)
+                      ? 'bg-white border-0 text-indigo-600 shadow-lg'
+                      : 'bg-white/30 border-gray-200 text-black hover:border-gray-300 hover:shadow-sm hover:bg-white/40'
+                  }`}
+                >
+                  {age}
+                </button>
+              ))}
             </div>
 
-            {/* Interests */}
-            <div>
-              <div className="flex flex-wrap gap-4 justify-center">
-                {interests.map((interest) => (
-                  <button
-                    key={interest}
-                    onClick={() => toggleAudience(interest)}
-                    className={`px-6 py-3 rounded-full border-2 transition-all duration-200 tap-target font-medium backdrop-blur-md ${
-                      selectedAudiences.includes(interest)
-                        ? 'bg-white border-0 text-indigo-600 shadow-lg'
-                        : 'bg-white/30 border-gray-200 text-black hover:border-gray-300 hover:shadow-sm hover:bg-white/40'
-                    }`}
-                  >
-                    {interest}
-                  </button>
-                ))}
-              </div>
+            {/* Interests - Second row (4 items) */}
+            <div className="grid grid-cols-4 gap-3 max-w-4xl mx-auto">
+              {interests.slice(0, 4).map((interest) => (
+                <button
+                  key={interest}
+                  onClick={() => toggleAudience(interest)}
+                  className={`px-4 py-3 rounded-full border-2 transition-all duration-200 tap-target font-medium backdrop-blur-md text-sm ${
+                    selectedAudiences.includes(interest)
+                      ? 'bg-white border-0 text-indigo-600 shadow-lg'
+                      : 'bg-white/30 border-gray-200 text-black hover:border-gray-300 hover:shadow-sm hover:bg-white/40'
+                  }`}
+                >
+                  {interest}
+                </button>
+              ))}
+            </div>
+
+            {/* Interests - Third row (2 items) */}
+            <div className="grid grid-cols-2 gap-3 max-w-2xl mx-auto">
+              {interests.slice(4, 6).map((interest) => (
+                <button
+                  key={interest}
+                  onClick={() => toggleAudience(interest)}
+                  className={`px-4 py-3 rounded-full border-2 transition-all duration-200 tap-target font-medium backdrop-blur-md text-sm ${
+                    selectedAudiences.includes(interest)
+                      ? 'bg-white border-0 text-indigo-600 shadow-lg'
+                      : 'bg-white/30 border-gray-200 text-black hover:border-gray-300 hover:shadow-sm hover:bg-white/40'
+                  }`}
+                >
+                  {interest}
+                </button>
+              ))}
             </div>
           </div>
         </div>
