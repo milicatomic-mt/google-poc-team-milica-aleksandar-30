@@ -129,11 +129,40 @@ const WelcomeScreen = () => {
 
         {/* Main Options */}
         <main className="flex-1 flex items-center justify-center container-padding">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-6xl">
-            {/* Catalog Enrichment Card */}
+          <div className="flex flex-col gap-6 w-full max-w-4xl">
+            {/* Campaign Creation Card - Now First */}
+            <div className={`card-elegant cursor-pointer group relative overflow-hidden transition-all duration-smooth border-2 backdrop-blur-md bg-white/20 border-white/30 ${selectedOption === 'campaign' ? 'shadow-elegant-lg border-white/50 bg-white/30' : 'hover:shadow-elegant-lg hover:border-white/50 hover:bg-white/30'}`} onClick={() => handleCardClick('campaign')}>
+              {/* Hero Image */}
+              <div className="relative h-48 mb-6 overflow-hidden rounded-lg">
+                <img src={campaignSample} alt="Campaign advertisement mockup" className="w-full h-full object-cover transition-transform duration-smooth group-hover:scale-105" />
+                <div className="absolute inset-0 bg-gradient-to-t from-background/20 to-transparent" />
+                <div className="absolute top-4 right-4 p-2 bg-white rounded-full shadow-md">
+                  <Megaphone className="w-6 h-6 text-black" />
+                </div>
+                {/* Selection Checkmark Overlay */}
+                {selectedOption === 'campaign' && <div className="absolute inset-0 bg-primary/20 flex items-center justify-center animate-scale-in">
+                    <div className="bg-primary rounded-full p-3 shadow-lg">
+                      <Check className="w-8 h-8 text-primary-foreground" />
+                    </div>
+                  </div>}
+              </div>
+
+              {/* Content */}
+              <div className="space-y-4">
+                <h3 className="text-h2 font-semibold text-foreground">
+                  Image to Campaign
+                </h3>
+                <p className="text-body-lg text-muted-foreground leading-relaxed">
+                  Create comprehensive marketing campaigns with social media content, email designs, web banners, and video concepts from your inspiration.
+                </p>
+              </div>
+
+            </div>
+
+            {/* Catalog Enrichment Card - Now Second */}
             <div className={`card-elegant cursor-pointer group relative overflow-hidden transition-all duration-smooth border-2 backdrop-blur-md bg-white/20 border-white/30 ${selectedOption === 'catalog' ? 'shadow-elegant-lg border-white/50 bg-white/30' : 'hover:shadow-elegant-lg hover:border-white/50 hover:bg-white/30'}`} onClick={() => handleCardClick('catalog')}>
               {/* Hero Image */}
-              <div className="relative h-64 mb-6 overflow-hidden rounded-lg">
+              <div className="relative h-48 mb-6 overflow-hidden rounded-lg">
                 <img src={catalogSample} alt="Catalog enrichment sample" className="w-full h-full object-cover transition-transform duration-smooth group-hover:scale-105" />
                 <div className="absolute inset-0 bg-gradient-to-t from-background/20 to-transparent" />
                 <div className="absolute top-4 right-4 p-2 bg-white rounded-full shadow-md">
@@ -155,35 +184,6 @@ const WelcomeScreen = () => {
                 <p className="text-body-lg text-muted-foreground leading-relaxed">
                   Transform product images into complete marketing packages with AI-generated titles, 
                   descriptions, features, and SEO-optimized content.
-                </p>
-              </div>
-
-            </div>
-
-            {/* Campaign Creation Card */}
-            <div className={`card-elegant cursor-pointer group relative overflow-hidden transition-all duration-smooth border-2 backdrop-blur-md bg-white/20 border-white/30 ${selectedOption === 'campaign' ? 'shadow-elegant-lg border-white/50 bg-white/30' : 'hover:shadow-elegant-lg hover:border-white/50 hover:bg-white/30'}`} onClick={() => handleCardClick('campaign')}>
-              {/* Hero Image */}
-              <div className="relative h-64 mb-6 overflow-hidden rounded-lg">
-                <img src={campaignSample} alt="Campaign advertisement mockup" className="w-full h-full object-cover transition-transform duration-smooth group-hover:scale-105" />
-                <div className="absolute inset-0 bg-gradient-to-t from-background/20 to-transparent" />
-                <div className="absolute top-4 right-4 p-2 bg-white rounded-full shadow-md">
-                  <Megaphone className="w-6 h-6 text-black" />
-                </div>
-                {/* Selection Checkmark Overlay */}
-                {selectedOption === 'campaign' && <div className="absolute inset-0 bg-primary/20 flex items-center justify-center animate-scale-in">
-                    <div className="bg-primary rounded-full p-3 shadow-lg">
-                      <Check className="w-8 h-8 text-primary-foreground" />
-                    </div>
-                  </div>}
-              </div>
-
-              {/* Content */}
-              <div className="space-y-4">
-                <h3 className="text-h2 font-semibold text-foreground">
-                  Image to Campaign
-                </h3>
-                <p className="text-body-lg text-muted-foreground leading-relaxed">
-                  Create comprehensive marketing campaigns with social media content, email designs, web banners, and video concepts from your inspiration.
                 </p>
               </div>
 
