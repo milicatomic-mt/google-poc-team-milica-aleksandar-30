@@ -234,7 +234,7 @@ const CampaignPromptScreen = () => {
             Campaign Prompt
           </h1>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Describe your campaign idea. The AI will use this as inspiration to create compelling marketing materials.
+            Describe your campaign idea in two sentences max.
           </p>
         </div>
 
@@ -273,8 +273,8 @@ const CampaignPromptScreen = () => {
           </h3>
           <div className="space-y-3">
             {aiSuggestions.length > 0 ? (
-              // Show AI-generated suggestions
-              aiSuggestions.map((suggestion, index) => (
+              // Show AI-generated suggestions (max 3)
+              aiSuggestions.slice(0, 3).map((suggestion, index) => (
                 <button
                   key={index}
                   onClick={() => handleExampleClick(suggestion)}
