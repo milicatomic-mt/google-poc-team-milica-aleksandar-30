@@ -179,9 +179,9 @@ const ScreenSaver = () => {
           </div>
 
           {/* Logo and Slogan */}
-          <div className="mb-12">
-            <div className="flex flex-col items-center justify-center mb-4">
-              <div className="h-12 w-12 sm:h-16 sm:w-16 md:h-20 md:w-20 lg:h-24 lg:w-24 xl:h-28 xl:w-28 mb-8 sm:mb-10 md:mb-12">
+          <div className="mb-8">
+            <div className="flex flex-col items-center justify-center mb-3">
+              <div className="h-12 w-12 sm:h-16 sm:w-16 md:h-20 md:w-20 lg:h-24 lg:w-24 xl:h-28 xl:w-28 mb-6 sm:mb-7 md:mb-8">
                 <RibbedSphere className="w-full h-full" />
               </div>
               <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold">
