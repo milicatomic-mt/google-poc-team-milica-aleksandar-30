@@ -8,7 +8,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
-import { Download, QrCode, Share } from "lucide-react";
+import { Share } from "lucide-react";
 
 const CampaignResultsScreen = () => {
   const location = useLocation();
@@ -83,69 +83,7 @@ const CampaignResultsScreen = () => {
     navigate('/');
   };
 
-  const handleDownloadPDF = () => {
-    if (!campaignData) return;
-    
-    // Create a formatted text version of the campaign data
-    let content = "CAMPAIGN RESULTS\n";
-    content += "================\n\n";
-    
-    // Video Scripts
-    content += "🎥 VIDEO SCRIPTS\n";
-    content += "-----------------\n";
-    campaignData.video_scripts.forEach((script, index) => {
-      content += `${script.platform.toUpperCase()}:\n${script.script}\n\n`;
-    });
-    
-    // Email Copy
-    content += "📧 EMAIL MARKETING\n";
-    content += "-------------------\n";
-    content += `Subject: ${campaignData.email_copy.subject}\n\n`;
-    content += `Body:\n${campaignData.email_copy.body}\n\n`;
-    
-    // Banner Ads
-    content += "🎯 BANNER ADS\n";
-    content += "--------------\n";
-    campaignData.banner_ads.forEach((ad, index) => {
-      content += `Variation ${index + 1}:\n`;
-      content += `Headline: ${ad.headline}\n`;
-      content += `CTA: ${ad.cta}\n\n`;
-    });
-    
-    // Landing Page
-    content += "🚀 LANDING PAGE CONCEPT\n";
-    content += "------------------------\n";
-    content += `Hero Text: ${campaignData.landing_page_concept.hero_text}\n`;
-    content += `Sub Text: ${campaignData.landing_page_concept.sub_text}\n`;
-    content += `CTA: ${campaignData.landing_page_concept.cta}\n`;
-    
-    // Create and download file
-    const blob = new Blob([content], { type: 'text/plain' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'campaign-results.txt';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-  };
-
-  const handleDownloadJSON = () => {
-    if (!campaignData) return;
-    
-    const blob = new Blob([JSON.stringify(campaignData, null, 2)], { type: 'application/json' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'campaign-results.json';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-  };
-
-  const handleGenerateQR = () => {
+  const handleDownload = () => {
     // Store campaign data and campaignId in session storage for QR page access
     const campaignId = location.state?.campaignId;
     sessionStorage.setItem('qrCampaignData', JSON.stringify(campaignData));
@@ -192,17 +130,9 @@ const CampaignResultsScreen = () => {
               <h1 className="text-2xl font-semibold">Campaign Results</h1>
             </div>
             <div className="flex items-center gap-2">
-              <Button onClick={handleDownloadPDF} variant="outline" size="sm">
-                <Download className="w-4 h-4 mr-2" />
-                Download TXT
-              </Button>
-              <Button onClick={handleDownloadJSON} variant="outline" size="sm">
-                <Download className="w-4 h-4 mr-2" />
-                Download JSON
-              </Button>
-              <Button onClick={handleGenerateQR} variant="outline" size="sm">
-                <QrCode className="w-4 h-4 mr-2" />
-                Mobile QR
+              <Button onClick={handleDownload} variant="outline" size="sm">
+                <Share className="w-4 h-4 mr-2" />
+                Download
               </Button>
               <Button onClick={handleBackToHome} variant="outline">
                 Create New Campaign
