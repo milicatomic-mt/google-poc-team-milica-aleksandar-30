@@ -205,31 +205,39 @@ const CampaignPromptScreen = () => {
                 </div>
               </div>
               
-              {/* Prompt Section */}
-              <div className="flex-1 relative">
-                {/* Glass effect input field - same height as image */}
-                <div className="backdrop-blur-md rounded-xl border border-white shadow-sm h-40 p-4 relative" style={{backgroundColor: '#FFFFFF'}}>
-                  <Textarea
-                    ref={textareaRef}
-                    value={prompt}
-                    onChange={(e) => setPrompt(e.target.value)}
-                    placeholder="Enter your campaign description..."
-                    className="h-full w-full text-base resize-none bg-transparent border-0 p-0 focus-visible:ring-0 leading-relaxed text-gray-800 placeholder:text-gray-500 pr-28"
-                    onInput={(e) => {
-                      const target = e.target as HTMLTextAreaElement;
-                      // Remove auto-height adjustment since we want fixed height
-                    }}
-                  />
-                  {/* Regenerate button inside input at bottom right */}
-                  <Button
-                    onClick={handleRegenerate}
-                    disabled={isRegenerating}
-                    className="absolute bottom-3 right-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full w-8 h-8 p-0 flex items-center justify-center shadow-sm"
-                  >
-                    <RefreshCw className={`w-4 h-4 text-white ${isRegenerating ? 'animate-spin' : ''}`} />
-                  </Button>
-                </div>
-              </div>
+               {/* Prompt Section */}
+               <div className="flex-1 relative">
+                 {/* Glass effect input field - same height as image */}
+                 <div className="backdrop-blur-md rounded-xl border border-white shadow-sm h-40 p-4 relative" style={{backgroundColor: '#FFFFFF'}}>
+                   <Textarea
+                     ref={textareaRef}
+                     value={prompt}
+                     onChange={(e) => setPrompt(e.target.value)}
+                     placeholder="Enter your campaign description..."
+                     className="h-full w-full text-base resize-none bg-transparent border-0 p-0 focus-visible:ring-0 leading-relaxed text-gray-800 placeholder:text-gray-500 pr-28"
+                     onInput={(e) => {
+                       const target = e.target as HTMLTextAreaElement;
+                       // Remove auto-height adjustment since we want fixed height
+                     }}
+                   />
+                   
+                   {/* Wave loading animation overlay */}
+                   {isRegenerating && (
+                     <div className="absolute inset-0 rounded-xl overflow-hidden pointer-events-none">
+                       <div className="h-full w-full bg-gradient-to-r from-transparent via-gray-200/50 to-transparent animate-wave"></div>
+                     </div>
+                   )}
+                   
+                   {/* Regenerate button inside input at bottom right */}
+                   <Button
+                     onClick={handleRegenerate}
+                     disabled={isRegenerating}
+                     className="absolute bottom-3 right-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full w-8 h-8 p-0 flex items-center justify-center shadow-sm"
+                   >
+                     <RefreshCw className={`w-4 h-4 text-white ${isRegenerating ? 'animate-spin' : ''}`} />
+                   </Button>
+                 </div>
+               </div>
             </div>
           </div>
         </div>
