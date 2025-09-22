@@ -185,12 +185,12 @@ const CampaignPromptScreen = () => {
         </div>
 
         {/* Image and Prompt Section */}
-        <div className="w-full max-w-6xl mx-auto mb-12 animate-scale-in">
-          <div className="backdrop-blur-md bg-white/90 rounded-2xl shadow-lg border border-white/40 p-8">
-            <div className="flex gap-8 items-start">
-              {/* Image Preview - 5% smaller */}
+        <div className="w-full max-w-4xl mx-auto mb-12 animate-scale-in">
+          <div className="backdrop-blur-md bg-white/20 rounded-2xl shadow-lg border border-white/30 p-6">
+            <div className="flex gap-6 items-start">
+              {/* Image Preview - smaller */}
               <div className="flex-shrink-0">
-                <div className="w-48 h-48 rounded-xl overflow-hidden">
+                <div className="w-40 h-40 rounded-xl overflow-hidden">
                   {uploadedImage ? (
                     <img
                       src={uploadedImage}
@@ -208,13 +208,13 @@ const CampaignPromptScreen = () => {
               {/* Prompt Section */}
               <div className="flex-1 relative">
                 {/* Glass effect input field - same height as image */}
-                <div className="backdrop-blur-md bg-gray-200/60 rounded-xl border border-white shadow-sm h-48 p-4 relative">
+                <div className="backdrop-blur-md bg-gray-200/60 rounded-xl border border-white shadow-sm h-40 p-4 relative">
                   <Textarea
                     ref={textareaRef}
                     value={prompt}
                     onChange={(e) => setPrompt(e.target.value)}
                     placeholder="Enter your campaign description..."
-                    className="h-full w-full text-lg resize-none bg-transparent border-0 p-0 focus-visible:ring-0 leading-relaxed text-gray-800 placeholder:text-gray-500 pr-28"
+                    className="h-full w-full text-base resize-none bg-transparent border-0 p-0 focus-visible:ring-0 leading-relaxed text-gray-800 placeholder:text-gray-500 pr-28"
                     onInput={(e) => {
                       const target = e.target as HTMLTextAreaElement;
                       // Remove auto-height adjustment since we want fixed height
@@ -224,16 +224,16 @@ const CampaignPromptScreen = () => {
                   <Button
                     onClick={handleRegenerate}
                     disabled={isRegenerating}
-                    className="absolute bottom-3 right-3 bg-white hover:bg-gray-50 text-indigo-600 border border-gray-200 rounded-full px-4 py-2 text-sm font-medium shadow-sm"
+                    className="absolute bottom-3 right-3 bg-white hover:bg-gray-50 text-indigo-600 border border-gray-200 rounded-full px-3 py-1.5 text-sm font-medium shadow-sm"
                   >
                     {isRegenerating ? (
                       <>
-                        <RefreshCw className="w-4 h-4 animate-spin mr-2 text-indigo-600" />
+                        <RefreshCw className="w-4 h-4 animate-spin mr-1 text-indigo-600" />
                         Regenerating...
                       </>
                     ) : (
                       <>
-                        <RefreshCw className="w-4 h-4 mr-2 text-indigo-600" />
+                        <RefreshCw className="w-4 h-4 mr-1 text-indigo-600" />
                         Regenerate
                       </>
                     )}
