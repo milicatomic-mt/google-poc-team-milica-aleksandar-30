@@ -186,54 +186,57 @@ const CampaignPromptScreen = () => {
 
         {/* Image and Prompt Section */}
         <div className="w-full max-w-6xl mx-auto mb-12 animate-scale-in">
-          <div className="flex gap-8 items-start">
-            {/* Image Preview */}
-            <div className="flex-shrink-0">
-              <div className="w-64 h-64 rounded-xl overflow-hidden backdrop-blur-md bg-white/80 border border-white/40 shadow-lg">
-                {uploadedImage ? (
-                  <img
-                    src={uploadedImage}
-                    alt="Uploaded product"
-                    className="w-full h-full object-cover"
-                  />
-                ) : (
-                  <div className="w-full h-full flex items-center justify-center text-muted-foreground">
-                    No image available
-                  </div>
-                )}
+          <div className="backdrop-blur-md bg-white/90 rounded-2xl shadow-lg border border-white/40 p-8">
+            <div className="flex gap-8 items-start">
+              {/* Image Preview */}
+              <div className="flex-shrink-0">
+                <div className="w-64 h-64 rounded-xl overflow-hidden">
+                  {uploadedImage ? (
+                    <img
+                      src={uploadedImage}
+                      alt="Uploaded product"
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center text-muted-foreground bg-gray-100 rounded-xl">
+                      No image available
+                    </div>
+                  )}
+                </div>
               </div>
-            </div>
-            
-            {/* Prompt Section */}
-            <div className="flex-1">
-              <div className="relative">
+              
+              {/* Prompt Section */}
+              <div className="flex-1 relative">
                 <Textarea
                   ref={textareaRef}
                   value={prompt}
                   onChange={(e) => setPrompt(e.target.value)}
                   placeholder="Enter your campaign description..."
-                  className="min-h-[160px] text-lg resize-none bg-white rounded-xl border border-gray-200 p-4 focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:border-indigo-500 leading-relaxed shadow-sm transition-all duration-200"
+                  className="min-h-[200px] text-lg resize-none bg-transparent border-0 p-0 focus-visible:ring-0 leading-relaxed text-gray-800"
                   style={{ 
                     height: 'auto',
-                    minHeight: '160px'
+                    minHeight: '200px'
                   }}
                   onInput={(e) => {
                     const target = e.target as HTMLTextAreaElement;
                     target.style.height = 'auto';
-                    target.style.height = Math.max(160, target.scrollHeight) + 'px';
+                    target.style.height = Math.max(200, target.scrollHeight) + 'px';
                   }}
                 />
                 <Button
                   onClick={handleRegenerate}
                   disabled={isRegenerating}
-                  className="absolute bottom-4 right-4 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full px-6 py-2 text-sm"
+                  variant="ghost"
+                  className="absolute bottom-0 right-0 text-indigo-600 hover:text-indigo-700 hover:bg-transparent p-0 h-auto font-medium"
                 >
                   {isRegenerating ? (
-                    <RefreshCw className="w-4 h-4 animate-spin mr-2" />
+                    <>
+                      <RefreshCw className="w-4 h-4 animate-spin mr-2" />
+                      Regenerating...
+                    </>
                   ) : (
-                    <RefreshCw className="w-4 h-4 mr-2" />
+                    'Regenerate'
                   )}
-                  Regenerate
                 </Button>
               </div>
             </div>
