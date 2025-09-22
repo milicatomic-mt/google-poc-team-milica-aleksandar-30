@@ -155,7 +155,7 @@ const CampaignResultsScreen = () => {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
         <div className="text-center">
-          <div className="h-16 w-16 mx-auto mb-4">
+          <div className="h-16 w-16 mx-auto mb-3">
             <RibbedSphere className="w-full h-full" />
           </div>
           <h2 className="text-2xl font-semibold mb-2">Generating Your Campaign...</h2>
