@@ -6,6 +6,7 @@ import { Download, CheckCircle, AlertCircle } from "lucide-react";
 import RibbedSphere from "@/components/RibbedSphere";
 import type { CampaignCreationResponse } from "@/types/api";
 import { getDownloadSession } from "@/lib/download-session";
+import JSZip from 'jszip';
 
 const DownloadContentScreen = () => {
   const [searchParams] = useSearchParams();
@@ -23,7 +24,7 @@ const DownloadContentScreen = () => {
       return;
     }
 
-    if (type !== 'txt' && type !== 'json') {
+    if (type !== 'zip') {
       setError('Unsupported file type');
       return;
     }
@@ -45,56 +46,74 @@ const DownloadContentScreen = () => {
         return;
       }
 
-      let content: string;
-      let mimeType: string;
+      let content: Blob;
       let filename: string;
 
-      if (type === 'txt') {
+      if (type === 'zip') {
+        // Create ZIP content
+        const zip = new JSZip();
+        
         // Create TXT content
-        content = "CAMPAIGN RESULTS\n";
-        content += "================\n\n";
+        let txtContent = "CAMPAIGN RESULTS\n";
+        txtContent += "================\n\n";
         
         // Video Scripts
-        content += "🎥 VIDEO SCRIPTS\n";
-        content += "-----------------\n";
+        txtContent += "🎥 VIDEO SCRIPTS\n";
+        txtContent += "-----------------\n";
         campaignData.video_scripts.forEach((script) => {
-          content += `${script.platform.toUpperCase()}:\n${script.script}\n\n`;
+          txtContent += `${script.platform.toUpperCase()}:\n${script.script}\n\n`;
         });
         
         // Email Copy
-        content += "📧 EMAIL MARKETING\n";
-        content += "-------------------\n";
-        content += `Subject: ${campaignData.email_copy.subject}\n\n`;
-        content += `Body:\n${campaignData.email_copy.body}\n\n`;
+        txtContent += "📧 EMAIL MARKETING\n";
+        txtContent += "-------------------\n";
+        txtContent += `Subject: ${campaignData.email_copy.subject}\n\n`;
+        txtContent += `Body:\n${campaignData.email_copy.body}\n\n`;
         
         // Banner Ads
-        content += "🎯 BANNER ADS\n";
-        content += "--------------\n";
+        txtContent += "🎯 BANNER ADS\n";
+        txtContent += "--------------\n";
         campaignData.banner_ads.forEach((ad, index) => {
-          content += `Variation ${index + 1}:\n`;
-          content += `Headline: ${ad.headline}\n`;
-          content += `CTA: ${ad.cta}\n\n`;
+          txtContent += `Variation ${index + 1}:\n`;
+          txtContent += `Headline: ${ad.headline}\n`;
+          txtContent += `CTA: ${ad.cta}\n\n`;
         });
         
         // Landing Page
-        content += "🚀 LANDING PAGE CONCEPT\n";
-        content += "------------------------\n";
-        content += `Hero Text: ${campaignData.landing_page_concept.hero_text}\n`;
-        content += `Sub Text: ${campaignData.landing_page_concept.sub_text}\n`;
-        content += `CTA: ${campaignData.landing_page_concept.cta}\n`;
+        txtContent += "🚀 LANDING PAGE CONCEPT\n";
+        txtContent += "------------------------\n";
+        txtContent += `Hero Text: ${campaignData.landing_page_concept.hero_text}\n`;
+        txtContent += `Sub Text: ${campaignData.landing_page_concept.sub_text}\n`;
+        txtContent += `CTA: ${campaignData.landing_page_concept.cta}\n`;
 
-        mimeType = 'text/plain';
-        filename = 'campaign-results.txt';
+        // Add TXT file to ZIP
+        zip.file("campaign-results.txt", txtContent);
+
+        // Add uploaded image to ZIP if available
+        const typedCampaignData = campaignData as CampaignCreationResponse & { uploadedImageUrl?: string };
+        if (typedCampaignData.uploadedImageUrl) {
+          try {
+            const response = await fetch(typedCampaignData.uploadedImageUrl);
+            if (response.ok) {
+              const imageBlob = await response.blob();
+              const fileExtension = typedCampaignData.uploadedImageUrl.includes('.png') ? 'png' : 
+                                  typedCampaignData.uploadedImageUrl.includes('.gif') ? 'gif' : 'jpg';
+              zip.file(`uploaded-image.${fileExtension}`, imageBlob);
+            }
+          } catch (error) {
+            console.warn('Could not add image to ZIP:', error);
+          }
+        }
+
+        // Generate ZIP blob
+        content = await zip.generateAsync({ type: "blob" });
+        filename = 'campaign-results.zip';
       } else {
-        // JSON format
-        content = JSON.stringify(campaignData, null, 2);
-        mimeType = 'application/json';
-        filename = 'campaign-results.json';
+        throw new Error('Unsupported file type');
       }
 
       // Create and trigger download
-      const blob = new Blob([content], { type: mimeType });
-      const url = URL.createObjectURL(blob);
+      const url = URL.createObjectURL(content);
       const a = document.createElement('a');
       a.href = url;
       a.download = filename;
