@@ -189,7 +189,20 @@ const ScreenSaver = () => {
               </h1>
             </div>
             <p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl text-muted-foreground font-medium mx-auto min-h-[2rem] sm:min-h-[2.5rem] lg:min-h-[3rem] xl:min-h-[3.5rem] flex items-center justify-center px-4">
-              {displayedText}
+              {currentSentenceIndex === 0 ? (
+                <>
+                  {displayedText.includes("with AI-powered") ? (
+                    <>
+                      Transform your ideas into compelling marketing content<br />
+                      {displayedText.substring(displayedText.indexOf("with AI-powered"))}
+                    </>
+                  ) : (
+                    displayedText
+                  )}
+                </>
+              ) : (
+                displayedText
+              )}
               
             </p>
           </div>
