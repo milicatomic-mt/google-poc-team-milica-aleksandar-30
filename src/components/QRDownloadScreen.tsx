@@ -100,7 +100,18 @@ const QRDownloadScreen = () => {
   };
 
   const handleBack = () => {
-    navigate('/campaign-results');
+    // Get the campaignId from session storage to properly navigate back
+    const campaignId = sessionStorage.getItem('qrCampaignId');
+    
+    // Clean up session storage
+    sessionStorage.removeItem('qrCampaignData');
+    sessionStorage.removeItem('qrCampaignId');
+    
+    if (campaignId) {
+      navigate('/campaign-results', { state: { campaignId } });
+    } else {
+      navigate('/campaign-results');
+    }
   };
 
   const handleDirectDownload = (type: 'txt' | 'json') => {

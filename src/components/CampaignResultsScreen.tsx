@@ -146,8 +146,10 @@ const CampaignResultsScreen = () => {
   };
 
   const handleGenerateQR = () => {
-    // Store campaign data in session storage for QR page access
+    // Store campaign data and campaignId in session storage for QR page access
+    const campaignId = location.state?.campaignId;
     sessionStorage.setItem('qrCampaignData', JSON.stringify(campaignData));
+    sessionStorage.setItem('qrCampaignId', campaignId || '');
     navigate('/qr-download');
   };
 
