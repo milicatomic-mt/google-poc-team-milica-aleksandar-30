@@ -208,7 +208,7 @@ const CampaignPromptScreen = () => {
               {/* Prompt Section */}
               <div className="flex-1 relative">
                 {/* Glass effect input field - same height as image */}
-                <div className="backdrop-blur-md bg-gray-200/60 rounded-xl border border-white shadow-sm h-40 p-4 relative">
+                <div className="backdrop-blur-md rounded-xl border border-white shadow-sm h-40 p-4 relative" style={{backgroundColor: '#F2F2F2'}}>
                   <Textarea
                     ref={textareaRef}
                     value={prompt}
