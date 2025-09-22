@@ -249,6 +249,14 @@ const CatalogPromptScreen = () => {
                       placeholder="Enter your product description..."
                       className="h-full w-full text-base resize-none bg-transparent border-0 p-0 focus-visible:ring-0 leading-relaxed text-gray-800 placeholder:text-gray-500 pr-28"
                     />
+                    
+                    {/* Wave loading animation overlay */}
+                    {isRegenerating && (
+                      <div className="absolute inset-0 rounded-xl overflow-hidden pointer-events-none">
+                        <div className="h-full w-full bg-gradient-to-r from-transparent via-gray-200/50 to-transparent animate-wave"></div>
+                      </div>
+                    )}
+                    
                     {/* Regenerate button */}
                     <Button
                       onClick={handleRegenerate}
