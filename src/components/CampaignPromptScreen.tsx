@@ -206,13 +206,13 @@ const CampaignPromptScreen = () => {
             
             {/* Prompt Section */}
             <div className="flex-1">
-              <div className="relative backdrop-blur-md bg-white/80 rounded-xl shadow-lg border border-white/40 p-6">
+              <div className="relative">
                 <Textarea
                   ref={textareaRef}
                   value={prompt}
                   onChange={(e) => setPrompt(e.target.value)}
                   placeholder="Enter your campaign description..."
-                  className="min-h-[160px] text-lg resize-none bg-transparent border-0 p-0 focus-visible:ring-0 leading-relaxed"
+                  className="min-h-[160px] text-lg resize-none bg-white rounded-xl border border-gray-200 p-4 focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:border-indigo-500 leading-relaxed shadow-sm transition-all duration-200"
                   style={{ 
                     height: 'auto',
                     minHeight: '160px'
@@ -226,7 +226,7 @@ const CampaignPromptScreen = () => {
                 <Button
                   onClick={handleRegenerate}
                   disabled={isRegenerating}
-                  className="absolute bottom-4 right-4 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full px-6 py-2"
+                  className="absolute bottom-4 right-4 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full px-6 py-2 text-sm"
                 >
                   {isRegenerating ? (
                     <RefreshCw className="w-4 h-4 animate-spin mr-2" />
@@ -257,10 +257,10 @@ const CampaignPromptScreen = () => {
                   <button
                     key={age}
                     onClick={() => toggleAudience(age)}
-                    className={`px-6 py-3 rounded-full text-sm font-medium transition-all duration-200 ${
+                    className={`px-6 py-3 rounded-full border-2 transition-all duration-200 tap-target font-medium backdrop-blur-md ${
                       selectedAudiences.includes(age)
-                        ? 'bg-indigo-600 text-white shadow-md'
-                        : 'bg-white/30 text-foreground hover:bg-white/50 backdrop-blur-sm'
+                        ? 'bg-white border-0 text-indigo-600 shadow-lg'
+                        : 'bg-white/30 border-gray-200 text-black hover:border-gray-300 hover:shadow-sm hover:bg-white/40'
                     }`}
                   >
                     {age}
@@ -276,10 +276,10 @@ const CampaignPromptScreen = () => {
                   <button
                     key={interest}
                     onClick={() => toggleAudience(interest)}
-                    className={`px-6 py-3 rounded-full text-sm font-medium transition-all duration-200 ${
+                    className={`px-6 py-3 rounded-full border-2 transition-all duration-200 tap-target font-medium backdrop-blur-md ${
                       selectedAudiences.includes(interest)
-                        ? 'bg-indigo-600 text-white shadow-md'
-                        : 'bg-white/30 text-foreground hover:bg-white/50 backdrop-blur-sm'
+                        ? 'bg-white border-0 text-indigo-600 shadow-lg'
+                        : 'bg-white/30 border-gray-200 text-black hover:border-gray-300 hover:shadow-sm hover:bg-white/40'
                     }`}
                   >
                     {interest}
