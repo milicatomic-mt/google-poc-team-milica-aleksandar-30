@@ -1,4 +1,4 @@
-import React, { useRef, useMemo } from 'react';
+import React, { useRef, useMemo, useState, useEffect } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { Sphere } from '@react-three/drei';
 import * as THREE from 'three';
@@ -99,17 +99,21 @@ const AnimatedRibbedSphere = () => {
   // Enhanced rotation with liquid movement
   useFrame((state) => {
     if (meshRef.current && material) {
-      // Update time uniform for shader animation
-      material.uniforms.time.value = state.clock.elapsedTime;
-      
-      // Smooth, liquid-like rotation
-      meshRef.current.rotation.y = state.clock.elapsedTime * 0.4;
-      meshRef.current.rotation.x = Math.sin(state.clock.elapsedTime * 0.3) * 0.15;
-      meshRef.current.rotation.z = Math.cos(state.clock.elapsedTime * 0.25) * 0.1;
-      
-      // Subtle liquid breathing effect
-      const breathe = 1 + Math.sin(state.clock.elapsedTime * 1.2) * 0.05;
-      meshRef.current.scale.setScalar(breathe);
+      try {
+        // Update time uniform for shader animation
+        material.uniforms.time.value = state.clock.elapsedTime;
+        
+        // Smooth, liquid-like rotation
+        meshRef.current.rotation.y = state.clock.elapsedTime * 0.4;
+        meshRef.current.rotation.x = Math.sin(state.clock.elapsedTime * 0.3) * 0.15;
+        meshRef.current.rotation.z = Math.cos(state.clock.elapsedTime * 0.25) * 0.1;
+        
+        // Subtle liquid breathing effect
+        const breathe = 1 + Math.sin(state.clock.elapsedTime * 1.2) * 0.05;
+        meshRef.current.scale.setScalar(breathe);
+      } catch (error) {
+        console.warn('WebGL animation error:', error);
+      }
     }
   });
 
@@ -120,12 +124,65 @@ const AnimatedRibbedSphere = () => {
   );
 };
 
+// Simple fallback component when WebGL fails
+const SimpleFallback = ({ className }: { className?: string }) => (
+  <div 
+    className={`${className} w-full h-full flex items-center justify-center`}
+    style={{
+      background: 'radial-gradient(circle, #f1f2f4 0%, #e0e1e3 70%)',
+      borderRadius: '50%',
+      minWidth: '32px',
+      minHeight: '32px'
+    }}
+  >
+    <div 
+      className="w-4 h-4 rounded-full animate-pulse"
+      style={{ background: 'linear-gradient(135deg, #6366f1, #8b5cf6)' }}
+    />
+  </div>
+);
+
 const RibbedSphere: React.FC<RibbedSphereProps> = ({ className = "" }) => {
+  const [hasWebGLError, setHasWebGLError] = useState(false);
+
+  // Check WebGL support
+  useEffect(() => {
+    try {
+      const canvas = document.createElement('canvas');
+      const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+      if (!gl) {
+        setHasWebGLError(true);
+      }
+    } catch (error) {
+      console.warn('WebGL check failed:', error);
+      setHasWebGLError(true);
+    }
+  }, []);
+
+  if (hasWebGLError) {
+    return <SimpleFallback className={className} />;
+  }
+
   return (
     <div className={className}>
       <Canvas
         camera={{ position: [0, 0, 3], fov: 45 }}
         style={{ width: '100%', height: '100%' }}
+        onCreated={(state) => {
+          // Add context lost listener to detect WebGL issues
+          const canvas = state.gl.domElement;
+          canvas.addEventListener('webglcontextlost', (event) => {
+            console.warn('WebGL context lost');
+            event.preventDefault();
+            setHasWebGLError(true);
+          });
+        }}
+        gl={{ 
+          preserveDrawingBuffer: false,
+          antialias: false,
+          alpha: true,
+          powerPreference: "default"
+        }}
       >
         <ambientLight intensity={0.6} />
         <directionalLight 
