@@ -180,7 +180,7 @@ const WelcomeScreen = () => {
               {/* Content */}
               <div className="space-y-4">
                 <h3 className="text-h2 font-semibold text-foreground">
-                  Campaign Creation
+                  Image to Campaign
                 </h3>
                 <p className="text-body-lg text-muted-foreground leading-relaxed">
                   Create comprehensive marketing campaigns with social media content, email designs, web banners, and video concepts from your inspiration.

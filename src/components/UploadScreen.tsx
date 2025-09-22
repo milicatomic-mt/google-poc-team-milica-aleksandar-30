@@ -360,7 +360,7 @@ const UploadScreen: React.FC<UploadScreenProps> = ({ mode }) => {
       case 'catalog':
         return 'Catalog Enrichment';
       case 'campaign':
-        return 'Campaign Creation';
+        return 'Image to Campaign';
       default:
         return 'Upload Product Image';
     }
