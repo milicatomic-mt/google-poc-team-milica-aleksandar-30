@@ -221,12 +221,12 @@ const ScreenSaver = () => {
       {showCards && (
         <div className="absolute bottom-0 left-0 right-0 z-10">
           {/* Cards Container */}
-          <div className="flex justify-between items-end gap-1 sm:gap-2 md:gap-3 px-2 sm:px-3 md:px-4">
+          <div className="flex justify-between items-end gap-2 sm:gap-3 md:gap-4 px-2 sm:px-3 md:px-4">
             {cards.map((card, index) => (
               <div
                 key={card.id}
                 className={`
-                  ${card.height} flex-1 rounded-3xl overflow-hidden shadow-lg bg-white p-4
+                  ${card.height} flex-1 rounded-3xl overflow-hidden border border-gray-200/50 bg-white p-4
                   transform transition-all duration-700 ease-out
                   ${cardsVisible 
                     ? 'translate-y-0 opacity-100' 
