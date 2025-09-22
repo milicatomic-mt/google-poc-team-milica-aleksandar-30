@@ -224,7 +224,7 @@ const CampaignPromptScreen = () => {
                   <Button
                     onClick={handleRegenerate}
                     disabled={isRegenerating}
-                    className="absolute bottom-3 right-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full p-2 shadow-sm"
+                    className="absolute bottom-3 right-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full w-8 h-8 p-0 flex items-center justify-center shadow-sm"
                   >
                     <RefreshCw className={`w-4 h-4 text-white ${isRegenerating ? 'animate-spin' : ''}`} />
                   </Button>
