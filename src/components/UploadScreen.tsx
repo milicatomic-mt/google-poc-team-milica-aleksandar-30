@@ -23,6 +23,7 @@ const UploadScreen: React.FC<UploadScreenProps> = ({ mode }) => {
   
   const [dragActive, setDragActive] = useState(false);
   const [uploadedImage, setUploadedImage] = useState<string | null>(null);
+  const [uploadedFile, setUploadedFile] = useState<File | null>(null);
   const [isValidating, setIsValidating] = useState(false);
   const [validationResult, setValidationResult] = useState<{
     isValid: boolean;
@@ -118,10 +119,26 @@ const UploadScreen: React.FC<UploadScreenProps> = ({ mode }) => {
                 } 
               });
             } else {
+              // Get AI suggestions for campaign mode
+              let aiGeneratedPrompt = '';
+              try {
+                const suggestions = sessionStorage.getItem('aiSuggestions');
+                if (suggestions) {
+                  const parsedSuggestions = JSON.parse(suggestions);
+                  if (Array.isArray(parsedSuggestions) && parsedSuggestions.length > 0) {
+                    aiGeneratedPrompt = parsedSuggestions[0]; // Use first suggestion as initial prompt
+                  }
+                }
+              } catch (error) {
+                console.error('Failed to parse AI suggestions:', error);
+              }
+
               navigate('/campaign-prompt', { 
                 state: { 
                   uploadedImage: imageToPass,
-                  mode: currentMode 
+                  mode: currentMode,
+                  aiGeneratedPrompt,
+                  uploadedFile: null // QR flow doesn't have file object
                 } 
               });
             }
@@ -199,6 +216,7 @@ const UploadScreen: React.FC<UploadScreenProps> = ({ mode }) => {
         });
         
         setUploadedImage(base64Image);
+        setUploadedFile(file); // Store the file object
         toast.success('Image uploaded successfully!');
         
         // Analyze image with AI for both campaign and catalog modes
@@ -289,6 +307,7 @@ const UploadScreen: React.FC<UploadScreenProps> = ({ mode }) => {
 
   const handleRemoveImage = () => {
     setUploadedImage(null);
+    setUploadedFile(null);
     setValidationResult(null);
     setIsAnalyzingImage(false);
     // Clear any stored AI suggestions
@@ -298,6 +317,22 @@ const UploadScreen: React.FC<UploadScreenProps> = ({ mode }) => {
 
   const handleContinue = () => {
     if (uploadedImage && validationResult?.isValid) {
+      // Get AI suggestions for campaign mode
+      let aiGeneratedPrompt = '';
+      if (currentMode === 'campaign') {
+        try {
+          const suggestions = sessionStorage.getItem('aiSuggestions');
+          if (suggestions) {
+            const parsedSuggestions = JSON.parse(suggestions);
+            if (Array.isArray(parsedSuggestions) && parsedSuggestions.length > 0) {
+              aiGeneratedPrompt = parsedSuggestions[0]; // Use first suggestion as initial prompt
+            }
+          }
+        } catch (error) {
+          console.error('Failed to parse AI suggestions:', error);
+        }
+      }
+
       if (currentMode === 'catalog') {
         // Navigate to catalog details screen for catalog enrichment
         navigate('/catalog-details', { 
@@ -310,7 +345,9 @@ const UploadScreen: React.FC<UploadScreenProps> = ({ mode }) => {
         navigate('/campaign-prompt', { 
           state: { 
             uploadedImage,
-            mode: currentMode 
+            mode: currentMode,
+            aiGeneratedPrompt,
+            uploadedFile
           } 
         });
       }

@@ -2,104 +2,88 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
-import { ArrowRight, ArrowLeft, Lightbulb, ChevronDown, ChevronUp, Check, X } from 'lucide-react';
+import { ArrowRight, ArrowLeft, RefreshCw, X } from 'lucide-react';
 import RibbedSphere from '@/components/RibbedSphere';
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { toast } from 'sonner';
 
 const CampaignPromptScreen = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const [prompt, setPrompt] = useState('');
-  const [currentExampleIndex, setCurrentExampleIndex] = useState(0);
-  const [displayedPlaceholder, setDisplayedPlaceholder] = useState('');
-  const [isTyping, setIsTyping] = useState(true);
-  const [aiSuggestions, setAiSuggestions] = useState<string[]>([]);
+  const [isRegenerating, setIsRegenerating] = useState(false);
+  const [selectedAudiences, setSelectedAudiences] = useState<string[]>([]);
+  
+  const uploadedImage = location.state?.uploadedImage;
+  const uploadedFile = location.state?.uploadedFile;
 
-  const getExamples = () => {
-    if (aiSuggestions.length > 0) {
-      // Use AI suggestions with "Enter your campaign description" interspersed
-      const examples = [];
-      aiSuggestions.forEach((suggestion, index) => {
-        examples.push("Enter your campaign description");
-        examples.push(`e.g. ${suggestion}`);
+  // Target audience options
+  const ageGroups = ['Gen Z (18-24)', 'Millennials (25-40)', 'Gen X (41-56)', 'Baby Boomers (57+)'];
+  const interests = [
+    'Urban professionals', 'Outdoor enthusiasts', 'Health & wellness focused', 'Tech enthusiasts',
+    'Eco-conscious consumers', 'Budget-conscious shoppers'
+  ];
+
+  const toggleAudience = (audience: string) => {
+    setSelectedAudiences(prev => 
+      prev.includes(audience) 
+        ? prev.filter(a => a !== audience)
+        : [...prev, audience]
+    );
+  };
+
+  const handleRegenerate = async () => {
+    if (!uploadedFile) {
+      toast.error('No image file available for regeneration');
+      return;
+    }
+
+    setIsRegenerating(true);
+    try {
+      // Convert file to base64
+      const base64Image = await new Promise<string>((resolve) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result as string);
+        reader.readAsDataURL(uploadedFile);
       });
-      return examples;
-    }
-    
-    // Fallback to default examples
-    return [
-      "Enter your campaign description",
-      "e.g. Launching a new eco-friendly sneaker for everyday wear.",
-      "Enter your campaign description", 
-      "e.g. Highlighting a limited-edition smartwatch with advanced health tracking.",
-      "Enter your campaign description",
-      "e.g. Showcasing a sustainable bamboo toothbrush for eco-conscious families."
-    ];
-  };
 
-  // Typing animation effect
-  useEffect(() => {
-    let typingInterval: NodeJS.Timeout;
-    let cycleTimeout: NodeJS.Timeout;
-    
-    const startTyping = () => {
-      const examples = getExamples();
-      const currentExample = examples[currentExampleIndex];
-      let currentIndex = 0;
-      setDisplayedPlaceholder('|');
-      setIsTyping(true);
-      
-      // Small delay before starting to type
-      setTimeout(() => {
-        typingInterval = setInterval(() => {
-          if (currentIndex < currentExample.length) {
-            currentIndex++;
-            setDisplayedPlaceholder(currentExample.slice(0, currentIndex));
-          } else {
-            setIsTyping(false);
-            clearInterval(typingInterval);
-            
-            // Wait remaining time to complete 8 second cycle
-            const typingDuration = currentExample.length * 50;
-            const remainingTime = 8000 - typingDuration;
-            
-            cycleTimeout = setTimeout(() => {
-              setCurrentExampleIndex((prev) => (prev + 1) % examples.length);
-            }, Math.max(remainingTime, 1000));
-          }
-        }, 50); // Typing speed
-      }, 300); // Initial delay to show cursor
-    };
-    
-    startTyping();
-    
-    return () => {
-      clearInterval(typingInterval);
-      clearTimeout(cycleTimeout);
-    };
-  }, [currentExampleIndex, aiSuggestions]);
+      const response = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/analyze-image`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
+        },
+        body: JSON.stringify({ imageBase64: base64Image }),
+      });
 
-  const handleExampleClick = (example: string) => {
-    setPrompt(example);
-    // Focus the textarea and adjust its height
-    if (textareaRef.current) {
-      textareaRef.current.focus();
-      // Trigger height adjustment after the value is set
-      setTimeout(() => {
-        if (textareaRef.current) {
-          textareaRef.current.style.height = 'auto';
-          textareaRef.current.style.height = Math.max(120, textareaRef.current.scrollHeight) + 'px';
-        }
-      }, 0);
+      if (!response.ok) {
+        throw new Error('Failed to regenerate prompt');
+      }
+
+      const data = await response.json();
+      if (data.suggestions && data.suggestions.length > 0) {
+        setPrompt(data.suggestions[0]);
+        toast.success('New prompt generated!');
+      }
+    } catch (error) {
+      console.error('Error regenerating prompt:', error);
+      toast.error('Failed to regenerate prompt. Please try again.');
+    } finally {
+      setIsRegenerating(false);
     }
   };
 
-  const handleContinue = () => {
+  const handleCreateCampaign = () => {
     if (prompt.trim()) {
-      // Navigate to target audience step with prompt data and preserve previous state
-      navigate('/target-audience', { state: { ...location.state, prompt: prompt.trim() } });
+      // Navigate directly to generate campaign with prompt and audiences
+      navigate('/generate-campaign', { 
+        state: { 
+          ...location.state, 
+          prompt: prompt.trim(),
+          selectedAudiences: selectedAudiences
+        } 
+      });
     }
   };
 
@@ -108,7 +92,14 @@ const CampaignPromptScreen = () => {
     navigate(`/upload/${mode}`);
   };
 
-  // Auto-focus textarea on mount and load AI suggestions
+  // Load initial AI-generated prompt
+  useEffect(() => {
+    const aiGeneratedPrompt = location.state?.aiGeneratedPrompt;
+    if (aiGeneratedPrompt && !prompt) {
+      setPrompt(aiGeneratedPrompt);
+    }
+  }, [location.state, prompt]);
+
   // Auto-adjust height when prompt changes
   useEffect(() => {
     if (textareaRef.current && prompt) {
@@ -116,23 +107,6 @@ const CampaignPromptScreen = () => {
       textareaRef.current.style.height = Math.max(120, textareaRef.current.scrollHeight) + 'px';
     }
   }, [prompt]);
-
-  useEffect(() => {
-    textareaRef.current?.focus();
-    
-    // Load AI suggestions from session storage
-    const suggestions = sessionStorage.getItem('aiSuggestions');
-    if (suggestions) {
-      try {
-        const parsedSuggestions = JSON.parse(suggestions);
-        if (Array.isArray(parsedSuggestions) && parsedSuggestions.length > 0) {
-          setAiSuggestions(parsedSuggestions);
-        }
-      } catch (error) {
-        console.error('Failed to parse AI suggestions:', error);
-      }
-    }
-  }, []);
 
   return (
     <div className="relative min-h-screen w-full overflow-hidden bg-background">
@@ -156,7 +130,7 @@ const CampaignPromptScreen = () => {
               <div className="h-8 w-8 mr-3">
                 <RibbedSphere className="w-full h-full" />
               </div>
-              <h1 className="text-lg font-semibold text-foreground">Campaign Creation</h1>
+              <h1 className="text-lg font-semibold text-foreground">Image to Campaign</h1>
             </div>
           </div>
 
@@ -201,119 +175,135 @@ const CampaignPromptScreen = () => {
       <div className="flex-1 flex flex-col items-center justify-center container-padding py-4 overflow-y-auto">
         
         {/* Header Section */}
-        <div className="w-full max-w-4xl mx-auto text-center mb-8 animate-fade-in">
+        <div className="w-full max-w-6xl mx-auto text-center mb-8 animate-fade-in">
           <h1 className="text-4xl font-semibold text-foreground mb-4">
-            Campaign Prompt
+            Turn Your Image Into a Campaign
           </h1>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Describe your campaign idea in two sentences max.
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            We've generated a prompt from your photo. You can use it as is, tweak it, or start fresh.
           </p>
         </div>
 
-        {/* Main Input Section */}
-        <div className="w-full max-w-2xl mx-auto mb-8 animate-scale-in">
-          <label 
-            htmlFor="campaign-prompt" 
-            className="sr-only"
-          >
-            Campaign description
-          </label>
-          <Textarea
-            id="campaign-prompt"
-            ref={textareaRef}
-            value={prompt}
-            onChange={(e) => setPrompt(e.target.value)}
-            placeholder={displayedPlaceholder}
-            className="min-h-[120px] text-lg resize-none backdrop-blur-md bg-white/80 rounded-lg shadow-sm border border-white/40 focus-visible:border-primary transition-all duration-smooth placeholder:text-gray-400 p-4 leading-relaxed"
-            style={{ 
-              height: 'auto',
-              minHeight: '120px'
-            }}
-            onInput={(e) => {
-              const target = e.target as HTMLTextAreaElement;
-              target.style.height = 'auto';
-              target.style.height = Math.max(120, target.scrollHeight) + 'px';
-            }}
-            aria-describedby="example-help"
-          />
+        {/* Image and Prompt Section */}
+        <div className="w-full max-w-6xl mx-auto mb-12 animate-scale-in">
+          <div className="backdrop-blur-md bg-white/80 rounded-2xl shadow-lg border border-white/40 p-8">
+            <div className="flex gap-8 items-start">
+              {/* Image Preview */}
+              <div className="flex-shrink-0">
+                <div className="w-64 h-64 rounded-xl overflow-hidden bg-muted">
+                  {uploadedImage ? (
+                    <img
+                      src={uploadedImage}
+                      alt="Uploaded product"
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center text-muted-foreground">
+                      No image available
+                    </div>
+                  )}
+                </div>
+              </div>
+              
+              {/* Prompt Section */}
+              <div className="flex-1">
+                <div className="relative">
+                  <Textarea
+                    ref={textareaRef}
+                    value={prompt}
+                    onChange={(e) => setPrompt(e.target.value)}
+                    placeholder="Enter your campaign description..."
+                    className="min-h-[200px] text-lg resize-none bg-transparent border-0 p-0 focus-visible:ring-0 leading-relaxed"
+                    style={{ 
+                      height: 'auto',
+                      minHeight: '200px'
+                    }}
+                    onInput={(e) => {
+                      const target = e.target as HTMLTextAreaElement;
+                      target.style.height = 'auto';
+                      target.style.height = Math.max(200, target.scrollHeight) + 'px';
+                    }}
+                  />
+                  <Button
+                    onClick={handleRegenerate}
+                    disabled={isRegenerating}
+                    className="absolute top-4 right-4 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full px-6 py-2"
+                  >
+                    {isRegenerating ? (
+                      <RefreshCw className="w-4 h-4 animate-spin mr-2" />
+                    ) : (
+                      <RefreshCw className="w-4 h-4 mr-2" />
+                    )}
+                    Regenerate
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
-        {/* Suggestions Section */}
-        <div className="w-full max-w-2xl mx-auto mb-8 animate-fade-in">
-          <h3 className="text-lg font-medium text-foreground mb-4 text-center">
-            {aiSuggestions.length > 0 ? 'AI-Generated Campaign Ideas Based on Your Image' : 'Not Sure What to Write? Here\'s How to Start'}
-          </h3>
-          <div className="space-y-3">
-            {aiSuggestions.length > 0 ? (
-              // Show AI-generated suggestions (max 3)
-              aiSuggestions.slice(0, 3).map((suggestion, index) => (
-                <button
-                  key={index}
-                  onClick={() => handleExampleClick(suggestion)}
-                  className="w-full flex items-start p-4 backdrop-blur-md bg-gradient-to-r from-indigo-50/80 to-purple-50/80 hover:from-indigo-100/90 hover:to-purple-100/90 rounded-lg border border-indigo-200/60 hover:border-indigo-400/80 transition-all duration-200 text-left group shadow-sm"
-                >
-                  <div className="h-4 w-4 mr-3 mt-0.5 flex-shrink-0">
-                    <RibbedSphere className="w-full h-full" />
-                  </div>
-                  <span className="text-foreground group-hover:text-primary">
-                    {suggestion}
-                  </span>
-                </button>
-              ))
-            ) : (
-              // Fallback to default suggestions
-              <>
-                <button
-                  onClick={() => handleExampleClick("Launching a new eco-friendly sneaker for everyday wear.")}
-                  className="w-full flex items-start p-4 backdrop-blur-md bg-white/30 hover:bg-white rounded-lg border border-white/40 hover:border-primary transition-all duration-200 text-left group shadow-sm"
-                >
-                  <div className="h-4 w-4 mr-3 mt-0.5 flex-shrink-0">
-                    <RibbedSphere className="w-full h-full" />
-                  </div>
-                  <span className="text-foreground group-hover:text-primary">
-                    Launching a new eco-friendly sneaker for everyday wear.
-                  </span>
-                </button>
-                <button
-                  onClick={() => handleExampleClick("Highlighting a limited-edition smartwatch with advanced health tracking.")}
-                  className="w-full flex items-start p-4 backdrop-blur-md bg-white/30 hover:bg-white rounded-lg border border-white/40 hover:border-primary transition-all duration-200 text-left group shadow-sm"
-                >
-                  <div className="h-4 w-4 mr-3 mt-0.5 flex-shrink-0">
-                    <RibbedSphere className="w-full h-full" />
-                  </div>
-                  <span className="text-foreground group-hover:text-primary">
-                    Highlighting a limited-edition smartwatch with advanced health tracking.
-                  </span>
-                </button>
-                <button
-                  onClick={() => handleExampleClick("Showcasing a sustainable bamboo toothbrush for eco-conscious families.")}
-                  className="w-full flex items-start p-4 backdrop-blur-md bg-white/30 hover:bg-white rounded-lg border border-white/40 hover:border-primary transition-all duration-200 text-left group shadow-sm"
-                >
-                  <div className="h-4 w-4 mr-3 mt-0.5 flex-shrink-0">
-                    <RibbedSphere className="w-full h-full" />
-                  </div>
-                  <span className="text-foreground group-hover:text-primary">
-                    Showcasing a sustainable bamboo toothbrush for eco-conscious families.
-                  </span>
-                </button>
-              </>
-            )}
+        {/* Target Audience Section */}
+        <div className="w-full max-w-6xl mx-auto mb-8 animate-fade-in">
+          <h2 className="text-2xl font-semibold text-foreground mb-2 text-center">
+            Define Target Audience
+          </h2>
+          <p className="text-lg text-muted-foreground mb-8 text-center">
+            (Optional)
+          </p>
+          
+          <div className="backdrop-blur-md bg-white/80 rounded-2xl shadow-lg border border-white/40 p-8">
+            {/* Age Groups */}
+            <div className="mb-8">
+              <div className="flex flex-wrap gap-4 justify-center">
+                {ageGroups.map((age) => (
+                  <button
+                    key={age}
+                    onClick={() => toggleAudience(age)}
+                    className={`px-6 py-3 rounded-full text-sm font-medium transition-all duration-200 ${
+                      selectedAudiences.includes(age)
+                        ? 'bg-indigo-600 text-white shadow-md'
+                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    }`}
+                  >
+                    {age}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Interests */}
+            <div>
+              <div className="flex flex-wrap gap-4 justify-center">
+                {interests.map((interest) => (
+                  <button
+                    key={interest}
+                    onClick={() => toggleAudience(interest)}
+                    className={`px-6 py-3 rounded-full text-sm font-medium transition-all duration-200 ${
+                      selectedAudiences.includes(interest)
+                        ? 'bg-indigo-600 text-white shadow-md'
+                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    }`}
+                  >
+                    {interest}
+                  </button>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
 
         </div>
 
-        {/* Footer with Next Button */}
+        {/* Footer with Create Campaign Button */}
         <footer className="container-padding pb-8 pt-4 flex-shrink-0">
           <div className="flex justify-center">
             <Button 
               size="lg"
-              onClick={handleContinue}
+              onClick={handleCreateCampaign}
               className={`tap-target focus-ring w-96 px-12 bg-indigo-600 hover:bg-indigo-700 text-white transition-opacity duration-300 rounded-full ${prompt.trim() ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
-              aria-label="Continue to next step"
+              aria-label="Create campaign"
             >
-              <span className="mr-2">Next</span>
-              <ArrowRight className="w-5 h-5" />
+              Create Campaign
             </Button>
           </div>
         </footer>
