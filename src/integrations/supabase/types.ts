@@ -77,6 +77,30 @@ export type Database = {
         }
         Relationships: []
       }
+      download_sessions: {
+        Row: {
+          campaign_data: Json
+          created_at: string
+          expires_at: string
+          id: string
+          session_token: string
+        }
+        Insert: {
+          campaign_data: Json
+          created_at?: string
+          expires_at?: string
+          id?: string
+          session_token: string
+        }
+        Update: {
+          campaign_data?: Json
+          created_at?: string
+          expires_at?: string
+          id?: string
+          session_token?: string
+        }
+        Relationships: []
+      }
       qr_sessions: {
         Row: {
           created_at: string

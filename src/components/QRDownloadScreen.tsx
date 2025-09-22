@@ -7,14 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { ArrowLeft, Download, Smartphone, Tablet } from "lucide-react";
 import RibbedSphere from "@/components/RibbedSphere";
 import type { CampaignCreationResponse } from "@/types/api";
-
-// UTF-8 safe base64 encoding function
-const utf8ToBase64 = (str: string): string => {
-  // Convert string to UTF-8 bytes, then to base64
-  return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, (match, p1) => {
-    return String.fromCharCode(parseInt(p1, 16));
-  }));
-};
+import { createDownloadSession } from "@/lib/download-session";
 
 const QRDownloadScreen = () => {
   const navigate = useNavigate();
@@ -23,6 +16,8 @@ const QRDownloadScreen = () => {
     txt: string;
     json: string;
   } | null>(null);
+  const [sessionToken, setSessionToken] = useState<string | null>(null);
+  const [isCreatingSession, setIsCreatingSession] = useState(false);
 
   useEffect(() => {
     // Get campaign data from session storage
@@ -36,13 +31,26 @@ const QRDownloadScreen = () => {
       const data = JSON.parse(storedData) as CampaignCreationResponse;
       setCampaignData(data);
       
-      // Create download URLs
+      // Create download URLs and session
       createDownloadUrls(data);
+      createSessionForQR(data);
     } catch (error) {
       console.error('Failed to parse campaign data:', error);
       navigate('/campaign-results');
     }
   }, [navigate]);
+
+  const createSessionForQR = async (data: CampaignCreationResponse) => {
+    setIsCreatingSession(true);
+    try {
+      const token = await createDownloadSession(data);
+      setSessionToken(token);
+    } catch (error) {
+      console.error('Failed to create download session:', error);
+    } finally {
+      setIsCreatingSession(false);
+    }
+  };
 
   const createDownloadUrls = (data: CampaignCreationResponse) => {
     // Create TXT content
@@ -109,20 +117,27 @@ const QRDownloadScreen = () => {
     document.body.removeChild(a);
   };
 
-  // Generate download URLs for QR codes (using the download-content route)
+  // Generate download URLs for QR codes using session token
   const baseUrl = window.location.origin;
-  const txtDownloadUrl = campaignData ? `${baseUrl}/download-content?type=txt&data=${encodeURIComponent(utf8ToBase64(JSON.stringify(campaignData)))}` : '';
-  const jsonDownloadUrl = campaignData ? `${baseUrl}/download-content?type=json&data=${encodeURIComponent(utf8ToBase64(JSON.stringify(campaignData)))}` : '';
+  const txtDownloadUrl = sessionToken ? `${baseUrl}/download-content?type=txt&token=${sessionToken}` : '';
+  const jsonDownloadUrl = sessionToken ? `${baseUrl}/download-content?type=json&token=${sessionToken}` : '';
 
-  if (!campaignData || !downloadUrls) {
+  if (!campaignData || !downloadUrls || isCreatingSession) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
         <div className="text-center">
           <div className="h-16 w-16 mx-auto mb-4">
             <RibbedSphere className="w-full h-full" />
           </div>
-          <h2 className="text-2xl font-semibold mb-2">Preparing QR Codes...</h2>
-          <p className="text-muted-foreground">Please wait while we generate download links</p>
+          <h2 className="text-2xl font-semibold mb-2">
+            {isCreatingSession ? 'Creating Session...' : 'Preparing QR Codes...'}
+          </h2>
+          <p className="text-muted-foreground">
+            {isCreatingSession 
+              ? 'Creating secure download session...' 
+              : 'Please wait while we generate download links'
+            }
+          </p>
         </div>
       </div>
     );

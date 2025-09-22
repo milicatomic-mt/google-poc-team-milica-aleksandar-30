@@ -5,14 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Download, CheckCircle, AlertCircle } from "lucide-react";
 import RibbedSphere from "@/components/RibbedSphere";
 import type { CampaignCreationResponse } from "@/types/api";
-
-// UTF-8 safe base64 decoding function
-const base64ToUtf8 = (str: string): string => {
-  // Decode base64 to bytes, then convert to UTF-8 string
-  return decodeURIComponent(Array.prototype.map.call(atob(str), (c: string) => {
-    return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-  }).join(''));
-};
+import { getDownloadSession } from "@/lib/download-session";
 
 const DownloadContentScreen = () => {
   const [searchParams] = useSearchParams();
@@ -23,9 +16,9 @@ const DownloadContentScreen = () => {
 
   useEffect(() => {
     const type = searchParams.get('type');
-    const encodedData = searchParams.get('data');
+    const token = searchParams.get('token');
 
-    if (!type || !encodedData) {
+    if (!type || !token) {
       setError('Invalid download link');
       return;
     }
@@ -36,17 +29,21 @@ const DownloadContentScreen = () => {
     }
 
     // Auto-start download
-    handleDownload(type, encodedData);
+    handleDownload(type, token);
   }, [searchParams]);
 
-  const handleDownload = async (type: string, encodedData: string) => {
+  const handleDownload = async (type: string, token: string) => {
     setIsDownloading(true);
     setError(null);
 
     try {
-      // Decode the campaign data using UTF-8 safe decoding
-      const decodedData = base64ToUtf8(decodeURIComponent(encodedData));
-      const campaignData: CampaignCreationResponse = JSON.parse(decodedData);
+      // Get campaign data from download session
+      const campaignData = await getDownloadSession(token);
+      
+      if (!campaignData) {
+        setError('Download session expired or not found');
+        return;
+      }
 
       let content: string;
       let mimeType: string;
@@ -117,11 +114,11 @@ const DownloadContentScreen = () => {
 
   const handleRetry = () => {
     const type = searchParams.get('type');
-    const encodedData = searchParams.get('data');
-    if (type && encodedData) {
+    const token = searchParams.get('token');
+    if (type && token) {
       setDownloadComplete(false);
       setError(null);
-      handleDownload(type, encodedData);
+      handleDownload(type, token);
     }
   };
 
