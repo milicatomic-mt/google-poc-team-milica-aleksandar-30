@@ -11,7 +11,7 @@ import { createDownloadSession } from "@/lib/download-session";
 
 const QRDownloadScreen = () => {
   const navigate = useNavigate();
-  const [campaignData, setCampaignData] = useState<CampaignCreationResponse | null>(null);
+  const [campaignData, setCampaignData] = useState<CampaignCreationResponse & { uploadedImageUrl?: string } | null>(null);
   const [downloadUrls, setDownloadUrls] = useState<{
     txt: string;
     json: string;
@@ -28,7 +28,7 @@ const QRDownloadScreen = () => {
     }
 
     try {
-      const data = JSON.parse(storedData) as CampaignCreationResponse;
+      const data = JSON.parse(storedData) as CampaignCreationResponse & { uploadedImageUrl?: string };
       setCampaignData(data);
       
       // Create download URLs and session
@@ -40,7 +40,7 @@ const QRDownloadScreen = () => {
     }
   }, [navigate]);
 
-  const createSessionForQR = async (data: CampaignCreationResponse) => {
+  const createSessionForQR = async (data: CampaignCreationResponse & { uploadedImageUrl?: string }) => {
     setIsCreatingSession(true);
     try {
       const token = await createDownloadSession(data);
@@ -52,7 +52,7 @@ const QRDownloadScreen = () => {
     }
   };
 
-  const createDownloadUrls = (data: CampaignCreationResponse) => {
+  const createDownloadUrls = (data: CampaignCreationResponse & { uploadedImageUrl?: string }) => {
     // Create TXT content
     let txtContent = "CAMPAIGN RESULTS\n";
     txtContent += "================\n\n";
@@ -114,7 +114,12 @@ const QRDownloadScreen = () => {
     }
   };
 
-  const handleDirectDownload = (type: 'txt' | 'json') => {
+  const handleDirectDownload = (type: 'txt' | 'json' | 'pdf') => {
+    if (type === 'pdf') {
+      generatePDF();
+      return;
+    }
+    
     if (!downloadUrls) return;
     
     const url = type === 'txt' ? downloadUrls.txt : downloadUrls.json;
@@ -126,6 +131,193 @@ const QRDownloadScreen = () => {
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
+  };
+
+  const generatePDF = async () => {
+    if (!campaignData) return;
+
+    try {
+      const pdf = new (await import('jspdf')).default();
+      let yPosition = 20;
+
+      // Add title
+      pdf.setFontSize(24);
+      pdf.setFont('helvetica', 'bold');
+      pdf.text('Campaign Results', 20, yPosition);
+      yPosition += 15;
+
+      // Add uploaded image if available
+      if (campaignData.uploadedImageUrl) {
+        try {
+          const img = new Image();
+          img.crossOrigin = 'anonymous';
+          
+          await new Promise((resolve, reject) => {
+            img.onload = () => {
+              try {
+                const canvas = document.createElement('canvas');
+                const ctx = canvas.getContext('2d');
+                if (!ctx) throw new Error('Could not get canvas context');
+                
+                const maxWidth = 170;
+                const maxHeight = 100;
+                let { width, height } = img;
+                
+                if (width > maxWidth) {
+                  height = (height * maxWidth) / width;
+                  width = maxWidth;
+                }
+                if (height > maxHeight) {
+                  width = (width * maxHeight) / height;
+                  height = maxHeight;
+                }
+                
+                canvas.width = width;
+                canvas.height = height;
+                ctx.drawImage(img, 0, 0, width, height);
+                
+                const imgData = canvas.toDataURL('image/jpeg', 0.8);
+                pdf.addImage(imgData, 'JPEG', 20, yPosition, width, height);
+                yPosition += height + 15;
+                resolve(null);
+              } catch (error) {
+                reject(error);
+              }
+            };
+            img.onerror = reject;
+            img.src = campaignData.uploadedImageUrl;
+          });
+        } catch (error) {
+          console.warn('Could not add image to PDF:', error);
+        }
+      }
+
+      // Add content sections (same as in CampaignResultsScreen)
+      pdf.setFontSize(16);
+      pdf.setFont('helvetica', 'bold');
+      pdf.text('🎥 Video Scripts', 20, yPosition);
+      yPosition += 10;
+      
+      pdf.setFontSize(10);
+      pdf.setFont('helvetica', 'normal');
+      campaignData.video_scripts.forEach((script) => {
+        if (yPosition > 250) {
+          pdf.addPage();
+          yPosition = 20;
+        }
+        
+        pdf.setFont('helvetica', 'bold');
+        pdf.text(`${script.platform.toUpperCase()}:`, 20, yPosition);
+        yPosition += 6;
+        
+        pdf.setFont('helvetica', 'normal');
+        const scriptLines = pdf.splitTextToSize(script.script, 170);
+        pdf.text(scriptLines, 20, yPosition);
+        yPosition += scriptLines.length * 4 + 10;
+      });
+
+      // Email Copy
+      if (yPosition > 220) {
+        pdf.addPage();
+        yPosition = 20;
+      }
+      
+      pdf.setFontSize(16);
+      pdf.setFont('helvetica', 'bold');
+      pdf.text('📧 Email Marketing', 20, yPosition);
+      yPosition += 10;
+      
+      pdf.setFontSize(12);
+      pdf.text('Subject:', 20, yPosition);
+      yPosition += 6;
+      pdf.setFont('helvetica', 'normal');
+      pdf.setFontSize(10);
+      const subjectLines = pdf.splitTextToSize(campaignData.email_copy.subject, 170);
+      pdf.text(subjectLines, 20, yPosition);
+      yPosition += subjectLines.length * 4 + 10;
+      
+      pdf.setFontSize(12);
+      pdf.setFont('helvetica', 'bold');
+      pdf.text('Body:', 20, yPosition);
+      yPosition += 6;
+      pdf.setFont('helvetica', 'normal');
+      pdf.setFontSize(10);
+      const bodyLines = pdf.splitTextToSize(campaignData.email_copy.body, 170);
+      pdf.text(bodyLines, 20, yPosition);
+      yPosition += bodyLines.length * 4 + 15;
+
+      // Banner Ads
+      if (yPosition > 200) {
+        pdf.addPage();
+        yPosition = 20;
+      }
+      
+      pdf.setFontSize(16);
+      pdf.setFont('helvetica', 'bold');
+      pdf.text('🎯 Banner Ads', 20, yPosition);
+      yPosition += 10;
+      
+      campaignData.banner_ads.forEach((ad, index) => {
+        if (yPosition > 250) {
+          pdf.addPage();
+          yPosition = 20;
+        }
+        
+        pdf.setFontSize(12);
+        pdf.setFont('helvetica', 'bold');
+        pdf.text(`Variation ${index + 1}:`, 20, yPosition);
+        yPosition += 6;
+        
+        pdf.setFont('helvetica', 'normal');
+        pdf.setFontSize(10);
+        pdf.text(`Headline: ${ad.headline}`, 20, yPosition);
+        yPosition += 6;
+        pdf.text(`CTA: ${ad.cta}`, 20, yPosition);
+        yPosition += 10;
+      });
+
+      // Landing Page Concept
+      if (yPosition > 200) {
+        pdf.addPage();
+        yPosition = 20;
+      }
+      
+      pdf.setFontSize(16);
+      pdf.setFont('helvetica', 'bold');
+      pdf.text('🚀 Landing Page Concept', 20, yPosition);
+      yPosition += 10;
+      
+      pdf.setFontSize(12);
+      pdf.text('Hero Text:', 20, yPosition);
+      yPosition += 6;
+      pdf.setFont('helvetica', 'normal');
+      pdf.setFontSize(10);
+      const heroLines = pdf.splitTextToSize(campaignData.landing_page_concept.hero_text, 170);
+      pdf.text(heroLines, 20, yPosition);
+      yPosition += heroLines.length * 4 + 8;
+      
+      pdf.setFontSize(12);
+      pdf.setFont('helvetica', 'bold');
+      pdf.text('Sub Text:', 20, yPosition);
+      yPosition += 6;
+      pdf.setFont('helvetica', 'normal');
+      pdf.setFontSize(10);
+      const subLines = pdf.splitTextToSize(campaignData.landing_page_concept.sub_text, 170);
+      pdf.text(subLines, 20, yPosition);
+      yPosition += subLines.length * 4 + 8;
+      
+      pdf.setFontSize(12);
+      pdf.setFont('helvetica', 'bold');
+      pdf.text('CTA:', 20, yPosition);
+      yPosition += 6;
+      pdf.setFont('helvetica', 'normal');
+      pdf.setFontSize(10);
+      pdf.text(campaignData.landing_page_concept.cta, 20, yPosition);
+
+      pdf.save('campaign-results.pdf');
+    } catch (error) {
+      console.error('Error generating PDF:', error);
+    }
   };
 
   // Generate download URLs for QR codes using session token
@@ -193,7 +385,7 @@ const QRDownloadScreen = () => {
         </Card>
 
         {/* QR Codes */}
-        <div className="grid gap-6 md:grid-cols-2">
+        <div className="grid gap-6 md:grid-cols-3">
           {/* TXT Download QR */}
           <Card>
             <CardHeader>
@@ -244,6 +436,31 @@ const QRDownloadScreen = () => {
               </p>
               <Button onClick={() => handleDirectDownload('json')} variant="outline" size="sm">
                 Direct Download
+              </Button>
+            </CardContent>
+          </Card>
+
+          {/* PDF Download */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Download className="w-4 h-4" />
+                Generate PDF
+                <Badge variant="secondary">With Image</Badge>
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="flex flex-col items-center space-y-4">
+              <div className="bg-gradient-to-br from-primary/10 to-primary/5 p-8 rounded-lg flex items-center justify-center min-h-[200px]">
+                <div className="text-center">
+                  <Download className="w-12 h-12 mx-auto mb-2 text-primary" />
+                  <p className="text-sm font-medium">PDF with Uploaded Image</p>
+                </div>
+              </div>
+              <p className="text-sm text-muted-foreground text-center">
+                Generate a PDF that includes your uploaded image and all campaign content
+              </p>
+              <Button onClick={() => handleDirectDownload('pdf')} variant="default" size="sm">
+                Generate PDF
               </Button>
             </CardContent>
           </Card>
