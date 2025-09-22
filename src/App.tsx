@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ScreenSaver from "./components/ScreenSaver";
 import UploadScreen from "./components/UploadScreen";
 import CampaignPromptScreen from "./components/CampaignPromptScreen";
+import CatalogPromptScreen from "./components/CatalogPromptScreen";
 import TargetAudienceScreen from "./components/TargetAudienceScreen";
 import GenerateCampaignScreen from "./components/GenerateCampaignScreen";
 import CampaignResultsScreen from "./components/CampaignResultsScreen";
@@ -29,6 +30,7 @@ const App = () => (
           <Route path="/" element={<ScreenSaver />} />
           <Route path="/welcome" element={<Index />} />
           <Route path="/campaign-prompt" element={<CampaignPromptScreen />} />
+          <Route path="/catalog-prompt" element={<CatalogPromptScreen />} />
           <Route path="/target-audience" element={<TargetAudienceScreen />} />
           <Route path="/generate-campaign" element={<GenerateCampaignScreen />} />
           <Route path="/campaign-results" element={<CampaignResultsScreen />} />

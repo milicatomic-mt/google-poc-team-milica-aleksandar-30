@@ -317,27 +317,28 @@ const UploadScreen: React.FC<UploadScreenProps> = ({ mode }) => {
 
   const handleContinue = () => {
     if (uploadedImage && validationResult?.isValid) {
-      // Get AI suggestions for campaign mode
+      // Get AI suggestions for both modes
       let aiGeneratedPrompt = '';
-      if (currentMode === 'campaign') {
-        try {
-          const suggestions = sessionStorage.getItem('aiSuggestions');
-          if (suggestions) {
-            const parsedSuggestions = JSON.parse(suggestions);
-            if (Array.isArray(parsedSuggestions) && parsedSuggestions.length > 0) {
-              aiGeneratedPrompt = parsedSuggestions[0]; // Use first suggestion as initial prompt
-            }
+      try {
+        const suggestions = sessionStorage.getItem('aiSuggestions');
+        if (suggestions) {
+          const parsedSuggestions = JSON.parse(suggestions);
+          if (Array.isArray(parsedSuggestions) && parsedSuggestions.length > 0) {
+            aiGeneratedPrompt = parsedSuggestions[0]; // Use first suggestion as initial prompt
           }
-        } catch (error) {
-          console.error('Failed to parse AI suggestions:', error);
         }
+      } catch (error) {
+        console.error('Failed to parse AI suggestions:', error);
       }
 
       if (currentMode === 'catalog') {
-        // Navigate to catalog details screen for catalog enrichment
-        navigate('/catalog-details', { 
+        // Navigate to catalog prompt screen for catalog enrichment
+        navigate('/catalog-prompt', { 
           state: { 
-            uploadedImage 
+            uploadedImage,
+            uploadedFile,
+            aiGeneratedPrompt,
+            mode: currentMode
           } 
         });
       } else {
