@@ -138,7 +138,7 @@ const CatalogResultsScreen: React.FC = () => {
           </header>
 
           <div className="flex-1 flex items-center justify-center">
-            <div className="flex flex-col items-center justify-center space-y-8">
+            <div className="flex flex-col items-center justify-center space-y-6">
               {/* Animated Sphere - 200x200px */}
               <div className="w-[200px] h-[200px] animate-fade-in">
                 <RibbedSphere className="w-full h-full" />
