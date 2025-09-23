@@ -742,90 +742,61 @@ const PreviewResultsScreen: React.FC = () => {
                   </Button>
                 </div>
                 <CardContent className="p-4">
-                  <div className="h-64 bg-white rounded-lg overflow-hidden border border-gray-200">
-                    {/* Landing Page Preview */}
-                    <div className="h-full overflow-y-auto">
-                      {/* Header/Navigation */}
-                      <div className="bg-white border-b border-gray-100 px-3 py-2 flex items-center justify-between">
-                        <div className="text-[8px] font-bold text-gray-800">BRAND</div>
-                        <div className="flex gap-2 text-[7px] text-gray-600">
-                          <span>Home</span>
-                          <span>Products</span>
-                          <span>About</span>
-                        </div>
-                        <div className="bg-black text-white text-[6px] px-2 py-1 rounded">Login</div>
-                      </div>
-
-                      {/* Hero Section */}
-                      <div className="bg-gradient-to-br from-gray-50 to-gray-100 px-3 py-4">
-                        <div className="flex gap-3">
-                          <div className="flex-1">
-                            <h1 className="text-[11px] font-bold text-gray-900 leading-tight mb-1">
-                              Transform Your Experience Today
+                  <div className="h-64 bg-white rounded-lg overflow-hidden border border-gray-200 shadow-sm">
+                    {/* Landing Page Preview - Miniature Version */}
+                    <div className="h-full bg-gradient-to-br from-gray-50 to-primary/5 relative overflow-hidden">
+                      <div className="absolute inset-0 bg-gradient-to-br from-transparent via-primary/5 to-primary/10"></div>
+                      
+                      <div className="relative z-10 p-3 h-full flex flex-col">
+                        {/* Hero Section */}
+                        <div className="flex-1 grid grid-cols-2 gap-3 items-center">
+                          {/* Left Column - Content */}
+                          <div className="space-y-2">
+                            <div className="inline-flex items-center gap-1 px-2 py-1 rounded-full text-[7px] font-medium bg-primary/10 text-primary">
+                              ✨ New Product Launch
+                            </div>
+                            <h1 className="text-[11px] font-bold text-foreground leading-tight">
+                              Transform Your Experience
                             </h1>
-                            <p className="text-[8px] text-gray-600 mb-2 leading-relaxed">
-                              Discover innovative solutions that drive exceptional results for your business.
+                            <p className="text-[8px] text-muted-foreground leading-relaxed">
+                              Discover innovative solutions that drive exceptional results
                             </p>
-                            <div className="flex gap-1">
-                              <div className="bg-black text-white text-[7px] px-2 py-1 rounded">Get Started</div>
-                              <div className="border border-gray-300 text-gray-700 text-[7px] px-2 py-1 rounded">Learn More</div>
+                            
+                            <div className="flex flex-col gap-1">
+                              <div className="bg-black text-white text-[7px] px-2 py-1 rounded text-center">
+                                Get Started
+                              </div>
+                              <div className="border border-gray-300 text-gray-700 text-[7px] px-2 py-1 rounded text-center">
+                                Learn More
+                              </div>
                             </div>
                           </div>
-                          <div className="w-16 h-12 bg-gray-200 rounded overflow-hidden flex-shrink-0">
-                            {uploadedImage && <img src={uploadedImage} alt="Hero product" className="w-full h-full object-cover" />}
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Features Section */}
-                      <div className="bg-white px-3 py-3">
-                        <h2 className="text-[9px] font-semibold text-gray-800 mb-2 text-center">Why Choose Us</h2>
-                        <div className="grid grid-cols-3 gap-2">
-                          <div className="text-center">
-                            <div className="w-6 h-4 bg-blue-100 rounded mb-1 mx-auto flex items-center justify-center">
-                              <div className="w-2 h-2 bg-blue-500 rounded"></div>
-                            </div>
-                            <div className="text-[7px] font-medium text-gray-700">Quality</div>
-                            <div className="text-[6px] text-gray-500">Premium materials</div>
-                          </div>
-                          <div className="text-center">
-                            <div className="w-6 h-4 bg-green-100 rounded mb-1 mx-auto flex items-center justify-center">
-                              <div className="w-2 h-2 bg-green-500 rounded"></div>
-                            </div>
-                            <div className="text-[7px] font-medium text-gray-700">Fast</div>
-                            <div className="text-[6px] text-gray-500">Quick delivery</div>
-                          </div>
-                          <div className="text-center">
-                            <div className="w-6 h-4 bg-purple-100 rounded mb-1 mx-auto flex items-center justify-center">
-                              <div className="w-2 h-2 bg-purple-500 rounded"></div>
-                            </div>
-                            <div className="text-[7px] font-medium text-gray-700">Support</div>
-                            <div className="text-[6px] text-gray-500">24/7 help</div>
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Product Showcase */}
-                      <div className="bg-gray-50 px-3 py-3">
-                        <div className="flex gap-2">
-                          <div className="w-12 h-8 bg-gray-200 rounded overflow-hidden">
-                            {uploadedImage && <img src={uploadedImage} alt="Product showcase" className="w-full h-full object-cover" />}
-                          </div>
-                          <div className="flex-1">
-                            <h3 className="text-[8px] font-semibold text-gray-800 mb-1">Featured Product</h3>
-                            <p className="text-[6px] text-gray-600 leading-relaxed mb-1">
-                              Experience our premium collection designed for modern lifestyles.
-                            </p>
-                            <div className="bg-black text-white text-[6px] px-2 py-1 rounded inline-block">
-                              Shop Now
+                          
+                          {/* Right Column - Product Image */}
+                          <div className="relative">
+                            <div className="relative bg-white/80 backdrop-blur-sm rounded-lg p-2 shadow-lg border border-gray-200">
+                              <div className="w-full aspect-square bg-gray-100 rounded overflow-hidden">
+                                {uploadedImage && <img src={uploadedImage} alt="Product showcase" className="w-full h-full object-cover" />}
+                              </div>
                             </div>
                           </div>
                         </div>
-                      </div>
-
-                      {/* Footer */}
-                      <div className="bg-gray-800 px-3 py-2 text-center">
-                        <div className="text-[6px] text-gray-300">© 2024 Brand. All rights reserved.</div>
+                        
+                        {/* Trust Indicators */}
+                        <div className="flex items-center justify-center gap-3 text-[6px] text-muted-foreground pt-2 border-t border-gray-200">
+                          <div className="flex items-center gap-1">
+                            <div className="w-1 h-1 bg-green-500 rounded-full"></div>
+                            <span>Free shipping</span>
+                          </div>
+                          <div className="flex items-center gap-1">
+                            <div className="w-1 h-1 bg-blue-500 rounded-full"></div>
+                            <span>30-day returns</span>
+                          </div>
+                          <div className="flex items-center gap-1">
+                            <div className="w-1 h-1 bg-purple-500 rounded-full"></div>
+                            <span>Premium quality</span>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
