@@ -668,7 +668,7 @@ const PreviewResultsScreen: React.FC = () => {
                           </div>
                         </div>
                         <div className="mt-3">
-                          <div className="bg-primary text-primary-foreground text-[9px] px-2 py-1 rounded inline-block">
+                          <div className="bg-black text-white text-[9px] px-2 py-1 rounded inline-block">
                             Get Started
                           </div>
                         </div>
@@ -682,7 +682,7 @@ const PreviewResultsScreen: React.FC = () => {
                       </div>
                       <div className="text-center">
                         <h4 className="text-[10px] font-bold text-foreground mb-1">Premium Collection</h4>
-                        <div className="bg-primary text-primary-foreground text-[8px] px-2 py-1 rounded">
+                        <div className="bg-black text-white text-[8px] px-2 py-1 rounded">
                           Shop Now
                         </div>
                       </div>
@@ -700,7 +700,7 @@ const PreviewResultsScreen: React.FC = () => {
                       </div>
                       <div className="space-y-2">
                         <p className="text-[9px] text-muted-foreground">Save up to 50% today</p>
-                        <div className="bg-primary text-primary-foreground text-[8px] px-2 py-1 rounded text-center">
+                        <div className="bg-black text-white text-[8px] px-2 py-1 rounded text-center">
                           Claim Deal
                         </div>
                       </div>
