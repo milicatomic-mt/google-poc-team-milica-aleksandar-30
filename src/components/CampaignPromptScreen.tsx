@@ -95,8 +95,8 @@ const CampaignPromptScreen = () => {
 
   const handleCreateCampaign = () => {
     if (prompt.trim()) {
-      // Navigate directly to generate campaign with prompt and audiences
-      navigate('/generate-campaign', { 
+      // Navigate to target audience screen first
+      navigate('/target-audience', { 
         state: { 
           ...location.state, 
           prompt: prompt.trim(),

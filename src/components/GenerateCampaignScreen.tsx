@@ -15,7 +15,17 @@ const GenerateCampaignScreen = () => {
     const generateContent = async () => {
       try {
         const state = location.state;
-        if (!state) return;
+        if (!state) {
+          navigate('/');
+          return;
+        }
+
+        // Validate required data
+        if (!state.uploadedImage || !state.campaignPrompt) {
+          console.error('Missing required data:', { uploadedImage: !!state.uploadedImage, campaignPrompt: !!state.campaignPrompt });
+          navigate('/');
+          return;
+        }
 
         // Simulate loading steps with progress updates
         const loadingSteps = [
@@ -37,7 +47,7 @@ const GenerateCampaignScreen = () => {
         const campaignData: CampaignCreationRequest = {
           image: state.uploadedImage,
           campaign_prompt: state.campaignPrompt,
-          target_audience: state.selectedAudiences?.join(', ')
+          target_audience: state.selectedAudiences?.join(', ') || ''
         };
         
         // Save the initial campaign request
