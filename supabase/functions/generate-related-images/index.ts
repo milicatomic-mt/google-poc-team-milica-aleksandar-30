@@ -16,7 +16,6 @@ serve(async (req) => {
     const { basePrompt, category, count = 3 } = await req.json()
 
     const hf = new HfInference(Deno.env.get('HUGGING_FACE_ACCESS_TOKEN'))
-  console.log("token:", Deno.env.get('HUGGING_FACE_ACCESS_TOKEN'))
     if (!basePrompt) {
       throw new Error('Base prompt is required')
     }
