@@ -189,17 +189,30 @@ const CatalogResultsScreen: React.FC = () => {
       </video>
 
       <div className="relative z-10 flex min-h-screen flex-col overflow-y-auto">
-        {/* Title, Subtitle and Download Button */}
-        <div className="container-padding pt-8 pb-4">
-          <div className="max-w-4xl mx-auto flex justify-between items-start">
-            <div>
+        {/* Header */}
+        <header className="container-padding pt-20 relative">
+          <div className="w-full flex justify-between items-center px-8">
+            {/* Left - Sphere Animation with Text */}
+            <div className="flex items-center gap-3">
+              <div className="w-12 h-12">
+                <RibbedSphere className="w-full h-full" />
+              </div>
+              <div className="text-sm text-foreground font-semibold">
+                Bring Your Products to <span className="text-indigo-600">Life</span>
+              </div>
+            </div>
+            
+            {/* Center - Title and Subtitle */}
+            <div className="absolute left-1/2 transform -translate-x-1/2 text-center">
               <h2 className="text-3xl font-bold text-foreground mb-2">
                 Catalog Enrichment Preview
               </h2>
-              <p className="text-xl text-muted-foreground font-medium">
+              <p className="text-lg text-muted-foreground">
                 Your enriched catalog is ready to publish
               </p>
             </div>
+            
+            {/* Right - Edit and Download Buttons */}
             <div className="flex gap-3">
               <Button
                 onClick={handleBack}
@@ -214,14 +227,14 @@ const CatalogResultsScreen: React.FC = () => {
                 className="tap-target focus-ring bg-primary hover:bg-primary/90 text-white rounded-full px-6 py-2 flex items-center gap-2"
               >
                 <Download className="w-4 h-4" />
-                Download
+                Download All
               </Button>
             </div>
           </div>
-        </div>
+        </header>
 
         {/* Main Content */}
-        <main className="flex-1 container-padding pt-4 pb-8">
+        <main className="flex-1 container-padding pt-16 pb-8">
           <div className="max-w-4xl mx-auto space-y-6">
             
             {/* Product Image Preview */}
@@ -428,19 +441,24 @@ const CatalogResultsScreen: React.FC = () => {
           </div>
         </main>
 
-        {/* Footer */}
-        <footer className="container-padding pb-8 pt-4">
-          <div className="flex justify-center space-x-4">
-            <Button 
-              onClick={handleStartOver}
-              variant="outline"
-              size="lg"
-              className="px-8 rounded-full"
-            >
-              Create New Catalog
-            </Button>
-          </div>
-        </footer>
+        {/* Action Buttons */}
+        <div className="mt-16 flex justify-center space-x-4">
+          <Button 
+            onClick={() => navigate('/')}
+            variant="outline"
+            size="lg"
+            className="bg-white hover:bg-white/90 text-black hover:text-black border-white rounded-full px-8"
+          >
+            Back to Home
+          </Button>
+          <Button 
+            onClick={() => navigate('/campaign-prompt')}
+            size="lg"
+            className="bg-indigo-600 hover:bg-indigo-700 text-white rounded-full px-8"
+          >
+            Try Image to Campaign
+          </Button>
+        </div>
       </div>
     </div>
   );
