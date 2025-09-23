@@ -114,13 +114,59 @@ const CatalogResultsScreen: React.FC = () => {
 
   if (isGenerating) {
     return (
-      <div className="min-h-screen bg-background flex items-center justify-center">
-        <div className="text-center">
-          <div className="h-16 w-16 mx-auto mb-3">
-            <RibbedSphere className="w-full h-full" />
+      <div className="relative min-h-screen w-full overflow-hidden bg-background">
+        <video 
+          className="absolute inset-0 w-full h-full object-cover object-center opacity-50 z-0" 
+          autoPlay 
+          loop 
+          muted 
+          playsInline
+        >
+          <source src="/background-video.mp4" type="video/mp4" />
+        </video>
+
+        <div className="relative z-10 flex min-h-screen flex-col">
+          <header className="container-padding pt-12 relative">
+            <div className="absolute top-12 left-8">
+              <div className="flex items-center">
+                <div className="h-8 w-8 mr-3">
+                  <RibbedSphere className="w-full h-full" />
+                </div>
+                <h1 className="text-lg font-semibold text-foreground">Catalog Enrichment</h1>
+              </div>
+            </div>
+          </header>
+
+          <div className="flex-1 flex items-center justify-center">
+            <div className="flex flex-col items-center justify-center space-y-6">
+              {/* Animated Sphere - 200x200px */}
+              <div className="w-[200px] h-[200px] animate-fade-in">
+                <RibbedSphere className="w-full h-full" />
+              </div>
+
+              {/* Loading Text */}
+              <div className="text-center animate-fade-in animation-delay-300">
+                <p className="text-2xl font-semibold text-foreground mb-2">
+                  {currentAction}
+                </p>
+                <p className="text-lg text-muted-foreground">
+                  Creating your comprehensive catalog content
+                </p>
+              </div>
+
+              {/* Progress Bar */}
+              <div className="w-full max-w-md animate-fade-in animation-delay-500">
+                <Progress 
+                  value={progress} 
+                  className="h-2 bg-muted"
+                />
+                <div className="flex justify-between items-center mt-2 text-sm text-muted-foreground">
+                  <span>{progress}%</span>
+                  <span>Please wait...</span>
+                </div>
+              </div>
+            </div>
           </div>
-          <h2 className="text-2xl font-semibold mb-2">Generating Your Catalog...</h2>
-          <p className="text-muted-foreground">Please wait while AI creates your product content</p>
         </div>
       </div>
     );
