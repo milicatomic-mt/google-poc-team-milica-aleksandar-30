@@ -116,7 +116,11 @@ Create a comprehensive marketing campaign with video scripts for TikTok, Instagr
     
     if (hfToken) {
       try {
-        const hf = new HfInference(hfToken);
+        const cleanToken = (hfToken || '').trim();
+        if (!cleanToken.startsWith('hf_')) {
+          throw new Error('Invalid Hugging Face token format. Token must start with "hf_"');
+        }
+        const hf = new HfInference(cleanToken);
         
         const imagePrompts = [
           `Professional marketing image for: ${campaignPrompt}. High quality, commercial style, modern design, clean background`,
@@ -186,7 +190,7 @@ Create a comprehensive marketing campaign with video scripts for TikTok, Instagr
     } else {
       console.warn('Hugging Face token not found, skipping image generation');
     }
-  console.log("token:", Deno.env.get('HUGGING_FACE_ACCESS_TOKEN'))
+  // Update the campaign_results table with the generated content and images
     // Update the campaign_results table with the generated content and images
     const { error: updateError } = await supabase
       .from('campaign_results')
