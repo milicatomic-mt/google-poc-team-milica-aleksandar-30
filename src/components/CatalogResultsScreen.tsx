@@ -203,10 +203,10 @@ const CatalogResultsScreen: React.FC = () => {
             <div className="flex gap-3">
               <Button
                 onClick={handleBack}
-                variant="secondary"
-                className="tap-target focus-ring bg-secondary hover:bg-secondary/90 text-white rounded-full px-6 py-2 flex items-center gap-2"
+                variant="outline"
+                className="tap-target focus-ring bg-white hover:bg-white/90 text-black border-white rounded-full px-6 py-2 flex items-center gap-2"
               >
-                <Edit className="w-4 h-4" />
+                <Edit className="w-4 h-4 text-black" />
                 Edit
               </Button>
               <Button
