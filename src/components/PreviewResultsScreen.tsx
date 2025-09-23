@@ -1114,19 +1114,19 @@ const PreviewResultsScreen: React.FC = () => {
             {/* Action Buttons */}
             <div className="mt-8 flex justify-center space-x-4">
               <Button 
-                onClick={handleStartOver}
+                onClick={() => navigate('/')}
                 variant="outline"
                 size="lg"
-                className="bg-white/10 border-white/30 text-foreground hover:bg-white/20 rounded-full px-8"
+                className="bg-white hover:bg-white/90 text-black hover:text-black border-white rounded-full px-8"
               >
-                Create New Campaign
+                Back to Home
               </Button>
               <Button 
-                onClick={() => navigate('/campaign-results', { state: location.state })}
+                onClick={() => navigate('/catalog-prompt')}
                 size="lg"
-                className="rounded-full px-8"
+                className="bg-indigo-600 hover:bg-indigo-700 text-white rounded-full px-8"
               >
-                View Full Results
+                Try Catalog Enrichment
               </Button>
             </div>
           </div>
