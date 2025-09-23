@@ -640,18 +640,13 @@ const PreviewResultsScreen: React.FC = () => {
         {/* Header */}
         <header className="container-padding pt-12 relative">
           <div className="max-w-6xl mx-auto flex justify-between items-start">
-            <div className="flex items-center gap-4">
-              <div className="h-20 w-20">
-                <RibbedSphere className="w-full h-full" />
-              </div>
-              <div>
-                <h2 className="text-3xl font-bold text-foreground mb-2">
-                  Campaign Creative Preview
-                </h2>
-                <p className="text-xl text-muted-foreground font-medium">
-                  Your assets across channels at a glance
-                </p>
-              </div>
+            <div>
+              <h2 className="text-3xl font-bold text-foreground mb-2">
+                Campaign Creative Preview
+              </h2>
+              <p className="text-xl text-muted-foreground font-medium">
+                Your assets across channels at a glance
+              </p>
             </div>
             <div className="flex gap-3">
               <Button
