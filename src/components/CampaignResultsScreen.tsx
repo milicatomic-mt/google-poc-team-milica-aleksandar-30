@@ -36,7 +36,7 @@ const CampaignResultsScreen = () => {
         const pollForResults = async () => {
           const { data, error } = await supabase
             .from('campaign_results')
-            .select('result, image_url')
+            .select('result, image_url, generated_images')
             .eq('id', campaignId)
             .single();
 
@@ -46,7 +46,10 @@ const CampaignResultsScreen = () => {
 
           // Check if result has been populated by the AI
           if (data?.result && Object.keys(data.result).length > 0) {
-            setCampaignData(data.result as CampaignCreationResponse);
+            const genImgs = Array.isArray(data.generated_images)
+              ? (data.generated_images as CampaignCreationResponse['generated_images'])
+              : [];
+            setCampaignData({ ...(data.result as CampaignCreationResponse), generated_images: genImgs });
             setUploadedImageUrl(data.image_url);
             setIsLoading(false);
             return true;

@@ -34,14 +34,18 @@ const PreviewResultsScreen: React.FC = () => {
         try {
           const { data, error } = await supabase
             .from('campaign_results')
-            .select('result')
+            .select('result, generated_images')
             .eq('id', campaignId)
             .single();
 
           if (error) {
             console.error('Error fetching campaign results:', error);
           } else if (data?.result && Object.keys(data.result).length > 0) {
-            setFetchedCampaignResults(data.result as CampaignCreationResponse);
+            const genImgs = Array.isArray(data.generated_images)
+              ? (data.generated_images as CampaignCreationResponse['generated_images'])
+              : [];
+            const merged = { ...(data.result as CampaignCreationResponse), generated_images: genImgs };
+            setFetchedCampaignResults(merged);
           }
         } catch (error) {
           console.error('Error fetching campaign results:', error);
