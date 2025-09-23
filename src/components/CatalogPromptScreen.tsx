@@ -375,16 +375,16 @@ const CatalogPromptScreen = () => {
           </div>
         </div>
 
-        {/* Footer with Create Campaign Button */}
+        {/* Footer with Create Catalog Enrichment Button */}
         <footer className="container-padding pb-8 pt-4 flex-shrink-0">
           <div className="flex justify-center">
             <Button 
               size="lg"
               onClick={handleCreateCatalog}
               className={`tap-target focus-ring w-96 px-12 bg-indigo-600 hover:bg-indigo-700 text-white transition-opacity duration-300 rounded-full ${prompt.trim() ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
-              aria-label="Create catalog"
+              aria-label="Create catalog enrichment"
             >
-              Create Campaign
+              Create Catalog Enrichment
             </Button>
           </div>
         </footer>
