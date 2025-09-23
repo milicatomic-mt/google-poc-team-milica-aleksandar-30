@@ -186,7 +186,7 @@ Create a comprehensive marketing campaign with video scripts for TikTok, Instagr
     } else {
       console.warn('Hugging Face token not found, skipping image generation');
     }
-
+  console.log("token:", Deno.env.get('HUGGING_FACE_ACCESS_TOKEN'))
     // Update the campaign_results table with the generated content and images
     const { error: updateError } = await supabase
       .from('campaign_results')
