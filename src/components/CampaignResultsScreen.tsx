@@ -198,18 +198,118 @@ const CampaignResultsScreen = () => {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   🎯 Banner Ads
-                  <Badge variant="secondary">{campaignData.banner_ads.length} variations</Badge>
+                  <Badge variant="secondary">5 standard sizes</Badge>
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="grid gap-4 md:grid-cols-2">
-                  {campaignData.banner_ads.map((ad, index) => (
-                    <div key={index} className="p-4 border rounded-lg">
-                      <h4 className="font-semibold mb-2">Variation {index + 1}</h4>
-                      <p className="text-sm mb-2">{ad.headline}</p>
-                      <Badge variant="outline">{ad.cta}</Badge>
+                <div className="space-y-6">
+                  {/* Medium Rectangle 300x250 */}
+                  <div>
+                    <h4 className="font-semibold mb-2">Medium Rectangle (300x250)</h4>
+                    <div className="relative bg-gradient-to-r from-primary/10 to-primary/20 border border-primary/20 rounded-lg overflow-hidden" style={{ width: '300px', height: '250px' }}>
+                      {uploadedImageUrl && (
+                        <img 
+                          src={uploadedImageUrl} 
+                          alt="Campaign" 
+                          className="absolute inset-0 w-full h-full object-cover opacity-20"
+                        />
+                      )}
+                      <div className="absolute inset-0 p-4 flex flex-col justify-between text-center">
+                        <h5 className="text-sm font-bold text-primary">{campaignData.banner_ads[0]?.headline || 'Your Brand Message'}</h5>
+                        <div className="space-y-2">
+                          <p className="text-xs opacity-80">{location.state?.campaign_prompt || 'Campaign content'}</p>
+                          <Badge className="text-xs">{campaignData.banner_ads[0]?.cta || 'Learn More'}</Badge>
+                        </div>
+                      </div>
                     </div>
-                  ))}
+                  </div>
+
+                  {/* Leaderboard 728x90 */}
+                  <div>
+                    <h4 className="font-semibold mb-2">Leaderboard (728x90)</h4>
+                    <div className="relative bg-gradient-to-r from-primary/10 to-primary/20 border border-primary/20 rounded-lg overflow-hidden" style={{ width: '728px', height: '90px', maxWidth: '100%' }}>
+                      {uploadedImageUrl && (
+                        <img 
+                          src={uploadedImageUrl} 
+                          alt="Campaign" 
+                          className="absolute right-0 top-0 h-full w-20 object-cover opacity-30"
+                        />
+                      )}
+                      <div className="absolute inset-0 px-4 flex items-center justify-between">
+                        <div className="flex-1">
+                          <h5 className="text-sm font-bold text-primary mb-1">{campaignData.banner_ads[0]?.headline || 'Your Brand Message'}</h5>
+                          <p className="text-xs opacity-80 truncate">{location.state?.campaign_prompt || 'Campaign content'}</p>
+                        </div>
+                        <Badge className="text-xs ml-4">{campaignData.banner_ads[0]?.cta || 'Learn More'}</Badge>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Wide Skyscraper 160x600 */}
+                  <div>
+                    <h4 className="font-semibold mb-2">Wide Skyscraper (160x600)</h4>
+                    <div className="relative bg-gradient-to-b from-primary/10 to-primary/20 border border-primary/20 rounded-lg overflow-hidden" style={{ width: '160px', height: '600px' }}>
+                      {uploadedImageUrl && (
+                        <img 
+                          src={uploadedImageUrl} 
+                          alt="Campaign" 
+                          className="absolute top-0 left-0 w-full h-32 object-cover opacity-20"
+                        />
+                      )}
+                      <div className="absolute inset-0 p-3 flex flex-col justify-between text-center">
+                        <div className="mt-8">
+                          <h5 className="text-xs font-bold text-primary mb-2">{campaignData.banner_ads[0]?.headline || 'Your Brand'}</h5>
+                        </div>
+                        <div className="space-y-3">
+                          <p className="text-xs opacity-80 leading-tight">{location.state?.campaign_prompt?.slice(0, 80) || 'Campaign content'}...</p>
+                          <Badge className="text-xs">{campaignData.banner_ads[0]?.cta || 'Learn More'}</Badge>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Mobile Leaderboard 320x50 */}
+                  <div>
+                    <h4 className="font-semibold mb-2">Mobile Leaderboard (320x50)</h4>
+                    <div className="relative bg-gradient-to-r from-primary/10 to-primary/20 border border-primary/20 rounded-lg overflow-hidden" style={{ width: '320px', height: '50px' }}>
+                      {uploadedImageUrl && (
+                        <img 
+                          src={uploadedImageUrl} 
+                          alt="Campaign" 
+                          className="absolute right-0 top-0 h-full w-12 object-cover opacity-30"
+                        />
+                      )}
+                      <div className="absolute inset-0 px-3 flex items-center justify-between">
+                        <div className="flex-1 min-w-0">
+                          <h5 className="text-xs font-bold text-primary truncate">{campaignData.banner_ads[0]?.headline || 'Your Brand Message'}</h5>
+                        </div>
+                        <Badge className="text-xs ml-2 shrink-0">{campaignData.banner_ads[0]?.cta || 'Learn More'}</Badge>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Half-Page 300x600 */}
+                  <div>
+                    <h4 className="font-semibold mb-2">Half-Page (300x600)</h4>
+                    <div className="relative bg-gradient-to-b from-primary/10 to-primary/20 border border-primary/20 rounded-lg overflow-hidden" style={{ width: '300px', height: '600px' }}>
+                      {uploadedImageUrl && (
+                        <img 
+                          src={uploadedImageUrl} 
+                          alt="Campaign" 
+                          className="absolute top-0 left-0 w-full h-48 object-cover opacity-20"
+                        />
+                      )}
+                      <div className="absolute inset-0 p-4 flex flex-col justify-between text-center">
+                        <div className="mt-12">
+                          <h5 className="text-lg font-bold text-primary mb-4">{campaignData.banner_ads[0]?.headline || 'Your Brand Message'}</h5>
+                        </div>
+                        <div className="space-y-4">
+                          <p className="text-sm opacity-80 leading-relaxed">{location.state?.campaign_prompt || 'Campaign content here with more detailed description of your amazing product or service.'}</p>
+                          <Badge className="text-sm px-6 py-2">{campaignData.banner_ads[0]?.cta || 'Learn More'}</Badge>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </CardContent>
             </Card>
