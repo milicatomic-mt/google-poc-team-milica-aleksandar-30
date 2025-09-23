@@ -52,7 +52,7 @@ const PreviewResultsScreen: React.FC = () => {
     };
 
     fetchCampaignResults();
-  }, [campaignResults, campaignId, isLoadingResults]);
+  }, [campaignResults, campaignId]); // Removed isLoadingResults from dependencies
 
   // Use either passed campaignResults or fetched results
   const activeCampaignResults = campaignResults || fetchedCampaignResults;
