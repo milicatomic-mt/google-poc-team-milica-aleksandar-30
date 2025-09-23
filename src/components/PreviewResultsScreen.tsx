@@ -639,23 +639,22 @@ const PreviewResultsScreen: React.FC = () => {
       <div className="relative z-10 flex min-h-screen flex-col overflow-y-auto">
         {/* Header */}
         <header className="container-padding pt-12 relative">
-          {/* Top Center - Title and Subtitle */}
-          <div className="absolute top-8 left-1/2 transform -translate-x-1/2 text-center z-10">
-            <h2 className="text-3xl font-bold text-foreground mb-2">
-              Campaign Creative Preview
-            </h2>
-            <p className="text-xl text-muted-foreground font-medium">
-              Your assets across channels at a glance
-            </p>
-          </div>
-          
-          {/* Left and Right Elements */}
-          <div className="w-full flex justify-between items-center px-8 pt-20">
+          <div className="w-full flex justify-between items-center px-8">
             {/* Left - Sphere Animation */}
             <div className="flex items-center">
               <div className="w-20 h-20">
                 <RibbedSphere className="w-full h-full" />
               </div>
+            </div>
+            
+            {/* Center - Title and Subtitle */}
+            <div className="absolute left-1/2 transform -translate-x-1/2 text-center">
+              <h2 className="text-3xl font-bold text-foreground mb-2">
+                Campaign Creative Preview
+              </h2>
+              <p className="text-xl text-muted-foreground font-medium">
+                Your assets across channels at a glance
+              </p>
             </div>
             
             {/* Right - Edit and Download Buttons */}
