@@ -4,6 +4,7 @@ import { HfInference } from 'https://esm.sh/@huggingface/inference@2.3.2';
 
 const geminiApiKey = Deno.env.get('GEMINI_API_KEY');
 const hfToken = Deno.env.get('HUGGING_FACE_ACCESS_TOKEN');
+const openaiApiKey = Deno.env.get('OPENAI_API_KEY');
 const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
 const supabaseServiceKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
 
