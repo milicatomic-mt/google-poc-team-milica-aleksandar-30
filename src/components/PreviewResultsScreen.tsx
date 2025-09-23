@@ -638,7 +638,7 @@ const PreviewResultsScreen: React.FC = () => {
 
       <div className="relative z-10 flex min-h-screen flex-col overflow-y-auto">
         {/* Header */}
-        <header className="container-padding pt-12 relative">
+        <header className="container-padding pt-20 relative">
           <div className="w-full flex justify-between items-center px-8">
             {/* Left - Sphere Animation with Text */}
             <div className="flex items-center gap-3">
@@ -682,7 +682,7 @@ const PreviewResultsScreen: React.FC = () => {
         </header>
 
         {/* Main Content */}
-        <main className="flex-1 container-padding pt-4 pb-8">
+        <main className="flex-1 container-padding pt-16 pb-8">
           <div className="max-w-6xl mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               
