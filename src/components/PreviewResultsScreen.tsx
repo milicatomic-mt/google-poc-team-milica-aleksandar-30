@@ -125,7 +125,7 @@ const PreviewResultsScreen: React.FC = () => {
                   <Badge variant="outline" className="text-xs">300×250px</Badge>
                   <Badge className="text-xs">Most Popular</Badge>
                 </div>
-                <div className="overflow-hidden rounded-lg border-2 border-border bg-gradient-to-br from-background to-muted/20 shadow-lg" style={{ width: '300px', height: '250px' }}>
+                <div className="overflow-hidden rounded border-2 border-border bg-gradient-to-br from-background to-muted/20 shadow-lg" style={{ width: '300px', height: '250px' }}>
                   <div className="relative h-full flex">
                     {/* Left side - Content */}
                     <div className="relative flex-1 p-4 flex flex-col justify-between bg-gradient-to-br from-background/95 to-muted/40">
@@ -159,12 +159,12 @@ const PreviewResultsScreen: React.FC = () => {
                   <Badge variant="secondary" className="text-xs">Header/Footer</Badge>
                 </div>
                 <div className="overflow-x-auto">
-                  <div className="overflow-hidden rounded-lg border-2 border-border bg-gradient-to-r from-background to-muted/20 shadow-lg" style={{ width: '728px', height: '90px', minWidth: '728px' }}>
+                  <div className="overflow-hidden rounded border-2 border-border bg-gradient-to-r from-background to-muted/20 shadow-lg" style={{ width: '728px', height: '90px', minWidth: '728px' }}>
                     <div className="relative h-full flex items-center">
                       <div className="flex items-center gap-4 flex-1 px-6">
                         <div className="w-2 h-12 rounded-full bg-primary"></div>
                         {(generatedImages[1]?.url || uploadedImage) && (
-                          <div className="w-16 h-16 rounded-lg overflow-hidden shadow-md">
+                          <div className="w-16 h-16 rounded overflow-hidden shadow-md">
                             <img src={generatedImages[1]?.url || uploadedImage} alt="Campaign product" className="w-full h-full object-cover" />
                           </div>
                         )}
@@ -190,7 +190,7 @@ const PreviewResultsScreen: React.FC = () => {
                   <Badge variant="outline" className="text-xs">320×50px</Badge>
                   <Badge variant="secondary" className="text-xs">Mobile</Badge>
                 </div>
-                <div className="overflow-hidden rounded-md border-2 border-border bg-gradient-to-r from-background to-muted/20 shadow-lg" style={{ width: '320px', height: '50px' }}>
+                <div className="overflow-hidden rounded-sm border-2 border-border bg-gradient-to-r from-background to-muted/20 shadow-lg" style={{ width: '320px', height: '50px' }}>
                   <div className="relative h-full flex items-center">
                     <div className="flex items-center gap-2 flex-1 px-3 min-w-0">
                       <div className="w-1 h-6 rounded-full bg-primary"></div>
@@ -242,7 +242,7 @@ const PreviewResultsScreen: React.FC = () => {
             )}
 
             {/* Landing Page Preview */}
-            <div className="border-2 border-border rounded-lg overflow-hidden bg-background shadow-2xl">
+            <div className="border-2 border-border rounded overflow-hidden bg-background shadow-2xl">
               <div className="w-full max-w-4xl mx-auto">
                 {/* Hero Section */}
                 <section className="relative min-h-[600px] bg-gradient-to-br from-background to-primary/5">
@@ -295,7 +295,7 @@ const PreviewResultsScreen: React.FC = () => {
                         <div className="relative">
                           <div className="absolute -inset-4 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-2xl blur-2xl"></div>
                           <div className="relative bg-background/80 backdrop-blur-sm rounded-xl p-8 shadow-2xl border border-border">
-                            <img src={generatedImages[0]?.url || uploadedImage} alt="Product showcase" className="w-full h-auto max-h-96 object-contain rounded-lg" />
+                            <img src={generatedImages[0]?.url || uploadedImage} alt="Product showcase" className="w-full h-auto max-h-96 object-contain rounded" />
                           </div>
                         </div>
                       )}
@@ -363,8 +363,8 @@ const PreviewResultsScreen: React.FC = () => {
                   
                   {/* Social Platform Icons */}
                   <div className="grid grid-cols-2 gap-4">
-                    <div className="group text-center p-4 rounded-lg bg-gradient-to-br from-pink-50 to-purple-50 hover:from-pink-100 hover:to-purple-100 transition-all duration-300 cursor-pointer">
-                      <div className="w-12 h-12 mx-auto mb-3 bg-gradient-to-r from-pink-500 to-purple-600 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <div className="group text-center p-4 rounded bg-gradient-to-br from-pink-50 to-purple-50 hover:from-pink-100 hover:to-purple-100 transition-all duration-300 cursor-pointer">
+                      <div className="w-12 h-12 mx-auto mb-3 bg-gradient-to-r from-pink-500 to-purple-600 rounded flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                         <svg className="w-6 h-6 text-white" viewBox="0 0 24 24" fill="currentColor">
                           <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.174-.105-.949-.199-2.403.042-3.441.219-.937 1.404-5.965 1.404-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 01.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.357-.631-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24.009 12.017 24c6.624 0 11.99-5.367 11.99-11.987C24.007 5.367 18.641.001 12.017.001z"/>
                         </svg>
@@ -373,8 +373,8 @@ const PreviewResultsScreen: React.FC = () => {
                       <p className="text-xs text-gray-600">9:16 Vertical</p>
                     </div>
                     
-                    <div className="group text-center p-4 rounded-lg bg-gradient-to-br from-purple-50 to-pink-50 hover:from-purple-100 hover:to-pink-100 transition-all duration-300 cursor-pointer">
-                      <div className="w-12 h-12 mx-auto mb-3 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <div className="group text-center p-4 rounded bg-gradient-to-br from-purple-50 to-pink-50 hover:from-purple-100 hover:to-pink-100 transition-all duration-300 cursor-pointer">
+                      <div className="w-12 h-12 mx-auto mb-3 bg-gradient-to-r from-purple-500 to-pink-500 rounded flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                         <svg className="w-6 h-6 text-white" viewBox="0 0 24 24" fill="currentColor">
                           <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
                         </svg>
@@ -383,8 +383,8 @@ const PreviewResultsScreen: React.FC = () => {
                       <p className="text-xs text-gray-600">Stories & Reels</p>
                     </div>
                     
-                    <div className="group text-center p-4 rounded-lg bg-gradient-to-br from-red-50 to-pink-50 hover:from-red-100 hover:to-pink-100 transition-all duration-300 cursor-pointer">
-                      <div className="w-12 h-12 mx-auto mb-3 bg-gradient-to-r from-red-500 to-pink-500 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <div className="group text-center p-4 rounded bg-gradient-to-br from-red-50 to-pink-50 hover:from-red-100 hover:to-pink-100 transition-all duration-300 cursor-pointer">
+                      <div className="w-12 h-12 mx-auto mb-3 bg-gradient-to-r from-red-500 to-pink-500 rounded flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                         <svg className="w-6 h-6 text-white" viewBox="0 0 24 24" fill="currentColor">
                           <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
                         </svg>
@@ -393,8 +393,8 @@ const PreviewResultsScreen: React.FC = () => {
                       <p className="text-xs text-gray-600">Shorts & Standard</p>
                     </div>
                     
-                    <div className="group text-center p-4 rounded-lg bg-gradient-to-br from-blue-50 to-cyan-50 hover:from-blue-100 hover:to-cyan-100 transition-all duration-300 cursor-pointer">
-                      <div className="w-12 h-12 mx-auto mb-3 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <div className="group text-center p-4 rounded bg-gradient-to-br from-blue-50 to-cyan-50 hover:from-blue-100 hover:to-cyan-100 transition-all duration-300 cursor-pointer">
+                      <div className="w-12 h-12 mx-auto mb-3 bg-gradient-to-r from-blue-500 to-cyan-500 rounded flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                         <svg className="w-6 h-6 text-white" viewBox="0 0 24 24" fill="currentColor">
                           <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
                         </svg>
@@ -428,7 +428,7 @@ const PreviewResultsScreen: React.FC = () => {
                       <p className="text-lg font-semibold mb-3 text-gray-900">
                         "{activeCampaignResults.banner_ads?.[0]?.headline || 'Ready to transform your experience?'}"
                       </p>
-                      <p className="text-sm text-gray-600 bg-gray-50 p-3 rounded-md">
+                      <p className="text-sm text-gray-600 bg-gray-50 p-3 rounded-sm">
                         <strong>Visual Direction:</strong> Close-up of product with dynamic zoom and smooth transition
                       </p>
                     </div>
@@ -444,7 +444,7 @@ const PreviewResultsScreen: React.FC = () => {
                       <p className="text-base mb-4 whitespace-pre-wrap text-gray-800 leading-relaxed">
                         {firstScript?.script || "Discover the perfect solution that transforms your daily experience with innovative features designed for modern life. Experience the difference that premium quality makes."}
                       </p>
-                      <p className="text-sm text-gray-600 bg-gray-50 p-3 rounded-md">
+                      <p className="text-sm text-gray-600 bg-gray-50 p-3 rounded-sm">
                         <strong>Visual Direction:</strong> Product demonstration with key features highlighted and lifestyle shots
                       </p>
                     </div>
@@ -460,7 +460,7 @@ const PreviewResultsScreen: React.FC = () => {
                       <p className="text-lg font-semibold mb-3 text-gray-900">
                         "{activeCampaignResults.banner_ads?.[0]?.cta || 'Get Started Today'} - Limited time offer!"
                       </p>
-                      <p className="text-sm text-gray-600 bg-gray-50 p-3 rounded-md">
+                      <p className="text-sm text-gray-600 bg-gray-50 p-3 rounded-sm">
                         <strong>Visual Direction:</strong> Product showcase with animated CTA button and compelling offer display
                       </p>
                     </div>
@@ -471,19 +471,19 @@ const PreviewResultsScreen: React.FC = () => {
                 <div className="bg-white rounded-xl p-6 shadow-xl border border-gray-100">
                   <h5 className="font-bold text-lg mb-4 text-gray-900">Technical Specifications</h5>
                   <div className="grid grid-cols-2 gap-4">
-                    <div className="text-center p-4 bg-gray-50 rounded-lg">
+                    <div className="text-center p-4 bg-gray-50 rounded">
                       <p className="font-semibold text-gray-900 mb-1">Duration</p>
                       <p className="text-sm text-gray-600">30 seconds</p>
                     </div>
-                    <div className="text-center p-4 bg-gray-50 rounded-lg">
+                    <div className="text-center p-4 bg-gray-50 rounded">
                       <p className="font-semibold text-gray-900 mb-1">Format</p>
                       <p className="text-sm text-gray-600">Multi-ratio</p>
                     </div>
-                    <div className="text-center p-4 bg-gray-50 rounded-lg">
+                    <div className="text-center p-4 bg-gray-50 rounded">
                       <p className="font-semibold text-gray-900 mb-1">Music</p>
                       <p className="text-sm text-gray-600">Upbeat, energetic</p>
                     </div>
-                    <div className="text-center p-4 bg-gray-50 rounded-lg">
+                    <div className="text-center p-4 bg-gray-50 rounded">
                       <p className="font-semibold text-gray-900 mb-1">Captions</p>
                       <p className="text-sm text-gray-600">Auto-generated</p>
                     </div>
@@ -496,7 +496,7 @@ const PreviewResultsScreen: React.FC = () => {
 
       case 'Email Templates':
         return (
-          <div className="border-2 border-border rounded-lg overflow-hidden bg-background shadow-xl max-w-2xl mx-auto">
+          <div className="border-2 border-border rounded overflow-hidden bg-background shadow-xl max-w-2xl mx-auto">
             {/* Email Template Preview */}
             <div className="bg-white text-gray-900" style={{ maxWidth: '600px', width: '100%', margin: '0 auto' }}>
               
@@ -808,7 +808,7 @@ const PreviewResultsScreen: React.FC = () => {
                   </Button>
                 </div>
                 <CardContent className="p-4">
-                  <div className="h-80 bg-gray-100 rounded-md overflow-hidden border border-gray-300 shadow-sm">
+                  <div className="h-80 bg-gray-100 rounded overflow-hidden border border-gray-300 shadow-sm">
                     {/* Browser-like Screenshot Mockup */}
                     <div className="h-full bg-white">
                       {/* Browser Header */}
@@ -875,7 +875,7 @@ const PreviewResultsScreen: React.FC = () => {
                           </div>
 
                           {/* Features Bar - Bottom Overlay */}
-                          <div className="bg-white/10 backdrop-blur-md rounded-md px-3 py-1 border border-white/20">
+                          <div className="bg-white/10 backdrop-blur-md rounded px-3 py-1 border border-white/20">
                             <div className="flex items-center gap-3 text-center">
                               <div className="flex items-center gap-1">
                                 <div className="w-1.5 h-1.5 bg-green-400 rounded-full"></div>
@@ -935,7 +935,7 @@ const PreviewResultsScreen: React.FC = () => {
                   {/* Mobile-First Vertical Layout */}
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 h-80">
                     {/* Left Side - Video Preview */}
-                    <div className="bg-black rounded-md overflow-hidden relative min-h-[120px] lg:h-full">
+                    <div className="bg-black rounded overflow-hidden relative min-h-[120px] lg:h-full">
                       {/* Video Thumbnail with Play Button */}
                       <div className="relative w-full h-full">
                         {uploadedImage && (
@@ -958,7 +958,7 @@ const PreviewResultsScreen: React.FC = () => {
                     </div>
 
                     {/* Right Side - Script Preview */}
-                    <div className="bg-white backdrop-blur-sm rounded-md p-4 overflow-y-auto border border-white/20">
+                    <div className="bg-white backdrop-blur-sm rounded p-4 overflow-y-auto border border-white/20">
                       <div className="space-y-3">
                         {/* Script Header */}
                         <div className="text-center pb-2 border-b border-white/30">
@@ -968,7 +968,7 @@ const PreviewResultsScreen: React.FC = () => {
                         
                         {/* Script Sections */}
                         <div className="space-y-2">
-                          <div className="bg-white/60 p-3 rounded-md">
+                          <div className="bg-white/60 p-3 rounded">
                             <div className="flex items-center gap-2 mb-1">
                               <div className="w-5 h-5 rounded-full bg-black text-white text-xs font-bold flex items-center justify-center">1</div>
                               <span className="font-medium text-xs text-gray-800">Hook</span>
@@ -978,7 +978,7 @@ const PreviewResultsScreen: React.FC = () => {
                             </p>
                           </div>
                           
-                          <div className="bg-white/60 p-3 rounded-md">
+                          <div className="bg-white/60 p-3 rounded">
                             <div className="flex items-center gap-2 mb-1">
                               <div className="w-5 h-5 rounded-full bg-black text-white text-xs font-bold flex items-center justify-center">2</div>
                               <span className="font-medium text-xs text-gray-800">Content</span>
@@ -988,7 +988,7 @@ const PreviewResultsScreen: React.FC = () => {
                             </p>
                           </div>
                           
-                          <div className="bg-white/60 p-3 rounded-md">
+                          <div className="bg-white/60 p-3 rounded">
                             <div className="flex items-center gap-2 mb-1">
                               <div className="w-5 h-5 rounded-full bg-black text-white text-xs font-bold flex items-center justify-center">3</div>
                               <span className="font-medium text-xs text-gray-800">CTA</span>
