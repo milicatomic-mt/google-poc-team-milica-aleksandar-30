@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger, DialogClose } from '@/components/ui/dialog';
 import { X, ArrowRight, Package, Megaphone, Check } from 'lucide-react';
-import SimpleLoadingSpinner from '@/components/SimpleLoadingSpinner';
+import RibbedSphere from '@/components/RibbedSphere';
 import catalogSample from '@/assets/catalog-sample.jpg';
 import campaignSample from '@/assets/campaign-sample.jpg';
 
@@ -118,7 +118,7 @@ const WelcomeScreen = () => {
             <div className="flex items-center justify-center mb-4">
               {/* Sphere beside title */}
               <div className="h-10 w-10 mr-4">
-                <SimpleLoadingSpinner className="w-full h-full" />
+                <RibbedSphere className="w-full h-full" />
               </div>
               <h2 className="text-3xl font-semibold text-foreground">
                 <TypingText text="What would you like to try first?" />

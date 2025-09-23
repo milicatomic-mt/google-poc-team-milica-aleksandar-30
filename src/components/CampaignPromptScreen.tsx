@@ -3,7 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { ArrowRight, ArrowLeft, RefreshCw, X } from 'lucide-react';
-import SimpleLoadingSpinner from '@/components/SimpleLoadingSpinner';
+import RibbedSphere from '@/components/RibbedSphere';
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { toast } from 'sonner';
 
@@ -148,7 +148,7 @@ const CampaignPromptScreen = () => {
           <div className="absolute top-12 left-8">
             <div className="flex items-center">
               <div className="h-8 w-8 mr-3">
-                <SimpleLoadingSpinner className="w-full h-full" />
+                <RibbedSphere className="w-full h-full" />
               </div>
               <h1 className="text-lg font-semibold text-foreground">Image to Campaign</h1>
             </div>

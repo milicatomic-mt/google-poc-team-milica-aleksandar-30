@@ -6,7 +6,7 @@ import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, D
 import { toast } from 'sonner';
 import { QRCodeSVG } from 'qrcode.react';
 import { createQRSession, subscribeToSessionUpdates, QRSession } from '@/lib/qr-session';
-import SimpleLoadingSpinner from '@/components/SimpleLoadingSpinner';
+import RibbedSphere from '@/components/RibbedSphere';
 import { supabase } from '@/integrations/supabase/client';
 import sampleHeadphones from '@/assets/sample-headphones.jpg';
 import sampleBodyWash from '@/assets/sample-body-wash.png';
@@ -397,7 +397,7 @@ const UploadScreen: React.FC<UploadScreenProps> = ({ mode }) => {
           <div className="absolute top-12 left-8">
             <div className="flex items-center">
               <div className="h-8 w-8 mr-3">
-                <SimpleLoadingSpinner className="w-full h-full" />
+                <RibbedSphere className="w-full h-full" />
               </div>
               <h1 className="text-lg font-semibold text-foreground">{getModeTitle()}</h1>
             </div>

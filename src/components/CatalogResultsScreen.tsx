@@ -17,7 +17,7 @@ import {
 } from '@/components/ui/dialog';
 import { saveCatalogRequest, generateCatalog } from '@/lib/database';
 import type { CatalogEnrichmentRequest, CatalogEnrichmentResponse } from '@/types/api';
-import SimpleLoadingSpinner from '@/components/SimpleLoadingSpinner';
+import RibbedSphere from '@/components/RibbedSphere';
 
 const CatalogResultsScreen: React.FC = () => {
   const location = useLocation();
@@ -130,7 +130,7 @@ const CatalogResultsScreen: React.FC = () => {
             <div className="flex flex-col items-center justify-center space-y-6">
               {/* Animated Sphere - 200x200px */}
               <div className="w-[200px] h-[200px] animate-fade-in">
-                <SimpleLoadingSpinner className="w-full h-full" />
+                <RibbedSphere className="w-full h-full" />
               </div>
 
               {/* Loading Text */}
@@ -191,7 +191,7 @@ const CatalogResultsScreen: React.FC = () => {
           <div className="absolute top-12 left-8">
             <div className="flex items-center">
               <div className="h-8 w-8 mr-3">
-                <SimpleLoadingSpinner className="w-full h-full" />
+                <RibbedSphere className="w-full h-full" />
               </div>
               <h1 className="text-lg font-semibold text-foreground">Catalog Results</h1>
             </div>

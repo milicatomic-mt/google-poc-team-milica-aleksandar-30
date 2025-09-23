@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import SimpleLoadingSpinner from '@/components/SimpleLoadingSpinner';
+import RibbedSphere from '@/components/RibbedSphere';
 import { saveCampaignRequest, generateCampaign } from '@/lib/database';
 import type { CampaignCreationRequest } from '@/types/api';
 import { Progress } from '@/components/ui/progress';
@@ -96,7 +96,7 @@ const GenerateCampaignScreen = () => {
           <div className="flex flex-col items-center justify-center space-y-6">
             {/* Animated Sphere - 200x200px */}
             <div className="w-[200px] h-[200px] animate-fade-in">
-              <SimpleLoadingSpinner className="w-full h-full" />
+              <RibbedSphere className="w-full h-full" />
             </div>
 
             {/* Loading Text */}

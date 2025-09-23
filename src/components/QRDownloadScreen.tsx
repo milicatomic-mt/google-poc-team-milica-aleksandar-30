@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ArrowLeft, Download, Smartphone, Archive } from "lucide-react";
-import SimpleLoadingSpinner from "@/components/SimpleLoadingSpinner";
+import RibbedSphere from "@/components/RibbedSphere";
 import type { CampaignCreationResponse } from "@/types/api";
 import { createDownloadSession } from "@/lib/download-session";
 import JSZip from 'jszip';
@@ -157,7 +157,7 @@ const QRDownloadScreen = () => {
       <div className="min-h-screen bg-background flex items-center justify-center">
         <div className="text-center">
           <div className="h-16 w-16 mx-auto mb-4">
-            <SimpleLoadingSpinner className="w-full h-full" />
+            <RibbedSphere className="w-full h-full" />
           </div>
           <h2 className="text-2xl font-semibold mb-2">
             {isCreatingSession ? 'Creating Session...' : 'Preparing QR Codes...'}
@@ -184,7 +184,7 @@ const QRDownloadScreen = () => {
                 <ArrowLeft className="w-4 h-4" />
               </Button>
               <div className="h-8 w-8 mr-3">
-                <SimpleLoadingSpinner className="w-full h-full" />
+                <RibbedSphere className="w-full h-full" />
               </div>
               <h1 className="text-2xl font-semibold">Mobile Download</h1>
             </div>

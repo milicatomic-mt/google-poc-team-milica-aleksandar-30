@@ -14,7 +14,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import SimpleLoadingSpinner from '@/components/SimpleLoadingSpinner';
+import RibbedSphere from '@/components/RibbedSphere';
 
 const CatalogDetailsScreen = () => {
   const location = useLocation();
@@ -102,7 +102,7 @@ const CatalogDetailsScreen = () => {
           <div className="absolute top-12 left-8">
             <div className="flex items-center">
               <div className="h-8 w-8 mr-3">
-                <SimpleLoadingSpinner className="w-full h-full" />
+                <RibbedSphere className="w-full h-full" />
               </div>
               <h1 className="text-lg font-semibold text-foreground">Catalog Enrichment</h1>
             </div>
