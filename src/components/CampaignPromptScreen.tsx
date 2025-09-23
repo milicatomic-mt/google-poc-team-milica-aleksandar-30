@@ -48,7 +48,7 @@ const CampaignPromptScreen = () => {
         clearInterval(typeInterval);
         setIsTyping(false);
       }
-    }, 30); // Adjust speed here (lower = faster)
+    }, 15); // Faster typing speed
   };
 
   const handleRegenerate = async () => {
@@ -231,9 +231,9 @@ const CampaignPromptScreen = () => {
                  <div className="backdrop-blur-md rounded-xl border border-white shadow-sm h-40 p-4 relative" style={{backgroundColor: '#FFFFFF'}}>
                     <Textarea
                       ref={textareaRef}
-                      value={displayedPrompt}
+                      value={isTyping ? displayedPrompt + '|' : displayedPrompt}
                       onChange={(e) => {
-                        const newValue = e.target.value;
+                        const newValue = e.target.value.replace('|', '');
                         setPrompt(newValue);
                         setDisplayedPrompt(newValue);
                       }}
@@ -244,11 +244,6 @@ const CampaignPromptScreen = () => {
                         // Remove auto-height adjustment since we want fixed height
                       }}
                     />
-                    
-                    {/* Typing cursor */}
-                    {isTyping && (
-                      <span className="absolute text-gray-800 text-base pointer-events-none animate-pulse">|</span>
-                    )}
                    
                    {/* Wave loading animation overlay */}
                    {isRegenerating && (

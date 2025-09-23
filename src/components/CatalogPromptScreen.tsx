@@ -81,7 +81,7 @@ const CatalogPromptScreen = () => {
         clearInterval(typeInterval);
         setIsTyping(false);
       }
-    }, 30); // Adjust speed here (lower = faster)
+    }, 15); // Faster typing speed
   };
 
   const handleRegenerate = async () => {
@@ -264,20 +264,15 @@ const CatalogPromptScreen = () => {
                   <div className="backdrop-blur-md rounded-xl border border-white shadow-sm h-40 p-4 relative" style={{backgroundColor: '#FFFFFF'}}>
                     <Textarea
                       ref={textareaRef}
-                      value={displayedPrompt}
+                      value={isTyping ? displayedPrompt + '|' : displayedPrompt}
                       onChange={(e) => {
-                        const newValue = e.target.value;
+                        const newValue = e.target.value.replace('|', '');
                         setPrompt(newValue);
                         setDisplayedPrompt(newValue);
                       }}
                       placeholder="Enter your product description..."
                       className="h-full w-full text-base resize-none bg-transparent border-0 p-0 focus-visible:ring-0 leading-relaxed text-gray-800 placeholder:text-gray-500 pr-28"
                     />
-                    
-                    {/* Typing cursor */}
-                    {isTyping && (
-                      <span className="absolute text-gray-800 text-base pointer-events-none animate-pulse">|</span>
-                    )}
                     
                     {/* Wave loading animation overlay */}
                     {isRegenerating && (
