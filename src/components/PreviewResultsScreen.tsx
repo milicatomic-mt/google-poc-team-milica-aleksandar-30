@@ -640,10 +640,14 @@ const PreviewResultsScreen: React.FC = () => {
         {/* Header */}
         <header className="container-padding pt-12 relative">
           <div className="w-full flex justify-between items-center px-8">
-            {/* Left - Sphere Animation */}
-            <div className="flex items-center">
-              <div className="w-20 h-20">
+            {/* Left - Sphere Animation with Text */}
+            <div className="flex items-center gap-3">
+              <div className="w-12 h-12">
                 <RibbedSphere className="w-full h-full" />
+              </div>
+              <div className="text-sm text-foreground">
+                <div>Bring Your Products</div>
+                <div>to Life</div>
               </div>
             </div>
             
