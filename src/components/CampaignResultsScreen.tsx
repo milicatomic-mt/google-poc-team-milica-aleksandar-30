@@ -8,7 +8,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
-import { Share } from "lucide-react";
+import { Share, Play } from "lucide-react";
 import { extractColorsFromImage, type ExtractedColors } from "@/lib/color-extraction";
 
 const CampaignResultsScreen = () => {
@@ -201,7 +201,7 @@ const CampaignResultsScreen = () => {
                           {/* Video Controls Overlay */}
                           <div className="absolute inset-0 flex items-center justify-center">
                             <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm">
-                              <div className="w-0 h-0 border-l-6 border-r-0 border-t-4 border-b-4 border-l-white border-t-transparent border-b-transparent ml-1"></div>
+                              <Play className="w-6 h-6 text-white" />
                             </div>
                           </div>
                           
@@ -486,12 +486,7 @@ const CampaignResultsScreen = () => {
                       {/* Call to Action */}
                       <div className="text-center mb-8">
                         <div 
-                          className="text-white rounded-lg px-8 py-4 inline-block shadow-lg transform hover:scale-105 transition-transform cursor-pointer"
-                          style={{
-                            background: extractedColors 
-                              ? `linear-gradient(to right, ${extractedColors.primary}, ${extractedColors.accent})` 
-                              : 'linear-gradient(to right, #3b82f6, #8b5cf6)'
-                          }}
+                          className="text-white rounded-lg px-8 py-4 inline-block shadow-lg transform hover:scale-105 transition-transform cursor-pointer bg-black hover:bg-gray-800"
                         >
                           <span className="font-semibold">
                             {campaignData.banner_ads[0]?.cta || 'Shop Now'}
@@ -598,11 +593,7 @@ const CampaignResultsScreen = () => {
                             ></div>
                             <Button 
                               size="sm" 
-                              className="text-xs font-semibold px-3 py-1.5"
-                              style={{
-                                backgroundColor: extractedColors?.primary || undefined,
-                                borderColor: extractedColors?.primary || undefined
-                              }}
+                              className="text-xs font-semibold px-3 py-1.5 bg-black text-white hover:bg-gray-800"
                             >
                               {campaignData.banner_ads[0]?.cta || 'Learn More'}
                             </Button>
@@ -634,7 +625,12 @@ const CampaignResultsScreen = () => {
                       <div className="overflow-hidden rounded-xl border-2 border-border bg-gradient-to-r from-background to-muted/20 shadow-lg" style={{ width: '728px', height: '90px', minWidth: '728px' }}>
                         <div className="relative h-full flex items-center">
                           <div className="flex items-center gap-4 flex-1 px-6">
-                            <div className="w-2 h-12 bg-primary rounded-full"></div>
+                            <div 
+                              className="w-2 h-12 rounded-full"
+                              style={{
+                                backgroundColor: extractedColors?.primary || 'hsl(var(--primary))'
+                              }}
+                            ></div>
                             {uploadedImageUrl && (
                               <div className="w-16 h-16 rounded-lg overflow-hidden shadow-md">
                                 <img 
@@ -650,7 +646,7 @@ const CampaignResultsScreen = () => {
                             </div>
                           </div>
                           <div className="px-6">
-                            <Button className="text-xs font-semibold px-6 py-2 bg-primary hover:bg-primary/90">
+                            <Button className="text-xs font-semibold px-6 py-2 bg-black text-white hover:bg-gray-800">
                               {campaignData.banner_ads[0]?.cta || 'Get Started'}
                             </Button>
                           </div>
@@ -681,14 +677,19 @@ const CampaignResultsScreen = () => {
                         {/* Content */}
                         <div className="flex-1 p-4 flex flex-col">
                           <div className="text-center space-y-3">
-                            <div className="w-8 h-1 bg-primary rounded-full mx-auto"></div>
+                            <div 
+                              className="w-8 h-1 rounded-full mx-auto"
+                              style={{
+                                backgroundColor: extractedColors?.primary || 'hsl(var(--primary))'
+                              }}
+                            ></div>
                             <h5 className="text-sm font-bold text-foreground leading-tight">{campaignData.banner_ads[0]?.headline || 'Your Brand'}</h5>
                           </div>
                           <div className="flex-1 flex flex-col justify-end space-y-4 text-center">
                             <p className="text-xs text-muted-foreground font-medium leading-relaxed">{location.state?.campaignPrompt?.slice(0, 120) || 'Discover innovative solutions that transform your business and drive exceptional results'}...</p>
                             <div className="space-y-3">
                               <div className="w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent"></div>
-                              <Button size="sm" className="text-xs font-semibold w-full bg-primary hover:bg-primary/90">
+                              <Button size="sm" className="text-xs font-semibold w-full bg-black text-white hover:bg-gray-800">
                                 {campaignData.banner_ads[0]?.cta || 'Explore'}
                               </Button>
                             </div>
@@ -708,7 +709,12 @@ const CampaignResultsScreen = () => {
                     <div className="overflow-hidden rounded-lg border-2 border-border bg-gradient-to-r from-background to-muted/20 shadow-lg" style={{ width: '320px', height: '50px' }}>
                       <div className="relative h-full flex items-center">
                         <div className="flex items-center gap-2 flex-1 px-3 min-w-0">
-                          <div className="w-1 h-6 bg-primary rounded-full"></div>
+                          <div 
+                            className="w-1 h-6 rounded-full"
+                            style={{
+                              backgroundColor: extractedColors?.primary || 'hsl(var(--primary))'
+                            }}
+                          ></div>
                           {uploadedImageUrl && (
                             <div className="w-8 h-8 rounded overflow-hidden">
                               <img 
@@ -721,7 +727,7 @@ const CampaignResultsScreen = () => {
                           <h5 className="text-xs font-bold text-foreground truncate">{campaignData.banner_ads[0]?.headline || 'Transform Your Brand'}</h5>
                         </div>
                         <div className="px-3">
-                          <Button size="sm" className="text-xs font-semibold px-3 py-1 bg-primary hover:bg-primary/90 shrink-0">
+                          <Button size="sm" className="text-xs font-semibold px-3 py-1 bg-black text-white hover:bg-gray-800 shrink-0">
                             {campaignData.banner_ads[0]?.cta || 'Try Now'}
                           </Button>
                         </div>
@@ -752,14 +758,19 @@ const CampaignResultsScreen = () => {
                         {/* Content */}
                         <div className="flex-1 p-6 flex flex-col">
                           <div className="text-center space-y-4">
-                            <div className="w-12 h-1 bg-primary rounded-full mx-auto"></div>
+                            <div 
+                              className="w-12 h-1 rounded-full mx-auto"
+                              style={{
+                                backgroundColor: extractedColors?.primary || 'hsl(var(--primary))'
+                              }}
+                            ></div>
                             <h5 className="text-lg font-bold text-foreground leading-tight">{campaignData.banner_ads[0]?.headline || 'Transform Your Brand Experience'}</h5>
                           </div>
                           <div className="flex-1 flex flex-col justify-end space-y-6 text-center">
                             <p className="text-sm text-muted-foreground font-medium leading-relaxed">{location.state?.campaignPrompt || 'Discover innovative solutions that transform your business and drive exceptional results for your customers.'}</p>
                             <div className="space-y-4">
                               <div className="w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent"></div>
-                              <Button className="text-sm font-semibold px-8 py-3 bg-primary hover:bg-primary/90">
+                              <Button className="text-sm font-semibold px-8 py-3 bg-black text-white hover:bg-gray-800">
                                 {campaignData.banner_ads[0]?.cta || 'Get Started Today'}
                               </Button>
                               <p className="text-xs text-muted-foreground font-medium">No commitment required</p>
@@ -829,11 +840,7 @@ const CampaignResultsScreen = () => {
                           <div className="flex flex-col sm:flex-row gap-4">
                             <Button 
                               size="lg" 
-                              className="text-lg px-8 py-4 shadow-lg"
-                              style={{
-                                backgroundColor: extractedColors?.primary || undefined,
-                                borderColor: extractedColors?.primary || undefined
-                              }}
+                              className="text-lg px-8 py-4 shadow-lg bg-black text-white hover:bg-gray-800"
                             >
                               {campaignData.landing_page_concept.cta}
                             </Button>
@@ -874,7 +881,12 @@ const CampaignResultsScreen = () => {
                             </div>
                           ) : (
                             <div className="bg-gradient-to-br from-muted/50 to-muted/30 rounded-2xl border-2 border-dashed border-border p-16 text-center">
-                              <div className="w-16 h-16 mx-auto mb-4 bg-primary/10 rounded-lg flex items-center justify-center">
+                              <div 
+                                className="w-16 h-16 mx-auto mb-4 rounded-lg flex items-center justify-center"
+                                style={{
+                                  backgroundColor: extractedColors ? `${extractedColors.primary}15` : 'hsl(var(--primary) / 0.1)'
+                                }}
+                              >
                                 <span className="text-2xl">📱</span>
                               </div>
                               <p className="text-muted-foreground">Product Image</p>
@@ -897,7 +909,12 @@ const CampaignResultsScreen = () => {
                         <div className="grid md:grid-cols-3 gap-8">
                           {/* Feature 1 */}
                           <div className="text-center space-y-4 p-6 rounded-xl bg-background border border-border shadow-sm hover:shadow-md transition-shadow">
-                            <div className="w-12 h-12 mx-auto bg-primary/10 rounded-lg flex items-center justify-center">
+                            <div 
+                              className="w-12 h-12 mx-auto rounded-lg flex items-center justify-center"
+                              style={{
+                                backgroundColor: extractedColors ? `${extractedColors.primary}15` : 'hsl(var(--primary) / 0.1)'
+                              }}
+                            >
                               <span className="text-2xl">⚡</span>
                             </div>
                             <h3 className="text-xl font-semibold text-foreground">Lightning Fast</h3>
@@ -908,7 +925,12 @@ const CampaignResultsScreen = () => {
                           
                           {/* Feature 2 */}
                           <div className="text-center space-y-4 p-6 rounded-xl bg-background border border-border shadow-sm hover:shadow-md transition-shadow">
-                            <div className="w-12 h-12 mx-auto bg-primary/10 rounded-lg flex items-center justify-center">
+                            <div 
+                              className="w-12 h-12 mx-auto rounded-lg flex items-center justify-center"
+                              style={{
+                                backgroundColor: extractedColors ? `${extractedColors.secondary}15` : 'hsl(var(--primary) / 0.1)'
+                              }}
+                            >
                               <span className="text-2xl">🛡️</span>
                             </div>
                             <h3 className="text-xl font-semibold text-foreground">Secure & Reliable</h3>
@@ -919,7 +941,12 @@ const CampaignResultsScreen = () => {
                           
                           {/* Feature 3 */}
                           <div className="text-center space-y-4 p-6 rounded-xl bg-background border border-border shadow-sm hover:shadow-md transition-shadow">
-                            <div className="w-12 h-12 mx-auto bg-primary/10 rounded-lg flex items-center justify-center">
+                            <div 
+                              className="w-12 h-12 mx-auto rounded-lg flex items-center justify-center"
+                              style={{
+                                backgroundColor: extractedColors ? `${extractedColors.accent}15` : 'hsl(var(--primary) / 0.1)'
+                              }}
+                            >
                               <span className="text-2xl">💎</span>
                             </div>
                             <h3 className="text-xl font-semibold text-foreground">Premium Quality</h3>
@@ -944,11 +971,7 @@ const CampaignResultsScreen = () => {
                           <div className="flex flex-col sm:flex-row gap-4 justify-center">
                             <Button 
                               size="lg" 
-                              className="text-lg px-8 py-4 shadow-lg"
-                              style={{
-                                backgroundColor: extractedColors?.primary || undefined,
-                                borderColor: extractedColors?.primary || undefined
-                              }}
+                              className="text-lg px-8 py-4 shadow-lg bg-black text-white hover:bg-gray-800"
                             >
                               {campaignData.landing_page_concept.cta}
                             </Button>
