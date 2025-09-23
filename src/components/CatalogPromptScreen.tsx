@@ -214,7 +214,7 @@ const CatalogPromptScreen = () => {
               Catalog Enrichment
             </h1>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              We've created a product description from your image. You can use it, edit it, or add more details.
+              We've created a product description from your image. You can use it, edit it, or add more details<span className="animate-pulse text-primary">|</span>
             </p>
           </div>
 

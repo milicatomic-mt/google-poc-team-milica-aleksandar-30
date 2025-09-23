@@ -180,7 +180,7 @@ const CampaignPromptScreen = () => {
             Turn Your Image Into a Campaign
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            We've generated a prompt from your photo. You can use it as is, tweak it, or start fresh.
+            We've generated a prompt from your photo. You can use it as is, tweak it, or start fresh<span className="animate-pulse text-primary">|</span>
           </p>
         </div>
 
