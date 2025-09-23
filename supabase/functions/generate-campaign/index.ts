@@ -1,10 +1,7 @@
 import "https://deno.land/x/xhr@0.1.0/mod.ts";
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.57.4';
-import { HfInference } from 'https://esm.sh/@huggingface/inference@2.3.2';
 
 const geminiApiKey = Deno.env.get('GEMINI_API_KEY');
-const hfToken = Deno.env.get('HUGGING_FACE_ACCESS_TOKEN');
-const openaiApiKey = Deno.env.get('OPENAI_API_KEY');
 const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
 const supabaseServiceKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
 
@@ -110,89 +107,12 @@ Create a comprehensive marketing campaign with video scripts for TikTok, Instagr
     
     const generatedContent = JSON.parse(responseText);
 
-    console.log('Generated text content successfully, now generating related images...');
+    console.log('Generated text content successfully with Gemini');
 
-    // Generate related images based on the campaign content
+    // No AI image generation needed - using uploaded image only
     const generatedImages = [];
-    
-    if (hfToken) {
-      try {
-        const cleanToken = (hfToken || '').trim();
-        if (!cleanToken.startsWith('hf_')) {
-          throw new Error('Invalid Hugging Face token format. Token must start with "hf_"');
-        }
-        const hf = new HfInference(cleanToken);
-        
-        const imagePrompts = [
-          `Professional marketing image for: ${campaignPrompt}. High quality, commercial style, modern design, clean background`,
-          `${generatedContent.banner_ads?.[0]?.headline || campaignPrompt}. Professional product photography style, minimalist design`,
-          `Creative marketing visual for: ${generatedContent.landing_page_concept?.hero_text || campaignPrompt}. Professional, commercial style`
-        ];
 
-        console.log('Generating images with prompts:', imagePrompts);
-
-        // Generate images sequentially to avoid rate limits
-        for (let i = 0; i < imagePrompts.length; i++) {
-          try {
-            console.log(`Generating image ${i + 1}/${imagePrompts.length}`);
-            
-            const imageBlob = await hf.textToImage({
-              inputs: imagePrompts[i],
-              model: 'black-forest-labs/FLUX.1-schnell',
-            });
-
-            // Convert blob to array buffer for upload
-            const arrayBuffer = await imageBlob.arrayBuffer();
-            const uint8Array = new Uint8Array(arrayBuffer);
-            
-            // Upload to Supabase storage
-            const fileName = `campaign-${campaignId}-generated-${i + 1}-${Date.now()}.png`;
-            const { data: uploadData, error: uploadError } = await supabase.storage
-              .from('ai-marketing')
-              .upload(fileName, uint8Array, {
-                contentType: 'image/png',
-                cacheControl: '3600'
-              });
-
-            if (uploadError) {
-              console.error('Failed to upload generated image:', uploadError);
-              continue; // Skip this image but continue with others
-            }
-
-            // Get public URL
-            const { data: { publicUrl } } = supabase.storage
-              .from('ai-marketing')
-              .getPublicUrl(fileName);
-
-            generatedImages.push({
-              url: publicUrl,
-              prompt: imagePrompts[i],
-              filename: fileName,
-              generated_at: new Date().toISOString()
-            });
-
-            console.log(`Successfully generated and uploaded image ${i + 1}`);
-            
-            // Add small delay between generations to avoid rate limits
-            if (i < imagePrompts.length - 1) {
-              await new Promise(resolve => setTimeout(resolve, 1500));
-            }
-            
-          } catch (error) {
-            console.error(`Failed to generate image ${i + 1}:`, error);
-            // Continue with other images even if one fails
-          }
-        }
-
-        console.log(`Successfully generated ${generatedImages.length} out of ${imagePrompts.length} images`);
-      } catch (error) {
-        console.error('Error in image generation process:', error);
-      }
-    } else {
-      console.warn('Hugging Face token not found, skipping image generation');
-    }
-  // Update the campaign_results table with the generated content and images
-    // Update the campaign_results table with the generated content and images
+    // Update the campaign_results table with the generated content
     const { error: updateError } = await supabase
       .from('campaign_results')
       .update({ 
@@ -212,7 +132,7 @@ Create a comprehensive marketing campaign with video scripts for TikTok, Instagr
       success: true, 
       campaign: generatedContent,
       generatedImages: generatedImages.length,
-      message: `Generated campaign content with ${generatedImages.length} related images`
+      message: `Generated campaign content successfully using Gemini AI`
     }), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     });
