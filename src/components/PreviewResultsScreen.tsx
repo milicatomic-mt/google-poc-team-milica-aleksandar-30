@@ -768,7 +768,7 @@ const PreviewResultsScreen: React.FC = () => {
                         </div>
 
                         {/* Hero Section Screenshot */}
-                        <div className="px-3 py-4 flex gap-3 items-center">
+                        <div className="px-3 py-4 flex gap-2 items-center">
                           <div className="flex-1 space-y-2">
                             {/* Badge */}
                             <div className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-blue-100 text-blue-700">
@@ -793,8 +793,8 @@ const PreviewResultsScreen: React.FC = () => {
                             </div>
                           </div>
                           
-                          {/* Hero Image */}
-                          <div className="w-16 h-16 bg-white rounded-lg shadow-lg p-1 flex-shrink-0">
+                          {/* Hero Image - Much Bigger */}
+                          <div className="w-20 h-20 bg-white rounded-lg shadow-lg p-1 flex-shrink-0">
                             <div className="w-full h-full bg-gray-100 rounded overflow-hidden">
                               {uploadedImage && <img src={uploadedImage} alt="Product" className="w-full h-full object-cover" />}
                             </div>
