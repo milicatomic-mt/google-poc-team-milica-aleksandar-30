@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Upload, CheckCircle, AlertCircle, X } from 'lucide-react';
 import { toast } from 'sonner';
 import { getQRSession, updateQRSession, uploadImageToSession } from '@/lib/qr-session';
-import RibbedSphere from '@/components/RibbedSphere';
+import SimpleLoadingSpinner from '@/components/SimpleLoadingSpinner';
 
 const MobileUploadScreen: React.FC = () => {
   const [searchParams] = useSearchParams();
@@ -127,7 +127,7 @@ const MobileUploadScreen: React.FC = () => {
         <div className="container mx-auto px-4 py-3 flex items-center justify-between">
           <div className="flex items-center space-x-2">
             <div className="h-6 w-6">
-              <RibbedSphere className="w-full h-full" />
+              <SimpleLoadingSpinner className="w-full h-full" />
             </div>
             <span className="font-semibold text-foreground">Upload from Mobile</span>
           </div>

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, ArrowLeft, X, Check } from 'lucide-react';
-import RibbedSphere from '@/components/RibbedSphere';
+import SimpleLoadingSpinner from '@/components/SimpleLoadingSpinner';
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 
 const TargetAudienceScreen = () => {
@@ -60,7 +60,7 @@ const TargetAudienceScreen = () => {
           <div className="absolute top-12 left-8">
             <div className="flex items-center">
               <div className="h-8 w-8 mr-3">
-                <RibbedSphere className="w-full h-full" />
+                <SimpleLoadingSpinner className="w-full h-full" />
               </div>
               <h1 className="text-lg font-semibold text-foreground">Image to Campaign</h1>
             </div>

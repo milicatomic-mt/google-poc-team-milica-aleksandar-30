@@ -3,7 +3,7 @@ import { useSearchParams, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Download, CheckCircle, AlertCircle } from "lucide-react";
-import RibbedSphere from "@/components/RibbedSphere";
+import SimpleLoadingSpinner from "@/components/SimpleLoadingSpinner";
 import type { CampaignCreationResponse } from "@/types/api";
 import { getDownloadSession } from "@/lib/download-session";
 import JSZip from 'jszip';
@@ -206,7 +206,7 @@ const DownloadContentScreen = () => {
         <CardContent className="space-y-4">
           <div className="flex justify-center">
             <div className="h-12 w-12">
-              <RibbedSphere className="w-full h-full" />
+              <SimpleLoadingSpinner className="w-full h-full" />
             </div>
           </div>
           <p className="text-muted-foreground text-center">

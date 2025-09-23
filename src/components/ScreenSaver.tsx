@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { HelpCircle } from 'lucide-react';
-import RibbedSphere from '@/components/RibbedSphere';
+import SimpleLoadingSpinner from '@/components/SimpleLoadingSpinner';
 
 // Import card images
 import campaignExample1 from '@/assets/campaign-example-1.webp';
@@ -182,7 +182,7 @@ const ScreenSaver = () => {
           <div className="mb-8">
             <div className="flex flex-col items-center justify-center mb-3">
               <div className="h-12 w-12 sm:h-16 sm:w-16 md:h-20 md:w-20 lg:h-24 lg:w-24 xl:h-28 xl:w-28 mb-6 sm:mb-7 md:mb-8">
-                <RibbedSphere className="w-full h-full" />
+                <SimpleLoadingSpinner className="w-full h-full" />
               </div>
               <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold">
                 <span className="text-black">Bring Your Products to </span><span className="text-indigo-600">Life</span>

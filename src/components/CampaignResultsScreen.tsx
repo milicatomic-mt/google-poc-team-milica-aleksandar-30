@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
-import RibbedSphere from '@/components/RibbedSphere';
+import SimpleLoadingSpinner from '@/components/SimpleLoadingSpinner';
 import type { CampaignCreationResponse } from "@/types/api";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -126,7 +126,7 @@ const CampaignResultsScreen = () => {
       <div className="min-h-screen bg-background flex items-center justify-center">
         <div className="text-center">
           <div className="h-16 w-16 mx-auto mb-3">
-            <RibbedSphere className="w-full h-full" />
+            <SimpleLoadingSpinner className="w-full h-full" />
           </div>
           <h2 className="text-2xl font-semibold mb-2">Generating Your Campaign...</h2>
           <p className="text-muted-foreground">Please wait while AI creates your marketing content</p>
@@ -155,7 +155,7 @@ const CampaignResultsScreen = () => {
           <div className="flex items-center justify-between">
             <div className="flex items-center">
               <div className="h-8 w-8 mr-3">
-                <RibbedSphere className="w-full h-full" />
+                <SimpleLoadingSpinner className="w-full h-full" />
               </div>
               <h1 className="text-2xl font-semibold">Campaign Results</h1>
             </div>
