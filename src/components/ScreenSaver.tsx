@@ -226,7 +226,7 @@ const ScreenSaver = () => {
               <div
                 key={card.id}
                 className={`
-                  ${card.height} flex-1 rounded-3xl overflow-hidden border border-gray-200/50 bg-white p-4
+                  ${card.height} flex-1 rounded-3xl overflow-hidden border-[0.5px] border-gray-200/50 bg-white p-4
                   transform transition-all duration-700 ease-out
                   ${cardsVisible 
                     ? 'translate-y-0 opacity-100' 
