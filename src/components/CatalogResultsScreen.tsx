@@ -230,7 +230,7 @@ const CatalogResultsScreen: React.FC = () => {
                       {catalogResults?.product_title}
                     </h3>
                     {catalogData.category && (
-                      <Badge variant="default" className="mb-2 bg-primary text-primary-foreground">
+                      <Badge variant="outline" className="mb-2 border-primary text-primary">
                         {catalogData.category}
                       </Badge>
                     )}
@@ -330,7 +330,7 @@ const CatalogResultsScreen: React.FC = () => {
                     </div>
                     <div className="flex flex-wrap gap-1">
                       {catalogResults?.seo_metadata.keywords.map((keyword, index) => (
-                        <Badge key={index} variant="default" className="text-xs bg-primary text-primary-foreground">
+                        <Badge key={index} variant="outline" className="text-xs border-primary text-primary">
                           {keyword}
                         </Badge>
                       ))}
@@ -354,7 +354,7 @@ const CatalogResultsScreen: React.FC = () => {
                     </div>
                     <div className="flex flex-wrap gap-1">
                       {catalogResults?.seo_metadata.tags.map((tag, index) => (
-                        <Badge key={index} variant="default" className="text-xs bg-primary text-primary-foreground">
+                        <Badge key={index} variant="outline" className="text-xs border-primary text-primary">
                           {tag}
                         </Badge>
                       ))}
