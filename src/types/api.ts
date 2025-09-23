@@ -42,4 +42,10 @@ export type CampaignCreationResponse = {
     sub_text: string;   // subheading or description
     cta: string;        // call-to-action button
   };
+  generated_images?: {
+    url: string;        // public URL of generated image
+    prompt: string;     // prompt used to generate the image
+    filename: string;   // filename in storage
+    generated_at: string; // timestamp of generation
+  }[];
 };

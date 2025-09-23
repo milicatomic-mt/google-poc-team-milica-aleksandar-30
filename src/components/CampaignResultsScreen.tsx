@@ -172,6 +172,45 @@ const CampaignResultsScreen = () => {
       <div className="container mx-auto px-4 py-8 max-w-6xl">
         <ScrollArea className="h-[calc(100vh-200px)]">
           <div className="grid gap-6">
+            
+            {/* Generated Images Section */}
+            {campaignData.generated_images && campaignData.generated_images.length > 0 && (
+              <Card>
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2">
+                    🎨 AI Generated Related Images
+                    <Badge variant="secondary">{campaignData.generated_images.length} images</Badge>
+                  </CardTitle>
+                  <p className="text-sm text-muted-foreground">AI-generated images related to your campaign</p>
+                </CardHeader>
+                <CardContent>
+                  <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+                    {campaignData.generated_images.map((img, index) => (
+                      <div key={index} className="space-y-3">
+                        <div className="aspect-square bg-gray-100 rounded-xl overflow-hidden shadow-md border-2 border-border">
+                          <img 
+                            src={img.url} 
+                            alt={`Generated image ${index + 1}`}
+                            className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                            onError={(e) => {
+                              e.currentTarget.src = uploadedImageUrl || '';
+                            }}
+                          />
+                        </div>
+                        <div className="space-y-1">
+                          <p className="text-sm font-medium">Generated Image {index + 1}</p>
+                          <p className="text-xs text-muted-foreground line-clamp-2">{img.prompt}</p>
+                          <p className="text-xs text-muted-foreground">
+                            {new Date(img.generated_at).toLocaleDateString()}
+                          </p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            )}
+
             {/* Video Script Designs */}
             <Card>
               <CardHeader>

@@ -78,97 +78,130 @@ const PreviewResultsScreen: React.FC = () => {
   const renderModalContent = () => {
     if (!activeCampaignResults || !selectedSection) return null;
 
+    // Get generated images from campaign results
+    const generatedImages = activeCampaignResults.generated_images || [];
+
     switch (selectedSection) {
       case 'Banner Ads':
         return (
           <div className="space-y-8">
-            {/* Medium Rectangle 300x250 - Most Popular */}
-            <div className="space-y-3">
-              <div className="flex items-center gap-2">
-                <h4 className="font-semibold">Medium Rectangle</h4>
-                <Badge variant="outline" className="text-xs">300×250px</Badge>
-                <Badge className="text-xs">Most Popular</Badge>
-              </div>
-              <div className="overflow-hidden rounded-xl border-2 border-border bg-gradient-to-br from-background to-muted/20 shadow-lg" style={{ width: '300px', height: '250px' }}>
-                <div className="relative h-full flex">
-                  {/* Left side - Content */}
-                  <div className="relative flex-1 p-4 flex flex-col justify-between bg-gradient-to-br from-background/95 to-muted/40">
-                    <div className="space-y-2">
-                      <h5 className="text-sm font-bold text-foreground leading-tight">{activeCampaignResults.banner_ads?.[0]?.headline || 'Transform Your Brand'}</h5>
-                      <p className="text-xs text-muted-foreground font-medium leading-relaxed">Discover innovative solutions</p>
+            {/* Generated Images Section */}
+            {generatedImages.length > 0 && (
+              <div className="space-y-4">
+                <h4 className="font-semibold text-lg">AI Generated Related Images</h4>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  {generatedImages.map((img, index) => (
+                    <div key={index} className="space-y-2">
+                      <div className="aspect-square bg-gray-100 rounded-lg overflow-hidden">
+                        <img 
+                          src={img.url} 
+                          alt={`Generated image ${index + 1}`}
+                          className="w-full h-full object-cover"
+                          onError={(e) => {
+                            e.currentTarget.src = uploadedImage || '';
+                          }}
+                        />
+                      </div>
+                      <p className="text-xs text-muted-foreground truncate">{img.prompt}</p>
                     </div>
-                    <div className="space-y-2">
-                      <div className="w-8 h-1 rounded-full bg-primary"></div>
-                      <Button size="sm" className="text-xs font-semibold px-3 py-1.5 bg-black text-white hover:bg-gray-800">
-                        {activeCampaignResults.banner_ads?.[0]?.cta || 'Learn More'}
-                      </Button>
-                    </div>
-                  </div>
-                  {/* Right side - Image */}
-                  {uploadedImage && (
-                    <div className="w-24 relative">
-                      <img src={uploadedImage} alt="Campaign product" className="w-full h-full object-cover" />
-                      <div className="absolute inset-0 bg-gradient-to-l from-transparent to-background/10"></div>
-                    </div>
-                  )}
+                  ))}
                 </div>
+                <div className="border-t pt-6"></div>
               </div>
-            </div>
+            )}
 
-            {/* Leaderboard 728x90 - Header/Footer */}
-            <div className="space-y-3">
-              <div className="flex items-center gap-2">
-                <h4 className="font-semibold">Leaderboard</h4>
-                <Badge variant="outline" className="text-xs">728×90px</Badge>
-                <Badge variant="secondary" className="text-xs">Header/Footer</Badge>
-              </div>
-              <div className="overflow-x-auto">
-                <div className="overflow-hidden rounded-xl border-2 border-border bg-gradient-to-r from-background to-muted/20 shadow-lg" style={{ width: '728px', height: '90px', minWidth: '728px' }}>
-                  <div className="relative h-full flex items-center">
-                    <div className="flex items-center gap-4 flex-1 px-6">
-                      <div className="w-2 h-12 rounded-full bg-primary"></div>
-                      {uploadedImage && (
-                        <div className="w-16 h-16 rounded-lg overflow-hidden shadow-md">
-                          <img src={uploadedImage} alt="Campaign product" className="w-full h-full object-cover" />
-                        </div>
-                      )}
-                      <div className="space-y-1 flex-1">
-                        <h5 className="text-base font-bold text-foreground">{activeCampaignResults.banner_ads?.[0]?.headline || 'Transform Your Brand Today'}</h5>
-                        <p className="text-xs text-muted-foreground font-medium truncate max-w-md">Discover innovative solutions that drive results</p>
+            {/* Banner Ad Formats */}
+            <div className="space-y-6">
+              <h4 className="font-semibold text-lg">Banner Ad Formats</h4>
+              
+              {/* Medium Rectangle 300x250 - Most Popular */}
+              <div className="space-y-3">
+                <div className="flex items-center gap-2">
+                  <h5 className="font-semibold">Medium Rectangle</h5>
+                  <Badge variant="outline" className="text-xs">300×250px</Badge>
+                  <Badge className="text-xs">Most Popular</Badge>
+                </div>
+                <div className="overflow-hidden rounded-xl border-2 border-border bg-gradient-to-br from-background to-muted/20 shadow-lg" style={{ width: '300px', height: '250px' }}>
+                  <div className="relative h-full flex">
+                    {/* Left side - Content */}
+                    <div className="relative flex-1 p-4 flex flex-col justify-between bg-gradient-to-br from-background/95 to-muted/40">
+                      <div className="space-y-2">
+                        <h6 className="text-sm font-bold text-foreground leading-tight">{activeCampaignResults.banner_ads?.[0]?.headline || 'Transform Your Brand'}</h6>
+                        <p className="text-xs text-muted-foreground font-medium leading-relaxed">Discover innovative solutions</p>
+                      </div>
+                      <div className="space-y-2">
+                        <div className="w-8 h-1 rounded-full bg-primary"></div>
+                        <Button size="sm" className="text-xs font-semibold px-3 py-1.5 bg-black text-white hover:bg-gray-800">
+                          {activeCampaignResults.banner_ads?.[0]?.cta || 'Learn More'}
+                        </Button>
                       </div>
                     </div>
-                    <div className="px-6">
-                      <Button className="text-xs font-semibold px-6 py-2 bg-black text-white hover:bg-gray-800">
-                        {activeCampaignResults.banner_ads?.[0]?.cta || 'Get Started'}
-                      </Button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Mobile Leaderboard 320x50 - Mobile Optimized */}
-            <div className="space-y-3">
-              <div className="flex items-center gap-2">
-                <h4 className="font-semibold">Mobile Leaderboard</h4>
-                <Badge variant="outline" className="text-xs">320×50px</Badge>
-                <Badge variant="secondary" className="text-xs">Mobile</Badge>
-              </div>
-              <div className="overflow-hidden rounded-lg border-2 border-border bg-gradient-to-r from-background to-muted/20 shadow-lg" style={{ width: '320px', height: '50px' }}>
-                <div className="relative h-full flex items-center">
-                  <div className="flex items-center gap-2 flex-1 px-3 min-w-0">
-                    <div className="w-1 h-6 rounded-full bg-primary"></div>
-                    {uploadedImage && (
-                      <div className="w-8 h-8 rounded overflow-hidden">
-                        <img src={uploadedImage} alt="Campaign product" className="w-full h-full object-cover" />
+                    {/* Right side - Image */}
+                    {(generatedImages[0]?.url || uploadedImage) && (
+                      <div className="w-24 relative">
+                        <img src={generatedImages[0]?.url || uploadedImage} alt="Campaign product" className="w-full h-full object-cover" />
+                        <div className="absolute inset-0 bg-gradient-to-l from-transparent to-background/10"></div>
                       </div>
                     )}
-                    <h5 className="text-xs font-bold text-foreground truncate">{activeCampaignResults.banner_ads?.[0]?.headline || 'Transform Your Brand'}</h5>
                   </div>
-                  <div className="px-3">
-                    <Button size="sm" className="text-xs font-semibold px-3 py-1 bg-black text-white hover:bg-gray-800 shrink-0">
-                      {activeCampaignResults.banner_ads?.[0]?.cta || 'Try Now'}
-                    </Button>
+                </div>
+              </div>
+
+              {/* Leaderboard 728x90 - Header/Footer */}
+              <div className="space-y-3">
+                <div className="flex items-center gap-2">
+                  <h5 className="font-semibold">Leaderboard</h5>
+                  <Badge variant="outline" className="text-xs">728×90px</Badge>
+                  <Badge variant="secondary" className="text-xs">Header/Footer</Badge>
+                </div>
+                <div className="overflow-x-auto">
+                  <div className="overflow-hidden rounded-xl border-2 border-border bg-gradient-to-r from-background to-muted/20 shadow-lg" style={{ width: '728px', height: '90px', minWidth: '728px' }}>
+                    <div className="relative h-full flex items-center">
+                      <div className="flex items-center gap-4 flex-1 px-6">
+                        <div className="w-2 h-12 rounded-full bg-primary"></div>
+                        {(generatedImages[1]?.url || uploadedImage) && (
+                          <div className="w-16 h-16 rounded-lg overflow-hidden shadow-md">
+                            <img src={generatedImages[1]?.url || uploadedImage} alt="Campaign product" className="w-full h-full object-cover" />
+                          </div>
+                        )}
+                        <div className="space-y-1 flex-1">
+                          <h6 className="text-base font-bold text-foreground">{activeCampaignResults.banner_ads?.[0]?.headline || 'Transform Your Brand Today'}</h6>
+                          <p className="text-xs text-muted-foreground font-medium truncate max-w-md">Discover innovative solutions that drive results</p>
+                        </div>
+                      </div>
+                      <div className="px-6">
+                        <Button className="text-xs font-semibold px-6 py-2 bg-black text-white hover:bg-gray-800">
+                          {activeCampaignResults.banner_ads?.[0]?.cta || 'Get Started'}
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Mobile Leaderboard 320x50 - Mobile Optimized */}
+              <div className="space-y-3">
+                <div className="flex items-center gap-2">
+                  <h5 className="font-semibold">Mobile Leaderboard</h5>
+                  <Badge variant="outline" className="text-xs">320×50px</Badge>
+                  <Badge variant="secondary" className="text-xs">Mobile</Badge>
+                </div>
+                <div className="overflow-hidden rounded-lg border-2 border-border bg-gradient-to-r from-background to-muted/20 shadow-lg" style={{ width: '320px', height: '50px' }}>
+                  <div className="relative h-full flex items-center">
+                    <div className="flex items-center gap-2 flex-1 px-3 min-w-0">
+                      <div className="w-1 h-6 rounded-full bg-primary"></div>
+                      {(generatedImages[2]?.url || uploadedImage) && (
+                        <div className="w-8 h-8 rounded overflow-hidden">
+                          <img src={generatedImages[2]?.url || uploadedImage} alt="Campaign product" className="w-full h-full object-cover" />
+                        </div>
+                      )}
+                      <h6 className="text-xs font-bold text-foreground truncate">{activeCampaignResults.banner_ads?.[0]?.headline || 'Transform Your Brand'}</h6>
+                    </div>
+                    <div className="px-3">
+                      <Button size="sm" className="text-xs font-semibold px-3 py-1 bg-black text-white hover:bg-gray-800 shrink-0">
+                        {activeCampaignResults.banner_ads?.[0]?.cta || 'Try Now'}
+                      </Button>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -178,66 +211,94 @@ const PreviewResultsScreen: React.FC = () => {
 
       case 'Web Creative':
         return (
-          <div className="border-2 border-border rounded-xl overflow-hidden bg-background shadow-2xl">
-            <div className="w-full max-w-4xl mx-auto">
-              {/* Hero Section */}
-              <section className="relative min-h-[600px] bg-gradient-to-br from-background to-primary/5">
-                <div className="absolute inset-0 bg-gradient-to-br from-transparent via-primary/5 to-primary/10"></div>
-                
-                <div className="relative z-10 container mx-auto px-6 py-16 grid lg:grid-cols-2 gap-12 items-center min-h-[600px]">
-                  {/* Left Column - Content */}
-                  <div className="space-y-8">
-                    <div className="space-y-4">
-                      <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium bg-primary/10 text-primary">
-                        ✨ New Product Launch
+          <div className="space-y-6">
+            {/* Generated Images Section */}
+            {generatedImages.length > 0 && (
+              <div className="space-y-4">
+                <h4 className="font-semibold text-lg">AI Generated Related Images</h4>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  {generatedImages.map((img, index) => (
+                    <div key={index} className="space-y-2">
+                      <div className="aspect-square bg-gray-100 rounded-lg overflow-hidden">
+                        <img 
+                          src={img.url} 
+                          alt={`Generated image ${index + 1}`}
+                          className="w-full h-full object-cover"
+                          onError={(e) => {
+                            e.currentTarget.src = uploadedImage || '';
+                          }}
+                        />
                       </div>
-                      <h1 className="text-4xl lg:text-6xl font-bold text-foreground leading-tight">
-                        {activeCampaignResults.landing_page_concept?.hero_text || 'Transform Your Experience'}
-                      </h1>
-                      <p className="text-lg text-muted-foreground leading-relaxed max-w-lg">
-                        {activeCampaignResults.landing_page_concept?.sub_text || 'Discover innovative solutions that drive exceptional results'}
-                      </p>
+                      <p className="text-xs text-muted-foreground truncate">{img.prompt}</p>
                     </div>
-                    
-                    <div className="flex flex-col sm:flex-row gap-4">
-                      <Button size="lg" className="text-lg px-8 py-4 shadow-lg bg-black text-white hover:bg-gray-800">
-                        {activeCampaignResults.landing_page_concept?.cta || 'Get Started'}
-                      </Button>
-                      <Button variant="outline" size="lg" className="text-lg px-8 py-4">
-                        Learn More
-                      </Button>
-                    </div>
-                    
-                    {/* Trust Indicators */}
-                    <div className="flex items-center gap-6 text-sm text-muted-foreground">
-                      <div className="flex items-center gap-2">
-                        <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                        <span>Free shipping</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                        <span>30-day returns</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
-                        <span>Premium quality</span>
-                      </div>
-                    </div>
-                  </div>
+                  ))}
+                </div>
+                <div className="border-t pt-6"></div>
+              </div>
+            )}
+
+            {/* Landing Page Preview */}
+            <div className="border-2 border-border rounded-xl overflow-hidden bg-background shadow-2xl">
+              <div className="w-full max-w-4xl mx-auto">
+                {/* Hero Section */}
+                <section className="relative min-h-[600px] bg-gradient-to-br from-background to-primary/5">
+                  <div className="absolute inset-0 bg-gradient-to-br from-transparent via-primary/5 to-primary/10"></div>
                   
-                  {/* Right Column - Product Image */}
-                  <div className="relative">
-                    {uploadedImage && (
-                      <div className="relative">
-                        <div className="absolute -inset-4 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-3xl blur-2xl"></div>
-                        <div className="relative bg-background/80 backdrop-blur-sm rounded-2xl p-8 shadow-2xl border border-border">
-                          <img src={uploadedImage} alt="Product showcase" className="w-full h-auto max-h-96 object-contain rounded-xl" />
+                  <div className="relative z-10 container mx-auto px-6 py-16 grid lg:grid-cols-2 gap-12 items-center min-h-[600px]">
+                    {/* Left Column - Content */}
+                    <div className="space-y-8">
+                      <div className="space-y-4">
+                        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium bg-primary/10 text-primary">
+                          ✨ New Product Launch
+                        </div>
+                        <h1 className="text-4xl lg:text-6xl font-bold text-foreground leading-tight">
+                          {activeCampaignResults.landing_page_concept?.hero_text || 'Transform Your Experience'}
+                        </h1>
+                        <p className="text-lg text-muted-foreground leading-relaxed max-w-lg">
+                          {activeCampaignResults.landing_page_concept?.sub_text || 'Discover innovative solutions that drive exceptional results'}
+                        </p>
+                      </div>
+                      
+                      <div className="flex flex-col sm:flex-row gap-4">
+                        <Button size="lg" className="text-lg px-8 py-4 shadow-lg bg-black text-white hover:bg-gray-800">
+                          {activeCampaignResults.landing_page_concept?.cta || 'Get Started'}
+                        </Button>
+                        <Button variant="outline" size="lg" className="text-lg px-8 py-4">
+                          Learn More
+                        </Button>
+                      </div>
+                      
+                      {/* Trust Indicators */}
+                      <div className="flex items-center gap-6 text-sm text-muted-foreground">
+                        <div className="flex items-center gap-2">
+                          <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                          <span>Free shipping</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                          <span>30-day returns</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
+                          <span>Premium quality</span>
                         </div>
                       </div>
-                    )}
+                    </div>
+                    
+                    {/* Right Column - Product Image */}
+                    <div className="relative">
+                      {(generatedImages[0]?.url || uploadedImage) && (
+                        <div className="relative">
+                          <div className="absolute -inset-4 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-3xl blur-2xl"></div>
+                          <div className="relative bg-background/80 backdrop-blur-sm rounded-2xl p-8 shadow-2xl border border-border">
+                            <img src={generatedImages[0]?.url || uploadedImage} alt="Product showcase" className="w-full h-auto max-h-96 object-contain rounded-xl" />
+                          </div>
+                        </div>
+                      )}
+                    </div>
                   </div>
-                </div>
-              </section>
+                </section>
+              </div>
             </div>
           </div>
         );
