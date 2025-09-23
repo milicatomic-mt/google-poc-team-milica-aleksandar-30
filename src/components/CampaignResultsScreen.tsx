@@ -173,21 +173,147 @@ const CampaignResultsScreen = () => {
               </CardContent>
             </Card>
 
-            {/* Email Copy */}
+            {/* Email Template Design */}
             <Card>
               <CardHeader>
-                <CardTitle>📧 Email Marketing</CardTitle>
+                <CardTitle className="flex items-center gap-2">
+                  📧 Email Template Design
+                  <Badge variant="secondary">Mobile-Optimized</Badge>
+                </CardTitle>
+                <p className="text-sm text-muted-foreground">Professional email template with responsive design</p>
               </CardHeader>
               <CardContent>
-                <div className="space-y-4">
-                  <div>
-                    <h4 className="font-semibold mb-2">Subject Line</h4>
-                    <p className="text-sm bg-muted p-3 rounded">{campaignData.email_copy.subject}</p>
-                  </div>
-                  <Separator />
-                  <div>
-                    <h4 className="font-semibold mb-2">Email Body</h4>
-                    <p className="text-sm text-muted-foreground whitespace-pre-wrap">{campaignData.email_copy.body}</p>
+                <div className="border-2 border-border rounded-xl overflow-hidden bg-background shadow-xl max-w-2xl mx-auto">
+                  {/* Email Template Preview */}
+                  <div className="bg-white text-gray-900" style={{ maxWidth: '600px', width: '100%', margin: '0 auto' }}>
+                    
+                    {/* Email Header */}
+                    <div className="bg-gradient-to-r from-gray-50 to-gray-100 px-6 py-4 border-b">
+                      <div className="flex items-center justify-between">
+                        <div className="text-xs text-gray-600">
+                          Subject: {campaignData.email_copy.subject}
+                        </div>
+                        <div className="text-xs text-gray-500">
+                          View in browser
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Hero Section with Image */}
+                    <div className="relative">
+                      {uploadedImageUrl && (
+                        <div className="w-full h-48 overflow-hidden">
+                          <img 
+                            src={uploadedImageUrl} 
+                            alt="Email hero" 
+                            className="w-full h-full object-cover"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+                        </div>
+                      )}
+                      
+                      {/* Hero Content Overlay */}
+                      <div className="absolute inset-0 flex items-end p-8">
+                        <div className="text-white">
+                          <h1 className="text-2xl font-bold mb-2 drop-shadow-lg">
+                            {campaignData.email_copy.subject}
+                          </h1>
+                          <p className="text-sm opacity-90 drop-shadow">
+                            Discover what's new this season
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Main Content */}
+                    <div className="px-8 py-8">
+                      {/* Introduction */}
+                      <div className="mb-8">
+                        <p className="text-gray-700 leading-relaxed text-sm mb-4">
+                          {campaignData.email_copy.body.split('\n')[0] || 'We\'re excited to share something special with you.'}
+                        </p>
+                      </div>
+
+                      {/* Feature Cards */}
+                      <div className="grid gap-6 mb-8">
+                        <div className="flex gap-4 p-4 bg-gray-50 rounded-lg">
+                          <div className="w-12 h-12 bg-blue-500 rounded-lg flex items-center justify-center text-white font-bold text-sm">
+                            1
+                          </div>
+                          <div>
+                            <h3 className="font-semibold text-gray-900 mb-1">Premium Quality</h3>
+                            <p className="text-sm text-gray-600">Experience excellence with our carefully curated selection.</p>
+                          </div>
+                        </div>
+                        
+                        <div className="flex gap-4 p-4 bg-gray-50 rounded-lg">
+                          <div className="w-12 h-12 bg-green-500 rounded-lg flex items-center justify-center text-white font-bold text-sm">
+                            2
+                          </div>
+                          <div>
+                            <h3 className="font-semibold text-gray-900 mb-1">Fast Delivery</h3>
+                            <p className="text-sm text-gray-600">Get your order delivered quickly and efficiently.</p>
+                          </div>
+                        </div>
+
+                        <div className="flex gap-4 p-4 bg-gray-50 rounded-lg">
+                          <div className="w-12 h-12 bg-purple-500 rounded-lg flex items-center justify-center text-white font-bold text-sm">
+                            3
+                          </div>
+                          <div>
+                            <h3 className="font-semibold text-gray-900 mb-1">Customer Support</h3>
+                            <p className="text-sm text-gray-600">24/7 support to help you with any questions.</p>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Call to Action */}
+                      <div className="text-center mb-8">
+                        <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg px-8 py-4 inline-block shadow-lg transform hover:scale-105 transition-transform cursor-pointer">
+                          <span className="font-semibold">
+                            {campaignData.banner_ads[0]?.cta || 'Shop Now'}
+                          </span>
+                        </div>
+                        <p className="text-xs text-gray-500 mt-3">
+                          Limited time offer • Free shipping on orders over $50
+                        </p>
+                      </div>
+
+                      {/* Divider */}
+                      <div className="w-full h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent mb-6"></div>
+                    </div>
+
+                    {/* Footer */}
+                    <div className="bg-gray-100 px-8 py-6">
+                      <div className="text-center space-y-4">
+                        {/* Brand Logo/Name */}
+                        <div className="text-lg font-bold text-gray-900">
+                          Your Brand
+                        </div>
+                        
+                        {/* Contact Info */}
+                        <div className="text-xs text-gray-600 space-y-1">
+                          <p>123 Business Street, City, State 12345</p>
+                          <p>hello@yourbrand.com | (555) 123-4567</p>
+                        </div>
+
+                        {/* Social Links */}
+                        <div className="flex justify-center gap-4">
+                          <div className="w-6 h-6 bg-blue-600 rounded text-white text-xs flex items-center justify-center">f</div>
+                          <div className="w-6 h-6 bg-blue-400 rounded text-white text-xs flex items-center justify-center">t</div>
+                          <div className="w-6 h-6 bg-pink-600 rounded text-white text-xs flex items-center justify-center">i</div>
+                        </div>
+
+                        {/* Unsubscribe */}
+                        <div className="text-xs text-gray-500 pt-2 border-t border-gray-200">
+                          <p>You're receiving this email because you subscribed to our newsletter.</p>
+                          <p className="mt-1">
+                            <span className="underline cursor-pointer">Unsubscribe</span> | 
+                            <span className="underline cursor-pointer ml-1">Update preferences</span>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </CardContent>
