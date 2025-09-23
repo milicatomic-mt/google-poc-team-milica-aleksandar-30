@@ -818,78 +818,65 @@ const PreviewResultsScreen: React.FC = () => {
                       </div>
 
                       {/* Landing Page Screenshot Content */}
-                      <div className="h-full bg-gradient-to-br from-gray-50 to-blue-50 relative overflow-hidden">
-                        {/* Navigation */}
-                        <div className="bg-white/80 backdrop-blur px-3 py-1 flex justify-between items-center border-b border-gray-200">
-                          <div className="text-[8px] font-bold">BRAND</div>
-                          <div className="flex gap-2 text-[6px] text-gray-600">
+                      <div className="h-full bg-gradient-to-br from-white via-gray-50 to-blue-50 relative overflow-hidden">
+                        {/* Navigation - More minimal */}
+                        <div className="bg-white/90 backdrop-blur px-3 py-1 flex justify-between items-center border-b border-gray-100">
+                          <div className="text-[8px] font-bold text-gray-900">BRAND</div>
+                          <div className="flex gap-3 text-[6px] text-gray-600">
                             <span>Home</span> <span>Products</span> <span>About</span>
                           </div>
                         </div>
 
-                        {/* Hero Section Screenshot */}
-                        <div className="px-3 py-4 flex gap-2 items-center">
-                          <div className="flex-1 space-y-2">
-                            {/* Badge */}
-                            <div className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-blue-100 text-blue-700">
-                              <div className="text-[6px] font-medium">✨ New Launch</div>
-                            </div>
-                            
-                            {/* Headline */}
-                            <h1 className="text-[9px] font-bold text-gray-900 leading-tight">
-                              Transform Your<br />Experience Today
-                            </h1>
-                            
-                            {/* Subtext */}
-                            <p className="text-[6px] text-gray-600 leading-relaxed">
-                              Discover innovative solutions that drive<br />
-                              exceptional results for your business.
-                            </p>
-                            
-                            {/* Buttons */}
-                            <div className="flex gap-1">
-                              <div className="bg-black text-white text-[5px] px-2 py-1 rounded font-medium">Get Started</div>
-                              <div className="border border-gray-300 text-gray-700 text-[5px] px-2 py-1 rounded">Learn More</div>
-                            </div>
+                        {/* Hero Section - Redesigned for better proportions */}
+                        <div className="px-3 py-3 flex flex-col items-center text-center space-y-3">
+                          {/* Badge - Smaller and more elegant */}
+                          <div className="inline-flex items-center px-2 py-0.5 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 text-white">
+                            <div className="text-[5px] font-medium">✨ New Launch</div>
                           </div>
                           
-                          {/* Hero Image - Much Bigger */}
-                          <div className="w-20 h-20 bg-white rounded-lg shadow-lg p-1 flex-shrink-0">
-                            <div className="w-full h-full bg-gray-100 rounded overflow-hidden">
+                          {/* Hero Image - Much Larger and Prominent */}
+                          <div className="w-24 h-16 bg-white rounded-xl shadow-lg p-1 border border-gray-200">
+                            <div className="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg overflow-hidden">
                               {uploadedImage && <img src={uploadedImage} alt="Product" className="w-full h-full object-cover" />}
                             </div>
                           </div>
+                          
+                          {/* Headline - More prominent */}
+                          <h1 className="text-[10px] font-bold text-gray-900 leading-tight max-w-20">
+                            Transform Your Experience Today
+                          </h1>
+                          
+                          {/* CTA Button - More prominent */}
+                          <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white text-[6px] px-3 py-1 rounded-full font-medium shadow-sm">
+                            Get Started Now
+                          </div>
                         </div>
 
-                        {/* Features Section */}
-                        <div className="px-3 pb-3">
-                          <div className="bg-white/60 rounded-lg p-2 backdrop-blur">
-                            <div className="grid grid-cols-3 gap-2 text-center">
-                              <div className="space-y-1">
-                                <div className="w-4 h-3 bg-green-100 rounded mx-auto flex items-center justify-center">
-                                  <div className="w-1 h-1 bg-green-500 rounded-full"></div>
-                                </div>
-                                <div className="text-[5px] font-medium">Free Shipping</div>
+                        {/* Features Section - Much more compact */}
+                        <div className="absolute bottom-8 left-2 right-2">
+                          <div className="bg-white/80 backdrop-blur rounded-lg px-2 py-1.5 border border-gray-200/50">
+                            <div className="flex justify-center items-center gap-3 text-center">
+                              <div className="flex items-center gap-1">
+                                <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                                <div className="text-[5px] text-gray-700 font-medium">Free Ship</div>
                               </div>
-                              <div className="space-y-1">
-                                <div className="w-4 h-3 bg-blue-100 rounded mx-auto flex items-center justify-center">
-                                  <div className="w-1 h-1 bg-blue-500 rounded-full"></div>
-                                </div>
-                                <div className="text-[5px] font-medium">30-day Returns</div>
+                              <div className="w-px h-2 bg-gray-300"></div>
+                              <div className="flex items-center gap-1">
+                                <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                                <div className="text-[5px] text-gray-700 font-medium">30d Returns</div>
                               </div>
-                              <div className="space-y-1">
-                                <div className="w-4 h-3 bg-purple-100 rounded mx-auto flex items-center justify-center">
-                                  <div className="w-1 h-1 bg-purple-500 rounded-full"></div>
-                                </div>
-                                <div className="text-[5px] font-medium">Premium Quality</div>
+                              <div className="w-px h-2 bg-gray-300"></div>
+                              <div className="flex items-center gap-1">
+                                <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
+                                <div className="text-[5px] text-gray-700 font-medium">Premium</div>
                               </div>
                             </div>
                           </div>
                         </div>
 
-                        {/* Footer */}
-                        <div className="absolute bottom-0 left-0 right-0 bg-gray-800 px-3 py-1">
-                          <div className="text-[5px] text-gray-300 text-center">© 2024 Brand. All rights reserved.</div>
+                        {/* Footer - More minimal */}
+                        <div className="absolute bottom-0 left-0 right-0 bg-gray-900 px-2 py-1">
+                          <div className="text-[4px] text-gray-400 text-center">© 2024 Brand. All rights reserved.</div>
                         </div>
                       </div>
                     </div>
