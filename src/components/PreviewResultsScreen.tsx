@@ -662,7 +662,7 @@ const PreviewResultsScreen: React.FC = () => {
                 className="tap-target focus-ring bg-primary hover:bg-primary/90 text-white rounded-full px-6 py-2 flex items-center gap-2"
               >
                 <Download className="w-4 h-4" />
-                Download
+                Download All
               </Button>
             </div>
           </div>
@@ -687,7 +687,7 @@ const PreviewResultsScreen: React.FC = () => {
                     className="tap-target focus-ring group bg-white/20 border-white/30 hover:bg-white/30 rounded-full px-6"
                   >
                     <span className="text-indigo-600 group-hover:text-indigo-700 transition-colors">
-                      Open
+                      View All
                     </span>
                   </Button>
                 </div>
@@ -778,7 +778,7 @@ const PreviewResultsScreen: React.FC = () => {
                     className="tap-target focus-ring group bg-white/20 border-white/30 hover:bg-white/30 rounded-full px-6"
                   >
                     <span className="text-indigo-600 group-hover:text-indigo-700 transition-colors">
-                      Open
+                      View All
                     </span>
                   </Button>
                 </div>
@@ -896,7 +896,7 @@ const PreviewResultsScreen: React.FC = () => {
                     className="tap-target focus-ring group bg-white/20 border-white/30 hover:bg-white/30 rounded-full px-6"
                   >
                     <span className="text-indigo-600 group-hover:text-indigo-700 transition-colors">
-                      Open
+                      View All
                     </span>
                   </Button>
                 </div>
@@ -990,18 +990,21 @@ const PreviewResultsScreen: React.FC = () => {
               </Card>
 
               {/* Email Templates Card */}
-              <Card className="bg-white/20 border-white/30 backdrop-blur-sm shadow-lg">
-                <div className="bg-white/30 px-4 py-3 flex items-center justify-between rounded-t-lg backdrop-blur-sm">
+              <Card className="card-elegant backdrop-blur-xl bg-white/40 border-white/50 border-2 shadow-elegant-lg hover:shadow-elegant-lg transition-all duration-smooth">
+                <div className="bg-white/50 px-4 py-3 flex items-center justify-between rounded-t-lg backdrop-blur-md border-b border-white/30 hover:bg-white/60 transition-all duration-smooth">
                   <div className="flex items-center space-x-2">
                     <h3 className="text-foreground font-medium">Email Templates</h3>
                     <span className="bg-muted text-muted-foreground text-xs px-2 py-1 rounded-full">2</span>
                   </div>
                   <Button 
-                    size="sm" 
+                    variant="outline"
+                    size="lg" 
                     onClick={() => handleOpenCategory('Email Templates')}
-                    className="px-4 rounded-full"
+                    className="tap-target focus-ring group bg-white/20 border-white/30 hover:bg-white/30 rounded-full px-6"
                   >
-                    Open
+                    <span className="text-indigo-600 group-hover:text-indigo-700 transition-colors">
+                      View All
+                    </span>
                   </Button>
                 </div>
                 <CardContent className="p-4">
