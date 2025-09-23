@@ -427,10 +427,7 @@ const CampaignResultsScreen = () => {
                       <div className="grid gap-6 mb-8">
                         <div className="flex gap-4 p-4 bg-gray-50 rounded-lg">
                           <div 
-                            className="w-12 h-12 rounded-lg flex items-center justify-center text-white font-bold text-sm"
-                            style={{
-                              backgroundColor: extractedColors?.primary || '#3b82f6'
-                            }}
+                            className="w-12 h-12 rounded-lg flex items-center justify-center text-white font-bold text-sm bg-black"
                           >
                             1
                           </div>
@@ -442,10 +439,7 @@ const CampaignResultsScreen = () => {
                         
                         <div className="flex gap-4 p-4 bg-gray-50 rounded-lg">
                           <div 
-                            className="w-12 h-12 rounded-lg flex items-center justify-center text-white font-bold text-sm"
-                            style={{
-                              backgroundColor: extractedColors?.secondary || '#10b981'
-                            }}
+                            className="w-12 h-12 rounded-lg flex items-center justify-center text-white font-bold text-sm bg-black"
                           >
                             2
                           </div>
@@ -457,10 +451,7 @@ const CampaignResultsScreen = () => {
 
                         <div className="flex gap-4 p-4 bg-gray-50 rounded-lg">
                           <div 
-                            className="w-12 h-12 rounded-lg flex items-center justify-center text-white font-bold text-sm"
-                            style={{
-                              backgroundColor: extractedColors?.accent || '#8b5cf6'
-                            }}
+                            className="w-12 h-12 rounded-lg flex items-center justify-center text-white font-bold text-sm bg-black"
                           >
                             3
                           </div>
