@@ -100,7 +100,7 @@ const GenerateCampaignScreen = () => {
             </div>
 
             {/* Loading Text */}
-            <div className="text-center animate-fade-in animation-delay-300">
+            <div className="text-center animate-fade-in animation-delay-300 min-h-[80px] flex flex-col justify-center">
               <p className="text-2xl font-semibold text-foreground mb-2">
                 {currentAction}
               </p>
@@ -109,8 +109,8 @@ const GenerateCampaignScreen = () => {
               </p>
             </div>
 
-            {/* Progress Bar */}
-            <div className="w-full max-w-md animate-fade-in animation-delay-500">
+            {/* Progress Bar - Fixed position */}
+            <div className="w-80 animate-fade-in animation-delay-500">
               <div className="relative overflow-hidden rounded-full">
                 <Progress 
                   value={progress} 
