@@ -654,73 +654,73 @@ const PreviewResultsScreen: React.FC = () => {
                   </Button>
                 </div>
                 <CardContent className="p-4">
-                  <div className="space-y-3 h-64">
-                    {/* Leaderboard Banner 728x90 */}
-                    <div className="bg-white/40 backdrop-blur-sm rounded-lg p-2 relative" style={{ height: '45px' }}>
+                  <div className="space-y-2 h-64">
+                    {/* Leaderboard Banner 728x90 - scaled down */}
+                    <div className="bg-white/40 backdrop-blur-sm rounded-lg p-2 relative h-8">
                       <div className="flex items-center h-full">
-                        <div className="w-8 h-8 rounded overflow-hidden mr-2 flex-shrink-0">
+                        <div className="w-6 h-6 rounded overflow-hidden mr-2 flex-shrink-0">
                           {uploadedImage && <img src={uploadedImage} alt="Product" className="w-full h-full object-cover" />}
                         </div>
                         <div className="flex-1 min-w-0">
-                          <h4 className="text-xs font-semibold text-foreground truncate">Transform Your Experience</h4>
+                          <h4 className="text-[10px] font-semibold text-foreground truncate">Transform Your Experience Today</h4>
                         </div>
-                        <Button size="sm" className="text-xs px-2 py-1 ml-2 flex-shrink-0">Try Now</Button>
+                        <Button size="sm" className="text-[9px] px-2 py-0.5 ml-2 flex-shrink-0 h-5">Try Now</Button>
                       </div>
-                      <div className="absolute top-1 right-1">
-                        <span className="text-[8px] bg-black/20 text-white px-1 rounded">728×90</span>
+                      <div className="absolute top-0.5 right-0.5">
+                        <span className="text-[7px] bg-black/20 text-white px-1 rounded">728×90</span>
                       </div>
                     </div>
 
-                    {/* Medium Rectangle Banner 300x250 */}
-                    <div className="bg-white/40 backdrop-blur-sm rounded-lg p-3 relative" style={{ height: '100px' }}>
+                    {/* Medium Rectangle Banner 300x250 - scaled down */}
+                    <div className="bg-white/40 backdrop-blur-sm rounded-lg p-2 relative h-20">
                       <div className="flex h-full">
                         <div className="flex-1 flex flex-col justify-between pr-2">
                           <div>
-                            <h4 className="text-xs font-bold text-foreground leading-tight mb-1">Discover Innovation</h4>
-                            <p className="text-[10px] text-muted-foreground">Premium quality solutions</p>
+                            <h4 className="text-[10px] font-bold text-foreground leading-tight mb-1">Discover Innovation</h4>
+                            <p className="text-[8px] text-muted-foreground">Premium quality solutions</p>
                           </div>
-                          <Button size="sm" className="text-[10px] px-2 py-1 self-start">Learn More</Button>
+                          <Button size="sm" className="text-[8px] px-2 py-0.5 self-start h-4">Learn More</Button>
                         </div>
-                        <div className="w-12 h-full rounded overflow-hidden flex-shrink-0">
+                        <div className="w-16 h-full rounded overflow-hidden flex-shrink-0">
                           {uploadedImage && <img src={uploadedImage} alt="Product" className="w-full h-full object-cover" />}
                         </div>
                       </div>
-                      <div className="absolute top-1 right-1">
-                        <span className="text-[8px] bg-black/20 text-white px-1 rounded">300×250</span>
+                      <div className="absolute top-0.5 right-0.5">
+                        <span className="text-[7px] bg-black/20 text-white px-1 rounded">300×250</span>
                       </div>
                     </div>
 
                     {/* Bottom row with two smaller banners */}
-                    <div className="grid grid-cols-2 gap-3" style={{ height: '95px' }}>
-                      {/* Mobile Banner 320x50 */}
+                    <div className="grid grid-cols-2 gap-2 h-32">
+                      {/* Mobile Banner 320x50 - scaled down */}
                       <div className="bg-white/40 backdrop-blur-sm rounded-lg p-2 relative">
-                        <div className="flex items-center h-full">
-                          <div className="w-6 h-6 rounded overflow-hidden mr-2 flex-shrink-0">
+                        <div className="flex items-center h-6 mb-1">
+                          <div className="w-5 h-5 rounded overflow-hidden mr-1 flex-shrink-0">
                             {uploadedImage && <img src={uploadedImage} alt="Product" className="w-full h-full object-cover" />}
                           </div>
                           <div className="flex-1 min-w-0">
-                            <h4 className="text-[9px] font-semibold text-foreground truncate">Mobile Deal</h4>
-                            <Button size="sm" className="text-[8px] px-1 py-0.5 mt-1">Shop</Button>
+                            <h4 className="text-[8px] font-semibold text-foreground truncate">Mobile Deal</h4>
                           </div>
                         </div>
+                        <Button size="sm" className="text-[7px] px-1 py-0.5 h-3 w-full">Shop Now</Button>
                         <div className="absolute top-0.5 right-0.5">
-                          <span className="text-[7px] bg-black/20 text-white px-1 rounded">320×50</span>
+                          <span className="text-[6px] bg-black/20 text-white px-0.5 rounded">320×50</span>
                         </div>
                       </div>
 
-                      {/* Square Banner 250x250 */}
+                      {/* Square Banner 250x250 - scaled down */}
                       <div className="bg-white/40 backdrop-blur-sm rounded-lg p-2 relative">
                         <div className="flex flex-col h-full justify-between">
                           <div className="w-full aspect-square rounded overflow-hidden mb-1">
                             {uploadedImage && <img src={uploadedImage} alt="Product" className="w-full h-full object-cover" />}
                           </div>
                           <div className="text-center">
-                            <h4 className="text-[9px] font-semibold text-foreground">Premium</h4>
-                            <Button size="sm" className="text-[8px] px-2 py-0.5 mt-1">Buy Now</Button>
+                            <h4 className="text-[8px] font-semibold text-foreground mb-0.5">Premium Quality</h4>
+                            <Button size="sm" className="text-[7px] px-1 py-0.5 h-3 w-full">Buy Now</Button>
                           </div>
                         </div>
                         <div className="absolute top-0.5 right-0.5">
-                          <span className="text-[7px] bg-black/20 text-white px-1 rounded">250×250</span>
+                          <span className="text-[6px] bg-black/20 text-white px-0.5 rounded">250×250</span>
                         </div>
                       </div>
                     </div>
