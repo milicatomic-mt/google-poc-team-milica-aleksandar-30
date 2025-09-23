@@ -145,12 +145,12 @@ const CatalogResultsScreen: React.FC = () => {
 
               {/* Progress Bar */}
               <div className="w-full max-w-md animate-fade-in animation-delay-500">
-                <div className="relative">
+                <div className="relative overflow-hidden rounded-full">
                   <Progress 
                     value={progress} 
                     className="h-1 bg-muted"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent animate-shimmer pointer-events-none"></div>
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent animate-shimmer pointer-events-none rounded-full"></div>
                 </div>
                 <div className="flex justify-center items-center mt-2 text-sm text-muted-foreground">
                   <span>{progress}%</span>
