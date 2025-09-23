@@ -14,7 +14,9 @@ const CatalogPromptScreen = () => {
   const location = useLocation();
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const [prompt, setPrompt] = useState('');
+  const [displayedPrompt, setDisplayedPrompt] = useState('');
   const [isRegenerating, setIsRegenerating] = useState(false);
+  const [isTyping, setIsTyping] = useState(false);
   
   // Additional details state
   const [productCategory, setProductCategory] = useState<string>("");
@@ -66,6 +68,22 @@ const CatalogPromptScreen = () => {
     "TikTok Shop"
   ];
 
+  const typePrompt = (text: string) => {
+    setIsTyping(true);
+    setDisplayedPrompt('');
+    let index = 0;
+    
+    const typeInterval = setInterval(() => {
+      if (index < text.length) {
+        setDisplayedPrompt(text.slice(0, index + 1));
+        index++;
+      } else {
+        clearInterval(typeInterval);
+        setIsTyping(false);
+      }
+    }, 30); // Adjust speed here (lower = faster)
+  };
+
   const handleRegenerate = async () => {
     if (!uploadedFile) {
       toast.error('No image file available for regeneration');
@@ -97,6 +115,7 @@ const CatalogPromptScreen = () => {
       const data = await response.json();
       if (data.suggestions && data.suggestions.length > 0) {
         setPrompt(data.suggestions[0]);
+        typePrompt(data.suggestions[0]);
         toast.success('New prompt generated!');
       }
     } catch (error) {
@@ -132,6 +151,7 @@ const CatalogPromptScreen = () => {
     const aiGeneratedPrompt = location.state?.aiGeneratedPrompt;
     if (aiGeneratedPrompt && !prompt) {
       setPrompt(aiGeneratedPrompt);
+      typePrompt(aiGeneratedPrompt);
     }
   }, [location.state, prompt]);
 
@@ -244,11 +264,20 @@ const CatalogPromptScreen = () => {
                   <div className="backdrop-blur-md rounded-xl border border-white shadow-sm h-40 p-4 relative" style={{backgroundColor: '#FFFFFF'}}>
                     <Textarea
                       ref={textareaRef}
-                      value={prompt}
-                      onChange={(e) => setPrompt(e.target.value)}
+                      value={displayedPrompt}
+                      onChange={(e) => {
+                        const newValue = e.target.value;
+                        setPrompt(newValue);
+                        setDisplayedPrompt(newValue);
+                      }}
                       placeholder="Enter your product description..."
                       className="h-full w-full text-base resize-none bg-transparent border-0 p-0 focus-visible:ring-0 leading-relaxed text-gray-800 placeholder:text-gray-500 pr-28"
                     />
+                    
+                    {/* Typing cursor */}
+                    {isTyping && (
+                      <span className="absolute text-gray-800 text-base pointer-events-none animate-pulse">|</span>
+                    )}
                     
                     {/* Wave loading animation overlay */}
                     {isRegenerating && (

@@ -12,7 +12,9 @@ const CampaignPromptScreen = () => {
   const location = useLocation();
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const [prompt, setPrompt] = useState('');
+  const [displayedPrompt, setDisplayedPrompt] = useState('');
   const [isRegenerating, setIsRegenerating] = useState(false);
+  const [isTyping, setIsTyping] = useState(false);
   const [selectedAudiences, setSelectedAudiences] = useState<string[]>([]);
   
   const uploadedImage = location.state?.uploadedImage;
@@ -31,6 +33,22 @@ const CampaignPromptScreen = () => {
         ? prev.filter(a => a !== audience)
         : [...prev, audience]
     );
+  };
+
+  const typePrompt = (text: string) => {
+    setIsTyping(true);
+    setDisplayedPrompt('');
+    let index = 0;
+    
+    const typeInterval = setInterval(() => {
+      if (index < text.length) {
+        setDisplayedPrompt(text.slice(0, index + 1));
+        index++;
+      } else {
+        clearInterval(typeInterval);
+        setIsTyping(false);
+      }
+    }, 30); // Adjust speed here (lower = faster)
   };
 
   const handleRegenerate = async () => {
@@ -64,6 +82,7 @@ const CampaignPromptScreen = () => {
       const data = await response.json();
       if (data.suggestions && data.suggestions.length > 0) {
         setPrompt(data.suggestions[0]);
+        typePrompt(data.suggestions[0]);
         toast.success('New prompt generated!');
       }
     } catch (error) {
@@ -97,6 +116,7 @@ const CampaignPromptScreen = () => {
     const aiGeneratedPrompt = location.state?.aiGeneratedPrompt;
     if (aiGeneratedPrompt && !prompt) {
       setPrompt(aiGeneratedPrompt);
+      typePrompt(aiGeneratedPrompt);
     }
   }, [location.state, prompt]);
 
@@ -209,17 +229,26 @@ const CampaignPromptScreen = () => {
                <div className="flex-1 relative">
                  {/* Glass effect input field - same height as image */}
                  <div className="backdrop-blur-md rounded-xl border border-white shadow-sm h-40 p-4 relative" style={{backgroundColor: '#FFFFFF'}}>
-                   <Textarea
-                     ref={textareaRef}
-                     value={prompt}
-                     onChange={(e) => setPrompt(e.target.value)}
-                     placeholder="Enter your campaign description..."
-                     className="h-full w-full text-base resize-none bg-transparent border-0 p-0 focus-visible:ring-0 leading-relaxed text-gray-800 placeholder:text-gray-500 pr-28"
-                     onInput={(e) => {
-                       const target = e.target as HTMLTextAreaElement;
-                       // Remove auto-height adjustment since we want fixed height
-                     }}
-                   />
+                    <Textarea
+                      ref={textareaRef}
+                      value={displayedPrompt}
+                      onChange={(e) => {
+                        const newValue = e.target.value;
+                        setPrompt(newValue);
+                        setDisplayedPrompt(newValue);
+                      }}
+                      placeholder="Enter your campaign description..."
+                      className="h-full w-full text-base resize-none bg-transparent border-0 p-0 focus-visible:ring-0 leading-relaxed text-gray-800 placeholder:text-gray-500 pr-28"
+                      onInput={(e) => {
+                        const target = e.target as HTMLTextAreaElement;
+                        // Remove auto-height adjustment since we want fixed height
+                      }}
+                    />
+                    
+                    {/* Typing cursor */}
+                    {isTyping && (
+                      <span className="absolute text-gray-800 text-base pointer-events-none animate-pulse">|</span>
+                    )}
                    
                    {/* Wave loading animation overlay */}
                    {isRegenerating && (
