@@ -1112,7 +1112,7 @@ const PreviewResultsScreen: React.FC = () => {
             </div>
 
             {/* Action Buttons */}
-            <div className="mt-8 flex justify-center space-x-4">
+            <div className="mt-16 flex justify-center space-x-4">
               <Button 
                 onClick={() => navigate('/')}
                 variant="outline"
