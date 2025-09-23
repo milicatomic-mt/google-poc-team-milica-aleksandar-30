@@ -654,73 +654,85 @@ const PreviewResultsScreen: React.FC = () => {
                   </Button>
                 </div>
                 <CardContent className="p-4">
-                  <div className="space-y-2 h-64">
-                    {/* Leaderboard Banner 728x90 - scaled down */}
-                    <div className="bg-white/40 backdrop-blur-sm rounded-lg p-2 relative h-8">
-                      <div className="flex items-center h-full">
-                        <div className="w-6 h-6 rounded overflow-hidden mr-2 flex-shrink-0">
-                          {uploadedImage && <img src={uploadedImage} alt="Product" className="w-full h-full object-cover" />}
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <h4 className="text-[10px] font-semibold text-foreground truncate">Transform Your Experience Today</h4>
-                        </div>
-                        <Button size="sm" className="text-[9px] px-2 py-0.5 ml-2 flex-shrink-0 h-5">Try Now</Button>
-                      </div>
-                      <div className="absolute top-0.5 right-0.5">
-                        <span className="text-[7px] bg-black/20 text-white px-1 rounded">728×90</span>
-                      </div>
-                    </div>
-
-                    {/* Medium Rectangle Banner 300x250 - scaled down */}
-                    <div className="bg-white/40 backdrop-blur-sm rounded-lg p-2 relative h-20">
-                      <div className="flex h-full">
-                        <div className="flex-1 flex flex-col justify-between pr-2">
-                          <div>
-                            <h4 className="text-[10px] font-bold text-foreground leading-tight mb-1">Discover Innovation</h4>
-                            <p className="text-[8px] text-muted-foreground">Premium quality solutions</p>
-                          </div>
-                          <Button size="sm" className="text-[8px] px-2 py-0.5 self-start h-4">Learn More</Button>
-                        </div>
-                        <div className="w-16 h-full rounded overflow-hidden flex-shrink-0">
-                          {uploadedImage && <img src={uploadedImage} alt="Product" className="w-full h-full object-cover" />}
-                        </div>
-                      </div>
-                      <div className="absolute top-0.5 right-0.5">
-                        <span className="text-[7px] bg-black/20 text-white px-1 rounded">300×250</span>
-                      </div>
-                    </div>
-
-                    {/* Bottom row with two smaller banners */}
-                    <div className="grid grid-cols-2 gap-2 h-32">
-                      {/* Mobile Banner 320x50 - scaled down */}
-                      <div className="bg-white/40 backdrop-blur-sm rounded-lg p-2 relative">
-                        <div className="flex items-center h-6 mb-1">
-                          <div className="w-5 h-5 rounded overflow-hidden mr-1 flex-shrink-0">
+                  <div className="h-64 overflow-hidden">
+                    <div className="space-y-2 h-full flex flex-col">
+                      {/* Leaderboard Banner 728x90 - Compact horizontal layout */}
+                      <div className="bg-white/40 backdrop-blur-sm rounded-md p-2 h-8 flex-shrink-0 relative overflow-hidden">
+                        <div className="flex items-center h-full gap-2">
+                          <div className="w-5 h-5 rounded bg-primary/20 flex-shrink-0 overflow-hidden">
                             {uploadedImage && <img src={uploadedImage} alt="Product" className="w-full h-full object-cover" />}
                           </div>
                           <div className="flex-1 min-w-0">
-                            <h4 className="text-[8px] font-semibold text-foreground truncate">Mobile Deal</h4>
+                            <p className="text-[9px] font-semibold text-foreground truncate">Transform Your Experience</p>
+                          </div>
+                          <div className="flex-shrink-0">
+                            <div className="bg-primary text-primary-foreground text-[8px] px-1.5 py-0.5 rounded text-center min-w-[40px]">
+                              Try Now
+                            </div>
                           </div>
                         </div>
-                        <Button size="sm" className="text-[7px] px-1 py-0.5 h-3 w-full">Shop Now</Button>
-                        <div className="absolute top-0.5 right-0.5">
-                          <span className="text-[6px] bg-black/20 text-white px-0.5 rounded">320×50</span>
+                        <div className="absolute top-1 right-1 bg-black/60 text-white text-[6px] px-1 py-0.5 rounded">
+                          728×90
                         </div>
                       </div>
 
-                      {/* Square Banner 250x250 - scaled down */}
-                      <div className="bg-white/40 backdrop-blur-sm rounded-lg p-2 relative">
-                        <div className="flex flex-col h-full justify-between">
-                          <div className="w-full aspect-square rounded overflow-hidden mb-1">
+                      {/* Medium Rectangle Banner 300x250 - Horizontal card layout */}
+                      <div className="bg-white/40 backdrop-blur-sm rounded-md p-2 h-16 flex-shrink-0 relative overflow-hidden">
+                        <div className="flex h-full gap-2">
+                          <div className="flex-1 flex flex-col justify-between min-w-0">
+                            <div>
+                              <h4 className="text-[9px] font-bold text-foreground leading-tight truncate">Discover Innovation</h4>
+                              <p className="text-[7px] text-muted-foreground truncate">Premium solutions</p>
+                            </div>
+                            <div className="bg-primary text-primary-foreground text-[7px] px-1.5 py-0.5 rounded self-start">
+                              Learn More
+                            </div>
+                          </div>
+                          <div className="w-12 h-full rounded bg-primary/20 flex-shrink-0 overflow-hidden">
                             {uploadedImage && <img src={uploadedImage} alt="Product" className="w-full h-full object-cover" />}
                           </div>
-                          <div className="text-center">
-                            <h4 className="text-[8px] font-semibold text-foreground mb-0.5">Premium Quality</h4>
-                            <Button size="sm" className="text-[7px] px-1 py-0.5 h-3 w-full">Buy Now</Button>
+                        </div>
+                        <div className="absolute top-1 right-1 bg-black/60 text-white text-[6px] px-1 py-0.5 rounded">
+                          300×250
+                        </div>
+                      </div>
+
+                      {/* Bottom row - Mobile and Square banners */}
+                      <div className="grid grid-cols-2 gap-2 flex-1 min-h-0">
+                        {/* Mobile Banner 320x50 */}
+                        <div className="bg-white/40 backdrop-blur-sm rounded-md p-2 relative overflow-hidden">
+                          <div className="h-full flex flex-col justify-between">
+                            <div className="flex items-center gap-1.5 mb-1">
+                              <div className="w-4 h-4 rounded bg-primary/20 flex-shrink-0 overflow-hidden">
+                                {uploadedImage && <img src={uploadedImage} alt="Product" className="w-full h-full object-cover" />}
+                              </div>
+                              <p className="text-[8px] font-semibold text-foreground truncate flex-1">Mobile Deal</p>
+                            </div>
+                            <div className="bg-primary text-primary-foreground text-[7px] px-1 py-0.5 rounded text-center">
+                              Shop Now
+                            </div>
+                          </div>
+                          <div className="absolute top-1 right-1 bg-black/60 text-white text-[6px] px-0.5 py-0.5 rounded">
+                            320×50
                           </div>
                         </div>
-                        <div className="absolute top-0.5 right-0.5">
-                          <span className="text-[6px] bg-black/20 text-white px-0.5 rounded">250×250</span>
+
+                        {/* Square Banner 250x250 */}
+                        <div className="bg-white/40 backdrop-blur-sm rounded-md p-2 relative overflow-hidden">
+                          <div className="h-full flex flex-col">
+                            <div className="aspect-square w-full bg-primary/20 rounded mb-1 flex-shrink-0 overflow-hidden">
+                              {uploadedImage && <img src={uploadedImage} alt="Product" className="w-full h-full object-cover" />}
+                            </div>
+                            <div className="flex-1 flex flex-col justify-end">
+                              <p className="text-[7px] font-semibold text-foreground text-center mb-1 truncate">Premium</p>
+                              <div className="bg-primary text-primary-foreground text-[6px] px-1 py-0.5 rounded text-center">
+                                Buy Now
+                              </div>
+                            </div>
+                          </div>
+                          <div className="absolute top-1 right-1 bg-black/60 text-white text-[6px] px-0.5 py-0.5 rounded">
+                            250×250
+                          </div>
                         </div>
                       </div>
                     </div>
