@@ -135,7 +135,7 @@ const PreviewResultsScreen: React.FC = () => {
                       </div>
                       <div className="space-y-2">
                         <div className="w-8 h-1 rounded-full bg-primary"></div>
-                        <Button size="sm" className="text-xs font-semibold px-3 py-1.5 bg-black text-white hover:bg-gray-800">
+                        <Button size="sm" className="text-xs font-semibold px-3 py-1.5">
                           {activeCampaignResults.banner_ads?.[0]?.cta || 'Learn More'}
                         </Button>
                       </div>
@@ -174,7 +174,7 @@ const PreviewResultsScreen: React.FC = () => {
                         </div>
                       </div>
                       <div className="px-6">
-                        <Button className="text-xs font-semibold px-6 py-2 bg-black text-white hover:bg-gray-800">
+                        <Button className="text-xs font-semibold px-6 py-2">
                           {activeCampaignResults.banner_ads?.[0]?.cta || 'Get Started'}
                         </Button>
                       </div>
@@ -202,7 +202,7 @@ const PreviewResultsScreen: React.FC = () => {
                       <h6 className="text-xs font-bold text-foreground truncate">{activeCampaignResults.banner_ads?.[0]?.headline || 'Transform Your Brand'}</h6>
                     </div>
                     <div className="px-3">
-                      <Button size="sm" className="text-xs font-semibold px-3 py-1 bg-black text-white hover:bg-gray-800 shrink-0">
+                      <Button size="sm" className="text-xs font-semibold px-3 py-1 shrink-0">
                         {activeCampaignResults.banner_ads?.[0]?.cta || 'Try Now'}
                       </Button>
                     </div>
@@ -264,7 +264,7 @@ const PreviewResultsScreen: React.FC = () => {
                       </div>
                       
                       <div className="flex flex-col sm:flex-row gap-4">
-                        <Button size="lg" className="text-lg px-8 py-4 shadow-lg bg-black text-white hover:bg-gray-800">
+                        <Button size="lg" className="text-lg px-8 py-4 shadow-lg">
                           {activeCampaignResults.landing_page_concept?.cta || 'Get Started'}
                         </Button>
                         <Button variant="outline" size="lg" className="text-lg px-8 py-4">
@@ -682,7 +682,7 @@ const PreviewResultsScreen: React.FC = () => {
                   <Button 
                     size="sm" 
                     onClick={() => handleOpenCategory('Web Creative')}
-                    className="bg-black hover:bg-black/90 text-white px-4 rounded-full"
+                    className="px-4 rounded-full"
                   >
                     Open
                   </Button>
@@ -704,7 +704,7 @@ const PreviewResultsScreen: React.FC = () => {
                   <Button 
                     size="sm" 
                     onClick={() => handleOpenCategory('Video Scripts')}
-                    className="bg-black hover:bg-black/90 text-white px-4 rounded-full"
+                    className="px-4 rounded-full"
                   >
                     Open
                   </Button>
@@ -726,7 +726,7 @@ const PreviewResultsScreen: React.FC = () => {
                   <Button 
                     size="sm" 
                     onClick={() => handleOpenCategory('Email Templates')}
-                    className="bg-black hover:bg-black/90 text-white px-4 rounded-full"
+                    className="px-4 rounded-full"
                   >
                     Open
                   </Button>
@@ -758,7 +758,7 @@ const PreviewResultsScreen: React.FC = () => {
               <Button 
                 onClick={() => navigate('/campaign-results', { state: location.state })}
                 size="lg"
-                className="bg-black hover:bg-black/90 text-white rounded-full px-8"
+                className="rounded-full px-8"
               >
                 View Full Results
               </Button>
@@ -780,7 +780,7 @@ const PreviewResultsScreen: React.FC = () => {
             {renderModalContent()}
           </div>
           <DialogFooter>
-            <Button onClick={handleCloseModal} className="bg-black hover:bg-black/90 text-white rounded-full">
+            <Button onClick={handleCloseModal} className="rounded-full">
               Close
             </Button>
           </DialogFooter>
