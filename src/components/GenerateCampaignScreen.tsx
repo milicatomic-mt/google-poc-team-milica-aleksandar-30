@@ -114,7 +114,7 @@ const GenerateCampaignScreen = () => {
               <div className="relative overflow-hidden rounded-full">
                 <Progress 
                   value={progress} 
-                  className="h-1 bg-white"
+                  className="h-1"
                 />
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent animate-shimmer pointer-events-none rounded-full"></div>
               </div>
