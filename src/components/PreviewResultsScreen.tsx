@@ -13,11 +13,14 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog';
 import RibbedSphere from '@/components/RibbedSphere';
+import type { CampaignCreationResponse } from '@/types/api';
 
 const PreviewResultsScreen: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { uploadedImage } = location.state || {};
+  const { uploadedImage, campaignResults } = location.state || {};
+  const [selectedSection, setSelectedSection] = useState<string | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleBack = () => {
     navigate(-1);
@@ -28,8 +31,67 @@ const PreviewResultsScreen: React.FC = () => {
   };
 
   const handleOpenCategory = (category: string) => {
-    // Navigate to specific category results
-    console.log(`Opening ${category} results`);
+    setSelectedSection(category);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setSelectedSection(null);
+  };
+
+  const renderModalContent = () => {
+    if (!campaignResults || !selectedSection) return null;
+
+    switch (selectedSection) {
+      case 'Banner Ads':
+        return (
+          <div className="space-y-4">
+            {campaignResults.banner_ads?.map((banner, index) => (
+              <div key={index} className="p-4 border rounded-lg">
+                <h4 className="font-semibold mb-2">Banner Ad #{index + 1}</h4>
+                <p><strong>Headline:</strong> {banner.headline}</p>
+                <p><strong>CTA:</strong> {banner.cta}</p>
+              </div>
+            ))}
+          </div>
+        );
+      case 'Web Creative':
+        return (
+          <div className="space-y-4">
+            <div className="p-4 border rounded-lg">
+              <h4 className="font-semibold mb-2">Landing Page Concept</h4>
+              <p><strong>Hero Text:</strong> {campaignResults.landing_page_concept?.hero_text}</p>
+              <p><strong>Sub Text:</strong> {campaignResults.landing_page_concept?.sub_text}</p>
+              <p><strong>CTA:</strong> {campaignResults.landing_page_concept?.cta}</p>
+            </div>
+          </div>
+        );
+      case 'Video Scripts':
+        return (
+          <div className="space-y-4">
+            {campaignResults.video_scripts?.map((video, index) => (
+              <div key={index} className="p-4 border rounded-lg">
+                <h4 className="font-semibold mb-2">{video.platform} Script</h4>
+                <p className="whitespace-pre-wrap">{video.script}</p>
+              </div>
+            ))}
+          </div>
+        );
+      case 'Email Templates':
+        return (
+          <div className="space-y-4">
+            <div className="p-4 border rounded-lg">
+              <h4 className="font-semibold mb-2">Email Campaign</h4>
+              <p><strong>Subject:</strong> {campaignResults.email_copy?.subject}</p>
+              <p><strong>Body:</strong></p>
+              <p className="whitespace-pre-wrap mt-2">{campaignResults.email_copy?.body}</p>
+            </div>
+          </div>
+        );
+      default:
+        return <p>No content available for this section.</p>;
+    }
   };
 
   const renderImageWithVariation = (src: string | null, alt: string, variation: 'original' | 'light' | 'medium' | 'dark' = 'original') => {
@@ -154,7 +216,7 @@ const PreviewResultsScreen: React.FC = () => {
                   <Button 
                     size="sm" 
                     onClick={() => handleOpenCategory('Banner Ads')}
-                    className="bg-primary hover:bg-primary/90 text-primary-foreground px-4 rounded-full"
+                    className="bg-black hover:bg-black/90 text-white px-4 rounded-full"
                   >
                     Open
                   </Button>
@@ -189,7 +251,7 @@ const PreviewResultsScreen: React.FC = () => {
                   <Button 
                     size="sm" 
                     onClick={() => handleOpenCategory('Web Creative')}
-                    className="bg-primary hover:bg-primary/90 text-primary-foreground px-4 rounded-full"
+                    className="bg-black hover:bg-black/90 text-white px-4 rounded-full"
                   >
                     Open
                   </Button>
@@ -212,7 +274,7 @@ const PreviewResultsScreen: React.FC = () => {
                   <Button 
                     size="sm" 
                     onClick={() => handleOpenCategory('Video Scripts')}
-                    className="bg-primary hover:bg-primary/90 text-primary-foreground px-4 rounded-full"
+                    className="bg-black hover:bg-black/90 text-white px-4 rounded-full"
                   >
                     Open
                   </Button>
@@ -235,7 +297,7 @@ const PreviewResultsScreen: React.FC = () => {
                   <Button 
                     size="sm" 
                     onClick={() => handleOpenCategory('Email Templates')}
-                    className="bg-primary hover:bg-primary/90 text-primary-foreground px-4 rounded-full"
+                    className="bg-black hover:bg-black/90 text-white px-4 rounded-full"
                   >
                     Open
                   </Button>
@@ -275,6 +337,26 @@ const PreviewResultsScreen: React.FC = () => {
           </div>
         </main>
       </div>
+
+      {/* Campaign Results Modal */}
+      <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
+        <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle>{selectedSection} Results</DialogTitle>
+            <DialogDescription>
+              Generated campaign content for {selectedSection?.toLowerCase()}
+            </DialogDescription>
+          </DialogHeader>
+          <div className="py-4">
+            {renderModalContent()}
+          </div>
+          <DialogFooter>
+            <Button onClick={handleCloseModal} className="rounded-full">
+              Close
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
