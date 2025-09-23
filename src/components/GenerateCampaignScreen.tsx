@@ -60,17 +60,17 @@ const GenerateCampaignScreen = () => {
         setCurrentAction("Complete!");
         setProgress(100);
         
-        // Navigate to results with the campaign ID
-        navigate('/campaign-results', { 
+        // Navigate to preview first, then results with the campaign ID
+        navigate('/preview-results', { 
           state: { 
             ...location.state, 
             campaignId: campaignResult.id 
           } 
         });
       } catch (error) {
-        // Still continue to results even if saving fails
+        // Still continue to preview even if saving fails
         setTimeout(() => {
-          navigate('/campaign-results', { state: location.state });
+          navigate('/preview-results', { state: location.state });
         }, 6000);
       }
     };
