@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Info, ArrowLeft, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
+import { Skeleton } from '@/components/ui/skeleton';
+import { toast } from 'sonner';
 import {
   Dialog,
   DialogContent,
@@ -14,10 +16,25 @@ import {
 } from '@/components/ui/dialog';
 import RibbedSphere from '@/components/RibbedSphere';
 
+interface GeneratedImages {
+  'banner-ads': string[];
+  'web-creative': string[];
+  'video-scripts': string[];
+  'email-templates': string[];
+}
+
 const PreviewResultsScreen: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { uploadedImage } = location.state || {};
+  const { uploadedImage, campaignPrompt } = location.state || {};
+  
+  const [generatedImages, setGeneratedImages] = useState<GeneratedImages>({
+    'banner-ads': [],
+    'web-creative': [],
+    'video-scripts': [],
+    'email-templates': []
+  });
+  const [isGeneratingImages, setIsGeneratingImages] = useState(false);
 
   const handleBack = () => {
     navigate(-1);
@@ -30,6 +47,92 @@ const PreviewResultsScreen: React.FC = () => {
   const handleOpenCategory = (category: string) => {
     // Navigate to specific category results
     console.log(`Opening ${category} results`);
+  };
+
+  const generateRelatedImages = async () => {
+    if (!campaignPrompt) {
+      console.warn('No campaign prompt available for image generation');
+      return;
+    }
+
+    setIsGeneratingImages(true);
+    
+    try {
+      // Generate images for each category
+      const categories: (keyof GeneratedImages)[] = ['banner-ads', 'web-creative', 'video-scripts', 'email-templates'];
+      const counts = { 'banner-ads': 3, 'web-creative': 1, 'video-scripts': 1, 'email-templates': 1 };
+      
+      const results = await Promise.allSettled(
+        categories.map(async (category) => {
+          const response = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/generate-related-images`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
+            },
+            body: JSON.stringify({
+              basePrompt: campaignPrompt,
+              category,
+              count: counts[category]
+            }),
+          });
+
+          if (!response.ok) {
+            throw new Error(`Failed to generate images for ${category}`);
+          }
+
+          const data = await response.json();
+          return { category, images: data.images };
+        })
+      );
+
+      // Process results and update state
+      const newImages = { ...generatedImages };
+      results.forEach((result, index) => {
+        if (result.status === 'fulfilled') {
+          newImages[result.value.category] = result.value.images;
+        } else {
+          console.error(`Failed to generate images for ${categories[index]}:`, result.reason);
+        }
+      });
+
+      setGeneratedImages(newImages);
+      toast.success('Related images generated successfully!');
+      
+    } catch (error) {
+      console.error('Error generating related images:', error);
+      toast.error('Failed to generate related images');
+    } finally {
+      setIsGeneratingImages(false);
+    }
+  };
+
+  useEffect(() => {
+    if (uploadedImage && campaignPrompt) {
+      generateRelatedImages();
+    }
+  }, [uploadedImage, campaignPrompt]);
+
+  const renderImageSlot = (src: string | null, alt: string, isLoading: boolean = false) => {
+    if (isLoading) {
+      return <Skeleton className="w-full h-full rounded-lg" />;
+    }
+    
+    if (src) {
+      return (
+        <img 
+          src={src} 
+          alt={alt}
+          className="w-full h-full object-cover"
+        />
+      );
+    }
+    
+    return (
+      <div className="w-full h-full flex items-center justify-center text-muted-foreground text-sm">
+        {alt}
+      </div>
+    );
   };
 
   return (
@@ -112,7 +215,9 @@ const PreviewResultsScreen: React.FC = () => {
                 <div className="bg-white/30 px-4 py-3 flex items-center justify-between rounded-t-lg backdrop-blur-sm">
                   <div className="flex items-center space-x-2">
                     <h3 className="text-foreground font-medium">Banner Ads</h3>
-                    <span className="bg-muted text-muted-foreground text-xs px-2 py-1 rounded-full">4</span>
+                    <span className="bg-muted text-muted-foreground text-xs px-2 py-1 rounded-full">
+                      {uploadedImage ? (1 + generatedImages['banner-ads'].length) : 0}
+                    </span>
                     <Info className="h-4 w-4 text-muted-foreground" />
                   </div>
                   <Button 
@@ -125,17 +230,17 @@ const PreviewResultsScreen: React.FC = () => {
                 </div>
                 <CardContent className="p-4">
                   <div className="grid grid-cols-2 gap-3 h-64">
-                    {[1, 2, 3, 4].map((index) => (
+                    {/* First slot: Original uploaded image */}
+                    <div className="bg-white/40 backdrop-blur-sm rounded-lg flex items-center justify-center overflow-hidden">
+                      {renderImageSlot(uploadedImage, 'Original product', isGeneratingImages && !uploadedImage)}
+                    </div>
+                    {/* Remaining slots: Generated variations */}
+                    {[0, 1, 2].map((index) => (
                       <div key={index} className="bg-white/40 backdrop-blur-sm rounded-lg flex items-center justify-center overflow-hidden">
-                        {uploadedImage ? (
-                          <img 
-                            src={uploadedImage} 
-                            alt={`Banner variation ${index}`}
-                            className="w-full h-full object-cover"
-                            style={{ opacity: 1 - (index - 1) * 0.2 }}
-                          />
-                        ) : (
-                          <div className="text-muted-foreground text-sm">Banner {index}</div>
+                        {renderImageSlot(
+                          generatedImages['banner-ads'][index] || null,
+                          `Banner variation ${index + 2}`,
+                          isGeneratingImages
                         )}
                       </div>
                     ))}
@@ -148,7 +253,9 @@ const PreviewResultsScreen: React.FC = () => {
                 <div className="bg-white/30 px-4 py-3 flex items-center justify-between rounded-t-lg backdrop-blur-sm">
                   <div className="flex items-center space-x-2">
                     <h3 className="text-foreground font-medium">Web Creative</h3>
-                    <span className="bg-muted text-muted-foreground text-xs px-2 py-1 rounded-full">1</span>
+                    <span className="bg-muted text-muted-foreground text-xs px-2 py-1 rounded-full">
+                      {uploadedImage ? (1 + generatedImages['web-creative'].length) : 0}
+                    </span>
                     <Info className="h-4 w-4 text-muted-foreground" />
                   </div>
                   <Button 
@@ -161,15 +268,7 @@ const PreviewResultsScreen: React.FC = () => {
                 </div>
                 <CardContent className="p-4">
                   <div className="h-64 bg-white/40 backdrop-blur-sm rounded-lg flex items-center justify-center overflow-hidden">
-                    {uploadedImage ? (
-                      <img 
-                        src={uploadedImage} 
-                        alt="Web creative"
-                        className="w-full h-full object-cover"
-                      />
-                    ) : (
-                      <div className="text-muted-foreground text-sm">Web Creative</div>
-                    )}
+                    {renderImageSlot(uploadedImage, 'Web creative', isGeneratingImages && !uploadedImage)}
                   </div>
                 </CardContent>
               </Card>
@@ -179,7 +278,9 @@ const PreviewResultsScreen: React.FC = () => {
                 <div className="bg-white/30 px-4 py-3 flex items-center justify-between rounded-t-lg backdrop-blur-sm">
                   <div className="flex items-center space-x-2">
                     <h3 className="text-foreground font-medium">Video Scripts</h3>
-                    <span className="bg-muted text-muted-foreground text-xs px-2 py-1 rounded-full">1</span>
+                    <span className="bg-muted text-muted-foreground text-xs px-2 py-1 rounded-full">
+                      {uploadedImage ? (1 + generatedImages['video-scripts'].length) : 0}
+                    </span>
                     <Info className="h-4 w-4 text-muted-foreground" />
                   </div>
                   <Button 
@@ -192,15 +293,7 @@ const PreviewResultsScreen: React.FC = () => {
                 </div>
                 <CardContent className="p-4">
                   <div className="h-64 bg-white/40 backdrop-blur-sm rounded-lg flex items-center justify-center overflow-hidden">
-                    {uploadedImage ? (
-                      <img 
-                        src={uploadedImage} 
-                        alt="Video script preview"
-                        className="w-full h-full object-cover"
-                      />
-                    ) : (
-                      <div className="text-muted-foreground text-sm">Video Script</div>
-                    )}
+                    {renderImageSlot(uploadedImage, 'Video script preview', isGeneratingImages && !uploadedImage)}
                   </div>
                 </CardContent>
               </Card>
@@ -210,7 +303,9 @@ const PreviewResultsScreen: React.FC = () => {
                 <div className="bg-white/30 px-4 py-3 flex items-center justify-between rounded-t-lg backdrop-blur-sm">
                   <div className="flex items-center space-x-2">
                     <h3 className="text-foreground font-medium">Email Templates</h3>
-                    <span className="bg-muted text-muted-foreground text-xs px-2 py-1 rounded-full">2</span>
+                    <span className="bg-muted text-muted-foreground text-xs px-2 py-1 rounded-full">
+                      {uploadedImage ? (1 + generatedImages['email-templates'].length) : 0}
+                    </span>
                     <Info className="h-4 w-4 text-muted-foreground" />
                   </div>
                   <Button 
@@ -223,26 +318,16 @@ const PreviewResultsScreen: React.FC = () => {
                 </div>
                 <CardContent className="p-4">
                   <div className="space-y-3 h-64">
+                    {/* First slot: Original uploaded image */}
                     <div className="h-[48%] bg-white/40 backdrop-blur-sm rounded-lg flex items-center justify-center overflow-hidden">
-                      {uploadedImage ? (
-                        <img 
-                          src={uploadedImage} 
-                          alt="Email template 1"
-                          className="w-full h-full object-cover"
-                        />
-                      ) : (
-                        <div className="text-muted-foreground text-sm">Email Template 1</div>
-                      )}
+                      {renderImageSlot(uploadedImage, 'Email template - original', isGeneratingImages && !uploadedImage)}
                     </div>
+                    {/* Second slot: Generated variation or placeholder */}
                     <div className="h-[48%] bg-white/40 backdrop-blur-sm rounded-lg flex items-center justify-center overflow-hidden">
-                      {uploadedImage ? (
-                        <img 
-                          src={uploadedImage} 
-                          alt="Email template 2"
-                          className="w-full h-full object-cover opacity-70"
-                        />
-                      ) : (
-                        <div className="text-muted-foreground text-sm">Email Template 2</div>
+                      {renderImageSlot(
+                        generatedImages['email-templates'][0] || null,
+                        'Email template variation',
+                        isGeneratingImages
                       )}
                     </div>
                   </div>
