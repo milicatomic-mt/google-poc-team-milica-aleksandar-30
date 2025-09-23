@@ -666,7 +666,7 @@ const UploadScreen: React.FC<UploadScreenProps> = ({ mode }) => {
               size="lg"
               onClick={handleContinue}
               className={`tap-target focus-ring w-96 px-12 bg-indigo-600 hover:bg-indigo-700 text-white transition-opacity duration-300 rounded-full ${
-                uploadedImage && validationResult?.isValid && (!isAnalyzingImage || currentMode !== 'campaign') 
+                uploadedImage && validationResult?.isValid && !isAnalyzingImage
                   ? 'opacity-100' 
                   : 'opacity-0 pointer-events-none'
               }`}
