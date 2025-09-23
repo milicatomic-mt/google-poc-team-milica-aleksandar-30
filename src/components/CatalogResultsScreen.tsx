@@ -230,7 +230,7 @@ const CatalogResultsScreen: React.FC = () => {
                       {catalogResults?.product_title}
                     </h3>
                     {catalogData.category && (
-                      <Badge variant="outline" className="mb-2 border-primary text-primary">
+                      <Badge variant="default" className="mb-2 bg-primary text-primary-foreground">
                         {catalogData.category}
                       </Badge>
                     )}
