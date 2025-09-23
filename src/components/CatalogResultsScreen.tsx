@@ -189,27 +189,24 @@ const CatalogResultsScreen: React.FC = () => {
       </video>
 
       <div className="relative z-10 flex min-h-screen flex-col overflow-y-auto">
-        {/* Back Button */}
-        <div className="fixed top-1/2 left-8 transform -translate-y-1/2 z-20">
-          <Button 
-            variant="secondary" 
-            onClick={handleBack}
-            className="tap-target focus-ring bg-white border-white/30 hover:bg-white/90 rounded-full p-3"
-            aria-label="Go back to catalog details"
-          >
-            <ArrowLeft className="h-5 w-5 text-black" />
-          </Button>
-        </div>
-
-        {/* Title and Subtitle - Left aligned with content */}
+        {/* Title, Subtitle and Download Button */}
         <div className="container-padding pt-8 pb-4">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold text-foreground mb-2">
-              Catalog Enrichment Preview
-            </h2>
-            <p className="text-xl text-muted-foreground font-medium">
-              Your enriched catalog is ready to publish
-            </p>
+          <div className="max-w-4xl mx-auto flex justify-between items-start">
+            <div>
+              <h2 className="text-3xl font-bold text-foreground mb-2">
+                Catalog Enrichment Preview
+              </h2>
+              <p className="text-xl text-muted-foreground font-medium">
+                Your enriched catalog is ready to publish
+              </p>
+            </div>
+            <Button
+              variant="default"
+              className="tap-target focus-ring bg-primary hover:bg-primary/90 text-white rounded-full px-6 py-2 flex items-center gap-2"
+            >
+              <Download className="w-4 h-4" />
+              Download
+            </Button>
           </div>
         </div>
 
@@ -221,7 +218,7 @@ const CatalogResultsScreen: React.FC = () => {
             <Card className="bg-white/20 border-white/30 backdrop-blur-sm">
               <CardContent className="p-6">
                 <div className="flex items-center space-x-4">
-                  <div className="w-24 h-24 rounded-lg overflow-hidden bg-muted">
+                  <div className="w-32 h-32 rounded-lg overflow-hidden bg-muted">
                     <img
                       src={catalogData.uploadedImage}
                       alt="Product"
@@ -233,7 +230,7 @@ const CatalogResultsScreen: React.FC = () => {
                       {catalogResults?.product_title}
                     </h3>
                     {catalogData.category && (
-                      <Badge variant="secondary" className="mb-2">
+                      <Badge variant="default" className="mb-2 bg-primary text-primary-foreground">
                         {catalogData.category}
                       </Badge>
                     )}
@@ -333,7 +330,7 @@ const CatalogResultsScreen: React.FC = () => {
                     </div>
                     <div className="flex flex-wrap gap-1">
                       {catalogResults?.seo_metadata.keywords.map((keyword, index) => (
-                        <Badge key={index} variant="outline" className="text-xs">
+                        <Badge key={index} variant="default" className="text-xs bg-primary text-primary-foreground">
                           {keyword}
                         </Badge>
                       ))}
@@ -357,7 +354,7 @@ const CatalogResultsScreen: React.FC = () => {
                     </div>
                     <div className="flex flex-wrap gap-1">
                       {catalogResults?.seo_metadata.tags.map((tag, index) => (
-                        <Badge key={index} variant="secondary" className="text-xs">
+                        <Badge key={index} variant="default" className="text-xs bg-primary text-primary-foreground">
                           {tag}
                         </Badge>
                       ))}
