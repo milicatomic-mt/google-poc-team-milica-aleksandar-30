@@ -204,7 +204,7 @@ const CatalogResultsScreen: React.FC = () => {
               <Button
                 onClick={handleBack}
                 variant="outline"
-                className="tap-target focus-ring bg-white hover:bg-white/90 text-black border-white rounded-full px-6 py-2 flex items-center gap-2"
+                className="tap-target focus-ring bg-white hover:bg-white/90 text-black hover:text-black border-white rounded-full px-6 py-2 flex items-center gap-2"
               >
                 <Edit className="w-4 h-4 text-black" />
                 Edit
