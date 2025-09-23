@@ -674,8 +674,8 @@ const PreviewResultsScreen: React.FC = () => {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               
               {/* Banner Ads Card */}
-              <Card className="bg-white/20 border-white/30 backdrop-blur-sm shadow-lg">
-                <div className="bg-white/30 px-4 py-3 flex items-center justify-between rounded-t-lg backdrop-blur-sm">
+              <Card className="card-elegant backdrop-blur-xl bg-white/40 border-white/50 border-2 shadow-elegant-lg hover:shadow-elegant-lg transition-all duration-smooth">
+                <div className="bg-white/50 px-4 py-3 flex items-center justify-between rounded-t-lg backdrop-blur-md border-b border-white/30 hover:bg-white/60 transition-all duration-smooth">
                   <div className="flex items-center space-x-2">
                     <h3 className="text-foreground font-medium">Banner Ads</h3>
                     <span className="bg-muted text-muted-foreground text-xs px-2 py-1 rounded-full">4</span>
@@ -762,8 +762,8 @@ const PreviewResultsScreen: React.FC = () => {
               </Card>
 
               {/* Web Creative Card */}
-              <Card className="bg-white/20 border-white/30 backdrop-blur-sm shadow-lg">
-                <div className="bg-white/30 px-4 py-3 flex items-center justify-between rounded-t-lg backdrop-blur-sm">
+              <Card className="card-elegant backdrop-blur-xl bg-white/40 border-white/50 border-2 shadow-elegant-lg hover:shadow-elegant-lg transition-all duration-smooth">
+                <div className="bg-white/50 px-4 py-3 flex items-center justify-between rounded-t-lg backdrop-blur-md border-b border-white/30 hover:bg-white/60 transition-all duration-smooth">
                   <div className="flex items-center space-x-2">
                     <h3 className="text-foreground font-medium">Web Creative</h3>
                     <span className="bg-muted text-muted-foreground text-xs px-2 py-1 rounded-full">1</span>
@@ -877,8 +877,8 @@ const PreviewResultsScreen: React.FC = () => {
               </Card>
 
               {/* Video Scripts Card */}
-              <Card className="bg-white/20 border-white/30 backdrop-blur-sm shadow-lg">
-                <div className="bg-white/30 px-4 py-3 flex items-center justify-between rounded-t-lg backdrop-blur-sm">
+              <Card className="card-elegant backdrop-blur-xl bg-white/40 border-white/50 border-2 shadow-elegant-lg hover:shadow-elegant-lg transition-all duration-smooth">
+                <div className="bg-white/50 px-4 py-3 flex items-center justify-between rounded-t-lg backdrop-blur-md border-b border-white/30 hover:bg-white/60 transition-all duration-smooth">
                   <div className="flex items-center space-x-2">
                     <h3 className="text-foreground font-medium">Video Scripts</h3>
                     <span className="bg-muted text-muted-foreground text-xs px-2 py-1 rounded-full">1</span>
