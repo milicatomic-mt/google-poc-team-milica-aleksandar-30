@@ -316,34 +316,27 @@ const PreviewResultsScreen: React.FC = () => {
               {/* Left Side - Video Preview */}
               <div className="space-y-6">
                 <div className="border-2 border-border rounded-2xl overflow-hidden bg-background shadow-2xl">
-                  {/* Video Script Preview */}
-                  <div className="bg-gradient-to-br from-gray-900 to-black text-white relative">
-                    {/* Video Thumbnail */}
-                    <div className="relative aspect-video">
-                      {uploadedImage && (
-                        <img src={uploadedImage} alt="Video thumbnail" className="w-full h-full object-cover" />
-                      )}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30"></div>
-                      
-                      {/* Video Controls Overlay */}
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="w-24 h-24 bg-white/10 rounded-full flex items-center justify-center backdrop-blur-md border border-white/20 hover:bg-white/20 transition-all duration-300">
-                          <Play className="w-10 h-10 text-white ml-1" />
-                        </div>
-                      </div>
-                      
-                      {/* Universal Format Badge */}
-                      <div className="absolute top-6 right-6">
-                        <Badge className="text-sm font-semibold bg-gradient-to-r from-purple-500 to-pink-500 text-white border-0 px-3 py-1">
-                          Universal Format
-                        </Badge>
-                      </div>
-                      
-                      {/* Duration */}
-                      <div className="absolute bottom-6 right-6 bg-black/80 text-white text-sm px-3 py-1 rounded-full backdrop-blur-sm">
-                        0:30
+                {/* Video Script Preview */}
+                <div className="bg-gradient-to-br from-gray-900 to-black text-white relative">
+                  {/* Video Thumbnail */}
+                  <div className="relative aspect-video">
+                    {uploadedImage && (
+                      <img src={uploadedImage} alt="Video thumbnail" className="w-full h-full object-cover" />
+                    )}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30"></div>
+                    
+                    {/* Video Controls Overlay */}
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="w-24 h-24 bg-white/10 rounded-full flex items-center justify-center backdrop-blur-md border border-white/20 hover:bg-white/20 transition-all duration-300">
+                        <Play className="w-10 h-10 text-white ml-1" />
                       </div>
                     </div>
+                    
+                    {/* Duration */}
+                    <div className="absolute bottom-6 right-6 bg-black/80 text-white text-sm px-3 py-1 rounded-full backdrop-blur-sm">
+                      0:30
+                    </div>
+                  </div>
                     
                     {/* Video Title Bar */}
                     <div className="p-6 bg-gradient-to-r from-gray-900/90 to-black/90 backdrop-blur-sm">
@@ -426,7 +419,7 @@ const PreviewResultsScreen: React.FC = () => {
                   <div className="space-y-6 mt-8">
                     <div className="p-6 bg-white rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
                       <div className="flex items-center gap-3 mb-4">
-                        <div className="w-10 h-10 rounded-full bg-gradient-to-r from-green-500 to-emerald-500 text-white text-sm font-bold flex items-center justify-center">1</div>
+                        <div className="w-10 h-10 rounded-full bg-black text-white text-sm font-bold flex items-center justify-center">1</div>
                         <div>
                           <span className="font-semibold text-lg text-gray-900">Opening Hook</span>
                           <p className="text-sm text-gray-500">0-3 seconds</p>
@@ -442,7 +435,7 @@ const PreviewResultsScreen: React.FC = () => {
                     
                     <div className="p-6 bg-white rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
                       <div className="flex items-center gap-3 mb-4">
-                        <div className="w-10 h-10 rounded-full bg-gradient-to-r from-blue-500 to-cyan-500 text-white text-sm font-bold flex items-center justify-center">2</div>
+                        <div className="w-10 h-10 rounded-full bg-black text-white text-sm font-bold flex items-center justify-center">2</div>
                         <div>
                           <span className="font-semibold text-lg text-gray-900">Main Content</span>
                           <p className="text-sm text-gray-500">3-25 seconds</p>
@@ -458,7 +451,7 @@ const PreviewResultsScreen: React.FC = () => {
                     
                     <div className="p-6 bg-white rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
                       <div className="flex items-center gap-3 mb-4">
-                        <div className="w-10 h-10 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 text-white text-sm font-bold flex items-center justify-center">3</div>
+                        <div className="w-10 h-10 rounded-full bg-black text-white text-sm font-bold flex items-center justify-center">3</div>
                         <div>
                           <span className="font-semibold text-lg text-gray-900">Call to Action</span>
                           <p className="text-sm text-gray-500">25-30 seconds</p>
@@ -931,13 +924,6 @@ const PreviewResultsScreen: React.FC = () => {
                         )}
                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30"></div>
                         
-                        {/* Video Title Overlay */}
-                        <div className="absolute top-3 left-3">
-                          <div className="bg-gradient-to-r from-purple-500 to-pink-500 text-white text-xs px-2 py-1 rounded-full font-medium">
-                            Universal Format
-                          </div>
-                        </div>
-                        
                         {/* Play Button */}
                         <div className="absolute inset-0 flex items-center justify-center">
                           <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center backdrop-blur-md border border-white/20 hover:bg-white/20 transition-all duration-300">
@@ -965,7 +951,7 @@ const PreviewResultsScreen: React.FC = () => {
                         <div className="space-y-2">
                           <div className="bg-white/60 p-3 rounded-lg">
                             <div className="flex items-center gap-2 mb-1">
-                              <div className="w-5 h-5 rounded-full bg-gradient-to-r from-green-500 to-emerald-500 text-white text-xs font-bold flex items-center justify-center">1</div>
+                              <div className="w-5 h-5 rounded-full bg-black text-white text-xs font-bold flex items-center justify-center">1</div>
                               <span className="font-medium text-xs text-gray-800">Hook</span>
                             </div>
                             <p className="text-xs text-gray-700 font-medium">
@@ -975,7 +961,7 @@ const PreviewResultsScreen: React.FC = () => {
                           
                           <div className="bg-white/60 p-3 rounded-lg">
                             <div className="flex items-center gap-2 mb-1">
-                              <div className="w-5 h-5 rounded-full bg-gradient-to-r from-blue-500 to-cyan-500 text-white text-xs font-bold flex items-center justify-center">2</div>
+                              <div className="w-5 h-5 rounded-full bg-black text-white text-xs font-bold flex items-center justify-center">2</div>
                               <span className="font-medium text-xs text-gray-800">Content</span>
                             </div>
                             <p className="text-xs text-gray-700">
@@ -985,7 +971,7 @@ const PreviewResultsScreen: React.FC = () => {
                           
                           <div className="bg-white/60 p-3 rounded-lg">
                             <div className="flex items-center gap-2 mb-1">
-                              <div className="w-5 h-5 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 text-white text-xs font-bold flex items-center justify-center">3</div>
+                              <div className="w-5 h-5 rounded-full bg-black text-white text-xs font-bold flex items-center justify-center">3</div>
                               <span className="font-medium text-xs text-gray-800">CTA</span>
                             </div>
                             <p className="text-xs text-gray-700 font-medium">
