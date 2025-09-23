@@ -656,7 +656,7 @@ const PreviewResultsScreen: React.FC = () => {
               <h2 className="text-3xl font-bold text-foreground mb-2">
                 Campaign Creative Preview
               </h2>
-              <p className="text-xl text-muted-foreground font-medium">
+              <p className="text-lg text-muted-foreground font-medium">
                 Your assets across channels at a glance
               </p>
             </div>
