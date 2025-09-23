@@ -545,7 +545,6 @@ const PreviewResultsScreen: React.FC = () => {
                   <div className="flex items-center space-x-2">
                     <h3 className="text-foreground font-medium">Banner Ads</h3>
                     <span className="bg-muted text-muted-foreground text-xs px-2 py-1 rounded-full">4</span>
-                    <Info className="h-4 w-4 text-muted-foreground" />
                   </div>
                   <Button 
                     size="sm" 
@@ -580,7 +579,6 @@ const PreviewResultsScreen: React.FC = () => {
                   <div className="flex items-center space-x-2">
                     <h3 className="text-foreground font-medium">Web Creative</h3>
                     <span className="bg-muted text-muted-foreground text-xs px-2 py-1 rounded-full">1</span>
-                    <Info className="h-4 w-4 text-muted-foreground" />
                   </div>
                   <Button 
                     size="sm" 
@@ -603,7 +601,6 @@ const PreviewResultsScreen: React.FC = () => {
                   <div className="flex items-center space-x-2">
                     <h3 className="text-foreground font-medium">Video Scripts</h3>
                     <span className="bg-muted text-muted-foreground text-xs px-2 py-1 rounded-full">1</span>
-                    <Info className="h-4 w-4 text-muted-foreground" />
                   </div>
                   <Button 
                     size="sm" 
@@ -626,7 +623,6 @@ const PreviewResultsScreen: React.FC = () => {
                   <div className="flex items-center space-x-2">
                     <h3 className="text-foreground font-medium">Email Templates</h3>
                     <span className="bg-muted text-muted-foreground text-xs px-2 py-1 rounded-full">2</span>
-                    <Info className="h-4 w-4 text-muted-foreground" />
                   </div>
                   <Button 
                     size="sm" 
@@ -663,7 +659,7 @@ const PreviewResultsScreen: React.FC = () => {
               <Button 
                 onClick={() => navigate('/campaign-results', { state: location.state })}
                 size="lg"
-                className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-8"
+                className="bg-black hover:bg-black/90 text-white rounded-full px-8"
               >
                 View Full Results
               </Button>
@@ -685,7 +681,7 @@ const PreviewResultsScreen: React.FC = () => {
             {renderModalContent()}
           </div>
           <DialogFooter>
-            <Button onClick={handleCloseModal} className="rounded-full">
+            <Button onClick={handleCloseModal} className="bg-black hover:bg-black/90 text-white rounded-full">
               Close
             </Button>
           </DialogFooter>
