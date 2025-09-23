@@ -794,7 +794,7 @@ const PreviewResultsScreen: React.FC = () => {
                           </div>
                           
                           {/* Hero Image */}
-                          <div className="w-12 h-12 bg-white rounded-lg shadow-lg p-1 flex-shrink-0">
+                          <div className="w-16 h-16 bg-white rounded-lg shadow-lg p-1 flex-shrink-0">
                             <div className="w-full h-full bg-gray-100 rounded overflow-hidden">
                               {uploadedImage && <img src={uploadedImage} alt="Product" className="w-full h-full object-cover" />}
                             </div>
