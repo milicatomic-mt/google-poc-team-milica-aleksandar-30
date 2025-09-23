@@ -694,7 +694,7 @@ const PreviewResultsScreen: React.FC = () => {
                 <CardContent className="p-4">
                   <div className="grid grid-cols-2 gap-3 h-64">
                     {/* Top Left - Leaderboard Banner */}
-                    <div className="bg-white/40 backdrop-blur-sm rounded-lg p-3 overflow-hidden flex flex-col">
+                    <div className="backdrop-blur-sm rounded-lg p-3 overflow-hidden flex flex-col border border-white/20">
                       <div className="flex-1 flex flex-col justify-between">
                         <div className="flex items-start gap-2">
                           <div className="w-8 h-8 rounded bg-primary/20 flex-shrink-0 overflow-hidden">
@@ -714,7 +714,7 @@ const PreviewResultsScreen: React.FC = () => {
                     </div>
 
                     {/* Top Right - Square Banner */}
-                    <div className="bg-white/40 backdrop-blur-sm rounded-lg p-3 overflow-hidden flex flex-col">
+                    <div className="backdrop-blur-sm rounded-lg p-3 overflow-hidden flex flex-col border border-white/20">
                       <div className="w-full aspect-square bg-primary/20 rounded mb-2 overflow-hidden">
                         {uploadedImage && <img src={uploadedImage} alt="Product" className="w-full h-full object-cover" />}
                       </div>
@@ -727,7 +727,7 @@ const PreviewResultsScreen: React.FC = () => {
                     </div>
 
                     {/* Bottom Left - Mobile Banner */}
-                    <div className="bg-white/40 backdrop-blur-sm rounded-lg p-3 overflow-hidden flex flex-col justify-between">
+                    <div className="backdrop-blur-sm rounded-lg p-3 overflow-hidden flex flex-col justify-between border border-white/20">
                       <div className="flex items-center gap-2 mb-2">
                         <div className="w-6 h-6 rounded bg-primary/20 flex-shrink-0 overflow-hidden">
                           {uploadedImage && <img src={uploadedImage} alt="Product" className="w-full h-full object-cover" />}
@@ -745,7 +745,7 @@ const PreviewResultsScreen: React.FC = () => {
                     </div>
 
                     {/* Bottom Right - Video Banner */}
-                    <div className="bg-white/40 backdrop-blur-sm rounded-lg p-3 overflow-hidden relative">
+                    <div className="backdrop-blur-sm rounded-lg p-3 overflow-hidden relative border border-white/20">
                       <div className="w-full h-full bg-primary/20 rounded flex items-center justify-center overflow-hidden">
                         {uploadedImage && <img src={uploadedImage} alt="Product" className="w-full h-full object-cover" />}
                         <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
@@ -927,7 +927,7 @@ const PreviewResultsScreen: React.FC = () => {
                     </div>
 
                     {/* Right Side - Script Preview */}
-                    <div className="bg-white/40 backdrop-blur-sm rounded-lg p-4 overflow-y-auto">
+                    <div className="backdrop-blur-sm rounded-lg p-4 overflow-y-auto border border-white/20">
                       <div className="space-y-3">
                         {/* Script Header */}
                         <div className="text-center pb-2 border-b border-white/30">
@@ -1010,7 +1010,7 @@ const PreviewResultsScreen: React.FC = () => {
                 <CardContent className="p-4">
                   <div className="space-y-3 h-64">
                     {/* Promotional Email Template */}
-                    <div className="bg-white/40 backdrop-blur-sm rounded-lg p-3 h-[48%] overflow-hidden">
+                    <div className="backdrop-blur-sm rounded-lg p-3 h-[48%] overflow-hidden border border-white/20">
                       <div className="space-y-2 h-full flex flex-col">
                         {/* Email Header */}
                         <div className="flex items-center justify-between pb-1 border-b border-black/10">
@@ -1035,7 +1035,7 @@ const PreviewResultsScreen: React.FC = () => {
                     </div>
 
                     {/* Newsletter Email Template */}
-                    <div className="bg-white/40 backdrop-blur-sm rounded-lg p-3 h-[48%] overflow-hidden">
+                    <div className="backdrop-blur-sm rounded-lg p-3 h-[48%] overflow-hidden border border-white/20">
                       <div className="space-y-2 h-full flex flex-col">
                         {/* Email Header */}
                         <div className="flex items-center justify-between pb-1 border-b border-black/10">
