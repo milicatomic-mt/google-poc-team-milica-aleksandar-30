@@ -764,8 +764,63 @@ const PreviewResultsScreen: React.FC = () => {
                   </Button>
                 </div>
                 <CardContent className="p-4">
-                  <div className="h-64 bg-white/40 backdrop-blur-sm rounded-lg flex items-center justify-center overflow-hidden">
-                    {renderImageWithVariation(uploadedImage, 'Video script preview', 'original')}
+                  <div className="space-y-3 h-64">
+                    {/* Video Player Interface */}
+                    <div className="bg-black rounded-lg overflow-hidden relative h-32">
+                      {/* Video Thumbnail with Play Button */}
+                      <div className="relative w-full h-full">
+                        {uploadedImage && (
+                          <img src={uploadedImage} alt="Video thumbnail" className="w-full h-full object-cover" />
+                        )}
+                        <div className="absolute inset-0 bg-black/30"></div>
+                        
+                        {/* Video Title Overlay */}
+                        <div className="absolute top-2 left-3">
+                          <h4 className="text-white text-xs font-medium">Transform Your Experience</h4>
+                        </div>
+                        
+                        {/* Play Button */}
+                        <div className="absolute inset-0 flex items-center justify-center">
+                          <div className="w-12 h-8 bg-black/80 rounded flex items-center justify-center">
+                            <div className="w-0 h-0 border-l-[8px] border-l-white border-t-[6px] border-t-transparent border-b-[6px] border-b-transparent ml-1"></div>
+                          </div>
+                        </div>
+                        
+                        {/* Video Controls Bar */}
+                        <div className="absolute bottom-0 left-0 right-0 bg-black/70 p-2">
+                          <div className="flex items-center gap-2">
+                            <div className="w-3 h-3 bg-white/80 rounded flex items-center justify-center">
+                              <div className="w-0 h-0 border-l-[4px] border-l-black border-t-[3px] border-t-transparent border-b-[3px] border-b-transparent"></div>
+                            </div>
+                            <div className="flex-1 h-1 bg-gray-600 rounded">
+                              <div className="w-1/4 h-full bg-red-500 rounded"></div>
+                            </div>
+                            <span className="text-white text-[9px]">1:30 / 5:28</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Storyboard Section */}
+                    <div className="bg-white/40 backdrop-blur-sm rounded-lg p-3 h-28">
+                      <div className="space-y-2">
+                        <h4 className="text-xs font-semibold text-foreground">Storyboard for your product</h4>
+                        
+                        <div className="bg-primary/20 rounded p-2">
+                          <div className="flex items-center gap-2 mb-1">
+                            <div className="bg-primary text-primary-foreground text-[9px] px-2 py-0.5 rounded font-medium">
+                              Scene 1:
+                            </div>
+                            <span className="text-[9px] font-medium text-foreground">Opening Shot</span>
+                          </div>
+                          
+                          <div className="space-y-1 text-[8px] text-foreground">
+                            <div><span className="font-medium">Visual:</span> Close-up of product in modern setting</div>
+                            <div><span className="font-medium">Voiceover:</span> "Experience innovation like never before"</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </CardContent>
               </Card>
