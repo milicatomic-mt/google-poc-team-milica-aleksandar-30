@@ -126,17 +126,6 @@ const CatalogResultsScreen: React.FC = () => {
         </video>
 
         <div className="relative z-10 flex min-h-screen flex-col">
-          <header className="container-padding pt-12 relative">
-            <div className="absolute top-12 left-8">
-              <div className="flex items-center">
-                <div className="h-8 w-8 mr-3">
-                  <RibbedSphere className="w-full h-full" />
-                </div>
-                <h1 className="text-lg font-semibold text-foreground">Catalog Enrichment</h1>
-              </div>
-            </div>
-          </header>
-
           <div className="flex-1 flex items-center justify-center">
             <div className="flex flex-col items-center justify-center space-y-6">
               {/* Animated Sphere - 200x200px */}
@@ -160,9 +149,8 @@ const CatalogResultsScreen: React.FC = () => {
                   value={progress} 
                   className="h-2 bg-muted"
                 />
-                <div className="flex justify-between items-center mt-2 text-sm text-muted-foreground">
+                <div className="flex justify-center items-center mt-2 text-sm text-muted-foreground">
                   <span>{progress}%</span>
-                  <span>Please wait...</span>
                 </div>
               </div>
             </div>
