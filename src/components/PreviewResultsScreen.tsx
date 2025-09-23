@@ -654,73 +654,71 @@ const PreviewResultsScreen: React.FC = () => {
                   </Button>
                 </div>
                 <CardContent className="p-4">
-                  <div className="h-64 overflow-hidden">
-                    <div className="space-y-2 h-full flex flex-col">
-                      {/* Leaderboard Banner 728x90 - Compact horizontal layout */}
-                      <div className="bg-white/40 backdrop-blur-sm rounded-md p-2 h-8 flex-shrink-0 relative overflow-hidden">
-                        <div className="flex items-center h-full gap-2">
-                          <div className="w-5 h-5 rounded bg-primary/20 flex-shrink-0 overflow-hidden">
+                  <div className="grid grid-cols-2 gap-3 h-64">
+                    {/* Top Left - Leaderboard Banner */}
+                    <div className="bg-white/40 backdrop-blur-sm rounded-lg p-3 overflow-hidden flex flex-col">
+                      <div className="flex-1 flex flex-col justify-between">
+                        <div className="flex items-start gap-2">
+                          <div className="w-8 h-8 rounded bg-primary/20 flex-shrink-0 overflow-hidden">
                             {uploadedImage && <img src={uploadedImage} alt="Product" className="w-full h-full object-cover" />}
                           </div>
                           <div className="flex-1 min-w-0">
-                            <p className="text-[9px] font-semibold text-foreground truncate">Transform Your Experience</p>
+                            <h4 className="text-xs font-bold text-foreground leading-tight">Transform Your Experience</h4>
+                            <p className="text-[10px] text-muted-foreground mt-1">Premium solutions for modern needs</p>
                           </div>
-                          <div className="flex-shrink-0">
-                            <div className="bg-primary text-primary-foreground text-[8px] px-1.5 py-0.5 rounded text-center min-w-[40px]">
-                              Try Now
-                            </div>
+                        </div>
+                        <div className="mt-3">
+                          <div className="bg-primary text-primary-foreground text-[9px] px-2 py-1 rounded inline-block">
+                            Get Started
                           </div>
                         </div>
                       </div>
+                    </div>
 
-                      {/* Medium Rectangle Banner 300x250 - Horizontal card layout */}
-                      <div className="bg-white/40 backdrop-blur-sm rounded-md p-2 h-16 flex-shrink-0 relative overflow-hidden">
-                        <div className="flex h-full gap-2">
-                          <div className="flex-1 flex flex-col justify-between min-w-0">
-                            <div>
-                              <h4 className="text-[9px] font-bold text-foreground leading-tight truncate">Discover Innovation</h4>
-                              <p className="text-[7px] text-muted-foreground truncate">Premium solutions</p>
-                            </div>
-                            <div className="bg-primary text-primary-foreground text-[7px] px-1.5 py-0.5 rounded self-start">
-                              Learn More
-                            </div>
-                          </div>
-                          <div className="w-12 h-full rounded bg-primary/20 flex-shrink-0 overflow-hidden">
-                            {uploadedImage && <img src={uploadedImage} alt="Product" className="w-full h-full object-cover" />}
+                    {/* Top Right - Square Banner */}
+                    <div className="bg-white/40 backdrop-blur-sm rounded-lg p-3 overflow-hidden flex flex-col">
+                      <div className="w-full aspect-square bg-primary/20 rounded mb-2 overflow-hidden">
+                        {uploadedImage && <img src={uploadedImage} alt="Product" className="w-full h-full object-cover" />}
+                      </div>
+                      <div className="text-center">
+                        <h4 className="text-[10px] font-bold text-foreground mb-1">Premium Collection</h4>
+                        <div className="bg-primary text-primary-foreground text-[8px] px-2 py-1 rounded">
+                          Shop Now
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Bottom Left - Mobile Banner */}
+                    <div className="bg-white/40 backdrop-blur-sm rounded-lg p-3 overflow-hidden flex flex-col justify-between">
+                      <div className="flex items-center gap-2 mb-2">
+                        <div className="w-6 h-6 rounded bg-primary/20 flex-shrink-0 overflow-hidden">
+                          {uploadedImage && <img src={uploadedImage} alt="Product" className="w-full h-full object-cover" />}
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <h4 className="text-[10px] font-semibold text-foreground">Limited Offer</h4>
+                        </div>
+                      </div>
+                      <div className="space-y-2">
+                        <p className="text-[9px] text-muted-foreground">Save up to 50% today</p>
+                        <div className="bg-primary text-primary-foreground text-[8px] px-2 py-1 rounded text-center">
+                          Claim Deal
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Bottom Right - Video Banner */}
+                    <div className="bg-white/40 backdrop-blur-sm rounded-lg p-3 overflow-hidden relative">
+                      <div className="w-full h-full bg-primary/20 rounded flex items-center justify-center overflow-hidden">
+                        {uploadedImage && <img src={uploadedImage} alt="Product" className="w-full h-full object-cover" />}
+                        <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
+                          <div className="w-8 h-8 bg-white/90 rounded-full flex items-center justify-center">
+                            <div className="w-0 h-0 border-l-[6px] border-l-primary border-t-[4px] border-t-transparent border-b-[4px] border-b-transparent ml-0.5"></div>
                           </div>
                         </div>
                       </div>
-
-                      {/* Bottom row - Mobile and Square banners */}
-                      <div className="grid grid-cols-2 gap-2 flex-1 min-h-0">
-                        {/* Mobile Banner 320x50 */}
-                        <div className="bg-white/40 backdrop-blur-sm rounded-md p-2 relative overflow-hidden">
-                          <div className="h-full flex flex-col justify-between">
-                            <div className="flex items-center gap-1.5 mb-1">
-                              <div className="w-4 h-4 rounded bg-primary/20 flex-shrink-0 overflow-hidden">
-                                {uploadedImage && <img src={uploadedImage} alt="Product" className="w-full h-full object-cover" />}
-                              </div>
-                              <p className="text-[8px] font-semibold text-foreground truncate flex-1">Mobile Deal</p>
-                            </div>
-                            <div className="bg-primary text-primary-foreground text-[7px] px-1 py-0.5 rounded text-center">
-                              Shop Now
-                            </div>
-                          </div>
-                        </div>
-
-                        {/* Square Banner 250x250 */}
-                        <div className="bg-white/40 backdrop-blur-sm rounded-md p-2 relative overflow-hidden">
-                          <div className="h-full flex flex-col">
-                            <div className="aspect-square w-full bg-primary/20 rounded mb-1 flex-shrink-0 overflow-hidden">
-                              {uploadedImage && <img src={uploadedImage} alt="Product" className="w-full h-full object-cover" />}
-                            </div>
-                            <div className="flex-1 flex flex-col justify-end">
-                              <p className="text-[7px] font-semibold text-foreground text-center mb-1 truncate">Premium</p>
-                              <div className="bg-primary text-primary-foreground text-[6px] px-1 py-0.5 rounded text-center">
-                                Buy Now
-                              </div>
-                            </div>
-                          </div>
+                      <div className="absolute bottom-2 left-2 right-2">
+                        <div className="bg-black/80 text-white text-[8px] px-2 py-1 rounded text-center backdrop-blur-sm">
+                          Watch Demo
                         </div>
                       </div>
                     </div>
