@@ -113,7 +113,7 @@ const GenerateCampaignScreen = () => {
             <div className="w-full max-w-md animate-fade-in animation-delay-500">
               <Progress 
                 value={progress} 
-                className="h-2 bg-white"
+                className="h-1 bg-white"
               />
               <div className="flex justify-center items-center mt-2 text-sm text-muted-foreground">
                 <span>{progress}%</span>
