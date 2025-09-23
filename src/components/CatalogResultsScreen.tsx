@@ -189,40 +189,6 @@ const CatalogResultsScreen: React.FC = () => {
       </video>
 
       <div className="relative z-10 flex min-h-screen flex-col overflow-y-auto">
-        {/* Header */}
-        <header className="container-padding pt-12 relative">
-          <div className="absolute top-12 left-8">
-            <div className="flex items-center">
-              <div className="h-8 w-8 mr-3">
-                <RibbedSphere className="w-full h-full" />
-              </div>
-              <h1 className="text-lg font-semibold text-foreground">Catalog Results</h1>
-            </div>
-          </div>
-          
-          <div className="absolute top-12 right-8">
-            <Dialog>
-              <DialogTrigger asChild>
-                <Button variant="secondary" className="tap-target focus-ring bg-white border-white/30 hover:bg-white/90 rounded-full h-8 px-3">
-                  <X className="h-4 w-4 text-black" />
-                </Button>
-              </DialogTrigger>
-              <DialogContent>
-                <DialogHeader>
-                  <DialogTitle>Exit to Homepage?</DialogTitle>
-                  <DialogDescription>
-                    Are you sure you want to exit? Your generated catalog content will be lost.
-                  </DialogDescription>
-                </DialogHeader>
-                <DialogFooter>
-                  <Button variant="outline" className="rounded-full">Cancel</Button>
-                  <Button onClick={handleStartOver} className="rounded-full">Exit</Button>
-                </DialogFooter>
-              </DialogContent>
-            </Dialog>
-          </div>
-        </header>
-
         {/* Back Button */}
         <div className="fixed top-1/2 left-8 transform -translate-y-1/2 z-20">
           <Button 
@@ -235,14 +201,16 @@ const CatalogResultsScreen: React.FC = () => {
           </Button>
         </div>
 
-        {/* Title */}
-        <div className="text-center py-4">
-          <h2 className="text-3xl font-bold text-foreground mb-2">
-            Catalog Content Generated
-          </h2>
-          <p className="text-xl text-muted-foreground font-medium">
-            Your comprehensive product catalog content is ready
-          </p>
+        {/* Title and Subtitle - Left aligned with content */}
+        <div className="container-padding pt-8 pb-4">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-3xl font-bold text-foreground mb-2">
+              Catalog Enrichment Preview
+            </h2>
+            <p className="text-xl text-muted-foreground font-medium">
+              Your enriched catalog is ready to publish
+            </p>
+          </div>
         </div>
 
         {/* Main Content */}
