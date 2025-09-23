@@ -666,41 +666,7 @@ const PreviewResultsScreen: React.FC = () => {
               </Button>
             </div>
           </div>
-          
-          <div className="absolute top-12 right-8">
-            <Dialog>
-              <DialogTrigger asChild>
-                <Button variant="secondary" className="tap-target focus-ring bg-white border-white/30 hover:bg-white/90 rounded-full h-8 px-3">
-                  <X className="h-4 w-4 text-black" />
-                </Button>
-              </DialogTrigger>
-              <DialogContent>
-                <DialogHeader>
-                  <DialogTitle>Exit to Homepage?</DialogTitle>
-                  <DialogDescription>
-                    Are you sure you want to exit? Your generated content preview will be lost.
-                  </DialogDescription>
-                </DialogHeader>
-                <DialogFooter>
-                  <Button variant="outline" className="rounded-full">Cancel</Button>
-                  <Button onClick={handleStartOver} className="rounded-full">Exit</Button>
-                </DialogFooter>
-              </DialogContent>
-            </Dialog>
-          </div>
         </header>
-
-        {/* Back Button */}
-        <div className="fixed top-1/2 left-8 transform -translate-y-1/2 z-20">
-          <Button 
-            variant="secondary" 
-            onClick={handleBack}
-            className="tap-target focus-ring bg-white border-white/30 hover:bg-white/90 rounded-full p-3"
-            aria-label="Go back to previous step"
-          >
-            <ArrowLeft className="h-5 w-5 text-black" />
-          </Button>
-        </div>
 
         {/* Main Content */}
         <main className="flex-1 container-padding pt-4 pb-8">
