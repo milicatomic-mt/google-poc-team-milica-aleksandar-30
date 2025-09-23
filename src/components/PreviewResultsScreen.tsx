@@ -648,7 +648,7 @@ const PreviewResultsScreen: React.FC = () => {
                   <Button 
                     size="sm" 
                     onClick={() => handleOpenCategory('Banner Ads')}
-                    className="bg-black hover:bg-black/90 text-white px-4 rounded-full"
+                    className="px-4 rounded-full"
                   >
                     Open
                   </Button>
