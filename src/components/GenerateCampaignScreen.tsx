@@ -116,7 +116,6 @@ const GenerateCampaignScreen = () => {
                   value={progress} 
                   className="h-0.5 bg-white/20"
                 />
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent animate-shimmer pointer-events-none rounded-full"></div>
               </div>
               <div className="flex justify-center items-center mt-2 text-sm text-muted-foreground">
                 <span>{progress}%</span>
