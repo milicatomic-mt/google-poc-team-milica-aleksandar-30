@@ -639,7 +639,7 @@ const PreviewResultsScreen: React.FC = () => {
       <div className="relative z-10 flex min-h-screen flex-col overflow-y-auto">
         {/* Header */}
         <header className="container-padding pt-12 relative">
-          <div className="max-w-6xl mx-auto flex justify-between items-center">
+          <div className="w-full flex justify-between items-center px-8">
             {/* Left - Sphere Animation */}
             <div className="flex items-center">
               <div className="w-20 h-20">
