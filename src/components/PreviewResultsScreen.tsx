@@ -669,7 +669,7 @@ const PreviewResultsScreen: React.FC = () => {
         </header>
 
         {/* Main Content */}
-        <main className="flex-1 container-padding pt-4 pb-8">
+        <main className="flex-1 container-padding pt-16 pb-8">
           <div className="max-w-6xl mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               
