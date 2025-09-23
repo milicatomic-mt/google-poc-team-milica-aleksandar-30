@@ -671,9 +671,6 @@ const PreviewResultsScreen: React.FC = () => {
                             </div>
                           </div>
                         </div>
-                        <div className="absolute top-1 right-1 bg-black/60 text-white text-[6px] px-1 py-0.5 rounded">
-                          728×90
-                        </div>
                       </div>
 
                       {/* Medium Rectangle Banner 300x250 - Horizontal card layout */}
@@ -692,9 +689,6 @@ const PreviewResultsScreen: React.FC = () => {
                             {uploadedImage && <img src={uploadedImage} alt="Product" className="w-full h-full object-cover" />}
                           </div>
                         </div>
-                        <div className="absolute top-1 right-1 bg-black/60 text-white text-[6px] px-1 py-0.5 rounded">
-                          300×250
-                        </div>
                       </div>
 
                       {/* Bottom row - Mobile and Square banners */}
@@ -712,9 +706,6 @@ const PreviewResultsScreen: React.FC = () => {
                               Shop Now
                             </div>
                           </div>
-                          <div className="absolute top-1 right-1 bg-black/60 text-white text-[6px] px-0.5 py-0.5 rounded">
-                            320×50
-                          </div>
                         </div>
 
                         {/* Square Banner 250x250 */}
@@ -729,9 +720,6 @@ const PreviewResultsScreen: React.FC = () => {
                                 Buy Now
                               </div>
                             </div>
-                          </div>
-                          <div className="absolute top-1 right-1 bg-black/60 text-white text-[6px] px-0.5 py-0.5 rounded">
-                            250×250
                           </div>
                         </div>
                       </div>
