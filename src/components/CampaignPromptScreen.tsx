@@ -95,11 +95,11 @@ const CampaignPromptScreen = () => {
 
   const handleCreateCampaign = () => {
     if (prompt.trim()) {
-      // Navigate to target audience screen first
-      navigate('/target-audience', { 
+      // Navigate directly to generate campaign with properly mapped data
+      navigate('/generate-campaign', { 
         state: { 
           ...location.state, 
-          prompt: prompt.trim(),
+          campaignPrompt: prompt.trim(), // Map prompt to campaignPrompt
           selectedAudiences: selectedAudiences
         } 
       });
