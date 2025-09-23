@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { ArrowLeft, X, Copy, CheckCircle, AlertCircle, Download, ArrowRight } from 'lucide-react';
+import { ArrowLeft, X, Copy, CheckCircle, AlertCircle, Download, ArrowRight, Edit } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -200,13 +200,23 @@ const CatalogResultsScreen: React.FC = () => {
                 Your enriched catalog is ready to publish
               </p>
             </div>
-            <Button
-              variant="default"
-              className="tap-target focus-ring bg-primary hover:bg-primary/90 text-white rounded-full px-6 py-2 flex items-center gap-2"
-            >
-              <Download className="w-4 h-4" />
-              Download
-            </Button>
+            <div className="flex gap-3">
+              <Button
+                onClick={handleBack}
+                variant="secondary"
+                className="tap-target focus-ring bg-secondary hover:bg-secondary/90 text-white rounded-full px-6 py-2 flex items-center gap-2"
+              >
+                <Edit className="w-4 h-4" />
+                Edit
+              </Button>
+              <Button
+                variant="default"
+                className="tap-target focus-ring bg-primary hover:bg-primary/90 text-white rounded-full px-6 py-2 flex items-center gap-2"
+              >
+                <Download className="w-4 h-4" />
+                Download
+              </Button>
+            </div>
           </div>
         </div>
 
