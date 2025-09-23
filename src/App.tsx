@@ -7,10 +7,8 @@ import ScreenSaver from "./components/ScreenSaver";
 import UploadScreen from "./components/UploadScreen";
 import CampaignPromptScreen from "./components/CampaignPromptScreen";
 import CatalogPromptScreen from "./components/CatalogPromptScreen";
-import TargetAudienceScreen from "./components/TargetAudienceScreen";
 import GenerateCampaignScreen from "./components/GenerateCampaignScreen";
 import CampaignResultsScreen from "./components/CampaignResultsScreen";
-import CatalogDetailsScreen from "./components/CatalogDetailsScreen";
 import CatalogResultsScreen from "./components/CatalogResultsScreen";
 import MobileUploadScreen from "./components/MobileUploadScreen";
 import QRDownloadScreen from "./components/QRDownloadScreen";
@@ -32,12 +30,10 @@ const App = () => (
           <Route path="/welcome" element={<Index />} />
           <Route path="/campaign-prompt" element={<CampaignPromptScreen />} />
           <Route path="/catalog-prompt" element={<CatalogPromptScreen />} />
-          <Route path="/target-audience" element={<TargetAudienceScreen />} />
           <Route path="/generate-campaign" element={<GenerateCampaignScreen />} />
           <Route path="/campaign-results" element={<CampaignResultsScreen />} />
           <Route path="/upload/:type" element={<UploadScreen />} />
           <Route path="/mobile-upload" element={<MobileUploadScreen />} />
-          <Route path="/catalog-details" element={<CatalogDetailsScreen />} />
           <Route path="/catalog-results" element={<CatalogResultsScreen />} />
           <Route path="/preview-results" element={<PreviewResultsScreen />} />
           <Route path="/qr-download" element={<QRDownloadScreen />} />

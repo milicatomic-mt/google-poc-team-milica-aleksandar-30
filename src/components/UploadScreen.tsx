@@ -113,7 +113,7 @@ const UploadScreen: React.FC<UploadScreenProps> = ({ mode }) => {
             const imageToPass = uploadedImage || updatedSession.uploaded_image_url;
             
             if (currentMode === 'catalog') {
-              navigate('/catalog-details', { 
+              navigate('/catalog-results', { 
                 state: { 
                   uploadedImage: imageToPass
                 } 
