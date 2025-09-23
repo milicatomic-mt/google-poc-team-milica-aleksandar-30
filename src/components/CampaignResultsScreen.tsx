@@ -251,10 +251,7 @@ const CampaignResultsScreen = () => {
                         <div className="space-y-3">
                           <div className="flex items-center gap-2">
                             <div 
-                              className="w-6 h-6 rounded-full text-white text-xs font-bold flex items-center justify-center"
-                              style={{
-                                backgroundColor: extractedColors?.primary || '#3b82f6'
-                              }}
+                              className="w-6 h-6 rounded-full text-white text-xs font-bold flex items-center justify-center bg-black"
                             >
                               1
                             </div>
@@ -274,10 +271,7 @@ const CampaignResultsScreen = () => {
                         <div className="space-y-3">
                           <div className="flex items-center gap-2">
                             <div 
-                              className="w-6 h-6 rounded-full text-white text-xs font-bold flex items-center justify-center"
-                              style={{
-                                backgroundColor: extractedColors?.secondary || '#10b981'
-                              }}
+                              className="w-6 h-6 rounded-full text-white text-xs font-bold flex items-center justify-center bg-black"
                             >
                               2
                             </div>
@@ -297,10 +291,7 @@ const CampaignResultsScreen = () => {
                         <div className="space-y-3">
                           <div className="flex items-center gap-2">
                             <div 
-                              className="w-6 h-6 rounded-full text-white text-xs font-bold flex items-center justify-center"
-                              style={{
-                                backgroundColor: extractedColors?.accent || '#8b5cf6'
-                              }}
+                              className="w-6 h-6 rounded-full text-white text-xs font-bold flex items-center justify-center bg-black"
                             >
                               3
                             </div>
@@ -326,10 +317,7 @@ const CampaignResultsScreen = () => {
                         <div className="space-y-3">
                           <div className="flex items-center gap-2">
                             <div 
-                              className="w-6 h-6 rounded-full text-white text-xs font-bold flex items-center justify-center"
-                              style={{
-                                backgroundColor: extractedColors?.primary || '#3b82f6'
-                              }}
+                              className="w-6 h-6 rounded-full text-white text-xs font-bold flex items-center justify-center bg-black"
                             >
                               4
                             </div>
