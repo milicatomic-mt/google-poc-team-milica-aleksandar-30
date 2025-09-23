@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { ArrowLeft, X, Play } from 'lucide-react';
+import { ArrowLeft, X, Play, Download, Edit } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -639,12 +639,31 @@ const PreviewResultsScreen: React.FC = () => {
       <div className="relative z-10 flex min-h-screen flex-col overflow-y-auto">
         {/* Header */}
         <header className="container-padding pt-12 relative">
-          <div className="absolute top-12 left-8">
-            <div className="flex items-center">
-              <div className="h-8 w-8 mr-3">
-                <RibbedSphere className="w-full h-full" />
-              </div>
-              <h1 className="text-lg font-semibold text-foreground">Creative Assets Preview</h1>
+          <div className="max-w-6xl mx-auto flex justify-between items-start">
+            <div>
+              <h2 className="text-3xl font-bold text-foreground mb-2">
+                Campaign Creative Preview
+              </h2>
+              <p className="text-xl text-muted-foreground font-medium">
+                Your assets across channels at a glance
+              </p>
+            </div>
+            <div className="flex gap-3">
+              <Button
+                onClick={handleBack}
+                variant="outline"
+                className="tap-target focus-ring bg-white hover:bg-white/90 text-black hover:text-black border-white rounded-full px-6 py-2 flex items-center gap-2"
+              >
+                <Edit className="w-4 h-4 text-black" />
+                Edit
+              </Button>
+              <Button
+                variant="default"
+                className="tap-target focus-ring bg-primary hover:bg-primary/90 text-white rounded-full px-6 py-2 flex items-center gap-2"
+              >
+                <Download className="w-4 h-4" />
+                Download
+              </Button>
             </div>
           </div>
           
@@ -683,18 +702,8 @@ const PreviewResultsScreen: React.FC = () => {
           </Button>
         </div>
 
-        {/* Title */}
-        <div className="text-center py-8">
-          <h2 className="text-4xl font-bold text-foreground mb-2">
-            Creative Assets Generated
-          </h2>
-          <p className="text-xl text-muted-foreground font-medium">
-            Your comprehensive marketing campaign is ready
-          </p>
-        </div>
-
         {/* Main Content */}
-        <main className="flex-1 container-padding pb-8">
+        <main className="flex-1 container-padding pt-4 pb-8">
           <div className="max-w-6xl mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               
