@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { Info, ArrowLeft, X, Play } from 'lucide-react';
+import { ArrowLeft, X, Play } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -14,14 +14,48 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog';
 import RibbedSphere from '@/components/RibbedSphere';
+import { supabase } from "@/integrations/supabase/client";
 import type { CampaignCreationResponse } from '@/types/api';
 
 const PreviewResultsScreen: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { uploadedImage, campaignResults } = location.state || {};
+  const { uploadedImage, campaignResults, campaignId } = location.state || {};
   const [selectedSection, setSelectedSection] = useState<string | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [fetchedCampaignResults, setFetchedCampaignResults] = useState<CampaignCreationResponse | null>(null);
+  const [isLoadingResults, setIsLoadingResults] = useState(false);
+
+  // Fetch campaign results if not provided but campaignId is available
+  useEffect(() => {
+    const fetchCampaignResults = async () => {
+      if (!campaignResults && campaignId && !isLoadingResults) {
+        setIsLoadingResults(true);
+        try {
+          const { data, error } = await supabase
+            .from('campaign_results')
+            .select('result')
+            .eq('id', campaignId)
+            .single();
+
+          if (error) {
+            console.error('Error fetching campaign results:', error);
+          } else if (data?.result && Object.keys(data.result).length > 0) {
+            setFetchedCampaignResults(data.result as CampaignCreationResponse);
+          }
+        } catch (error) {
+          console.error('Error fetching campaign results:', error);
+        } finally {
+          setIsLoadingResults(false);
+        }
+      }
+    };
+
+    fetchCampaignResults();
+  }, [campaignResults, campaignId, isLoadingResults]);
+
+  // Use either passed campaignResults or fetched results
+  const activeCampaignResults = campaignResults || fetchedCampaignResults;
 
   const handleBack = () => {
     navigate(-1);
@@ -42,7 +76,7 @@ const PreviewResultsScreen: React.FC = () => {
   };
 
   const renderModalContent = () => {
-    if (!campaignResults || !selectedSection) return null;
+    if (!activeCampaignResults || !selectedSection) return null;
 
     switch (selectedSection) {
       case 'Banner Ads':
@@ -60,13 +94,13 @@ const PreviewResultsScreen: React.FC = () => {
                   {/* Left side - Content */}
                   <div className="relative flex-1 p-4 flex flex-col justify-between bg-gradient-to-br from-background/95 to-muted/40">
                     <div className="space-y-2">
-                      <h5 className="text-sm font-bold text-foreground leading-tight">{campaignResults.banner_ads?.[0]?.headline || 'Transform Your Brand'}</h5>
+                      <h5 className="text-sm font-bold text-foreground leading-tight">{activeCampaignResults.banner_ads?.[0]?.headline || 'Transform Your Brand'}</h5>
                       <p className="text-xs text-muted-foreground font-medium leading-relaxed">Discover innovative solutions</p>
                     </div>
                     <div className="space-y-2">
                       <div className="w-8 h-1 rounded-full bg-primary"></div>
                       <Button size="sm" className="text-xs font-semibold px-3 py-1.5 bg-black text-white hover:bg-gray-800">
-                        {campaignResults.banner_ads?.[0]?.cta || 'Learn More'}
+                        {activeCampaignResults.banner_ads?.[0]?.cta || 'Learn More'}
                       </Button>
                     </div>
                   </div>
@@ -99,13 +133,13 @@ const PreviewResultsScreen: React.FC = () => {
                         </div>
                       )}
                       <div className="space-y-1 flex-1">
-                        <h5 className="text-base font-bold text-foreground">{campaignResults.banner_ads?.[0]?.headline || 'Transform Your Brand Today'}</h5>
+                        <h5 className="text-base font-bold text-foreground">{activeCampaignResults.banner_ads?.[0]?.headline || 'Transform Your Brand Today'}</h5>
                         <p className="text-xs text-muted-foreground font-medium truncate max-w-md">Discover innovative solutions that drive results</p>
                       </div>
                     </div>
                     <div className="px-6">
                       <Button className="text-xs font-semibold px-6 py-2 bg-black text-white hover:bg-gray-800">
-                        {campaignResults.banner_ads?.[0]?.cta || 'Get Started'}
+                        {activeCampaignResults.banner_ads?.[0]?.cta || 'Get Started'}
                       </Button>
                     </div>
                   </div>
@@ -129,11 +163,11 @@ const PreviewResultsScreen: React.FC = () => {
                         <img src={uploadedImage} alt="Campaign product" className="w-full h-full object-cover" />
                       </div>
                     )}
-                    <h5 className="text-xs font-bold text-foreground truncate">{campaignResults.banner_ads?.[0]?.headline || 'Transform Your Brand'}</h5>
+                    <h5 className="text-xs font-bold text-foreground truncate">{activeCampaignResults.banner_ads?.[0]?.headline || 'Transform Your Brand'}</h5>
                   </div>
                   <div className="px-3">
                     <Button size="sm" className="text-xs font-semibold px-3 py-1 bg-black text-white hover:bg-gray-800 shrink-0">
-                      {campaignResults.banner_ads?.[0]?.cta || 'Try Now'}
+                      {activeCampaignResults.banner_ads?.[0]?.cta || 'Try Now'}
                     </Button>
                   </div>
                 </div>
@@ -158,16 +192,16 @@ const PreviewResultsScreen: React.FC = () => {
                         ✨ New Product Launch
                       </div>
                       <h1 className="text-4xl lg:text-6xl font-bold text-foreground leading-tight">
-                        {campaignResults.landing_page_concept?.hero_text || 'Transform Your Experience'}
+                        {activeCampaignResults.landing_page_concept?.hero_text || 'Transform Your Experience'}
                       </h1>
                       <p className="text-lg text-muted-foreground leading-relaxed max-w-lg">
-                        {campaignResults.landing_page_concept?.sub_text || 'Discover innovative solutions that drive exceptional results'}
+                        {activeCampaignResults.landing_page_concept?.sub_text || 'Discover innovative solutions that drive exceptional results'}
                       </p>
                     </div>
                     
                     <div className="flex flex-col sm:flex-row gap-4">
                       <Button size="lg" className="text-lg px-8 py-4 shadow-lg bg-black text-white hover:bg-gray-800">
-                        {campaignResults.landing_page_concept?.cta || 'Get Started'}
+                        {activeCampaignResults.landing_page_concept?.cta || 'Get Started'}
                       </Button>
                       <Button variant="outline" size="lg" className="text-lg px-8 py-4">
                         Learn More
@@ -211,7 +245,7 @@ const PreviewResultsScreen: React.FC = () => {
       case 'Video Scripts':
         return (
           <div className="space-y-8">
-            {campaignResults.video_scripts?.map((script, index) => (
+            {activeCampaignResults.video_scripts?.map((script, index) => (
               <div key={index} className="border-2 border-border rounded-xl overflow-hidden bg-background shadow-lg">
                 {/* Video Script Preview */}
                 <div className="bg-black text-white relative">
@@ -245,7 +279,7 @@ const PreviewResultsScreen: React.FC = () => {
                   {/* Video Title Bar */}
                   <div className="p-4 bg-gray-900">
                     <h3 className="font-bold text-lg mb-2">
-                      {campaignResults.banner_ads?.[0]?.headline || 'Transform Your Experience'}
+                      {activeCampaignResults.banner_ads?.[0]?.headline || 'Transform Your Experience'}
                     </h3>
                     <div className="flex items-center gap-4 text-sm text-gray-300">
                       <span>• 1.2M views</span>
@@ -273,7 +307,7 @@ const PreviewResultsScreen: React.FC = () => {
                         <span className="font-semibold text-sm text-gray-600">Opening Hook (0-3s)</span>
                       </div>
                       <p className="text-sm font-semibold mb-2">
-                        "{campaignResults.banner_ads?.[0]?.headline || 'Ready to transform your experience?'}"
+                        "{activeCampaignResults.banner_ads?.[0]?.headline || 'Ready to transform your experience?'}"
                       </p>
                       <p className="text-xs text-gray-600">
                         <strong>Visual:</strong> Close-up of product with dynamic zoom
@@ -299,7 +333,7 @@ const PreviewResultsScreen: React.FC = () => {
                         <span className="font-semibold text-sm text-gray-600">Call to Action (25-30s)</span>
                       </div>
                       <p className="text-sm font-semibold mb-2">
-                        "{campaignResults.banner_ads?.[0]?.cta || 'Get Started Today'} - Limited time offer!"
+                        "{activeCampaignResults.banner_ads?.[0]?.cta || 'Get Started Today'} - Limited time offer!"
                       </p>
                       <p className="text-xs text-gray-600">
                         <strong>Visual:</strong> Product showcase with animated CTA button
@@ -345,7 +379,7 @@ const PreviewResultsScreen: React.FC = () => {
               <div className="bg-gradient-to-r from-gray-50 to-gray-100 px-6 py-4 border-b">
                 <div className="flex items-center justify-between">
                   <div className="text-xs text-gray-600">
-                    Subject: {campaignResults.email_copy?.subject || 'Transform Your Experience Today'}
+                    Subject: {activeCampaignResults.email_copy?.subject || 'Transform Your Experience Today'}
                   </div>
                   <div className="text-xs text-gray-500">
                     View in browser
@@ -363,15 +397,15 @@ const PreviewResultsScreen: React.FC = () => {
                 
                 <div className="text-center space-y-4">
                   <h1 className="text-3xl font-bold text-gray-900">
-                    {campaignResults.landing_page_concept?.hero_text || 'Transform Your Experience'}
+                    {activeCampaignResults.landing_page_concept?.hero_text || 'Transform Your Experience'}
                   </h1>
                   <p className="text-lg text-gray-600 max-w-md mx-auto">
-                    {campaignResults.landing_page_concept?.sub_text || 'Discover innovative solutions designed for you'}
+                    {activeCampaignResults.landing_page_concept?.sub_text || 'Discover innovative solutions designed for you'}
                   </p>
                   
                   <div className="pt-4">
                     <Button size="lg" className="bg-black text-white hover:bg-gray-800 px-8 py-3 text-lg">
-                      {campaignResults.landing_page_concept?.cta || 'Shop Now'}
+                      {activeCampaignResults.landing_page_concept?.cta || 'Shop Now'}
                     </Button>
                   </div>
                 </div>
@@ -381,7 +415,7 @@ const PreviewResultsScreen: React.FC = () => {
               <div className="p-8 space-y-6">
                 <div className="prose prose-sm max-w-none">
                   <p className="text-gray-700 leading-relaxed whitespace-pre-wrap">
-                    {campaignResults.email_copy?.body || 'We are excited to share our latest innovation that will transform how you experience our products. This exclusive launch features cutting-edge technology and premium design that sets new standards in the industry.'}
+                    {activeCampaignResults.email_copy?.body || 'We are excited to share our latest innovation that will transform how you experience our products. This exclusive launch features cutting-edge technology and premium design that sets new standards in the industry.'}
                   </p>
                 </div>
                 
