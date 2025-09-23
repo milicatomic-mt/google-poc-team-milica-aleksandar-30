@@ -138,7 +138,7 @@ const CatalogResultsScreen: React.FC = () => {
                 <p className="text-2xl font-semibold text-foreground mb-2">
                   {currentAction}
                 </p>
-                <p className="text-lg text-muted-foreground">
+                <p className="text-sm text-muted-foreground">
                   Creating your comprehensive catalog content
                 </p>
               </div>
@@ -148,7 +148,7 @@ const CatalogResultsScreen: React.FC = () => {
                 <div className="relative overflow-hidden rounded-full">
                   <Progress 
                     value={progress} 
-                    className="h-1 bg-muted"
+                    className="h-0.5 bg-muted"
                   />
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent animate-shimmer pointer-events-none rounded-full"></div>
                 </div>

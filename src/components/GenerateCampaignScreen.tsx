@@ -104,7 +104,7 @@ const GenerateCampaignScreen = () => {
               <p className="text-2xl font-semibold text-foreground mb-2">
                 {currentAction}
               </p>
-              <p className="text-lg text-muted-foreground">
+              <p className="text-sm text-muted-foreground">
                 Creating your perfect marketing campaign
               </p>
             </div>
@@ -114,7 +114,7 @@ const GenerateCampaignScreen = () => {
               <div className="relative overflow-hidden rounded-full">
                 <Progress 
                   value={progress} 
-                  className="h-1 bg-white/20"
+                  className="h-0.5 bg-white/20"
                 />
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent animate-shimmer pointer-events-none rounded-full"></div>
               </div>
