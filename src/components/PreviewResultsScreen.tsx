@@ -711,7 +711,7 @@ const PreviewResultsScreen: React.FC = () => {
                   </Button>
                 </div>
                 <CardContent className="p-4">
-                  <div className="grid grid-cols-2 gap-3 h-64">
+                  <div className="grid grid-cols-2 gap-3 h-80">
                     {/* Top Left - Leaderboard Banner */}
                     <div className="bg-white backdrop-blur-sm rounded-lg p-3 overflow-hidden flex flex-col border border-white/20">
                       <div className="flex-1 flex flex-col justify-between">
@@ -808,7 +808,7 @@ const PreviewResultsScreen: React.FC = () => {
                   </Button>
                 </div>
                 <CardContent className="p-4">
-                  <div className="h-64 bg-gray-100 rounded-lg overflow-hidden border border-gray-300 shadow-sm">
+                  <div className="h-80 bg-gray-100 rounded-lg overflow-hidden border border-gray-300 shadow-sm">
                     {/* Browser-like Screenshot Mockup */}
                     <div className="h-full bg-white">
                       {/* Browser Header */}
@@ -933,7 +933,7 @@ const PreviewResultsScreen: React.FC = () => {
                 </div>
                 <CardContent className="p-4">
                   {/* Mobile-First Vertical Layout */}
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 h-64">
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 h-80">
                     {/* Left Side - Video Preview */}
                     <div className="bg-black rounded-lg overflow-hidden relative min-h-[120px] lg:h-full">
                       {/* Video Thumbnail with Play Button */}
@@ -1045,7 +1045,7 @@ const PreviewResultsScreen: React.FC = () => {
                   </Button>
                 </div>
                 <CardContent className="p-4">
-                  <div className="space-y-3 h-64">
+                  <div className="space-y-3 h-80">
                     {/* Promotional Email Template */}
                     <div className="bg-white backdrop-blur-sm rounded-lg p-3 h-[48%] overflow-hidden border border-white/20">
                       <div className="space-y-2 h-full flex flex-col">
