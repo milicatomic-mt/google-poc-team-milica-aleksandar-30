@@ -172,22 +172,202 @@ const CampaignResultsScreen = () => {
       <div className="container mx-auto px-4 py-8 max-w-6xl">
         <ScrollArea className="h-[calc(100vh-200px)]">
           <div className="grid gap-6">
-            {/* Video Scripts */}
+            {/* Video Script Designs */}
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
-                  🎥 Video Scripts
+                  🎥 Video Script Designs
                   <Badge variant="secondary">{campaignData.video_scripts.length} platforms</Badge>
                 </CardTitle>
+                <p className="text-sm text-muted-foreground">Professional video scripts with visual storyboards</p>
               </CardHeader>
               <CardContent>
-                <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+                <div className="grid gap-8 md:grid-cols-1 lg:grid-cols-2">
                   {campaignData.video_scripts.map((script, index) => (
-                    <div key={index} className="p-4 border rounded-lg">
-                      <div className="flex items-center justify-between mb-2">
-                        <Badge variant="outline">{script.platform}</Badge>
+                    <div key={index} className="border-2 border-border rounded-xl overflow-hidden bg-background shadow-lg">
+                      {/* Video Script Preview */}
+                      <div className="bg-black text-white relative">
+                        {/* Video Thumbnail */}
+                        <div className="relative aspect-video">
+                          {uploadedImageUrl && (
+                            <img 
+                              src={uploadedImageUrl} 
+                              alt="Video thumbnail" 
+                              className="w-full h-full object-cover"
+                            />
+                          )}
+                          <div className="absolute inset-0 bg-black/40"></div>
+                          
+                          {/* Video Controls Overlay */}
+                          <div className="absolute inset-0 flex items-center justify-center">
+                            <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm">
+                              <div className="w-0 h-0 border-l-6 border-r-0 border-t-4 border-b-4 border-l-white border-t-transparent border-b-transparent ml-1"></div>
+                            </div>
+                          </div>
+                          
+                          {/* Platform Badge */}
+                          <div className="absolute top-4 right-4">
+                            <Badge 
+                              className="text-xs font-semibold"
+                              style={{
+                                backgroundColor: extractedColors?.primary || '#3b82f6',
+                                color: 'white'
+                              }}
+                            >
+                              {script.platform}
+                            </Badge>
+                          </div>
+                          
+                          {/* Duration */}
+                          <div className="absolute bottom-4 right-4 bg-black/60 text-white text-xs px-2 py-1 rounded">
+                            0:30
+                          </div>
+                        </div>
+                        
+                        {/* Video Title Bar */}
+                        <div className="p-4 bg-gray-900">
+                          <h3 className="font-bold text-lg mb-2">
+                            {campaignData.banner_ads[0]?.headline || 'Transform Your Experience'}
+                          </h3>
+                          <div className="flex items-center gap-4 text-sm text-gray-300">
+                            <span>• 1.2M views</span>
+                            <span>• 24K likes</span>
+                            <span>• 3 hours ago</span>
+                          </div>
+                        </div>
                       </div>
-                      <p className="text-sm text-muted-foreground whitespace-pre-wrap">{script.script}</p>
+                      
+                      {/* Script Content */}
+                      <div className="p-6 space-y-6">
+                        {/* Script Header */}
+                        <div className="flex items-center justify-between border-b pb-4">
+                          <h4 className="font-semibold text-lg">Video Script</h4>
+                          <Badge variant="outline" className="text-xs">
+                            {script.platform} Format
+                          </Badge>
+                        </div>
+                        
+                        {/* Opening Hook */}
+                        <div className="space-y-3">
+                          <div className="flex items-center gap-2">
+                            <div 
+                              className="w-6 h-6 rounded-full text-white text-xs font-bold flex items-center justify-center"
+                              style={{
+                                backgroundColor: extractedColors?.primary || '#3b82f6'
+                              }}
+                            >
+                              1
+                            </div>
+                            <span className="font-semibold text-sm text-gray-600">Opening Hook (0-3s)</span>
+                          </div>
+                          <div className="ml-8 p-4 bg-gray-50 rounded-lg">
+                            <p className="text-sm font-semibold mb-2">
+                              "{campaignData.banner_ads[0]?.headline || 'Ready to transform your experience?'}"
+                            </p>
+                            <p className="text-xs text-gray-600">
+                              <strong>Visual:</strong> Close-up of product with dynamic zoom
+                            </p>
+                          </div>
+                        </div>
+                        
+                        {/* Main Content */}
+                        <div className="space-y-3">
+                          <div className="flex items-center gap-2">
+                            <div 
+                              className="w-6 h-6 rounded-full text-white text-xs font-bold flex items-center justify-center"
+                              style={{
+                                backgroundColor: extractedColors?.secondary || '#10b981'
+                              }}
+                            >
+                              2
+                            </div>
+                            <span className="font-semibold text-sm text-gray-600">Problem & Solution (3-15s)</span>
+                          </div>
+                          <div className="ml-8 p-4 bg-gray-50 rounded-lg">
+                            <p className="text-sm mb-2">
+                              {script.script.split('\n')[0] || "Struggling with daily challenges? Here's your solution."}
+                            </p>
+                            <p className="text-xs text-gray-600">
+                              <strong>Visual:</strong> Split screen showing before/after scenarios
+                            </p>
+                          </div>
+                        </div>
+                        
+                        {/* Key Benefits */}
+                        <div className="space-y-3">
+                          <div className="flex items-center gap-2">
+                            <div 
+                              className="w-6 h-6 rounded-full text-white text-xs font-bold flex items-center justify-center"
+                              style={{
+                                backgroundColor: extractedColors?.accent || '#8b5cf6'
+                              }}
+                            >
+                              3
+                            </div>
+                            <span className="font-semibold text-sm text-gray-600">Key Benefits (15-25s)</span>
+                          </div>
+                          <div className="ml-8 space-y-3">
+                            <div className="p-3 bg-gray-50 rounded-lg">
+                              <p className="text-sm font-medium mb-1">✓ Premium Quality</p>
+                              <p className="text-xs text-gray-600">Built to last with exceptional materials</p>
+                            </div>
+                            <div className="p-3 bg-gray-50 rounded-lg">
+                              <p className="text-sm font-medium mb-1">✓ Instant Results</p>
+                              <p className="text-xs text-gray-600">See improvements immediately</p>
+                            </div>
+                            <div className="p-3 bg-gray-50 rounded-lg">
+                              <p className="text-sm font-medium mb-1">✓ Money-Back Guarantee</p>
+                              <p className="text-xs text-gray-600">Risk-free 30-day trial</p>
+                            </div>
+                          </div>
+                        </div>
+                        
+                        {/* Call to Action */}
+                        <div className="space-y-3">
+                          <div className="flex items-center gap-2">
+                            <div 
+                              className="w-6 h-6 rounded-full text-white text-xs font-bold flex items-center justify-center"
+                              style={{
+                                backgroundColor: extractedColors?.primary || '#3b82f6'
+                              }}
+                            >
+                              4
+                            </div>
+                            <span className="font-semibold text-sm text-gray-600">Call to Action (25-30s)</span>
+                          </div>
+                          <div className="ml-8 p-4 bg-gray-50 rounded-lg">
+                            <p className="text-sm font-semibold mb-2">
+                              "{campaignData.banner_ads[0]?.cta || 'Get Started Today'} - Limited time offer!"
+                            </p>
+                            <p className="text-xs text-gray-600">
+                              <strong>Visual:</strong> Product showcase with animated CTA button
+                            </p>
+                          </div>
+                        </div>
+                        
+                        {/* Technical Notes */}
+                        <div className="border-t pt-4 mt-6">
+                          <h5 className="font-medium text-sm mb-3 text-gray-700">Production Notes</h5>
+                          <div className="grid grid-cols-2 gap-4 text-xs text-gray-600">
+                            <div>
+                              <p className="font-medium mb-1">Duration:</p>
+                              <p>30 seconds</p>
+                            </div>
+                            <div>
+                              <p className="font-medium mb-1">Format:</p>
+                              <p>{script.platform === 'TikTok' ? '9:16 Vertical' : '16:9 Landscape'}</p>
+                            </div>
+                            <div>
+                              <p className="font-medium mb-1">Music:</p>
+                              <p>Upbeat, energetic</p>
+                            </div>
+                            <div>
+                              <p className="font-medium mb-1">Captions:</p>
+                              <p>Auto-generated</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   ))}
                 </div>
