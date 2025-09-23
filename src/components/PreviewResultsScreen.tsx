@@ -687,7 +687,7 @@ const PreviewResultsScreen: React.FC = () => {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               
               {/* Banner Ads Card */}
-              <Card className="card-elegant backdrop-blur-xl bg-white/40 border-white/50 border-2 shadow-2xl hover:shadow-elegant-lg transition-all duration-smooth">
+              <Card className="card-elegant backdrop-blur-xl bg-white/20 border-white/50 border-2 shadow-2xl hover:shadow-elegant-lg transition-all duration-smooth">
                 <div className="px-4 py-3 flex items-center justify-between transition-all duration-smooth">
                   <div className="flex items-center space-x-2">
                     <h3 className="text-foreground font-medium">Banner Ads</h3>
@@ -778,7 +778,7 @@ const PreviewResultsScreen: React.FC = () => {
               </Card>
 
               {/* Web Creative Card */}
-              <Card className="card-elegant backdrop-blur-xl bg-white/40 border-white/50 border-2 shadow-2xl hover:shadow-elegant-lg transition-all duration-smooth">
+              <Card className="card-elegant backdrop-blur-xl bg-white/20 border-white/50 border-2 shadow-2xl hover:shadow-elegant-lg transition-all duration-smooth">
                 <div className="px-4 py-3 flex items-center justify-between transition-all duration-smooth">
                   <div className="flex items-center space-x-2">
                     <h3 className="text-foreground font-medium">Web Creative</h3>
@@ -896,7 +896,7 @@ const PreviewResultsScreen: React.FC = () => {
               </Card>
 
               {/* Video Scripts Card */}
-              <Card className="card-elegant backdrop-blur-xl bg-white/40 border-white/50 border-2 shadow-2xl hover:shadow-elegant-lg transition-all duration-smooth">
+              <Card className="card-elegant backdrop-blur-xl bg-white/20 border-white/50 border-2 shadow-2xl hover:shadow-elegant-lg transition-all duration-smooth">
                 <div className="px-4 py-3 flex items-center justify-between transition-all duration-smooth">
                   <div className="flex items-center space-x-2">
                     <h3 className="text-foreground font-medium">Video Scripts</h3>
@@ -1003,7 +1003,7 @@ const PreviewResultsScreen: React.FC = () => {
               </Card>
 
               {/* Email Templates Card */}
-              <Card className="card-elegant backdrop-blur-xl bg-white/40 border-white/50 border-2 shadow-2xl hover:shadow-elegant-lg transition-all duration-smooth">
+              <Card className="card-elegant backdrop-blur-xl bg-white/20 border-white/50 border-2 shadow-2xl hover:shadow-elegant-lg transition-all duration-smooth">
                 <div className="px-4 py-3 flex items-center justify-between transition-all duration-smooth">
                   <div className="flex items-center space-x-2">
                     <h3 className="text-foreground font-medium">Email Templates</h3>
