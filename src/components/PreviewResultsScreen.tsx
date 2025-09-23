@@ -675,7 +675,7 @@ const PreviewResultsScreen: React.FC = () => {
               
               {/* Banner Ads Card */}
               <Card className="card-elegant backdrop-blur-xl bg-white/40 border-white/50 border-2 shadow-elegant-lg hover:shadow-elegant-lg transition-all duration-smooth">
-                <div className="bg-white/50 px-4 py-3 flex items-center justify-between rounded-t-lg backdrop-blur-md border-b border-white/30 hover:bg-white/60 transition-all duration-smooth">
+                <div className="px-4 py-3 flex items-center justify-between rounded-t-lg backdrop-blur-md border-b border-white/30 transition-all duration-smooth">
                   <div className="flex items-center space-x-2">
                     <h3 className="text-foreground font-medium">Banner Ads</h3>
                     <span className="bg-muted text-muted-foreground text-xs px-2 py-1 rounded-full">4</span>
@@ -766,7 +766,7 @@ const PreviewResultsScreen: React.FC = () => {
 
               {/* Web Creative Card */}
               <Card className="card-elegant backdrop-blur-xl bg-white/40 border-white/50 border-2 shadow-elegant-lg hover:shadow-elegant-lg transition-all duration-smooth">
-                <div className="bg-white/50 px-4 py-3 flex items-center justify-between rounded-t-lg backdrop-blur-md border-b border-white/30 hover:bg-white/60 transition-all duration-smooth">
+                <div className="px-4 py-3 flex items-center justify-between rounded-t-lg backdrop-blur-md border-b border-white/30 transition-all duration-smooth">
                   <div className="flex items-center space-x-2">
                     <h3 className="text-foreground font-medium">Web Creative</h3>
                     <span className="bg-muted text-muted-foreground text-xs px-2 py-1 rounded-full">1</span>
@@ -884,7 +884,7 @@ const PreviewResultsScreen: React.FC = () => {
 
               {/* Video Scripts Card */}
               <Card className="card-elegant backdrop-blur-xl bg-white/40 border-white/50 border-2 shadow-elegant-lg hover:shadow-elegant-lg transition-all duration-smooth">
-                <div className="bg-white/50 px-4 py-3 flex items-center justify-between rounded-t-lg backdrop-blur-md border-b border-white/30 hover:bg-white/60 transition-all duration-smooth">
+                <div className="px-4 py-3 flex items-center justify-between rounded-t-lg backdrop-blur-md border-b border-white/30 transition-all duration-smooth">
                   <div className="flex items-center space-x-2">
                     <h3 className="text-foreground font-medium">Video Scripts</h3>
                     <span className="bg-muted text-muted-foreground text-xs px-2 py-1 rounded-full">1</span>
@@ -991,7 +991,7 @@ const PreviewResultsScreen: React.FC = () => {
 
               {/* Email Templates Card */}
               <Card className="card-elegant backdrop-blur-xl bg-white/40 border-white/50 border-2 shadow-elegant-lg hover:shadow-elegant-lg transition-all duration-smooth">
-                <div className="bg-white/50 px-4 py-3 flex items-center justify-between rounded-t-lg backdrop-blur-md border-b border-white/30 hover:bg-white/60 transition-all duration-smooth">
+                <div className="px-4 py-3 flex items-center justify-between rounded-t-lg backdrop-blur-md border-b border-white/30 transition-all duration-smooth">
                   <div className="flex items-center space-x-2">
                     <h3 className="text-foreground font-medium">Email Templates</h3>
                     <span className="bg-muted text-muted-foreground text-xs px-2 py-1 rounded-full">2</span>
