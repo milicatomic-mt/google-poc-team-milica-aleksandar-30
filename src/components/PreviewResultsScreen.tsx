@@ -645,7 +645,7 @@ const PreviewResultsScreen: React.FC = () => {
               <div className="w-12 h-12">
                 <RibbedSphere className="w-full h-full" />
               </div>
-              <div className="text-sm text-foreground">
+              <div className="text-sm text-foreground font-semibold">
                 Bring Your Products to <span className="text-indigo-600">Life</span>
               </div>
             </div>
