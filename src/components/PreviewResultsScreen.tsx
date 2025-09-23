@@ -638,7 +638,7 @@ const PreviewResultsScreen: React.FC = () => {
 
       <div className="relative z-10 flex min-h-screen flex-col overflow-y-auto">
         {/* Header */}
-        <header className="container-padding pt-12 relative">
+        <header className="container-padding pt-20 relative">
           <div className="w-full flex justify-between items-center px-8">
             {/* Left - Sphere Animation with Text */}
             <div className="flex items-center gap-3">
@@ -646,8 +646,7 @@ const PreviewResultsScreen: React.FC = () => {
                 <RibbedSphere className="w-full h-full" />
               </div>
               <div className="text-sm text-foreground">
-                <div>Bring Your Products</div>
-                <div>to Life</div>
+                Bring Your Products to <span className="text-indigo-600">Life</span>
               </div>
             </div>
             
