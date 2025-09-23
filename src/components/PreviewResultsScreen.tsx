@@ -639,8 +639,16 @@ const PreviewResultsScreen: React.FC = () => {
       <div className="relative z-10 flex min-h-screen flex-col overflow-y-auto">
         {/* Header */}
         <header className="container-padding pt-12 relative">
-          <div className="max-w-6xl mx-auto flex justify-between items-start">
-            <div>
+          <div className="max-w-6xl mx-auto flex justify-between items-center">
+            {/* Left - Sphere Animation */}
+            <div className="flex items-center">
+              <div className="w-20 h-20">
+                <RibbedSphere className="w-full h-full" />
+              </div>
+            </div>
+            
+            {/* Center - Title and Subtitle */}
+            <div className="text-center flex-1 mx-8">
               <h2 className="text-3xl font-bold text-foreground mb-2">
                 Campaign Creative Preview
               </h2>
@@ -648,6 +656,8 @@ const PreviewResultsScreen: React.FC = () => {
                 Your assets across channels at a glance
               </p>
             </div>
+            
+            {/* Right - Edit and Download Buttons */}
             <div className="flex gap-3">
               <Button
                 onClick={handleBack}
