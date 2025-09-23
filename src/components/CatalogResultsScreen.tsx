@@ -215,7 +215,7 @@ const CatalogResultsScreen: React.FC = () => {
           <div className="max-w-4xl mx-auto space-y-6">
             
             {/* Product Image Preview */}
-            <Card className="card-elegant backdrop-blur-md bg-white/20 border-white/30 border-2 shadow-glow hover:shadow-elegant-lg transition-all duration-smooth">
+            <Card className="card-elegant backdrop-blur-md bg-white/20 border-white/30 border-2 shadow-elegant-lg hover:shadow-elegant-lg transition-all duration-smooth">
               <CardContent className="p-6">
                 <div className="flex items-center space-x-4">
                   <div className="w-48 h-48 rounded-lg overflow-hidden bg-muted">
@@ -252,7 +252,7 @@ const CatalogResultsScreen: React.FC = () => {
             </Card>
 
             {/* Product Description */}
-            <Card className="card-elegant backdrop-blur-md bg-white/20 border-white/30 border-2 shadow-glow hover:shadow-elegant-lg transition-all duration-smooth">
+            <Card className="card-elegant backdrop-blur-md bg-white/20 border-white/30 border-2 shadow-elegant-lg hover:shadow-elegant-lg transition-all duration-smooth">
               <CardHeader className="pb-3">
                 <div className="flex items-center justify-between">
                   <CardTitle>Product Description</CardTitle>
@@ -278,7 +278,7 @@ const CatalogResultsScreen: React.FC = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {/* Key Features */}
-              <Card className="card-elegant backdrop-blur-md bg-white/20 border-white/30 border-2 shadow-glow hover:shadow-elegant-lg transition-all duration-smooth">
+              <Card className="card-elegant backdrop-blur-md bg-white/20 border-white/30 border-2 shadow-elegant-lg hover:shadow-elegant-lg transition-all duration-smooth">
                 <CardHeader className="pb-3">
                   <div className="flex items-center justify-between">
                     <CardTitle>Key Features</CardTitle>
@@ -308,7 +308,7 @@ const CatalogResultsScreen: React.FC = () => {
               </Card>
 
               {/* SEO Metadata */}
-              <Card className="card-elegant backdrop-blur-md bg-white/20 border-white/30 border-2 shadow-glow hover:shadow-elegant-lg transition-all duration-smooth">
+              <Card className="card-elegant backdrop-blur-md bg-white/20 border-white/30 border-2 shadow-elegant-lg hover:shadow-elegant-lg transition-all duration-smooth">
                 <CardHeader className="pb-3">
                   <CardTitle>SEO Metadata</CardTitle>
                 </CardHeader>
@@ -365,7 +365,7 @@ const CatalogResultsScreen: React.FC = () => {
             </div>
 
             {/* Alt Text */}
-            <Card className="card-elegant backdrop-blur-md bg-white/20 border-white/30 border-2 shadow-glow hover:shadow-elegant-lg transition-all duration-smooth">
+            <Card className="card-elegant backdrop-blur-md bg-white/20 border-white/30 border-2 shadow-elegant-lg hover:shadow-elegant-lg transition-all duration-smooth">
               <CardHeader className="pb-3">
                 <div className="flex items-center justify-between">
                   <CardTitle>Image Alt Text</CardTitle>
@@ -391,7 +391,7 @@ const CatalogResultsScreen: React.FC = () => {
 
             {/* Short Marketing Copy (if available) */}
             {catalogResults?.short_marketing_copy && (
-              <Card className="card-elegant backdrop-blur-md bg-white/20 border-white/30 border-2 shadow-glow hover:shadow-elegant-lg transition-all duration-smooth">
+              <Card className="card-elegant backdrop-blur-md bg-white/20 border-white/30 border-2 shadow-elegant-lg hover:shadow-elegant-lg transition-all duration-smooth">
                 <CardHeader className="pb-3">
                   <div className="flex items-center justify-between">
                     <CardTitle>Short Marketing Copy</CardTitle>
