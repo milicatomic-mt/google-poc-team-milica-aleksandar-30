@@ -681,11 +681,14 @@ const PreviewResultsScreen: React.FC = () => {
                     <span className="bg-muted text-muted-foreground text-xs px-2 py-1 rounded-full">4</span>
                   </div>
                   <Button 
-                    size="sm" 
+                    variant="outline"
+                    size="lg" 
                     onClick={() => handleOpenCategory('Banner Ads')}
-                    className="px-4 rounded-full"
+                    className="tap-target focus-ring group bg-white/20 border-white/30 hover:bg-white/30 rounded-full px-6"
                   >
-                    Open
+                    <span className="text-indigo-600 group-hover:text-indigo-700 transition-colors">
+                      Open
+                    </span>
                   </Button>
                 </div>
                 <CardContent className="p-4">
@@ -769,11 +772,14 @@ const PreviewResultsScreen: React.FC = () => {
                     <span className="bg-muted text-muted-foreground text-xs px-2 py-1 rounded-full">1</span>
                   </div>
                   <Button 
-                    size="sm" 
+                    variant="outline"
+                    size="lg" 
                     onClick={() => handleOpenCategory('Web Creative')}
-                    className="px-4 rounded-full"
+                    className="tap-target focus-ring group bg-white/20 border-white/30 hover:bg-white/30 rounded-full px-6"
                   >
-                    Open
+                    <span className="text-indigo-600 group-hover:text-indigo-700 transition-colors">
+                      Open
+                    </span>
                   </Button>
                 </div>
                 <CardContent className="p-4">
@@ -884,11 +890,14 @@ const PreviewResultsScreen: React.FC = () => {
                     <span className="bg-muted text-muted-foreground text-xs px-2 py-1 rounded-full">1</span>
                   </div>
                   <Button 
-                    size="sm" 
+                    variant="outline"
+                    size="lg" 
                     onClick={() => handleOpenCategory('Video Scripts')}
-                    className="px-4 rounded-full"
+                    className="tap-target focus-ring group bg-white/20 border-white/30 hover:bg-white/30 rounded-full px-6"
                   >
-                    Open
+                    <span className="text-indigo-600 group-hover:text-indigo-700 transition-colors">
+                      Open
+                    </span>
                   </Button>
                 </div>
                 <CardContent className="p-4">
