@@ -2,6 +2,7 @@ import "https://deno.land/x/xhr@0.1.0/mod.ts";
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.57.4';
 
 const geminiApiKey = Deno.env.get('GEMINI_API_KEY');
+const openaiApiKey = Deno.env.get('OPENAI_API_KEY');
 const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
 const supabaseServiceKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
 
@@ -107,10 +108,99 @@ Create a comprehensive marketing campaign with video scripts for TikTok, Instagr
     
     const generatedContent = JSON.parse(responseText);
 
-    console.log('Generated text content successfully with Gemini');
+    console.log('Generated text content successfully with Gemini, now generating related images...');
 
-    // No AI image generation needed - using uploaded image only
+    // Generate related images using OpenAI DALL-E
     const generatedImages = [];
+    
+    if (openaiApiKey) {
+      try {
+        const imagePrompts = [
+          `Professional marketing image for: ${campaignPrompt}. High quality, commercial style, modern design, clean background, professional photography`,
+          `${generatedContent.banner_ads?.[0]?.headline || campaignPrompt}. Professional product photography style, minimalist design, commercial quality`,
+          `Creative marketing visual for: ${generatedContent.landing_page_concept?.hero_text || campaignPrompt}. Professional, commercial style, high-end branding`
+        ];
+
+        console.log('Generating images with OpenAI DALL-E...');
+
+        // Generate images with OpenAI
+        for (let i = 0; i < imagePrompts.length; i++) {
+          try {
+            console.log(`Generating image ${i + 1}/${imagePrompts.length}`);
+            
+            const imageResponse = await fetch('https://api.openai.com/v1/images/generations', {
+              method: 'POST',
+              headers: {
+                'Authorization': `Bearer ${openaiApiKey}`,
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                model: 'gpt-image-1',
+                prompt: imagePrompts[i],
+                n: 1,
+                size: '1024x1024',
+                quality: 'high',
+                output_format: 'png'
+              }),
+            });
+
+            const imageData = await imageResponse.json();
+            
+            if (!imageData.data?.[0]?.b64_json) {
+              console.error('Invalid image response from OpenAI:', imageData);
+              continue;
+            }
+
+            // Convert base64 to blob for upload
+            const base64Data = imageData.data[0].b64_json;
+            const binaryData = Uint8Array.from(atob(base64Data), c => c.charCodeAt(0));
+            
+            // Upload to Supabase storage
+            const fileName = `campaign-${campaignId}-generated-${i + 1}-${Date.now()}.png`;
+            const { data: uploadData, error: uploadError } = await supabase.storage
+              .from('ai-marketing')
+              .upload(fileName, binaryData, {
+                contentType: 'image/png',
+                cacheControl: '3600'
+              });
+
+            if (uploadError) {
+              console.error('Failed to upload generated image:', uploadError);
+              continue; // Skip this image but continue with others
+            }
+
+            // Get public URL
+            const { data: { publicUrl } } = supabase.storage
+              .from('ai-marketing')
+              .getPublicUrl(fileName);
+
+            generatedImages.push({
+              url: publicUrl,
+              prompt: imagePrompts[i],
+              filename: fileName,
+              generated_at: new Date().toISOString()
+            });
+
+            console.log(`Successfully generated and uploaded image ${i + 1}`);
+            
+            // Add small delay between generations to avoid rate limits
+            if (i < imagePrompts.length - 1) {
+              await new Promise(resolve => setTimeout(resolve, 1500));
+            }
+            
+          } catch (error) {
+            console.error(`Failed to generate image ${i + 1}:`, error);
+            // Continue with other images even if one fails
+          }
+        }
+
+        console.log(`Successfully generated ${generatedImages.length} out of ${imagePrompts.length} images`);
+      } catch (error) {
+        console.error('Error in OpenAI image generation process:', error);
+      }
+    } else {
+      console.warn('OpenAI API key not found, skipping image generation');
+    }
 
     // Update the campaign_results table with the generated content
     const { error: updateError } = await supabase
@@ -132,7 +222,7 @@ Create a comprehensive marketing campaign with video scripts for TikTok, Instagr
       success: true, 
       campaign: generatedContent,
       generatedImages: generatedImages.length,
-      message: `Generated campaign content successfully using Gemini AI`
+      message: `Generated campaign content with ${generatedImages.length} related images using Gemini + OpenAI`
     }), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     });
