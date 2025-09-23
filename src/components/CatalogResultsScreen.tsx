@@ -218,7 +218,7 @@ const CatalogResultsScreen: React.FC = () => {
             <Card className="bg-white/20 border-white/30 backdrop-blur-sm">
               <CardContent className="p-6">
                 <div className="flex items-center space-x-4">
-                  <div className="w-32 h-32 rounded-lg overflow-hidden bg-muted">
+                  <div className="w-48 h-48 rounded-lg overflow-hidden bg-muted">
                     <img
                       src={catalogData.uploadedImage}
                       alt="Product"
