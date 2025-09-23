@@ -742,60 +742,94 @@ const PreviewResultsScreen: React.FC = () => {
                   </Button>
                 </div>
                 <CardContent className="p-4">
-                  <div className="h-64 bg-white rounded-lg overflow-hidden border border-gray-200 shadow-sm">
-                    {/* Landing Page Preview - Miniature Version */}
-                    <div className="h-full bg-gradient-to-br from-gray-50 to-primary/5 relative overflow-hidden">
-                      <div className="absolute inset-0 bg-gradient-to-br from-transparent via-primary/5 to-primary/10"></div>
-                      
-                      <div className="relative z-10 p-3 h-full flex flex-col">
-                        {/* Hero Section */}
-                        <div className="flex-1 grid grid-cols-2 gap-3 items-center">
-                          {/* Left Column - Content */}
-                          <div className="space-y-2">
-                            <div className="inline-flex items-center gap-1 px-2 py-1 rounded-full text-[7px] font-medium bg-primary/10 text-primary">
-                              ✨ New Product Launch
+                  <div className="h-64 bg-gray-100 rounded-lg overflow-hidden border border-gray-300 shadow-sm">
+                    {/* Browser-like Screenshot Mockup */}
+                    <div className="h-full bg-white">
+                      {/* Browser Header */}
+                      <div className="bg-gray-200 px-2 py-1 flex items-center gap-1 border-b">
+                        <div className="flex gap-1">
+                          <div className="w-2 h-2 bg-red-400 rounded-full"></div>
+                          <div className="w-2 h-2 bg-yellow-400 rounded-full"></div>
+                          <div className="w-2 h-2 bg-green-400 rounded-full"></div>
+                        </div>
+                        <div className="flex-1 bg-white mx-2 rounded px-2 py-0.5">
+                          <div className="text-[6px] text-gray-500">https://yoursite.com</div>
+                        </div>
+                      </div>
+
+                      {/* Landing Page Screenshot Content */}
+                      <div className="h-full bg-gradient-to-br from-gray-50 to-blue-50 relative overflow-hidden">
+                        {/* Navigation */}
+                        <div className="bg-white/80 backdrop-blur px-3 py-1 flex justify-between items-center border-b border-gray-200">
+                          <div className="text-[8px] font-bold">BRAND</div>
+                          <div className="flex gap-2 text-[6px] text-gray-600">
+                            <span>Home</span> <span>Products</span> <span>About</span>
+                          </div>
+                        </div>
+
+                        {/* Hero Section Screenshot */}
+                        <div className="px-3 py-4 flex gap-3 items-center">
+                          <div className="flex-1 space-y-2">
+                            {/* Badge */}
+                            <div className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-blue-100 text-blue-700">
+                              <div className="text-[6px] font-medium">✨ New Launch</div>
                             </div>
-                            <h1 className="text-[11px] font-bold text-foreground leading-tight">
-                              Transform Your Experience
+                            
+                            {/* Headline */}
+                            <h1 className="text-[9px] font-bold text-gray-900 leading-tight">
+                              Transform Your<br />Experience Today
                             </h1>
-                            <p className="text-[8px] text-muted-foreground leading-relaxed">
-                              Discover innovative solutions that drive exceptional results
+                            
+                            {/* Subtext */}
+                            <p className="text-[6px] text-gray-600 leading-relaxed">
+                              Discover innovative solutions that drive<br />
+                              exceptional results for your business.
                             </p>
                             
-                            <div className="flex flex-col gap-1">
-                              <div className="bg-black text-white text-[7px] px-2 py-1 rounded text-center">
-                                Get Started
-                              </div>
-                              <div className="border border-gray-300 text-gray-700 text-[7px] px-2 py-1 rounded text-center">
-                                Learn More
-                              </div>
+                            {/* Buttons */}
+                            <div className="flex gap-1">
+                              <div className="bg-black text-white text-[5px] px-2 py-1 rounded font-medium">Get Started</div>
+                              <div className="border border-gray-300 text-gray-700 text-[5px] px-2 py-1 rounded">Learn More</div>
                             </div>
                           </div>
                           
-                          {/* Right Column - Product Image */}
-                          <div className="relative">
-                            <div className="relative bg-white/80 backdrop-blur-sm rounded-lg p-2 shadow-lg border border-gray-200">
-                              <div className="w-full aspect-square bg-gray-100 rounded overflow-hidden">
-                                {uploadedImage && <img src={uploadedImage} alt="Product showcase" className="w-full h-full object-cover" />}
+                          {/* Hero Image */}
+                          <div className="w-12 h-12 bg-white rounded-lg shadow-lg p-1 flex-shrink-0">
+                            <div className="w-full h-full bg-gray-100 rounded overflow-hidden">
+                              {uploadedImage && <img src={uploadedImage} alt="Product" className="w-full h-full object-cover" />}
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Features Section */}
+                        <div className="px-3 pb-3">
+                          <div className="bg-white/60 rounded-lg p-2 backdrop-blur">
+                            <div className="grid grid-cols-3 gap-2 text-center">
+                              <div className="space-y-1">
+                                <div className="w-4 h-3 bg-green-100 rounded mx-auto flex items-center justify-center">
+                                  <div className="w-1 h-1 bg-green-500 rounded-full"></div>
+                                </div>
+                                <div className="text-[5px] font-medium">Free Shipping</div>
+                              </div>
+                              <div className="space-y-1">
+                                <div className="w-4 h-3 bg-blue-100 rounded mx-auto flex items-center justify-center">
+                                  <div className="w-1 h-1 bg-blue-500 rounded-full"></div>
+                                </div>
+                                <div className="text-[5px] font-medium">30-day Returns</div>
+                              </div>
+                              <div className="space-y-1">
+                                <div className="w-4 h-3 bg-purple-100 rounded mx-auto flex items-center justify-center">
+                                  <div className="w-1 h-1 bg-purple-500 rounded-full"></div>
+                                </div>
+                                <div className="text-[5px] font-medium">Premium Quality</div>
                               </div>
                             </div>
                           </div>
                         </div>
-                        
-                        {/* Trust Indicators */}
-                        <div className="flex items-center justify-center gap-3 text-[6px] text-muted-foreground pt-2 border-t border-gray-200">
-                          <div className="flex items-center gap-1">
-                            <div className="w-1 h-1 bg-green-500 rounded-full"></div>
-                            <span>Free shipping</span>
-                          </div>
-                          <div className="flex items-center gap-1">
-                            <div className="w-1 h-1 bg-blue-500 rounded-full"></div>
-                            <span>30-day returns</span>
-                          </div>
-                          <div className="flex items-center gap-1">
-                            <div className="w-1 h-1 bg-purple-500 rounded-full"></div>
-                            <span>Premium quality</span>
-                          </div>
+
+                        {/* Footer */}
+                        <div className="absolute bottom-0 left-0 right-0 bg-gray-800 px-3 py-1">
+                          <div className="text-[5px] text-gray-300 text-center">© 2024 Brand. All rights reserved.</div>
                         </div>
                       </div>
                     </div>
