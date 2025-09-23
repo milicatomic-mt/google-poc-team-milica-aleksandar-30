@@ -91,7 +91,7 @@ const CatalogResultsScreen: React.FC = () => {
   }, [catalogData, navigate]);
 
   const handleBack = () => {
-    navigate('/upload', { state: { uploadedImage: catalogData.uploadedImage } });
+    navigate(-1);
   };
 
   const copyToClipboard = async (text: string, fieldName: string) => {
