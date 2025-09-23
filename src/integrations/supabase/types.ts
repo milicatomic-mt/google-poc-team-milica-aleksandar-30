@@ -18,6 +18,7 @@ export type Database = {
         Row: {
           campaign_prompt: string
           created_at: string | null
+          generated_images: Json | null
           id: string
           image_url: string | null
           result: Json
@@ -27,6 +28,7 @@ export type Database = {
         Insert: {
           campaign_prompt: string
           created_at?: string | null
+          generated_images?: Json | null
           id?: string
           image_url?: string | null
           result: Json
@@ -36,6 +38,7 @@ export type Database = {
         Update: {
           campaign_prompt?: string
           created_at?: string | null
+          generated_images?: Json | null
           id?: string
           image_url?: string | null
           result?: Json
@@ -47,6 +50,7 @@ export type Database = {
       catalog_results: {
         Row: {
           created_at: string | null
+          generated_images: Json | null
           id: string
           image_url: string
           platform: string | null
@@ -57,6 +61,7 @@ export type Database = {
         }
         Insert: {
           created_at?: string | null
+          generated_images?: Json | null
           id?: string
           image_url: string
           platform?: string | null
@@ -67,6 +72,7 @@ export type Database = {
         }
         Update: {
           created_at?: string | null
+          generated_images?: Json | null
           id?: string
           image_url?: string
           platform?: string | null
