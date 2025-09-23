@@ -817,66 +817,83 @@ const PreviewResultsScreen: React.FC = () => {
                         </div>
                       </div>
 
-                      {/* Landing Page Screenshot Content */}
-                      <div className="h-full bg-gradient-to-br from-white via-gray-50 to-blue-50 relative overflow-hidden">
-                        {/* Navigation - More minimal */}
-                        <div className="bg-white/90 backdrop-blur px-3 py-1 flex justify-between items-center border-b border-gray-100">
-                          <div className="text-[8px] font-bold text-gray-900">BRAND</div>
-                          <div className="flex gap-3 text-[6px] text-gray-600">
-                            <span>Home</span> <span>Products</span> <span>About</span>
+                      {/* Landing Page with Background Image */}
+                      <div className="h-full relative overflow-hidden">
+                        {/* Background Image with Overlay */}
+                        <div className="absolute inset-0">
+                          {uploadedImage ? (
+                            <img 
+                              src={uploadedImage} 
+                              alt="Background" 
+                              className="w-full h-full object-cover"
+                            />
+                          ) : (
+                            <div className="w-full h-full bg-gradient-to-br from-blue-500 to-purple-600"></div>
+                          )}
+                          {/* Dark overlay for better text readability */}
+                          <div className="absolute inset-0 bg-black/40"></div>
+                          {/* Gradient overlay for better text contrast */}
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30"></div>
+                        </div>
+
+                        {/* Navigation Bar - Floating */}
+                        <div className="relative z-10 bg-white/10 backdrop-blur-md border-b border-white/20">
+                          <div className="px-3 py-1 flex justify-between items-center">
+                            <div className="text-[8px] font-bold text-white">BRAND</div>
+                            <div className="flex gap-3 text-[6px] text-white/80">
+                              <span>Home</span> <span>Products</span> <span>About</span>
+                            </div>
                           </div>
                         </div>
 
-                        {/* Hero Section - Redesigned for better proportions */}
-                        <div className="px-3 py-3 flex flex-col items-center text-center space-y-3">
-                          {/* Badge - Smaller and more elegant */}
-                          <div className="inline-flex items-center px-2 py-0.5 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 text-white">
-                            <div className="text-[5px] font-medium">✨ New Launch</div>
+                        {/* Hero Content - Centered with Text Overlays */}
+                        <div className="relative z-10 h-full flex flex-col justify-center items-center text-center px-4">
+                          {/* Badge */}
+                          <div className="inline-flex items-center px-2 py-0.5 rounded-full bg-white/20 backdrop-blur-md border border-white/30 mb-2">
+                            <div className="text-[5px] font-medium text-white">✨ New Launch</div>
                           </div>
                           
-                          {/* Hero Image - Much Larger and Prominent */}
-                          <div className="w-24 h-16 bg-white rounded-xl shadow-lg p-1 border border-gray-200">
-                            <div className="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg overflow-hidden">
-                              {uploadedImage && <img src={uploadedImage} alt="Product" className="w-full h-full object-cover" />}
-                            </div>
-                          </div>
-                          
-                          {/* Headline - More prominent */}
-                          <h1 className="text-[10px] font-bold text-gray-900 leading-tight max-w-20">
+                          {/* Main Headline with Text Shadow */}
+                          <h1 className="text-[12px] font-bold text-white leading-tight mb-2 max-w-24 drop-shadow-lg">
                             Transform Your Experience Today
                           </h1>
                           
-                          {/* CTA Button - More prominent */}
-                          <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white text-[6px] px-3 py-1 rounded-full font-medium shadow-sm">
+                          {/* Subtext */}
+                          <p className="text-[6px] text-white/90 leading-relaxed mb-3 max-w-20 drop-shadow-md">
+                            Discover innovative solutions that drive exceptional results for your business.
+                          </p>
+                          
+                          {/* CTA Button */}
+                          <div className="bg-white text-gray-900 text-[6px] px-3 py-1 rounded-full font-medium shadow-lg hover:bg-white/90 transition-all mb-3">
                             Get Started Now
                           </div>
-                        </div>
 
-                        {/* Features Section - Much more compact */}
-                        <div className="absolute bottom-8 left-2 right-2">
-                          <div className="bg-white/80 backdrop-blur rounded-lg px-2 py-1.5 border border-gray-200/50">
-                            <div className="flex justify-center items-center gap-3 text-center">
+                          {/* Features Bar - Bottom Overlay */}
+                          <div className="bg-white/10 backdrop-blur-md rounded-lg px-3 py-1 border border-white/20">
+                            <div className="flex items-center gap-3 text-center">
                               <div className="flex items-center gap-1">
-                                <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                                <div className="text-[5px] text-gray-700 font-medium">Free Ship</div>
+                                <div className="w-1.5 h-1.5 bg-green-400 rounded-full"></div>
+                                <div className="text-[4px] text-white font-medium">Free Ship</div>
                               </div>
-                              <div className="w-px h-2 bg-gray-300"></div>
+                              <div className="w-px h-2 bg-white/30"></div>
                               <div className="flex items-center gap-1">
-                                <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                                <div className="text-[5px] text-gray-700 font-medium">30d Returns</div>
+                                <div className="w-1.5 h-1.5 bg-blue-400 rounded-full"></div>
+                                <div className="text-[4px] text-white font-medium">30d Returns</div>
                               </div>
-                              <div className="w-px h-2 bg-gray-300"></div>
+                              <div className="w-px h-2 bg-white/30"></div>
                               <div className="flex items-center gap-1">
-                                <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
-                                <div className="text-[5px] text-gray-700 font-medium">Premium</div>
+                                <div className="w-1.5 h-1.5 bg-purple-400 rounded-full"></div>
+                                <div className="text-[4px] text-white font-medium">Premium</div>
                               </div>
                             </div>
                           </div>
                         </div>
 
-                        {/* Footer - More minimal */}
-                        <div className="absolute bottom-0 left-0 right-0 bg-gray-900 px-2 py-1">
-                          <div className="text-[4px] text-gray-400 text-center">© 2024 Brand. All rights reserved.</div>
+                        {/* Footer - Bottom Overlay */}
+                        <div className="absolute bottom-0 left-0 right-0 z-10 bg-black/20 backdrop-blur-sm border-t border-white/10">
+                          <div className="px-2 py-1">
+                            <div className="text-[4px] text-white/70 text-center">© 2024 Brand. All rights reserved.</div>
+                          </div>
                         </div>
                       </div>
                     </div>
