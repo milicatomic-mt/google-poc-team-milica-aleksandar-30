@@ -516,7 +516,7 @@ const PreviewResultsScreen: React.FC = () => {
               <div className="relative bg-gradient-to-br from-primary/5 to-secondary/5 p-8">
                 {uploadedImage && (
                   <div className="w-full max-w-sm mx-auto mb-6">
-                    <img src={uploadedImage} alt="Featured product" className="w-full h-auto rounded-lg shadow-md" />
+                    <img src={uploadedImage} alt="Featured product" className="w-full h-auto rounded shadow-md" />
                   </div>
                 )}
                 
@@ -546,17 +546,17 @@ const PreviewResultsScreen: React.FC = () => {
                 
                 {/* Feature highlights */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  <div className="text-center p-4 bg-gray-50 rounded-lg">
+                  <div className="text-center p-4 bg-gray-50 rounded">
                     <div className="w-8 h-8 bg-primary rounded-full mx-auto mb-2"></div>
                     <h4 className="font-semibold text-sm">Premium Quality</h4>
                     <p className="text-xs text-gray-600">Exceptional materials</p>
                   </div>
-                  <div className="text-center p-4 bg-gray-50 rounded-lg">
+                  <div className="text-center p-4 bg-gray-50 rounded">
                     <div className="w-8 h-8 bg-secondary rounded-full mx-auto mb-2"></div>
                     <h4 className="font-semibold text-sm">Fast Delivery</h4>
                     <p className="text-xs text-gray-600">Free 2-day shipping</p>
                   </div>
-                  <div className="text-center p-4 bg-gray-50 rounded-lg">
+                  <div className="text-center p-4 bg-gray-50 rounded">
                     <div className="w-8 h-8 bg-accent rounded-full mx-auto mb-2"></div>
                     <h4 className="font-semibold text-sm">Money Back</h4>
                     <p className="text-xs text-gray-600">30-day guarantee</p>
@@ -713,10 +713,10 @@ const PreviewResultsScreen: React.FC = () => {
                 <CardContent className="p-4">
                   <div className="grid grid-cols-2 gap-3 h-80">
                     {/* Top Left - Leaderboard Banner */}
-                    <div className="bg-white backdrop-blur-sm rounded-lg p-3 overflow-hidden flex flex-col border border-white/20">
+                    <div className="bg-white backdrop-blur-sm rounded p-3 overflow-hidden flex flex-col border border-white/20">
                       <div className="flex-1 flex flex-col justify-between">
                         <div className="flex items-start gap-2">
-                          <div className="w-8 h-8 rounded bg-primary/20 flex-shrink-0 overflow-hidden">
+                          <div className="w-8 h-8 rounded-sm bg-primary/20 flex-shrink-0 overflow-hidden">
                             {uploadedImage && <img src={uploadedImage} alt="Product" className="w-full h-full object-cover" />}
                           </div>
                           <div className="flex-1 min-w-0">
@@ -725,7 +725,7 @@ const PreviewResultsScreen: React.FC = () => {
                           </div>
                         </div>
                         <div className="mt-3">
-                          <div className="bg-black text-white text-[9px] px-2 py-1 rounded inline-block">
+                          <div className="bg-black text-white text-[9px] px-2 py-1 rounded-sm inline-block">
                             Get Started
                           </div>
                         </div>
@@ -733,22 +733,22 @@ const PreviewResultsScreen: React.FC = () => {
                     </div>
 
                     {/* Top Right - Square Banner */}
-                    <div className="bg-white backdrop-blur-sm rounded-lg p-3 overflow-hidden flex flex-col border border-white/20">
-                      <div className="w-full aspect-square bg-primary/20 rounded mb-2 overflow-hidden">
+                    <div className="bg-white backdrop-blur-sm rounded p-3 overflow-hidden flex flex-col border border-white/20">
+                      <div className="w-full aspect-square bg-primary/20 rounded-sm mb-2 overflow-hidden">
                         {uploadedImage && <img src={uploadedImage} alt="Product" className="w-full h-full object-cover" />}
                       </div>
                       <div className="text-center">
                         <h4 className="text-[10px] font-bold text-foreground mb-1">Premium Collection</h4>
-                        <div className="bg-black text-white text-[8px] px-2 py-1 rounded">
+                        <div className="bg-black text-white text-[8px] px-2 py-1 rounded-sm">
                           Shop Now
                         </div>
                       </div>
                     </div>
 
                     {/* Bottom Left - Mobile Banner */}
-                    <div className="bg-white backdrop-blur-sm rounded-lg p-3 overflow-hidden flex flex-col justify-between border border-white/20">
+                    <div className="bg-white backdrop-blur-sm rounded p-3 overflow-hidden flex flex-col justify-between border border-white/20">
                       <div className="flex items-center gap-2 mb-2">
-                        <div className="w-6 h-6 rounded bg-primary/20 flex-shrink-0 overflow-hidden">
+                        <div className="w-6 h-6 rounded-sm bg-primary/20 flex-shrink-0 overflow-hidden">
                           {uploadedImage && <img src={uploadedImage} alt="Product" className="w-full h-full object-cover" />}
                         </div>
                         <div className="flex-1 min-w-0">
@@ -757,15 +757,15 @@ const PreviewResultsScreen: React.FC = () => {
                       </div>
                       <div className="space-y-2">
                         <p className="text-[9px] text-muted-foreground">Save up to 50% today</p>
-                        <div className="bg-black text-white text-[8px] px-2 py-1 rounded text-center">
+                        <div className="bg-black text-white text-[8px] px-2 py-1 rounded-sm text-center">
                           Claim Deal
                         </div>
                       </div>
                     </div>
 
                     {/* Bottom Right - Video Banner */}
-                    <div className="bg-white backdrop-blur-sm rounded-lg p-3 overflow-hidden relative border border-white/20">
-                      <div className="w-full h-full bg-primary/20 rounded flex items-center justify-center overflow-hidden">
+                    <div className="bg-white backdrop-blur-sm rounded p-3 overflow-hidden relative border border-white/20">
+                      <div className="w-full h-full bg-primary/20 rounded-sm flex items-center justify-center overflow-hidden">
                         {uploadedImage && <img src={uploadedImage} alt="Product" className="w-full h-full object-cover" />}
                         <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
                           <div className="w-8 h-8 bg-white/90 rounded-full flex items-center justify-center">
@@ -774,7 +774,7 @@ const PreviewResultsScreen: React.FC = () => {
                         </div>
                       </div>
                       <div className="absolute bottom-2 left-2 right-2">
-                        <div className="bg-black/80 text-white text-[8px] px-2 py-1 rounded text-center backdrop-blur-sm">
+                        <div className="bg-black/80 text-white text-[8px] px-2 py-1 rounded-sm text-center backdrop-blur-sm">
                           Watch Demo
                         </div>
                       </div>
