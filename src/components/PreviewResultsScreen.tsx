@@ -842,12 +842,65 @@ const PreviewResultsScreen: React.FC = () => {
                 </div>
                 <CardContent className="p-4">
                   <div className="space-y-3 h-64">
-                    {/* Two variations for email templates */}
-                    <div className="h-[48%] bg-white/40 backdrop-blur-sm rounded-lg flex items-center justify-center overflow-hidden">
-                      {renderImageWithVariation(uploadedImage, 'Email template - original', 'original')}
+                    {/* Promotional Email Template */}
+                    <div className="bg-white/40 backdrop-blur-sm rounded-lg p-3 h-[48%] overflow-hidden">
+                      <div className="space-y-2 h-full flex flex-col">
+                        {/* Email Header */}
+                        <div className="flex items-center justify-between pb-1 border-b border-black/10">
+                          <div className="text-[9px] font-medium text-foreground">Promotional Email</div>
+                          <div className="text-[8px] text-muted-foreground">📧 Marketing</div>
+                        </div>
+                        
+                        {/* Email Content Preview */}
+                        <div className="flex-1 flex gap-2">
+                          <div className="w-12 h-12 bg-primary/20 rounded overflow-hidden flex-shrink-0">
+                            {uploadedImage && <img src={uploadedImage} alt="Product" className="w-full h-full object-cover" />}
+                          </div>
+                          <div className="flex-1 space-y-1 min-w-0">
+                            <h4 className="text-[10px] font-bold text-foreground leading-tight">🎉 Exclusive Launch Offer</h4>
+                            <p className="text-[8px] text-muted-foreground leading-relaxed">Get 25% off your first purchase. Limited time offer for our premium collection.</p>
+                            <div className="bg-black text-white text-[7px] px-2 py-1 rounded inline-block">
+                              Shop Now
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                    <div className="h-[48%] bg-white/40 backdrop-blur-sm rounded-lg flex items-center justify-center overflow-hidden">
-                      {renderImageWithVariation(uploadedImage, 'Email template variation', 'light')}
+
+                    {/* Newsletter Email Template */}
+                    <div className="bg-white/40 backdrop-blur-sm rounded-lg p-3 h-[48%] overflow-hidden">
+                      <div className="space-y-2 h-full flex flex-col">
+                        {/* Email Header */}
+                        <div className="flex items-center justify-between pb-1 border-b border-black/10">
+                          <div className="text-[9px] font-medium text-foreground">Newsletter Email</div>
+                          <div className="text-[8px] text-muted-foreground">📰 Weekly</div>
+                        </div>
+                        
+                        {/* Email Content Preview */}
+                        <div className="flex-1 space-y-2">
+                          <div className="flex items-center gap-2">
+                            <div className="w-8 h-6 bg-primary/20 rounded overflow-hidden flex-shrink-0">
+                              {uploadedImage && <img src={uploadedImage} alt="Product" className="w-full h-full object-cover" />}
+                            </div>
+                            <div className="flex-1 min-w-0">
+                              <h4 className="text-[9px] font-bold text-foreground leading-tight">This Week's Featured Product</h4>
+                              <p className="text-[7px] text-muted-foreground">Discover what's new and trending in our latest collection.</p>
+                            </div>
+                          </div>
+                          
+                          <div className="space-y-1">
+                            <div className="flex justify-between text-[7px]">
+                              <span className="text-muted-foreground">• Product highlights</span>
+                              <span className="text-muted-foreground">• Customer reviews</span>
+                            </div>
+                            <div className="text-center">
+                              <div className="bg-black text-white text-[7px] px-3 py-1 rounded inline-block">
+                                Read More
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </CardContent>
