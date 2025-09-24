@@ -50,8 +50,11 @@ const GenerateCampaignScreen = () => {
           target_audience: state.selectedAudiences?.join(', ') || ''
         };
         
-        // Save the initial campaign request
-        const campaignResult = await saveCampaignRequest(campaignData);
+        // Extract generated images from analysis data
+        const generatedImages = state.aiAnalysisData?.generatedImages || [];
+        
+        // Save the initial campaign request with generated images
+        const campaignResult = await saveCampaignRequest(campaignData, generatedImages);
         
         // Generate the campaign using AI
         await generateCampaign(campaignResult.id, campaignData);

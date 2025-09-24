@@ -1,14 +1,15 @@
 import { supabase } from "@/integrations/supabase/client";
 import type { CampaignCreationRequest, CatalogEnrichmentRequest, CatalogEnrichmentResponse } from "@/types/api";
 
-export const saveCampaignRequest = async (data: CampaignCreationRequest) => {
+export const saveCampaignRequest = async (data: CampaignCreationRequest, generatedImages?: any[]) => {
   const { data: result, error } = await supabase
     .from('campaign_results')
     .insert({
       image_url: data.image,
       campaign_prompt: data.campaign_prompt,
       target_audience: data.target_audience,
-      result: {} // Will be updated when AI generates the campaign
+      result: {}, // Will be updated when AI generates the campaign
+      generated_images: generatedImages || []
     })
     .select()
     .single();
@@ -39,7 +40,7 @@ export const generateCampaign = async (campaignId: string, data: CampaignCreatio
   return result;
 };
 
-export const saveCatalogRequest = async (data: CatalogEnrichmentRequest) => {
+export const saveCatalogRequest = async (data: CatalogEnrichmentRequest, generatedImages?: any[]) => {
   const { data: result, error } = await supabase
     .from('catalog_results')
     .insert({
@@ -47,7 +48,8 @@ export const saveCatalogRequest = async (data: CatalogEnrichmentRequest) => {
       tone: data.tone,
       platform: data.platform,
       product_category: data.category,
-      result: {} // Will be updated when AI generates the catalog content
+      result: {}, // Will be updated when AI generates the catalog content
+      generated_images: generatedImages || []
     })
     .select()
     .single();

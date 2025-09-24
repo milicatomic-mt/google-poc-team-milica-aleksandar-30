@@ -226,10 +226,28 @@ const UploadScreen: React.FC<UploadScreenProps> = ({ mode }) => {
           setIsAnalyzingImage(true);
           try {
             const analysisData = await analyzeImageWithAI(base64Image);
-            // Store full analysis data in state to pass to appropriate screen
+            
+            // If we have image prompts, generate images immediately
+            if (analysisData?.imagePrompts && analysisData.imagePrompts.length > 0) {
+              console.log('Generating images with prompts:', analysisData.imagePrompts);
+              
+              const { data: imageData, error: imageError } = await supabase.functions.invoke('generate-images', {
+                body: { prompts: analysisData.imagePrompts }
+              });
+              
+              if (imageError) {
+                console.error('Error generating images:', imageError);
+              } else if (imageData?.generatedImages) {
+                // Add generated images to analysis data
+                analysisData.generatedImages = imageData.generatedImages;
+                console.log('Generated images successfully:', imageData.totalGenerated, 'out of', imageData.totalRequested);
+              }
+            }
+            
+            // Store full analysis data including generated images
             sessionStorage.setItem('aiAnalysisData', JSON.stringify(analysisData));
           } catch (error) {
-            console.error('Failed to analyze image:', error);
+            console.error('Failed to analyze image or generate images:', error);
           } finally {
             setIsAnalyzingImage(false);
           }

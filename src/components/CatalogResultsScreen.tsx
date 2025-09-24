@@ -34,7 +34,10 @@ import RibbedSphere from '@/components/RibbedSphere';
 const CatalogResultsScreen: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const catalogData = location.state as CatalogEnrichmentRequest & { uploadedImage: string };
+  const catalogData = location.state as CatalogEnrichmentRequest & { 
+    uploadedImage: string; 
+    aiAnalysisData?: any;
+  };
 
   const [isGenerating, setIsGenerating] = useState(true);
   const [catalogResults, setCatalogResults] = useState<CatalogEnrichmentResponse | null>(null);
@@ -81,7 +84,10 @@ const CatalogResultsScreen: React.FC = () => {
           brand: catalogData.brand
         };
 
-        const savedRequest = await saveCatalogRequest(catalogRequest);
+        // Extract generated images from analysis data
+        const generatedImages = catalogData.aiAnalysisData?.generatedImages || [];
+
+        const savedRequest = await saveCatalogRequest(catalogRequest, generatedImages);
 
         // Generate the catalog content using AI
         const results = await generateCatalog(savedRequest.id, catalogRequest);
