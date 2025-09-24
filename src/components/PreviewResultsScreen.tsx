@@ -1381,30 +1381,37 @@ const PreviewResultsScreen: React.FC = () => {
                   <div className="space-y-4">
                     {/* Top Row - Two Medium Rectangles */}
                     <div className="grid grid-cols-2 gap-4">
-                      {/* Left Banner - Premium Style */}
-                      <div className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 rounded-xl overflow-hidden shadow-xl" style={{ aspectRatio: '16/10' }}>
-                        <div className="absolute inset-0 bg-gradient-to-r from-black/20 to-transparent"></div>
-                        <div className="relative h-full p-6 flex items-center justify-between">
-                          <div className="space-y-3 flex-1">
-                            <div className="inline-block bg-white text-slate-900 px-4 py-2 rounded-lg font-bold text-sm tracking-wide">
+                      {/* Left Banner - Image Cover Style */}
+                      <div className="relative rounded-xl overflow-hidden shadow-xl" style={{ aspectRatio: '16/10' }}>
+                        {/* Full Cover Image Background */}
+                        {(activeCampaignResults?.generated_images?.[0]?.url || uploadedImage) ? (
+                          <div 
+                            className="absolute inset-0 bg-cover bg-center"
+                            style={{
+                              backgroundImage: `url(${activeCampaignResults?.generated_images?.[0]?.url || uploadedImage})`
+                            }}
+                          >
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                          </div>
+                        ) : (
+                          <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                          </div>
+                        )}
+                        
+                        {/* Text Content at Bottom */}
+                        <div className="absolute bottom-0 left-0 right-0 p-6">
+                          <div className="space-y-3">
+                            <div className="inline-block bg-white text-slate-900 px-4 py-2 rounded-lg font-bold text-sm tracking-wide shadow-lg">
                               {activeCampaignResults.banner_ads?.[0]?.headline || 'PREMIUM QUALITY'}
                             </div>
-                            <p className="text-slate-300 text-xs font-medium uppercase tracking-widest">
+                            <p className="text-white/90 text-xs font-medium uppercase tracking-widest">
                               MINIMALIST DESIGN
                             </p>
                             <button className="bg-white text-slate-900 px-6 py-2.5 rounded-lg font-semibold text-sm hover:bg-slate-100 transition-colors shadow-lg">
                               {activeCampaignResults.banner_ads?.[0]?.cta || 'Shop Now'}
                             </button>
                           </div>
-                          {(activeCampaignResults?.generated_images?.[0]?.url || uploadedImage) && (
-                            <div className="w-24 h-24 bg-white/10 backdrop-blur-sm rounded-xl flex items-center justify-center p-3 border border-white/20">
-                              <img 
-                                src={activeCampaignResults?.generated_images?.[0]?.url || uploadedImage} 
-                                alt="Product" 
-                                className="w-full h-full object-contain filter drop-shadow-lg" 
-                              />
-                            </div>
-                          )}
                         </div>
                       </div>
 
