@@ -437,7 +437,7 @@ const UploadScreen: React.FC<UploadScreenProps> = ({ mode }) => {
   const getModeDescription = () => {
     switch (currentMode) {
       case 'catalog':
-        return 'Upload a clear product image to generate comprehensive catalog content';
+        return 'Upload a product image to generate catalog content';
       case 'campaign':
         return 'Upload your product or inspiration image to create marketing campaigns';
       default:
