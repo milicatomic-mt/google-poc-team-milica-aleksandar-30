@@ -45,7 +45,7 @@ const CampaignResultsScreen = () => {
             return false;
           }
 
-          // Check if result has been populated by the AI
+          // Check if result has been populated by the AI AND video generation is complete
           if (data?.result && Object.keys(data.result).length > 0) {
             const genImgs = Array.isArray(data.generated_images)
               ? (data.generated_images as CampaignCreationResponse['generated_images'])
@@ -53,16 +53,26 @@ const CampaignResultsScreen = () => {
             setCampaignData({ ...(data.result as CampaignCreationResponse), generated_images: genImgs });
             setUploadedImageUrl(data.image_url);
             setGeneratedVideoUrl(data.generated_video_url);
-            setIsLoading(false);
-            return true;
+            
+            // Only stop loading when BOTH campaign results AND video are ready
+            // If video URL exists, everything is complete
+            // If no video URL but campaign is ready, we're still waiting for video
+            if (data.generated_video_url) {
+              setIsLoading(false);
+              return true;
+            } else {
+              // Campaign is ready but video is still generating
+              console.log('Campaign ready, waiting for video generation...');
+              return false;
+            }
           }
           return false;
         };
 
-        // Poll with async/await and while loop
+        // Poll with longer timeout for video generation
         const startTime = Date.now();
-        const maxDuration = 30000; // 30 seconds
-        const pollInterval = 2000; // 2 seconds
+        const maxDuration = 300000; // 5 minutes for video generation
+        const pollInterval = 3000; // 3 seconds
 
         while (isLoadingRef.current && (Date.now() - startTime) < maxDuration) {
           const hasResults = await pollForResults();
