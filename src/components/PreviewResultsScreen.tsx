@@ -1379,94 +1379,94 @@ const PreviewResultsScreen: React.FC = () => {
                 </div>
                 <CardContent className="p-4">
                   <div className="grid grid-cols-2 gap-3 h-80">
-                    {/* Top Left - Leaderboard Banner */}
-                    <div className="bg-white backdrop-blur-sm rounded p-3 overflow-hidden flex flex-col border border-white/20">
+                    {/* Top Left - Premium Leaderboard Banner */}
+                    <div className="bg-white backdrop-blur-sm rounded-lg p-3 overflow-hidden flex flex-col border border-slate-200 shadow-sm">
                       <div className="flex-1 flex flex-col justify-between">
                         <div className="flex items-start gap-2">
-                          <div className="w-8 h-8 rounded-sm bg-primary/20 flex-shrink-0 overflow-hidden">
-                            {/* Use generated image if available, fallback to uploaded image */}
+                          <div className="w-10 h-10 rounded bg-slate-100 flex-shrink-0 overflow-hidden flex items-center justify-center p-1">
                             {activeCampaignResults?.generated_images?.[0]?.url ? (
-                              <img src={activeCampaignResults.generated_images[0].url} alt="Product" className="w-full h-full object-cover" />
+                              <img src={activeCampaignResults.generated_images[0].url} alt="Product" className="w-full h-auto max-h-8 object-contain drop-shadow-sm" />
                             ) : uploadedImage ? (
-                              <img src={uploadedImage} alt="Product" className="w-full h-full object-cover" />
+                              <img src={uploadedImage} alt="Product" className="w-full h-auto max-h-8 object-contain drop-shadow-sm" />
                             ) : null}
                           </div>
                           <div className="flex-1 min-w-0">
-                            <h4 className="text-xs font-bold text-foreground leading-tight">Transform Your Experience</h4>
-                            <p className="text-[10px] text-muted-foreground mt-1">Premium solutions for modern needs</p>
+                            <h4 className="text-xs font-bold text-slate-900 uppercase tracking-wide leading-tight">
+                              {activeCampaignResults.banner_ads?.[0]?.headline || 'PREMIUM QUALITY'}
+                            </h4>
+                            <p className="text-[9px] text-slate-600 font-medium uppercase tracking-wider mt-0.5">MINIMALIST DESIGN</p>
                           </div>
                         </div>
-                        <div className="mt-3">
-                          <div className="bg-black text-white text-[9px] px-2 py-1 rounded-sm inline-block">
-                            Get Started
+                        <div className="mt-2">
+                          <div className="bg-slate-900 text-white text-[8px] px-2 py-1 rounded font-semibold uppercase tracking-wide">
+                            {activeCampaignResults.banner_ads?.[0]?.cta || 'Shop Now'}
                           </div>
                         </div>
                       </div>
                     </div>
 
-                    {/* Top Right - Square Banner */}
-                    <div className="bg-white backdrop-blur-sm rounded p-3 overflow-hidden flex flex-col border border-white/20">
-                      <div className="w-full aspect-square bg-primary/20 rounded-sm mb-2 overflow-hidden">
-                        {/* Use generated image if available, fallback to uploaded image */}
+                    {/* Top Right - Premium Square Banner */}
+                    <div className="bg-white backdrop-blur-sm rounded-lg p-3 overflow-hidden flex flex-col border border-slate-200 shadow-sm">
+                      <div className="w-full h-20 bg-slate-100 rounded mb-2 overflow-hidden flex items-center justify-center p-2">
                         {activeCampaignResults?.generated_images?.[1]?.url ? (
-                          <img src={activeCampaignResults.generated_images[1].url} alt="Product" className="w-full h-full object-cover" />
+                          <img src={activeCampaignResults.generated_images[1].url} alt="Product" className="w-full h-auto max-h-16 object-contain drop-shadow-sm" />
                         ) : activeCampaignResults?.generated_images?.[0]?.url ? (
-                          <img src={activeCampaignResults.generated_images[0].url} alt="Product" className="w-full h-full object-cover" />
+                          <img src={activeCampaignResults.generated_images[0].url} alt="Product" className="w-full h-auto max-h-16 object-contain drop-shadow-sm" />
                         ) : uploadedImage ? (
-                          <img src={uploadedImage} alt="Product" className="w-full h-full object-cover" />
+                          <img src={uploadedImage} alt="Product" className="w-full h-auto max-h-16 object-contain drop-shadow-sm" />
                         ) : null}
                       </div>
-                      <div className="text-center">
-                        <h4 className="text-[10px] font-bold text-foreground mb-1">Premium Collection</h4>
-                        <div className="bg-black text-white text-[8px] px-2 py-1 rounded-sm">
-                          Shop Now
+                      <div className="text-center flex-1 flex flex-col justify-between">
+                        <div>
+                          <h4 className="text-[10px] font-bold text-slate-900 uppercase tracking-wide mb-1">
+                            {activeCampaignResults.banner_ads?.[0]?.headline || 'PREMIUM QUALITY'}
+                          </h4>
+                          <p className="text-[8px] text-slate-600 font-medium uppercase tracking-wider">MINIMALIST DESIGN</p>
+                        </div>
+                        <div className="bg-slate-900 text-white text-[8px] px-2 py-1 rounded font-semibold uppercase tracking-wide mt-2">
+                          {activeCampaignResults.banner_ads?.[0]?.cta || 'Shop Now'}
                         </div>
                       </div>
                     </div>
 
-                    {/* Bottom Left - Mobile Banner */}
-                    <div className="bg-white backdrop-blur-sm rounded p-3 overflow-hidden flex flex-col justify-between border border-white/20">
+                    {/* Bottom Left - Clean Mobile Banner */}
+                    <div className="bg-white backdrop-blur-sm rounded-lg p-3 overflow-hidden flex flex-col justify-between border border-slate-200 shadow-sm">
                       <div className="flex items-center gap-2 mb-2">
-                        <div className="w-6 h-6 rounded-sm bg-primary/20 flex-shrink-0 overflow-hidden">
-                          {/* Use generated image if available, fallback to uploaded image */}
+                        <div className="w-8 h-8 rounded bg-slate-100 flex-shrink-0 overflow-hidden flex items-center justify-center p-1">
                           {activeCampaignResults?.generated_images?.[0]?.url ? (
-                            <img src={activeCampaignResults.generated_images[0].url} alt="Product" className="w-full h-full object-cover" />
+                            <img src={activeCampaignResults.generated_images[0].url} alt="Product" className="w-full h-auto max-h-6 object-contain drop-shadow-sm" />
                           ) : uploadedImage ? (
-                            <img src={uploadedImage} alt="Product" className="w-full h-full object-cover" />
+                            <img src={uploadedImage} alt="Product" className="w-full h-auto max-h-6 object-contain drop-shadow-sm" />
                           ) : null}
                         </div>
                         <div className="flex-1 min-w-0">
-                          <h4 className="text-[10px] font-semibold text-foreground">Limited Offer</h4>
+                          <h4 className="text-[10px] font-bold text-slate-900 uppercase tracking-wide">
+                            {activeCampaignResults.banner_ads?.[0]?.headline || 'PREMIUM QUALITY'}
+                          </h4>
                         </div>
                       </div>
-                      <div className="space-y-2">
-                        <p className="text-[9px] text-muted-foreground">Save up to 50% today</p>
-                        <div className="bg-black text-white text-[8px] px-2 py-1 rounded-sm text-center">
-                          Claim Deal
+                      <div className="space-y-1">
+                        <p className="text-[8px] text-slate-600 font-medium uppercase tracking-wider">MINIMALIST DESIGN</p>
+                        <div className="bg-slate-900 text-white text-[8px] px-2 py-1 rounded text-center font-semibold uppercase tracking-wide">
+                          {activeCampaignResults.banner_ads?.[0]?.cta || 'Shop Now'}
                         </div>
                       </div>
                     </div>
 
-                    {/* Bottom Right - Video Banner */}
-                    <div className="bg-white backdrop-blur-sm rounded p-3 overflow-hidden relative border border-white/20">
-                      <div className="w-full h-full bg-primary/20 rounded-sm flex items-center justify-center overflow-hidden">
-                        {/* Use generated image if available, fallback to uploaded image */}
+                    {/* Bottom Right - Clean Product Showcase Banner */}
+                    <div className="bg-white backdrop-blur-sm rounded-lg p-3 overflow-hidden relative border border-slate-200 shadow-sm">
+                      <div className="w-full h-full bg-slate-100 rounded flex items-center justify-center overflow-hidden p-3">
                         {activeCampaignResults?.generated_images?.[1]?.url ? (
-                          <img src={activeCampaignResults.generated_images[1].url} alt="Product" className="w-full h-full object-cover" />
+                          <img src={activeCampaignResults.generated_images[1].url} alt="Product" className="w-full h-auto max-h-20 object-contain drop-shadow-sm" />
                         ) : activeCampaignResults?.generated_images?.[0]?.url ? (
-                          <img src={activeCampaignResults.generated_images[0].url} alt="Product" className="w-full h-full object-cover" />
+                          <img src={activeCampaignResults.generated_images[0].url} alt="Product" className="w-full h-auto max-h-20 object-contain drop-shadow-sm" />
                         ) : uploadedImage ? (
-                          <img src={uploadedImage} alt="Product" className="w-full h-full object-cover" />
+                          <img src={uploadedImage} alt="Product" className="w-full h-auto max-h-20 object-contain drop-shadow-sm" />
                         ) : null}
-                        <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
-                          <div className="w-8 h-8 bg-white/90 rounded-full flex items-center justify-center">
-                            <div className="w-0 h-0 border-l-[6px] border-l-primary border-t-[4px] border-t-transparent border-b-[4px] border-b-transparent ml-0.5"></div>
-                          </div>
-                        </div>
                       </div>
                       <div className="absolute bottom-2 left-2 right-2">
-                        <div className="bg-black/80 text-white text-[8px] px-2 py-1 rounded-sm text-center backdrop-blur-sm">
-                          Watch Demo
+                        <div className="bg-slate-900 text-white text-[8px] px-2 py-1 rounded text-center font-semibold uppercase tracking-wide">
+                          {activeCampaignResults.banner_ads?.[0]?.cta || 'Shop Now'}
                         </div>
                       </div>
                     </div>
