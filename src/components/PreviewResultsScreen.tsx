@@ -148,11 +148,10 @@ const PreviewResultsScreen: React.FC = () => {
             </div>
 
             <div className="space-y-8">
-              {/* Medium Rectangle 300x250 - Most Popular */}
+              {/* Medium Rectangle - Most Popular */}
               <div className="space-y-4">
                 <div className="flex items-center gap-3">
                   <h4 className="text-lg font-semibold">Medium Rectangle</h4>
-                  <Badge variant="outline" className="text-xs">300×250px</Badge>
                   <Badge className="text-xs bg-green-100 text-green-800">Most Popular</Badge>
                 </div>
                 <div className="flex flex-col lg:flex-row gap-6">
@@ -198,11 +197,10 @@ const PreviewResultsScreen: React.FC = () => {
                 </div>
               </div>
 
-              {/* Leaderboard 728x90 - Header/Footer */}
+              {/* Leaderboard - Header/Footer */}
               <div className="space-y-4">
                 <div className="flex items-center gap-3">
                   <h4 className="text-lg font-semibold">Leaderboard</h4>
-                  <Badge variant="outline" className="text-xs">728×90px</Badge>
                   <Badge variant="secondary" className="text-xs">Header/Footer</Badge>
                 </div>
                 <div className="space-y-4">
@@ -240,53 +238,52 @@ const PreviewResultsScreen: React.FC = () => {
                 </div>
               </div>
 
-              {/* Wide Skyscraper 160x600 */}
+              {/* Wide Skyscraper - Redesigned for better appearance */}
               <div className="space-y-4">
                 <div className="flex items-center gap-3">
                   <h4 className="text-lg font-semibold">Wide Skyscraper</h4>
-                  <Badge variant="outline" className="text-xs">160×600px</Badge>
                   <Badge variant="secondary" className="text-xs">Sidebar</Badge>
                 </div>
                 <div className="flex flex-col lg:flex-row gap-6">
-                  <div className="overflow-hidden rounded-lg border-2 border-border bg-gradient-to-b from-background via-accent/5 to-secondary/10 shadow-xl" style={{ width: '160px', height: '600px' }}>
-                    <div className="relative h-full flex flex-col p-4">
-                      {/* Top Image */}
+                  <div className="overflow-hidden rounded-lg border-2 border-border bg-gradient-to-b from-background via-accent/5 to-secondary/10 shadow-xl" style={{ width: '200px', height: '500px' }}>
+                    <div className="relative h-full flex flex-col p-5">
+                      {/* Top Image - Larger */}
                       {(generatedImages[2]?.url || uploadedImage) && (
-                        <div className="w-full h-32 rounded-lg overflow-hidden shadow-md mb-4">
+                        <div className="w-full h-40 rounded-lg overflow-hidden shadow-lg mb-5">
                           <img src={generatedImages[2]?.url || uploadedImage} alt="Product" className="w-full h-full object-cover" />
                         </div>
                       )}
                       
                       {/* Content */}
                       <div className="flex-1 flex flex-col justify-between text-center">
-                        <div className="space-y-3">
-                          <h5 className="text-sm font-bold text-foreground leading-tight">
+                        <div className="space-y-4">
+                          <h5 className="text-base font-bold text-foreground leading-tight">
                             {activeCampaignResults.banner_ads?.[0]?.headline || 'Transform Your Brand'}
                           </h5>
-                          <p className="text-xs text-muted-foreground leading-relaxed">
-                            {activeCampaignResults.banner_ads?.[0]?.description?.substring(0, 80) || 'Discover innovative solutions that drive exceptional results and transform your business'}...
+                          <p className="text-sm text-muted-foreground leading-relaxed">
+                            {activeCampaignResults.banner_ads?.[0]?.description?.substring(0, 90) || 'Discover innovative solutions that drive exceptional results and transform your business experience'}
                           </p>
                           
-                          {/* Features List */}
-                          <div className="space-y-2 py-4">
-                            <div className="flex items-center gap-2 text-xs">
-                              <div className="w-1.5 h-1.5 bg-primary rounded-full"></div>
+                          {/* Features List - Vertical */}
+                          <div className="space-y-3 py-4">
+                            <div className="flex items-center gap-3 text-sm">
+                              <div className="w-2 h-2 bg-primary rounded-full flex-shrink-0"></div>
                               <span className="text-muted-foreground">Premium Quality</span>
                             </div>
-                            <div className="flex items-center gap-2 text-xs">
-                              <div className="w-1.5 h-1.5 bg-secondary rounded-full"></div>
+                            <div className="flex items-center gap-3 text-sm">
+                              <div className="w-2 h-2 bg-secondary rounded-full flex-shrink-0"></div>
                               <span className="text-muted-foreground">Fast Delivery</span>
                             </div>
-                            <div className="flex items-center gap-2 text-xs">
-                              <div className="w-1.5 h-1.5 bg-accent rounded-full"></div>
+                            <div className="flex items-center gap-3 text-sm">
+                              <div className="w-2 h-2 bg-accent rounded-full flex-shrink-0"></div>
                               <span className="text-muted-foreground">24/7 Support</span>
                             </div>
                           </div>
                         </div>
                         
-                        <div className="space-y-3">
-                          <div className="w-full h-0.5 rounded-full bg-primary opacity-60"></div>
-                          <Button size="sm" className="w-full text-xs font-semibold py-2 shadow-md">
+                        <div className="space-y-4">
+                          <div className="w-full h-px bg-gradient-to-r from-transparent via-primary to-transparent"></div>
+                          <Button size="sm" className="w-full text-sm font-semibold py-3 shadow-md">
                             {activeCampaignResults.banner_ads?.[0]?.cta || 'Learn More'}
                           </Button>
                         </div>
@@ -297,22 +294,21 @@ const PreviewResultsScreen: React.FC = () => {
                     <div className="bg-muted/20 p-4 rounded-lg">
                       <h6 className="font-semibold mb-2">Layout Notes:</h6>
                       <ul className="space-y-1 text-muted-foreground">
-                        <li>• Top: Hero product image (128px height)</li>
+                        <li>• Top: Hero product image (160px height)</li>
                         <li>• Middle: Headline, description, feature bullets</li>
-                        <li>• Bottom: Accent line + full-width CTA</li>
+                        <li>• Bottom: Divider line + full-width CTA</li>
                         <li>• Vertical gradient for visual flow</li>
-                        <li>• Perfect for website sidebars</li>
+                        <li>• Improved width for better readability</li>
                       </ul>
                     </div>
                   </div>
                 </div>
               </div>
 
-              {/* Half Page 300x600 */}
+              {/* Half Page */}
               <div className="space-y-4">
                 <div className="flex items-center gap-3">
                   <h4 className="text-lg font-semibold">Half Page</h4>
-                  <Badge variant="outline" className="text-xs">300×600px</Badge>
                   <Badge className="text-xs bg-blue-100 text-blue-800">High Impact</Badge>
                 </div>
                 <div className="flex flex-col lg:flex-row gap-6">
@@ -392,11 +388,10 @@ const PreviewResultsScreen: React.FC = () => {
                 </div>
               </div>
 
-              {/* Billboard 970x250 */}
+              {/* Billboard */}
               <div className="space-y-4">
                 <div className="flex items-center gap-3">
                   <h4 className="text-lg font-semibold">Billboard</h4>
-                  <Badge variant="outline" className="text-xs">970×250px</Badge>
                   <Badge className="text-xs bg-purple-100 text-purple-800">Premium</Badge>
                 </div>
                 <div className="space-y-4">
