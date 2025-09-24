@@ -1,7 +1,10 @@
 import "https://deno.land/x/xhr@0.1.0/mod.ts";
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
+import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
 
 const geminiApiKey = Deno.env.get('GEMINI_API_KEY');
+const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
+const supabaseServiceKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -72,7 +75,7 @@ serve(async (req) => {
           // Continue with next prompt instead of failing completely
           generatedImages.push({
             prompt: prompt,
-            image: null,
+            url: null,
             error: `API error: ${response.status}`
           });
           continue;
@@ -100,7 +103,7 @@ serve(async (req) => {
           console.log(`No image data in response for prompt ${i + 1}:`, data);
           generatedImages.push({
             prompt: prompt,
-            image: null,
+            url: null,
             error: 'No image data in response'
           });
         }
@@ -109,7 +112,7 @@ serve(async (req) => {
         console.error(`Error generating image for prompt ${i + 1}:`, error);
         generatedImages.push({
           prompt: prompt,
-          image: null,
+          url: null,
           error: error.message
         });
       }
@@ -120,7 +123,7 @@ serve(async (req) => {
       }
     }
 
-    const successfulImages = generatedImages.filter(img => img.image !== null);
+    const successfulImages = generatedImages.filter(img => img.url !== null);
     
     return new Response(JSON.stringify({ 
       success: true,
