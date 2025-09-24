@@ -32,9 +32,22 @@ export const generateCampaign = async (campaignId: string, data: CampaignCreatio
     }
   });
 
-
   if (error) {
     throw error;
+  }
+
+  // If we got a video prompt, generate the video
+  if (result?.videoPrompt) {
+    try {
+      await supabase.functions.invoke('generate-video', {
+        body: {
+          campaignId,
+          videoPrompt: result.videoPrompt
+        }
+      });
+    } catch (videoError) {
+      console.warn('Video generation failed, but continuing with campaign:', videoError);
+    }
   }
 
   return result;

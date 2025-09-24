@@ -64,6 +64,7 @@ Deno.serve(async (req) => {
       "script": "Educational script for YouTube Shorts"
     }
   ],
+  "video_prompt": "A single, comprehensive prompt for AI video generation that captures the essence of the product and campaign. This should be a detailed visual description perfect for video generation AI, including camera angles, lighting, movement, and key visual elements.",
   "email_copy": {
     "subject": "Compelling email subject line",
     "body": "Persuasive email body content with clear value proposition"
@@ -149,6 +150,7 @@ Create a comprehensive marketing campaign with video scripts for TikTok, Instagr
     return new Response(JSON.stringify({ 
       success: true, 
       campaign: generatedContent,
+      videoPrompt: generatedContent.video_prompt,
       generatedImages: generatedImages.length,
       message: `Generated campaign content successfully using Gemini AI`
     }), {
