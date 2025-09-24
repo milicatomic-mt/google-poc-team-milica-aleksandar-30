@@ -273,11 +273,11 @@ const CatalogResultsScreen: React.FC = () => {
                   <X className="h-4 w-4 text-black" />
                 </Button>
               </AlertDialogTrigger>
-              <AlertDialogContent className="bg-white">
+              <AlertDialogContent className="bg-white border-0 shadow-xl">
                 <AlertDialogHeader>
                   <AlertDialogTitle>Exit to Homepage?</AlertDialogTitle>
                   <AlertDialogDescription>
-                    Are you sure you want to exit? Your catalog results will remain saved.
+                    Are you sure you want to exit? Your campaign results will remain saved.
                   </AlertDialogDescription>
                 </AlertDialogHeader>
                 <AlertDialogFooter>
