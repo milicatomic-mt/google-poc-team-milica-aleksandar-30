@@ -438,9 +438,9 @@ const PreviewResultsScreen: React.FC = () => {
               {/* Web Creative 1 - Desktop Layout */}
               <div className="relative aspect-[16/10] rounded-xl overflow-hidden shadow-2xl border-2 border-white/20 group cursor-pointer hover:scale-105 transition-transform duration-300">
                 {/* Background Image */}
-                {(generatedImages[0]?.url || uploadedImage) && (
+                {(generatedImages?.[0]?.url || uploadedImage) && (
                   <img 
-                    src={generatedImages[0].url || uploadedImage} 
+                    src={generatedImages?.[0]?.url || uploadedImage} 
                     alt="Web Creative Desktop" 
                     className="absolute inset-0 w-full h-full object-cover"
                   />
@@ -457,9 +457,9 @@ const PreviewResultsScreen: React.FC = () => {
               {/* Web Creative 2 - Mobile Layout */}
               <div className="relative aspect-[9/16] rounded-xl overflow-hidden shadow-2xl border-2 border-white/20 group cursor-pointer hover:scale-105 transition-transform duration-300">
                 {/* Background Image */}
-                {(generatedImages[1]?.url || uploadedImage) && (
+                {(generatedImages?.[1]?.url || uploadedImage) && (
                   <img 
-                    src={generatedImages[1].url || uploadedImage} 
+                    src={generatedImages?.[1]?.url || uploadedImage} 
                     alt="Web Creative Mobile" 
                     className="absolute inset-0 w-full h-full object-cover"
                   />
@@ -476,9 +476,9 @@ const PreviewResultsScreen: React.FC = () => {
               {/* Web Creative 3 - Landing Page */}
               <div className="relative aspect-[4/5] rounded-xl overflow-hidden shadow-2xl border-2 border-white/20 group cursor-pointer hover:scale-105 transition-transform duration-300">
                 {/* Background Image */}
-                {(generatedImages[2]?.url || uploadedImage) && (
+                {(generatedImages?.[2]?.url || uploadedImage) && (
                   <img 
-                    src={generatedImages[2].url || uploadedImage} 
+                    src={generatedImages?.[2]?.url || uploadedImage} 
                     alt="Web Creative Landing" 
                     className="absolute inset-0 w-full h-full object-cover"
                   />
