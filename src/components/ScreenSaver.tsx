@@ -139,8 +139,13 @@ const ScreenSaver = () => {
         loop 
         muted 
         playsInline
+        onError={(e) => {
+          console.warn('Background video failed to load, continuing without video');
+          e.currentTarget.style.display = 'none';
+        }}
       >
         <source src="/background-video.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
       </video>
       {/* Top Navigation */}
       <div className="absolute top-0 left-0 right-0 z-30 flex justify-between items-start p-8">
