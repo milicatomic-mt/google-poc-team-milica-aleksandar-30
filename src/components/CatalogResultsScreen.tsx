@@ -16,6 +16,17 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from '@/components/ui/alert-dialog';
 import { saveCatalogRequest, generateCatalog } from '@/lib/database';
 import type { CatalogEnrichmentRequest, CatalogEnrichmentResponse } from '@/types/api';
 import RibbedSphere from '@/components/RibbedSphere';
@@ -247,28 +258,28 @@ const CatalogResultsScreen: React.FC = () => {
             </div>
             
             {/* Right - Close Button */}
-            <Dialog>
-              <DialogTrigger asChild>
+            <AlertDialog>
+              <AlertDialogTrigger asChild>
                 <Button
                   variant="secondary"
                   className="tap-target focus-ring bg-white border-white/30 hover:bg-white/90 rounded-full h-8 px-3"
                 >
                   <X className="h-4 w-4 text-black" />
                 </Button>
-              </DialogTrigger>
-              <DialogContent>
-                <DialogHeader>
-                  <DialogTitle>Exit to Homepage?</DialogTitle>
-                  <DialogDescription>
+              </AlertDialogTrigger>
+              <AlertDialogContent>
+                <AlertDialogHeader>
+                  <AlertDialogTitle>Exit to Homepage?</AlertDialogTitle>
+                  <AlertDialogDescription>
                     Are you sure you want to exit? Your catalog results will remain saved.
-                  </DialogDescription>
-                </DialogHeader>
-                <DialogFooter>
-                  <Button variant="outline">Cancel</Button>
-                  <Button onClick={handleStartOver}>Exit</Button>
-                </DialogFooter>
-              </DialogContent>
-            </Dialog>
+                  </AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                  <AlertDialogCancel>Cancel</AlertDialogCancel>
+                  <AlertDialogAction onClick={handleStartOver}>Exit</AlertDialogAction>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialog>
           </div>
         </header>
 
