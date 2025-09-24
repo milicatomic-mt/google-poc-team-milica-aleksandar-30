@@ -141,126 +141,318 @@ const PreviewResultsScreen: React.FC = () => {
 
       case 'Banner Ads':
         return (
-          <div className="space-y-8">
-            {/* Generated Images Section */}
-            {generatedImages.length > 0 && (
+          <div className="space-y-6">
+            <div className="text-center space-y-2 mb-8">
+              <h3 className="text-2xl font-bold text-foreground">Professional Web Banner Suite</h3>
+              <p className="text-muted-foreground">High-performing banner ads optimized for clicks and conversions</p>
+            </div>
+
+            <div className="space-y-8">
+              {/* Medium Rectangle 300x250 - Most Popular */}
               <div className="space-y-4">
-                <h4 className="font-semibold text-lg">AI Generated Related Images</h4>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  {generatedImages.map((img, index) => (
-                    <div key={index} className="space-y-2">
-                      <div className="aspect-square bg-gray-100 rounded-lg overflow-hidden">
-                        <img 
-                          src={img.url} 
-                          alt={`Generated image ${index + 1}`}
-                          className="w-full h-full object-cover"
-                          onError={(e) => {
-                            console.error('Failed to load generated image:', img);
-                            e.currentTarget.style.display = 'none';
-                          }}
-                        />
+                <div className="flex items-center gap-3">
+                  <h4 className="text-lg font-semibold">Medium Rectangle</h4>
+                  <Badge variant="outline" className="text-xs">300×250px</Badge>
+                  <Badge className="text-xs bg-green-100 text-green-800">Most Popular</Badge>
+                </div>
+                <div className="flex flex-col lg:flex-row gap-6">
+                  <div className="overflow-hidden rounded-lg border-2 border-border bg-gradient-to-br from-background to-primary/5 shadow-xl" style={{ width: '300px', height: '250px' }}>
+                    <div className="relative h-full flex">
+                      {/* Content Side */}
+                      <div className="flex-1 p-4 flex flex-col justify-between bg-gradient-to-br from-background/95 to-primary/10">
+                        <div className="space-y-2">
+                          <h5 className="text-sm font-bold text-foreground leading-tight">
+                            {activeCampaignResults.banner_ads?.[0]?.headline || 'Transform Your Brand'}
+                          </h5>
+                          <p className="text-xs text-muted-foreground leading-snug">
+                            {activeCampaignResults.banner_ads?.[0]?.description?.substring(0, 45) || 'Discover innovative solutions'}...
+                          </p>
+                        </div>
+                        <div className="space-y-2">
+                          <div className="w-8 h-1 rounded-full bg-primary"></div>
+                          <Button size="sm" className="text-xs font-semibold px-4 py-1.5 shadow-md">
+                            {activeCampaignResults.banner_ads?.[0]?.cta || 'Shop Now'}
+                          </Button>
+                        </div>
                       </div>
-                      {img.prompt && (
-                        <p className="text-xs text-gray-600 line-clamp-2">{img.prompt}</p>
+                      {/* Image Side */}
+                      {(generatedImages[0]?.url || uploadedImage) && (
+                        <div className="w-24 relative overflow-hidden">
+                          <img src={generatedImages[0]?.url || uploadedImage} alt="Product" className="w-full h-full object-cover" />
+                          <div className="absolute inset-0 bg-gradient-to-l from-transparent to-background/20"></div>
+                        </div>
                       )}
                     </div>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* Banner Ad Formats */}
-            <div className="space-y-6">
-              <h4 className="font-semibold text-lg">Banner Ad Formats</h4>
-              
-              {/* Medium Rectangle 300x250 - Most Popular */}
-              <div className="space-y-3">
-                <div className="flex items-center gap-2">
-                  <h5 className="font-semibold">Medium Rectangle</h5>
-                  <Badge variant="outline" className="text-xs">300×250px</Badge>
-                  <Badge className="text-xs">Most Popular</Badge>
-                </div>
-                <div className="overflow-hidden rounded border-2 border-border bg-gradient-to-br from-background to-muted/20 shadow-lg" style={{ width: '300px', height: '250px' }}>
-                  <div className="relative h-full flex">
-                    {/* Left side - Content */}
-                    <div className="relative flex-1 p-4 flex flex-col justify-between bg-gradient-to-br from-background/95 to-muted/40">
-                      <div className="space-y-2">
-                        <h6 className="text-sm font-bold text-foreground leading-tight">{activeCampaignResults.banner_ads?.[0]?.headline || 'Transform Your Brand'}</h6>
-                        <p className="text-xs text-muted-foreground font-medium leading-relaxed">Discover innovative solutions</p>
-                      </div>
-                      <div className="space-y-2">
-                        <div className="w-8 h-1 rounded-full bg-primary"></div>
-                        <Button size="sm" className="text-xs font-semibold px-3 py-1.5">
-                          {activeCampaignResults.banner_ads?.[0]?.cta || 'Learn More'}
-                        </Button>
-                      </div>
+                  </div>
+                  <div className="flex-1 space-y-3 text-sm">
+                    <div className="bg-muted/20 p-4 rounded-lg">
+                      <h6 className="font-semibold mb-2">Layout Notes:</h6>
+                      <ul className="space-y-1 text-muted-foreground">
+                        <li>• Left: Primary content with headline & CTA</li>
+                        <li>• Right: Product image (80px width)</li>
+                        <li>• Gradient background for visual appeal</li>
+                        <li>• Perfect for sidebar placements</li>
+                      </ul>
                     </div>
-                    {/* Right side - Image */}
-                    {(generatedImages[0]?.url || uploadedImage) && (
-                      <div className="w-24 relative">
-                        <img src={generatedImages[0]?.url || uploadedImage} alt="Campaign product" className="w-full h-full object-cover" />
-                        <div className="absolute inset-0 bg-gradient-to-l from-transparent to-background/10"></div>
-                      </div>
-                    )}
                   </div>
                 </div>
               </div>
 
               {/* Leaderboard 728x90 - Header/Footer */}
-              <div className="space-y-3">
-                <div className="flex items-center gap-2">
-                  <h5 className="font-semibold">Leaderboard</h5>
+              <div className="space-y-4">
+                <div className="flex items-center gap-3">
+                  <h4 className="text-lg font-semibold">Leaderboard</h4>
                   <Badge variant="outline" className="text-xs">728×90px</Badge>
                   <Badge variant="secondary" className="text-xs">Header/Footer</Badge>
                 </div>
-                <div className="overflow-x-auto">
-                  <div className="overflow-hidden rounded border-2 border-border bg-gradient-to-r from-background to-muted/20 shadow-lg" style={{ width: '728px', height: '90px', minWidth: '728px' }}>
-                    <div className="relative h-full flex items-center">
-                      <div className="flex items-center gap-4 flex-1 px-6">
-                        <div className="w-2 h-12 rounded-full bg-primary"></div>
-                        {(generatedImages[1]?.url || uploadedImage) && (
-                          <div className="w-16 h-16 rounded overflow-hidden shadow-md">
-                            <img src={generatedImages[1]?.url || uploadedImage} alt="Campaign product" className="w-full h-full object-cover" />
+                <div className="space-y-4">
+                  <div className="overflow-x-auto">
+                    <div className="overflow-hidden rounded-lg border-2 border-border bg-gradient-to-r from-background to-secondary/5 shadow-xl" style={{ width: '728px', height: '90px', minWidth: '728px' }}>
+                      <div className="relative h-full flex items-center">
+                        <div className="flex items-center gap-4 flex-1 px-6">
+                          <div className="w-2 h-12 rounded-full bg-primary"></div>
+                          {(generatedImages[1]?.url || uploadedImage) && (
+                            <div className="w-16 h-16 rounded-lg overflow-hidden shadow-lg border-2 border-background">
+                              <img src={generatedImages[1]?.url || uploadedImage} alt="Product" className="w-full h-full object-cover" />
+                            </div>
+                          )}
+                          <div className="space-y-1 flex-1">
+                            <h5 className="text-base font-bold text-foreground">
+                              {activeCampaignResults.banner_ads?.[0]?.headline || 'Transform Your Brand Today'}
+                            </h5>
+                            <p className="text-xs text-muted-foreground truncate max-w-md">
+                              {activeCampaignResults.banner_ads?.[0]?.description || 'Discover innovative solutions that drive exceptional results'}
+                            </p>
                           </div>
-                        )}
-                        <div className="space-y-1 flex-1">
-                          <h6 className="text-base font-bold text-foreground">{activeCampaignResults.banner_ads?.[0]?.headline || 'Transform Your Brand Today'}</h6>
-                          <p className="text-xs text-muted-foreground font-medium truncate max-w-md">Discover innovative solutions that drive results</p>
+                        </div>
+                        <div className="px-6">
+                          <Button className="text-sm font-semibold px-8 py-2 shadow-md">
+                            {activeCampaignResults.banner_ads?.[0]?.cta || 'Get Started'}
+                          </Button>
                         </div>
                       </div>
-                      <div className="px-6">
-                        <Button className="text-xs font-semibold px-6 py-2">
-                          {activeCampaignResults.banner_ads?.[0]?.cta || 'Get Started'}
-                        </Button>
+                    </div>
+                  </div>
+                  <div className="bg-muted/20 p-4 rounded-lg text-sm">
+                    <h6 className="font-semibold mb-2">Layout Notes:</h6>
+                    <p className="text-muted-foreground">Horizontal layout with accent bar, product image (64px), headline, subtext, and prominent CTA button. Ideal for website headers and footers.</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Wide Skyscraper 160x600 */}
+              <div className="space-y-4">
+                <div className="flex items-center gap-3">
+                  <h4 className="text-lg font-semibold">Wide Skyscraper</h4>
+                  <Badge variant="outline" className="text-xs">160×600px</Badge>
+                  <Badge variant="secondary" className="text-xs">Sidebar</Badge>
+                </div>
+                <div className="flex flex-col lg:flex-row gap-6">
+                  <div className="overflow-hidden rounded-lg border-2 border-border bg-gradient-to-b from-background via-accent/5 to-secondary/10 shadow-xl" style={{ width: '160px', height: '600px' }}>
+                    <div className="relative h-full flex flex-col p-4">
+                      {/* Top Image */}
+                      {(generatedImages[2]?.url || uploadedImage) && (
+                        <div className="w-full h-32 rounded-lg overflow-hidden shadow-md mb-4">
+                          <img src={generatedImages[2]?.url || uploadedImage} alt="Product" className="w-full h-full object-cover" />
+                        </div>
+                      )}
+                      
+                      {/* Content */}
+                      <div className="flex-1 flex flex-col justify-between text-center">
+                        <div className="space-y-3">
+                          <h5 className="text-sm font-bold text-foreground leading-tight">
+                            {activeCampaignResults.banner_ads?.[0]?.headline || 'Transform Your Brand'}
+                          </h5>
+                          <p className="text-xs text-muted-foreground leading-relaxed">
+                            {activeCampaignResults.banner_ads?.[0]?.description?.substring(0, 80) || 'Discover innovative solutions that drive exceptional results and transform your business'}...
+                          </p>
+                          
+                          {/* Features List */}
+                          <div className="space-y-2 py-4">
+                            <div className="flex items-center gap-2 text-xs">
+                              <div className="w-1.5 h-1.5 bg-primary rounded-full"></div>
+                              <span className="text-muted-foreground">Premium Quality</span>
+                            </div>
+                            <div className="flex items-center gap-2 text-xs">
+                              <div className="w-1.5 h-1.5 bg-secondary rounded-full"></div>
+                              <span className="text-muted-foreground">Fast Delivery</span>
+                            </div>
+                            <div className="flex items-center gap-2 text-xs">
+                              <div className="w-1.5 h-1.5 bg-accent rounded-full"></div>
+                              <span className="text-muted-foreground">24/7 Support</span>
+                            </div>
+                          </div>
+                        </div>
+                        
+                        <div className="space-y-3">
+                          <div className="w-full h-0.5 rounded-full bg-primary opacity-60"></div>
+                          <Button size="sm" className="w-full text-xs font-semibold py-2 shadow-md">
+                            {activeCampaignResults.banner_ads?.[0]?.cta || 'Learn More'}
+                          </Button>
+                        </div>
                       </div>
+                    </div>
+                  </div>
+                  <div className="flex-1 space-y-3 text-sm">
+                    <div className="bg-muted/20 p-4 rounded-lg">
+                      <h6 className="font-semibold mb-2">Layout Notes:</h6>
+                      <ul className="space-y-1 text-muted-foreground">
+                        <li>• Top: Hero product image (128px height)</li>
+                        <li>• Middle: Headline, description, feature bullets</li>
+                        <li>• Bottom: Accent line + full-width CTA</li>
+                        <li>• Vertical gradient for visual flow</li>
+                        <li>• Perfect for website sidebars</li>
+                      </ul>
                     </div>
                   </div>
                 </div>
               </div>
 
-              {/* Mobile Leaderboard 320x50 - Mobile Optimized */}
-              <div className="space-y-3">
-                <div className="flex items-center gap-2">
-                  <h5 className="font-semibold">Mobile Leaderboard</h5>
-                  <Badge variant="outline" className="text-xs">320×50px</Badge>
-                  <Badge variant="secondary" className="text-xs">Mobile</Badge>
+              {/* Half Page 300x600 */}
+              <div className="space-y-4">
+                <div className="flex items-center gap-3">
+                  <h4 className="text-lg font-semibold">Half Page</h4>
+                  <Badge variant="outline" className="text-xs">300×600px</Badge>
+                  <Badge className="text-xs bg-blue-100 text-blue-800">High Impact</Badge>
                 </div>
-                <div className="overflow-hidden rounded-sm border-2 border-border bg-gradient-to-r from-background to-muted/20 shadow-lg" style={{ width: '320px', height: '50px' }}>
-                  <div className="relative h-full flex items-center">
-                    <div className="flex items-center gap-2 flex-1 px-3 min-w-0">
-                      <div className="w-1 h-6 rounded-full bg-primary"></div>
-                      {(generatedImages[2]?.url || uploadedImage) && (
-                        <div className="w-8 h-8 rounded overflow-hidden">
-                          <img src={generatedImages[2]?.url || uploadedImage} alt="Campaign product" className="w-full h-full object-cover" />
+                <div className="flex flex-col lg:flex-row gap-6">
+                  <div className="overflow-hidden rounded-lg border-2 border-border bg-gradient-to-b from-background via-primary/5 to-accent/10 shadow-xl" style={{ width: '300px', height: '600px' }}>
+                    <div className="relative h-full flex flex-col">
+                      {/* Hero Section */}
+                      <div className="relative h-48 overflow-hidden">
+                        {(generatedImages[3]?.url || uploadedImage) && (
+                          <img src={generatedImages[3]?.url || uploadedImage} alt="Product" className="w-full h-full object-cover" />
+                        )}
+                        <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent"></div>
+                      </div>
+                      
+                      {/* Content Section */}
+                      <div className="flex-1 p-6 flex flex-col justify-between">
+                        <div className="space-y-4">
+                          <div className="text-center space-y-3">
+                            <h5 className="text-lg font-bold text-foreground leading-tight">
+                              {activeCampaignResults.banner_ads?.[0]?.headline || 'Transform Your Brand'}
+                            </h5>
+                            <p className="text-sm text-muted-foreground leading-relaxed">
+                              {activeCampaignResults.banner_ads?.[0]?.description || 'Discover innovative solutions that drive exceptional results and transform your business experience.'}
+                            </p>
+                          </div>
+                          
+                          {/* Features Grid */}
+                          <div className="grid grid-cols-2 gap-3 py-4">
+                            <div className="text-center p-3 bg-background/60 rounded-lg">
+                              <div className="w-8 h-8 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-2">
+                                <div className="w-4 h-4 bg-primary rounded-full"></div>
+                              </div>
+                              <span className="text-xs font-medium text-foreground">Quality</span>
+                            </div>
+                            <div className="text-center p-3 bg-background/60 rounded-lg">
+                              <div className="w-8 h-8 bg-secondary/20 rounded-full flex items-center justify-center mx-auto mb-2">
+                                <div className="w-4 h-4 bg-secondary rounded-full"></div>
+                              </div>
+                              <span className="text-xs font-medium text-foreground">Speed</span>
+                            </div>
+                            <div className="text-center p-3 bg-background/60 rounded-lg">
+                              <div className="w-8 h-8 bg-accent/20 rounded-full flex items-center justify-center mx-auto mb-2">
+                                <div className="w-4 h-4 bg-accent rounded-full"></div>
+                              </div>
+                              <span className="text-xs font-medium text-foreground">Support</span>
+                            </div>
+                            <div className="text-center p-3 bg-background/60 rounded-lg">
+                              <div className="w-8 h-8 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-2">
+                                <div className="w-4 h-4 bg-primary rounded-full"></div>
+                              </div>
+                              <span className="text-xs font-medium text-foreground">Results</span>
+                            </div>
+                          </div>
                         </div>
-                      )}
-                      <h6 className="text-xs font-bold text-foreground truncate">{activeCampaignResults.banner_ads?.[0]?.headline || 'Transform Your Brand'}</h6>
+                        
+                        {/* CTA Section */}
+                        <div className="space-y-3 text-center">
+                          <div className="w-full h-px bg-gradient-to-r from-transparent via-primary to-transparent"></div>
+                          <Button className="w-full font-semibold py-3 shadow-lg">
+                            {activeCampaignResults.banner_ads?.[0]?.cta || 'Get Started Now'}
+                          </Button>
+                          <p className="text-xs text-muted-foreground">Free trial • No credit card required</p>
+                        </div>
+                      </div>
                     </div>
-                    <div className="px-3">
-                      <Button size="sm" className="text-xs font-semibold px-3 py-1 shrink-0">
-                        {activeCampaignResults.banner_ads?.[0]?.cta || 'Try Now'}
-                      </Button>
+                  </div>
+                  <div className="flex-1 space-y-3 text-sm">
+                    <div className="bg-muted/20 p-4 rounded-lg">
+                      <h6 className="font-semibold mb-2">Layout Notes:</h6>
+                      <ul className="space-y-1 text-muted-foreground">
+                        <li>• Top: Hero image with gradient overlay (192px)</li>
+                        <li>• Middle: Headline, description, 2x2 feature grid</li>
+                        <li>• Bottom: Divider line, CTA, trust message</li>
+                        <li>• High-impact format for premium placements</li>
+                      </ul>
                     </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Billboard 970x250 */}
+              <div className="space-y-4">
+                <div className="flex items-center gap-3">
+                  <h4 className="text-lg font-semibold">Billboard</h4>
+                  <Badge variant="outline" className="text-xs">970×250px</Badge>
+                  <Badge className="text-xs bg-purple-100 text-purple-800">Premium</Badge>
+                </div>
+                <div className="space-y-4">
+                  <div className="overflow-x-auto">
+                    <div className="overflow-hidden rounded-lg border-2 border-border bg-gradient-to-r from-background via-primary/5 to-secondary/10 shadow-xl" style={{ width: '970px', height: '250px', minWidth: '970px' }}>
+                      <div className="relative h-full flex items-center">
+                        {/* Left Content */}
+                        <div className="flex-1 p-8 space-y-6">
+                          <div className="space-y-4">
+                            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary border border-primary/20">
+                              ✨ Limited Time Offer
+                            </div>
+                            <h5 className="text-2xl font-bold text-foreground leading-tight">
+                              {activeCampaignResults.banner_ads?.[0]?.headline || 'Transform Your Brand Today'}
+                            </h5>
+                            <p className="text-sm text-muted-foreground leading-relaxed max-w-md">
+                              {activeCampaignResults.banner_ads?.[0]?.description || 'Discover innovative solutions that drive exceptional results and transform your business experience with our premium offerings.'}
+                            </p>
+                          </div>
+                          
+                          <div className="flex items-center gap-6">
+                            <Button size="lg" className="px-8 py-3 shadow-lg">
+                              {activeCampaignResults.banner_ads?.[0]?.cta || 'Shop Now'}
+                            </Button>
+                            <div className="flex items-center gap-4 text-xs text-muted-foreground">
+                              <div className="flex items-center gap-2">
+                                <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                                <span>Free Shipping</span>
+                              </div>
+                              <div className="flex items-center gap-2">
+                                <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                                <span>30-Day Returns</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        
+                        {/* Right Images */}
+                        <div className="flex gap-4 pr-8">
+                          {(generatedImages[0]?.url || uploadedImage) && (
+                            <div className="w-48 h-32 rounded-xl overflow-hidden shadow-lg border-2 border-background">
+                              <img src={generatedImages[0]?.url || uploadedImage} alt="Product" className="w-full h-full object-cover" />
+                            </div>
+                          )}
+                          {generatedImages[1]?.url && (
+                            <div className="w-32 h-32 rounded-xl overflow-hidden shadow-lg border-2 border-background opacity-80">
+                              <img src={generatedImages[1].url} alt="Product variant" className="w-full h-full object-cover" />
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="bg-muted/20 p-4 rounded-lg text-sm">
+                    <h6 className="font-semibold mb-2">Layout Notes:</h6>
+                    <p className="text-muted-foreground">Wide format with badge, large headline, description, CTA with trust indicators. Dual product images on right (192px + 128px). Perfect for above-the-fold premium placements.</p>
                   </div>
                 </div>
               </div>
