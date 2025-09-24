@@ -226,7 +226,7 @@ const CampaignResultsScreen = () => {
                 </CardContent>
               </Card>
             )}
-            console.log(generatedVideoUrl)
+
             {/* Video Script Designs */}
             <Card>
               <CardHeader>
