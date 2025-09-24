@@ -227,8 +227,8 @@ const UploadScreen: React.FC<UploadScreenProps> = ({ mode }) => {
           try {
             const analysisData = await analyzeImageWithAI(base64Image);
             
-            // If we have image prompts, generate images immediately
-            if (analysisData?.imagePrompts && analysisData.imagePrompts.length > 0) {
+            // If we have image prompts and we're in campaign mode, generate images immediately
+            if (currentMode === 'campaign' && analysisData?.imagePrompts && analysisData.imagePrompts.length > 0) {
               console.log('Generating images with prompts:', analysisData.imagePrompts);
               
               const { data: imageData, error: imageError } = await supabase.functions.invoke('generate-images', {
