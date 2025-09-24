@@ -227,21 +227,41 @@ const UploadScreen: React.FC<UploadScreenProps> = ({ mode }) => {
           try {
             const analysisData = await analyzeImageWithAI(base64Image);
             
+            // Debug logging for campaign flow
+            console.log('🔍 Analysis complete - Mode:', currentMode);
+            console.log('🔍 Analysis data:', analysisData);
+            console.log('🔍 Image prompts:', analysisData?.imagePrompts);
+            console.log('🔍 Image prompts length:', analysisData?.imagePrompts?.length);
+            
             // If we have image prompts and we're in campaign mode, generate images immediately
             if (currentMode === 'campaign' && analysisData?.imagePrompts && analysisData.imagePrompts.length > 0) {
-              console.log('Generating images with prompts:', analysisData.imagePrompts);
+              console.log('✅ Calling generate-images with prompts:', analysisData.imagePrompts);
               
-              const { data: imageData, error: imageError } = await supabase.functions.invoke('generate-images', {
-                body: { prompts: analysisData.imagePrompts }
-              });
-              
-              if (imageError) {
-                console.error('Error generating images:', imageError);
-              } else if (imageData?.generatedImages) {
-                // Add generated images to analysis data
-                analysisData.generatedImages = imageData.generatedImages;
-                console.log('Generated images successfully:', imageData.totalGenerated, 'out of', imageData.totalRequested);
+              try {
+                const { data: imageData, error: imageError } = await supabase.functions.invoke('generate-images', {
+                  body: { prompts: analysisData.imagePrompts }
+                });
+                
+                if (imageError) {
+                  console.error('❌ Error generating images:', imageError);
+                  toast.error('Failed to generate images: ' + imageError.message);
+                } else if (imageData?.generatedImages) {
+                  // Add generated images to analysis data
+                  analysisData.generatedImages = imageData.generatedImages;
+                  console.log('✅ Generated images successfully:', imageData.totalGenerated, 'out of', imageData.totalRequested);
+                  toast.success(`Generated ${imageData.totalGenerated} images!`);
+                } else {
+                  console.log('⚠️ No generated images in response:', imageData);
+                }
+              } catch (generateError) {
+                console.error('❌ Exception calling generate-images:', generateError);
+                toast.error('Exception generating images: ' + generateError.message);
               }
+            } else {
+              console.log('❌ Not calling generate-images. Conditions:');
+              console.log('  - currentMode === "campaign":', currentMode === 'campaign');
+              console.log('  - analysisData?.imagePrompts exists:', !!analysisData?.imagePrompts);
+              console.log('  - imagePrompts length > 0:', (analysisData?.imagePrompts?.length || 0) > 0);
             }
             
             // Store full analysis data including generated images
