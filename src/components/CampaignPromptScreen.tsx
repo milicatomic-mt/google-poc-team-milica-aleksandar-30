@@ -17,6 +17,8 @@ const CampaignPromptScreen = () => {
   const [isRegenerating, setIsRegenerating] = useState(false);
   const [isTyping, setIsTyping] = useState(false);
   const [selectedAudiences, setSelectedAudiences] = useState<string[]>([]);
+  const [allSuggestions, setAllSuggestions] = useState<string[]>([]);
+  const [currentSuggestionIndex, setCurrentSuggestionIndex] = useState(0);
   
   const uploadedImage = location.state?.uploadedImage;
   const uploadedFile = location.state?.uploadedFile;
@@ -52,49 +54,27 @@ const CampaignPromptScreen = () => {
     }, 15); // Faster typing speed
   };
 
-  const handleRegenerate = async () => {
-    if (!uploadedFile) {
-      toast.error('No image file available for regeneration');
+  const handleRegenerate = () => {
+    if (allSuggestions.length === 0) {
+      toast.error('No suggestions available');
       return;
     }
 
     setIsRegenerating(true);
-    try {
-      // Convert file to base64
-      const base64Image = await new Promise<string>((resolve) => {
-        const reader = new FileReader();
-        reader.onload = () => resolve(reader.result as string);
-        reader.readAsDataURL(uploadedFile);
-      });
-
-      const { data, error } = await supabase.functions.invoke('analyze-image', {
-        body: { imageBase64: base64Image }
-      });
-
-      if (error || !data) {
-        throw new Error('Failed to regenerate prompt');
-      }
-
-      if (data.suggestions && data.suggestions.length > 0) {
-        // Pick a random suggestion instead of always the first one
-        const randomIndex = Math.floor(Math.random() * data.suggestions.length);
-        const selectedSuggestion = data.suggestions[randomIndex];
-        setPrompt(selectedSuggestion);
-        typePrompt(selectedSuggestion);
-        
-        // Auto-fill target audience if available
-        if (data.targetAudience && data.targetAudience.length > 0) {
-          setSelectedAudiences(data.targetAudience);
-        }
-        
-        toast.success('New prompt generated!');
-      }
-    } catch (error) {
-      console.error('Error regenerating prompt:', error);
-      toast.error('Failed to regenerate prompt. Please try again.');
-    } finally {
+    
+    // Move to next suggestion (cycle back to 0 when reaching the end)
+    const nextIndex = (currentSuggestionIndex + 1) % allSuggestions.length;
+    setCurrentSuggestionIndex(nextIndex);
+    
+    const nextSuggestion = allSuggestions[nextIndex];
+    setPrompt(nextSuggestion);
+    typePrompt(nextSuggestion);
+    
+    // Add a small delay to show the regenerating state
+    setTimeout(() => {
       setIsRegenerating(false);
-    }
+      toast.success('New prompt loaded!');
+    }, 500);
   };
 
   const handleCreateCampaign = () => {
@@ -125,11 +105,17 @@ const CampaignPromptScreen = () => {
       typePrompt(aiGeneratedPrompt);
     }
     
+    // Store all suggestions from AI analysis
+    if (aiAnalysisData?.suggestions && allSuggestions.length === 0) {
+      setAllSuggestions(aiAnalysisData.suggestions);
+      setCurrentSuggestionIndex(0);
+    }
+    
     // Auto-fill target audience from AI analysis
     if (aiAnalysisData?.targetAudience && selectedAudiences.length === 0) {
       setSelectedAudiences(aiAnalysisData.targetAudience);
     }
-  }, [location.state, prompt, selectedAudiences]);
+  }, [location.state, prompt, selectedAudiences, allSuggestions]);
 
   // Auto-adjust height when prompt changes
   useEffect(() => {
