@@ -1373,69 +1373,80 @@ const PreviewResultsScreen: React.FC = () => {
                 </div>
                 <CardContent className="p-4">
                   <div className="grid grid-cols-2 gap-3 h-80">
-                    {/* Top Left - Leaderboard Style Banner */}
-                    <div className="bg-gradient-to-r from-amber-100 to-amber-50 backdrop-blur-sm rounded-lg p-3 overflow-hidden flex flex-col border border-amber-200 shadow-sm">
-                      <div className="flex-1 flex items-center gap-3">
-                        <div className="w-16 h-16 rounded-lg bg-white/80 flex-shrink-0 overflow-hidden flex items-center justify-center p-1 shadow-sm">
-                          {activeCampaignResults?.generated_images?.[0]?.url ? (
-                            <img src={activeCampaignResults.generated_images[0].url} alt="Product" className="w-full h-auto max-h-14 object-contain" />
-                          ) : uploadedImage ? (
-                            <img src={uploadedImage} alt="Product" className="w-full h-auto max-h-14 object-contain" />
-                          ) : null}
+                    {/* Top Left - Portrait Banner with Background Image */}
+                    <div 
+                      className="relative rounded-lg overflow-hidden shadow-sm"
+                      style={{
+                        backgroundImage: `url(${activeCampaignResults?.generated_images?.[0]?.url || uploadedImage || '/lovable-uploads/836ed724-52fb-4a61-a4e7-ffecbc89e80e.png'})`,
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center',
+                        backgroundRepeat: 'no-repeat'
+                      }}
+                    >
+                      {/* Background overlay */}
+                      <div className="absolute inset-0 bg-black/30"></div>
+                      
+                      {/* Bottom overlay for text */}
+                      <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
+                        <div className="bg-black text-white px-3 py-1 rounded text-xs font-bold uppercase tracking-wide mb-1 inline-block">
+                          {activeCampaignResults.banner_ads?.[0]?.headline || 'PREMIUM SOUND'}
                         </div>
-                        <div className="flex-1 min-w-0">
-                          <div className="bg-black text-white px-3 py-1 rounded text-xs font-bold uppercase tracking-wide mb-1 inline-block">
-                            {activeCampaignResults.banner_ads?.[0]?.headline || 'PREMIUM SOUND'}
-                          </div>
-                          <p className="text-xs text-amber-800 font-medium uppercase tracking-wider mb-2">MINIMALIST DESIGN</p>
-                          <button className="bg-black text-white text-xs px-4 py-1.5 rounded font-semibold hover:bg-gray-800 transition-colors">
-                            {activeCampaignResults.banner_ads?.[0]?.cta || 'Shop Now'}
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Top Right - Square Banner */}
-                    <div className="bg-gradient-to-br from-gray-100 to-gray-50 backdrop-blur-sm rounded-lg p-3 overflow-hidden flex flex-col border border-gray-200 shadow-sm">
-                      <div className="w-full h-20 bg-white rounded-lg mb-3 overflow-hidden flex items-center justify-center p-2 shadow-sm">
-                        {activeCampaignResults?.generated_images?.[1]?.url ? (
-                          <img src={activeCampaignResults.generated_images[1].url} alt="Product" className="w-full h-auto max-h-16 object-contain" />
-                        ) : activeCampaignResults?.generated_images?.[0]?.url ? (
-                          <img src={activeCampaignResults.generated_images[0].url} alt="Product" className="w-full h-auto max-h-16 object-contain" />
-                        ) : uploadedImage ? (
-                          <img src={uploadedImage} alt="Product" className="w-full h-auto max-h-16 object-contain" />
-                        ) : null}
-                      </div>
-                      <div className="text-center flex-1 flex flex-col justify-between">
-                        <div>
-                          <div className="bg-amber-600 text-white px-2 py-1 rounded text-xs font-bold uppercase tracking-wide mb-1 inline-block">
-                            {activeCampaignResults.banner_ads?.[0]?.headline || 'PREMIUM SOUND'}
-                          </div>
-                          <p className="text-xs text-gray-600 font-medium uppercase tracking-wider mb-2">MINIMALIST DESIGN</p>
-                        </div>
-                        <button className="bg-black text-white text-xs px-4 py-1.5 rounded font-semibold hover:bg-gray-800 transition-colors">
+                        <p className="text-xs text-white/90 font-medium uppercase tracking-wider mb-3">MINIMALIST DESIGN</p>
+                        <button className="bg-white text-black text-xs px-4 py-1.5 rounded font-semibold hover:bg-gray-200 transition-colors">
                           {activeCampaignResults.banner_ads?.[0]?.cta || 'Shop Now'}
                         </button>
                       </div>
                     </div>
 
-                    {/* Bottom Left - Wide Banner */}
-                    <div className="bg-gradient-to-r from-amber-50 to-white backdrop-blur-sm rounded-lg p-3 overflow-hidden flex items-center border border-amber-200 shadow-sm col-span-2">
-                      <div className="w-20 h-16 rounded-lg bg-white flex-shrink-0 overflow-hidden flex items-center justify-center p-2 shadow-sm mr-4">
-                        {activeCampaignResults?.generated_images?.[0]?.url ? (
-                          <img src={activeCampaignResults.generated_images[0].url} alt="Product" className="w-full h-auto max-h-12 object-contain" />
+                    {/* Top Right - Product Focus Banner */}
+                    <div 
+                      className="relative rounded-lg overflow-hidden shadow-sm bg-gradient-to-br from-gray-100 to-gray-200"
+                    >
+                      {/* Product image centered */}
+                      <div className="absolute inset-0 flex items-center justify-center p-6">
+                        {activeCampaignResults?.generated_images?.[1]?.url ? (
+                          <img src={activeCampaignResults.generated_images[1].url} alt="Product" className="w-full h-auto max-h-24 object-contain drop-shadow-lg" />
+                        ) : activeCampaignResults?.generated_images?.[0]?.url ? (
+                          <img src={activeCampaignResults.generated_images[0].url} alt="Product" className="w-full h-auto max-h-24 object-contain drop-shadow-lg" />
                         ) : uploadedImage ? (
-                          <img src={uploadedImage} alt="Product" className="w-full h-auto max-h-12 object-contain" />
+                          <img src={uploadedImage} alt="Product" className="w-full h-auto max-h-24 object-contain drop-shadow-lg" />
                         ) : null}
                       </div>
-                      <div className="flex-1 flex items-center justify-between">
+                      
+                      {/* Bottom overlay for text */}
+                      <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-amber-600/95 to-transparent p-4 text-center">
+                        <div className="bg-amber-600 text-white px-2 py-1 rounded text-xs font-bold uppercase tracking-wide mb-1 inline-block">
+                          {activeCampaignResults.banner_ads?.[0]?.headline || 'PREMIUM SOUND'}
+                        </div>
+                        <p className="text-xs text-white/90 font-medium uppercase tracking-wider mb-3">MINIMALIST DESIGN</p>
+                        <button className="bg-white text-amber-600 text-xs px-4 py-1.5 rounded font-semibold hover:bg-gray-100 transition-colors">
+                          {activeCampaignResults.banner_ads?.[0]?.cta || 'Shop Now'}
+                        </button>
+                      </div>
+                    </div>
+
+                    {/* Bottom - Wide Banner with Background Image */}
+                    <div 
+                      className="relative rounded-lg overflow-hidden shadow-sm col-span-2"
+                      style={{
+                        backgroundImage: `url(${activeCampaignResults?.generated_images?.[0]?.url || uploadedImage || '/lovable-uploads/836ed724-52fb-4a61-a4e7-ffecbc89e80e.png'})`,
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center',
+                        backgroundRepeat: 'no-repeat'
+                      }}
+                    >
+                      {/* Background overlay */}
+                      <div className="absolute inset-0 bg-black/40"></div>
+                      
+                      {/* Content positioned at bottom left */}
+                      <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4 flex items-end justify-between">
                         <div>
                           <div className="bg-black text-white px-3 py-1 rounded text-sm font-bold uppercase tracking-wide mb-1 inline-block">
                             {activeCampaignResults.banner_ads?.[0]?.headline || 'PREMIUM SOUND'}
                           </div>
-                          <p className="text-xs text-amber-800 font-medium uppercase tracking-wider">MINIMALIST DESIGN</p>
+                          <p className="text-xs text-white/90 font-medium uppercase tracking-wider">MINIMALIST DESIGN</p>
                         </div>
-                        <button className="bg-black text-white text-sm px-6 py-2 rounded font-semibold hover:bg-gray-800 transition-colors">
+                        <button className="bg-white text-black text-sm px-6 py-2 rounded font-semibold hover:bg-gray-200 transition-colors">
                           {activeCampaignResults.banner_ads?.[0]?.cta || 'Shop Now'}
                         </button>
                       </div>
