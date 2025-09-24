@@ -109,7 +109,6 @@ const UploadScreen: React.FC<UploadScreenProps> = ({ mode }) => {
                   } else if (imageData?.generatedImages) {
                     analysisData.generatedImages = imageData.generatedImages;
                     console.log('✅[QR] Generated images:', imageData.totalGenerated, 'of', imageData.totalRequested);
-                    toast.success(`Generated ${imageData.totalGenerated} images!`);
                   } else {
                     console.log('⚠️[QR] No generated images in response:', imageData);
                   }
@@ -276,7 +275,6 @@ const UploadScreen: React.FC<UploadScreenProps> = ({ mode }) => {
                   // Add generated images to analysis data
                   analysisData.generatedImages = imageData.generatedImages;
                   console.log('✅ Generated images successfully:', imageData.totalGenerated, 'out of', imageData.totalRequested);
-                  toast.success(`Generated ${imageData.totalGenerated} images!`);
                 } else {
                   console.log('⚠️ No generated images in response:', imageData);
                 }
