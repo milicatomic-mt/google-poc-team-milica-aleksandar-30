@@ -276,7 +276,7 @@ const CatalogResultsScreen: React.FC = () => {
                 </Button>
               </AlertDialogTrigger>
               <AlertDialogPortal>
-                <AlertDialogOverlay className="bg-black/20" />
+                <AlertDialogOverlay className="bg-white/70" />
                 <AlertDialogContent className="bg-white border-none shadow-lg max-w-md p-6">
                   <AlertDialogHeader>
                     <AlertDialogTitle>Exit to Homepage?</AlertDialogTitle>
