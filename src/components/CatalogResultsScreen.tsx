@@ -283,7 +283,7 @@ const CatalogResultsScreen: React.FC = () => {
                   </AlertDialogDescription>
                 </AlertDialogHeader>
                 <AlertDialogFooter>
-                  <AlertDialogCancel className="rounded-full bg-gray-100 hover:bg-gray-200 border-0">Cancel</AlertDialogCancel>
+                  <AlertDialogCancel className="rounded-full border border-input bg-background hover:bg-accent hover:text-accent-foreground">Cancel</AlertDialogCancel>
                   <AlertDialogAction onClick={handleStartOver} className="rounded-full bg-primary hover:bg-primary/90 text-primary-foreground">Exit</AlertDialogAction>
                 </AlertDialogFooter>
               </AlertDialogContent>

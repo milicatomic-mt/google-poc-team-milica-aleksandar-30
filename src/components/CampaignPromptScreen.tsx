@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { ArrowRight, ArrowLeft, RefreshCw, X } from 'lucide-react';
 import RibbedSphere from '@/components/RibbedSphere';
-import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger, DialogClose } from '@/components/ui/dialog';
 import { toast } from 'sonner';
 import { supabase } from '@/integrations/supabase/client';
 
@@ -172,7 +172,9 @@ const CampaignPromptScreen = () => {
                   </DialogDescription>
                 </DialogHeader>
                 <DialogFooter>
-                  <Button variant="outline" className="rounded-full">Cancel</Button>
+                  <DialogClose asChild>
+                    <Button variant="outline" className="rounded-full">Cancel</Button>
+                  </DialogClose>
                   <Button onClick={() => navigate('/')} className="rounded-full">Exit</Button>
                 </DialogFooter>
               </DialogContent>

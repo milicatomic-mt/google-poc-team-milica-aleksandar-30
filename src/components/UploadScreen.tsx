@@ -2,7 +2,7 @@ import React, { useState, useCallback, useRef, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { HelpCircle, ArrowLeft, Upload, Image, CheckCircle, AlertCircle, Camera, X, QrCode, ArrowRight } from 'lucide-react';
-import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger, DialogClose } from '@/components/ui/dialog';
 import { toast } from 'sonner';
 import { QRCodeSVG } from 'qrcode.react';
 import { createQRSession, subscribeToSessionUpdates, QRSession } from '@/lib/qr-session';
@@ -487,7 +487,9 @@ const UploadScreen: React.FC<UploadScreenProps> = ({ mode }) => {
                   </DialogDescription>
                 </DialogHeader>
                 <DialogFooter>
-                  <Button variant="outline" className="rounded-full">Cancel</Button>
+                  <DialogClose asChild>
+                    <Button variant="outline" className="rounded-full">Cancel</Button>
+                  </DialogClose>
                   <Button onClick={() => navigate('/')} className="rounded-full">Exit</Button>
                 </DialogFooter>
               </DialogContent>
