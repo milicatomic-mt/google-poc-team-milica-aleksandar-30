@@ -143,9 +143,9 @@ const CampaignPromptScreen = () => {
         <source src="/background-video.mp4" type="video/mp4" />
       </video>
 
-      <div className="relative z-10 flex min-h-screen flex-col overflow-y-auto">
+      <div className="relative z-10 flex h-screen flex-col">
         {/* Header */}
-        <header className="container-padding pt-12 relative">
+        <header className="container-padding pt-12 relative flex-shrink-0">
           {/* Logo and Flow Name - Top Left */}
           <div className="absolute top-12 left-8">
             <div className="flex items-center">
@@ -192,146 +192,144 @@ const CampaignPromptScreen = () => {
           </Button>
         </div>
 
-
-      {/* Main Container - Scrollable */}
-      <div className="flex-1 flex flex-col container-padding py-8 overflow-y-auto">
-        
-        {/* Header Section */}
-        <div className="w-full max-w-6xl mx-auto text-center mb-8 animate-fade-in">
-          <h1 className="text-4xl font-semibold text-foreground mb-4">
-            Turn Your Image Into a Campaign
-          </h1>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            We've generated a prompt from your photo. You can use it as is, tweak it, or start fresh.
-          </p>
-        </div>
-
-        {/* Image and Prompt Section */}
-        <div className="w-full max-w-4xl mx-auto mb-12 animate-scale-in">
-          <div className="backdrop-blur-md bg-white/20 rounded-2xl shadow-lg border border-white/30 p-6">
-            <div className="flex gap-6 items-start">
-              {/* Image Preview - smaller */}
-              <div className="flex-shrink-0">
-                <div className="w-40 h-40 rounded-xl overflow-hidden">
-                  {uploadedImage ? (
-                    <img
-                      src={uploadedImage}
-                      alt="Uploaded product"
-                      className="w-full h-full object-cover"
-                    />
-                  ) : (
-                    <div className="w-full h-full flex items-center justify-center text-muted-foreground bg-gray-100 rounded-xl">
-                      No image available
-                    </div>
-                  )}
-                </div>
-              </div>
-              
-               {/* Prompt Section */}
-               <div className="flex-1 relative">
-                 {/* Glass effect input field - same height as image */}
-                 <div className="backdrop-blur-md rounded-xl border border-white shadow-sm h-40 p-4 relative" style={{backgroundColor: '#FFFFFF'}}>
-                    <Textarea
-                      ref={textareaRef}
-                      value={isTyping ? displayedPrompt + '|' : displayedPrompt}
-                      onChange={(e) => {
-                        const newValue = e.target.value.replace('|', '');
-                        setPrompt(newValue);
-                        setDisplayedPrompt(newValue);
-                      }}
-                      placeholder="Enter your campaign description..."
-                      className="h-full w-full text-base resize-none bg-transparent border-0 p-0 focus-visible:ring-0 leading-relaxed text-gray-800 placeholder:text-gray-500 pr-28"
-                      onInput={(e) => {
-                        const target = e.target as HTMLTextAreaElement;
-                        // Remove auto-height adjustment since we want fixed height
-                      }}
-                    />
-                   
-                   {/* Wave loading animation overlay */}
-                   {isRegenerating && (
-                     <div className="absolute inset-0 rounded-xl overflow-hidden pointer-events-none">
-                       <div className="h-full w-full bg-gradient-to-r from-transparent via-gray-200/50 to-transparent animate-wave"></div>
-                     </div>
-                   )}
-                   
-                   {/* Regenerate button inside input at bottom right */}
-                   <Button
-                     onClick={handleRegenerate}
-                     disabled={isRegenerating}
-                     className="absolute bottom-3 right-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full w-8 h-8 p-0 flex items-center justify-center shadow-sm"
-                   >
-                     <RefreshCw className={`w-4 h-4 text-white ${isRegenerating ? 'animate-spin' : ''}`} />
-                   </Button>
-                 </div>
-               </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Target Audience Section */}
-        <div className="w-full max-w-6xl mx-auto mb-8 animate-fade-in">
-          <h2 className="text-2xl font-semibold text-foreground mb-8 text-center">
-            Define Target Audience <span className="text-lg text-muted-foreground font-normal">(Optional)</span>
-          </h2>
+        {/* Main Container - Fixed Height, No Scroll */}
+        <div className="flex-1 flex flex-col container-padding py-8 overflow-hidden">
           
-          <div className="space-y-4">
-            {/* Age Groups - First row (4 items) */}
-            <div className="grid grid-cols-4 gap-3 max-w-4xl mx-auto">
-              {ageGroups.map((age) => (
-                <button
-                  key={age}
-                  onClick={() => toggleAudience(age)}
-                  className={`px-2 py-3 rounded-full border-2 transition-all duration-300 tap-target font-medium backdrop-blur-md text-sm transform hover:scale-105 active:scale-95 ${
-                    selectedAudiences.includes(age)
-                      ? 'bg-white border-indigo-600 text-indigo-600 scale-105 shadow-lg animate-scale-in'
-                      : 'bg-white/30 border-gray-200 text-black hover:border-gray-300 hover:shadow-sm hover:bg-white/40 scale-100'
-                  }`}
-                >
-                  {age}
-                </button>
-              ))}
-            </div>
+          {/* Header Section */}
+          <div className="w-full max-w-6xl mx-auto text-center mb-6 animate-fade-in flex-shrink-0">
+            <h1 className="text-4xl font-semibold text-foreground mb-4">
+              Turn Your Image Into a Campaign
+            </h1>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+              We've generated a prompt from your photo. You can use it as is, tweak it, or start fresh.
+            </p>
+          </div>
 
-            {/* Interests - Second row (4 items) */}
-            <div className="grid grid-cols-4 gap-3 max-w-4xl mx-auto">
-              {interests.slice(0, 4).map((interest) => (
-                <button
-                  key={interest}
-                  onClick={() => toggleAudience(interest)}
-                  className={`px-2 py-3 rounded-full border-2 transition-all duration-300 tap-target font-medium backdrop-blur-md text-sm transform hover:scale-105 active:scale-95 ${
-                    selectedAudiences.includes(interest)
-                      ? 'bg-white border-indigo-600 text-indigo-600 scale-105 shadow-lg animate-scale-in'
-                      : 'bg-white/30 border-gray-200 text-black hover:border-gray-300 hover:shadow-sm hover:bg-white/40 scale-100'
-                  }`}
-                >
-                  {interest}
-                </button>
-              ))}
+          {/* Image and Prompt Section */}
+          <div className="w-full max-w-4xl mx-auto mb-8 animate-scale-in flex-shrink-0">
+            <div className="backdrop-blur-md bg-white/20 rounded-2xl shadow-lg border border-white/30 p-6">
+              <div className="flex gap-6 items-start">
+                {/* Image Preview - smaller */}
+                <div className="flex-shrink-0">
+                  <div className="w-40 h-40 rounded-xl overflow-hidden">
+                    {uploadedImage ? (
+                      <img
+                        src={uploadedImage}
+                        alt="Uploaded product"
+                        className="w-full h-full object-cover"
+                      />
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center text-muted-foreground bg-gray-100 rounded-xl">
+                        No image available
+                      </div>
+                    )}
+                  </div>
+                </div>
+                
+                 {/* Prompt Section */}
+                 <div className="flex-1 relative">
+                   {/* Glass effect input field - same height as image */}
+                   <div className="backdrop-blur-md rounded-xl border border-white shadow-sm h-40 p-4 relative" style={{backgroundColor: '#FFFFFF'}}>
+                      <Textarea
+                        ref={textareaRef}
+                        value={isTyping ? displayedPrompt + '|' : displayedPrompt}
+                        onChange={(e) => {
+                          const newValue = e.target.value.replace('|', '');
+                          setPrompt(newValue);
+                          setDisplayedPrompt(newValue);
+                        }}
+                        placeholder="Enter your campaign description..."
+                        className="h-full w-full text-base resize-none bg-transparent border-0 p-0 focus-visible:ring-0 leading-relaxed text-gray-800 placeholder:text-gray-500 pr-28"
+                        onInput={(e) => {
+                          const target = e.target as HTMLTextAreaElement;
+                          // Remove auto-height adjustment since we want fixed height
+                        }}
+                      />
+                     
+                     {/* Wave loading animation overlay */}
+                     {isRegenerating && (
+                       <div className="absolute inset-0 rounded-xl overflow-hidden pointer-events-none">
+                         <div className="h-full w-full bg-gradient-to-r from-transparent via-gray-200/50 to-transparent animate-wave"></div>
+                       </div>
+                     )}
+                     
+                     {/* Regenerate button inside input at bottom right */}
+                     <Button
+                       onClick={handleRegenerate}
+                       disabled={isRegenerating}
+                       className="absolute bottom-3 right-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full w-8 h-8 p-0 flex items-center justify-center shadow-sm"
+                     >
+                       <RefreshCw className={`w-4 h-4 text-white ${isRegenerating ? 'animate-spin' : ''}`} />
+                     </Button>
+                   </div>
+                 </div>
+              </div>
             </div>
+          </div>
 
-            {/* Interests - Third row (2 items) */}
-            <div className="grid grid-cols-2 gap-3 max-w-2xl mx-auto">
-              {interests.slice(4, 6).map((interest) => (
-                <button
-                  key={interest}
-                  onClick={() => toggleAudience(interest)}
-                  className={`px-2 py-3 rounded-full border-2 transition-all duration-300 tap-target font-medium backdrop-blur-md text-sm transform hover:scale-105 active:scale-95 ${
-                    selectedAudiences.includes(interest)
-                      ? 'bg-white border-indigo-600 text-indigo-600 scale-105 shadow-lg animate-scale-in'
-                      : 'bg-white/30 border-gray-200 text-black hover:border-gray-300 hover:shadow-sm hover:bg-white/40 scale-100'
-                  }`}
-                >
-                  {interest}
-                </button>
-              ))}
+          {/* Target Audience Section - Flexible Height */}
+          <div className="w-full max-w-6xl mx-auto flex-1 animate-fade-in min-h-0">
+            <h2 className="text-2xl font-semibold text-foreground mb-6 text-center">
+              Define Target Audience <span className="text-lg text-muted-foreground font-normal">(Optional)</span>
+            </h2>
+            
+            <div className="space-y-4">
+              {/* Age Groups - First row (4 items) */}
+              <div className="grid grid-cols-4 gap-3 max-w-4xl mx-auto">
+                {ageGroups.map((age) => (
+                  <button
+                    key={age}
+                    onClick={() => toggleAudience(age)}
+                    className={`px-2 py-3 rounded-full border-2 transition-all duration-300 tap-target font-medium backdrop-blur-md text-sm transform hover:scale-105 active:scale-95 ${
+                      selectedAudiences.includes(age)
+                        ? 'bg-white border-indigo-600 text-indigo-600 scale-105 shadow-lg animate-scale-in'
+                        : 'bg-white/30 border-gray-200 text-black hover:border-gray-300 hover:shadow-sm hover:bg-white/40 scale-100'
+                    }`}
+                  >
+                    {age}
+                  </button>
+                ))}
+              </div>
+
+              {/* Interests - Second row (4 items) */}
+              <div className="grid grid-cols-4 gap-3 max-w-4xl mx-auto">
+                {interests.slice(0, 4).map((interest) => (
+                  <button
+                    key={interest}
+                    onClick={() => toggleAudience(interest)}
+                    className={`px-2 py-3 rounded-full border-2 transition-all duration-300 tap-target font-medium backdrop-blur-md text-sm transform hover:scale-105 active:scale-95 ${
+                      selectedAudiences.includes(interest)
+                        ? 'bg-white border-indigo-600 text-indigo-600 scale-105 shadow-lg animate-scale-in'
+                        : 'bg-white/30 border-gray-200 text-black hover:border-gray-300 hover:shadow-sm hover:bg-white/40 scale-100'
+                    }`}
+                  >
+                    {interest}
+                  </button>
+                ))}
+              </div>
+
+              {/* Interests - Third row (2 items) */}
+              <div className="grid grid-cols-2 gap-3 max-w-2xl mx-auto">
+                {interests.slice(4, 6).map((interest) => (
+                  <button
+                    key={interest}
+                    onClick={() => toggleAudience(interest)}
+                    className={`px-2 py-3 rounded-full border-2 transition-all duration-300 tap-target font-medium backdrop-blur-md text-sm transform hover:scale-105 active:scale-95 ${
+                      selectedAudiences.includes(interest)
+                        ? 'bg-white border-indigo-600 text-indigo-600 scale-105 shadow-lg animate-scale-in'
+                        : 'bg-white/30 border-gray-200 text-black hover:border-gray-300 hover:shadow-sm hover:bg-white/40 scale-100'
+                    }`}
+                  >
+                    {interest}
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
         </div>
 
-        </div>
-
-        {/* Footer with Create Campaign Button */}
-        <footer className="container-padding pb-8 pt-4 flex-shrink-0">
+        {/* Fixed Footer with Create Campaign Button */}
+        <footer className="container-padding pb-8 pt-4 flex-shrink-0 border-t border-white/10 backdrop-blur-sm">
           <div className="flex justify-center">
             <Button 
               size="lg"
