@@ -746,7 +746,7 @@ const PreviewResultsScreen: React.FC = () => {
       <div className="relative z-10 flex min-h-screen flex-col overflow-y-auto">
         {/* Header */}
         <header className="container-padding pt-20 relative">
-          <div className="w-full flex justify-between items-center px-8">
+          <div className="w-full flex justify-between items-start px-8">
             {/* Left - Sphere and Text in 1 row */}
             <div className="flex items-center gap-3">
               <div className="w-12 h-12">
