@@ -141,13 +141,13 @@ const PreviewResultsScreen: React.FC = () => {
 
       case 'Banner Ads':
         return (
-          <div className="space-y-0">
+          <div className="space-y-0 overflow-x-hidden">
             <div className="text-center space-y-2 mb-6">
               <h3 className="text-2xl font-bold text-foreground">Professional Web Banner Suite</h3>
               <p className="text-muted-foreground">High-performing banner ads optimized for clicks and conversions</p>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 h-full">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 max-w-full">
               {/* Left Column */}
               <div className="space-y-4">
                 {/* Medium Rectangle */}
