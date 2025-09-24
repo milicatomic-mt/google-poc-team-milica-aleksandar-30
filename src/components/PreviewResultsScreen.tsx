@@ -28,6 +28,7 @@ import {
 import RibbedSphere from '@/components/RibbedSphere';
 import { supabase } from "@/integrations/supabase/client";
 import type { CampaignCreationResponse } from '@/types/api';
+import { VideoPlayer } from '@/components/VideoPlayer';
 
 const PreviewResultsScreen: React.FC = () => {
   const location = useLocation();
@@ -36,6 +37,7 @@ const PreviewResultsScreen: React.FC = () => {
   const [selectedSection, setSelectedSection] = useState<string | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [fetchedCampaignResults, setFetchedCampaignResults] = useState<CampaignCreationResponse | null>(null);
+  const [generatedVideoUrl, setGeneratedVideoUrl] = useState<string | null>(null);
   const [isLoadingResults, setIsLoadingResults] = useState(false);
   const [isDownloadModalOpen, setIsDownloadModalOpen] = useState(false);
   const [downloadUrl, setDownloadUrl] = useState<string>('');
@@ -44,12 +46,12 @@ const PreviewResultsScreen: React.FC = () => {
   // Fetch campaign results if not provided but campaignId is available
   useEffect(() => {
     const fetchCampaignResults = async () => {
-      if (!campaignResults && campaignId && !isLoadingResults) {
+      if (campaignId && !isLoadingResults) {
         setIsLoadingResults(true);
         try {
           const { data, error } = await supabase
             .from('campaign_results')
-            .select('result, generated_images')
+            .select('result, generated_images, generated_video_url')
             .eq('id', campaignId)
             .single();
 
@@ -61,6 +63,7 @@ const PreviewResultsScreen: React.FC = () => {
               : [];
             const merged = { ...(data.result as CampaignCreationResponse), generated_images: genImgs };
             setFetchedCampaignResults(merged);
+            setGeneratedVideoUrl((data as any).generated_video_url || null);
           }
         } catch (error) {
           console.error('Error fetching campaign results:', error);
@@ -361,42 +364,48 @@ const PreviewResultsScreen: React.FC = () => {
                 <div className="border-2 border-border rounded-xl overflow-hidden bg-background shadow-2xl">
                 {/* Video Script Preview */}
                 <div className="bg-gradient-to-br from-gray-900 to-black text-white relative">
-                  {/* Video Thumbnail */}
                   <div className="relative aspect-video">
+                    {generatedVideoUrl ? (
+                      <VideoPlayer
+                        videoUrl={generatedVideoUrl}
+                        posterUrl={activeCampaignResults?.generated_images?.[0]?.url || uploadedImage}
+                        title="Generated Campaign Video"
+                        className="w-full h-full"
+                      />
+                    ) : (
+                      <>
+                        {/* Video Thumbnail (fallback while video not ready) */}
                         {activeCampaignResults?.generated_images?.[0]?.url ? (
                           <img src={activeCampaignResults.generated_images[0].url} alt="Video thumbnail" className="w-full h-full object-cover" />
                         ) : uploadedImage ? (
                           <img src={uploadedImage} alt="Video thumbnail" className="w-full h-full object-cover" />
                         ) : null}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30"></div>
-                    
-                    {/* Video Controls Overlay */}
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="w-24 h-24 bg-white/10 rounded-full flex items-center justify-center backdrop-blur-md border border-white/20 hover:bg-white/20 transition-all duration-300">
-                        <Play className="w-10 h-10 text-white ml-1" />
-                      </div>
-                    </div>
-                    
-                    {/* Duration */}
-                    <div className="absolute bottom-6 right-6 bg-black/80 text-white text-sm px-3 py-1 rounded-full backdrop-blur-sm">
-                      0:30
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30"></div>
+                        <div className="absolute inset-0 flex items-center justify-center">
+                          <div className="w-24 h-24 bg-white/10 rounded-full flex items-center justify-center backdrop-blur-md border border-white/20">
+                            <Play className="w-10 h-10 text-white ml-1" />
+                          </div>
+                        </div>
+                        <div className="absolute bottom-6 right-6 bg-black/80 text-white text-sm px-3 py-1 rounded-full backdrop-blur-sm">
+                          0:30
+                        </div>
+                      </>
+                    )}
+                  </div>
+                  {/* Video Title Bar */}
+                  <div className="p-6 bg-gradient-to-r from-gray-900/90 to-black/90 backdrop-blur-sm">
+                    <h3 className="font-bold text-2xl mb-3 text-white">
+                      {activeCampaignResults.banner_ads?.[0]?.headline || 'Transform Your Experience'}
+                    </h3>
+                    <div className="flex items-center gap-6 text-gray-300">
+                      <span className="flex items-center gap-2">
+                        <div className="w-2 h-2 bg-red-500 rounded-full"></div>
+                        Live Campaign
+                      </span>
+                      <span>• Optimized for all platforms</span>
                     </div>
                   </div>
-                    
-                    {/* Video Title Bar */}
-                    <div className="p-6 bg-gradient-to-r from-gray-900/90 to-black/90 backdrop-blur-sm">
-                      <h3 className="font-bold text-2xl mb-3 text-white">
-                        {activeCampaignResults.banner_ads?.[0]?.headline || 'Transform Your Experience'}
-                      </h3>
-                      <div className="flex items-center gap-6 text-gray-300">
-                        <span className="flex items-center gap-2">
-                          <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-                          Live Campaign
-                        </span>
-                        <span>• Optimized for all platforms</span>
-                      </div>
-                    </div>
-                  </div>
+                </div>
                 </div>
 
                 {/* Social Media Platforms Section - Moved to left */}
