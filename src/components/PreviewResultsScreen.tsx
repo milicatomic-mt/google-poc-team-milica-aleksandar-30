@@ -359,6 +359,63 @@ const PreviewResultsScreen: React.FC = () => {
                     </div>
                   </div>
                 </section>
+                
+                {/* Features Section */}
+                <section className="py-16 bg-muted/20">
+                  <div className="container mx-auto px-6">
+                    <div className="text-center mb-12">
+                      <h2 className="text-3xl font-bold text-foreground mb-4">Why Choose Us</h2>
+                      <p className="text-muted-foreground">Discover what makes us different</p>
+                    </div>
+                    
+                    <div className="grid md:grid-cols-3 gap-8">
+                      {activeCampaignResults.banner_ads?.slice(0, 3).map((ad, index) => (
+                        <div key={index} className="text-center space-y-4">
+                          <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto">
+                            <div className="w-8 h-8 bg-primary rounded-full"></div>
+                          </div>
+                          <h3 className="text-lg font-semibold">{ad.headline || `Feature ${index + 1}`}</h3>
+                          <p className="text-muted-foreground text-sm">{ad.description || 'Amazing benefits that transform your experience'}</p>
+                        </div>
+                      )) || [
+                        <div key="default1" className="text-center space-y-4">
+                          <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto">
+                            <div className="w-8 h-8 bg-primary rounded-full"></div>
+                          </div>
+                          <h3 className="text-lg font-semibold">Premium Quality</h3>
+                          <p className="text-muted-foreground text-sm">Experience the highest quality products and services</p>
+                        </div>,
+                        <div key="default2" className="text-center space-y-4">
+                          <div className="w-16 h-16 bg-secondary/10 rounded-full flex items-center justify-center mx-auto">
+                            <div className="w-8 h-8 bg-secondary rounded-full"></div>
+                          </div>
+                          <h3 className="text-lg font-semibold">Fast Delivery</h3>
+                          <p className="text-muted-foreground text-sm">Get your products delivered quickly and safely</p>
+                        </div>,
+                        <div key="default3" className="text-center space-y-4">
+                          <div className="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mx-auto">
+                            <div className="w-8 h-8 bg-accent rounded-full"></div>
+                          </div>
+                          <h3 className="text-lg font-semibold">24/7 Support</h3>
+                          <p className="text-muted-foreground text-sm">Round-the-clock customer support for your peace of mind</p>
+                        </div>
+                      ]}
+                    </div>
+                  </div>
+                </section>
+                
+                {/* CTA Section */}
+                <section className="py-16 bg-gradient-to-r from-primary/10 to-secondary/10">
+                  <div className="container mx-auto px-6 text-center">
+                    <h2 className="text-3xl font-bold text-foreground mb-4">Ready to Get Started?</h2>
+                    <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
+                      Join thousands of satisfied customers and transform your experience today
+                    </p>
+                    <Button size="lg" className="text-lg px-12 py-4">
+                      {activeCampaignResults.landing_page_concept?.cta || 'Get Started Now'}
+                    </Button>
+                  </div>
+                </section>
               </div>
             </div>
           </div>
