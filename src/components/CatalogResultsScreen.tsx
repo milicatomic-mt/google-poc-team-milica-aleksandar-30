@@ -231,13 +231,28 @@ const CatalogResultsScreen: React.FC = () => {
             </div>
             
             {/* Right - Close Button */}
-            <Button
-              onClick={handleStartOver}
-              variant="secondary"
-              className="tap-target focus-ring bg-white border-white/30 hover:bg-white/90 rounded-full h-8 px-3"
-            >
-              <X className="h-4 w-4 text-black" />
-            </Button>
+            <Dialog>
+              <DialogTrigger asChild>
+                <Button
+                  variant="secondary"
+                  className="tap-target focus-ring bg-white border-white/30 hover:bg-white/90 rounded-full h-8 px-3"
+                >
+                  <X className="h-4 w-4 text-black" />
+                </Button>
+              </DialogTrigger>
+              <DialogContent>
+                <DialogHeader>
+                  <DialogTitle>Exit to Homepage?</DialogTitle>
+                  <DialogDescription>
+                    Are you sure you want to exit? Your catalog results will remain saved.
+                  </DialogDescription>
+                </DialogHeader>
+                <DialogFooter>
+                  <Button variant="outline">Cancel</Button>
+                  <Button onClick={handleStartOver}>Exit</Button>
+                </DialogFooter>
+              </DialogContent>
+            </Dialog>
           </div>
         </header>
 
