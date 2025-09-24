@@ -57,7 +57,7 @@ import UploadScreen from "./components/UploadScreen";
 import CampaignPromptScreen from "./components/CampaignPromptScreen";
 import CatalogPromptScreen from "./components/CatalogPromptScreen";
 import GenerateCampaignScreen from "./components/GenerateCampaignScreen";
-import CampaignResultsScreen from "./components/CampaignResultsScreen";
+
 import CatalogResultsScreen from "./components/CatalogResultsScreen";
 import MobileUploadScreen from "./components/MobileUploadScreen";
 import QRDownloadScreen from "./components/QRDownloadScreen";
@@ -88,7 +88,7 @@ const App = () => (
             <Route path="/campaign-prompt" element={<CampaignPromptScreen />} />
             <Route path="/catalog-prompt" element={<CatalogPromptScreen />} />
             <Route path="/generate-campaign" element={<GenerateCampaignScreen />} />
-            <Route path="/campaign-results" element={<CampaignResultsScreen />} />
+            
             <Route path="/upload/:type" element={<UploadScreen />} />
             <Route path="/mobile-upload" element={<MobileUploadScreen />} />
             <Route path="/catalog-results" element={<CatalogResultsScreen />} />

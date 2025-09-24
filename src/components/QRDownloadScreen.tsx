@@ -23,7 +23,7 @@ const QRDownloadScreen = () => {
     // Get campaign data from session storage
     const storedData = sessionStorage.getItem('qrCampaignData');
     if (!storedData) {
-      navigate('/campaign-results');
+      navigate('/preview-results');
       return;
     }
 
@@ -36,7 +36,7 @@ const QRDownloadScreen = () => {
       createSessionForQR(data);
     } catch (error) {
       console.error('Failed to parse campaign data:', error);
-      navigate('/campaign-results');
+      navigate('/preview-results');
     }
   }, [navigate]);
 
@@ -128,9 +128,9 @@ const QRDownloadScreen = () => {
     sessionStorage.removeItem('qrCampaignId');
     
     if (campaignId) {
-      navigate('/campaign-results', { state: { campaignId } });
+      navigate('/preview-results', { state: { campaignId } });
     } else {
-      navigate('/campaign-results');
+      navigate('/preview-results');
     }
   };
 
