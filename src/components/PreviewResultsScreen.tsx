@@ -124,18 +124,18 @@ const PreviewResultsScreen: React.FC = () => {
             {generatedImages.length > 0 ? (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {generatedImages.map((img, index) => (
-                  <div key={index} className="space-y-3">
-                    <div className="aspect-square bg-gray-100 rounded-lg overflow-hidden border">
-                      <img 
-                        src={img.image || img.url} 
-                        alt={`Generated image ${index + 1}`}
-                        className="w-full h-full object-cover"
-                        onError={(e) => {
-                          console.error('Failed to load generated image:', img);
-                          e.currentTarget.style.display = 'none';
-                        }}
-                      />
-                    </div>
+                    <div key={index} className="space-y-3">
+                      <div className="aspect-square bg-gray-100 rounded-lg overflow-hidden border">
+                        <img 
+                          src={img.url} 
+                          alt={`Generated image ${index + 1}`}
+                          className="w-full h-full object-cover"
+                          onError={(e) => {
+                            console.error('Failed to load generated image:', img);
+                            e.currentTarget.style.display = 'none';
+                          }}
+                        />
+                      </div>
                     {img.prompt && (
                       <div className="space-y-1">
                         <p className="text-xs font-medium text-gray-700">Generation Prompt:</p>
@@ -165,7 +165,7 @@ const PreviewResultsScreen: React.FC = () => {
                     <div key={index} className="space-y-2">
                       <div className="aspect-square bg-gray-100 rounded-lg overflow-hidden">
                         <img 
-                          src={img.image || img.url} 
+                          src={img.url} 
                           alt={`Generated image ${index + 1}`}
                           className="w-full h-full object-cover"
                           onError={(e) => {
@@ -294,7 +294,7 @@ const PreviewResultsScreen: React.FC = () => {
                     <div key={index} className="space-y-2">
                       <div className="aspect-square bg-gray-100 rounded-lg overflow-hidden">
                         <img 
-                          src={img.image || img.url} 
+                          src={img.url} 
                           alt={`Generated image ${index + 1}`}
                           className="w-full h-full object-cover"
                           onError={(e) => {

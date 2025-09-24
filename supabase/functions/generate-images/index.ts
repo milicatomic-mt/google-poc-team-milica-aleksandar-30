@@ -92,11 +92,56 @@ serve(async (req) => {
           const base64Image = imageData.inlineData.data;
           const mimeType = imageData.inlineData.mimeType || 'image/jpeg';
           
-          generatedImages.push({
-            prompt: prompt,
-            image: `data:${mimeType};base64,${base64Image}`,
-            error: null
-          });
+          try {
+            // Upload to Supabase Storage
+            const supabase = createClient(supabaseUrl, supabaseServiceKey);
+            const fileName = `generated-${Date.now()}-${i + 1}.${mimeType.split('/')[1]}`;
+            const filePath = `generated-images/${fileName}`;
+            
+            // Convert base64 to Uint8Array
+            const binaryString = atob(base64Image);
+            const bytes = new Uint8Array(binaryString.length);
+            for (let j = 0; j < binaryString.length; j++) {
+              bytes[j] = binaryString.charCodeAt(j);
+            }
+            
+            const { data: uploadData, error: uploadError } = await supabase.storage
+              .from('campaign-assets')
+              .upload(filePath, bytes, {
+                contentType: mimeType,
+                upsert: true
+              });
+            
+            if (uploadError) {
+              console.error(`Upload error for image ${i + 1}:`, uploadError);
+              generatedImages.push({
+                prompt: prompt,
+                url: `data:${mimeType};base64,${base64Image}`, // Fallback to base64
+                error: null
+              });
+            } else {
+              // Get public URL
+              const { data: urlData } = supabase.storage
+                .from('campaign-assets')
+                .getPublicUrl(filePath);
+              
+              generatedImages.push({
+                prompt: prompt,
+                url: urlData.publicUrl,
+                error: null
+              });
+              
+              console.log(`Successfully uploaded image ${i + 1} to storage:`, urlData.publicUrl);
+            }
+          } catch (storageError) {
+            console.error(`Storage error for image ${i + 1}:`, storageError);
+            // Fallback to base64 data URL
+            generatedImages.push({
+              prompt: prompt,
+              url: `data:${mimeType};base64,${base64Image}`,
+              error: null
+            });
+          }
           
           console.log(`Successfully generated image ${i + 1}`);
         } else {
