@@ -37,7 +37,7 @@ serve(async (req) => {
           {
             parts: [
               {
-                text: "Analyze this image and provide a comprehensive analysis with the following information:\n\n1. Generate 4-5 creative marketing campaign prompt suggestions. Each suggestion must be exactly 2 sentences or less and describe a specific marketing campaign based on what you see. Focus on the product, style, target audience, or key visual elements.\n\n2. Generate exactly 2 detailed image generation prompts based on what you see. Each prompt should describe a new image variation that could be created for marketing purposes - such as different angles, styling, backgrounds, or product variations while maintaining the core product identity. Make each prompt highly detailed with specific lighting, composition, style, and visual elements.\n\n3. Identify the target audience for this product. Consider age groups (Gen Z 18-24, Millennials 25-40, Gen X 41-56, Baby Boomers 57+) and interests that would align with this product.\n\n4. Determine the product category from these options: Fashion & Apparel, Beauty & Personal Care, Electronics & Tech, Home & Garden, Food & Beverage, Sports & Fitness, Automotive, Books & Media, Toys & Games, Health & Wellness, Travel & Leisure, Business & Professional, Art & Crafts, Pet Supplies, Jewelry & Accessories, Other.\n\n5. Suggest an appropriate brand tone from: Professional, Casual, Luxury, Playful, Minimalist, Bold, Elegant, Trendy.\n\n6. Recommend suitable platforms from: Instagram, Facebook, TikTok, LinkedIn, Twitter, Pinterest, YouTube, Email.\n\nReturn the response as a JSON object with the following structure:\n{\n  \"campaignSuggestions\": [array of campaign suggestions],\n  \"imagePrompts\": [array of 2 image generation prompts],\n  \"targetAudience\": [array of relevant audience segments],\n  \"category\": \"product category\",\n  \"tone\": \"suggested brand tone\",\n  \"platforms\": [array of recommended platforms]\n}"
+                text: "Analyze this image carefully and provide a comprehensive analysis based on what you actually see in the product/image:\n\n1. Generate 4-5 creative marketing campaign prompt suggestions. Each suggestion must be exactly 2 sentences or less and describe a specific marketing campaign based on what you see. Focus on the actual product, style, target audience, or key visual elements visible in the image.\n\n2. Generate exactly 2 detailed image generation prompts based on what you see. Each prompt should describe a new image variation that could be created for marketing purposes - such as different angles, styling, backgrounds, or product variations while maintaining the core product identity. Make each prompt highly detailed with specific lighting, composition, style, and visual elements.\n\n3. Identify the target audience for this product by analyzing the actual product and context shown in the image. Choose the most relevant audiences from ONLY these options: 'Urban professionals', 'Outdoor enthusiasts', 'Health & wellness focused', 'Tech enthusiasts', 'Eco-conscious consumers', 'Budget-conscious shoppers'. Select 2-4 that best match the product and its likely users based on what you see.\n\n4. Determine the product category from these options: Fashion & Apparel, Beauty & Personal Care, Electronics & Tech, Home & Garden, Food & Beverage, Sports & Fitness, Automotive, Books & Media, Toys & Games, Health & Wellness, Travel & Leisure, Business & Professional, Art & Crafts, Pet Supplies, Jewelry & Accessories, Other.\n\n5. Suggest an appropriate brand tone from: Professional, Casual, Luxury, Playful, Minimalist, Bold, Elegant, Trendy.\n\n6. Recommend suitable platforms from: Instagram, Facebook, TikTok, LinkedIn, Twitter, Pinterest, YouTube, Email.\n\nIMPORTANT: Base your analysis on what you actually see in the image. The target audience must be selected from the provided list and should reflect the actual product and its likely users.\n\nReturn the response as a JSON object with the following structure:\n{\n  \"campaignSuggestions\": [array of campaign suggestions],\n  \"imagePrompts\": [array of 2 image generation prompts],\n  \"targetAudience\": [array of relevant audience segments from the provided list],\n  \"category\": \"product category\",\n  \"tone\": \"suggested brand tone\",\n  \"platforms\": [array of recommended platforms]\n}"
               },
               {
                 inline_data: {
@@ -127,18 +127,12 @@ serve(async (req) => {
           }
         }
         
-        // Extract target audience
-        if (lowerText.includes("gen z") || lowerText.includes("18-24")) {
-          targetAudience.push("Gen Z (18-24)");
-        }
-        if (lowerText.includes("millennial") || lowerText.includes("25-40")) {
-          targetAudience.push("Millennials (25-40)");
-        }
-        if (lowerText.includes("gen x") || lowerText.includes("41-56")) {
-          targetAudience.push("Gen X (41-56)");
-        }
-        if (lowerText.includes("baby boomer") || lowerText.includes("57+")) {
-          targetAudience.push("Baby Boomers (57+)");
+        // Extract target audience from predefined options
+        const audienceOptions = ["urban professionals", "outdoor enthusiasts", "health & wellness focused", "tech enthusiasts", "eco-conscious consumers", "budget-conscious shoppers"];
+        for (const audience of audienceOptions) {
+          if (lowerText.includes(audience.toLowerCase())) {
+            targetAudience.push(audience.charAt(0).toUpperCase() + audience.slice(1));
+          }
         }
       }
       
@@ -162,9 +156,9 @@ serve(async (req) => {
         imagePrompts = imagePrompts.slice(0, 2);
       }
       
-      // Ensure we have at least one target audience
+      // Ensure we have at least one target audience from predefined options
       if (targetAudience.length === 0) {
-        targetAudience = ["Millennials (25-40)"];
+        targetAudience = ["Urban professionals"];
       }
       
     } catch (e) {
@@ -180,7 +174,7 @@ serve(async (req) => {
         "Professional product photography with clean white background, soft studio lighting, high detail, commercial photography style",
         "Lifestyle product shot in natural environment, warm ambient lighting, shallow depth of field, lifestyle photography style"
       ];
-      targetAudience = ["Millennials (25-40)"];
+      targetAudience = ["Urban professionals"];
       category = "Other";
       tone = "Professional";
       platforms = ["Instagram", "Facebook"];
