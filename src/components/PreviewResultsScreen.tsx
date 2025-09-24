@@ -1929,12 +1929,6 @@ const PreviewResultsScreen: React.FC = () => {
       {/* Campaign Results Modal */}
       <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
         <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
-          <DialogHeader>
-            <DialogTitle>{selectedSection} Results</DialogTitle>
-            <DialogDescription>
-              Generated campaign content for {selectedSection?.toLowerCase()}
-            </DialogDescription>
-          </DialogHeader>
           <div className="py-4">
             {renderModalContent()}
           </div>
