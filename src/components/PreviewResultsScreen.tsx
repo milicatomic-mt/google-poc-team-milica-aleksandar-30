@@ -28,6 +28,7 @@ import {
 import RibbedSphere from '@/components/RibbedSphere';
 import { supabase } from "@/integrations/supabase/client";
 import type { CampaignCreationResponse } from '@/types/api';
+import { createDownloadSession } from '@/lib/download-session';
 
 const PreviewResultsScreen: React.FC = () => {
   const location = useLocation();
@@ -96,16 +97,19 @@ const PreviewResultsScreen: React.FC = () => {
     navigate('/');
   };
 
-  const handleOpenDownloadModal = () => {
-    // Generate a download URL for the campaign results
-    const downloadData = {
-      type: 'campaign',
-      results: activeCampaignResults,
-      image: uploadedImage
-    };
-    const dataUrl = `data:application/json;base64,${btoa(JSON.stringify(downloadData))}`;
-    setDownloadUrl(window.location.origin + `/download?data=${encodeURIComponent(dataUrl)}`);
-    setIsDownloadModalOpen(true);
+  const handleOpenDownloadModal = async () => {
+    try {
+      if (!activeCampaignResults) return;
+      // Create a server-side download session and build a clean URL
+      const token = await createDownloadSession({
+        ...(activeCampaignResults as any),
+        uploadedImageUrl: uploadedImage || undefined,
+      } as any);
+      setDownloadUrl(`${window.location.origin}/download-content?type=zip&token=${encodeURIComponent(token)}`);
+      setIsDownloadModalOpen(true);
+    } catch (e) {
+      console.error('Failed to open download modal:', e);
+    }
   };
 
   const handleOpenCategory = (category: string) => {
