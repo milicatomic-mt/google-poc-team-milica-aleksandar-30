@@ -9,6 +9,7 @@ import { Badge } from "@/components/ui/badge";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import { Share, Play } from "lucide-react";
+import { VideoPlayer } from './VideoPlayer';
 import { extractColorsFromImage, type ExtractedColors } from "@/lib/color-extraction";
 
 const CampaignResultsScreen = () => {
@@ -248,27 +249,22 @@ const CampaignResultsScreen = () => {
                       <h3 className="text-xl font-bold">Generated Campaign Video</h3>
                       <p className="text-sm opacity-90">Created using AI video generation based on your campaign</p>
                     </div>
-                    <div className="p-6">
-                      <div className="aspect-video bg-black rounded-lg overflow-hidden relative">
-                        <video 
-                          controls 
-                          className="w-full h-full object-cover"
-                          poster={uploadedImageUrl || undefined}
-                        >
-                          <source src={generatedVideoUrl} type="video/mp4" />
-                          Your browser does not support the video tag.
-                        </video>
-                        {/* Remove overlay to allow video playback */}
-                      </div>
-                      <div className="mt-4 flex items-center justify-between">
-                        <div className="flex items-center gap-4 text-sm text-muted-foreground">
-                          <span>• Duration: 30s</span>
-                          <span>• Format: 16:9</span>
-                          <span>• Resolution: 1080p</span>
-                        </div>
-                        <Badge variant="outline" className="text-xs">Ready for Download</Badge>
-                      </div>
-                    </div>
+                     <div className="p-6">
+                       <VideoPlayer
+                         videoUrl={generatedVideoUrl}
+                         posterUrl={uploadedImageUrl || undefined}
+                         title="AI Generated Marketing Video"
+                         className="shadow-lg"
+                       />
+                       <div className="mt-4 flex items-center justify-between">
+                         <div className="flex items-center gap-4 text-sm text-muted-foreground">
+                           <span>• Duration: 30s</span>
+                           <span>• Format: 16:9</span>
+                           <span>• Resolution: 1080p</span>
+                         </div>
+                         <Badge variant="outline" className="text-xs">Ready for Download</Badge>
+                       </div>
+                     </div>
                   </div>
                 )}
                 
@@ -280,15 +276,12 @@ const CampaignResultsScreen = () => {
                         {/* Video Thumbnail/Preview */}
                         <div className="relative aspect-video">
                           {generatedVideoUrl ? (
-                            <video 
-                              controls 
-                              className="w-full h-full object-cover"
-                              poster={uploadedImageUrl || undefined}
-                              preload="metadata"
-                            >
-                              <source src={generatedVideoUrl} type="video/mp4" />
-                              Your browser does not support the video tag.
-                            </video>
+                            <VideoPlayer
+                              videoUrl={generatedVideoUrl}
+                              posterUrl={uploadedImageUrl || undefined}
+                              title={`${script.platform} Video`}
+                              className="w-full h-full"
+                            />
                           ) : uploadedImageUrl ? (
                             <img 
                               src={uploadedImageUrl} 
