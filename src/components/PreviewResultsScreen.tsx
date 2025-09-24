@@ -1383,11 +1383,11 @@ const PreviewResultsScreen: React.FC = () => {
                     <div className="bg-white backdrop-blur-sm rounded-lg p-3 overflow-hidden flex flex-col border border-slate-200 shadow-sm">
                       <div className="flex-1 flex flex-col justify-between">
                         <div className="flex items-start gap-2">
-                          <div className="w-10 h-10 rounded bg-slate-100 flex-shrink-0 overflow-hidden flex items-center justify-center p-1">
+                          <div className="w-16 h-16 rounded bg-slate-100 flex-shrink-0 overflow-hidden flex items-center justify-center p-1">
                             {activeCampaignResults?.generated_images?.[0]?.url ? (
-                              <img src={activeCampaignResults.generated_images[0].url} alt="Product" className="w-full h-auto max-h-8 object-contain drop-shadow-sm" />
+                              <img src={activeCampaignResults.generated_images[0].url} alt="Product" className="w-full h-auto max-h-14 object-contain drop-shadow-sm" />
                             ) : uploadedImage ? (
-                              <img src={uploadedImage} alt="Product" className="w-full h-auto max-h-8 object-contain drop-shadow-sm" />
+                              <img src={uploadedImage} alt="Product" className="w-full h-auto max-h-14 object-contain drop-shadow-sm" />
                             ) : null}
                           </div>
                           <div className="flex-1 min-w-0">
@@ -1407,13 +1407,13 @@ const PreviewResultsScreen: React.FC = () => {
 
                     {/* Top Right - Premium Square Banner */}
                     <div className="bg-white backdrop-blur-sm rounded-lg p-3 overflow-hidden flex flex-col border border-slate-200 shadow-sm">
-                      <div className="w-full h-20 bg-slate-100 rounded mb-2 overflow-hidden flex items-center justify-center p-2">
+                      <div className="w-full h-28 bg-slate-100 rounded mb-2 overflow-hidden flex items-center justify-center p-2">
                         {activeCampaignResults?.generated_images?.[1]?.url ? (
-                          <img src={activeCampaignResults.generated_images[1].url} alt="Product" className="w-full h-auto max-h-16 object-contain drop-shadow-sm" />
+                          <img src={activeCampaignResults.generated_images[1].url} alt="Product" className="w-full h-auto max-h-24 object-contain drop-shadow-sm" />
                         ) : activeCampaignResults?.generated_images?.[0]?.url ? (
-                          <img src={activeCampaignResults.generated_images[0].url} alt="Product" className="w-full h-auto max-h-16 object-contain drop-shadow-sm" />
+                          <img src={activeCampaignResults.generated_images[0].url} alt="Product" className="w-full h-auto max-h-24 object-contain drop-shadow-sm" />
                         ) : uploadedImage ? (
-                          <img src={uploadedImage} alt="Product" className="w-full h-auto max-h-16 object-contain drop-shadow-sm" />
+                          <img src={uploadedImage} alt="Product" className="w-full h-auto max-h-24 object-contain drop-shadow-sm" />
                         ) : null}
                       </div>
                       <div className="text-center flex-1 flex flex-col justify-between">
@@ -1432,11 +1432,11 @@ const PreviewResultsScreen: React.FC = () => {
                     {/* Bottom Left - Clean Mobile Banner */}
                     <div className="bg-white backdrop-blur-sm rounded-lg p-3 overflow-hidden flex flex-col justify-between border border-slate-200 shadow-sm">
                       <div className="flex items-center gap-2 mb-2">
-                        <div className="w-8 h-8 rounded bg-slate-100 flex-shrink-0 overflow-hidden flex items-center justify-center p-1">
+                        <div className="w-12 h-12 rounded bg-slate-100 flex-shrink-0 overflow-hidden flex items-center justify-center p-1">
                           {activeCampaignResults?.generated_images?.[0]?.url ? (
-                            <img src={activeCampaignResults.generated_images[0].url} alt="Product" className="w-full h-auto max-h-6 object-contain drop-shadow-sm" />
+                            <img src={activeCampaignResults.generated_images[0].url} alt="Product" className="w-full h-auto max-h-10 object-contain drop-shadow-sm" />
                           ) : uploadedImage ? (
-                            <img src={uploadedImage} alt="Product" className="w-full h-auto max-h-6 object-contain drop-shadow-sm" />
+                            <img src={uploadedImage} alt="Product" className="w-full h-auto max-h-10 object-contain drop-shadow-sm" />
                           ) : null}
                         </div>
                         <div className="flex-1 min-w-0">
@@ -1457,11 +1457,11 @@ const PreviewResultsScreen: React.FC = () => {
                     <div className="bg-white backdrop-blur-sm rounded-lg p-3 overflow-hidden relative border border-slate-200 shadow-sm">
                       <div className="w-full h-full bg-slate-100 rounded flex items-center justify-center overflow-hidden p-3">
                         {activeCampaignResults?.generated_images?.[1]?.url ? (
-                          <img src={activeCampaignResults.generated_images[1].url} alt="Product" className="w-full h-auto max-h-20 object-contain drop-shadow-sm" />
+                          <img src={activeCampaignResults.generated_images[1].url} alt="Product" className="w-full h-auto max-h-28 object-contain drop-shadow-sm" />
                         ) : activeCampaignResults?.generated_images?.[0]?.url ? (
-                          <img src={activeCampaignResults.generated_images[0].url} alt="Product" className="w-full h-auto max-h-20 object-contain drop-shadow-sm" />
+                          <img src={activeCampaignResults.generated_images[0].url} alt="Product" className="w-full h-auto max-h-28 object-contain drop-shadow-sm" />
                         ) : uploadedImage ? (
-                          <img src={uploadedImage} alt="Product" className="w-full h-auto max-h-20 object-contain drop-shadow-sm" />
+                          <img src={uploadedImage} alt="Product" className="w-full h-auto max-h-28 object-contain drop-shadow-sm" />
                         ) : null}
                       </div>
                       <div className="absolute bottom-2 left-2 right-2">
