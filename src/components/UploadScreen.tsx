@@ -90,15 +90,42 @@ const UploadScreen: React.FC<UploadScreenProps> = ({ mode }) => {
           });
           toast.success('Image received from mobile!');
           
-          // Analyze image with AI for both campaign and catalog modes
+          // Analyze image with AI and then generate images (campaign only)
           if (currentMode === 'campaign' || currentMode === 'catalog') {
             setIsAnalyzingImage(true);
             try {
-              const suggestions = await analyzeImageWithAI(imageForState);
-              // Store suggestions in state to pass to appropriate screen
-              sessionStorage.setItem('aiSuggestions', JSON.stringify(suggestions));
+              const analysisData = await analyzeImageWithAI(imageForState);
+              console.log('🔍[QR] Analysis data:', analysisData);
+
+              if (currentMode === 'campaign' && analysisData?.imagePrompts && analysisData.imagePrompts.length > 0) {
+                console.log('✅[QR] Calling generate-images with prompts:', analysisData.imagePrompts);
+                try {
+                  const { data: imageData, error: imageError } = await supabase.functions.invoke('generate-images', {
+                    body: { prompts: analysisData.imagePrompts }
+                  });
+                  if (imageError) {
+                    console.error('❌[QR] Error generating images:', imageError);
+                    toast.error('Failed to generate images: ' + imageError.message);
+                  } else if (imageData?.generatedImages) {
+                    analysisData.generatedImages = imageData.generatedImages;
+                    console.log('✅[QR] Generated images:', imageData.totalGenerated, 'of', imageData.totalRequested);
+                    toast.success(`Generated ${imageData.totalGenerated} images!`);
+                  } else {
+                    console.log('⚠️[QR] No generated images in response:', imageData);
+                  }
+                } catch (generateErr: any) {
+                  console.error('❌[QR] Exception calling generate-images:', generateErr);
+                  toast.error('Exception generating images: ' + generateErr.message);
+                }
+              } else {
+                console.log('ℹ️[QR] Not generating images. Mode:', currentMode, 'Prompts len:', analysisData?.imagePrompts?.length || 0);
+              }
+
+              // Store full analysis data (including any generated images)
+              sessionStorage.setItem('aiAnalysisData', JSON.stringify(analysisData));
             } catch (error) {
               console.error('Failed to analyze image:', error);
+              toast.error('Failed to analyze image');
             } finally {
               setIsAnalyzingImage(false);
             }
