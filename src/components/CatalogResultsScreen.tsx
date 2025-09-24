@@ -235,7 +235,7 @@ const CatalogResultsScreen: React.FC = () => {
               onClick={handleStartOver}
               variant="ghost"
               size="icon"
-              className="tap-target focus-ring text-white hover:text-white hover:bg-white/20 rounded-full"
+              className="tap-target focus-ring text-foreground hover:text-foreground hover:bg-muted/20 rounded-full border border-border/50"
             >
               <X className="w-6 h-6" />
             </Button>
