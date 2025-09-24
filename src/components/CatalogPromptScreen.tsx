@@ -8,6 +8,7 @@ import { ArrowLeft, RefreshCw, X } from 'lucide-react';
 import RibbedSphere from '@/components/RibbedSphere';
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { toast } from 'sonner';
+import { supabase } from '@/integrations/supabase/client';
 
 const CatalogPromptScreen = () => {
   const navigate = useNavigate();
@@ -99,20 +100,14 @@ const CatalogPromptScreen = () => {
         reader.readAsDataURL(uploadedFile);
       });
 
-      const response = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/analyze-image`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
-        },
-        body: JSON.stringify({ imageBase64: base64Image }),
+      const { data, error } = await supabase.functions.invoke('analyze-image', {
+        body: { imageBase64: base64Image }
       });
 
-      if (!response.ok) {
+      if (error || !data) {
         throw new Error('Failed to regenerate prompt');
       }
 
-      const data = await response.json();
       if (data.suggestions && data.suggestions.length > 0) {
         setPrompt(data.suggestions[0]);
         typePrompt(data.suggestions[0]);

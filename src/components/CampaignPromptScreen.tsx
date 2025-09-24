@@ -6,6 +6,7 @@ import { ArrowRight, ArrowLeft, RefreshCw, X } from 'lucide-react';
 import RibbedSphere from '@/components/RibbedSphere';
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { toast } from 'sonner';
+import { supabase } from '@/integrations/supabase/client';
 
 const CampaignPromptScreen = () => {
   const navigate = useNavigate();
@@ -66,20 +67,14 @@ const CampaignPromptScreen = () => {
         reader.readAsDataURL(uploadedFile);
       });
 
-      const response = await fetch(`https://cuwkuomczaoxbaysabii.supabase.co/functions/v1/analyze-image`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImN1d2t1b21jemFveGJheXNhYmlpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTgwMTQyOTIsImV4cCI6MjA3MzU5MDI5Mn0.a4HUJTdmrgrbAa_F6-JWCvvaJ_zs71qEon_2aY0434c`,
-        },
-        body: JSON.stringify({ imageBase64: base64Image }),
+      const { data, error } = await supabase.functions.invoke('analyze-image', {
+        body: { imageBase64: base64Image }
       });
 
-      if (!response.ok) {
+      if (error || !data) {
         throw new Error('Failed to regenerate prompt');
       }
 
-      const data = await response.json();
       if (data.suggestions && data.suggestions.length > 0) {
         setPrompt(data.suggestions[0]);
         typePrompt(data.suggestions[0]);
