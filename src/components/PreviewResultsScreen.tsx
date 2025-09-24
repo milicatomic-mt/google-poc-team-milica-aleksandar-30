@@ -1202,7 +1202,6 @@ const PreviewResultsScreen: React.FC = () => {
                             <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
                             <div className="text-[8px] font-semibold text-gray-900">Your Brand Newsletter</div>
                           </div>
-                          <div className="text-[6px] text-gray-500">Premium Campaign</div>
                         </div>
                         <div className="text-[6px] text-gray-600 mt-1">From: hello@yourbrand.com</div>
                       </div>
@@ -1227,12 +1226,12 @@ const PreviewResultsScreen: React.FC = () => {
                           </div>
                         </div>
 
-                        {/* Product Showcase */}
-                        <div className="bg-gradient-to-br from-white to-slate-50 px-3 py-3 relative">
+                        {/* Product Showcase - Expanded */}
+                        <div className="bg-gradient-to-br from-white to-slate-50 px-3 py-4 relative">
                           <div className="flex items-center gap-3">
                             {/* Product Image */}
                             <div className="relative">
-                              <div className="w-12 h-12 bg-primary/10 rounded-lg overflow-hidden shadow-sm border border-white/50">
+                              <div className="w-16 h-16 bg-primary/10 rounded-lg overflow-hidden shadow-sm border border-white/50">
                                 {uploadedImage && (
                                   <img src={uploadedImage} alt="Product" className="w-full h-full object-cover" />
                                 )}
@@ -1242,47 +1241,44 @@ const PreviewResultsScreen: React.FC = () => {
                               </div>
                             </div>
                             
-                            {/* Product Info */}
+                            {/* Product Info - Expanded */}
                             <div className="flex-1 min-w-0">
-                              <h3 className="text-[8px] font-bold text-gray-900 leading-tight mb-1">
+                              <h3 className="text-[10px] font-bold text-gray-900 leading-tight mb-2">
                                 Exclusive Premium Collection
                               </h3>
-                              <p className="text-[6px] text-gray-600 leading-relaxed mb-2">
-                                Limited time offer - Save up to 40% on our bestselling products
+                              <p className="text-[7px] text-gray-600 leading-relaxed mb-3">
+                                Limited time offer - Save up to 40% on our bestselling products. Premium quality meets exceptional value in this curated selection.
                               </p>
-                              <div className="flex items-center gap-2">
-                                <div className="bg-gradient-to-r from-gray-900 to-black text-white text-[5px] px-2 py-1 rounded-full font-medium shadow-sm">
+                              <div className="flex items-center gap-2 mb-2">
+                                <div className="bg-gradient-to-r from-slate-700 to-slate-800 text-white text-[6px] px-3 py-1 rounded-full font-medium shadow-sm">
                                   Shop Now
                                 </div>
-                                <div className="text-[5px] text-gray-500">Free shipping included</div>
+                                <div className="text-[6px] text-gray-500">Free shipping included</div>
                               </div>
                             </div>
                           </div>
                         </div>
 
-                        {/* Features Section */}
-                        <div className="bg-white px-3 py-2">
-                          <div className="grid grid-cols-3 gap-2">
+                        {/* Features Section - Condensed */}
+                        <div className="bg-gray-50 px-3 py-1.5">
+                          <div className="grid grid-cols-3 gap-1">
                             <div className="text-center">
-                              <div className="w-4 h-4 bg-gradient-to-br from-primary to-primary/70 rounded-full mx-auto mb-1 flex items-center justify-center">
-                                <div className="w-1.5 h-1.5 bg-white rounded-full"></div>
+                              <div className="w-3 h-3 bg-gradient-to-br from-slate-500 to-slate-600 rounded-full mx-auto mb-0.5 flex items-center justify-center">
+                                <div className="w-1 h-1 bg-white rounded-full"></div>
                               </div>
-                              <div className="text-[5px] font-semibold text-gray-900">Premium</div>
-                              <div className="text-[4px] text-gray-500">Quality</div>
+                              <div className="text-[4px] font-semibold text-gray-700">Premium</div>
                             </div>
                             <div className="text-center">
-                              <div className="w-4 h-4 bg-gradient-to-br from-secondary to-secondary/70 rounded-full mx-auto mb-1 flex items-center justify-center">
-                                <div className="w-1.5 h-1.5 bg-white rounded-full"></div>
+                              <div className="w-3 h-3 bg-gradient-to-br from-slate-500 to-slate-600 rounded-full mx-auto mb-0.5 flex items-center justify-center">
+                                <div className="w-1 h-1 bg-white rounded-full"></div>
                               </div>
-                              <div className="text-[5px] font-semibold text-gray-900">Fast</div>
-                              <div className="text-[4px] text-gray-500">Delivery</div>
+                              <div className="text-[4px] font-semibold text-gray-700">Fast</div>
                             </div>
                             <div className="text-center">
-                              <div className="w-4 h-4 bg-gradient-to-br from-accent to-accent/70 rounded-full mx-auto mb-1 flex items-center justify-center">
-                                <div className="w-1.5 h-1.5 bg-white rounded-full"></div>
+                              <div className="w-3 h-3 bg-gradient-to-br from-slate-500 to-slate-600 rounded-full mx-auto mb-0.5 flex items-center justify-center">
+                                <div className="w-1 h-1 bg-white rounded-full"></div>
                               </div>
-                              <div className="text-[5px] font-semibold text-gray-900">Returns</div>
-                              <div className="text-[4px] text-gray-500">30-day</div>
+                              <div className="text-[4px] font-semibold text-gray-700">Returns</div>
                             </div>
                           </div>
                         </div>
@@ -1314,16 +1310,6 @@ const PreviewResultsScreen: React.FC = () => {
                             <div className="text-[4px] text-gray-400">© 2024 Your Brand</div>
                           </div>
                         </div>
-                      </div>
-                    </div>
-
-                    {/* Email Type Indicators */}
-                    <div className="absolute -top-1 -right-1 flex gap-1">
-                      <div className="bg-gradient-to-r from-blue-500 to-blue-600 text-white text-[5px] px-1.5 py-0.5 rounded-full font-medium shadow-sm">
-                        Campaign
-                      </div>
-                      <div className="bg-gradient-to-r from-green-500 to-green-600 text-white text-[5px] px-1.5 py-0.5 rounded-full font-medium shadow-sm">
-                        Mobile Ready
                       </div>
                     </div>
                   </div>
