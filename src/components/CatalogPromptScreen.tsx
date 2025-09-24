@@ -244,7 +244,7 @@ const CatalogPromptScreen = () => {
   }, [prompt]);
 
   return (
-    <div className="relative min-h-screen w-full overflow-hidden bg-background">
+    <div className="relative h-screen w-full overflow-hidden bg-background">
       {/* Background Video */}
       <video 
         className="absolute inset-0 w-full h-full object-cover object-center opacity-50 z-0" 
@@ -256,9 +256,9 @@ const CatalogPromptScreen = () => {
         <source src="/background-video.mp4" type="video/mp4" />
       </video>
 
-      <div className="relative z-10 flex min-h-screen flex-col overflow-y-auto">
+      <div className="relative z-10 flex h-screen flex-col">
         {/* Header */}
-        <header className="container-padding pt-12 relative">
+        <header className="container-padding pt-12 relative flex-shrink-0">
           {/* Logo and Flow Name - Top Left */}
           <div className="absolute top-12 left-8">
             <div className="flex items-center">
@@ -305,11 +305,11 @@ const CatalogPromptScreen = () => {
           </Button>
         </div>
 
-        {/* Main Container - Scrollable */}
-        <div className="flex-1 flex flex-col container-padding py-8 overflow-y-auto">
+        {/* Main Container - Fixed Height */}
+        <div className="flex-1 flex flex-col container-padding py-8 overflow-hidden">
           
           {/* Header Section */}
-          <div className="w-full max-w-6xl mx-auto text-center mb-8 animate-fade-in">
+          <div className="w-full max-w-6xl mx-auto text-center mb-8 animate-fade-in flex-shrink-0">
             <h1 className="text-4xl font-semibold text-foreground mb-4">
               Catalog Enrichment
             </h1>
@@ -319,7 +319,7 @@ const CatalogPromptScreen = () => {
           </div>
 
           {/* Image and Prompt Section */}
-          <div className="w-full max-w-4xl mx-auto mb-12 animate-scale-in">
+          <div className="w-full max-w-4xl mx-auto mb-12 animate-scale-in flex-shrink-0">
             <div className="backdrop-blur-md bg-white/20 rounded-2xl shadow-lg border border-white/30 p-6">
               <div className="flex gap-6 items-start">
                 {/* Image Preview */}
@@ -376,7 +376,7 @@ const CatalogPromptScreen = () => {
           </div>
 
           {/* Additional Details Section */}
-          <div className="w-full max-w-6xl mx-auto mb-8 animate-fade-in">
+          <div className="w-full max-w-6xl mx-auto flex-1 animate-fade-in">
             <h2 className="text-2xl font-semibold text-foreground mb-8 text-center">
               Additional Details <span className="text-lg text-muted-foreground font-normal">(Optional)</span>
             </h2>
