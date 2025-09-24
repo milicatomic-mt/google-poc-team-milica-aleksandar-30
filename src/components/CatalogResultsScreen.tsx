@@ -257,7 +257,7 @@ const CatalogResultsScreen: React.FC = () => {
         </header>
 
         {/* Main Content */}
-        <main className="flex-1 container-padding pt-32 pb-8">
+        <main className="flex-1 container-padding pt-24 pb-8">
           <div className="max-w-4xl mx-auto space-y-6">
             
             {/* Product Image Preview */}
