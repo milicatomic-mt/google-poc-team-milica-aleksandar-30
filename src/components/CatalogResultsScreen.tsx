@@ -190,25 +190,27 @@ const CatalogResultsScreen: React.FC = () => {
       <div className="relative z-10 flex min-h-screen flex-col overflow-y-auto">
         {/* Header */}
         <header className="container-padding pt-20 relative">
-          <div className="w-full flex justify-between items-center px-8">
-            {/* Left - Sphere Animation with Text */}
-            <div className="flex items-center gap-3">
-              <div className="w-12 h-12">
-                <RibbedSphere className="w-full h-full" />
-              </div>
-              <div className="text-sm text-foreground font-semibold">
-                Bring Your Products to <span className="text-indigo-600">Life</span>
-              </div>
-            </div>
-            
-            {/* Center - Title and Subtitle */}
-            <div className="absolute left-1/2 transform -translate-x-1/2 text-center">
+          <div className="w-full flex justify-between items-start px-8">
+            {/* Left - Title and Subtitle */}
+            <div className="text-left">
               <h2 className="text-3xl font-bold text-foreground mb-2">
                 Catalog Enrichment Preview
               </h2>
               <p className="text-lg text-muted-foreground">
                 Your enriched catalog is ready to publish
               </p>
+            </div>
+            
+            {/* Center - Sphere Animation with Text in 2 rows */}
+            <div className="absolute left-1/2 transform -translate-x-1/2 text-center">
+              <div className="flex justify-center mb-3">
+                <div className="w-12 h-12">
+                  <RibbedSphere className="w-full h-full" />
+                </div>
+              </div>
+              <div className="text-sm text-foreground font-semibold">
+                Bring Your Products to <span className="text-indigo-600">Life</span>
+              </div>
             </div>
             
             {/* Right - Edit and Download Buttons */}
