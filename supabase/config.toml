@@ -42,3 +42,6 @@ verify_jwt = false
 
 [functions.analyze-image]
 verify_jwt = false
+
+[functions.generate-images]
+verify_jwt = false
