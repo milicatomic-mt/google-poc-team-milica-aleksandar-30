@@ -1,5 +1,5 @@
 import { useState, useRef } from "react";
-import { Play, Pause, Volume2, VolumeX, Maximize, Download } from "lucide-react";
+import { Play, Pause, Volume2, VolumeX, Maximize } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 
@@ -46,12 +46,6 @@ export const VideoPlayer = ({ videoUrl, posterUrl, title = "AI Generated Video",
     }
   };
 
-  const downloadVideo = () => {
-    const link = document.createElement('a');
-    link.href = videoUrl;
-    link.download = 'ai-generated-video.mp4';
-    link.click();
-  };
 
   const handleVideoLoad = () => {
     setIsLoading(false);
@@ -116,18 +110,10 @@ export const VideoPlayer = ({ videoUrl, posterUrl, title = "AI Generated Video",
       {showControls && !isLoading && (
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30">
           {/* Top Controls */}
-          <div className="absolute top-4 left-4 right-4 flex items-center justify-between">
+          <div className="absolute top-4 left-4 right-4 flex items-center justify-start">
             <Badge className="bg-white/20 text-white backdrop-blur-sm">
               {title}
             </Badge>
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={downloadVideo}
-              className="text-white hover:bg-white/20 backdrop-blur-sm"
-            >
-              <Download className="w-4 h-4" />
-            </Button>
           </div>
 
           {/* Center Play Button */}
