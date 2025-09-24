@@ -248,17 +248,7 @@ const CampaignResultsScreen = () => {
                           <source src={generatedVideoUrl} type="video/mp4" />
                           Your browser does not support the video tag.
                         </video>
-                        {/* Placeholder overlay since this is a mock URL */}
-                        <div className="absolute inset-0 bg-gradient-to-br from-purple-900/80 to-blue-900/80 flex items-center justify-center">
-                          <div className="text-center text-white">
-                            <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm mb-4 mx-auto">
-                              <Play className="w-6 h-6 text-white" />
-                            </div>
-                            <h4 className="text-lg font-semibold mb-2">AI Generated Video</h4>
-                            <p className="text-sm opacity-90">Video generation in progress...</p>
-                            <p className="text-xs opacity-75 mt-1">This is a preview - actual video will be available soon</p>
-                          </div>
-                        </div>
+                        {/* Remove overlay to allow video playback */}
                       </div>
                       <div className="mt-4 flex items-center justify-between">
                         <div className="flex items-center gap-4 text-sm text-muted-foreground">
@@ -280,14 +270,15 @@ const CampaignResultsScreen = () => {
                         {/* Video Thumbnail/Preview */}
                         <div className="relative aspect-video">
                           {generatedVideoUrl ? (
-                            <div className="w-full h-full bg-gradient-to-br from-purple-900 to-blue-900 flex items-center justify-center">
-                              <div className="text-center text-white">
-                                <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm mb-2 mx-auto">
-                                  <Play className="w-4 h-4 text-white" />
-                                </div>
-                                <p className="text-xs">AI Generated Video</p>
-                              </div>
-                            </div>
+                            <video 
+                              controls 
+                              className="w-full h-full object-cover"
+                              poster={uploadedImageUrl || undefined}
+                              preload="metadata"
+                            >
+                              <source src={generatedVideoUrl} type="video/mp4" />
+                              Your browser does not support the video tag.
+                            </video>
                           ) : uploadedImageUrl ? (
                             <img 
                               src={uploadedImageUrl} 
