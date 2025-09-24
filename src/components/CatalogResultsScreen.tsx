@@ -273,16 +273,16 @@ const CatalogResultsScreen: React.FC = () => {
                   <X className="h-4 w-4 text-black" />
                 </Button>
               </AlertDialogTrigger>
-              <AlertDialogContent className="bg-white border-0 shadow-xl">
+              <AlertDialogContent className="bg-white border-0 shadow-xl max-w-md">
                 <AlertDialogHeader>
                   <AlertDialogTitle>Exit to Homepage?</AlertDialogTitle>
                   <AlertDialogDescription>
-                    Are you sure you want to exit? Your campaign results will remain saved.
+                    Are you sure you want to exit? Any current selection will be lost.
                   </AlertDialogDescription>
                 </AlertDialogHeader>
                 <AlertDialogFooter>
-                  <AlertDialogCancel className="rounded-full">Cancel</AlertDialogCancel>
-                  <AlertDialogAction onClick={handleStartOver} className="rounded-full">Exit</AlertDialogAction>
+                  <AlertDialogCancel className="rounded-full bg-gray-100 hover:bg-gray-200 border-0">Cancel</AlertDialogCancel>
+                  <AlertDialogAction onClick={handleStartOver} className="rounded-full bg-blue-600 hover:bg-blue-700">Exit</AlertDialogAction>
                 </AlertDialogFooter>
               </AlertDialogContent>
             </AlertDialog>
