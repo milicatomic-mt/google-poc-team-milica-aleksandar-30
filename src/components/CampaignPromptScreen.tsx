@@ -76,8 +76,11 @@ const CampaignPromptScreen = () => {
       }
 
       if (data.suggestions && data.suggestions.length > 0) {
-        setPrompt(data.suggestions[0]);
-        typePrompt(data.suggestions[0]);
+        // Pick a random suggestion instead of always the first one
+        const randomIndex = Math.floor(Math.random() * data.suggestions.length);
+        const selectedSuggestion = data.suggestions[randomIndex];
+        setPrompt(selectedSuggestion);
+        typePrompt(selectedSuggestion);
         
         // Auto-fill target audience if available
         if (data.targetAudience && data.targetAudience.length > 0) {
