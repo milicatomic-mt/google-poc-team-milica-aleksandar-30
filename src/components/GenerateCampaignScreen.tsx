@@ -96,23 +96,30 @@ const GenerateCampaignScreen = () => {
         await new Promise((r) => setTimeout(r, intervalMs));
         }
         
+        // If results not ready, keep user on progress screen (do not navigate)
+        if (!finalResults) {
+          setCurrentAction("Still preparing your results...");
+          setProgress(98);
+          return;
+        }
+
         // Final progress update
         setCurrentAction("Complete!");
         setProgress(100);
         
-        // Navigate only after results ready (or timeout fallback)
+        // Navigate only after results ready
         navigate('/preview-results', { 
           state: { 
             ...location.state, 
             campaignId: campaignResult.id,
-            ...(finalResults ? { campaignResults: finalResults } : {})
+            campaignResults: finalResults
           } 
         });
       } catch (error) {
-        // Still continue to preview even if saving fails
-        setTimeout(() => {
-          navigate('/preview-results', { state: location.state });
-        }, 6000);
+        console.error('Error while generating campaign', error);
+        setCurrentAction('There was an issue generating your campaign. Retrying...');
+        setProgress(10);
+        // Do NOT navigate; keep user on progress screen.
       }
     };
 
