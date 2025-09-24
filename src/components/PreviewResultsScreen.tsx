@@ -767,7 +767,7 @@ const PreviewResultsScreen: React.FC = () => {
               </p>
               
               {/* Edit and Download buttons beneath title */}
-              <div className="flex justify-center gap-3 mt-4">
+              <div className="flex justify-center gap-3 mt-8">
                 <Button
                   onClick={handleBack}
                   variant="outline"
