@@ -496,86 +496,193 @@ const PreviewResultsScreen: React.FC = () => {
 
       case 'Email Templates':
         return (
-          <div className="border-2 border-border rounded overflow-hidden bg-background shadow-xl max-w-2xl mx-auto">
+          <div className="border-2 border-border rounded-lg overflow-hidden bg-background shadow-2xl max-w-3xl mx-auto">
             {/* Email Template Preview */}
-            <div className="bg-white text-gray-900" style={{ maxWidth: '600px', width: '100%', margin: '0 auto' }}>
+            <div className="bg-white text-gray-900 font-sans" style={{ maxWidth: '640px', width: '100%', margin: '0 auto' }}>
               
-              {/* Email Header */}
-              <div className="bg-gradient-to-r from-gray-50 to-gray-100 px-6 py-4 border-b">
+              {/* Email Client Header */}
+              <div className="bg-gradient-to-r from-slate-50 via-white to-slate-50 px-8 py-5 border-b border-slate-200">
                 <div className="flex items-center justify-between">
-                  <div className="text-xs text-gray-600">
-                    Subject: {activeCampaignResults.email_copy?.subject || 'Transform Your Experience Today'}
+                  <div className="flex items-center gap-3">
+                    <div className="w-3 h-3 bg-primary rounded-full animate-pulse"></div>
+                    <div className="text-sm font-semibold text-gray-900">
+                      {activeCampaignResults.email_copy?.subject || 'Transform Your Experience Today ✨'}
+                    </div>
                   </div>
-                  <div className="text-xs text-gray-500">
-                    View in browser
+                  <div className="text-xs text-slate-500 hover:text-primary cursor-pointer transition-colors">
+                    View in browser →
                   </div>
+                </div>
+                <div className="text-xs text-slate-600 mt-2 font-medium">
+                  From: Your Brand &lt;hello@yourbrand.com&gt;
                 </div>
               </div>
 
-              {/* Hero Section with Image */}
-              <div className="relative bg-gradient-to-br from-primary/5 to-secondary/5 p-8">
-                {uploadedImage && (
-                  <div className="w-full max-w-sm mx-auto mb-6">
-                    <img src={uploadedImage} alt="Featured product" className="w-full h-auto rounded shadow-md" />
+              {/* Email Content */}
+              <div className="relative">
+                {/* Brand Header */}
+                <div className="bg-gradient-to-br from-slate-900 via-gray-900 to-black text-white px-8 py-12 relative overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-secondary/10"></div>
+                  <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl from-white/5 to-transparent rounded-full blur-3xl"></div>
+                  <div className="relative z-10 text-center">
+                    <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-2 mb-6">
+                      <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                      <span className="text-sm font-medium">New Launch</span>
+                    </div>
+                    <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+                      {activeCampaignResults.landing_page_concept?.hero_text || 'Transform Your Experience'}
+                    </h1>
+                    <p className="text-xl text-gray-300 max-w-lg mx-auto leading-relaxed">
+                      {activeCampaignResults.landing_page_concept?.sub_text || 'Discover innovative solutions designed for you'}
+                    </p>
                   </div>
-                )}
+                </div>
+
+                {/* Hero Product Section */}
+                <div className="bg-gradient-to-br from-white via-slate-50 to-gray-100 px-8 py-16 relative">
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5"></div>
+                  {uploadedImage && (
+                    <div className="relative z-10">
+                      <div className="max-w-md mx-auto relative">
+                        <div className="absolute -inset-8 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-3xl blur-2xl opacity-60"></div>
+                        <div className="relative bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-2xl border border-white/50">
+                          <img 
+                            src={uploadedImage} 
+                            alt="Featured product" 
+                            className="w-full h-auto rounded-xl shadow-lg hover:scale-105 transition-transform duration-500" 
+                          />
+                        </div>
+                      </div>
+                      
+                      {/* CTA Button */}
+                      <div className="text-center mt-12">
+                        <div className="inline-flex flex-col items-center gap-4">
+                          <button className="group relative bg-gradient-to-r from-gray-900 to-black text-white font-semibold text-lg px-12 py-4 rounded-full shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:scale-105 border border-gray-800">
+                            <span className="relative z-10">
+                              {activeCampaignResults.landing_page_concept?.cta || 'Shop Now'}
+                            </span>
+                            <div className="absolute inset-0 bg-gradient-to-r from-primary to-secondary opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full"></div>
+                          </button>
+                          <p className="text-sm text-gray-600 font-medium">
+                            Free shipping • 30-day returns • Premium quality
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
                 
-                <div className="text-center space-y-4">
-                  <h1 className="text-3xl font-bold text-gray-900">
-                    {activeCampaignResults.landing_page_concept?.hero_text || 'Transform Your Experience'}
-                  </h1>
-                  <p className="text-lg text-gray-600 max-w-md mx-auto">
-                    {activeCampaignResults.landing_page_concept?.sub_text || 'Discover innovative solutions designed for you'}
-                  </p>
+                {/* Content Section */}
+                <div className="bg-white px-8 py-16">
+                  <div className="max-w-2xl mx-auto">
+                    <div className="text-center mb-12">
+                      <h2 className="text-3xl font-bold text-gray-900 mb-6">Why Choose Us?</h2>
+                      <div className="prose prose-lg max-w-none text-center">
+                        <p className="text-gray-700 leading-relaxed text-lg">
+                          {activeCampaignResults.email_copy?.body || 'We are excited to share our latest innovation that will transform how you experience our products. This exclusive launch features cutting-edge technology and premium design that sets new standards in the industry.'}
+                        </p>
+                      </div>
+                    </div>
+                    
+                    {/* Enhanced Feature Grid */}
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
+                      <div className="group text-center relative">
+                        <div className="relative mx-auto w-20 h-20 mb-6">
+                          <div className="absolute inset-0 bg-gradient-to-br from-primary to-primary/70 rounded-2xl shadow-xl group-hover:shadow-2xl transition-all duration-300"></div>
+                          <div className="relative z-10 w-full h-full rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center">
+                            <div className="w-8 h-8 bg-white rounded-lg"></div>
+                          </div>
+                        </div>
+                        <h4 className="font-bold text-lg text-gray-900 mb-3">Premium Quality</h4>
+                        <p className="text-gray-600 leading-relaxed">Exceptional materials and craftsmanship in every detail</p>
+                      </div>
+                      
+                      <div className="group text-center relative">
+                        <div className="relative mx-auto w-20 h-20 mb-6">
+                          <div className="absolute inset-0 bg-gradient-to-br from-secondary to-secondary/70 rounded-2xl shadow-xl group-hover:shadow-2xl transition-all duration-300"></div>
+                          <div className="relative z-10 w-full h-full rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center">
+                            <div className="w-8 h-8 bg-white rounded-lg"></div>
+                          </div>
+                        </div>
+                        <h4 className="font-bold text-lg text-gray-900 mb-3">Fast Delivery</h4>
+                        <p className="text-gray-600 leading-relaxed">Free 2-day shipping with tracking on all orders</p>
+                      </div>
+                      
+                      <div className="group text-center relative">
+                        <div className="relative mx-auto w-20 h-20 mb-6">
+                          <div className="absolute inset-0 bg-gradient-to-br from-accent to-accent/70 rounded-2xl shadow-xl group-hover:shadow-2xl transition-all duration-300"></div>
+                          <div className="relative z-10 w-full h-full rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center">
+                            <div className="w-8 h-8 bg-white rounded-lg"></div>
+                          </div>
+                        </div>
+                        <h4 className="font-bold text-lg text-gray-900 mb-3">Money Back</h4>
+                        <p className="text-gray-600 leading-relaxed">30-day money-back guarantee, no questions asked</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Social Proof Section */}
+                <div className="bg-gradient-to-br from-slate-50 to-gray-100 px-8 py-16">
+                  <div className="max-w-2xl mx-auto text-center">
+                    <h3 className="text-2xl font-bold text-gray-900 mb-8">Trusted by thousands</h3>
+                    <div className="flex justify-center items-center gap-2 mb-6">
+                      {[...Array(5)].map((_, i) => (
+                        <div key={i} className="w-6 h-6 bg-yellow-400 rounded-full flex items-center justify-center">
+                          <span className="text-white text-xs">★</span>
+                        </div>
+                      ))}
+                      <span className="ml-2 text-gray-700 font-semibold">4.9/5 from 2,847 reviews</span>
+                    </div>
+                    <p className="text-gray-600 italic text-lg">
+                      "This completely changed how I approach my daily routine. The quality is unmatched!"
+                    </p>
+                    <p className="text-sm text-gray-500 mt-2 font-medium">- Sarah M., Verified Customer</p>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Enhanced Footer */}
+              <div className="bg-gradient-to-br from-gray-900 to-black text-white px-8 py-12">
+                <div className="text-center space-y-8">
+                  <div className="space-y-4">
+                    <h4 className="text-lg font-semibold">Stay Connected</h4>
+                    <p className="text-gray-300 max-w-md mx-auto">
+                      Follow us for exclusive updates, behind-the-scenes content, and special offers.
+                    </p>
+                  </div>
                   
-                  <div className="pt-4">
-                    <Button size="lg" className="bg-black text-white hover:bg-gray-800 px-8 py-3 text-lg">
-                      {activeCampaignResults.landing_page_concept?.cta || 'Shop Now'}
-                    </Button>
+                  {/* Social Icons */}
+                  <div className="flex justify-center gap-6">
+                    <div className="group cursor-pointer">
+                      <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110">
+                        <span className="text-white font-bold text-sm">f</span>
+                      </div>
+                    </div>
+                    <div className="group cursor-pointer">
+                      <div className="w-12 h-12 bg-gradient-to-br from-pink-500 to-purple-600 rounded-full flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110">
+                        <span className="text-white font-bold text-sm">@</span>
+                      </div>
+                    </div>
+                    <div className="group cursor-pointer">
+                      <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-500 rounded-full flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110">
+                        <span className="text-white font-bold text-sm">t</span>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
-              
-              {/* Email Body Content */}
-              <div className="p-8 space-y-6">
-                <div className="prose prose-sm max-w-none">
-                  <p className="text-gray-700 leading-relaxed whitespace-pre-wrap">
-                    {activeCampaignResults.email_copy?.body || 'We are excited to share our latest innovation that will transform how you experience our products. This exclusive launch features cutting-edge technology and premium design that sets new standards in the industry.'}
-                  </p>
-                </div>
-                
-                {/* Feature highlights */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  <div className="text-center p-4 bg-gray-50 rounded">
-                    <div className="w-8 h-8 bg-primary rounded-full mx-auto mb-2"></div>
-                    <h4 className="font-semibold text-sm">Premium Quality</h4>
-                    <p className="text-xs text-gray-600">Exceptional materials</p>
+                  
+                  {/* Footer Links */}
+                  <div className="border-t border-gray-700 pt-8 space-y-4">
+                    <div className="flex justify-center gap-8 text-sm">
+                      <a href="#" className="text-gray-300 hover:text-white transition-colors">Privacy Policy</a>
+                      <a href="#" className="text-gray-300 hover:text-white transition-colors">Terms of Service</a>
+                      <a href="#" className="text-gray-300 hover:text-white transition-colors">Contact Us</a>
+                      <a href="#" className="text-gray-300 hover:text-white transition-colors">Unsubscribe</a>
+                    </div>
+                    <p className="text-xs text-gray-400">
+                      © 2024 Your Brand. All rights reserved. | 123 Innovation Drive, Tech City, TC 12345
+                    </p>
                   </div>
-                  <div className="text-center p-4 bg-gray-50 rounded">
-                    <div className="w-8 h-8 bg-secondary rounded-full mx-auto mb-2"></div>
-                    <h4 className="font-semibold text-sm">Fast Delivery</h4>
-                    <p className="text-xs text-gray-600">Free 2-day shipping</p>
-                  </div>
-                  <div className="text-center p-4 bg-gray-50 rounded">
-                    <div className="w-8 h-8 bg-accent rounded-full mx-auto mb-2"></div>
-                    <h4 className="font-semibold text-sm">Money Back</h4>
-                    <p className="text-xs text-gray-600">30-day guarantee</p>
-                  </div>
-                </div>
-              </div>
-              
-              {/* Footer */}
-              <div className="bg-gray-50 p-6 text-center border-t">
-                <div className="space-y-2">
-                  <p className="text-xs text-gray-600">Follow us on social media for updates</p>
-                  <div className="flex justify-center gap-4">
-                    <div className="w-6 h-6 bg-gray-300 rounded-full"></div>
-                    <div className="w-6 h-6 bg-gray-300 rounded-full"></div>
-                    <div className="w-6 h-6 bg-gray-300 rounded-full"></div>
-                  </div>
-                  <p className="text-xs text-gray-500">
-                    © 2024 Your Brand. All rights reserved.
-                  </p>
                 </div>
               </div>
             </div>
