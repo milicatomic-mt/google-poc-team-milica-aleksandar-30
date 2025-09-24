@@ -362,11 +362,11 @@ const PreviewResultsScreen: React.FC = () => {
                     
                     {/* Right Column - Product Image */}
                     <div className="relative">
-                      {(activeCampaignResults?.generated_images?.[0]?.image || uploadedImage) && (
+                      {(activeCampaignResults?.generated_images?.[0]?.url || uploadedImage) && (
                         <div className="relative">
                           <div className="absolute -inset-4 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-2xl blur-2xl"></div>
                           <div className="relative bg-background/80 backdrop-blur-sm rounded-xl p-8 shadow-2xl border border-border">
-                            <img src={activeCampaignResults?.generated_images?.[0]?.image || uploadedImage} alt="Product showcase" className="w-full h-auto max-h-96 object-contain rounded" />
+                            <img src={activeCampaignResults?.generated_images?.[0]?.url || uploadedImage} alt="Product showcase" className="w-full h-auto max-h-96 object-contain rounded" />
                           </div>
                         </div>
                       )}
@@ -391,8 +391,8 @@ const PreviewResultsScreen: React.FC = () => {
                 <div className="bg-gradient-to-br from-gray-900 to-black text-white relative">
                   {/* Video Thumbnail */}
                   <div className="relative aspect-video">
-                        {activeCampaignResults?.generated_images?.[0]?.image ? (
-                          <img src={activeCampaignResults.generated_images[0].image} alt="Video thumbnail" className="w-full h-full object-cover" />
+                        {activeCampaignResults?.generated_images?.[0]?.url ? (
+                          <img src={activeCampaignResults.generated_images[0].url} alt="Video thumbnail" className="w-full h-full object-cover" />
                         ) : uploadedImage ? (
                           <img src={uploadedImage} alt="Video thumbnail" className="w-full h-full object-cover" />
                         ) : null}
@@ -923,9 +923,9 @@ const PreviewResultsScreen: React.FC = () => {
                       {activeCampaignResults.generated_images.slice(0, 2).map((img, index) => (
                         <div key={index} className="bg-white backdrop-blur-sm rounded p-2 overflow-hidden border border-white/20">
                           <div className="w-full h-full bg-primary/10 rounded overflow-hidden">
-                            {img.image || img.url ? (
+                            {img.url ? (
                               <img 
-                                src={img.image || img.url} 
+                                src={img.url} 
                                 alt={`Generated image ${index + 1}`}
                                 className="w-full h-full object-cover"
                               />
@@ -974,8 +974,8 @@ const PreviewResultsScreen: React.FC = () => {
                         <div className="flex items-start gap-2">
                           <div className="w-8 h-8 rounded-sm bg-primary/20 flex-shrink-0 overflow-hidden">
                             {/* Use generated image if available, fallback to uploaded image */}
-                            {activeCampaignResults?.generated_images?.[0]?.image ? (
-                              <img src={activeCampaignResults.generated_images[0].image} alt="Product" className="w-full h-full object-cover" />
+                            {activeCampaignResults?.generated_images?.[0]?.url ? (
+                              <img src={activeCampaignResults.generated_images[0].url} alt="Product" className="w-full h-full object-cover" />
                             ) : uploadedImage ? (
                               <img src={uploadedImage} alt="Product" className="w-full h-full object-cover" />
                             ) : null}
@@ -997,10 +997,10 @@ const PreviewResultsScreen: React.FC = () => {
                     <div className="bg-white backdrop-blur-sm rounded p-3 overflow-hidden flex flex-col border border-white/20">
                       <div className="w-full aspect-square bg-primary/20 rounded-sm mb-2 overflow-hidden">
                         {/* Use generated image if available, fallback to uploaded image */}
-                        {activeCampaignResults?.generated_images?.[1]?.image ? (
-                          <img src={activeCampaignResults.generated_images[1].image} alt="Product" className="w-full h-full object-cover" />
-                        ) : activeCampaignResults?.generated_images?.[0]?.image ? (
-                          <img src={activeCampaignResults.generated_images[0].image} alt="Product" className="w-full h-full object-cover" />
+                        {activeCampaignResults?.generated_images?.[1]?.url ? (
+                          <img src={activeCampaignResults.generated_images[1].url} alt="Product" className="w-full h-full object-cover" />
+                        ) : activeCampaignResults?.generated_images?.[0]?.url ? (
+                          <img src={activeCampaignResults.generated_images[0].url} alt="Product" className="w-full h-full object-cover" />
                         ) : uploadedImage ? (
                           <img src={uploadedImage} alt="Product" className="w-full h-full object-cover" />
                         ) : null}
@@ -1018,8 +1018,8 @@ const PreviewResultsScreen: React.FC = () => {
                       <div className="flex items-center gap-2 mb-2">
                         <div className="w-6 h-6 rounded-sm bg-primary/20 flex-shrink-0 overflow-hidden">
                           {/* Use generated image if available, fallback to uploaded image */}
-                          {activeCampaignResults?.generated_images?.[0]?.image ? (
-                            <img src={activeCampaignResults.generated_images[0].image} alt="Product" className="w-full h-full object-cover" />
+                          {activeCampaignResults?.generated_images?.[0]?.url ? (
+                            <img src={activeCampaignResults.generated_images[0].url} alt="Product" className="w-full h-full object-cover" />
                           ) : uploadedImage ? (
                             <img src={uploadedImage} alt="Product" className="w-full h-full object-cover" />
                           ) : null}
@@ -1040,10 +1040,10 @@ const PreviewResultsScreen: React.FC = () => {
                     <div className="bg-white backdrop-blur-sm rounded p-3 overflow-hidden relative border border-white/20">
                       <div className="w-full h-full bg-primary/20 rounded-sm flex items-center justify-center overflow-hidden">
                         {/* Use generated image if available, fallback to uploaded image */}
-                        {activeCampaignResults?.generated_images?.[1]?.image ? (
-                          <img src={activeCampaignResults.generated_images[1].image} alt="Product" className="w-full h-full object-cover" />
-                        ) : activeCampaignResults?.generated_images?.[0]?.image ? (
-                          <img src={activeCampaignResults.generated_images[0].image} alt="Product" className="w-full h-full object-cover" />
+                        {activeCampaignResults?.generated_images?.[1]?.url ? (
+                          <img src={activeCampaignResults.generated_images[1].url} alt="Product" className="w-full h-full object-cover" />
+                        ) : activeCampaignResults?.generated_images?.[0]?.url ? (
+                          <img src={activeCampaignResults.generated_images[0].url} alt="Product" className="w-full h-full object-cover" />
                         ) : uploadedImage ? (
                           <img src={uploadedImage} alt="Product" className="w-full h-full object-cover" />
                         ) : null}
@@ -1107,13 +1107,13 @@ const PreviewResultsScreen: React.FC = () => {
                       <div className="h-full relative overflow-hidden">
                         {/* Background Image with Overlay */}
                         <div className="absolute inset-0">
-                          {activeCampaignResults?.generated_images?.[1]?.image ? (
-                            <img 
-                              src={activeCampaignResults.generated_images[1].image} 
-                              alt="Background" 
-                              className="w-full h-full object-cover"
-                            />
-                          ) : uploadedImage ? (
+                           {activeCampaignResults?.generated_images?.[1]?.url ? (
+                             <img 
+                               src={activeCampaignResults.generated_images[1].url} 
+                               alt="Background" 
+                               className="w-full h-full object-cover"
+                             />
+                           ) : uploadedImage ? (
                             <img 
                               src={uploadedImage} 
                               alt="Background" 
@@ -1224,8 +1224,8 @@ const PreviewResultsScreen: React.FC = () => {
                     <div className="bg-black rounded overflow-hidden relative min-h-[120px] lg:h-full">
                       {/* Video Thumbnail with Play Button */}
                       <div className="relative w-full h-full">
-                        {activeCampaignResults?.generated_images?.[0]?.image ? (
-                          <img src={activeCampaignResults.generated_images[0].image} alt="Video thumbnail" className="w-full h-full object-cover" />
+                        {activeCampaignResults?.generated_images?.[0]?.url ? (
+                          <img src={activeCampaignResults.generated_images[0].url} alt="Video thumbnail" className="w-full h-full object-cover" />
                         ) : uploadedImage ? (
                           <img src={uploadedImage} alt="Video thumbnail" className="w-full h-full object-cover" />
                         ) : null}
@@ -1373,8 +1373,8 @@ const PreviewResultsScreen: React.FC = () => {
                             {/* Product Image */}
                             <div className="relative">
                               <div className="w-16 h-16 bg-primary/10 rounded-lg overflow-hidden shadow-sm border border-white/50">
-                                {activeCampaignResults?.generated_images?.[0]?.image ? (
-                                  <img src={activeCampaignResults.generated_images[0].image} alt="Product" className="w-full h-full object-cover" />
+                                {activeCampaignResults?.generated_images?.[0]?.url ? (
+                                  <img src={activeCampaignResults.generated_images[0].url} alt="Product" className="w-full h-full object-cover" />
                                 ) : uploadedImage ? (
                                   <img src={uploadedImage} alt="Product" className="w-full h-full object-cover" />
                                 ) : null}
