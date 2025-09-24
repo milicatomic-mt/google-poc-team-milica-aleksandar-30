@@ -158,36 +158,30 @@ const PreviewResultsScreen: React.FC = () => {
                   </div>
                   <div className="flex gap-4">
                     <div className="overflow-hidden rounded-lg border-2 border-border bg-white shadow-lg" style={{ width: '240px', height: '200px' }}>
-                      <div className="relative h-full flex">
-                        {/* Left Content Area */}
-                        <div className="flex-1 p-4 flex flex-col justify-between bg-gradient-to-br from-slate-50 to-slate-100">
-                          <div className="space-y-2">
-                            <div className="text-xs font-bold text-slate-900 uppercase tracking-wide">
-                              {activeCampaignResults.banner_ads?.[0]?.headline || 'PREMIUM QUALITY'}
-                            </div>
-                            <div className="text-[10px] text-slate-600 font-medium uppercase tracking-wider">
-                              MINIMALIST DESIGN
-                            </div>
-                            <p className="text-[9px] text-slate-500 leading-snug mt-2">
-                              {activeCampaignResults.banner_ads?.[0]?.description?.substring(0, 35) || 'Elevate your experience with premium craftsmanship'}
-                            </p>
+                      <div 
+                        className="relative h-full flex flex-col"
+                        style={{
+                          backgroundImage: `url(${generatedImages[0]?.url || uploadedImage})`,
+                          backgroundSize: 'cover',
+                          backgroundPosition: 'center',
+                          backgroundRepeat: 'no-repeat'
+                        }}
+                      >
+                        {/* Background overlay for better text contrast */}
+                        <div className="absolute inset-0 bg-black/20"></div>
+                        
+                        {/* Spacer to push content to bottom */}
+                        <div className="flex-1"></div>
+                        
+                        {/* Bottom text area - 1/4 of total height */}
+                        <div className="relative z-10 h-12 bg-gradient-to-t from-black/80 to-black/40 p-3 flex flex-col justify-center">
+                          <div className="text-xs font-bold text-white uppercase tracking-wide">
+                            {activeCampaignResults.banner_ads?.[0]?.headline || 'PREMIUM QUALITY'}
                           </div>
-                          <div className="space-y-2">
-                            <Button size="sm" className="text-[10px] font-semibold px-3 py-1 bg-slate-900 hover:bg-slate-800 text-white">
-                              {activeCampaignResults.banner_ads?.[0]?.cta || 'Shop Now'}
-                            </Button>
+                          <div className="text-[9px] text-white/90 font-medium uppercase tracking-wider">
+                            MINIMALIST DESIGN
                           </div>
                         </div>
-                        {/* Right Product Image */}
-                        {(generatedImages[0]?.url || uploadedImage) && (
-                          <div className="w-20 relative bg-slate-100 flex items-center justify-center p-2">
-                            <img 
-                              src={generatedImages[0]?.url || uploadedImage} 
-                              alt="Product" 
-                              className="w-full h-auto max-h-16 object-contain drop-shadow-sm" 
-                            />
-                          </div>
-                        )}
                       </div>
                     </div>
                     <div className="flex-1 text-xs">
