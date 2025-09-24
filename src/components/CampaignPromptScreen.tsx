@@ -83,6 +83,12 @@ const CampaignPromptScreen = () => {
       if (data.suggestions && data.suggestions.length > 0) {
         setPrompt(data.suggestions[0]);
         typePrompt(data.suggestions[0]);
+        
+        // Auto-fill target audience if available
+        if (data.targetAudience && data.targetAudience.length > 0) {
+          setSelectedAudiences(data.targetAudience);
+        }
+        
         toast.success('New prompt generated!');
       }
     } catch (error) {
@@ -111,14 +117,21 @@ const CampaignPromptScreen = () => {
     navigate(`/upload/${mode}`);
   };
 
-  // Load initial AI-generated prompt
+  // Load initial AI-generated prompt and auto-fill fields
   useEffect(() => {
     const aiGeneratedPrompt = location.state?.aiGeneratedPrompt;
+    const aiAnalysisData = location.state?.aiAnalysisData;
+    
     if (aiGeneratedPrompt && !prompt) {
       setPrompt(aiGeneratedPrompt);
       typePrompt(aiGeneratedPrompt);
     }
-  }, [location.state, prompt]);
+    
+    // Auto-fill target audience from AI analysis
+    if (aiAnalysisData?.targetAudience && selectedAudiences.length === 0) {
+      setSelectedAudiences(aiAnalysisData.targetAudience);
+    }
+  }, [location.state, prompt, selectedAudiences]);
 
   // Auto-adjust height when prompt changes
   useEffect(() => {

@@ -116,6 +116,46 @@ const CatalogPromptScreen = () => {
       if (data.suggestions && data.suggestions.length > 0) {
         setPrompt(data.suggestions[0]);
         typePrompt(data.suggestions[0]);
+        
+        // Auto-fill fields from AI analysis
+        if (data.category) {
+          const categoryMapping: { [key: string]: string } = {
+            "Fashion & Apparel": "Clothing & Apparel",
+            "Beauty & Personal Care": "Beauty & Personal Care",
+            "Electronics & Tech": "Electronics & Tech",
+            "Home & Garden": "Home & Garden",
+            "Food & Beverage": "Food & Beverages",
+            "Sports & Fitness": "Sports & Outdoor",
+            "Health & Wellness": "Health & Wellness"
+          };
+          
+          const mappedCategory = categoryMapping[data.category] || data.category;
+          if (predefinedCategories.includes(mappedCategory)) {
+            setProductCategory(mappedCategory);
+          } else {
+            setProductCategory("custom");
+            setCustomCategory(data.category);
+          }
+        }
+        
+        if (data.tone && brandTones.includes(data.tone)) {
+          setBrandTone(data.tone);
+        }
+        
+        if (data.platforms && data.platforms.length > 0) {
+          const matchingPlatform = data.platforms.find((p: string) => 
+            platforms.some(predefined => predefined.toLowerCase().includes(p.toLowerCase()))
+          );
+          if (matchingPlatform) {
+            const foundPlatform = platforms.find(p => 
+              p.toLowerCase().includes(matchingPlatform.toLowerCase())
+            );
+            if (foundPlatform) {
+              setPlatform(foundPlatform);
+            }
+          }
+        }
+        
         toast.success('New prompt generated!');
       }
     } catch (error) {
@@ -146,14 +186,59 @@ const CatalogPromptScreen = () => {
     navigate(`/upload/${mode}`);
   };
 
-  // Load initial AI-generated prompt
+  // Load initial AI-generated prompt and auto-fill fields
   useEffect(() => {
     const aiGeneratedPrompt = location.state?.aiGeneratedPrompt;
+    const aiAnalysisData = location.state?.aiAnalysisData;
+    
     if (aiGeneratedPrompt && !prompt) {
       setPrompt(aiGeneratedPrompt);
       typePrompt(aiGeneratedPrompt);
     }
-  }, [location.state, prompt]);
+    
+    // Auto-fill fields from AI analysis
+    if (aiAnalysisData) {
+      if (aiAnalysisData.category && !productCategory) {
+        // Map AI category to our predefined categories
+        const categoryMapping: { [key: string]: string } = {
+          "Fashion & Apparel": "Clothing & Apparel",
+          "Beauty & Personal Care": "Beauty & Personal Care",
+          "Electronics & Tech": "Electronics & Tech",
+          "Home & Garden": "Home & Garden",
+          "Food & Beverage": "Food & Beverages",
+          "Sports & Fitness": "Sports & Outdoor",
+          "Health & Wellness": "Health & Wellness"
+        };
+        
+        const mappedCategory = categoryMapping[aiAnalysisData.category] || aiAnalysisData.category;
+        if (predefinedCategories.includes(mappedCategory)) {
+          setProductCategory(mappedCategory);
+        } else {
+          setProductCategory("custom");
+          setCustomCategory(aiAnalysisData.category);
+        }
+      }
+      
+      if (aiAnalysisData.tone && !brandTone && brandTones.includes(aiAnalysisData.tone)) {
+        setBrandTone(aiAnalysisData.tone);
+      }
+      
+      if (aiAnalysisData.platforms && aiAnalysisData.platforms.length > 0 && !platform) {
+        // Use first platform that matches our predefined list
+        const matchingPlatform = aiAnalysisData.platforms.find((p: string) => 
+          platforms.some(predefined => predefined.toLowerCase().includes(p.toLowerCase()))
+        );
+        if (matchingPlatform) {
+          const foundPlatform = platforms.find(p => 
+            p.toLowerCase().includes(matchingPlatform.toLowerCase())
+          );
+          if (foundPlatform) {
+            setPlatform(foundPlatform);
+          }
+        }
+      }
+    }
+  }, [location.state, prompt, productCategory, brandTone, platform]);
 
   // Auto-adjust height when prompt changes
   useEffect(() => {

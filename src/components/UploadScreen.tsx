@@ -119,18 +119,19 @@ const UploadScreen: React.FC<UploadScreenProps> = ({ mode }) => {
                 } 
               });
             } else {
-              // Get AI suggestions for campaign mode
+              // Get AI analysis data for campaign mode
               let aiGeneratedPrompt = '';
+              let aiAnalysisData = null;
               try {
-                const suggestions = sessionStorage.getItem('aiSuggestions');
-                if (suggestions) {
-                  const parsedSuggestions = JSON.parse(suggestions);
-                  if (Array.isArray(parsedSuggestions) && parsedSuggestions.length > 0) {
-                    aiGeneratedPrompt = parsedSuggestions[0]; // Use first suggestion as initial prompt
+                const analysisData = sessionStorage.getItem('aiAnalysisData');
+                if (analysisData) {
+                  aiAnalysisData = JSON.parse(analysisData);
+                  if (aiAnalysisData?.suggestions && Array.isArray(aiAnalysisData.suggestions) && aiAnalysisData.suggestions.length > 0) {
+                    aiGeneratedPrompt = aiAnalysisData.suggestions[0]; // Use first suggestion as initial prompt
                   }
                 }
               } catch (error) {
-                console.error('Failed to parse AI suggestions:', error);
+                console.error('Failed to parse AI analysis data:', error);
               }
 
               navigate('/campaign-prompt', { 
@@ -138,6 +139,7 @@ const UploadScreen: React.FC<UploadScreenProps> = ({ mode }) => {
                   uploadedImage: imageToPass,
                   mode: currentMode,
                   aiGeneratedPrompt,
+                  aiAnalysisData,
                   uploadedFile: null // QR flow doesn't have file object
                 } 
               });
@@ -182,7 +184,7 @@ const UploadScreen: React.FC<UploadScreenProps> = ({ mode }) => {
     });
   };
 
-  const analyzeImageWithAI = async (imageBase64: string): Promise<string[]> => {
+  const analyzeImageWithAI = async (imageBase64: string): Promise<any> => {
     try {
       const { data, error } = await supabase.functions.invoke('analyze-image', {
         body: { imageBase64 }
@@ -190,13 +192,13 @@ const UploadScreen: React.FC<UploadScreenProps> = ({ mode }) => {
       
       if (error) {
         console.error('Error analyzing image:', error);
-        return [];
+        return { suggestions: [] };
       }
       
-      return data?.suggestions || [];
+      return data || { suggestions: [] };
     } catch (error) {
       console.error('Error calling analyze-image function:', error);
-      return [];
+      return { suggestions: [] };
     }
   };
 
@@ -223,9 +225,9 @@ const UploadScreen: React.FC<UploadScreenProps> = ({ mode }) => {
         if (currentMode === 'campaign' || currentMode === 'catalog') {
           setIsAnalyzingImage(true);
           try {
-            const suggestions = await analyzeImageWithAI(base64Image);
-            // Store suggestions in state to pass to appropriate screen
-            sessionStorage.setItem('aiSuggestions', JSON.stringify(suggestions));
+            const analysisData = await analyzeImageWithAI(base64Image);
+            // Store full analysis data in state to pass to appropriate screen
+            sessionStorage.setItem('aiAnalysisData', JSON.stringify(analysisData));
           } catch (error) {
             console.error('Failed to analyze image:', error);
           } finally {
@@ -310,25 +312,26 @@ const UploadScreen: React.FC<UploadScreenProps> = ({ mode }) => {
     setUploadedFile(null);
     setValidationResult(null);
     setIsAnalyzingImage(false);
-    // Clear any stored AI suggestions
-    sessionStorage.removeItem('aiSuggestions');
+    // Clear any stored AI analysis data
+    sessionStorage.removeItem('aiAnalysisData');
     toast.success('Image removed');
   };
 
   const handleContinue = () => {
     if (uploadedImage && validationResult?.isValid) {
-      // Get AI suggestions for both modes
+      // Get AI analysis data for both modes
       let aiGeneratedPrompt = '';
+      let aiAnalysisData = null;
       try {
-        const suggestions = sessionStorage.getItem('aiSuggestions');
-        if (suggestions) {
-          const parsedSuggestions = JSON.parse(suggestions);
-          if (Array.isArray(parsedSuggestions) && parsedSuggestions.length > 0) {
-            aiGeneratedPrompt = parsedSuggestions[0]; // Use first suggestion as initial prompt
+        const analysisData = sessionStorage.getItem('aiAnalysisData');
+        if (analysisData) {
+          aiAnalysisData = JSON.parse(analysisData);
+          if (aiAnalysisData?.suggestions && Array.isArray(aiAnalysisData.suggestions) && aiAnalysisData.suggestions.length > 0) {
+            aiGeneratedPrompt = aiAnalysisData.suggestions[0]; // Use first suggestion as initial prompt
           }
         }
       } catch (error) {
-        console.error('Failed to parse AI suggestions:', error);
+        console.error('Failed to parse AI analysis data:', error);
       }
 
       if (currentMode === 'catalog') {
@@ -338,6 +341,7 @@ const UploadScreen: React.FC<UploadScreenProps> = ({ mode }) => {
             uploadedImage,
             uploadedFile,
             aiGeneratedPrompt,
+            aiAnalysisData,
             mode: currentMode
           } 
         });
@@ -348,6 +352,7 @@ const UploadScreen: React.FC<UploadScreenProps> = ({ mode }) => {
             uploadedImage,
             mode: currentMode,
             aiGeneratedPrompt,
+            aiAnalysisData,
             uploadedFile
           } 
         });

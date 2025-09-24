@@ -37,7 +37,7 @@ serve(async (req) => {
           {
             parts: [
               {
-                text: "Analyze this image and provide two types of responses:\n\n1. Generate 4-5 creative marketing campaign prompt suggestions. Each suggestion must be exactly 2 sentences or less and describe a specific marketing campaign based on what you see. Focus on the product, style, target audience, or key visual elements.\n\n2. Generate exactly 2 detailed image generation prompts based on what you see. Each prompt should describe a new image variation that could be created for marketing purposes - such as different angles, styling, backgrounds, or product variations while maintaining the core product identity. Make each prompt highly detailed with specific lighting, composition, style, and visual elements.\n\nReturn the response as a JSON object with two arrays: 'campaignSuggestions' and 'imagePrompts'."
+                text: "Analyze this image and provide a comprehensive analysis with the following information:\n\n1. Generate 4-5 creative marketing campaign prompt suggestions. Each suggestion must be exactly 2 sentences or less and describe a specific marketing campaign based on what you see. Focus on the product, style, target audience, or key visual elements.\n\n2. Generate exactly 2 detailed image generation prompts based on what you see. Each prompt should describe a new image variation that could be created for marketing purposes - such as different angles, styling, backgrounds, or product variations while maintaining the core product identity. Make each prompt highly detailed with specific lighting, composition, style, and visual elements.\n\n3. Identify the target audience for this product. Consider age groups (Gen Z 18-24, Millennials 25-40, Gen X 41-56, Baby Boomers 57+) and interests that would align with this product.\n\n4. Determine the product category from these options: Fashion & Apparel, Beauty & Personal Care, Electronics & Tech, Home & Garden, Food & Beverage, Sports & Fitness, Automotive, Books & Media, Toys & Games, Health & Wellness, Travel & Leisure, Business & Professional, Art & Crafts, Pet Supplies, Jewelry & Accessories, Other.\n\n5. Suggest an appropriate brand tone from: Professional, Casual, Luxury, Playful, Minimalist, Bold, Elegant, Trendy.\n\n6. Recommend suitable platforms from: Instagram, Facebook, TikTok, LinkedIn, Twitter, Pinterest, YouTube, Email.\n\nReturn the response as a JSON object with the following structure:\n{\n  \"campaignSuggestions\": [array of campaign suggestions],\n  \"imagePrompts\": [array of 2 image generation prompts],\n  \"targetAudience\": [array of relevant audience segments],\n  \"category\": \"product category\",\n  \"tone\": \"suggested brand tone\",\n  \"platforms\": [array of recommended platforms]\n}"
               },
               {
                 inline_data: {
@@ -62,9 +62,13 @@ serve(async (req) => {
     const data = await response.json();
     const generatedText = data.candidates?.[0]?.content?.parts?.[0]?.text || '';
     
-    // Try to extract both campaign suggestions and image generation prompts from the response
+    // Try to extract all analysis data from the response
     let suggestions = [];
     let imagePrompts = [];
+    let targetAudience = [];
+    let category = "Other";
+    let tone = "Professional";
+    let platforms = ["Instagram", "Facebook"];
     
     try {
       // Look for JSON object in the response
@@ -73,12 +77,22 @@ serve(async (req) => {
         const parsedResponse = JSON.parse(jsonMatch[0]);
         suggestions = parsedResponse.campaignSuggestions || [];
         imagePrompts = parsedResponse.imagePrompts || [];
+        targetAudience = parsedResponse.targetAudience || [];
+        category = parsedResponse.category || "Other";
+        tone = parsedResponse.tone || "Professional";
+        platforms = parsedResponse.platforms || ["Instagram", "Facebook"];
       } else {
         // Fallback: try to extract arrays separately
         const arrayMatches = generatedText.match(/\[[\s\S]*?\]/g);
         if (arrayMatches && arrayMatches.length >= 2) {
           suggestions = JSON.parse(arrayMatches[0]);
           imagePrompts = JSON.parse(arrayMatches[1]);
+          if (arrayMatches.length >= 3) {
+            targetAudience = JSON.parse(arrayMatches[2]);
+          }
+          if (arrayMatches.length >= 4) {
+            platforms = JSON.parse(arrayMatches[3]);
+          }
         } else {
           // Manual parsing fallback
           const lines = generatedText
@@ -90,6 +104,41 @@ serve(async (req) => {
           // Take first 5 as campaign suggestions, next 2 as image prompts
           suggestions = lines.slice(0, 5);
           imagePrompts = lines.slice(5, 7);
+        }
+        
+        // Try to extract category, tone, and other fields from text
+        const lowerText = generatedText.toLowerCase();
+        
+        // Extract category
+        const categories = ["fashion & apparel", "beauty & personal care", "electronics & tech", "home & garden", "food & beverage", "sports & fitness", "automotive", "books & media", "toys & games", "health & wellness", "travel & leisure", "business & professional", "art & crafts", "pet supplies", "jewelry & accessories"];
+        for (const cat of categories) {
+          if (lowerText.includes(cat.toLowerCase())) {
+            category = cat.charAt(0).toUpperCase() + cat.slice(1);
+            break;
+          }
+        }
+        
+        // Extract tone
+        const tones = ["professional", "casual", "luxury", "playful", "minimalist", "bold", "elegant", "trendy"];
+        for (const t of tones) {
+          if (lowerText.includes(t)) {
+            tone = t.charAt(0).toUpperCase() + t.slice(1);
+            break;
+          }
+        }
+        
+        // Extract target audience
+        if (lowerText.includes("gen z") || lowerText.includes("18-24")) {
+          targetAudience.push("Gen Z (18-24)");
+        }
+        if (lowerText.includes("millennial") || lowerText.includes("25-40")) {
+          targetAudience.push("Millennials (25-40)");
+        }
+        if (lowerText.includes("gen x") || lowerText.includes("41-56")) {
+          targetAudience.push("Gen X (41-56)");
+        }
+        if (lowerText.includes("baby boomer") || lowerText.includes("57+")) {
+          targetAudience.push("Baby Boomers (57+)");
         }
       }
       
@@ -113,6 +162,11 @@ serve(async (req) => {
         imagePrompts = imagePrompts.slice(0, 2);
       }
       
+      // Ensure we have at least one target audience
+      if (targetAudience.length === 0) {
+        targetAudience = ["Millennials (25-40)"];
+      }
+      
     } catch (e) {
       console.error('Error parsing response:', e);
       // Fallback values
@@ -126,11 +180,19 @@ serve(async (req) => {
         "Professional product photography with clean white background, soft studio lighting, high detail, commercial photography style",
         "Lifestyle product shot in natural environment, warm ambient lighting, shallow depth of field, lifestyle photography style"
       ];
+      targetAudience = ["Millennials (25-40)"];
+      category = "Other";
+      tone = "Professional";
+      platforms = ["Instagram", "Facebook"];
     }
 
     return new Response(JSON.stringify({ 
       suggestions: suggestions,
-      imagePrompts: imagePrompts 
+      imagePrompts: imagePrompts,
+      targetAudience: targetAudience,
+      category: category,
+      tone: tone,
+      platforms: platforms
     }), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     });
