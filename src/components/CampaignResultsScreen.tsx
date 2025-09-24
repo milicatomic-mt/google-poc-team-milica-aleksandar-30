@@ -300,14 +300,17 @@ const CampaignResultsScreen = () => {
                               <Play className="w-8 h-8 text-white/60" />
                             </div>
                           )}
-                          <div className="absolute inset-0 bg-black/40"></div>
-                          
-                          {/* Video Controls Overlay */}
-                          <div className="absolute inset-0 flex items-center justify-center">
-                            <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm">
-                              <Play className="w-6 h-6 text-white" />
-                            </div>
-                          </div>
+                          {!generatedVideoUrl && (
+                            <>
+                              <div className="absolute inset-0 bg-black/40"></div>
+                              {/* Video Controls Overlay (only when video isn't ready) */}
+                              <div className="absolute inset-0 flex items-center justify-center">
+                                <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm">
+                                  <Play className="w-6 h-6 text-white" />
+                                </div>
+                              </div>
+                            </>
+                          )}
                           
                           {/* Platform Badge */}
                           <div className="absolute top-4 right-4">
