@@ -157,27 +157,35 @@ const PreviewResultsScreen: React.FC = () => {
                     <Badge className="text-xs bg-green-100 text-green-800">Most Popular</Badge>
                   </div>
                   <div className="flex gap-4">
-                    <div className="overflow-hidden rounded-lg border-2 border-border bg-gradient-to-br from-background to-primary/5 shadow-lg" style={{ width: '240px', height: '200px' }}>
+                    <div className="overflow-hidden rounded-lg border-2 border-border bg-white shadow-lg" style={{ width: '240px', height: '200px' }}>
                       <div className="relative h-full flex">
-                        <div className="flex-1 p-3 flex flex-col justify-between bg-gradient-to-br from-background/95 to-primary/10">
+                        {/* Left Content Area */}
+                        <div className="flex-1 p-4 flex flex-col justify-between bg-gradient-to-br from-slate-50 to-slate-100">
                           <div className="space-y-2">
-                            <h5 className="text-xs font-bold text-foreground leading-tight">
-                              {activeCampaignResults.banner_ads?.[0]?.headline || 'Transform Your Brand'}
-                            </h5>
-                            <p className="text-[10px] text-muted-foreground leading-snug">
-                              {activeCampaignResults.banner_ads?.[0]?.description?.substring(0, 35) || 'Discover solutions'}...
+                            <div className="text-xs font-bold text-slate-900 uppercase tracking-wide">
+                              {activeCampaignResults.banner_ads?.[0]?.headline || 'PREMIUM QUALITY'}
+                            </div>
+                            <div className="text-[10px] text-slate-600 font-medium uppercase tracking-wider">
+                              MINIMALIST DESIGN
+                            </div>
+                            <p className="text-[9px] text-slate-500 leading-snug mt-2">
+                              {activeCampaignResults.banner_ads?.[0]?.description?.substring(0, 35) || 'Elevate your experience with premium craftsmanship'}
                             </p>
                           </div>
-                          <div className="space-y-1">
-                            <div className="w-6 h-0.5 rounded-full bg-primary"></div>
-                            <Button size="sm" className="text-[10px] font-semibold px-2 py-1">
+                          <div className="space-y-2">
+                            <Button size="sm" className="text-[10px] font-semibold px-3 py-1 bg-slate-900 hover:bg-slate-800 text-white">
                               {activeCampaignResults.banner_ads?.[0]?.cta || 'Shop Now'}
                             </Button>
                           </div>
                         </div>
+                        {/* Right Product Image */}
                         {(generatedImages[0]?.url || uploadedImage) && (
-                          <div className="w-16 relative overflow-hidden">
-                            <img src={generatedImages[0]?.url || uploadedImage} alt="Product" className="w-full h-full object-cover" />
+                          <div className="w-20 relative bg-slate-100 flex items-center justify-center p-2">
+                            <img 
+                              src={generatedImages[0]?.url || uploadedImage} 
+                              alt="Product" 
+                              className="w-full h-auto max-h-16 object-contain drop-shadow-sm" 
+                            />
                           </div>
                         )}
                       </div>
@@ -186,9 +194,10 @@ const PreviewResultsScreen: React.FC = () => {
                       <div className="bg-muted/20 p-3 rounded-lg h-full">
                         <h6 className="font-semibold mb-2">Layout Notes:</h6>
                         <ul className="space-y-1 text-muted-foreground text-[11px]">
-                          <li>• Sidebar placement format</li>
-                          <li>• Content + product image</li>
-                          <li>• Gradient background</li>
+                          <li>• Clean minimalist design</li>
+                          <li>• Bold typography hierarchy</li>
+                          <li>• Product showcase area</li>
+                          <li>• Premium color scheme</li>
                         </ul>
                       </div>
                     </div>
@@ -202,33 +211,36 @@ const PreviewResultsScreen: React.FC = () => {
                     <Badge variant="secondary" className="text-xs">Header/Footer</Badge>
                   </div>
                   <div className="space-y-2">
-                    <div className="overflow-hidden rounded-lg border-2 border-border bg-gradient-to-r from-background to-secondary/5 shadow-lg" style={{ width: '100%', height: '70px', maxWidth: '580px' }}>
-                      <div className="relative h-full flex items-center">
-                        <div className="flex items-center gap-3 flex-1 px-4">
-                          <div className="w-1 h-8 rounded-full bg-primary"></div>
-                          {(generatedImages[1]?.url || uploadedImage) && (
-                            <div className="w-12 h-12 rounded-lg overflow-hidden shadow-lg border border-background">
-                              <img src={generatedImages[1]?.url || uploadedImage} alt="Product" className="w-full h-full object-cover" />
-                            </div>
-                          )}
-                          <div className="space-y-1 flex-1">
-                            <h5 className="text-sm font-bold text-foreground">
-                              {activeCampaignResults.banner_ads?.[0]?.headline || 'Transform Your Brand'}
+                    <div className="overflow-hidden rounded-lg border-2 border-border bg-white shadow-lg" style={{ width: '100%', height: '70px', maxWidth: '580px' }}>
+                      <div className="relative h-full flex items-center bg-gradient-to-r from-slate-50 to-white">
+                        {/* Left Product Image */}
+                        {(generatedImages[1]?.url || uploadedImage) && (
+                          <div className="w-16 h-full bg-slate-100 flex items-center justify-center p-2">
+                            <img 
+                              src={generatedImages[1]?.url || uploadedImage} 
+                              alt="Product" 
+                              className="w-full h-auto max-h-10 object-contain drop-shadow-sm" 
+                            />
+                          </div>
+                        )}
+                        {/* Content Area */}
+                        <div className="flex-1 px-4 flex items-center justify-between">
+                          <div className="space-y-1">
+                            <h5 className="text-sm font-bold text-slate-900 uppercase tracking-wide">
+                              {activeCampaignResults.banner_ads?.[0]?.headline || 'PREMIUM QUALITY'}
                             </h5>
-                            <p className="text-[10px] text-muted-foreground truncate">
-                              {activeCampaignResults.banner_ads?.[0]?.description?.substring(0, 50) || 'Discover solutions'}
+                            <p className="text-[10px] text-slate-600 font-medium uppercase tracking-wider">
+                              MINIMALIST DESIGN
                             </p>
                           </div>
-                        </div>
-                        <div className="px-4">
-                          <Button size="sm" className="text-xs font-semibold px-4 py-1">
-                            {activeCampaignResults.banner_ads?.[0]?.cta || 'Get Started'}
+                          <Button size="sm" className="text-xs font-semibold px-4 py-1 bg-slate-900 hover:bg-slate-800 text-white">
+                            {activeCampaignResults.banner_ads?.[0]?.cta || 'Shop Now'}
                           </Button>
                         </div>
                       </div>
                     </div>
                     <div className="bg-muted/20 p-2 rounded text-[11px] text-muted-foreground">
-                      Horizontal layout ideal for website headers and footers.
+                      Horizontal layout with prominent product image and clean typography.
                     </div>
                   </div>
                 </div>
@@ -240,33 +252,39 @@ const PreviewResultsScreen: React.FC = () => {
                     <Badge className="text-xs bg-purple-100 text-purple-800">Premium</Badge>
                   </div>
                   <div className="space-y-2">
-                    <div className="overflow-hidden rounded-lg border-2 border-border bg-gradient-to-r from-background via-primary/5 to-secondary/10 shadow-lg" style={{ width: '100%', height: '100px', maxWidth: '580px' }}>
-                      <div className="relative h-full flex items-center">
+                    <div className="overflow-hidden rounded-lg border-2 border-border bg-white shadow-lg" style={{ width: '100%', height: '100px', maxWidth: '580px' }}>
+                      <div className="relative h-full flex items-center bg-gradient-to-r from-slate-50 via-white to-slate-50">
+                        {/* Left Content */}
                         <div className="flex-1 p-4 space-y-2">
-                          <div className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-medium bg-primary/10 text-primary border border-primary/20">
-                            ✨ Limited Offer
+                          <div className="text-lg font-bold text-slate-900 uppercase tracking-wide">
+                            {activeCampaignResults.banner_ads?.[0]?.headline || 'PREMIUM QUALITY'}
                           </div>
-                          <h5 className="text-sm font-bold text-foreground leading-tight">
-                            {activeCampaignResults.banner_ads?.[0]?.headline || 'Transform Your Brand'}
-                          </h5>
-                          <p className="text-[10px] text-muted-foreground leading-relaxed">
-                            {activeCampaignResults.banner_ads?.[0]?.description?.substring(0, 60) || 'Discover innovative solutions'}...
+                          <div className="text-xs text-slate-600 font-medium uppercase tracking-wider">
+                            MINIMALIST DESIGN
+                          </div>
+                          <p className="text-[10px] text-slate-500 leading-relaxed">
+                            {activeCampaignResults.banner_ads?.[0]?.description?.substring(0, 50) || 'Experience the perfect blend of form and function'}
                           </p>
                         </div>
-                        <div className="flex gap-2 pr-4">
+                        {/* Right Area */}
+                        <div className="flex items-center gap-3 pr-4">
                           {(generatedImages[0]?.url || uploadedImage) && (
-                            <div className="w-20 h-16 rounded-lg overflow-hidden shadow-lg border border-background">
-                              <img src={generatedImages[0]?.url || uploadedImage} alt="Product" className="w-full h-full object-cover" />
+                            <div className="w-16 h-16 bg-slate-100 rounded-lg flex items-center justify-center p-2">
+                              <img 
+                                src={generatedImages[0]?.url || uploadedImage} 
+                                alt="Product" 
+                                className="w-full h-auto object-contain drop-shadow-sm" 
+                              />
                             </div>
                           )}
-                          <Button size="sm" className="text-xs px-3 py-1">
-                            {activeCampaignResults.banner_ads?.[0]?.cta || 'Shop'}
+                          <Button size="sm" className="text-xs font-semibold px-4 py-2 bg-slate-900 hover:bg-slate-800 text-white">
+                            {activeCampaignResults.banner_ads?.[0]?.cta || 'Shop Now'}
                           </Button>
                         </div>
                       </div>
                     </div>
                     <div className="bg-muted/20 p-2 rounded text-[11px] text-muted-foreground">
-                      Wide premium format for above-the-fold placements.
+                      Wide premium format with clean product integration and strong CTA.
                     </div>
                   </div>
                 </div>
@@ -281,36 +299,48 @@ const PreviewResultsScreen: React.FC = () => {
                     <Badge variant="secondary" className="text-xs">Sidebar</Badge>
                   </div>
                   <div className="flex gap-4">
-                    <div className="overflow-hidden rounded-lg border-2 border-border bg-gradient-to-b from-background via-accent/5 to-secondary/10 shadow-lg" style={{ width: '160px', height: '280px' }}>
-                      <div className="relative h-full flex flex-col p-3">
+                    <div className="overflow-hidden rounded-lg border-2 border-border bg-white shadow-lg" style={{ width: '160px', height: '280px' }}>
+                      <div className="relative h-full flex flex-col bg-gradient-to-b from-slate-50 to-white">
+                        {/* Top Product Image */}
                         {(generatedImages[2]?.url || uploadedImage) && (
-                          <div className="w-full h-20 rounded-lg overflow-hidden shadow-md mb-3">
-                            <img src={generatedImages[2]?.url || uploadedImage} alt="Product" className="w-full h-full object-cover" />
+                          <div className="h-24 bg-slate-100 flex items-center justify-center p-3">
+                            <img 
+                              src={generatedImages[2]?.url || uploadedImage} 
+                              alt="Product" 
+                              className="w-full h-auto max-h-16 object-contain drop-shadow-sm" 
+                            />
                           </div>
                         )}
-                        <div className="flex-1 flex flex-col justify-between text-center">
+                        {/* Content Area */}
+                        <div className="flex-1 p-3 flex flex-col justify-between text-center">
                           <div className="space-y-2">
-                            <h5 className="text-xs font-bold text-foreground leading-tight">
-                              {activeCampaignResults.banner_ads?.[0]?.headline || 'Transform Brand'}
+                            <h5 className="text-xs font-bold text-slate-900 uppercase tracking-wide leading-tight">
+                              {activeCampaignResults.banner_ads?.[0]?.headline || 'PREMIUM QUALITY'}
                             </h5>
-                            <p className="text-[10px] text-muted-foreground leading-relaxed">
-                              {activeCampaignResults.banner_ads?.[0]?.description?.substring(0, 40) || 'Discover solutions'}...
+                            <div className="text-[9px] text-slate-600 font-medium uppercase tracking-wider">
+                              MINIMALIST DESIGN
+                            </div>
+                            <p className="text-[9px] text-slate-500 leading-relaxed">
+                              {activeCampaignResults.banner_ads?.[0]?.description?.substring(0, 40) || 'Experience premium craftsmanship'}
                             </p>
+                            
+                            {/* Feature Points */}
                             <div className="space-y-1 py-2">
-                              <div className="flex items-center gap-1 text-[9px]">
-                                <div className="w-1 h-1 bg-primary rounded-full"></div>
-                                <span className="text-muted-foreground">Quality</span>
+                              <div className="flex items-center justify-center gap-1 text-[8px]">
+                                <div className="w-1 h-1 bg-slate-600 rounded-full"></div>
+                                <span className="text-slate-600 uppercase tracking-wide">Superior Quality</span>
                               </div>
-                              <div className="flex items-center gap-1 text-[9px]">
-                                <div className="w-1 h-1 bg-secondary rounded-full"></div>
-                                <span className="text-muted-foreground">Speed</span>
+                              <div className="flex items-center justify-center gap-1 text-[8px]">
+                                <div className="w-1 h-1 bg-slate-600 rounded-full"></div>
+                                <span className="text-slate-600 uppercase tracking-wide">Fast Delivery</span>
                               </div>
                             </div>
                           </div>
+                          
                           <div className="space-y-2">
-                            <div className="w-full h-px bg-primary opacity-60"></div>
-                            <Button size="sm" className="w-full text-[10px] font-semibold py-1">
-                              {activeCampaignResults.banner_ads?.[0]?.cta || 'Learn More'}
+                            <div className="w-full h-px bg-slate-200"></div>
+                            <Button size="sm" className="w-full text-[10px] font-semibold py-1 bg-slate-900 hover:bg-slate-800 text-white">
+                              {activeCampaignResults.banner_ads?.[0]?.cta || 'Shop Now'}
                             </Button>
                           </div>
                         </div>
@@ -320,10 +350,10 @@ const PreviewResultsScreen: React.FC = () => {
                       <div className="bg-muted/20 p-3 rounded-lg h-full">
                         <h6 className="font-semibold mb-2">Layout Notes:</h6>
                         <ul className="space-y-1 text-muted-foreground text-[11px]">
-                          <li>• Vertical sidebar format</li>
-                          <li>• Hero image + content</li>
-                          <li>• Feature bullets</li>
-                          <li>• Full-width CTA</li>
+                          <li>• Vertical product showcase</li>
+                          <li>• Clean typography stack</li>
+                          <li>• Feature highlights</li>
+                          <li>• Minimalist aesthetic</li>
                         </ul>
                       </div>
                     </div>
@@ -337,43 +367,51 @@ const PreviewResultsScreen: React.FC = () => {
                     <Badge className="text-xs bg-blue-100 text-blue-800">High Impact</Badge>
                   </div>
                   <div className="flex gap-4">
-                    <div className="overflow-hidden rounded-lg border-2 border-border bg-gradient-to-b from-background via-primary/5 to-accent/10 shadow-lg" style={{ width: '240px', height: '280px' }}>
-                      <div className="relative h-full flex flex-col">
-                        <div className="relative h-20 overflow-hidden">
+                    <div className="overflow-hidden rounded-lg border-2 border-border bg-white shadow-lg" style={{ width: '240px', height: '280px' }}>
+                      <div className="relative h-full flex flex-col bg-gradient-to-b from-slate-50 to-white">
+                        {/* Hero Product Area */}
+                        <div className="relative h-24 bg-slate-100 flex items-center justify-center p-4">
                           {(generatedImages[3]?.url || uploadedImage) && (
-                            <img src={generatedImages[3]?.url || uploadedImage} alt="Product" className="w-full h-full object-cover" />
+                            <img 
+                              src={generatedImages[3]?.url || uploadedImage} 
+                              alt="Product" 
+                              className="w-full h-auto max-h-16 object-contain drop-shadow-sm" 
+                            />
                           )}
-                          <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent"></div>
                         </div>
-                        <div className="flex-1 p-3 flex flex-col justify-between">
+                        
+                        {/* Content Section */}
+                        <div className="flex-1 p-4 flex flex-col justify-between">
                           <div className="space-y-2">
                             <div className="text-center space-y-1">
-                              <h5 className="text-xs font-bold text-foreground leading-tight">
-                                {activeCampaignResults.banner_ads?.[0]?.headline || 'Transform Brand'}
+                              <h5 className="text-sm font-bold text-slate-900 uppercase tracking-wide leading-tight">
+                                {activeCampaignResults.banner_ads?.[0]?.headline || 'PREMIUM QUALITY'}
                               </h5>
-                              <p className="text-[10px] text-muted-foreground">
-                                {activeCampaignResults.banner_ads?.[0]?.description?.substring(0, 45) || 'Discover solutions'}...
+                              <div className="text-[10px] text-slate-600 font-medium uppercase tracking-wider">
+                                MINIMALIST DESIGN
+                              </div>
+                              <p className="text-[9px] text-slate-500 leading-relaxed">
+                                {activeCampaignResults.banner_ads?.[0]?.description?.substring(0, 45) || 'Experience the perfect blend of form and function'}
                               </p>
                             </div>
-                            <div className="grid grid-cols-2 gap-1 py-2">
-                              <div className="text-center p-1 bg-background/60 rounded text-[9px]">
-                                <div className="w-4 h-4 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-1">
-                                  <div className="w-2 h-2 bg-primary rounded-full"></div>
-                                </div>
-                                <span className="text-foreground">Quality</span>
+                            
+                            {/* Feature Grid */}
+                            <div className="grid grid-cols-2 gap-2 py-2">
+                              <div className="text-center p-2 bg-slate-50 rounded text-[8px]">
+                                <div className="w-3 h-3 bg-slate-300 rounded-full mx-auto mb-1"></div>
+                                <span className="text-slate-700 uppercase tracking-wide font-medium">Quality</span>
                               </div>
-                              <div className="text-center p-1 bg-background/60 rounded text-[9px]">
-                                <div className="w-4 h-4 bg-secondary/20 rounded-full flex items-center justify-center mx-auto mb-1">
-                                  <div className="w-2 h-2 bg-secondary rounded-full"></div>
-                                </div>
-                                <span className="text-foreground">Speed</span>
+                              <div className="text-center p-2 bg-slate-50 rounded text-[8px]">
+                                <div className="w-3 h-3 bg-slate-300 rounded-full mx-auto mb-1"></div>
+                                <span className="text-slate-700 uppercase tracking-wide font-medium">Design</span>
                               </div>
                             </div>
                           </div>
+                          
                           <div className="space-y-2 text-center">
-                            <div className="w-full h-px bg-gradient-to-r from-transparent via-primary to-transparent"></div>
-                            <Button size="sm" className="w-full text-[10px] font-semibold py-1">
-                              {activeCampaignResults.banner_ads?.[0]?.cta || 'Get Started'}
+                            <div className="w-full h-px bg-slate-200"></div>
+                            <Button size="sm" className="w-full text-[10px] font-semibold py-2 bg-slate-900 hover:bg-slate-800 text-white">
+                              {activeCampaignResults.banner_ads?.[0]?.cta || 'Shop Now'}
                             </Button>
                           </div>
                         </div>
@@ -383,10 +421,10 @@ const PreviewResultsScreen: React.FC = () => {
                       <div className="bg-muted/20 p-3 rounded-lg h-full">
                         <h6 className="font-semibold mb-2">Layout Notes:</h6>
                         <ul className="space-y-1 text-muted-foreground text-[11px]">
-                          <li>• Hero image header</li>
-                          <li>• Feature grid 2x2</li>
-                          <li>• Full-width CTA</li>
-                          <li>• Premium placement</li>
+                          <li>• Hero product showcase</li>
+                          <li>• Structured content hierarchy</li>
+                          <li>• Feature highlight grid</li>
+                          <li>• Premium brand aesthetic</li>
                         </ul>
                       </div>
                     </div>
