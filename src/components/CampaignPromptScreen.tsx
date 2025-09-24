@@ -66,11 +66,11 @@ const CampaignPromptScreen = () => {
         reader.readAsDataURL(uploadedFile);
       });
 
-      const response = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/analyze-image`, {
+      const response = await fetch(`https://cuwkuomczaoxbaysabii.supabase.co/functions/v1/analyze-image`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
+          'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImN1d2t1b21jemFveGJheXNhYmlpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTgwMTQyOTIsImV4cCI6MjA3MzU5MDI5Mn0.a4HUJTdmrgrbAa_F6-JWCvvaJ_zs71qEon_2aY0434c`,
         },
         body: JSON.stringify({ imageBase64: base64Image }),
       });
@@ -150,6 +150,11 @@ const CampaignPromptScreen = () => {
         loop 
         muted 
         playsInline
+        preload="metadata"
+        onError={(e) => {
+          console.warn('Background video failed to load');
+          e.currentTarget.style.display = 'none';
+        }}
       >
         <source src="/background-video.mp4" type="video/mp4" />
       </video>

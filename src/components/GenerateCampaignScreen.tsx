@@ -90,6 +90,11 @@ const GenerateCampaignScreen = () => {
         loop 
         muted 
         playsInline
+        preload="metadata"
+        onError={(e) => {
+          console.warn('Background video failed to load');
+          e.currentTarget.style.display = 'none';
+        }}
       >
         <source src="/background-video.mp4" type="video/mp4" />
       </video>
