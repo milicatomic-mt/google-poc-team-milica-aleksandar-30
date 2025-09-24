@@ -273,7 +273,7 @@ const CatalogResultsScreen: React.FC = () => {
                   <X className="h-4 w-4 text-black" />
                 </Button>
               </AlertDialogTrigger>
-              <AlertDialogContent>
+              <AlertDialogContent className="bg-white">
                 <AlertDialogHeader>
                   <AlertDialogTitle>Exit to Homepage?</AlertDialogTitle>
                   <AlertDialogDescription>
@@ -281,8 +281,8 @@ const CatalogResultsScreen: React.FC = () => {
                   </AlertDialogDescription>
                 </AlertDialogHeader>
                 <AlertDialogFooter>
-                  <AlertDialogCancel>Cancel</AlertDialogCancel>
-                  <AlertDialogAction onClick={handleStartOver}>Exit</AlertDialogAction>
+                  <AlertDialogCancel className="rounded-full">Cancel</AlertDialogCancel>
+                  <AlertDialogAction onClick={handleStartOver} className="rounded-full">Exit</AlertDialogAction>
                 </AlertDialogFooter>
               </AlertDialogContent>
             </AlertDialog>
