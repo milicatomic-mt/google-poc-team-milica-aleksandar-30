@@ -16,6 +16,7 @@ const CampaignResultsScreen = () => {
   const navigate = useNavigate();
   const [campaignData, setCampaignData] = useState<CampaignCreationResponse | null>(null);
   const [uploadedImageUrl, setUploadedImageUrl] = useState<string | null>(null);
+  const [generatedVideoUrl, setGeneratedVideoUrl] = useState<string | null>(null);
   const [extractedColors, setExtractedColors] = useState<ExtractedColors | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const isLoadingRef = useRef(true);
@@ -36,7 +37,7 @@ const CampaignResultsScreen = () => {
         const pollForResults = async () => {
           const { data, error } = await supabase
             .from('campaign_results')
-            .select('result, image_url, generated_images')
+            .select('result, image_url, generated_images, generated_video_url')
             .eq('id', campaignId)
             .single();
 
@@ -51,6 +52,7 @@ const CampaignResultsScreen = () => {
               : [];
             setCampaignData({ ...(data.result as CampaignCreationResponse), generated_images: genImgs });
             setUploadedImageUrl(data.image_url);
+            setGeneratedVideoUrl(data.generated_video_url);
             setIsLoading(false);
             return true;
           }
@@ -220,23 +222,82 @@ const CampaignResultsScreen = () => {
                 <CardTitle className="flex items-center gap-2">
                   🎥 Video Script Designs
                   <Badge variant="secondary">{campaignData.video_scripts.length} platforms</Badge>
+                  {generatedVideoUrl && <Badge className="text-xs">AI Generated Video</Badge>}
                 </CardTitle>
                 <p className="text-sm text-muted-foreground">Professional video scripts with visual storyboards</p>
               </CardHeader>
               <CardContent>
+                {/* Generated Video Preview */}
+                {generatedVideoUrl && (
+                  <div className="mb-8 border-2 border-border rounded-xl overflow-hidden bg-background shadow-lg">
+                    <div className="bg-gradient-to-r from-purple-600 to-blue-600 text-white p-4">
+                      <div className="flex items-center gap-2 mb-2">
+                        <Badge className="bg-white/20 text-white">AI Generated</Badge>
+                        <span className="text-sm font-medium">Marketing Video</span>
+                      </div>
+                      <h3 className="text-xl font-bold">Generated Campaign Video</h3>
+                      <p className="text-sm opacity-90">Created using AI video generation based on your campaign</p>
+                    </div>
+                    <div className="p-6">
+                      <div className="aspect-video bg-black rounded-lg overflow-hidden relative">
+                        <video 
+                          controls 
+                          className="w-full h-full object-cover"
+                          poster={uploadedImageUrl || undefined}
+                        >
+                          <source src={generatedVideoUrl} type="video/mp4" />
+                          Your browser does not support the video tag.
+                        </video>
+                        {/* Placeholder overlay since this is a mock URL */}
+                        <div className="absolute inset-0 bg-gradient-to-br from-purple-900/80 to-blue-900/80 flex items-center justify-center">
+                          <div className="text-center text-white">
+                            <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm mb-4 mx-auto">
+                              <Play className="w-6 h-6 text-white" />
+                            </div>
+                            <h4 className="text-lg font-semibold mb-2">AI Generated Video</h4>
+                            <p className="text-sm opacity-90">Video generation in progress...</p>
+                            <p className="text-xs opacity-75 mt-1">This is a preview - actual video will be available soon</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="mt-4 flex items-center justify-between">
+                        <div className="flex items-center gap-4 text-sm text-muted-foreground">
+                          <span>• Duration: 30s</span>
+                          <span>• Format: 16:9</span>
+                          <span>• Resolution: 1080p</span>
+                        </div>
+                        <Badge variant="outline" className="text-xs">Ready for Download</Badge>
+                      </div>
+                    </div>
+                  </div>
+                )}
+                
                 <div className="grid gap-8 md:grid-cols-1 lg:grid-cols-2">
                   {campaignData.video_scripts.map((script, index) => (
                     <div key={index} className="border-2 border-border rounded-xl overflow-hidden bg-background shadow-lg">
                       {/* Video Script Preview */}
                       <div className="bg-black text-white relative">
-                        {/* Video Thumbnail */}
+                        {/* Video Thumbnail/Preview */}
                         <div className="relative aspect-video">
-                          {uploadedImageUrl && (
+                          {generatedVideoUrl ? (
+                            <div className="w-full h-full bg-gradient-to-br from-purple-900 to-blue-900 flex items-center justify-center">
+                              <div className="text-center text-white">
+                                <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm mb-2 mx-auto">
+                                  <Play className="w-4 h-4 text-white" />
+                                </div>
+                                <p className="text-xs">AI Generated Video</p>
+                              </div>
+                            </div>
+                          ) : uploadedImageUrl ? (
                             <img 
                               src={uploadedImageUrl} 
                               alt="Video thumbnail" 
                               className="w-full h-full object-cover"
                             />
+                          ) : (
+                            <div className="w-full h-full bg-gray-800 flex items-center justify-center">
+                              <Play className="w-8 h-8 text-white/60" />
+                            </div>
                           )}
                           <div className="absolute inset-0 bg-black/40"></div>
                           
