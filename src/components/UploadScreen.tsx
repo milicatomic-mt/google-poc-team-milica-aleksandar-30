@@ -439,7 +439,7 @@ const UploadScreen: React.FC<UploadScreenProps> = ({ mode }) => {
       case 'catalog':
         return 'Upload a clear photo to enrich your catalog';
       case 'campaign':
-        return 'Upload a product or inspiration image to generate a campaign';
+        return 'Upload an image to instantly create a campaign';
       default:
         return 'Upload your image to get started';
     }
