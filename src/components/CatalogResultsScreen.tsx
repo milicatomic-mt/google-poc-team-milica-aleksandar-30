@@ -233,11 +233,10 @@ const CatalogResultsScreen: React.FC = () => {
             {/* Right - Close Button */}
             <Button
               onClick={handleStartOver}
-              variant="ghost"
-              size="icon"
-              className="tap-target focus-ring text-foreground hover:text-foreground hover:bg-muted/20 rounded-full border border-border/50"
+              variant="secondary"
+              className="tap-target focus-ring bg-white border-white/30 hover:bg-white/90 rounded-full h-8 px-3"
             >
-              <X className="w-6 h-6" />
+              <X className="h-4 w-4 text-black" />
             </Button>
           </div>
         </header>
