@@ -1314,25 +1314,6 @@ const PreviewResultsScreen: React.FC = () => {
                 </CardContent>
               </Card>
             </div>
-
-            {/* Action Buttons */}
-            <div className="mt-16 flex justify-center space-x-4">
-              <Button 
-                onClick={() => navigate('/')}
-                variant="outline"
-                size="lg"
-                className="bg-white hover:bg-white/90 text-black hover:text-black border-white rounded-full px-8"
-              >
-                Back to Home
-              </Button>
-              <Button 
-                onClick={() => navigate('/catalog-prompt')}
-                size="lg"
-                className="bg-indigo-600 hover:bg-indigo-700 text-white rounded-full px-8"
-              >
-                Try Catalog Enrichment
-              </Button>
-            </div>
           </div>
         </main>
       </div>
