@@ -1388,7 +1388,7 @@ const PreviewResultsScreen: React.FC = () => {
                       
                       {/* Bottom overlay for text */}
                       <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
-                        <div className="bg-black text-white px-4 py-2 rounded text-sm font-bold uppercase tracking-wide inline-block">
+                        <div className="bg-black text-white px-4 py-2 rounded text-xl font-bold uppercase tracking-wide inline-block">
                           {activeCampaignResults.banner_ads?.[0]?.headline || "INDULGE IN DAILY SELF CARE"}
                         </div>
                       </div>
@@ -1411,7 +1411,7 @@ const PreviewResultsScreen: React.FC = () => {
                       
                       {/* Bottom overlay for text */}
                       <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-amber-600/95 to-transparent p-4 text-center">
-                        <div className="bg-amber-600 text-white px-4 py-2 rounded text-sm font-bold uppercase tracking-wide inline-block">
+                        <div className="bg-amber-600 text-white px-4 py-2 rounded text-xl font-bold uppercase tracking-wide inline-block">
                           {activeCampaignResults.banner_ads?.[0]?.headline || "INDULGE IN DAILY SELF CARE"}
                         </div>
                       </div>
@@ -1432,7 +1432,7 @@ const PreviewResultsScreen: React.FC = () => {
                       
                       {/* Content positioned at bottom left */}
                       <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
-                        <div className="bg-black text-white px-4 py-2 rounded text-base font-bold uppercase tracking-wide inline-block">
+                        <div className="bg-black text-white px-4 py-2 rounded text-xl font-bold uppercase tracking-wide inline-block">
                           {activeCampaignResults.banner_ads?.[0]?.headline || "INDULGE IN DAILY SELF CARE"}
                         </div>
                       </div>
