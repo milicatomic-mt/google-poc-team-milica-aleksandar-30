@@ -112,46 +112,6 @@ const PreviewResultsScreen: React.FC = () => {
     const generatedImages = activeCampaignResults.generated_images || [];
 
     switch (selectedSection) {
-      case 'Generated Images':
-        return (
-          <div className="space-y-6">
-            <div className="text-center space-y-2">
-              <h4 className="text-lg font-semibold">AI Generated Images</h4>
-              <p className="text-sm text-muted-foreground">
-                Images generated based on your uploaded product image using AI
-              </p>
-            </div>
-            {generatedImages.length > 0 ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {generatedImages.map((img, index) => (
-                    <div key={index} className="space-y-3">
-                      <div className="aspect-square bg-gray-100 rounded-lg overflow-hidden border">
-                        <img 
-                          src={img.url} 
-                          alt={`Generated image ${index + 1}`}
-                          className="w-full h-full object-cover"
-                          onError={(e) => {
-                            console.error('Failed to load generated image:', img);
-                            e.currentTarget.style.display = 'none';
-                          }}
-                        />
-                      </div>
-                    {img.prompt && (
-                      <div className="space-y-1">
-                        <p className="text-xs font-medium text-gray-700">Generation Prompt:</p>
-                        <p className="text-xs text-gray-600 leading-relaxed">{img.prompt}</p>
-                      </div>
-                    )}
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <div className="text-center py-8 text-gray-500">
-                <p>No generated images available.</p>
-              </div>
-            )}
-          </div>
-        );
 
       case 'Banner Ads':
         return (
@@ -891,56 +851,6 @@ const PreviewResultsScreen: React.FC = () => {
           <div className="max-w-6xl mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               
-              {/* Generated Images Card - Only show if we have generated images */}
-              {activeCampaignResults?.generated_images && activeCampaignResults.generated_images.length > 0 && (
-                <Card 
-                  className="card-elegant backdrop-blur-xl bg-white/5 border-white/50 border-2 shadow-2xl hover:shadow-elegant-lg transition-all duration-smooth cursor-pointer"
-                  onClick={() => handleOpenCategory('Generated Images')}
-                >
-                  <div className="px-4 py-3 flex items-center justify-between transition-all duration-smooth">
-                    <div className="flex items-center space-x-2">
-                      <h3 className="text-foreground font-medium">AI Generated Images</h3>
-                      <span className="bg-muted text-primary text-xs px-2 py-1 rounded-full font-medium">
-                        {activeCampaignResults.generated_images.length}
-                      </span>
-                    </div>
-                    <Button 
-                      variant="outline"
-                      size="lg" 
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        handleOpenCategory('Generated Images');
-                      }}
-                      className="tap-target focus-ring group bg-white/40 border-white/30 hover:bg-white/60 rounded-full px-6"
-                    >
-                      <span className="text-indigo-600 group-hover:text-indigo-700 transition-colors">
-                        View All
-                      </span>
-                    </Button>
-                  </div>
-                  <CardContent className="p-4">
-                    <div className="grid grid-cols-2 gap-3 h-60">
-                      {activeCampaignResults.generated_images.slice(0, 2).map((img, index) => (
-                        <div key={index} className="bg-white backdrop-blur-sm rounded p-2 overflow-hidden border border-white/20">
-                          <div className="w-full h-full bg-primary/10 rounded overflow-hidden">
-                            {img.url ? (
-                              <img 
-                                src={img.url} 
-                                alt={`Generated image ${index + 1}`}
-                                className="w-full h-full object-cover"
-                              />
-                            ) : (
-                              <div className="w-full h-full flex items-center justify-center text-gray-400">
-                                <span className="text-xs">Generated Image</span>
-                              </div>
-                            )}
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
-              )}
 
               {/* Banner Ads Card */}
               <Card 
