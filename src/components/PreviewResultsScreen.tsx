@@ -112,6 +112,7 @@ const PreviewResultsScreen: React.FC = () => {
     setIsDownloadModalOpen(true);
   };
 
+  // Modal handlers
   const handleOpenCategory = (category: string) => {
     setSelectedSection(category);
     setIsModalOpen(true);
@@ -120,6 +121,14 @@ const PreviewResultsScreen: React.FC = () => {
   const handleCloseModal = () => {
     setIsModalOpen(false);
     setSelectedSection(null);
+  };
+
+  // Scroll to section function
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   const renderModalContent = () => {
