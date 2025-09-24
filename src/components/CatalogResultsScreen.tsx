@@ -275,21 +275,18 @@ const CatalogResultsScreen: React.FC = () => {
                   <X className="h-4 w-4 text-black" />
                 </Button>
               </AlertDialogTrigger>
-              <AlertDialogPortal>
-                <AlertDialogOverlay className="bg-white/10 backdrop-blur-[2px]" />
-                <AlertDialogContent className="bg-white border-none shadow-lg max-w-md p-6">
-                  <AlertDialogHeader>
-                    <AlertDialogTitle>Exit to Homepage?</AlertDialogTitle>
-                    <AlertDialogDescription>
-                      Are you sure you want to exit? Any current selection will be lost.
-                    </AlertDialogDescription>
-                  </AlertDialogHeader>
-                  <AlertDialogFooter>
-                    <AlertDialogCancel className="rounded-full bg-gray-100 hover:bg-gray-200 border-0">Cancel</AlertDialogCancel>
-                    <AlertDialogAction onClick={handleStartOver} className="rounded-full bg-primary hover:bg-primary/90 text-primary-foreground">Exit</AlertDialogAction>
-                  </AlertDialogFooter>
-                </AlertDialogContent>
-              </AlertDialogPortal>
+              <AlertDialogContent className="bg-white border-none shadow-lg max-w-md p-6">
+                <AlertDialogHeader>
+                  <AlertDialogTitle>Exit to Homepage?</AlertDialogTitle>
+                  <AlertDialogDescription>
+                    Are you sure you want to exit? Any current selection will be lost.
+                  </AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                  <AlertDialogCancel className="rounded-full bg-gray-100 hover:bg-gray-200 border-0">Cancel</AlertDialogCancel>
+                  <AlertDialogAction onClick={handleStartOver} className="rounded-full bg-primary hover:bg-primary/90 text-primary-foreground">Exit</AlertDialogAction>
+                </AlertDialogFooter>
+              </AlertDialogContent>
             </AlertDialog>
           </div>
         </header>
