@@ -1152,65 +1152,138 @@ const PreviewResultsScreen: React.FC = () => {
                   </Button>
                 </div>
                 <CardContent className="p-4">
-                  <div className="space-y-3 h-80">
-                    {/* Promotional Email Template */}
-                    <div className="bg-white backdrop-blur-sm rounded-lg p-3 h-[48%] overflow-hidden border border-white/20">
-                      <div className="space-y-2 h-full flex flex-col">
-                        {/* Email Header */}
-                        <div className="flex items-center justify-between pb-1 border-b border-black/10">
-                          <div className="text-[9px] font-medium text-foreground">Promotional Email</div>
-                          <div className="text-[8px] text-muted-foreground">📧 Marketing</div>
-                        </div>
-                        
-                        {/* Email Content Preview */}
-                        <div className="flex-1 flex gap-2">
-                          <div className="w-12 h-12 bg-primary/20 rounded overflow-hidden flex-shrink-0">
-                            {uploadedImage && <img src={uploadedImage} alt="Product" className="w-full h-full object-cover" />}
+                  <div className="h-80 relative">
+                    {/* Modern Email Client Interface */}
+                    <div className="bg-white backdrop-blur-sm rounded-lg overflow-hidden h-full border border-white/20 shadow-inner">
+                      {/* Email Client Header */}
+                      <div className="bg-gradient-to-r from-slate-50 to-gray-50 px-3 py-2 border-b border-gray-200">
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center gap-2">
+                            <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                            <div className="text-[8px] font-semibold text-gray-900">Your Brand Newsletter</div>
                           </div>
-                          <div className="flex-1 space-y-1 min-w-0">
-                            <h4 className="text-[10px] font-bold text-foreground leading-tight">🎉 Exclusive Launch Offer</h4>
-                            <p className="text-[8px] text-muted-foreground leading-relaxed">Get 25% off your first purchase. Limited time offer for our premium collection.</p>
-                            <div className="bg-black text-white text-[7px] px-2 py-1 rounded inline-block">
-                              Shop Now
+                          <div className="text-[6px] text-gray-500">Premium Campaign</div>
+                        </div>
+                        <div className="text-[6px] text-gray-600 mt-1">From: hello@yourbrand.com</div>
+                      </div>
+
+                      {/* Email Content */}
+                      <div className="relative h-full overflow-hidden">
+                        {/* Hero Section with Gradient */}
+                        <div className="bg-gradient-to-br from-gray-900 via-black to-gray-800 px-3 py-4 relative">
+                          <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/10"></div>
+                          <div className="absolute top-0 right-0 w-16 h-16 bg-white/5 rounded-full blur-xl"></div>
+                          <div className="relative z-10 text-center">
+                            <div className="inline-flex items-center gap-1 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-2 py-1 mb-2">
+                              <div className="w-1 h-1 bg-green-400 rounded-full"></div>
+                              <span className="text-[6px] font-medium text-white">New Launch</span>
                             </div>
+                            <h2 className="text-[10px] font-bold text-white mb-1 leading-tight">
+                              Transform Your Experience ✨
+                            </h2>
+                            <p className="text-[6px] text-gray-300 leading-relaxed">
+                              Discover premium solutions designed for you
+                            </p>
+                          </div>
+                        </div>
+
+                        {/* Product Showcase */}
+                        <div className="bg-gradient-to-br from-white to-slate-50 px-3 py-3 relative">
+                          <div className="flex items-center gap-3">
+                            {/* Product Image */}
+                            <div className="relative">
+                              <div className="w-12 h-12 bg-primary/10 rounded-lg overflow-hidden shadow-sm border border-white/50">
+                                {uploadedImage && (
+                                  <img src={uploadedImage} alt="Product" className="w-full h-full object-cover" />
+                                )}
+                              </div>
+                              <div className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full flex items-center justify-center">
+                                <span className="text-[5px] text-white font-bold">!</span>
+                              </div>
+                            </div>
+                            
+                            {/* Product Info */}
+                            <div className="flex-1 min-w-0">
+                              <h3 className="text-[8px] font-bold text-gray-900 leading-tight mb-1">
+                                Exclusive Premium Collection
+                              </h3>
+                              <p className="text-[6px] text-gray-600 leading-relaxed mb-2">
+                                Limited time offer - Save up to 40% on our bestselling products
+                              </p>
+                              <div className="flex items-center gap-2">
+                                <div className="bg-gradient-to-r from-gray-900 to-black text-white text-[5px] px-2 py-1 rounded-full font-medium shadow-sm">
+                                  Shop Now
+                                </div>
+                                <div className="text-[5px] text-gray-500">Free shipping included</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Features Section */}
+                        <div className="bg-white px-3 py-2">
+                          <div className="grid grid-cols-3 gap-2">
+                            <div className="text-center">
+                              <div className="w-4 h-4 bg-gradient-to-br from-primary to-primary/70 rounded-full mx-auto mb-1 flex items-center justify-center">
+                                <div className="w-1.5 h-1.5 bg-white rounded-full"></div>
+                              </div>
+                              <div className="text-[5px] font-semibold text-gray-900">Premium</div>
+                              <div className="text-[4px] text-gray-500">Quality</div>
+                            </div>
+                            <div className="text-center">
+                              <div className="w-4 h-4 bg-gradient-to-br from-secondary to-secondary/70 rounded-full mx-auto mb-1 flex items-center justify-center">
+                                <div className="w-1.5 h-1.5 bg-white rounded-full"></div>
+                              </div>
+                              <div className="text-[5px] font-semibold text-gray-900">Fast</div>
+                              <div className="text-[4px] text-gray-500">Delivery</div>
+                            </div>
+                            <div className="text-center">
+                              <div className="w-4 h-4 bg-gradient-to-br from-accent to-accent/70 rounded-full mx-auto mb-1 flex items-center justify-center">
+                                <div className="w-1.5 h-1.5 bg-white rounded-full"></div>
+                              </div>
+                              <div className="text-[5px] font-semibold text-gray-900">Returns</div>
+                              <div className="text-[4px] text-gray-500">30-day</div>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Social Proof */}
+                        <div className="bg-gradient-to-r from-slate-50 to-gray-50 px-3 py-2 border-t border-gray-100">
+                          <div className="flex items-center justify-center gap-1 mb-1">
+                            {[...Array(5)].map((_, i) => (
+                              <div key={i} className="w-2 h-2 bg-yellow-400 rounded-full flex items-center justify-center">
+                                <span className="text-[3px] text-white">★</span>
+                              </div>
+                            ))}
+                            <span className="text-[5px] text-gray-700 font-semibold ml-1">4.9/5</span>
+                          </div>
+                          <div className="text-center">
+                            <div className="text-[5px] text-gray-600 italic">"Best purchase I've made this year!"</div>
+                            <div className="text-[4px] text-gray-500 mt-0.5">- Sarah M., Verified Customer</div>
+                          </div>
+                        </div>
+
+                        {/* Footer */}
+                        <div className="bg-gradient-to-r from-gray-900 to-black px-3 py-2 absolute bottom-0 left-0 right-0">
+                          <div className="flex items-center justify-between">
+                            <div className="flex gap-1">
+                              <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                              <div className="w-2 h-2 bg-pink-500 rounded-full"></div>
+                              <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
+                            </div>
+                            <div className="text-[4px] text-gray-400">© 2024 Your Brand</div>
                           </div>
                         </div>
                       </div>
                     </div>
 
-                    {/* Newsletter Email Template */}
-                    <div className="bg-white backdrop-blur-sm rounded-lg p-3 h-[48%] overflow-hidden border border-white/20">
-                      <div className="space-y-2 h-full flex flex-col">
-                        {/* Email Header */}
-                        <div className="flex items-center justify-between pb-1 border-b border-black/10">
-                          <div className="text-[9px] font-medium text-foreground">Newsletter Email</div>
-                          <div className="text-[8px] text-muted-foreground">📰 Weekly</div>
-                        </div>
-                        
-                        {/* Email Content Preview */}
-                        <div className="flex-1 space-y-2">
-                          <div className="flex items-center gap-2">
-                            <div className="w-8 h-6 bg-primary/20 rounded overflow-hidden flex-shrink-0">
-                              {uploadedImage && <img src={uploadedImage} alt="Product" className="w-full h-full object-cover" />}
-                            </div>
-                            <div className="flex-1 min-w-0">
-                              <h4 className="text-[9px] font-bold text-foreground leading-tight">This Week's Featured Product</h4>
-                              <p className="text-[7px] text-muted-foreground">Discover what's new and trending in our latest collection.</p>
-                            </div>
-                          </div>
-                          
-                          <div className="space-y-1">
-                            <div className="flex justify-between text-[7px]">
-                              <span className="text-muted-foreground">• Product highlights</span>
-                              <span className="text-muted-foreground">• Customer reviews</span>
-                            </div>
-                            <div className="text-center">
-                              <div className="bg-black text-white text-[7px] px-3 py-1 rounded inline-block">
-                                Read More
-                              </div>
-                            </div>
-                          </div>
-                        </div>
+                    {/* Email Type Indicators */}
+                    <div className="absolute -top-1 -right-1 flex gap-1">
+                      <div className="bg-gradient-to-r from-blue-500 to-blue-600 text-white text-[5px] px-1.5 py-0.5 rounded-full font-medium shadow-sm">
+                        Campaign
+                      </div>
+                      <div className="bg-gradient-to-r from-green-500 to-green-600 text-white text-[5px] px-1.5 py-0.5 rounded-full font-medium shadow-sm">
+                        Mobile Ready
                       </div>
                     </div>
                   </div>
