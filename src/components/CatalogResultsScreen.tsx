@@ -6,6 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
 import { toast } from 'sonner';
+import { QRCodeSVG } from "qrcode.react";
 import {
   Dialog,
   DialogContent,
@@ -30,6 +31,8 @@ const CatalogResultsScreen: React.FC = () => {
   const [copiedField, setCopiedField] = useState<string | null>(null);
   const [currentAction, setCurrentAction] = useState("Preparing catalog generation...");
   const [progress, setProgress] = useState(0);
+  const [isDownloadModalOpen, setIsDownloadModalOpen] = useState(false);
+  const [downloadUrl, setDownloadUrl] = useState<string>('');
 
   useEffect(() => {
     if (!catalogData?.uploadedImage) {
@@ -110,6 +113,18 @@ const CatalogResultsScreen: React.FC = () => {
 
   const handleStartOver = () => {
     navigate('/');
+  };
+
+  const handleOpenDownloadModal = () => {
+    // Generate a download URL for the catalog results
+    const downloadData = {
+      type: 'catalog',
+      results: catalogResults,
+      image: catalogData.uploadedImage
+    };
+    const dataUrl = `data:application/json;base64,${btoa(JSON.stringify(downloadData))}`;
+    setDownloadUrl(window.location.origin + `/download?data=${encodeURIComponent(dataUrl)}`);
+    setIsDownloadModalOpen(true);
   };
 
   if (isGenerating) {
@@ -221,6 +236,7 @@ const CatalogResultsScreen: React.FC = () => {
                   Edit
                 </Button>
                 <Button
+                  onClick={handleOpenDownloadModal}
                   variant="default"
                   className="tap-target focus-ring bg-primary hover:bg-primary/90 text-white rounded-full px-6 py-2 flex items-center gap-2"
                 >
@@ -464,6 +480,33 @@ const CatalogResultsScreen: React.FC = () => {
           </div>
         </main>
       </div>
+      
+      {/* Download QR Code Modal */}
+      <Dialog open={isDownloadModalOpen} onOpenChange={setIsDownloadModalOpen}>
+        <DialogContent className="max-w-md">
+          <DialogHeader>
+            <DialogTitle className="text-center">Download Catalog Results</DialogTitle>
+            <DialogDescription className="text-center">
+              Scan the QR code with your mobile device to download your catalog results
+            </DialogDescription>
+          </DialogHeader>
+          <div className="flex flex-col items-center py-6">
+            <div className="bg-white p-4 rounded-lg shadow-md">
+              <QRCodeSVG 
+                value={downloadUrl}
+                size={171}
+                level="L"
+                includeMargin={true}
+                fgColor="#000000"
+                bgColor="transparent"
+              />
+            </div>
+            <div className="bg-indigo-600 text-white px-4 py-1.5 rounded-full text-sm font-semibold mt-4">
+              SCAN ME
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };

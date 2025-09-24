@@ -4,6 +4,7 @@ import { ArrowLeft, X, Play, Download, Edit } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { QRCodeSVG } from "qrcode.react";
 import {
   Dialog,
   DialogContent,
@@ -25,6 +26,8 @@ const PreviewResultsScreen: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [fetchedCampaignResults, setFetchedCampaignResults] = useState<CampaignCreationResponse | null>(null);
   const [isLoadingResults, setIsLoadingResults] = useState(false);
+  const [isDownloadModalOpen, setIsDownloadModalOpen] = useState(false);
+  const [downloadUrl, setDownloadUrl] = useState<string>('');
 
   // Fetch campaign results if not provided but campaignId is available
   useEffect(() => {
@@ -67,6 +70,18 @@ const PreviewResultsScreen: React.FC = () => {
 
   const handleStartOver = () => {
     navigate('/');
+  };
+
+  const handleOpenDownloadModal = () => {
+    // Generate a download URL for the campaign results
+    const downloadData = {
+      type: 'campaign',
+      results: activeCampaignResults,
+      image: uploadedImage
+    };
+    const dataUrl = `data:application/json;base64,${btoa(JSON.stringify(downloadData))}`;
+    setDownloadUrl(window.location.origin + `/download?data=${encodeURIComponent(dataUrl)}`);
+    setIsDownloadModalOpen(true);
   };
 
   const handleOpenCategory = (category: string) => {
@@ -777,6 +792,7 @@ const PreviewResultsScreen: React.FC = () => {
                   Edit
                 </Button>
                 <Button
+                  onClick={handleOpenDownloadModal}
                   variant="default"
                   className="tap-target focus-ring bg-primary hover:bg-primary/90 text-white rounded-full px-6 py-2 flex items-center gap-2"
                 >
@@ -1317,6 +1333,33 @@ const PreviewResultsScreen: React.FC = () => {
           </div>
         </main>
       </div>
+
+      {/* Download QR Code Modal */}
+      <Dialog open={isDownloadModalOpen} onOpenChange={setIsDownloadModalOpen}>
+        <DialogContent className="max-w-md">
+          <DialogHeader>
+            <DialogTitle className="text-center">Download Campaign Results</DialogTitle>
+            <DialogDescription className="text-center">
+              Scan the QR code with your mobile device to download your campaign results
+            </DialogDescription>
+          </DialogHeader>
+          <div className="flex flex-col items-center py-6">
+            <div className="bg-white p-4 rounded-lg shadow-md">
+              <QRCodeSVG 
+                value={downloadUrl}
+                size={171}
+                level="L"
+                includeMargin={true}
+                fgColor="#000000"
+                bgColor="transparent"
+              />
+            </div>
+            <div className="bg-indigo-600 text-white px-4 py-1.5 rounded-full text-sm font-semibold mt-4">
+              SCAN ME
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
 
       {/* Campaign Results Modal */}
       <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
