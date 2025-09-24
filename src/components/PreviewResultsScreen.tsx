@@ -41,7 +41,7 @@ const PreviewResultsScreen: React.FC = () => {
   const [isLoadingResults, setIsLoadingResults] = useState(false);
   const [isDownloadModalOpen, setIsDownloadModalOpen] = useState(false);
   const [downloadUrl, setDownloadUrl] = useState<string>('');
-  const [isContentReady, setIsContentReady] = useState(false);
+  const [isContentReady, setIsContentReady] = useState(!!campaignResults);
 
   // Fetch campaign results if not provided but campaignId is available
   useEffect(() => {

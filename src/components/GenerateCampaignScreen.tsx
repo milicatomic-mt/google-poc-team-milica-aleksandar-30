@@ -4,6 +4,7 @@ import RibbedSphere from '@/components/RibbedSphere';
 import { saveCampaignRequest, generateCampaign } from '@/lib/database';
 import type { CampaignCreationRequest } from '@/types/api';
 import { Progress } from '@/components/ui/progress';
+import { supabase } from "@/integrations/supabase/client";
 
 const GenerateCampaignScreen = () => {
   const location = useLocation();
@@ -59,15 +60,52 @@ const GenerateCampaignScreen = () => {
         // Generate the campaign using AI
         await generateCampaign(campaignResult.id, campaignData);
         
+        // Start polling for results so we only navigate when content is ready
+        setCurrentAction("Finalizing and assembling results...");
+        setProgress(92);
+
+        const maxAttempts = 45; // ~90s
+        const intervalMs = 2000;
+        let attempt = 0;
+        let finalResults: any = null;
+
+        while (attempt < maxAttempts) {
+          attempt++;
+          try {
+            const { data, error } = await supabase
+              .from('campaign_results')
+              .select('result, generated_images, generated_video_url')
+              .eq('id', campaignResult.id)
+              .single();
+
+            if (error) {
+              console.warn('Polling error while fetching campaign results', error);
+            }
+
+            const hasResult = data?.result && Object.keys(data.result as any || {}).length > 0;
+            if (hasResult) {
+              const genImgs = Array.isArray((data as any).generated_images) ? (data as any).generated_images : [];
+              finalResults = { ...(data!.result as any), generated_images: genImgs };
+              break;
+            }
+          } catch (e) {
+            console.warn('Polling exception', e);
+          }
+
+        setProgress(92 + Math.floor((attempt / maxAttempts) * 8)); // progress up to 100
+        await new Promise((r) => setTimeout(r, intervalMs));
+        }
+        
         // Final progress update
         setCurrentAction("Complete!");
         setProgress(100);
         
-        // Navigate to preview first, then results with the campaign ID
+        // Navigate only after results ready (or timeout fallback)
         navigate('/preview-results', { 
           state: { 
             ...location.state, 
-            campaignId: campaignResult.id 
+            campaignId: campaignResult.id,
+            ...(finalResults ? { campaignResults: finalResults } : {})
           } 
         });
       } catch (error) {
