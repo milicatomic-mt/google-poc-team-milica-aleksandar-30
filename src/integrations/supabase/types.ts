@@ -19,6 +19,7 @@ export type Database = {
           campaign_prompt: string
           created_at: string | null
           generated_images: Json | null
+          generated_video_url: string | null
           id: string
           image_url: string | null
           result: Json
@@ -29,6 +30,7 @@ export type Database = {
           campaign_prompt: string
           created_at?: string | null
           generated_images?: Json | null
+          generated_video_url?: string | null
           id?: string
           image_url?: string | null
           result: Json
@@ -39,6 +41,7 @@ export type Database = {
           campaign_prompt?: string
           created_at?: string | null
           generated_images?: Json | null
+          generated_video_url?: string | null
           id?: string
           image_url?: string | null
           result?: Json
