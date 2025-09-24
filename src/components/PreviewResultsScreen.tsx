@@ -1377,71 +1377,88 @@ const PreviewResultsScreen: React.FC = () => {
                     </span>
                   </Button>
                 </div>
-                <CardContent className="p-4">
-                  <div className="grid grid-cols-2 gap-3 h-80">
-                    {/* Top Left - Leaderboard Style Banner */}
-                    <div className="bg-gradient-to-r from-amber-100 to-amber-50 backdrop-blur-sm rounded-lg p-3 overflow-hidden flex flex-col border border-amber-200 shadow-sm">
-                      <div className="flex-1 flex items-center gap-3">
-                        <div className="w-16 h-16 rounded-lg bg-white/80 flex-shrink-0 overflow-hidden flex items-center justify-center p-1 shadow-sm">
-                          {activeCampaignResults?.generated_images?.[0]?.url ? (
-                            <img src={activeCampaignResults.generated_images[0].url} alt="Product" className="w-full h-auto max-h-14 object-contain" />
-                          ) : uploadedImage ? (
-                            <img src={uploadedImage} alt="Product" className="w-full h-auto max-h-14 object-contain" />
-                          ) : null}
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <div className="bg-black text-white px-3 py-1 rounded text-xs font-bold uppercase tracking-wide mb-1 inline-block">
-                            {activeCampaignResults.banner_ads?.[0]?.headline || 'PREMIUM SOUND'}
+                <CardContent className="p-6">
+                  <div className="space-y-4">
+                    {/* Top Row - Two Medium Rectangles */}
+                    <div className="grid grid-cols-2 gap-4">
+                      {/* Left Banner - Premium Style */}
+                      <div className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 rounded-xl overflow-hidden shadow-xl" style={{ aspectRatio: '16/10' }}>
+                        <div className="absolute inset-0 bg-gradient-to-r from-black/20 to-transparent"></div>
+                        <div className="relative h-full p-6 flex items-center justify-between">
+                          <div className="space-y-3 flex-1">
+                            <div className="inline-block bg-white text-slate-900 px-4 py-2 rounded-lg font-bold text-sm tracking-wide">
+                              {activeCampaignResults.banner_ads?.[0]?.headline || 'PREMIUM QUALITY'}
+                            </div>
+                            <p className="text-slate-300 text-xs font-medium uppercase tracking-widest">
+                              MINIMALIST DESIGN
+                            </p>
+                            <button className="bg-white text-slate-900 px-6 py-2.5 rounded-lg font-semibold text-sm hover:bg-slate-100 transition-colors shadow-lg">
+                              {activeCampaignResults.banner_ads?.[0]?.cta || 'Shop Now'}
+                            </button>
                           </div>
-                          <p className="text-xs text-amber-800 font-medium uppercase tracking-wider mb-2">MINIMALIST DESIGN</p>
-                          <button className="bg-black text-white text-xs px-4 py-1.5 rounded font-semibold hover:bg-gray-800 transition-colors">
-                            {activeCampaignResults.banner_ads?.[0]?.cta || 'Shop Now'}
-                          </button>
+                          {(activeCampaignResults?.generated_images?.[0]?.url || uploadedImage) && (
+                            <div className="w-24 h-24 bg-white/10 backdrop-blur-sm rounded-xl flex items-center justify-center p-3 border border-white/20">
+                              <img 
+                                src={activeCampaignResults?.generated_images?.[0]?.url || uploadedImage} 
+                                alt="Product" 
+                                className="w-full h-full object-contain filter drop-shadow-lg" 
+                              />
+                            </div>
+                          )}
+                        </div>
+                      </div>
+
+                      {/* Right Banner - Light Style */}
+                      <div className="relative bg-gradient-to-br from-amber-50 to-orange-100 rounded-xl overflow-hidden shadow-xl border border-amber-200" style={{ aspectRatio: '16/10' }}>
+                        <div className="absolute top-4 right-4 w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-lg">
+                          {(activeCampaignResults?.generated_images?.[1]?.url || activeCampaignResults?.generated_images?.[0]?.url || uploadedImage) && (
+                            <img 
+                              src={activeCampaignResults?.generated_images?.[1]?.url || activeCampaignResults?.generated_images?.[0]?.url || uploadedImage} 
+                              alt="Product" 
+                              className="w-16 h-16 object-contain" 
+                            />
+                          )}
+                        </div>
+                        <div className="relative h-full p-6 flex flex-col justify-end">
+                          <div className="space-y-2">
+                            <div className="inline-block bg-amber-600 text-white px-4 py-2 rounded-lg font-bold text-sm tracking-wide shadow-lg">
+                              {activeCampaignResults.banner_ads?.[0]?.headline || 'PREMIUM QUALITY'}
+                            </div>
+                            <p className="text-amber-800 text-xs font-semibold uppercase tracking-widest">
+                              MINIMALIST DESIGN
+                            </p>
+                            <button className="bg-slate-900 text-white px-6 py-2.5 rounded-lg font-semibold text-sm hover:bg-slate-800 transition-colors shadow-lg mt-2">
+                              {activeCampaignResults.banner_ads?.[0]?.cta || 'Shop Now'}
+                            </button>
+                          </div>
                         </div>
                       </div>
                     </div>
 
-                    {/* Top Right - Square Banner */}
-                    <div className="bg-gradient-to-br from-gray-100 to-gray-50 backdrop-blur-sm rounded-lg p-3 overflow-hidden flex flex-col border border-gray-200 shadow-sm">
-                      <div className="w-full h-20 bg-white rounded-lg mb-3 overflow-hidden flex items-center justify-center p-2 shadow-sm">
-                        {activeCampaignResults?.generated_images?.[1]?.url ? (
-                          <img src={activeCampaignResults.generated_images[1].url} alt="Product" className="w-full h-auto max-h-16 object-contain" />
-                        ) : activeCampaignResults?.generated_images?.[0]?.url ? (
-                          <img src={activeCampaignResults.generated_images[0].url} alt="Product" className="w-full h-auto max-h-16 object-contain" />
-                        ) : uploadedImage ? (
-                          <img src={uploadedImage} alt="Product" className="w-full h-auto max-h-16 object-contain" />
-                        ) : null}
-                      </div>
-                      <div className="text-center flex-1 flex flex-col justify-between">
-                        <div>
-                          <div className="bg-amber-600 text-white px-2 py-1 rounded text-xs font-bold uppercase tracking-wide mb-1 inline-block">
-                            {activeCampaignResults.banner_ads?.[0]?.headline || 'PREMIUM SOUND'}
+                    {/* Bottom Row - Wide Leaderboard */}
+                    <div className="relative bg-gradient-to-r from-slate-50 via-white to-slate-50 rounded-xl overflow-hidden shadow-xl border border-slate-200" style={{ height: '120px' }}>
+                      <div className="absolute inset-0 bg-gradient-to-r from-slate-100/20 to-slate-50/20"></div>
+                      <div className="relative h-full px-8 flex items-center justify-between">
+                        <div className="flex items-center space-x-6">
+                          {(activeCampaignResults?.generated_images?.[0]?.url || uploadedImage) && (
+                            <div className="w-20 h-20 bg-slate-100 rounded-2xl flex items-center justify-center shadow-lg border border-slate-200">
+                              <img 
+                                src={activeCampaignResults?.generated_images?.[0]?.url || uploadedImage} 
+                                alt="Product" 
+                                className="w-16 h-16 object-contain" 
+                              />
+                            </div>
+                          )}
+                          <div className="space-y-2">
+                            <div className="inline-block bg-slate-900 text-white px-6 py-2 rounded-lg font-bold text-lg tracking-wide shadow-lg">
+                              {activeCampaignResults.banner_ads?.[0]?.headline || 'PREMIUM QUALITY'}
+                            </div>
+                            <p className="text-slate-600 font-semibold uppercase tracking-widest text-sm">
+                              MINIMALIST DESIGN PHILOSOPHY
+                            </p>
                           </div>
-                          <p className="text-xs text-gray-600 font-medium uppercase tracking-wider mb-2">MINIMALIST DESIGN</p>
                         </div>
-                        <button className="bg-black text-white text-xs px-4 py-1.5 rounded font-semibold hover:bg-gray-800 transition-colors">
-                          {activeCampaignResults.banner_ads?.[0]?.cta || 'Shop Now'}
-                        </button>
-                      </div>
-                    </div>
-
-                    {/* Bottom Left - Wide Banner */}
-                    <div className="bg-gradient-to-r from-amber-50 to-white backdrop-blur-sm rounded-lg p-3 overflow-hidden flex items-center border border-amber-200 shadow-sm col-span-2">
-                      <div className="w-20 h-16 rounded-lg bg-white flex-shrink-0 overflow-hidden flex items-center justify-center p-2 shadow-sm mr-4">
-                        {activeCampaignResults?.generated_images?.[0]?.url ? (
-                          <img src={activeCampaignResults.generated_images[0].url} alt="Product" className="w-full h-auto max-h-12 object-contain" />
-                        ) : uploadedImage ? (
-                          <img src={uploadedImage} alt="Product" className="w-full h-auto max-h-12 object-contain" />
-                        ) : null}
-                      </div>
-                      <div className="flex-1 flex items-center justify-between">
-                        <div>
-                          <div className="bg-black text-white px-3 py-1 rounded text-sm font-bold uppercase tracking-wide mb-1 inline-block">
-                            {activeCampaignResults.banner_ads?.[0]?.headline || 'PREMIUM SOUND'}
-                          </div>
-                          <p className="text-xs text-amber-800 font-medium uppercase tracking-wider">MINIMALIST DESIGN</p>
-                        </div>
-                        <button className="bg-black text-white text-sm px-6 py-2 rounded font-semibold hover:bg-gray-800 transition-colors">
+                        <button className="bg-amber-500 text-white px-8 py-3 rounded-xl font-bold text-lg hover:bg-amber-600 transition-all shadow-xl hover:shadow-2xl transform hover:-translate-y-0.5">
                           {activeCampaignResults.banner_ads?.[0]?.cta || 'Shop Now'}
                         </button>
                       </div>
