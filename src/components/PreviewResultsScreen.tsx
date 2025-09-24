@@ -1388,10 +1388,9 @@ const PreviewResultsScreen: React.FC = () => {
                       
                       {/* Bottom overlay for text */}
                       <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
-                        <div className="bg-black text-white px-3 py-1 rounded text-xs font-bold uppercase tracking-wide mb-1 inline-block">
-                          {activeCampaignResults.banner_ads?.[0]?.headline || 'PREMIUM SOUND'}
+                        <div className="bg-black text-white px-4 py-2 rounded text-sm font-bold uppercase tracking-wide mb-3 inline-block">
+                          {activeCampaignResults.banner_ads?.[0]?.headline || "INDULGE IN DAILY SELF CARE"}
                         </div>
-                        <p className="text-xs text-white/90 font-medium uppercase tracking-wider mb-3">MINIMALIST DESIGN</p>
                         <button className="bg-white text-black text-xs px-4 py-1.5 rounded font-semibold hover:bg-gray-200 transition-colors">
                           {activeCampaignResults.banner_ads?.[0]?.cta || 'Shop Now'}
                         </button>
@@ -1415,10 +1414,9 @@ const PreviewResultsScreen: React.FC = () => {
                       
                       {/* Bottom overlay for text */}
                       <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-amber-600/95 to-transparent p-4 text-center">
-                        <div className="bg-amber-600 text-white px-2 py-1 rounded text-xs font-bold uppercase tracking-wide mb-1 inline-block">
-                          {activeCampaignResults.banner_ads?.[0]?.headline || 'PREMIUM SOUND'}
+                        <div className="bg-amber-600 text-white px-4 py-2 rounded text-sm font-bold uppercase tracking-wide mb-3 inline-block">
+                          {activeCampaignResults.banner_ads?.[0]?.headline || "INDULGE IN DAILY SELF CARE"}
                         </div>
-                        <p className="text-xs text-white/90 font-medium uppercase tracking-wider mb-3">MINIMALIST DESIGN</p>
                         <button className="bg-white text-amber-600 text-xs px-4 py-1.5 rounded font-semibold hover:bg-gray-100 transition-colors">
                           {activeCampaignResults.banner_ads?.[0]?.cta || 'Shop Now'}
                         </button>
@@ -1441,10 +1439,9 @@ const PreviewResultsScreen: React.FC = () => {
                       {/* Content positioned at bottom left */}
                       <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4 flex items-end justify-between">
                         <div>
-                          <div className="bg-black text-white px-3 py-1 rounded text-sm font-bold uppercase tracking-wide mb-1 inline-block">
-                            {activeCampaignResults.banner_ads?.[0]?.headline || 'PREMIUM SOUND'}
+                          <div className="bg-black text-white px-4 py-2 rounded text-base font-bold uppercase tracking-wide mb-1 inline-block">
+                            {activeCampaignResults.banner_ads?.[0]?.headline || "INDULGE IN DAILY SELF CARE"}
                           </div>
-                          <p className="text-xs text-white/90 font-medium uppercase tracking-wider">MINIMALIST DESIGN</p>
                         </div>
                         <button className="bg-white text-black text-sm px-6 py-2 rounded font-semibold hover:bg-gray-200 transition-colors">
                           {activeCampaignResults.banner_ads?.[0]?.cta || 'Shop Now'}
