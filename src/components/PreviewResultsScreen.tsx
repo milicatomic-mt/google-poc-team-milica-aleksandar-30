@@ -39,6 +39,7 @@ const PreviewResultsScreen: React.FC = () => {
   const [isLoadingResults, setIsLoadingResults] = useState(false);
   const [isDownloadModalOpen, setIsDownloadModalOpen] = useState(false);
   const [downloadUrl, setDownloadUrl] = useState<string>('');
+  const [isContentReady, setIsContentReady] = useState(false);
 
   // Fetch campaign results if not provided but campaignId is available
   useEffect(() => {
@@ -74,6 +75,17 @@ const PreviewResultsScreen: React.FC = () => {
 
   // Use either passed campaignResults or fetched results
   const activeCampaignResults = campaignResults || fetchedCampaignResults;
+
+  // Set content ready state when we have campaign results
+  useEffect(() => {
+    if (activeCampaignResults) {
+      // Add a small delay to ensure images are loaded
+      const timer = setTimeout(() => {
+        setIsContentReady(true);
+      }, 500);
+      return () => clearTimeout(timer);
+    }
+  }, [activeCampaignResults]);
 
   const handleBack = () => {
     navigate(-1);
@@ -762,6 +774,35 @@ const PreviewResultsScreen: React.FC = () => {
       />
     );
   };
+
+  // Show loading screen until content is ready
+  if (!isContentReady || !activeCampaignResults) {
+    return (
+      <div className="relative min-h-screen w-full overflow-hidden bg-background flex items-center justify-center">
+        <video 
+          className="absolute inset-0 w-full h-full object-cover object-center opacity-50 z-0" 
+          autoPlay 
+          loop 
+          muted 
+          playsInline
+        >
+          <source src="/background-video.mp4" type="video/mp4" />
+        </video>
+        
+        <div className="relative z-10 text-center">
+          <div className="w-16 h-16 mx-auto mb-6">
+            <RibbedSphere className="w-full h-full animate-spin" />
+          </div>
+          <h2 className="text-2xl font-bold text-foreground mb-2">
+            Preparing Your Campaign Results
+          </h2>
+          <p className="text-muted-foreground">
+            Loading generated content and images...
+          </p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="relative min-h-screen w-full overflow-hidden bg-background">
