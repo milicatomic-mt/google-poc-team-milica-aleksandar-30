@@ -753,7 +753,7 @@ const PreviewResultsScreen: React.FC = () => {
                 <RibbedSphere className="w-full h-full" />
               </div>
               <div className="text-sm text-foreground font-semibold">
-                Bring Your Campaign to <span className="text-indigo-600">Life</span>
+                Bring Your Product to <span className="text-indigo-600">Life</span>
               </div>
             </div>
             
