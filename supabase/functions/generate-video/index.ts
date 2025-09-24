@@ -27,23 +27,17 @@ Deno.serve(async (req) => {
       throw new Error('GEMINI_API_KEY is not configured');
     }
 
-    // Generate video using Gemini 2.5 Flash Video Preview
-    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-video-preview:generateContent?key=${geminiApiKey}`, {
+    // Generate video using Veo 3.0
+    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/veo-3.0-generate-001:predictLongRunning`, {
       method: 'POST',
       headers: {
+        'x-goog-api-key': geminiApiKey,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        contents: [
-          {
-            parts: [
-              {
-                text: videoPrompt,
-              },
-            ],
-            role: 'user',
-          },
-        ],
+        instances: [{
+          prompt: videoPrompt
+        }]
       }),
     });
 
@@ -53,46 +47,87 @@ Deno.serve(async (req) => {
       throw new Error(`Gemini API error: ${errorData.error?.message || 'Unknown error'}`);
     }
 
-    const geminiData = await response.json();
-    console.log('Gemini video generation response:', geminiData);
+    const operationData = await response.json();
+    console.log('Veo 3.0 operation started:', operationData);
     
-    // Extract video data from Gemini response
-    // Note: The exact response format may vary, this is based on typical Gemini responses
+    // Get the operation name for polling
+    const operationName = operationData.name;
+    
+    if (!operationName) {
+      throw new Error('No operation name returned from Veo 3.0');
+    }
+    
+    // Poll for completion (with timeout)
     let videoUrl = null;
+    let attempts = 0;
+    const maxAttempts = 30; // 5 minutes max
     
-    if (geminiData.candidates?.[0]?.content?.parts?.[0]?.inlineData) {
-      // If video is returned as inline data, we'd need to save it to Supabase storage
-      const videoData = geminiData.candidates[0].content.parts[0].inlineData.data;
-      const mimeType = geminiData.candidates[0].content.parts[0].inlineData.mimeType;
+    while (attempts < maxAttempts) {
+      console.log(`Polling attempt ${attempts + 1}/${maxAttempts}`);
       
-      // Convert base64 to blob and upload to Supabase storage
-      const videoBlob = new Uint8Array(atob(videoData).split('').map(char => char.charCodeAt(0)));
-      const fileName = `generated-video-${campaignId}-${Date.now()}.mp4`;
+      const statusResponse = await fetch(`https://generativelanguage.googleapis.com/v1beta/${operationName}`, {
+        headers: {
+          'x-goog-api-key': geminiApiKey,
+        },
+      });
       
-      const { data: uploadData, error: uploadError } = await supabase.storage
-        .from('campaign-assets')
-        .upload(`videos/${fileName}`, videoBlob, {
-          contentType: mimeType || 'video/mp4'
-        });
-
-      if (uploadError) {
-        console.error('Error uploading video to storage:', uploadError);
-        throw uploadError;
+      if (!statusResponse.ok) {
+        throw new Error('Failed to check operation status');
       }
+      
+      const statusData = await statusResponse.json();
+      console.log('Operation status:', statusData);
+      
+      if (statusData.done) {
+        // Extract video URL from completed operation
+        const videoUri = statusData.response?.generateVideoResponse?.generatedSamples?.[0]?.video?.uri;
+        if (videoUri) {
+          // Download and upload to Supabase storage
+          console.log('Downloading video from:', videoUri);
+          const videoResponse = await fetch(videoUri, {
+            headers: {
+              'x-goog-api-key': geminiApiKey,
+            },
+          });
+          
+          if (videoResponse.ok) {
+            const videoBlob = new Uint8Array(await videoResponse.arrayBuffer());
+            const fileName = `generated-video-${campaignId}-${Date.now()}.mp4`;
+            
+            const { data: uploadData, error: uploadError } = await supabase.storage
+              .from('campaign-assets')
+              .upload(`videos/${fileName}`, videoBlob, {
+                contentType: 'video/mp4'
+              });
 
-      // Get public URL
-      const { data: { publicUrl } } = supabase.storage
-        .from('campaign-assets')
-        .getPublicUrl(`videos/${fileName}`);
-        
-      videoUrl = publicUrl;
-    } else if (geminiData.candidates?.[0]?.content?.parts?.[0]?.fileData?.fileUri) {
-      // If video is returned as a file URI
-      videoUrl = geminiData.candidates[0].content.parts[0].fileData.fileUri;
-    } else {
-      // Fallback: create a placeholder for now
-      console.warn('Unexpected Gemini response format, using placeholder');
-      videoUrl = `https://cuwkuomczaoxbaysabii.supabase.co/storage/v1/object/public/campaign-assets/videos/placeholder-${campaignId}-${Date.now()}.mp4`;
+            if (uploadError) {
+              console.error('Error uploading video to storage:', uploadError);
+              throw uploadError;
+            }
+
+            // Get public URL
+            const { data: { publicUrl } } = supabase.storage
+              .from('campaign-assets')
+              .getPublicUrl(`videos/${fileName}`);
+              
+            videoUrl = publicUrl;
+          } else {
+            console.warn('Failed to download video, using direct URL');
+            videoUrl = videoUri;
+          }
+        } else {
+          throw new Error('No video URI in completed operation');
+        }
+        break;
+      }
+      
+      // Wait before next poll
+      await new Promise(resolve => setTimeout(resolve, 10000)); // 10 seconds
+      attempts++;
+    }
+    
+    if (!videoUrl) {
+      throw new Error('Video generation timed out or failed');
     }
     
     // Update the campaign results with the generated video URL
@@ -113,7 +148,7 @@ Deno.serve(async (req) => {
     return new Response(JSON.stringify({ 
       success: true, 
       videoUrl: videoUrl,
-      message: 'Video generated successfully using Gemini AI'
+      message: 'Video generated successfully using Veo 3.0'
     }), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     });
