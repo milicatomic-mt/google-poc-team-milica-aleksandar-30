@@ -24,6 +24,8 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
+  AlertDialogOverlay,
+  AlertDialogPortal,
 } from '@/components/ui/alert-dialog';
 import RibbedSphere from '@/components/RibbedSphere';
 import { supabase } from "@/integrations/supabase/client";
@@ -880,18 +882,21 @@ const PreviewResultsScreen: React.FC = () => {
                   <X className="h-4 w-4 text-black" />
                 </Button>
               </AlertDialogTrigger>
-              <AlertDialogContent className="bg-white">
-                <AlertDialogHeader>
-                  <AlertDialogTitle>Exit to Homepage?</AlertDialogTitle>
-                  <AlertDialogDescription>
-                    Are you sure you want to exit? Your campaign results will remain saved.
-                  </AlertDialogDescription>
-                </AlertDialogHeader>
-                <AlertDialogFooter>
-                  <AlertDialogCancel className="rounded-full">Cancel</AlertDialogCancel>
-                  <AlertDialogAction onClick={handleStartOver} className="rounded-full">Exit</AlertDialogAction>
-                </AlertDialogFooter>
-              </AlertDialogContent>
+              <AlertDialogPortal>
+                <AlertDialogOverlay className="bg-gray-100/50 backdrop-blur-sm" />
+                <AlertDialogContent className="bg-white border-none shadow-lg max-w-md p-6">
+                  <AlertDialogHeader>
+                    <AlertDialogTitle>Exit to Homepage?</AlertDialogTitle>
+                    <AlertDialogDescription>
+                      Are you sure you want to exit? Any current selection will be lost.
+                    </AlertDialogDescription>
+                  </AlertDialogHeader>
+                  <AlertDialogFooter>
+                    <AlertDialogCancel className="rounded-full bg-gray-100 hover:bg-gray-200 border-0">Cancel</AlertDialogCancel>
+                    <AlertDialogAction onClick={handleStartOver} className="rounded-full bg-primary hover:bg-primary/90 text-primary-foreground">Exit</AlertDialogAction>
+                  </AlertDialogFooter>
+                </AlertDialogContent>
+              </AlertDialogPortal>
             </AlertDialog>
           </div>
          </header>
