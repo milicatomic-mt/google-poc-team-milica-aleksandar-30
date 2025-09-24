@@ -85,7 +85,18 @@ serve(async (req) => {
         console.log(`Response for prompt ${i + 1}:`, JSON.stringify(data, null, 2));
 
         // Check if the response contains generated image data
-        const imageData = data.candidates?.[0]?.content?.parts?.[0];
+        const candidate = data.candidates?.[0];
+        let imageData = null;
+        
+        // Look for image data in all parts of the response
+        if (candidate?.content?.parts) {
+          for (const part of candidate.content.parts) {
+            if (part.inlineData) {
+              imageData = part;
+              break;
+            }
+          }
+        }
         
         if (imageData && imageData.inlineData) {
           // Image was generated successfully
