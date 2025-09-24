@@ -190,47 +190,55 @@ const CatalogResultsScreen: React.FC = () => {
       <div className="relative z-10 flex min-h-screen flex-col overflow-y-auto">
         {/* Header */}
         <header className="container-padding pt-20 relative">
-          <div className="w-full flex justify-between items-start px-8">
-            {/* Left - Title and Subtitle */}
-            <div className="text-left">
-              <h2 className="text-3xl font-bold text-foreground mb-2">
-                Catalog Enrichment Preview
-              </h2>
-              <p className="text-lg text-muted-foreground">
-                Your enriched catalog is ready to publish
-              </p>
-            </div>
-            
-            {/* Center - Sphere Animation with Text in 2 rows */}
-            <div className="absolute left-1/2 transform -translate-x-1/2 text-center">
-              <div className="flex justify-center mb-3">
-                <div className="w-12 h-12">
-                  <RibbedSphere className="w-full h-full" />
-                </div>
+          <div className="w-full flex justify-between items-center px-8">
+            {/* Left - Sphere and Text in 1 row */}
+            <div className="flex items-center gap-3">
+              <div className="w-12 h-12">
+                <RibbedSphere className="w-full h-full" />
               </div>
               <div className="text-sm text-foreground font-semibold">
                 Bring Your Products to <span className="text-indigo-600">Life</span>
               </div>
             </div>
             
-            {/* Right - Edit and Download Buttons */}
-            <div className="flex gap-3">
-              <Button
-                onClick={handleBack}
-                variant="outline"
-                className="tap-target focus-ring bg-white hover:bg-white/90 text-black hover:text-black border-white rounded-full px-6 py-2 flex items-center gap-2"
-              >
-                <Edit className="w-4 h-4 text-black" />
-                Edit
-              </Button>
-              <Button
-                variant="default"
-                className="tap-target focus-ring bg-primary hover:bg-primary/90 text-white rounded-full px-6 py-2 flex items-center gap-2"
-              >
-                <Download className="w-4 h-4" />
-                Download All
-              </Button>
+            {/* Center - Title and Subtitle */}
+            <div className="absolute left-1/2 transform -translate-x-1/2 text-center">
+              <h2 className="text-3xl font-bold text-foreground mb-2">
+                Catalog Enrichment Preview
+              </h2>
+              <p className="text-lg text-muted-foreground">
+                Your enriched catalog is ready to publish
+              </p>
+              
+              {/* Edit and Download buttons beneath title */}
+              <div className="flex justify-center gap-3 mt-4">
+                <Button
+                  onClick={handleBack}
+                  variant="outline"
+                  className="tap-target focus-ring bg-white hover:bg-white/90 text-black hover:text-black border-white rounded-full px-6 py-2 flex items-center gap-2"
+                >
+                  <Edit className="w-4 h-4 text-black" />
+                  Edit
+                </Button>
+                <Button
+                  variant="default"
+                  className="tap-target focus-ring bg-primary hover:bg-primary/90 text-white rounded-full px-6 py-2 flex items-center gap-2"
+                >
+                  <Download className="w-4 h-4" />
+                  Download All
+                </Button>
+              </div>
             </div>
+            
+            {/* Right - Close Button */}
+            <Button
+              onClick={handleStartOver}
+              variant="ghost"
+              size="icon"
+              className="tap-target focus-ring text-white hover:text-white hover:bg-white/20 rounded-full"
+            >
+              <X className="w-6 h-6" />
+            </Button>
           </div>
         </header>
 
