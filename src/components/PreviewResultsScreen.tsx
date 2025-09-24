@@ -39,6 +39,7 @@ const PreviewResultsScreen: React.FC = () => {
   const [isLoadingResults, setIsLoadingResults] = useState(false);
   const [isDownloadModalOpen, setIsDownloadModalOpen] = useState(false);
   const [downloadUrl, setDownloadUrl] = useState<string>('');
+  const [isContentReady, setIsContentReady] = useState(false);
 
   // Fetch campaign results if not provided but campaignId is available
   useEffect(() => {
@@ -54,18 +55,30 @@ const PreviewResultsScreen: React.FC = () => {
 
           if (error) {
             console.error('Error fetching campaign results:', error);
+            setIsContentReady(true); // Show content even if fetch fails
           } else if (data?.result && Object.keys(data.result).length > 0) {
             const genImgs = Array.isArray(data.generated_images)
               ? (data.generated_images as CampaignCreationResponse['generated_images'])
               : [];
             const merged = { ...(data.result as CampaignCreationResponse), generated_images: genImgs };
             setFetchedCampaignResults(merged);
+            
+            // Wait a bit for images to be ready, then show content
+            setTimeout(() => {
+              setIsContentReady(true);
+            }, 500);
+          } else {
+            setIsContentReady(true); // Show content if no results
           }
         } catch (error) {
           console.error('Error fetching campaign results:', error);
+          setIsContentReady(true); // Show content even if error
         } finally {
           setIsLoadingResults(false);
         }
+      } else if (campaignResults) {
+        // If results are already provided, show content immediately
+        setIsContentReady(true);
       }
     };
 
@@ -776,7 +789,33 @@ const PreviewResultsScreen: React.FC = () => {
         <source src="/background-video.mp4" type="video/mp4" />
       </video>
 
-      <div className="relative z-10 flex min-h-screen flex-col overflow-y-auto">
+      {/* Loading Screen */}
+      {!isContentReady && (
+        <div className="relative z-10 min-h-screen flex flex-col">
+          <div className="flex-1 flex items-center justify-center px-4 py-8">
+            <div className="flex flex-col items-center justify-center space-y-6">
+              {/* Animated Sphere */}
+              <div className="w-[200px] h-[200px] animate-fade-in">
+                <RibbedSphere className="w-full h-full" />
+              </div>
+
+              {/* Loading Text */}
+              <div className="text-center animate-fade-in animation-delay-300 min-h-[80px] flex flex-col justify-center">
+                <p className="text-2xl font-semibold text-foreground mb-2">
+                  Preparing your campaign preview...
+                </p>
+                <p className="text-sm text-muted-foreground">
+                  Loading generated images and content
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Main Content - Only show when ready */}
+      {isContentReady && (
+        <div className="relative z-10 flex min-h-screen flex-col overflow-y-auto">
         {/* Header */}
         <header className="container-padding pt-20 relative">
           <div className="w-full flex justify-between items-start px-8">
@@ -1372,6 +1411,7 @@ const PreviewResultsScreen: React.FC = () => {
           </div>
         </main>
       </div>
+      )}
 
       {/* Download QR Code Modal */}
       <Dialog open={isDownloadModalOpen} onOpenChange={setIsDownloadModalOpen}>
