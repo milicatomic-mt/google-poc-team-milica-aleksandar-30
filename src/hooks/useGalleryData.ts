@@ -48,8 +48,8 @@ const fetchGalleryData = async (): Promise<GalleryItem[]> => {
       type: 'campaign' as const,
       created_at: item.created_at,
       image_url: item.image_url,
-      title: result?.emailCopy?.subject || result?.videoScript?.hook || 'Marketing Campaign',
-      description: result?.emailCopy?.preview || result?.videoScript?.hook || 'Campaign content',
+      title: result?.email_copy?.subject || result?.banner_ads?.[0]?.headline || result?.landing_page_concept?.hero_text || `Campaign ${item.id.slice(-8)}`,
+      description: result?.email_copy?.body?.substring(0, 100) + '...' || result?.video_scripts?.[0]?.script?.substring(0, 100) + '...' || 'Generated marketing campaign',
       has_video: !!item.generated_video_url,
       has_images: true
     };
@@ -107,11 +107,12 @@ const fetchGalleryItemDetails = async (id: string, type: 'campaign' | 'catalog')
   };
 
   if (type === 'campaign') {
+    const result = itemData.result as any;
     return {
       ...baseItem,
       generated_video_url: itemData.generated_video_url,
-      title: itemData.result?.emailCopy?.subject || itemData.result?.videoScript?.hook || 'Marketing Campaign',
-      description: itemData.result?.emailCopy?.preview || itemData.result?.videoScript?.hook || 'Campaign content'
+      title: result?.email_copy?.subject || result?.banner_ads?.[0]?.headline || result?.landing_page_concept?.hero_text || `Campaign ${itemData.id.slice(-8)}`,
+      description: result?.email_copy?.body?.substring(0, 100) + '...' || result?.video_scripts?.[0]?.script?.substring(0, 100) + '...' || 'Generated marketing campaign'
     };
   } else {
     return {
