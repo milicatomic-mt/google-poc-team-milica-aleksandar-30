@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
-import { ChevronLeft, ChevronRight, Play, Pause, Calendar, Image as ImageIcon } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Play, Pause, Calendar, Image as ImageIcon, FileText } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 
 interface GalleryItem {
@@ -209,6 +209,67 @@ const GalleryPreviewModal = ({ item, isOpen, onClose }: GalleryPreviewModalProps
                   ))}
                 </div>
               )}
+            </div>
+          )}
+
+          {/* Generated Text Content (for catalogs) */}
+          {item.type === 'catalog' && item.result && (
+            <div className="space-y-4">
+              <div className="flex items-center space-x-2">
+                <FileText className="w-4 h-4" />
+                <h3 className="font-semibold">Generated Content</h3>
+              </div>
+              
+              <div className="bg-muted/30 rounded-lg p-4 space-y-4">
+                {item.result.productName && (
+                  <div>
+                    <h4 className="font-medium text-sm text-muted-foreground mb-1">Product Name</h4>
+                    <p className="text-sm">{item.result.productName}</p>
+                  </div>
+                )}
+                
+                {item.result.productDescription && (
+                  <div>
+                    <h4 className="font-medium text-sm text-muted-foreground mb-1">Product Description</h4>
+                    <p className="text-sm">{item.result.productDescription}</p>
+                  </div>
+                )}
+                
+                {item.result.keyFeatures && Array.isArray(item.result.keyFeatures) && (
+                  <div>
+                    <h4 className="font-medium text-sm text-muted-foreground mb-1">Key Features</h4>
+                    <ul className="text-sm space-y-1">
+                      {item.result.keyFeatures.map((feature: string, index: number) => (
+                        <li key={index} className="flex items-start space-x-2">
+                          <span className="text-primary mt-1.5 w-1 h-1 rounded-full bg-current flex-shrink-0"></span>
+                          <span>{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+                
+                {item.result.marketingCopy && (
+                  <div>
+                    <h4 className="font-medium text-sm text-muted-foreground mb-1">Marketing Copy</h4>
+                    <p className="text-sm">{item.result.marketingCopy}</p>
+                  </div>
+                )}
+                
+                {item.result.targetAudience && (
+                  <div>
+                    <h4 className="font-medium text-sm text-muted-foreground mb-1">Target Audience</h4>
+                    <p className="text-sm">{item.result.targetAudience}</p>
+                  </div>
+                )}
+                
+                {item.result.pricing && (
+                  <div>
+                    <h4 className="font-medium text-sm text-muted-foreground mb-1">Pricing</h4>
+                    <p className="text-sm font-medium">{item.result.pricing}</p>
+                  </div>
+                )}
+              </div>
             </div>
           )}
 
