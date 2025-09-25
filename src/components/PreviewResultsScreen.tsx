@@ -129,8 +129,19 @@ const PreviewResultsScreen: React.FC = () => {
 
   // Modal handlers
   const handleOpenCategory = (category: string) => {
-    setSelectedSection(category);
-    setIsModalOpen(true);
+    const routeMap = {
+      'Web Creative': '/web-creative',
+      'Banner Ads': '/banner-ads', 
+      'Video Scripts': '/video-scripts',
+      'Email Templates': '/email-templates'
+    };
+    
+    const route = routeMap[category as keyof typeof routeMap];
+    if (route) {
+      navigate(route, {
+        state: { campaignResults: activeCampaignResults, uploadedImage, campaignId }
+      });
+    }
   };
 
   const handleCloseModal = () => {

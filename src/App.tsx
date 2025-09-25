@@ -57,6 +57,10 @@ import UploadScreen from "./components/UploadScreen";
 import CampaignPromptScreen from "./components/CampaignPromptScreen";
 import CatalogPromptScreen from "./components/CatalogPromptScreen";
 import GenerateCampaignScreen from "./components/GenerateCampaignScreen";
+import WebCreativePreview from "./components/WebCreativePreview";
+import BannerAdsPreview from "./components/BannerAdsPreview";
+import VideoScriptsPreview from "./components/VideoScriptsPreview";
+import EmailTemplatesPreview from "./components/EmailTemplatesPreview";
 
 import CatalogResultsScreen from "./components/CatalogResultsScreen";
 import MobileUploadScreen from "./components/MobileUploadScreen";
@@ -95,6 +99,10 @@ const App = () => (
             <Route path="/mobile-upload" element={<MobileUploadScreen />} />
             <Route path="/catalog-results" element={<CatalogResultsScreen />} />
             <Route path="/preview-results" element={<PreviewResultsScreen />} />
+            <Route path="/web-creative" element={<WebCreativePreview />} />
+            <Route path="/banner-ads" element={<BannerAdsPreview />} />
+            <Route path="/video-scripts" element={<VideoScriptsPreview />} />
+            <Route path="/email-templates" element={<EmailTemplatesPreview />} />
             <Route path="/qr-download" element={<QRDownloadScreen />} />
             <Route path="/download-content" element={<DownloadContentScreen />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
