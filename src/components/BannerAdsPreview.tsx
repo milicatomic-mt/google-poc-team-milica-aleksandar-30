@@ -88,152 +88,334 @@ const BannerAdsPreview: React.FC = () => {
       {/* Content */}
       <div className="px-8 pb-8">
         <div className="max-w-7xl mx-auto space-y-8">
-          {/* Leaderboard Banner */}
+          {/* Leaderboard Banner - 728×90 */}
           <div className="space-y-4">
             <h2 className="text-xl font-semibold text-gray-900">
               Leaderboard Banner <span className="text-gray-500 font-normal">(728×90)</span>
             </h2>
             
-            <div className="w-full">
-              <div 
-                className="relative bg-gradient-to-r from-amber-200 to-amber-100 overflow-hidden mx-auto"
-                style={{ width: '728px', height: '90px', maxWidth: '100%' }}
-              >
-                {/* Left side with product image */}
-                <div className="absolute left-0 top-0 h-full w-24 flex items-center justify-center">
-                  {(generatedImages[0]?.url || uploadedImage) && (
-                    <img 
-                      src={generatedImages[0]?.url || uploadedImage} 
-                      alt="Premium headphones" 
-                      className="w-14 h-14 object-contain" 
-                    />
-                  )}
-                  {/* Arrow decoration */}
-                  <div className="absolute bottom-3 left-3">
-                    <svg width="24" height="14" viewBox="0 0 24 14" className="text-white">
-                      <path d="M2 7h20M18 3l4 4-4 4" stroke="currentColor" strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
+            <div className="bg-white border rounded-lg overflow-hidden shadow-sm">
+              {/* Website Header Mockup */}
+              <div className="bg-gray-100 px-4 py-2 border-b">
+                <div className="flex items-center justify-between">
+                  <div className="text-sm font-semibold text-gray-700">NewsWebsite.com</div>
+                  <div className="flex gap-4 text-sm text-gray-600">
+                    <span>Home</span>
+                    <span>Sports</span>
+                    <span>Tech</span>
+                    <span>Business</span>
                   </div>
                 </div>
-
-                {/* Center content */}
-                <div className="absolute left-28 top-1/2 -translate-y-1/2">
-                  <div className="space-y-1">
-                    <h3 className="text-2xl font-bold text-black tracking-wide">
-                      PREMIUM SOUND
-                    </h3>
-                    <p className="text-xs text-gray-700 font-medium uppercase tracking-wider">
-                      MINIMALIST DESIGN
-                    </p>
-                    <p className="text-xs text-black font-semibold">
-                      SMASH THE COMPETITION<br/>WITH 30% DISCOUNT
-                    </p>
+              </div>
+              
+              {/* Highlighted Banner Area */}
+              <div className="p-4 bg-gray-50">
+                <div className="relative">
+                  {/* Highlight border */}
+                  <div className="absolute -inset-2 bg-blue-500/20 border-2 border-blue-500 border-dashed rounded"></div>
+                  
+                  {/* Banner Content */}
+                  <div 
+                    className="relative bg-gradient-to-r from-amber-200 to-amber-100"
+                    style={{ width: '728px', height: '90px', maxWidth: '100%' }}
+                  >
+                    <div className="absolute left-6 top-1/2 -translate-y-1/2 flex items-center gap-4">
+                      {(generatedImages[0]?.url || uploadedImage) && (
+                        <img 
+                          src={generatedImages[0]?.url || uploadedImage} 
+                          alt="Premium headphones" 
+                          className="w-12 h-12 object-contain" 
+                        />
+                      )}
+                      <div>
+                        <h3 className="text-lg font-bold text-black">PREMIUM SOUND</h3>
+                        <p className="text-xs text-gray-700 uppercase">MINIMALIST DESIGN</p>
+                      </div>
+                    </div>
+                    <div className="absolute right-6 top-1/2 -translate-y-1/2">
+                      <button className="bg-white text-black font-semibold px-6 py-2 rounded-full">
+                        Shop Now
+                      </button>
+                    </div>
                   </div>
                 </div>
-
-                {/* Right CTA button */}
-                <div className="absolute right-8 top-1/2 -translate-y-1/2">
-                  <button className="bg-white text-black font-semibold px-8 py-2 rounded-full shadow-md hover:bg-gray-50 transition-colors">
-                    Shop Now
-                  </button>
+                <p className="text-xs text-blue-600 mt-2 font-medium">↑ Banner placement in header area</p>
+              </div>
+              
+              {/* Website Content Preview */}
+              <div className="p-4 space-y-2">
+                <h3 className="text-lg font-semibold">Breaking News Today</h3>
+                <div className="flex gap-4">
+                  <div className="w-20 h-16 bg-gray-200 rounded"></div>
+                  <div className="flex-1">
+                    <p className="text-sm text-gray-600">Latest updates in technology and business...</p>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Grid Layout for remaining banners */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            {/* Half Page Banner */}
-            <div className="space-y-4">
-              <h2 className="text-xl font-semibold text-gray-900">
-                Half Page Banner <span className="text-gray-500 font-normal">(300×600)</span>
-              </h2>
-              
-              <div className="flex justify-start">
-                <div 
-                  className="relative overflow-hidden"
-                  style={{ width: '300px', height: '600px' }}
-                >
-                  {/* Top Product Area - Tan background */}
-                  <div className="h-96 bg-gradient-to-b from-amber-200 to-amber-100 flex items-center justify-center relative">
-                    {(generatedImages[0]?.url || uploadedImage) && (
-                      <img 
-                        src={generatedImages[0]?.url || uploadedImage} 
-                        alt="Premium headphones" 
-                        className="w-48 h-48 object-contain" 
-                      />
-                    )}
-                    {/* Arrow decoration */}
-                    <div className="absolute top-6 left-4">
-                      <svg width="24" height="14" viewBox="0 0 24 14" className="text-white">
-                        <path d="M2 7h20M18 3l4 4-4 4" stroke="currentColor" strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
-                      </svg>
-                    </div>
+          {/* Medium Rectangle - 300×250 */}
+          <div className="space-y-4">
+            <h2 className="text-xl font-semibold text-gray-900">
+              Medium Rectangle Banner <span className="text-gray-500 font-normal">(300×250)</span>
+            </h2>
+            
+            <div className="bg-white border rounded-lg overflow-hidden shadow-sm">
+              <div className="flex">
+                {/* Main Content */}
+                <div className="flex-1 p-4">
+                  <h3 className="text-lg font-semibold mb-3">Article Title Here</h3>
+                  <div className="space-y-3 text-sm text-gray-600">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.</p>
+                    <div className="w-full h-32 bg-gray-200 rounded"></div>
+                    <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.</p>
                   </div>
-                  
-                  {/* Bottom section with black background */}
-                  <div className="h-52 bg-black text-white flex flex-col justify-center px-6 text-center">
-                    <div className="space-y-4">
-                      <h3 className="text-2xl font-bold uppercase tracking-wide">
-                        PREMIUM SOUND
-                      </h3>
-                      <p className="text-sm font-medium uppercase tracking-wider opacity-80">
-                        MINIMALIST DESIGN
-                      </p>
-                      <div className="pt-2 space-y-3">
-                        <p className="text-sm font-semibold">
-                          SMASH THE COMPETITION<br/>WITH 30% DISCOUNT
-                        </p>
-                        <button className="bg-white text-black font-semibold px-8 py-3 rounded-full hover:bg-gray-100 transition-colors">
-                          Shop Now
-                        </button>
+                </div>
+                
+                {/* Sidebar with Banner */}
+                <div className="w-80 p-4 bg-gray-50 border-l">
+                  <div className="space-y-4">
+                    <h4 className="font-semibold text-sm">Advertisement</h4>
+                    
+                    {/* Highlighted Banner Area */}
+                    <div className="relative">
+                      <div className="absolute -inset-2 bg-blue-500/20 border-2 border-blue-500 border-dashed rounded"></div>
+                      
+                      <div 
+                        className="relative bg-gradient-to-br from-gray-200 to-gray-300"
+                        style={{ width: '300px', height: '250px' }}
+                      >
+                        <div className="h-full flex items-center justify-center relative">
+                          {(generatedImages[0]?.url || uploadedImage) && (
+                            <img 
+                              src={generatedImages[0]?.url || uploadedImage} 
+                              alt="Premium headphones" 
+                              className="w-28 h-28 object-contain absolute top-8" 
+                            />
+                          )}
+                          
+                          <div className="absolute bottom-0 left-0 right-0 h-16 bg-amber-100 flex flex-col justify-center px-4 text-center">
+                            <h3 className="text-sm font-bold text-black uppercase">PREMIUM SOUND</h3>
+                            <button className="bg-black text-white font-semibold px-4 py-1 rounded-full text-xs mt-1">
+                              Shop Now
+                            </button>
+                          </div>
+                        </div>
                       </div>
                     </div>
+                    <p className="text-xs text-blue-600 font-medium">↑ Sidebar placement</p>
                   </div>
                 </div>
               </div>
             </div>
+          </div>
 
-            {/* Medium Rectangle Banner */}
-            <div className="space-y-4">
-              <h2 className="text-xl font-semibold text-gray-900">
-                Medium Rectangle Banner <span className="text-gray-500 font-normal">(300×250)</span>
-              </h2>
-              
-              <div className="flex justify-start">
-                <div 
-                  className="relative overflow-hidden"
-                  style={{ width: '300px', height: '250px' }}
-                >
-                  {/* Full background with product - White/Gray background */}
-                  <div className="h-full bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center relative">
-                    {(generatedImages[0]?.url || uploadedImage) && (
-                      <img 
-                        src={generatedImages[0]?.url || uploadedImage} 
-                        alt="Premium headphones" 
-                        className="w-32 h-32 object-contain absolute top-8" 
-                      />
-                    )}
+          {/* Wide Skyscraper - 160×600 */}
+          <div className="space-y-4">
+            <h2 className="text-xl font-semibold text-gray-900">
+              Wide Skyscraper Banner <span className="text-gray-500 font-normal">(160×600)</span>
+            </h2>
+            
+            <div className="bg-white border rounded-lg overflow-hidden shadow-sm">
+              <div className="flex">
+                {/* Left Sidebar with Banner */}
+                <div className="w-48 p-4 bg-gray-50 border-r">
+                  <div className="space-y-4">
+                    <h4 className="font-semibold text-sm">Advertisement</h4>
                     
-                    {/* Bottom section overlay with tan background */}
-                    <div className="absolute bottom-0 left-0 right-0 h-20 bg-amber-100 flex flex-col justify-center px-4 text-center">
-                      <div className="space-y-1">
-                        <h3 className="text-lg font-bold text-black uppercase tracking-wide">
-                          PREMIUM SOUND
-                        </h3>
-                        <p className="text-xs text-gray-700 font-medium uppercase tracking-wider">
-                          MINIMALIST DESIGN
-                        </p>
-                        <div className="pt-1">
-                          <div className="text-xs text-black font-semibold mb-2">
-                            SMASH THE COMPETITION<br/>WITH 30% DISCOUNT
+                    {/* Highlighted Banner Area */}
+                    <div className="relative">
+                      <div className="absolute -inset-2 bg-blue-500/20 border-2 border-blue-500 border-dashed rounded"></div>
+                      
+                      <div 
+                        className="relative bg-gradient-to-b from-amber-200 to-amber-100"
+                        style={{ width: '160px', height: '600px' }}
+                      >
+                        {/* Top product area */}
+                        <div className="h-40 flex items-center justify-center p-3">
+                          {(generatedImages[0]?.url || uploadedImage) && (
+                            <img 
+                              src={generatedImages[0]?.url || uploadedImage} 
+                              alt="Premium headphones" 
+                              className="w-20 h-20 object-contain" 
+                            />
+                          )}
+                        </div>
+                        
+                        {/* Middle content */}
+                        <div className="px-3 py-4 text-center">
+                          <h3 className="text-sm font-bold text-black uppercase mb-2">PREMIUM SOUND</h3>
+                          <p className="text-xs text-gray-700 uppercase mb-4">MINIMALIST DESIGN</p>
+                          <div className="space-y-2 text-xs">
+                            <div>✓ Superior Quality</div>
+                            <div>✓ Wireless Freedom</div>
+                            <div>✓ All-Day Comfort</div>
                           </div>
-                          <button className="bg-black text-white font-semibold px-6 py-2 rounded-full text-sm hover:bg-gray-800 transition-colors">
+                        </div>
+                        
+                        {/* Bottom CTA */}
+                        <div className="absolute bottom-4 left-3 right-3">
+                          <button className="w-full bg-black text-white font-semibold py-2 rounded-full text-xs">
                             Shop Now
                           </button>
                         </div>
                       </div>
                     </div>
+                    <p className="text-xs text-blue-600 font-medium">↑ Left sidebar placement</p>
+                  </div>
+                </div>
+                
+                {/* Main Content */}
+                <div className="flex-1 p-4">
+                  <h3 className="text-lg font-semibold mb-3">Main Article Content</h3>
+                  <div className="space-y-3 text-sm text-gray-600">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    <div className="w-full h-48 bg-gray-200 rounded"></div>
+                    <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                    <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Half Page - 300×600 */}
+          <div className="space-y-4">
+            <h2 className="text-xl font-semibold text-gray-900">
+              Half Page Banner <span className="text-gray-500 font-normal">(300×600)</span>
+            </h2>
+            
+            <div className="bg-white border rounded-lg overflow-hidden shadow-sm">
+              <div className="flex">
+                {/* Main Content */}
+                <div className="flex-1 p-4">
+                  <h3 className="text-lg font-semibold mb-3">Featured Article</h3>
+                  <div className="space-y-3 text-sm text-gray-600">
+                    <p>This is the main content area of the webpage where articles and information would be displayed.</p>
+                    <div className="w-full h-40 bg-gray-200 rounded"></div>
+                    <p>The half-page banner format provides excellent visibility while maintaining good user experience.</p>
+                    <p>Users can still access the main content while being exposed to the advertisement.</p>
+                  </div>
+                </div>
+                
+                {/* Right Sidebar with Banner */}
+                <div className="w-80 p-4 bg-gray-50 border-l">
+                  <div className="space-y-4">
+                    <h4 className="font-semibold text-sm">Advertisement</h4>
+                    
+                    {/* Highlighted Banner Area */}
+                    <div className="relative">
+                      <div className="absolute -inset-2 bg-blue-500/20 border-2 border-blue-500 border-dashed rounded"></div>
+                      
+                      <div 
+                        className="relative"
+                        style={{ width: '300px', height: '600px' }}
+                      >
+                        {/* Top Product Area */}
+                        <div className="h-96 bg-gradient-to-b from-amber-200 to-amber-100 flex items-center justify-center relative">
+                          {(generatedImages[0]?.url || uploadedImage) && (
+                            <img 
+                              src={generatedImages[0]?.url || uploadedImage} 
+                              alt="Premium headphones" 
+                              className="w-40 h-40 object-contain" 
+                            />
+                          )}
+                        </div>
+                        
+                        {/* Bottom section */}
+                        <div className="h-52 bg-black text-white flex flex-col justify-center px-6 text-center">
+                          <h3 className="text-xl font-bold uppercase mb-2">PREMIUM SOUND</h3>
+                          <p className="text-sm uppercase mb-4 opacity-80">MINIMALIST DESIGN</p>
+                          <p className="text-sm font-semibold mb-4">SMASH THE COMPETITION<br/>WITH 30% DISCOUNT</p>
+                          <button className="bg-white text-black font-semibold px-6 py-3 rounded-full">
+                            Shop Now
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    <p className="text-xs text-blue-600 font-medium">↑ Right sidebar placement</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Billboard - 970×250 */}
+          <div className="space-y-4">
+            <h2 className="text-xl font-semibold text-gray-900">
+              Billboard Banner <span className="text-gray-500 font-normal">(970×250)</span>
+            </h2>
+            
+            <div className="bg-white border rounded-lg overflow-hidden shadow-sm">
+              {/* Website Header */}
+              <div className="bg-gray-100 px-4 py-2 border-b">
+                <div className="flex items-center justify-between">
+                  <div className="text-sm font-semibold text-gray-700">TechBlog.com</div>
+                  <div className="flex gap-6 text-sm text-gray-600">
+                    <span>Reviews</span>
+                    <span>News</span>
+                    <span>Guides</span>
+                    <span>Products</span>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Highlighted Banner Area - Above the fold */}
+              <div className="p-4 bg-gray-50">
+                <div className="relative">
+                  <div className="absolute -inset-2 bg-blue-500/20 border-2 border-blue-500 border-dashed rounded"></div>
+                  
+                  <div 
+                    className="relative bg-gradient-to-r from-amber-200 via-amber-100 to-amber-200"
+                    style={{ width: '970px', height: '250px', maxWidth: '100%' }}
+                  >
+                    {/* Left content area */}
+                    <div className="absolute left-8 top-1/2 -translate-y-1/2">
+                      <div className="space-y-3">
+                        <h3 className="text-3xl font-bold text-black">PREMIUM SOUND</h3>
+                        <p className="text-lg text-gray-700 uppercase tracking-wide">MINIMALIST DESIGN</p>
+                        <p className="text-lg font-semibold text-black">
+                          SMASH THE COMPETITION<br/>WITH 30% DISCOUNT
+                        </p>
+                        <button className="bg-black text-white font-semibold px-8 py-3 rounded-full text-lg mt-4">
+                          Shop Now
+                        </button>
+                      </div>
+                    </div>
+                    
+                    {/* Right product showcase */}
+                    <div className="absolute right-8 top-1/2 -translate-y-1/2">
+                      {(generatedImages[0]?.url || uploadedImage) && (
+                        <img 
+                          src={generatedImages[0]?.url || uploadedImage} 
+                          alt="Premium headphones" 
+                          className="w-48 h-48 object-contain" 
+                        />
+                      )}
+                    </div>
+                  </div>
+                </div>
+                <p className="text-xs text-blue-600 mt-2 font-medium">↑ Above-the-fold premium placement</p>
+              </div>
+              
+              {/* Website Content Preview */}
+              <div className="p-4">
+                <div className="grid grid-cols-3 gap-4">
+                  <div className="space-y-2">
+                    <div className="w-full h-32 bg-gray-200 rounded"></div>
+                    <h4 className="font-semibold">Latest Tech Reviews</h4>
+                    <p className="text-sm text-gray-600">Comprehensive reviews of the latest gadgets...</p>
+                  </div>
+                  <div className="space-y-2">
+                    <div className="w-full h-32 bg-gray-200 rounded"></div>
+                    <h4 className="font-semibold">Industry News</h4>
+                    <p className="text-sm text-gray-600">Breaking news from the tech industry...</p>
+                  </div>
+                  <div className="space-y-2">
+                    <div className="w-full h-32 bg-gray-200 rounded"></div>
+                    <h4 className="font-semibold">Buyer's Guide</h4>
+                    <p className="text-sm text-gray-600">Expert recommendations for your next purchase...</p>
                   </div>
                 </div>
               </div>
