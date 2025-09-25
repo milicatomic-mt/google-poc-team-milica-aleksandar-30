@@ -21,6 +21,11 @@ const EmailTemplatesPreview: React.FC = () => {
     }
   }, [campaignResults, navigate]);
 
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const handleBack = () => {
     navigate('/preview-results', {
       state: { campaignResults, uploadedImage, campaignId }
@@ -98,22 +103,38 @@ const EmailTemplatesPreview: React.FC = () => {
               
               {/* Email content */}
               <div className="bg-white">
-                {/* Header */}
-                <div className="text-center py-8 bg-gradient-to-r from-amber-50 to-amber-100">
-                  <h1 className="text-3xl font-bold text-slate-900 mb-2">Premium sound</h1>
-                  <p className="text-sm text-slate-600 uppercase tracking-wider">MINIMALIST DESIGN</p>
+                {/* Header with Background Image */}
+                <div 
+                  className="relative text-center py-8 bg-cover bg-center bg-no-repeat min-h-[200px] flex flex-col justify-center"
+                  style={{
+                    backgroundImage: (generatedImages[0]?.url || uploadedImage) 
+                      ? `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(${generatedImages[0]?.url || uploadedImage})`
+                      : 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
+                  }}
+                >
+                  <h1 className="text-3xl font-bold text-white mb-2 drop-shadow-lg">Premium sound</h1>
+                  <p className="text-sm text-white/90 uppercase tracking-wider drop-shadow">MINIMALIST DESIGN</p>
                 </div>
 
-                {/* Hero Image */}
-                <div className="relative bg-gradient-to-br from-amber-100 to-amber-200 py-12">
+                {/* Hero Image Section */}
+                <div 
+                  className="relative bg-cover bg-center bg-no-repeat py-12 min-h-[400px] flex items-center justify-center"
+                  style={{
+                    backgroundImage: (generatedImages[1]?.url || generatedImages[0]?.url || uploadedImage) 
+                      ? `linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1)), url(${generatedImages[1]?.url || generatedImages[0]?.url || uploadedImage})`
+                      : 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
+                  }}
+                >
                   <div className="container mx-auto px-8 max-w-2xl">
                     <div className="flex items-center justify-center">
                       {(generatedImages[0]?.url || uploadedImage) && (
-                        <img 
-                          src={generatedImages[0]?.url || uploadedImage}
-                          alt="Premium wireless headphones"
-                          className="w-64 h-64 object-contain drop-shadow-xl"
-                        />
+                        <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-8 shadow-2xl">
+                          <img 
+                            src={generatedImages[0]?.url || uploadedImage}
+                            alt="Premium wireless headphones"
+                            className="w-64 h-64 object-contain"
+                          />
+                        </div>
                       )}
                     </div>
                   </div>
