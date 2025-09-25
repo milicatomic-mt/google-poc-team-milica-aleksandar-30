@@ -1393,23 +1393,21 @@ const PreviewResultsScreen: React.FC = () => {
 
                     {/* Top Right - Product Focus Banner */}
                     <div 
-                      className="relative rounded-lg overflow-hidden shadow-sm bg-gradient-to-br from-gray-100 to-gray-200"
+                      className="relative rounded-lg overflow-hidden shadow-sm"
+                      style={{
+                        backgroundImage: `url(${activeCampaignResults?.generated_images?.[1]?.url || activeCampaignResults?.generated_images?.[0]?.url || uploadedImage || '/lovable-uploads/836ed724-52fb-4a61-a4e7-ffecbc89e80e.png'})`,
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center',
+                        backgroundRepeat: 'no-repeat'
+                      }}
                     >
-                      {/* Product image centered */}
-                      <div className="absolute inset-0 flex items-center justify-center p-6">
-                        {activeCampaignResults?.generated_images?.[1]?.url ? (
-                          <img src={activeCampaignResults.generated_images[1].url} alt="Product" className="w-full h-auto max-h-24 object-contain drop-shadow-lg" />
-                        ) : activeCampaignResults?.generated_images?.[0]?.url ? (
-                          <img src={activeCampaignResults.generated_images[0].url} alt="Product" className="w-full h-auto max-h-24 object-contain drop-shadow-lg" />
-                        ) : uploadedImage ? (
-                          <img src={uploadedImage} alt="Product" className="w-full h-auto max-h-24 object-contain drop-shadow-lg" />
-                        ) : null}
-                      </div>
+                      {/* Background overlay */}
+                      <div className="absolute inset-0 bg-black/30"></div>
                       
                       {/* Bottom overlay for text */}
                       <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-amber-600/95 to-transparent p-4 text-center">
                         <div className="bg-amber-600 text-white px-3 py-1.5 rounded text-xs font-bold uppercase tracking-wide inline-block" style={{ fontSize: '10px' }}>
-                          {activeCampaignResults.banner_ads?.[0]?.headline || "INDULGE IN DAILY SELF CARE"}
+                          {activeCampaignResults.banner_ads?.[1]?.headline || "PREMIUM EXPERIENCE"}
                         </div>
                       </div>
                     </div>
@@ -1430,7 +1428,7 @@ const PreviewResultsScreen: React.FC = () => {
                       {/* Content positioned at bottom left */}
                       <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
                         <div className="bg-black text-white px-3 py-1.5 rounded text-xs font-bold uppercase tracking-wide inline-block" style={{ fontSize: '10px' }}>
-                          {activeCampaignResults.banner_ads?.[0]?.headline || "INDULGE IN DAILY SELF CARE"}
+                          {activeCampaignResults.banner_ads?.[1]?.cta || activeCampaignResults.banner_ads?.[0]?.cta || "SHOP NOW"}
                         </div>
                       </div>
                     </div>
