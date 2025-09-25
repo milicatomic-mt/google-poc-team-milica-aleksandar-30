@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { ArrowLeft, Download, QrCode, Play } from 'lucide-react';
+import { ArrowLeft, Download, Play } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { QRCodeSVG } from "qrcode.react";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
-import { toast } from "sonner";
+import QRDownloadModal from '@/components/QRDownloadModal';
 import type { CampaignCreationResponse } from '@/types/api';
 
 const VideoScriptsPreview: React.FC = () => {
@@ -14,7 +11,6 @@ const VideoScriptsPreview: React.FC = () => {
   const navigate = useNavigate();
   const { campaignResults, uploadedImage, campaignId, returnTo } = location.state || {};
   const [isDownloadModalOpen, setIsDownloadModalOpen] = useState(false);
-  const [downloadUrl, setDownloadUrl] = useState<string>('');
 
   // Scroll to top when component mounts
   useEffect(() => {
@@ -33,26 +29,8 @@ const VideoScriptsPreview: React.FC = () => {
     });
   };
 
-  const handleDownload = async () => {
-    try {
-      const { createDownloadSession } = await import('@/lib/download-session');
-      const videoData = {
-        video_scripts: campaignResults?.video_scripts,
-        generated_images: campaignResults?.generated_images,
-        email_copy: { subject: '', body: '' },
-        banner_ads: [],
-        landing_page_concept: { hero_text: '', sub_text: '', cta: '' },
-        generated_video_url: campaignResults?.generated_video_url,
-        uploadedImageUrl: uploadedImage
-      };
-      
-      const sessionToken = await createDownloadSession(videoData as CampaignCreationResponse);
-      setDownloadUrl(window.location.origin + `/download?session=${sessionToken}&type=video-scripts`);
-      setIsDownloadModalOpen(true);
-    } catch (error) {
-      console.error('Failed to create download session:', error);
-      toast.error('Failed to prepare download. Please try again.');
-    }
+  const handleDownload = () => {
+    setIsDownloadModalOpen(true);
   };
 
   if (!campaignResults) {
@@ -487,32 +465,20 @@ const VideoScriptsPreview: React.FC = () => {
       </div>
 
       {/* QR Download Modal */}
-      <Dialog open={isDownloadModalOpen} onOpenChange={setIsDownloadModalOpen}>
-        <DialogContent className="sm:max-w-md">
-          <DialogHeader>
-            <DialogTitle>Download Video Scripts</DialogTitle>
-          </DialogHeader>
-          <div className="flex flex-col items-center space-y-4">
-            <div className="bg-white p-4 rounded-lg">
-              {downloadUrl && <QRCodeSVG value={downloadUrl} size={200} />}
-            </div>
-            <p className="text-sm text-muted-foreground text-center">
-              Scan this QR code with your mobile device to download the video scripts
-            </p>
-            <div className="flex gap-2">
-              <Button
-                variant="outline"
-                onClick={() => window.open(downloadUrl, '_blank')}
-              >
-                Open Link
-              </Button>
-              <Button onClick={() => setIsDownloadModalOpen(false)}>
-                Done
-              </Button>
-            </div>
-          </div>
-        </DialogContent>
-      </Dialog>
+      <QRDownloadModal
+        isOpen={isDownloadModalOpen}
+        onClose={() => setIsDownloadModalOpen(false)}
+        campaignData={{
+          video_scripts: campaignResults?.video_scripts || [],
+          generated_images: campaignResults?.generated_images || [],
+          email_copy: { subject: '', body: '' },
+          banner_ads: [],
+          landing_page_concept: { hero_text: '', sub_text: '', cta: '' },
+          generated_video_url: campaignResults?.generated_video_url,
+          uploadedImageUrl: uploadedImage
+        }}
+        title="Download Video Scripts"
+      />
     </div>
   );
 };
