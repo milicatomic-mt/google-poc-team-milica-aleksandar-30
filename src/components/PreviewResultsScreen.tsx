@@ -142,11 +142,6 @@ const PreviewResultsScreen: React.FC = () => {
       case 'Banner Ads':
         return (
           <div className="space-y-0 overflow-x-hidden">
-            <div className="text-center space-y-2 mb-6">
-              <h3 className="text-2xl font-bold text-foreground">Professional Web Banner Suite</h3>
-              <p className="text-muted-foreground">High-performing banner ads optimized for clicks and conversions</p>
-            </div>
-
             {/* Single Column Layout - All Banners Stacked Vertically */}
             <div className="space-y-8 max-w-full">
               
@@ -1967,14 +1962,14 @@ const PreviewResultsScreen: React.FC = () => {
           <DialogHeader className="shrink-0">
             <DialogTitle>
               {selectedSection === 'Email Templates' ? 'Email Template Preview' :
-               selectedSection === 'Banner Ads' ? 'Banner Ads Collection' :
+               selectedSection === 'Banner Ads' ? 'Professional Web Banner Suite' :
                selectedSection === 'Web Creative' ? 'Landing Page Design' :
                selectedSection === 'Video Scripts' ? 'Video Scripts Collection' :
                'Campaign Results'}
             </DialogTitle>
             <DialogDescription>
               {selectedSection === 'Email Templates' ? 'Complete email template ready for your marketing campaigns' :
-               selectedSection === 'Banner Ads' ? 'Collection of banner advertisements for different platforms' :
+               selectedSection === 'Banner Ads' ? 'High-performing banner ads optimized for clicks and conversions' :
                selectedSection === 'Web Creative' ? 'Complete landing page design with all sections' :
                selectedSection === 'Video Scripts' ? 'Video scripts optimized for different social media platforms' :
                'Explore your generated campaign content'}
