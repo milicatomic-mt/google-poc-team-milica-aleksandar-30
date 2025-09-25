@@ -167,7 +167,10 @@ const ScreenSaver = () => {
           variant="outline"
           size="lg"
           className="tap-target focus-ring group bg-white/20 border-white/30 hover:bg-white/30 rounded-full"
-          onClick={e => e.stopPropagation()}
+          onClick={e => {
+            e.stopPropagation();
+            navigate('/gallery');
+          }}
         >
           <span className="text-indigo-600 group-hover:text-indigo-700 transition-colors">
             Gallery
