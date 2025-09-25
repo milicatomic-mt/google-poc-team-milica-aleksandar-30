@@ -187,6 +187,120 @@ const OptimizedGalleryPreviewModal = ({ item, isOpen, onClose }: OptimizedGaller
                 </div>
               )}
 
+              {/* Generated Text Content (for campaigns) */}
+              {item.type === 'campaign' && itemDetails?.result && (
+                <div className="space-y-4">
+                  <div className="flex items-center space-x-2">
+                    <FileText className="w-4 h-4" />
+                    <h3 className="font-semibold">Campaign Content</h3>
+                  </div>
+                  
+                  <div className="bg-muted/30 rounded-lg p-4 space-y-6">
+                    {/* Email Copy */}
+                    {itemDetails.result.email_copy && (
+                      <div>
+                        <h4 className="font-medium text-sm text-muted-foreground mb-3">Email Marketing</h4>
+                        <div className="space-y-2">
+                          {itemDetails.result.email_copy.subject && (
+                            <div>
+                              <span className="font-medium text-xs text-muted-foreground">Subject:</span>
+                              <p className="text-sm mt-1">{itemDetails.result.email_copy.subject}</p>
+                            </div>
+                          )}
+                          {itemDetails.result.email_copy.body && (
+                            <div>
+                              <span className="font-medium text-xs text-muted-foreground">Body:</span>
+                              <p className="text-sm mt-1 leading-relaxed">{itemDetails.result.email_copy.body}</p>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Video Scripts */}
+                    {itemDetails.result.video_scripts && Array.isArray(itemDetails.result.video_scripts) && itemDetails.result.video_scripts.length > 0 && (
+                      <div>
+                        <h4 className="font-medium text-sm text-muted-foreground mb-3">Video Scripts</h4>
+                        <div className="space-y-3">
+                          {itemDetails.result.video_scripts.map((script: any, index: number) => (
+                            <div key={index} className="border border-border/50 rounded-lg p-3">
+                              <div className="flex items-center justify-between mb-2">
+                                <span className="font-medium text-xs px-2 py-1 bg-primary/10 text-primary rounded-full">
+                                  {script.platform}
+                                </span>
+                              </div>
+                              <p className="text-sm leading-relaxed">{script.script}</p>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Banner Ads */}
+                    {itemDetails.result.banner_ads && Array.isArray(itemDetails.result.banner_ads) && itemDetails.result.banner_ads.length > 0 && (
+                      <div>
+                        <h4 className="font-medium text-sm text-muted-foreground mb-3">Banner Ads</h4>
+                        <div className="grid grid-cols-1 gap-3">
+                          {itemDetails.result.banner_ads.map((ad: any, index: number) => (
+                            <div key={index} className="border border-border/50 rounded-lg p-3">
+                              <div className="space-y-1">
+                                <div>
+                                  <span className="font-medium text-xs text-muted-foreground">Headline:</span>
+                                  <p className="text-sm font-medium">{ad.headline}</p>
+                                </div>
+                                <div>
+                                  <span className="font-medium text-xs text-muted-foreground">CTA:</span>
+                                  <p className="text-sm">{ad.cta}</p>
+                                </div>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Landing Page Concept */}
+                    {itemDetails.result.landing_page_concept && (
+                      <div>
+                        <h4 className="font-medium text-sm text-muted-foreground mb-3">Landing Page Concept</h4>
+                        <div className="border border-border/50 rounded-lg p-3 space-y-2">
+                          {itemDetails.result.landing_page_concept.hero_text && (
+                            <div>
+                              <span className="font-medium text-xs text-muted-foreground">Hero Text:</span>
+                              <p className="text-sm font-medium mt-1">{itemDetails.result.landing_page_concept.hero_text}</p>
+                            </div>
+                          )}
+                          {itemDetails.result.landing_page_concept.sub_text && (
+                            <div>
+                              <span className="font-medium text-xs text-muted-foreground">Subheading:</span>
+                              <p className="text-sm mt-1">{itemDetails.result.landing_page_concept.sub_text}</p>
+                            </div>
+                          )}
+                          {itemDetails.result.landing_page_concept.cta && (
+                            <div>
+                              <span className="font-medium text-xs text-muted-foreground">Call to Action:</span>
+                              <p className="text-sm font-medium text-primary mt-1">{itemDetails.result.landing_page_concept.cta}</p>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Video Prompt */}
+                    {itemDetails.result.video_prompt && (
+                      <div>
+                        <h4 className="font-medium text-sm text-muted-foreground mb-3">Video Generation Prompt</h4>
+                        <div className="border border-border/50 rounded-lg p-3">
+                          <p className="text-sm leading-relaxed text-muted-foreground italic">
+                            {itemDetails.result.video_prompt}
+                          </p>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              )}
+
               {/* Generated Text Content (for catalogs) */}
               {item.type === 'catalog' && (
                 <div className="space-y-4">
