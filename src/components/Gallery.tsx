@@ -33,34 +33,39 @@ const Gallery = () => {
       const { data: campaigns, error: campaignsError } = await supabase
         .from('campaign_results')
         .select('id, created_at, generated_images, generated_video_url, result, image_url')
-        .not('result', 'is', null)
         .order('created_at', { ascending: false })
-        .limit(50);
+        .limit(24);
 
       // Fetch catalogs with limit to prevent timeouts
       const { data: catalogs, error: catalogsError } = await supabase
         .from('catalog_results')
         .select('id, created_at, generated_images, result, image_url')
-        .not('result', 'is', null)
         .order('created_at', { ascending: false })
-        .limit(50);
+        .limit(24);
 
-      if (campaignsError) throw campaignsError;
-      if (catalogsError) throw catalogsError;
+      // Handle partial failures
+      if (campaignsError) {
+        console.error('Campaigns fetch error:', campaignsError);
+      }
+      if (catalogsError) {
+        console.error('Catalogs fetch error:', catalogsError);
+      }
 
-      // Combine and format data
-      const allItems: GalleryItem[] = [
-        ...(campaigns || []).map(item => ({ 
-          ...item, 
-          type: 'campaign' as const,
-          generated_images: Array.isArray(item.generated_images) ? item.generated_images : []
-        })),
-        ...(catalogs || []).map(item => ({ 
-          ...item, 
-          type: 'catalog' as const,
-          generated_images: Array.isArray(item.generated_images) ? item.generated_images : []
-        }))
-      ].sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
+      // Combine and format data safely
+      const safeCampaigns: GalleryItem[] = (campaignsError ? [] : (campaigns || [])).map(item => ({ 
+        ...item, 
+        type: 'campaign' as const,
+        generated_images: Array.isArray(item.generated_images) ? item.generated_images : []
+      }));
+
+      const safeCatalogs: GalleryItem[] = (catalogsError ? [] : (catalogs || [])).map(item => ({ 
+        ...item, 
+        type: 'catalog' as const,
+        generated_images: Array.isArray(item.generated_images) ? item.generated_images : []
+      }));
+
+      const allItems: GalleryItem[] = [...safeCampaigns, ...safeCatalogs]
+        .sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
 
       setItems(allItems);
     } catch (error) {
