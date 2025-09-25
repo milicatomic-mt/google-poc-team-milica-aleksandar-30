@@ -1967,7 +1967,7 @@ const PreviewResultsScreen: React.FC = () => {
                selectedSection === 'Video Scripts' ? 'Video Scripts Collection' :
                'Campaign Results'}
             </DialogTitle>
-            <DialogDescription>
+            <DialogDescription className={selectedSection === 'Banner Ads' ? 'text-center' : ''}>
               {selectedSection === 'Email Templates' ? 'Complete email template ready for your marketing campaigns' :
                selectedSection === 'Banner Ads' ? 'High-performing banner ads optimized for clicks and conversions' :
                selectedSection === 'Web Creative' ? 'Complete landing page design with all sections' :
