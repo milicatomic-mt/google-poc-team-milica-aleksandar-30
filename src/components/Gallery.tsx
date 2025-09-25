@@ -29,10 +29,11 @@ const Gallery = () => {
     try {
       setLoading(true);
       
-      // Fetch campaigns with limit to prevent timeouts
+      // Fetch campaigns with generated videos only
       const { data: campaigns, error: campaignsError } = await supabase
         .from('campaign_results')
         .select('id, created_at, generated_images, generated_video_url, result, image_url')
+        .not('generated_video_url', 'is', null)
         .order('created_at', { ascending: false })
         .limit(24);
 
