@@ -1682,18 +1682,76 @@ const PreviewResultsScreen: React.FC = () => {
                   </Button>
                 </div>
                 <CardContent className="p-4">
-                  <div className="h-80 bg-gray-50 rounded-lg overflow-hidden">
-                    <div className="p-4 space-y-4">
-                      {/* Header */}
-                      <div className="flex items-center justify-between">
-                        <h4 className="text-sm font-semibold text-gray-900">Banner Ads</h4>
-                        <span className="text-xs text-blue-600 font-medium cursor-pointer">Open</span>
+                  <div className="h-80 bg-gray-50 rounded-lg overflow-hidden p-4">
+                    {/* Top Row - Two Square Banners */}
+                    <div className="grid grid-cols-2 gap-3 mb-4">
+                      {/* Left Banner - Person with Headphones */}
+                      <div className="aspect-square bg-gradient-to-br from-amber-200 to-orange-300 rounded-lg overflow-hidden relative">
+                        {(imageMapping?.image_0 || uploadedImage) && (
+                          <img 
+                            src={imageMapping?.image_0 || uploadedImage} 
+                            alt="Person with headphones" 
+                            className="w-full h-full object-cover" 
+                          />
+                        )}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
+                        <div className="absolute bottom-0 left-0 right-0 p-3">
+                          <div className="space-y-1">
+                            <h3 className="text-white text-xs font-bold uppercase tracking-wide">
+                              Premium Sound
+                            </h3>
+                            <p className="text-white/90 text-[8px] uppercase tracking-wider">
+                              Minimalist Design
+                            </p>
+                            <div className="flex items-center justify-between mt-2">
+                              <span className="text-white/80 text-[7px]">
+                                WIRELESS BLUETOOTH CONNECTION<br/>
+                                WITH BASS RESONANCE
+                              </span>
+                              <button className="bg-white text-gray-900 text-[8px] px-2 py-1 rounded font-semibold">
+                                Shop Now
+                              </button>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                       
-                      {/* Top Row - Two Square Banners */}
-                      <div className="grid grid-cols-2 gap-3">
-                        {/* Left Banner - Person with Headphones */}
-                        <div className="aspect-square bg-gradient-to-br from-amber-200 to-orange-300 rounded-lg overflow-hidden relative">
+                      {/* Right Banner - Just Headphones Product */}
+                      <div className="aspect-square bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg overflow-hidden relative flex items-center justify-center">
+                        {(imageMapping?.image_1 || imageMapping?.image_0 || uploadedImage) && (
+                          <img 
+                            src={imageMapping?.image_1 || imageMapping?.image_0 || uploadedImage} 
+                            alt="Headphones product" 
+                            className="w-16 h-16 object-contain" 
+                          />
+                        )}
+                        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-amber-200 to-amber-100 p-3">
+                          <div className="space-y-1">
+                            <h3 className="text-gray-900 text-xs font-bold uppercase tracking-wide">
+                              Premium Sound
+                            </h3>
+                            <p className="text-gray-700 text-[8px] uppercase tracking-wider">
+                              Minimalist Design
+                            </p>
+                            <div className="flex items-center justify-between mt-2">
+                              <span className="text-gray-600 text-[7px]">
+                                WIRELESS BLUETOOTH CONNECTION<br/>
+                                WITH BASS RESONANCE
+                              </span>
+                              <button className="bg-gray-900 text-white text-[8px] px-2 py-1 rounded font-semibold">
+                                Shop Now
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    {/* Bottom Row - Wide Horizontal Banner */}
+                    <div className="bg-gradient-to-r from-amber-200 to-orange-200 rounded-lg overflow-hidden relative h-20">
+                      <div className="flex items-center h-full">
+                        {/* Left - Person Image */}
+                        <div className="w-20 h-full relative overflow-hidden">
                           {(imageMapping?.image_0 || uploadedImage) && (
                             <img 
                               src={imageMapping?.image_0 || uploadedImage} 
@@ -1701,93 +1759,27 @@ const PreviewResultsScreen: React.FC = () => {
                               className="w-full h-full object-cover" 
                             />
                           )}
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
-                          <div className="absolute bottom-0 left-0 right-0 p-3">
-                            <div className="space-y-1">
-                              <h3 className="text-white text-xs font-bold uppercase tracking-wide">
-                                Premium Sound
-                              </h3>
-                              <p className="text-white/90 text-[8px] uppercase tracking-wider">
-                                Minimalist Design
-                              </p>
-                              <div className="flex items-center justify-between mt-2">
-                                <span className="text-white/80 text-[7px]">
-                                  WIRELESS BLUETOOTH CONNECTION<br/>
-                                  WITH BASS RESONANCE
-                                </span>
-                                <button className="bg-white text-gray-900 text-[8px] px-2 py-1 rounded font-semibold">
-                                  Shop Now
-                                </button>
-                              </div>
-                            </div>
-                          </div>
                         </div>
                         
-                        {/* Right Banner - Just Headphones Product */}
-                        <div className="aspect-square bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg overflow-hidden relative flex items-center justify-center">
-                          {(imageMapping?.image_1 || imageMapping?.image_0 || uploadedImage) && (
-                            <img 
-                              src={imageMapping?.image_1 || imageMapping?.image_0 || uploadedImage} 
-                              alt="Headphones product" 
-                              className="w-16 h-16 object-contain" 
-                            />
-                          )}
-                          <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-amber-200 to-amber-100 p-3">
-                            <div className="space-y-1">
-                              <h3 className="text-gray-900 text-xs font-bold uppercase tracking-wide">
-                                Premium Sound
-                              </h3>
-                              <p className="text-gray-700 text-[8px] uppercase tracking-wider">
-                                Minimalist Design
-                              </p>
-                              <div className="flex items-center justify-between mt-2">
-                                <span className="text-gray-600 text-[7px]">
-                                  WIRELESS BLUETOOTH CONNECTION<br/>
-                                  WITH BASS RESONANCE
-                                </span>
-                                <button className="bg-gray-900 text-white text-[8px] px-2 py-1 rounded font-semibold">
-                                  Shop Now
-                                </button>
-                              </div>
-                            </div>
-                          </div>
+                        {/* Middle - Text Content */}
+                        <div className="flex-1 px-4 py-3">
+                          <h3 className="text-gray-900 text-sm font-bold uppercase tracking-wide mb-1">
+                            Premium Sound
+                          </h3>
+                          <p className="text-gray-700 text-[10px] uppercase tracking-wider mb-2">
+                            Minimalist Design
+                          </p>
+                          <p className="text-gray-600 text-[8px] leading-tight">
+                            WIRELESS BLUETOOTH CONNECTION<br/>
+                            WITH BASS RESONANCE
+                          </p>
                         </div>
-                      </div>
-                      
-                      {/* Bottom Row - Wide Horizontal Banner */}
-                      <div className="bg-gradient-to-r from-amber-200 to-orange-200 rounded-lg overflow-hidden relative h-20">
-                        <div className="flex items-center h-full">
-                          {/* Left - Person Image */}
-                          <div className="w-20 h-full relative overflow-hidden">
-                            {(imageMapping?.image_0 || uploadedImage) && (
-                              <img 
-                                src={imageMapping?.image_0 || uploadedImage} 
-                                alt="Person with headphones" 
-                                className="w-full h-full object-cover" 
-                              />
-                            )}
-                          </div>
-                          
-                          {/* Middle - Text Content */}
-                          <div className="flex-1 px-4 py-3">
-                            <h3 className="text-gray-900 text-sm font-bold uppercase tracking-wide mb-1">
-                              Premium Sound
-                            </h3>
-                            <p className="text-gray-700 text-[10px] uppercase tracking-wider mb-2">
-                              Minimalist Design
-                            </p>
-                            <p className="text-gray-600 text-[8px] leading-tight">
-                              WIRELESS BLUETOOTH CONNECTION<br/>
-                              WITH BASS RESONANCE
-                            </p>
-                          </div>
-                          
-                          {/* Right - CTA Button */}
-                          <div className="pr-4">
-                            <button className="bg-gray-900 text-white text-xs px-4 py-2 rounded-lg font-semibold">
-                              Shop Now
-                            </button>
-                          </div>
+                        
+                        {/* Right - CTA Button */}
+                        <div className="pr-4">
+                          <button className="bg-gray-900 text-white text-xs px-4 py-2 rounded-lg font-semibold">
+                            Shop Now
+                          </button>
                         </div>
                       </div>
                     </div>
