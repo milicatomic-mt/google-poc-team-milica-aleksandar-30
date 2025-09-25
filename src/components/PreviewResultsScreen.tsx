@@ -1866,10 +1866,26 @@ const PreviewResultsScreen: React.FC = () => {
       {/* Campaign Results Modal */}
       <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
         <DialogContent className="max-w-6xl h-[85vh] flex flex-col">
-          <div className="flex-1 overflow-hidden">
+          <DialogHeader className="shrink-0">
+            <DialogTitle>
+              {selectedSection === 'Email Templates' ? 'Email Template Preview' :
+               selectedSection === 'Banner Ads' ? 'Banner Ads Collection' :
+               selectedSection === 'Web Creative' ? 'Landing Page Design' :
+               selectedSection === 'Video Scripts' ? 'Video Scripts Collection' :
+               'Campaign Results'}
+            </DialogTitle>
+            <DialogDescription>
+              {selectedSection === 'Email Templates' ? 'Complete email template ready for your marketing campaigns' :
+               selectedSection === 'Banner Ads' ? 'Collection of banner advertisements for different platforms' :
+               selectedSection === 'Web Creative' ? 'Complete landing page design with all sections' :
+               selectedSection === 'Video Scripts' ? 'Video scripts optimized for different social media platforms' :
+               'Explore your generated campaign content'}
+            </DialogDescription>
+          </DialogHeader>
+          <div className="flex-1 overflow-y-auto">
             {renderModalContent()}
           </div>
-          <DialogFooter>
+          <DialogFooter className="shrink-0">
             <Button onClick={handleCloseModal} className="rounded-full">
               Close
             </Button>
