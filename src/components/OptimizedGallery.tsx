@@ -1,91 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft, Play, Image, FileText, Calendar } from 'lucide-react';
 import RibbedSphere from '@/components/RibbedSphere';
-import GalleryPreviewModal from '@/components/GalleryPreviewModal';
+import OptimizedGalleryPreviewModal from '@/components/OptimizedGalleryPreviewModal';
+import { useGalleryData, type GalleryItem } from '@/hooks/useGalleryData';
 
-interface GalleryItem {
-  id: string;
-  type: 'campaign' | 'catalog';
-  created_at: string;
-  generated_images: any;
-  generated_video_url?: string;
-  result: any;
-  image_url?: string;
-  // Catalog-specific fields
-  product_category?: string;
-  platform?: string;
-  tone?: string;
-}
-
-const Gallery = () => {
+const OptimizedGallery = () => {
   const navigate = useNavigate();
-  const [items, setItems] = useState<GalleryItem[]>([]);
-  const [loading, setLoading] = useState(true);
   const [selectedFilter, setSelectedFilter] = useState<'all' | 'campaigns' | 'catalogs'>('all');
   const [selectedItem, setSelectedItem] = useState<GalleryItem | null>(null);
   const [isPreviewOpen, setIsPreviewOpen] = useState(false);
 
-  useEffect(() => {
-    fetchGalleryItems();
-  }, []);
-
-  const fetchGalleryItems = async () => {
-    try {
-      setLoading(true);
-      
-      // Fetch campaigns with generated videos only (max 5, distinct results)
-      const { data: campaigns, error: campaignsError } = await supabase
-        .from('campaign_results')
-        .select('id, created_at, generated_images, generated_video_url, result, image_url')
-        .not('generated_video_url', 'is', null)
-        .order('created_at', { ascending: false })
-        .limit(5);
-
-      // Fetch recent catalogs (max 5, distinct results)
-      const { data: catalogs, error: catalogsError } = await supabase
-        .from('catalog_results')
-        .select('id, created_at, generated_images, result, image_url, product_category, platform, tone')
-        .order('created_at', { ascending: false })
-        .limit(5);
-
-      // Handle partial failures
-      if (campaignsError) {
-        console.error('Campaigns fetch error:', campaignsError);
-      }
-      if (catalogsError) {
-        console.error('Catalogs fetch error:', catalogsError);
-      }
-
-      // Combine and format data safely
-      const safeCampaigns: GalleryItem[] = (campaignsError ? [] : (campaigns || [])).map(item => ({ 
-        ...item, 
-        type: 'campaign' as const,
-        generated_images: Array.isArray(item.generated_images) ? item.generated_images : []
-      }));
-
-      const safeCatalogs: GalleryItem[] = (catalogsError ? [] : (catalogs || [])).map(item => ({ 
-        ...item, 
-        type: 'catalog' as const,
-        generated_images: Array.isArray(item.generated_images) ? item.generated_images : []
-      }));
-
-      const allItems: GalleryItem[] = [...safeCampaigns, ...safeCatalogs]
-        .sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())
-        .filter((item, index, array) => 
-          // Remove duplicates by ID
-          array.findIndex(i => i.id === item.id) === index
-        );
-
-      setItems(allItems);
-    } catch (error) {
-      console.error('Error fetching gallery items:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
+  const { data: items = [], isLoading, error } = useGalleryData();
 
   const filteredItems = items.filter(item => {
     if (selectedFilter === 'all') return true;
@@ -105,22 +32,6 @@ const Gallery = () => {
     });
   };
 
-  const getItemTitle = (item: GalleryItem) => {
-    if (item.type === 'campaign') {
-      return item.result?.emailCopy?.subject || 'Marketing Campaign';
-    } else {
-      return item.result?.title || 'Product Catalog';
-    }
-  };
-
-  const getItemDescription = (item: GalleryItem) => {
-    if (item.type === 'campaign') {
-      return item.result?.emailCopy?.preview || item.result?.videoScript?.hook || 'Campaign content';
-    } else {
-      return item.result?.description || 'Catalog content';
-    }
-  };
-
   const handleItemClick = (item: GalleryItem) => {
     setSelectedItem(item);
     setIsPreviewOpen(true);
@@ -131,7 +42,21 @@ const Gallery = () => {
     setSelectedItem(null);
   };
 
-  if (loading) {
+  if (error) {
+    return (
+      <div className="min-h-screen w-full bg-background flex items-center justify-center">
+        <div className="text-center">
+          <h3 className="text-lg font-medium text-foreground mb-2">Something went wrong</h3>
+          <p className="text-muted-foreground mb-4">Failed to load gallery items.</p>
+          <Button onClick={() => window.location.reload()}>
+            Try Again
+          </Button>
+        </div>
+      </div>
+    );
+  }
+
+  if (isLoading) {
     return (
       <div className="min-h-screen w-full bg-background flex items-center justify-center">
         <div className="flex flex-col items-center space-y-4">
@@ -224,27 +149,12 @@ const Gallery = () => {
               >
                 {/* Media Preview */}
                 <div className="aspect-video bg-muted/30 relative overflow-hidden">
-                  {item.generated_images && Array.isArray(item.generated_images) && item.generated_images.length > 0 ? (
-                    <div className="relative w-full h-full">
-                      <img
-                        src={item.generated_images[0].url || item.generated_images[0]}
-                        alt="Generated content"
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                        onError={(e) => {
-                          e.currentTarget.style.display = 'none';
-                        }}
-                      />
-                      {Array.isArray(item.generated_images) && item.generated_images.length > 1 && (
-                        <div className="absolute top-2 right-2 bg-black/60 text-white text-xs px-2 py-1 rounded-full backdrop-blur-sm">
-                          +{item.generated_images.length - 1}
-                        </div>
-                      )}
-                    </div>
-                  ) : item.image_url ? (
+                  {item.image_url ? (
                     <img
                       src={item.image_url}
-                      alt="Original content"
+                      alt="Content preview"
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      loading="lazy"
                       onError={(e) => {
                         e.currentTarget.style.display = 'none';
                       }}
@@ -256,10 +166,17 @@ const Gallery = () => {
                   )}
                   
                   {/* Video Indicator */}
-                  {item.generated_video_url && (
+                  {item.has_video && (
                     <div className="absolute top-2 left-2 bg-black/60 text-white text-xs px-2 py-1 rounded-full backdrop-blur-sm flex items-center space-x-1">
                       <Play className="w-3 h-3" />
                       <span>Video</span>
+                    </div>
+                  )}
+
+                  {/* Images Indicator */}
+                  {item.has_images && (
+                    <div className="absolute top-2 right-2 bg-black/60 text-white text-xs px-2 py-1 rounded-full backdrop-blur-sm">
+                      <Image className="w-3 h-3" />
                     </div>
                   )}
                 </div>
@@ -281,26 +198,26 @@ const Gallery = () => {
                   </div>
 
                   <h3 className="font-semibold text-foreground mb-1 line-clamp-1 group-hover:text-primary transition-colors">
-                    {getItemTitle(item)}
+                    {item.title}
                   </h3>
                   
                   <p className="text-sm text-muted-foreground line-clamp-2 mb-3">
-                    {getItemDescription(item)}
+                    {item.description}
                   </p>
 
                   {/* Asset Count */}
                   <div className="flex items-center justify-between text-xs text-muted-foreground">
                     <div className="flex items-center space-x-3">
-                      {Array.isArray(item.generated_images) && item.generated_images && item.generated_images.length > 0 && (
+                      {item.has_images && (
                         <div className="flex items-center space-x-1">
                           <Image className="w-3 h-3" />
-                          <span>{Array.isArray(item.generated_images) ? item.generated_images.length : 0}</span>
+                          <span>Images</span>
                         </div>
                       )}
-                      {item.generated_video_url && (
+                      {item.has_video && (
                         <div className="flex items-center space-x-1">
                           <Play className="w-3 h-3" />
-                          <span>1</span>
+                          <span>Video</span>
                         </div>
                       )}
                     </div>
@@ -310,7 +227,7 @@ const Gallery = () => {
                       size="sm"
                       className="text-xs h-6 px-2 opacity-0 group-hover:opacity-100 transition-opacity"
                       onClick={(e) => {
-                        e.stopPropagation(); // Prevent card click
+                        e.stopPropagation();
                         handleItemClick(item);
                       }}
                     >
@@ -325,7 +242,7 @@ const Gallery = () => {
       </div>
 
       {/* Preview Modal */}
-      <GalleryPreviewModal 
+      <OptimizedGalleryPreviewModal 
         item={selectedItem}
         isOpen={isPreviewOpen}
         onClose={handlePreviewClose}
@@ -334,4 +251,4 @@ const Gallery = () => {
   );
 };
 
-export default Gallery;
+export default OptimizedGallery;

@@ -63,7 +63,7 @@ import MobileUploadScreen from "./components/MobileUploadScreen";
 import QRDownloadScreen from "./components/QRDownloadScreen";
 import DownloadContentScreen from "./components/DownloadContentScreen";
 import PreviewResultsScreen from "./components/PreviewResultsScreen";
-import Gallery from "./components/Gallery";
+import OptimizedGallery from "./components/OptimizedGallery";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 
@@ -85,7 +85,7 @@ const App = () => (
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<ScreenSaver />} />
-            <Route path="/gallery" element={<Gallery />} />
+            <Route path="/gallery" element={<OptimizedGallery />} />
             <Route path="/welcome" element={<Index />} />
             <Route path="/campaign-prompt" element={<CampaignPromptScreen />} />
             <Route path="/catalog-prompt" element={<CatalogPromptScreen />} />
