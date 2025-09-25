@@ -82,6 +82,14 @@ const PreviewResultsScreen: React.FC = () => {
   // Use either passed campaignResults or fetched results
   const activeCampaignResults = campaignResults || fetchedCampaignResults;
 
+  // Create consistent image mapping for preview cards and detail pages
+  const imageMapping = activeCampaignResults?.generated_images ? {
+    image_0: activeCampaignResults.generated_images[0]?.url || null,
+    image_1: activeCampaignResults.generated_images[1]?.url || null,
+    image_2: activeCampaignResults.generated_images[2]?.url || null,
+    image_3: activeCampaignResults.generated_images[3]?.url || null,
+  } : {};
+
   // Set content ready state when we have campaign results
   useEffect(() => {
     if (activeCampaignResults) {
@@ -139,7 +147,7 @@ const PreviewResultsScreen: React.FC = () => {
     const route = routeMap[category as keyof typeof routeMap];
     if (route) {
       navigate(route, {
-        state: { campaignResults: activeCampaignResults, uploadedImage, campaignId }
+        state: { campaignResults: activeCampaignResults, uploadedImage, campaignId, imageMapping }
       });
     }
   };
@@ -1685,77 +1693,139 @@ const PreviewResultsScreen: React.FC = () => {
                   </Button>
                 </div>
                 <CardContent className="p-4">
-                  <div className="grid grid-cols-2 gap-3 h-80">
-                    {/* Top Left - Escape the Noise Banner */}
-                    <div 
-                      className="relative rounded-lg overflow-hidden shadow-sm"
-                      style={{
-                        backgroundImage: `url(${activeCampaignResults?.generated_images?.[0]?.url || uploadedImage || '/lovable-uploads/836ed724-52fb-4a61-a4e7-ffecbc89e80e.png'})`,
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center',
-                        backgroundRepeat: 'no-repeat'
-                      }}
-                    >
-                      {/* Background overlay */}
-                      <div className="absolute inset-0 bg-black/20"></div>
-                      
-                      {/* Text overlay positioned at bottom */}
-                      <div className="absolute bottom-4 left-4 right-4">
-                        <div className="bg-black/90 text-white px-4 py-2 rounded-md">
-                          <div className="text-sm font-bold uppercase tracking-wide leading-tight">
-                            {activeCampaignResults.banner_ads?.[0]?.headline || "ESCAPE THE NOISE,"}
+                  <div className="h-80 space-y-3">
+                    {/* Leaderboard Banner in Website Context - Compact Version */}
+                    <div className="bg-white rounded-lg overflow-hidden shadow-sm border border-gray-200 h-24">
+                      {/* Mini Website Header */}
+                      <div className="bg-gray-100 px-2 py-1 border-b text-[8px]">
+                        <div className="flex justify-between items-center">
+                          <span className="font-semibold text-gray-700">NewsWebsite.com</span>
+                          <div className="flex gap-2 text-gray-600">
+                            <span>Home</span> <span>Tech</span> <span>Sports</span>
                           </div>
-                          <div className="text-sm font-bold uppercase tracking-wide">
-                            EMBRACE THE SOUND
+                        </div>
+                      </div>
+                      
+                      {/* Banner Area with Blue Highlight */}
+                      <div className="relative p-2">
+                        <div className="absolute -inset-1 bg-blue-500/20 border border-blue-500 border-dashed rounded"></div>
+                        <div className="relative bg-gradient-to-r from-amber-200 to-amber-100 rounded p-2 h-12 flex items-center justify-between">
+                          <div className="flex items-center gap-2">
+                            {(imageMapping?.image_0 || uploadedImage) && (
+                              <img 
+                                src={imageMapping?.image_0 || uploadedImage} 
+                                alt="Product" 
+                                className="w-6 h-6 object-contain" 
+                              />
+                            )}
+                            <div>
+                              <div className="text-[8px] font-bold text-black">
+                                {activeCampaignResults.banner_ads?.[0]?.headline || 'PREMIUM SOUND'}
+                              </div>
+                              <div className="text-[6px] text-gray-700">MINIMALIST DESIGN</div>
+                            </div>
+                          </div>
+                          <div className="bg-white text-black text-[6px] px-2 py-1 rounded-full font-medium">
+                            {activeCampaignResults.banner_ads?.[0]?.cta || 'Shop Now'}
                           </div>
                         </div>
                       </div>
                     </div>
 
-                    {/* Top Right - Urban Sanctuary Banner */}
-                    <div 
-                      className="relative rounded-lg overflow-hidden shadow-sm"
-                      style={{
-                        backgroundImage: `url(${activeCampaignResults?.generated_images?.[1]?.url || activeCampaignResults?.generated_images?.[0]?.url || uploadedImage || '/lovable-uploads/836ed724-52fb-4a61-a4e7-ffecbc89e80e.png'})`,
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center',
-                        backgroundRepeat: 'no-repeat'
-                      }}
-                    >
-                      {/* Background overlay */}
-                      <div className="absolute inset-0 bg-black/20"></div>
-                      
-                      {/* Orange text overlay positioned at bottom */}
-                      <div className="absolute bottom-4 left-4 right-4 text-center">
-                        <div className="bg-orange-500/95 text-white px-4 py-2 rounded-md">
-                          <div className="text-sm font-bold uppercase tracking-wide leading-tight">
-                            {(activeCampaignResults.banner_ads?.[1]?.headline || "HEADPHONES: YOUR").toUpperCase()}
-                          </div>
-                          <div className="text-sm font-bold uppercase tracking-wide">
-                            URBAN SANCTUARY
+                    {/* Medium Rectangle in Article Context */}
+                    <div className="bg-white rounded-lg overflow-hidden shadow-sm border border-gray-200 h-24">
+                      <div className="flex h-full">
+                        {/* Mini Article Content */}
+                        <div className="flex-1 p-2 text-[6px]">
+                          <div className="font-semibold mb-1">Latest Technology News</div>
+                          <div className="w-full h-8 bg-gray-200 rounded mb-1"></div>
+                          <div className="text-gray-600">Industry updates and insights...</div>
+                        </div>
+                        
+                        {/* Sidebar Banner with Blue Highlight */}
+                        <div className="w-20 bg-gray-50 p-2 border-l relative">
+                          <div className="absolute -inset-1 bg-blue-500/20 border border-blue-500 border-dashed rounded"></div>
+                          <div className="relative bg-gradient-to-br from-gray-200 to-gray-300 rounded h-full flex flex-col">
+                            {(imageMapping?.image_0 || uploadedImage) && (
+                              <div className="flex-1 flex items-center justify-center">
+                                <img 
+                                  src={imageMapping?.image_0 || uploadedImage} 
+                                  alt="Product" 
+                                  className="w-8 h-8 object-contain" 
+                                />
+                              </div>
+                            )}
+                            <div className="bg-amber-100 p-1 text-center">
+                              <div className="text-[6px] font-bold text-black">
+                                {activeCampaignResults.banner_ads?.[0]?.headline || 'PREMIUM'}
+                              </div>
+                              <div className="bg-black text-white text-[5px] px-1 rounded-full mt-0.5">
+                                {activeCampaignResults.banner_ads?.[0]?.cta || 'Shop'}
+                              </div>
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
 
-                    {/* Bottom - Wide Discover Banner */}
-                    <div 
-                      className="relative rounded-lg overflow-hidden shadow-sm col-span-2"
-                      style={{
-                        backgroundImage: `url(${activeCampaignResults?.generated_images?.[0]?.url || uploadedImage || '/lovable-uploads/836ed724-52fb-4a61-a4e7-ffecbc89e80e.png'})`,
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center',
-                        backgroundRepeat: 'no-repeat'
-                      }}
-                    >
-                      {/* Background overlay */}
-                      <div className="absolute inset-0 bg-black/20"></div>
-                      
-                      {/* Text overlay positioned at bottom left */}
-                      <div className="absolute bottom-4 left-4">
-                        <div className="bg-black/90 text-white px-6 py-2 rounded-md">
-                          <div className="text-lg font-bold uppercase tracking-wide">
-                            {activeCampaignResults.banner_ads?.[0]?.cta || "DISCOVER"}
+                    {/* Wide Skyscraper in Website Sidebar Context */}
+                    <div className="bg-white rounded-lg overflow-hidden shadow-sm border border-gray-200 h-24">
+                      <div className="flex h-full">
+                        {/* Mini Sidebar Banner with Blue Highlight */}
+                        <div className="w-12 bg-gray-50 p-1 border-r relative">
+                          <div className="absolute -inset-1 bg-blue-500/20 border border-blue-500 border-dashed rounded"></div>
+                          <div className="relative bg-gradient-to-b from-gray-900 to-black rounded h-full text-center flex flex-col justify-center">
+                            <div className="text-white text-[6px] font-bold mb-1 transform -rotate-90 origin-center whitespace-nowrap">
+                              {activeCampaignResults.banner_ads?.[0]?.headline || 'PREMIUM'}
+                            </div>
+                            {(imageMapping?.image_0 || uploadedImage) && (
+                              <img 
+                                src={imageMapping?.image_0 || uploadedImage} 
+                                alt="Product" 
+                                className="w-6 h-6 object-contain mx-auto mb-1" 
+                              />
+                            )}
+                            <div className="bg-white text-black text-[5px] px-1 py-0.5 rounded mx-1">
+                              {activeCampaignResults.banner_ads?.[0]?.cta || 'Buy'}
+                            </div>
+                          </div>
+                        </div>
+                        
+                        {/* Main Content Area */}
+                        <div className="flex-1 p-2 text-[6px]">
+                          <div className="font-semibold mb-1">Main Website Content</div>
+                          <div className="grid grid-cols-2 gap-1 h-12">
+                            <div className="bg-gray-200 rounded"></div>
+                            <div className="bg-gray-200 rounded"></div>
+                          </div>
+                          <div className="text-gray-600 mt-1">Navigation and content area...</div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Billboard Banner Context */}
+                    <div className="bg-white rounded-lg overflow-hidden shadow-sm border border-gray-200 h-16">
+                      <div className="h-full relative">
+                        {/* Billboard Area with Blue Highlight */}
+                        <div className="absolute inset-1 bg-blue-500/20 border border-blue-500 border-dashed rounded"></div>
+                        <div className="relative bg-gradient-to-r from-indigo-600 to-purple-600 h-full flex items-center justify-between px-4">
+                          <div className="flex items-center gap-3">
+                            {(imageMapping?.image_0 || uploadedImage) && (
+                              <img 
+                                src={imageMapping?.image_0 || uploadedImage} 
+                                alt="Product" 
+                                className="w-8 h-8 object-contain" 
+                              />
+                            )}
+                            <div className="text-white">
+                              <div className="text-[10px] font-bold">
+                                {activeCampaignResults.banner_ads?.[0]?.headline || 'PREMIUM HEADPHONES'}
+                              </div>
+                              <div className="text-[6px] text-gray-200">Experience Superior Sound Quality</div>
+                            </div>
+                          </div>
+                          <div className="bg-white text-indigo-600 text-[8px] px-3 py-1 rounded-full font-bold">
+                            {activeCampaignResults.banner_ads?.[0]?.cta || 'SHOP NOW'}
                           </div>
                         </div>
                       </div>
