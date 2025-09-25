@@ -1682,7 +1682,7 @@ const PreviewResultsScreen: React.FC = () => {
                   </Button>
                 </div>
                 <CardContent className="p-4">
-                  <div className="h-80 bg-gray-50 rounded-lg overflow-hidden p-4">
+                  <div className="h-80 p-4">
                     {/* Top Row - Two Square Banners */}
                     <div className="grid grid-cols-2 gap-3 mb-4">
                       {/* Left Banner - Person with Headphones */}
