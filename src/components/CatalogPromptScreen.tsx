@@ -379,7 +379,7 @@ const CatalogPromptScreen = () => {
                 
                 {/* Prompt Section */}
                 <div className="flex-1 relative">
-                  <div className="backdrop-blur-md rounded-xl border border-white shadow-sm h-40 p-4 relative" style={{backgroundColor: '#FFFFFF'}}>
+                  <div className="backdrop-blur-md rounded-xl border border-white shadow-sm h-40 p-4 relative overflow-hidden" style={{backgroundColor: '#FFFFFF'}}>
                     <Textarea
                       ref={textareaRef}
                       value={isTyping ? displayedPrompt + '|' : displayedPrompt}
@@ -389,7 +389,7 @@ const CatalogPromptScreen = () => {
                         setDisplayedPrompt(newValue);
                       }}
                       placeholder="Enter your product description..."
-                      className="h-full w-full text-base resize-none bg-transparent border-0 p-0 focus-visible:ring-0 leading-relaxed text-gray-800 placeholder:text-gray-500 pr-28 overflow-auto"
+                      className="absolute inset-0 w-full h-full text-base resize-none bg-transparent border-0 p-4 pr-16 focus-visible:ring-0 leading-relaxed text-gray-800 placeholder:text-gray-500 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent"
                     />
                     
                     {/* Wave loading animation overlay */}
