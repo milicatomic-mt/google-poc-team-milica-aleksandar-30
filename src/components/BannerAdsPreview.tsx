@@ -58,86 +58,82 @@ const BannerAdsPreview: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Header with fixed positioning */}
-      <div className="relative">
-        {/* Back Button - Left Center */}
+      {/* Header */}
+      <div className="flex items-center justify-between px-8 py-6">
+        {/* Back Button - Left */}
         <Button
           variant="outline"
           size="sm"
           onClick={handleBack}
-          className="absolute left-6 top-1/2 -translate-y-1/2 z-10 gap-2 bg-white/90 backdrop-blur-sm border border-gray-200 hover:bg-gray-50"
+          className="gap-2"
         >
           <ArrowLeft className="w-4 h-4" />
         </Button>
 
-        {/* Download Button - Right Top */}
+        {/* Title and Subtitle */}
+        <div className="text-center">
+          <h1 className="text-2xl font-bold text-gray-900">Banner Ads</h1>
+          <p className="text-gray-600 text-sm">Review your AI-generated designs before download</p>
+        </div>
+
+        {/* Download Button - Right */}
         <Button 
           onClick={handleDownload} 
-          className="absolute right-6 top-6 z-10 gap-2 bg-indigo-600 hover:bg-indigo-700 text-white"
+          className="bg-indigo-600 hover:bg-indigo-700 text-white rounded-full px-6"
         >
-          <Download className="w-4 h-4" />
           Download
         </Button>
-
-        {/* Page Header */}
-        <div className="pt-8 pb-6 px-6">
-          <div className="max-w-6xl mx-auto">
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">Banner Ads</h1>
-            <p className="text-gray-600">Review your AI-generated designs before download</p>
-          </div>
-        </div>
       </div>
 
       {/* Content */}
-      <div className="px-6 pb-8">
-        <div className="max-w-6xl mx-auto space-y-12">
-          
+      <div className="px-8 pb-8">
+        <div className="max-w-7xl mx-auto space-y-8">
           {/* Leaderboard Banner */}
           <div className="space-y-4">
             <h2 className="text-xl font-semibold text-gray-900">
               Leaderboard Banner <span className="text-gray-500 font-normal">(728×90)</span>
             </h2>
             
-            <div className="w-full max-w-4xl">
+            <div className="w-full">
               <div 
-                className="relative bg-gradient-to-r from-amber-200 to-amber-100 overflow-hidden shadow-lg mx-auto"
+                className="relative bg-gradient-to-r from-amber-200 to-amber-100 overflow-hidden mx-auto"
                 style={{ width: '728px', height: '90px', maxWidth: '100%' }}
               >
                 {/* Left side with product image */}
-                <div className="absolute left-0 top-0 h-full w-20 flex items-center justify-center">
+                <div className="absolute left-0 top-0 h-full w-24 flex items-center justify-center">
                   {(generatedImages[0]?.url || uploadedImage) && (
                     <img 
                       src={generatedImages[0]?.url || uploadedImage} 
                       alt="Premium headphones" 
-                      className="w-12 h-12 object-contain" 
+                      className="w-14 h-14 object-contain" 
                     />
                   )}
                   {/* Arrow decoration */}
-                  <div className="absolute bottom-2 left-2">
-                    <svg width="20" height="12" viewBox="0 0 20 12" className="text-white opacity-80">
-                      <path d="M2 6h16M14 2l4 4-4 4" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
+                  <div className="absolute bottom-3 left-3">
+                    <svg width="24" height="14" viewBox="0 0 24 14" className="text-white">
+                      <path d="M2 7h20M18 3l4 4-4 4" stroke="currentColor" strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
                     </svg>
                   </div>
                 </div>
 
                 {/* Center content */}
-                <div className="absolute left-24 top-1/2 -translate-y-1/2">
+                <div className="absolute left-28 top-1/2 -translate-y-1/2">
                   <div className="space-y-1">
                     <h3 className="text-2xl font-bold text-black tracking-wide">
                       PREMIUM SOUND
                     </h3>
-                    <p className="text-xs text-gray-600 font-medium uppercase tracking-wider">
+                    <p className="text-xs text-gray-700 font-medium uppercase tracking-wider">
                       MINIMALIST DESIGN
                     </p>
-                    <p className="text-xs text-black font-medium">
+                    <p className="text-xs text-black font-semibold">
                       SMASH THE COMPETITION<br/>WITH 30% DISCOUNT
                     </p>
                   </div>
                 </div>
 
                 {/* Right CTA button */}
-                <div className="absolute right-6 top-1/2 -translate-y-1/2">
-                  <button className="bg-white/90 hover:bg-white text-black font-semibold px-6 py-2 rounded-full shadow-md">
+                <div className="absolute right-8 top-1/2 -translate-y-1/2">
+                  <button className="bg-white text-black font-semibold px-8 py-2 rounded-full shadow-md hover:bg-gray-50 transition-colors">
                     Shop Now
                   </button>
                 </div>
@@ -145,47 +141,47 @@ const BannerAdsPreview: React.FC = () => {
             </div>
           </div>
 
-          {/* Half Page & Medium Rectangle */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          {/* Grid Layout for remaining banners */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Half Page Banner */}
             <div className="space-y-4">
               <h2 className="text-xl font-semibold text-gray-900">
                 Half Page Banner <span className="text-gray-500 font-normal">(300×600)</span>
               </h2>
               
-              <div className="flex justify-center lg:justify-start">
+              <div className="flex justify-start">
                 <div 
-                  className="relative bg-gradient-to-b from-amber-200 to-amber-100 overflow-hidden shadow-lg"
+                  className="relative overflow-hidden"
                   style={{ width: '300px', height: '600px' }}
                 >
-                  {/* Top Product Area */}
-                  <div className="h-80 bg-gradient-to-b from-amber-200 to-amber-100 flex items-center justify-center p-6">
+                  {/* Top Product Area - Tan background */}
+                  <div className="h-96 bg-gradient-to-b from-amber-200 to-amber-100 flex items-center justify-center relative">
                     {(generatedImages[0]?.url || uploadedImage) && (
                       <img 
                         src={generatedImages[0]?.url || uploadedImage} 
                         alt="Premium headphones" 
-                        className="w-full h-auto max-h-72 object-contain drop-shadow-xl" 
+                        className="w-48 h-48 object-contain" 
                       />
                     )}
                     {/* Arrow decoration */}
                     <div className="absolute top-6 left-4">
-                      <svg width="20" height="12" viewBox="0 0 20 12" className="text-white opacity-80">
-                        <path d="M2 6h16M14 2l4 4-4 4" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
+                      <svg width="24" height="14" viewBox="0 0 24 14" className="text-white">
+                        <path d="M2 7h20M18 3l4 4-4 4" stroke="currentColor" strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
                       </svg>
                     </div>
                   </div>
                   
                   {/* Bottom section with black background */}
                   <div className="h-52 bg-black text-white flex flex-col justify-center px-6 text-center">
-                    <div className="space-y-3">
+                    <div className="space-y-4">
                       <h3 className="text-2xl font-bold uppercase tracking-wide">
                         PREMIUM SOUND
                       </h3>
                       <p className="text-sm font-medium uppercase tracking-wider opacity-80">
                         MINIMALIST DESIGN
                       </p>
-                      <div className="pt-4 space-y-2">
-                        <p className="text-sm font-medium">
+                      <div className="pt-2 space-y-3">
+                        <p className="text-sm font-semibold">
                           SMASH THE COMPETITION<br/>WITH 30% DISCOUNT
                         </p>
                         <button className="bg-white text-black font-semibold px-8 py-3 rounded-full hover:bg-gray-100 transition-colors">
@@ -204,38 +200,38 @@ const BannerAdsPreview: React.FC = () => {
                 Medium Rectangle Banner <span className="text-gray-500 font-normal">(300×250)</span>
               </h2>
               
-              <div className="flex justify-center lg:justify-start">
+              <div className="flex justify-start">
                 <div 
-                  className="relative bg-gradient-to-br from-gray-100 to-gray-200 overflow-hidden shadow-lg"
+                  className="relative overflow-hidden"
                   style={{ width: '300px', height: '250px' }}
                 >
-                  {/* Top section with product */}
-                  <div className="h-32 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center p-4">
+                  {/* Full background with product - White/Gray background */}
+                  <div className="h-full bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center relative">
                     {(generatedImages[0]?.url || uploadedImage) && (
                       <img 
                         src={generatedImages[0]?.url || uploadedImage} 
                         alt="Premium headphones" 
-                        className="w-24 h-24 object-contain drop-shadow-lg" 
+                        className="w-32 h-32 object-contain absolute top-8" 
                       />
                     )}
-                  </div>
-                  
-                  {/* Bottom section with tan background */}
-                  <div className="h-32 bg-amber-100 flex flex-col justify-center px-4 text-center">
-                    <div className="space-y-2">
-                      <h3 className="text-lg font-bold text-black uppercase tracking-wide">
-                        PREMIUM SOUND
-                      </h3>
-                      <p className="text-xs text-gray-600 font-medium uppercase tracking-wider">
-                        MINIMALIST DESIGN
-                      </p>
-                      <div className="pt-2">
-                        <div className="text-xs text-black font-medium mb-3">
-                          SMASH THE COMPETITION<br/>WITH 30% DISCOUNT
+                    
+                    {/* Bottom section overlay with tan background */}
+                    <div className="absolute bottom-0 left-0 right-0 h-20 bg-amber-100 flex flex-col justify-center px-4 text-center">
+                      <div className="space-y-1">
+                        <h3 className="text-lg font-bold text-black uppercase tracking-wide">
+                          PREMIUM SOUND
+                        </h3>
+                        <p className="text-xs text-gray-700 font-medium uppercase tracking-wider">
+                          MINIMALIST DESIGN
+                        </p>
+                        <div className="pt-1">
+                          <div className="text-xs text-black font-semibold mb-2">
+                            SMASH THE COMPETITION<br/>WITH 30% DISCOUNT
+                          </div>
+                          <button className="bg-black text-white font-semibold px-6 py-2 rounded-full text-sm hover:bg-gray-800 transition-colors">
+                            Shop Now
+                          </button>
                         </div>
-                        <button className="bg-black text-white font-semibold px-6 py-2 rounded-full text-sm hover:bg-gray-800 transition-colors">
-                          Shop Now
-                        </button>
                       </div>
                     </div>
                   </div>
