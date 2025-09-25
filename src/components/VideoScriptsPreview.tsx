@@ -97,14 +97,13 @@ const VideoScriptsPreview: React.FC = () => {
         <div className="max-w-6xl mx-auto space-y-8">
           
           {/* Video Examples Section */}
-          <Card className="overflow-hidden">
-            <CardContent className="p-0">
-              <div className="bg-muted/30 p-4 border-b">
-                <h2 className="text-lg font-semibold mb-1">Video Examples</h2>
-                <p className="text-sm text-muted-foreground">Elevate your Music Experience</p>
-              </div>
-              
-              <div className="p-6">
+          <div className="space-y-6">
+            <div>
+              <h2 className="text-lg font-semibold mb-1">Video Examples</h2>
+              <p className="text-sm text-muted-foreground">Elevate your Music Experience</p>
+            </div>
+            
+            <div>
                 {/* Main Video Player */}
                 <div className="mb-6">
                   <div className="relative aspect-video bg-gradient-to-br from-amber-100 to-amber-200 rounded-lg overflow-hidden shadow-lg">
@@ -434,86 +433,81 @@ const VideoScriptsPreview: React.FC = () => {
                   </div>
                 </div>
               </div>
-            </CardContent>
-          </Card>
+            </div>
 
           {/* Video Scripts Section */}
-          <Card>
-            <CardContent className="p-6">
-              <h3 className="text-lg font-semibold mb-4">Video Script</h3>
+          <div className="space-y-6">
+            <div>
+              <h2 className="text-lg font-semibold mb-1">AI Generated Video Scripts</h2>
               <p className="text-sm text-muted-foreground mb-6">Storyboard for your product</p>
-              
-              <div className="space-y-4">
-                {videoScripts.map((script, index) => (
-                  <div key={index} className="space-y-4">
-                    <div className="flex items-center gap-2">
-                      <Badge className="bg-primary text-primary-foreground">
-                        {script.platform}
-                      </Badge>
-                    </div>
-                    
-                    {/* Break script into scenes */}
-                    <div className="space-y-3">
-                      {script.script.split('\n\n').map((scene, sceneIndex) => {
-                        if (scene.trim()) {
-                          return (
-                            <div key={sceneIndex} className="bg-primary/5 rounded-lg p-4">
-                              <div className="bg-primary text-primary-foreground text-xs px-3 py-1 rounded-full inline-block mb-3">
-                                Scene {sceneIndex + 1}: {sceneIndex === 0 ? 'Opening Shot' : sceneIndex === 1 ? 'Product Highlight' : 'Call to Action'}
+            </div>
+            
+            <div className="space-y-4">
+              {videoScripts.map((script, index) => (
+                <div key={index} className="space-y-4">
+                  <div className="flex items-center gap-2">
+                    <Badge className="bg-primary text-primary-foreground">
+                      {script.platform}
+                    </Badge>
+                  </div>
+                  
+                  {/* Break script into scenes */}
+                  <div className="space-y-3">
+                    {script.script.split('\n\n').map((scene, sceneIndex) => {
+                      if (scene.trim()) {
+                        return (
+                          <div key={sceneIndex} className="bg-primary/5 rounded-lg p-4">
+                            <div className="bg-primary text-primary-foreground text-xs px-3 py-1 rounded-full inline-block mb-3">
+                              Scene {sceneIndex + 1}: {sceneIndex === 0 ? 'Opening Shot' : sceneIndex === 1 ? 'Product Highlight' : 'Call to Action'}
+                            </div>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                              <div>
+                                <div className="text-xs font-semibold text-muted-foreground mb-1">
+                                  Visual: {sceneIndex === 0 ? 'Close-up of a woman wearing sleek white headphones.' : 
+                                          sceneIndex === 1 ? 'Smooth pan across the headphones on a neutral background.' :
+                                          'Wireless freedom, all-day comfort, and powerful sound'}
+                                </div>
                               </div>
-                              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                <div>
-                                  <div className="text-xs font-semibold text-muted-foreground mb-1">
-                                    Visual: {sceneIndex === 0 ? 'Close-up of a woman wearing sleek white headphones.' : 
-                                            sceneIndex === 1 ? 'Smooth pan across the headphones on a neutral background.' :
-                                            'Wireless freedom, all-day comfort, and powerful sound'}
-                                  </div>
-                                </div>
-                                <div>
-                                  <div className="text-xs font-semibold text-muted-foreground mb-1">Voiceover:</div>
-                                  <div className="text-sm leading-relaxed">{scene.trim()}</div>
-                                </div>
+                              <div>
+                                <div className="text-xs font-semibold text-muted-foreground mb-1">Voiceover:</div>
+                                <div className="text-sm leading-relaxed">{scene.trim()}</div>
                               </div>
                             </div>
-                          );
-                        }
-                        return null;
-                      })}
-                    </div>
+                          </div>
+                        );
+                      }
+                      return null;
+                    })}
                   </div>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
 
-      {/* Download Modal */}
+      {/* QR Download Modal */}
       <Dialog open={isDownloadModalOpen} onOpenChange={setIsDownloadModalOpen}>
-        <DialogContent className="max-w-md">
+        <DialogContent className="sm:max-w-md">
           <DialogHeader>
-            <DialogTitle className="flex items-center gap-2">
-              <QrCode className="w-5 h-5" />
-              Download Video Scripts
-            </DialogTitle>
+            <DialogTitle>Download Video Scripts</DialogTitle>
           </DialogHeader>
           <div className="flex flex-col items-center space-y-4">
-            <div className="bg-white p-4 rounded-lg border">
-              <QRCodeSVG value={downloadUrl} size={200} />
+            <div className="bg-white p-4 rounded-lg">
+              {downloadUrl && <QRCodeSVG value={downloadUrl} size={200} />}
             </div>
-            <div className="text-center">
-              <p className="text-sm text-muted-foreground mb-2">
-                Scan with your mobile device to download
-              </p>
+            <p className="text-sm text-muted-foreground text-center">
+              Scan this QR code with your mobile device to download the video scripts
+            </p>
+            <div className="flex gap-2">
               <Button
                 variant="outline"
-                size="sm"
-                onClick={() => {
-                  navigator.clipboard.writeText(downloadUrl);
-                  toast.success('Download link copied to clipboard');
-                }}
+                onClick={() => window.open(downloadUrl, '_blank')}
               >
-                Copy Link
+                Open Link
+              </Button>
+              <Button onClick={() => setIsDownloadModalOpen(false)}>
+                Done
               </Button>
             </div>
           </div>
