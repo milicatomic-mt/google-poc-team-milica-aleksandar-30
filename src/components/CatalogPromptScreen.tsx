@@ -389,7 +389,7 @@ const CatalogPromptScreen = () => {
                         setDisplayedPrompt(newValue);
                       }}
                       placeholder="Enter your product description..."
-                      className="h-full w-full text-base resize-none bg-transparent border-0 p-0 focus-visible:ring-0 leading-relaxed text-gray-800 placeholder:text-gray-500 pr-28"
+                      className="h-full w-full text-base resize-none bg-transparent border-0 p-0 focus-visible:ring-0 leading-relaxed text-gray-800 placeholder:text-gray-500 pr-28 overflow-auto"
                     />
                     
                     {/* Wave loading animation overlay */}
