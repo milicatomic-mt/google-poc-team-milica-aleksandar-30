@@ -1725,20 +1725,20 @@ const PreviewResultsScreen: React.FC = () => {
                             className="w-full h-full object-cover" 
                           />
                         )}
-                        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-amber-200 to-amber-100 p-3">
+                        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-amber-200 to-amber-100 p-2">
                           <div className="space-y-1">
-                            <h3 className="text-gray-900 text-xs font-bold uppercase tracking-wide">
+                            <h3 className="text-gray-900 text-[10px] font-bold uppercase tracking-wide">
                               Premium Sound
                             </h3>
-                            <p className="text-gray-700 text-[8px] uppercase tracking-wider">
+                            <p className="text-gray-700 text-[7px] uppercase tracking-wider">
                               Minimalist Design
                             </p>
-                            <div className="flex items-center justify-between mt-2">
-                              <span className="text-gray-600 text-[7px]">
+                            <div className="flex items-center justify-between mt-1">
+                              <span className="text-gray-600 text-[6px]">
                                 WIRELESS BLUETOOTH CONNECTION<br/>
                                 WITH BASS RESONANCE
                               </span>
-                              <button className="bg-gray-900 text-white text-[8px] px-2 py-1 rounded font-semibold">
+                              <button className="bg-gray-900 text-white text-[7px] px-2 py-1 rounded font-semibold">
                                 Shop Now
                               </button>
                             </div>
