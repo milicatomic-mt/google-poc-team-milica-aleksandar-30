@@ -193,7 +193,7 @@ const ScreenSaver = () => {
                 <span className="text-black">Bring Your Products to </span><span className="text-indigo-600">Life</span>
               </h1>
             </div>
-            <p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl text-muted-foreground font-medium mx-auto min-h-[2rem] sm:min-h-[2.5rem] lg:min-h-[3rem] xl:min-h-[3.5rem] flex items-center justify-center px-4">
+            <p className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl text-muted-foreground font-medium mx-auto min-h-[1.5rem] sm:min-h-[2rem] lg:min-h-[2.5rem] xl:min-h-[3rem] flex items-center justify-center px-4">
               {currentSentenceIndex === 0 ? (
                 <>
                   {displayedText.includes("with AI-powered") ? (
