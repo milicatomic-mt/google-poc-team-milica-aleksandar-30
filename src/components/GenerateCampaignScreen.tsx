@@ -51,13 +51,26 @@ const GenerateCampaignScreen = () => {
           await new Promise(resolve => setTimeout(resolve, 1200)); // Wait 1.2s between steps
         }
 
-        // Handle image upload if it's a base64 data URL
+        // Handle image upload if it's a base64 data URL (cache to avoid duplicates in StrictMode)
+        const hashString = (str: string) => {
+          let hash = 0;
+          for (let i = 0; i < str.length; i++) { hash = ((hash << 5) - hash) + str.charCodeAt(i); hash |= 0; }
+          return Math.abs(hash).toString(36);
+        };
+
         let imageUrl = state.uploadedImage;
         if (state.uploadedImage && state.uploadedImage.startsWith('data:image/')) {
           setCurrentAction("Uploading your image...");
           // Don't jump back, continue from current progress
           try {
-            imageUrl = await uploadBase64Image(state.uploadedImage, 'campaign-uploads');
+            const uploadKey = 'campaign:upload:' + hashString(state.uploadedImage.slice(0, 256));
+            const cachedUrl = sessionStorage.getItem(uploadKey);
+            if (cachedUrl) {
+              imageUrl = cachedUrl;
+            } else {
+              imageUrl = await uploadBase64Image(state.uploadedImage, 'campaign-uploads');
+              sessionStorage.setItem(uploadKey, imageUrl);
+            }
             console.log('Image uploaded successfully:', imageUrl);
           } catch (error) {
             console.error('Failed to upload image:', error);
@@ -122,8 +135,20 @@ const GenerateCampaignScreen = () => {
           // Generate the updated campaign using AI
           await generateCampaign(state.campaignId, campaignData);
         } else {
-          // Create new campaign (existing logic)
-          campaignResult = await saveCampaignRequest(campaignData, generatedImages);
+          // Create new campaign or reuse recent identical one (dedupe StrictMode)
+          const twoMinutesAgo = new Date(Date.now() - 2 * 60 * 1000).toISOString();
+          const { data: existing } = await supabase
+            .from('campaign_results')
+            .select('id, created_at')
+            .eq('image_url', campaignData.image)
+            .eq('campaign_prompt', campaignData.campaign_prompt)
+            .eq('target_audience', campaignData.target_audience)
+            .gte('created_at', twoMinutesAgo)
+            .order('created_at', { ascending: false })
+            .limit(1)
+            .maybeSingle();
+          
+          campaignResult = existing ? { id: existing.id } : await saveCampaignRequest(campaignData, generatedImages);
           
           // Generate the campaign using AI
           await generateCampaign(campaignResult.id, campaignData);

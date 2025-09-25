@@ -33,6 +33,7 @@ import { saveCatalogRequest, generateCatalog, uploadBase64Image } from '@/lib/da
 import type { CatalogEnrichmentRequest, CatalogEnrichmentResponse } from '@/types/api';
 import RibbedSphere from '@/components/RibbedSphere';
 import QRDownloadModal from '@/components/QRDownloadModal';
+import { supabase } from '@/integrations/supabase/client';
 
 const CatalogResultsScreen: React.FC = () => {
   const location = useLocation();
@@ -83,21 +84,38 @@ const CatalogResultsScreen: React.FC = () => {
           await new Promise(resolve => setTimeout(resolve, 1200)); // Wait 1.2s between steps
         }
 
-        // Handle image upload if it's a base64 data URL
+        // Handle image upload if it's a base64 data URL with caching to avoid duplicates in StrictMode
+        // Simple hash function
+        const hashString = (str: string) => {
+          let hash = 0;
+          for (let i = 0; i < str.length; i++) {
+            hash = ((hash << 5) - hash) + str.charCodeAt(i);
+            hash |= 0;
+          }
+          return Math.abs(hash).toString(36);
+        };
+
         let imageUrl = catalogData.uploadedImage;
         if (catalogData.uploadedImage && catalogData.uploadedImage.startsWith('data:image/')) {
           setCurrentAction("Uploading your image...");
           setProgress(15);
-          try {
-            imageUrl = await uploadBase64Image(catalogData.uploadedImage, 'catalog-uploads');
-            console.log('Image uploaded successfully:', imageUrl);
-          } catch (error) {
-            console.error('Failed to upload image:', error);
-            throw new Error('Failed to upload image');
+          const uploadKey = 'catalog:upload:' + hashString(catalogData.uploadedImage.slice(0, 256));
+          const cachedUrl = sessionStorage.getItem(uploadKey);
+          if (cachedUrl) {
+            imageUrl = cachedUrl;
+          } else {
+            try {
+              imageUrl = await uploadBase64Image(catalogData.uploadedImage, 'catalog-uploads');
+              sessionStorage.setItem(uploadKey, imageUrl);
+              console.log('Image uploaded successfully:', imageUrl);
+            } catch (error) {
+              console.error('Failed to upload image:', error);
+              throw new Error('Failed to upload image');
+            }
           }
         }
 
-        // Save the catalog request to database first
+        // Save the catalog request to database first (dedupe within recent window)
         const catalogRequest: CatalogEnrichmentRequest = {
           image: imageUrl,
           category: catalogData.category,
@@ -109,7 +127,24 @@ const CatalogResultsScreen: React.FC = () => {
         // Extract generated images from analysis data
         const generatedImages = catalogData.aiAnalysisData?.generatedImages || [];
 
-        const savedRequest = await saveCatalogRequest(catalogRequest, generatedImages);
+        const twoMinutesAgo = new Date(Date.now() - 2 * 60 * 1000).toISOString();
+        let query: any = supabase
+          .from('catalog_results')
+          .select('id, created_at')
+          .eq('image_url', catalogRequest.image)
+          .gte('created_at', twoMinutesAgo)
+          .order('created_at', { ascending: false })
+          .limit(1);
+        if (catalogRequest.category) query = query.eq('product_category', catalogRequest.category);
+        if (catalogRequest.tone) query = query.eq('tone', catalogRequest.tone);
+        if (catalogRequest.platform) query = query.eq('platform', catalogRequest.platform);
+        if (catalogRequest.brand) query = query.eq('brand', catalogRequest.brand);
+
+        const { data: existing } = await query.maybeSingle();
+
+        const savedRequest = existing
+          ? { id: existing.id }
+          : await saveCatalogRequest(catalogRequest, generatedImages);
 
         // Generate the catalog content using AI
         const results = await generateCatalog(savedRequest.id, catalogRequest);
