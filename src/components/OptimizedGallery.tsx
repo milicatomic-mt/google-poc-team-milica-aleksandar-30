@@ -659,6 +659,7 @@ const CampaignContent: React.FC<{
                     autoPlay
                     preload="metadata"
                     poster={activeCampaignResults?.generated_images?.[0]?.url || uploadedImage}
+                    onClick={(e) => e.stopPropagation()}
                     onEnded={() => setIsVideoPlaying(false)}
                     onError={() => {
                       console.error('Video failed to load:', generatedVideoUrl);
@@ -678,7 +679,8 @@ const CampaignContent: React.FC<{
                     {/* Play Button */}
                     <div 
                       className="absolute inset-0 flex items-center justify-center cursor-pointer"
-                      onClick={() => {
+                      onClick={(e) => {
+                        e.stopPropagation();
                         if (generatedVideoUrl) {
                           setIsVideoPlaying(true);
                         } else {
