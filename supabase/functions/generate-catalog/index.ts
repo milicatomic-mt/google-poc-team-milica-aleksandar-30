@@ -45,7 +45,15 @@ serve(async (req) => {
         // Convert blob to base64
         const arrayBuffer = await imageBlob.arrayBuffer();
         const uint8Array = new Uint8Array(arrayBuffer);
-        const base64String = btoa(String.fromCharCode(...uint8Array));
+        
+        // Convert Uint8Array to base64 without stack overflow
+        let binaryString = '';
+        const chunkSize = 8192; // Process in chunks to avoid stack overflow
+        for (let i = 0; i < uint8Array.length; i += chunkSize) {
+          const chunk = uint8Array.slice(i, i + chunkSize);
+          binaryString += String.fromCharCode.apply(null, Array.from(chunk));
+        }
+        const base64String = btoa(binaryString);
         imageBase64 = base64String;
         
         
