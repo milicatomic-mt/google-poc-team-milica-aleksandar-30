@@ -1867,9 +1867,9 @@ const PreviewResultsScreen: React.FC = () => {
                       <div className="h-full relative overflow-hidden">
                         {/* Background Image with Overlay */}
                         <div className="absolute inset-0">
-                           {activeCampaignResults?.generated_images?.[1]?.url ? (
+                           {activeCampaignResults?.generated_images?.[0]?.url ? (
                              <img 
-                               src={activeCampaignResults.generated_images[1].url} 
+                               src={activeCampaignResults.generated_images[0].url} 
                                alt="Background" 
                                className="w-full h-full object-cover"
                              />
