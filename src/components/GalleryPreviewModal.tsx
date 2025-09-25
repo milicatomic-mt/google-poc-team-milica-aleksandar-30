@@ -12,6 +12,10 @@ interface GalleryItem {
   generated_video_url?: string;
   result: any;
   image_url?: string;
+  // Catalog-specific fields
+  product_category?: string;
+  platform?: string;
+  tone?: string;
 }
 
 interface GalleryPreviewModalProps {
@@ -213,60 +217,51 @@ const GalleryPreviewModal = ({ item, isOpen, onClose }: GalleryPreviewModalProps
           )}
 
           {/* Generated Text Content (for catalogs) */}
-          {item.type === 'catalog' && item.result && (
+          {item.type === 'catalog' && (
             <div className="space-y-4">
               <div className="flex items-center space-x-2">
                 <FileText className="w-4 h-4" />
-                <h3 className="font-semibold">Generated Content</h3>
+                <h3 className="font-semibold">Catalog Information</h3>
               </div>
               
               <div className="bg-muted/30 rounded-lg p-4 space-y-4">
-                {item.result.productName && (
+                {item.product_category && (
                   <div>
-                    <h4 className="font-medium text-sm text-muted-foreground mb-1">Product Name</h4>
-                    <p className="text-sm">{item.result.productName}</p>
+                    <h4 className="font-medium text-sm text-muted-foreground mb-1">Product Category</h4>
+                    <p className="text-sm">{item.product_category}</p>
                   </div>
                 )}
                 
-                {item.result.productDescription && (
+                {item.platform && (
                   <div>
-                    <h4 className="font-medium text-sm text-muted-foreground mb-1">Product Description</h4>
-                    <p className="text-sm">{item.result.productDescription}</p>
+                    <h4 className="font-medium text-sm text-muted-foreground mb-1">Platform</h4>
+                    <p className="text-sm">{item.platform}</p>
                   </div>
                 )}
                 
-                {item.result.keyFeatures && Array.isArray(item.result.keyFeatures) && (
+                {item.tone && (
                   <div>
-                    <h4 className="font-medium text-sm text-muted-foreground mb-1">Key Features</h4>
-                    <ul className="text-sm space-y-1">
-                      {item.result.keyFeatures.map((feature: string, index: number) => (
-                        <li key={index} className="flex items-start space-x-2">
-                          <span className="text-primary mt-1.5 w-1 h-1 rounded-full bg-current flex-shrink-0"></span>
-                          <span>{feature}</span>
-                        </li>
-                      ))}
-                    </ul>
+                    <h4 className="font-medium text-sm text-muted-foreground mb-1">Tone & Style</h4>
+                    <p className="text-sm">{item.tone}</p>
                   </div>
                 )}
                 
-                {item.result.marketingCopy && (
+                {item.result && Object.keys(item.result).length > 0 && (
                   <div>
-                    <h4 className="font-medium text-sm text-muted-foreground mb-1">Marketing Copy</h4>
-                    <p className="text-sm">{item.result.marketingCopy}</p>
-                  </div>
-                )}
-                
-                {item.result.targetAudience && (
-                  <div>
-                    <h4 className="font-medium text-sm text-muted-foreground mb-1">Target Audience</h4>
-                    <p className="text-sm">{item.result.targetAudience}</p>
-                  </div>
-                )}
-                
-                {item.result.pricing && (
-                  <div>
-                    <h4 className="font-medium text-sm text-muted-foreground mb-1">Pricing</h4>
-                    <p className="text-sm font-medium">{item.result.pricing}</p>
+                    <h4 className="font-medium text-sm text-muted-foreground mb-1">Generated Content</h4>
+                    <div className="text-sm space-y-2">
+                      {Object.entries(item.result).map(([key, value]) => {
+                        if (value && typeof value === 'string') {
+                          return (
+                            <div key={key}>
+                              <span className="font-medium capitalize">{key.replace(/([A-Z])/g, ' $1').trim()}:</span>
+                              <span className="ml-2">{value}</span>
+                            </div>
+                          );
+                        }
+                        return null;
+                      })}
+                    </div>
                   </div>
                 )}
               </div>

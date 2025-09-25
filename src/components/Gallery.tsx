@@ -14,6 +14,10 @@ interface GalleryItem {
   generated_video_url?: string;
   result: any;
   image_url?: string;
+  // Catalog-specific fields
+  product_category?: string;
+  platform?: string;
+  tone?: string;
 }
 
 const Gallery = () => {
@@ -43,7 +47,7 @@ const Gallery = () => {
       // Fetch recent catalogs (max 5, distinct results)
       const { data: catalogs, error: catalogsError } = await supabase
         .from('catalog_results')
-        .select('id, created_at, generated_images, result, image_url')
+        .select('id, created_at, generated_images, result, image_url, product_category, platform, tone')
         .order('created_at', { ascending: false })
         .limit(5);
 
