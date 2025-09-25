@@ -1577,7 +1577,7 @@ const PreviewResultsScreen: React.FC = () => {
                 </div>
                 <CardContent className="p-4">
                   <div className="grid grid-cols-2 gap-3 h-80">
-                    {/* Top Left - Portrait Banner with Background Image */}
+                    {/* Top Left - Escape the Noise Banner */}
                     <div 
                       className="relative rounded-lg overflow-hidden shadow-sm"
                       style={{
@@ -1588,17 +1588,22 @@ const PreviewResultsScreen: React.FC = () => {
                       }}
                     >
                       {/* Background overlay */}
-                      <div className="absolute inset-0 bg-black/30"></div>
+                      <div className="absolute inset-0 bg-black/20"></div>
                       
-                      {/* Bottom overlay for text */}
-                      <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
-                        <div className="bg-black text-white px-3 py-1.5 rounded text-xs font-bold uppercase tracking-wide inline-block" style={{ fontSize: '10px' }}>
-                          {activeCampaignResults.banner_ads?.[0]?.headline || "INDULGE IN DAILY SELF CARE"}
+                      {/* Text overlay positioned at bottom */}
+                      <div className="absolute bottom-4 left-4 right-4">
+                        <div className="bg-black/90 text-white px-4 py-2 rounded-md">
+                          <div className="text-sm font-bold uppercase tracking-wide leading-tight">
+                            {activeCampaignResults.banner_ads?.[0]?.headline || "ESCAPE THE NOISE,"}
+                          </div>
+                          <div className="text-sm font-bold uppercase tracking-wide">
+                            EMBRACE THE SOUND
+                          </div>
                         </div>
                       </div>
                     </div>
 
-                    {/* Top Right - Product Focus Banner */}
+                    {/* Top Right - Urban Sanctuary Banner */}
                     <div 
                       className="relative rounded-lg overflow-hidden shadow-sm"
                       style={{
@@ -1609,17 +1614,22 @@ const PreviewResultsScreen: React.FC = () => {
                       }}
                     >
                       {/* Background overlay */}
-                      <div className="absolute inset-0 bg-black/30"></div>
+                      <div className="absolute inset-0 bg-black/20"></div>
                       
-                      {/* Bottom overlay for text */}
-                      <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-amber-600/95 to-transparent p-4 text-center">
-                        <div className="bg-amber-600 text-white px-3 py-1.5 rounded text-xs font-bold uppercase tracking-wide inline-block" style={{ fontSize: '10px' }}>
-                          {activeCampaignResults.banner_ads?.[1]?.headline || "PREMIUM EXPERIENCE"}
+                      {/* Orange text overlay positioned at bottom */}
+                      <div className="absolute bottom-4 left-4 right-4 text-center">
+                        <div className="bg-orange-500/95 text-white px-4 py-2 rounded-md">
+                          <div className="text-sm font-bold uppercase tracking-wide leading-tight">
+                            {(activeCampaignResults.banner_ads?.[1]?.headline || "HEADPHONES: YOUR").toUpperCase()}
+                          </div>
+                          <div className="text-sm font-bold uppercase tracking-wide">
+                            URBAN SANCTUARY
+                          </div>
                         </div>
                       </div>
                     </div>
 
-                    {/* Bottom - Wide Banner with Background Image */}
+                    {/* Bottom - Wide Discover Banner */}
                     <div 
                       className="relative rounded-lg overflow-hidden shadow-sm col-span-2"
                       style={{
@@ -1630,12 +1640,14 @@ const PreviewResultsScreen: React.FC = () => {
                       }}
                     >
                       {/* Background overlay */}
-                      <div className="absolute inset-0 bg-black/40"></div>
+                      <div className="absolute inset-0 bg-black/20"></div>
                       
-                      {/* Content positioned at bottom left */}
-                      <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
-                        <div className="bg-black text-white px-3 py-1.5 rounded text-xs font-bold uppercase tracking-wide inline-block" style={{ fontSize: '10px' }}>
-                          {activeCampaignResults.banner_ads?.[1]?.cta || activeCampaignResults.banner_ads?.[0]?.cta || "SHOP NOW"}
+                      {/* Text overlay positioned at bottom left */}
+                      <div className="absolute bottom-4 left-4">
+                        <div className="bg-black/90 text-white px-6 py-2 rounded-md">
+                          <div className="text-lg font-bold uppercase tracking-wide">
+                            {activeCampaignResults.banner_ads?.[0]?.cta || "DISCOVER"}
+                          </div>
                         </div>
                       </div>
                     </div>
