@@ -48,7 +48,7 @@ const GenerateCampaignScreen = () => {
         let imageUrl = state.uploadedImage;
         if (state.uploadedImage && state.uploadedImage.startsWith('data:image/')) {
           setCurrentAction("Uploading your image...");
-          setProgress(15);
+          // Don't jump back, continue from current progress
           try {
             imageUrl = await uploadBase64Image(state.uploadedImage, 'campaign-uploads');
             console.log('Image uploaded successfully:', imageUrl);
@@ -76,7 +76,6 @@ const GenerateCampaignScreen = () => {
         
         // Start polling for results so we only navigate when content is ready
         setCurrentAction("Finalizing and assembling results...");
-        setProgress(92);
 
         const maxAttempts = 45; // ~90s
         const intervalMs = 2000;
@@ -106,22 +105,29 @@ const GenerateCampaignScreen = () => {
             console.warn('Polling exception', e);
           }
 
-        setProgress(92 + Math.floor((attempt / maxAttempts) * 8)); // progress up to 100
-        await new Promise((r) => setTimeout(r, intervalMs));
+          // Keep progress at 90% while polling
+          setProgress(90);
+          await new Promise((r) => setTimeout(r, intervalMs));
         }
         
         // If results not ready, keep user on progress screen (do not navigate)
         if (!finalResults) {
           setCurrentAction("Still preparing your results...");
-          setProgress(98);
+          setProgress(90);
           return;
         }
 
-        // Final progress update
-        setCurrentAction("Complete!");
-        setProgress(100);
+        // Smoothly progress from 90% to 100%
+        setCurrentAction("Completing your campaign...");
+        for (let i = 91; i <= 100; i++) {
+          setProgress(i);
+          await new Promise(resolve => setTimeout(resolve, 50)); // 50ms per percent
+        }
         
-        // Navigate only after results ready
+        setCurrentAction("Complete!");
+        await new Promise(resolve => setTimeout(resolve, 500)); // Brief pause at 100%
+        
+        // Navigate only after smooth completion
         navigate('/preview-results', { 
           state: { 
             ...location.state, 
