@@ -97,12 +97,6 @@ const QRDownloadModal: React.FC<QRDownloadModalProps> = ({
                 size={256}
                 level="M"
                 includeMargin={true}
-                imageSettings={{
-                  src: "/lovable-uploads/836ed724-52fb-4a61-a4e7-ffecbc89e80e.png",
-                  height: 32,
-                  width: 32,
-                  excavate: true,
-                }}
               />
             ) : (
               <div className="w-64 h-64 flex items-center justify-center bg-gray-100 rounded">
