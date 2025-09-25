@@ -159,7 +159,7 @@ const CampaignPromptScreen = () => {
     };
 
     loadExistingCampaignData();
-  }, [location.state, editMode, campaignId, isLoadingExistingData]);
+  }, [editMode, campaignId]);
 
   // Auto-adjust height when prompt changes
   useEffect(() => {
