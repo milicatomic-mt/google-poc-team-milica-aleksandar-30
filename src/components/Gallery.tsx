@@ -4,6 +4,7 @@ import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft, Play, Image, FileText, Calendar } from 'lucide-react';
 import RibbedSphere from '@/components/RibbedSphere';
+import GalleryPreviewModal from '@/components/GalleryPreviewModal';
 
 interface GalleryItem {
   id: string;
@@ -20,6 +21,8 @@ const Gallery = () => {
   const [items, setItems] = useState<GalleryItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedFilter, setSelectedFilter] = useState<'all' | 'campaigns' | 'catalogs'>('all');
+  const [selectedItem, setSelectedItem] = useState<GalleryItem | null>(null);
+  const [isPreviewOpen, setIsPreviewOpen] = useState(false);
 
   useEffect(() => {
     fetchGalleryItems();
@@ -110,6 +113,16 @@ const Gallery = () => {
     }
   };
 
+  const handleItemClick = (item: GalleryItem) => {
+    setSelectedItem(item);
+    setIsPreviewOpen(true);
+  };
+
+  const handlePreviewClose = () => {
+    setIsPreviewOpen(false);
+    setSelectedItem(null);
+  };
+
   if (loading) {
     return (
       <div className="min-h-screen w-full bg-background flex items-center justify-center">
@@ -198,7 +211,8 @@ const Gallery = () => {
             {filteredItems.map((item) => (
               <div
                 key={item.id}
-                className="group bg-card border border-border/50 rounded-xl overflow-hidden hover:shadow-lg hover:border-border transition-all duration-300 hover:scale-[1.02]"
+                className="group bg-card border border-border/50 rounded-xl overflow-hidden hover:shadow-lg hover:border-border transition-all duration-300 hover:scale-[1.02] cursor-pointer"
+                onClick={() => handleItemClick(item)}
               >
                 {/* Media Preview */}
                 <div className="aspect-video bg-muted/30 relative overflow-hidden">
@@ -287,15 +301,9 @@ const Gallery = () => {
                       variant="ghost"
                       size="sm"
                       className="text-xs h-6 px-2 opacity-0 group-hover:opacity-100 transition-opacity"
-                      onClick={() => {
-                        // Navigate to preview with this item's data
-                        navigate('/preview-results', {
-                          state: {
-                            campaignId: item.id,
-                            campaignResults: item.result,
-                            type: item.type
-                          }
-                        });
+                      onClick={(e) => {
+                        e.stopPropagation(); // Prevent card click
+                        handleItemClick(item);
                       }}
                     >
                       View
@@ -307,6 +315,13 @@ const Gallery = () => {
           </div>
         )}
       </div>
+
+      {/* Preview Modal */}
+      <GalleryPreviewModal 
+        item={selectedItem}
+        isOpen={isPreviewOpen}
+        onClose={handlePreviewClose}
+      />
     </div>
   );
 };
