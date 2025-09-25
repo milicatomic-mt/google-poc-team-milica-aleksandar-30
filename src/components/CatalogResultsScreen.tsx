@@ -53,15 +53,30 @@ const CatalogResultsScreen: React.FC = () => {
   const [hasStartedGeneration, setHasStartedGeneration] = useState(false);
 
   useEffect(() => {
-    if (!catalogData?.uploadedImage || hasStartedGeneration) {
+    if (!catalogData?.uploadedImage) {
+      navigate('/');
       return;
     }
 
-    if (hasStartedGeneration) {
+    // Dedupe guard across StrictMode mounts using sessionStorage
+    const hashString = (str: string) => {
+      let hash = 0;
+      for (let i = 0; i < str.length; i++) { hash = ((hash << 5) - hash) + str.charCodeAt(i); hash |= 0; }
+      return Math.abs(hash).toString(36);
+    };
+    const requestHash = hashString(JSON.stringify({
+      uploadedImage: catalogData.uploadedImage.slice(0, 256),
+      category: catalogData.category,
+      tone: catalogData.tone,
+      platform: catalogData.platform,
+      brand: catalogData.brand
+    }));
+    const inflightKey = `catalog:inflight:${requestHash}`;
+    if (sessionStorage.getItem(inflightKey)) {
+      console.log('CatalogResultsScreen: deduped duplicate mount');
       return;
     }
-    
-    setHasStartedGeneration(true);
+    sessionStorage.setItem(inflightKey, '1');
 
     const generateCatalogContent = async () => {
       try {
@@ -138,7 +153,6 @@ const CatalogResultsScreen: React.FC = () => {
         if (catalogRequest.category) query = query.eq('product_category', catalogRequest.category);
         if (catalogRequest.tone) query = query.eq('tone', catalogRequest.tone);
         if (catalogRequest.platform) query = query.eq('platform', catalogRequest.platform);
-        if (catalogRequest.brand) query = query.eq('brand', catalogRequest.brand);
 
         const { data: existing } = await query.maybeSingle();
 
@@ -161,6 +175,8 @@ const CatalogResultsScreen: React.FC = () => {
         toast.error('Failed to generate catalog content. Please try again.');
       } finally {
         setIsGenerating(false);
+        // Mark inflight as done to avoid re-entry
+        try { sessionStorage.setItem(inflightKey, 'done'); } catch {}
       }
     };
 

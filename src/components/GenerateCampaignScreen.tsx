@@ -14,12 +14,21 @@ const GenerateCampaignScreen = () => {
   const [hasStartedGeneration, setHasStartedGeneration] = useState(false);
 
   useEffect(() => {
-    if (hasStartedGeneration) {
+    // Dedupe guard across StrictMode mounts using sessionStorage
+    const hashString = (str: string) => { let h = 0; for (let i = 0; i < str.length; i++) { h = ((h << 5) - h) + str.charCodeAt(i); h |= 0; } return Math.abs(h).toString(36); };
+    const state = location.state as any;
+    const requestHash = state ? hashString(JSON.stringify({
+      uploadedImage: (state.uploadedImage || '').slice(0, 256),
+      campaignPrompt: state.campaignPrompt,
+      target: state.selectedAudiences?.join(',') || ''
+    })) : '';
+    const inflightKey = requestHash ? `campaign:inflight:${requestHash}` : '';
+    if (inflightKey && sessionStorage.getItem(inflightKey)) {
+      console.log('GenerateCampaignScreen: deduped duplicate mount');
       return;
     }
-    
-    setHasStartedGeneration(true);
-    
+    if (inflightKey) sessionStorage.setItem(inflightKey, '1');
+
     const generateContent = async () => {
       try {
         const state = location.state;
@@ -223,8 +232,20 @@ const GenerateCampaignScreen = () => {
       }
     };
 
-    generateContent();
-  }, []);
+     generateContent().finally(() => {
+       try {
+         const state = location.state as any;
+         const hashString = (str: string) => { let h = 0; for (let i = 0; i < str.length; i++) { h = ((h << 5) - h) + str.charCodeAt(i); h |= 0; } return Math.abs(h).toString(36); };
+         const requestHash = state ? hashString(JSON.stringify({
+           uploadedImage: (state.uploadedImage || '').slice(0, 256),
+           campaignPrompt: state.campaignPrompt,
+           target: state.selectedAudiences?.join(',') || ''
+         })) : '';
+         const inflightKey = requestHash ? `campaign:inflight:${requestHash}` : '';
+         if (inflightKey) sessionStorage.setItem(inflightKey, 'done');
+       } catch {}
+     });
+   }, []);
 
   return (
     <div className="relative min-h-screen w-full overflow-hidden bg-background">
