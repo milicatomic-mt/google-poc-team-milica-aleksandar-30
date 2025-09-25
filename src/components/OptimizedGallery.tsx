@@ -624,7 +624,7 @@ const CampaignContent: React.FC<{
 
       {/* Video Scripts Card - Exact copy from PreviewResultsScreen */}
       <Card 
-        className="card-elegant backdrop-blur-xl bg-white/5 border-white/50 border-2 shadow-2xl hover:shadow-elegant-lg transition-all duration-smooth cursor-pointer"
+        className="card-elegant overflow-hidden backdrop-blur-xl bg-white/5 border-white/50 border-2 shadow-2xl hover:shadow-elegant-lg transition-all duration-smooth cursor-pointer"
         onClick={() => onViewDetails('Video Scripts')}
       >
         <div className="px-4 py-3 flex items-center justify-between transition-all duration-smooth">
