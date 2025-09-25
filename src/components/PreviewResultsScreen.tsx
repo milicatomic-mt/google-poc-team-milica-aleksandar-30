@@ -171,6 +171,155 @@ const PreviewResultsScreen: React.FC = () => {
             {/* Single Column Layout - All Banners Stacked Vertically */}
             <div className="space-y-8 max-w-full">
               
+              {/* Medium Rectangle (300×250) */}
+              <div className="space-y-3">
+                <div className="flex items-center gap-3">
+                  <h4 className="text-lg font-semibold">Medium Rectangle (300×250)</h4>
+                  <Badge className="text-xs bg-green-100 text-green-800">Most Popular</Badge>
+                </div>
+                <div className="flex justify-center">
+                  <div 
+                    className="relative rounded-lg overflow-hidden shadow-lg"
+                    style={{ 
+                      width: '300px', 
+                      height: '250px',
+                      backgroundImage: `url(${generatedImages[0]?.url || uploadedImage})`,
+                      backgroundSize: 'cover',
+                      backgroundPosition: 'center',
+                      backgroundRepeat: 'no-repeat'
+                    }}
+                  >
+                    <div className="absolute inset-0 bg-black/30"></div>
+                    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
+                      <div className="bg-black text-white px-3 py-1.5 rounded text-xs font-bold uppercase tracking-wide inline-block">
+                        {activeCampaignResults.banner_ads?.[0]?.headline || 'PREMIUM QUALITY'}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Leaderboard (728×90) */}
+              <div className="space-y-3">
+                <div className="flex items-center gap-3">
+                  <h4 className="text-lg font-semibold">Leaderboard (728×90)</h4>
+                  <Badge variant="secondary" className="text-xs">Header/Footer</Badge>
+                </div>
+                <div className="flex justify-center">
+                  <div 
+                    className="relative rounded-lg overflow-hidden shadow-lg"
+                    style={{ 
+                      width: '728px', 
+                      height: '90px',
+                      maxWidth: '100%',
+                      backgroundImage: `url(${generatedImages[1]?.url || uploadedImage})`,
+                      backgroundSize: 'cover',
+                      backgroundPosition: 'center',
+                      backgroundRepeat: 'no-repeat'
+                    }}
+                  >
+                    <div className="absolute inset-0 bg-black/30"></div>
+                    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-amber-600/95 to-transparent p-3 text-center">
+                      <div className="bg-amber-600 text-white px-3 py-1 rounded text-xs font-bold uppercase tracking-wide inline-block">
+                        {activeCampaignResults.banner_ads?.[1]?.headline || 'PREMIUM EXPERIENCE'}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Wide Skyscraper (160×600) */}
+              <div className="space-y-3">
+                <div className="flex items-center gap-3">
+                  <h4 className="text-lg font-semibold">Wide Skyscraper (160×600)</h4>
+                  <Badge variant="secondary" className="text-xs">Sidebar</Badge>
+                </div>
+                <div className="flex justify-center">
+                  <div 
+                    className="relative rounded-lg overflow-hidden shadow-lg"
+                    style={{ 
+                      width: '160px', 
+                      height: '400px',
+                      backgroundImage: `url(${generatedImages[2]?.url || uploadedImage})`,
+                      backgroundSize: 'cover',
+                      backgroundPosition: 'center',
+                      backgroundRepeat: 'no-repeat'
+                    }}
+                  >
+                    <div className="absolute inset-0 bg-black/30"></div>
+                    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-3 text-center">
+                      <div className="bg-black text-white px-2 py-1 rounded text-xs font-bold uppercase tracking-wide inline-block">
+                        {activeCampaignResults.banner_ads?.[2]?.headline || 'SHOP NOW'}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Half Page (300×600) */}
+              <div className="space-y-3">
+                <div className="flex items-center gap-3">
+                  <h4 className="text-lg font-semibold">Half Page (300×600)</h4>
+                  <Badge className="text-xs bg-blue-100 text-blue-800">High Impact</Badge>
+                </div>
+                <div className="flex justify-center">
+                  <div 
+                    className="relative rounded-lg overflow-hidden shadow-lg"
+                    style={{ 
+                      width: '300px', 
+                      height: '400px',
+                      backgroundImage: `url(${generatedImages[3]?.url || uploadedImage})`,
+                      backgroundSize: 'cover',
+                      backgroundPosition: 'center',
+                      backgroundRepeat: 'no-repeat'
+                    }}
+                  >
+                    <div className="absolute inset-0 bg-black/30"></div>
+                    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
+                      <div className="bg-black text-white px-3 py-1.5 rounded text-xs font-bold uppercase tracking-wide inline-block">
+                        {activeCampaignResults.banner_ads?.[0]?.headline || 'EXPERIENCE LUXURY'}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Billboard (970×250) */}
+              <div className="space-y-3">
+                <div className="flex items-center gap-3">
+                  <h4 className="text-lg font-semibold">Billboard (970×250)</h4>
+                  <Badge className="text-xs bg-purple-100 text-purple-800">Premium</Badge>
+                </div>
+                <div className="flex justify-center">
+                  <div 
+                    className="relative rounded-lg overflow-hidden shadow-lg"
+                    style={{ 
+                      width: '970px', 
+                      height: '250px',
+                      maxWidth: '100%',
+                      backgroundImage: `url(${generatedImages[0]?.url || uploadedImage})`,
+                      backgroundSize: 'cover',
+                      backgroundPosition: 'center',
+                      backgroundRepeat: 'no-repeat'
+                    }}
+                  >
+                    <div className="absolute inset-0 bg-black/30"></div>
+                    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
+                      <div className="bg-black text-white px-4 py-2 rounded text-sm font-bold uppercase tracking-wide inline-block">
+                        {activeCampaignResults.banner_ads?.[1]?.cta || activeCampaignResults.banner_ads?.[0]?.cta || 'SHOP NOW'}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+        return (
+          <div className="space-y-0 overflow-x-hidden">
+            {/* Single Column Layout - All Banners Stacked Vertically */}
+            <div className="space-y-8 max-w-full">
+              
               {/* Medium Rectangle */}
               <div className="space-y-3">
                 <div className="flex items-center gap-3">
