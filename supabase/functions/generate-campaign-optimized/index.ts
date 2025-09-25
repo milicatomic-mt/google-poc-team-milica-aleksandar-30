@@ -310,13 +310,58 @@ Deno.serve(async (req) => {
   "landing_page_concept": {
     "hero_text": "Main landing page headline",
     "sub_text": "Supporting subheading that explains value",
-    "cta": "Landing page call-to-action button"
+    "cta": "Landing page call-to-action button",
+    "hero_section": {
+      "product_image_placement": "clean, centered, or lifestyle context",
+      "headline": "clear product benefit focused headline",
+      "subheadline": "supporting statement that reinforces value",
+      "primary_cta": "Buy Now, Get Started, or Pre-Order"
+    },
+    "product_highlights": {
+      "features": ["3-4 key features with short, benefit-driven text"],
+      "supporting_visuals": "icons or graphics for each feature"
+    },
+    "detailed_product_section": {
+      "product_visuals": "high-quality product visuals, 360° views, close-ups, lifestyle shots",
+      "copy": "longer copy about features, specs, and use cases"
+    },
+    "value_proposition": {
+      "unique_selling_points": "comparison with competitors or unique advantages",
+      "scannable_bullets": "simple, benefit-focused bullet points"
+    },
+    "social_proof": {
+      "reviews_ratings": "customer reviews and star ratings",
+      "testimonials": "customer testimonials, case studies, or influencer quotes"
+    },
+    "use_cases": "step-by-step visuals showing how the product works (optional)",
+    "pricing_section": {
+      "pricing_cards": "pricing options if multiple packages/variants exist",
+      "guarantees": "highlight guarantees, free shipping, or return policy"
+    },
+    "cta_section": {
+      "repeated_cta": "strong call-to-action with product image",
+      "urgency": "example: Order Yours Today — Limited Stock!"
+    },
+    "footer": {
+      "support_links": "help center, contact information",
+      "policies": "returns, shipping, privacy policy links",
+      "social_media": "social media platform links"
+    }
   }
-}
-
 Make the content compelling, actionable, and tailored to the target audience.
 
-For banner ads specifically: Analyze the uploaded product image and generate banner ads in multiple styles. Extract colors, textures, and mood from the image to define the visual theme. For each banner, propose a creative headline, subheadline, and CTA button text. Include at least 3 style variations: playful & colorful, sleek & minimal, and premium/luxury. Adapt layouts for common dimensions (300x250, 728x90, 160x600). Ensure designs are optimized for both web and social ad placements.`;
+For banner ads specifically: Analyze the uploaded product image and generate banner ads in multiple styles. Extract colors, textures, and mood from the image to define the visual theme. For each banner, propose a creative headline, subheadline, and CTA button text. Include at least 3 style variations: playful & colorful, sleek & minimal, and premium/luxury. Adapt layouts for common dimensions (300x250, 728x90, 160x600). Ensure designs are optimized for both web and social ad placements.
+
+For landing page specifically: Create a comprehensive product landing page following this structure:
+- Hero Section: Product image (clean, centered, or lifestyle context), headline (clear product benefit), subheadline (supporting statement), primary CTA
+- Product Highlights: 3–4 key features with short, benefit-driven text and supporting visuals/icons  
+- Detailed Product Section: High-quality product visuals, longer copy about features, specs, and use cases
+- Value Proposition: Comparison with competitors or unique selling points in simple, scannable bullets
+- Social Proof: Customer reviews & ratings, testimonials, case studies, or influencer quotes
+- Use Cases / How It Works: Step-by-step visuals or short demo description (optional)
+- Pricing & Purchase Options: Pricing cards for multiple packages/variants, highlight guarantees, free shipping, or return policy
+- Call-to-Action Section: Repeated strong CTA with product image, urgency messaging like "Order Yours Today — Limited Stock!"
+- Footer: Support/contact links, policies (Returns, Shipping, Privacy), social media links`;
 
       const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent`, {
         method: 'POST',
