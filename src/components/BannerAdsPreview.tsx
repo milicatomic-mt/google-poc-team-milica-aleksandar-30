@@ -57,216 +57,192 @@ const BannerAdsPreview: React.FC = () => {
   const generatedImages = campaignResults.generated_images || [];
 
   return (
-    <div className="min-h-screen bg-background">
-      {/* Header */}
-      <div className="border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div className="container mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-4">
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={handleBack}
-                className="gap-2"
-              >
-                <ArrowLeft className="w-4 h-4" />
-                Back to Results
-              </Button>
-              <div>
-                <h1 className="text-2xl font-bold text-foreground">Banner Ads</h1>
-                <p className="text-sm text-muted-foreground">Review your AI-generated designs before download</p>
-              </div>
-            </div>
-            <Button onClick={handleDownload} className="gap-2">
-              <Download className="w-4 h-4" />
-              Download
-            </Button>
+    <div className="min-h-screen bg-white">
+      {/* Header with fixed positioning */}
+      <div className="relative">
+        {/* Back Button - Left Center */}
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={handleBack}
+          className="absolute left-6 top-1/2 -translate-y-1/2 z-10 gap-2 bg-white/90 backdrop-blur-sm border border-gray-200 hover:bg-gray-50"
+        >
+          <ArrowLeft className="w-4 h-4" />
+        </Button>
+
+        {/* Download Button - Right Top */}
+        <Button 
+          onClick={handleDownload} 
+          className="absolute right-6 top-6 z-10 gap-2 bg-indigo-600 hover:bg-indigo-700 text-white"
+        >
+          <Download className="w-4 h-4" />
+          Download
+        </Button>
+
+        {/* Page Header */}
+        <div className="pt-8 pb-6 px-6">
+          <div className="max-w-6xl mx-auto">
+            <h1 className="text-3xl font-bold text-gray-900 mb-2">Banner Ads</h1>
+            <p className="text-gray-600">Review your AI-generated designs before download</p>
           </div>
         </div>
       </div>
 
       {/* Content */}
-      <div className="container mx-auto px-6 py-8">
-        <div className="max-w-6xl mx-auto space-y-8">
+      <div className="px-6 pb-8">
+        <div className="max-w-6xl mx-auto space-y-12">
           
           {/* Leaderboard Banner */}
-          <Card className="overflow-hidden">
-            <CardContent className="p-0">
-              <div className="bg-muted/30 p-4 border-b flex items-center justify-between">
-                <div>
-                  <h2 className="text-lg font-semibold">Leaderboard Banner</h2>
-                  <p className="text-sm text-muted-foreground">(728×90)</p>
-                </div>
-                <Badge className="bg-green-100 text-green-800">Most Popular</Badge>
-              </div>
-              
-              <div className="p-6">
-                <div 
-                  className="relative bg-gradient-to-r from-amber-50 to-amber-100 rounded-lg overflow-hidden border-2 border-border shadow-lg mx-auto"
-                  style={{ width: '728px', height: '90px', maxWidth: '100%' }}
-                >
-                  <div className="relative h-full flex items-center">
-                    {/* Left Product Image */}
-                    {(generatedImages[0]?.url || uploadedImage) && (
-                      <div className="w-20 h-full bg-white/50 flex items-center justify-center p-2">
-                        <img 
-                          src={generatedImages[0]?.url || uploadedImage} 
-                          alt="Product" 
-                          className="w-full h-auto max-h-12 object-contain drop-shadow-sm" 
-                        />
-                      </div>
-                    )}
-                    
-                    {/* Content Area */}
-                    <div className="flex-1 px-6 flex items-center justify-between">
-                      <div className="space-y-1">
-                        <h3 className="text-xl font-bold text-slate-900 uppercase tracking-wide">
-                          PREMIUM SOUND
-                        </h3>
-                        <p className="text-xs text-slate-600 font-medium uppercase tracking-wider">
-                          MINIMALIST DESIGN
-                        </p>
-                        <p className="text-xs text-slate-700 font-medium">
-                          SMASH THE COMPETITION WITH 30% DISCOUNT
-                        </p>
-                      </div>
-                      
-                      <Button className="bg-amber-200 hover:bg-amber-300 text-slate-900 font-semibold px-6">
-                        Shop Now
-                      </Button>
-                    </div>
+          <div className="space-y-4">
+            <h2 className="text-xl font-semibold text-gray-900">
+              Leaderboard Banner <span className="text-gray-500 font-normal">(728×90)</span>
+            </h2>
+            
+            <div className="w-full max-w-4xl">
+              <div 
+                className="relative bg-gradient-to-r from-amber-200 to-amber-100 overflow-hidden shadow-lg mx-auto"
+                style={{ width: '728px', height: '90px', maxWidth: '100%' }}
+              >
+                {/* Left side with product image */}
+                <div className="absolute left-0 top-0 h-full w-20 flex items-center justify-center">
+                  {(generatedImages[0]?.url || uploadedImage) && (
+                    <img 
+                      src={generatedImages[0]?.url || uploadedImage} 
+                      alt="Premium headphones" 
+                      className="w-12 h-12 object-contain" 
+                    />
+                  )}
+                  {/* Arrow decoration */}
+                  <div className="absolute bottom-2 left-2">
+                    <svg width="20" height="12" viewBox="0 0 20 12" className="text-white opacity-80">
+                      <path d="M2 6h16M14 2l4 4-4 4" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
                   </div>
                 </div>
+
+                {/* Center content */}
+                <div className="absolute left-24 top-1/2 -translate-y-1/2">
+                  <div className="space-y-1">
+                    <h3 className="text-2xl font-bold text-black tracking-wide">
+                      PREMIUM SOUND
+                    </h3>
+                    <p className="text-xs text-gray-600 font-medium uppercase tracking-wider">
+                      MINIMALIST DESIGN
+                    </p>
+                    <p className="text-xs text-black font-medium">
+                      SMASH THE COMPETITION<br/>WITH 30% DISCOUNT
+                    </p>
+                  </div>
+                </div>
+
+                {/* Right CTA button */}
+                <div className="absolute right-6 top-1/2 -translate-y-1/2">
+                  <button className="bg-white/90 hover:bg-white text-black font-semibold px-6 py-2 rounded-full shadow-md">
+                    Shop Now
+                  </button>
+                </div>
               </div>
-            </CardContent>
-          </Card>
+            </div>
+          </div>
 
           {/* Half Page & Medium Rectangle */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {/* Half Page Banner */}
-            <Card className="overflow-hidden">
-              <CardContent className="p-0">
-                <div className="bg-muted/30 p-4 border-b">
-                  <h2 className="text-lg font-semibold">Half Page Banner</h2>
-                  <p className="text-sm text-muted-foreground">(300×600)</p>
-                </div>
-                
-                <div className="p-6 flex justify-center">
-                  <div 
-                    className="relative bg-gradient-to-b from-amber-50 to-amber-100 rounded-lg overflow-hidden border-2 border-border shadow-lg"
-                    style={{ width: '300px', height: '600px' }}
-                  >
-                    {/* Top Product Area */}
+            <div className="space-y-4">
+              <h2 className="text-xl font-semibold text-gray-900">
+                Half Page Banner <span className="text-gray-500 font-normal">(300×600)</span>
+              </h2>
+              
+              <div className="flex justify-center lg:justify-start">
+                <div 
+                  className="relative bg-gradient-to-b from-amber-200 to-amber-100 overflow-hidden shadow-lg"
+                  style={{ width: '300px', height: '600px' }}
+                >
+                  {/* Top Product Area */}
+                  <div className="h-80 bg-gradient-to-b from-amber-200 to-amber-100 flex items-center justify-center p-6">
                     {(generatedImages[0]?.url || uploadedImage) && (
-                      <div className="h-72 bg-white/30 flex items-center justify-center p-4">
-                        <img 
-                          src={generatedImages[0]?.url || uploadedImage} 
-                          alt="Product" 
-                          className="w-full h-auto max-h-64 object-contain drop-shadow-lg" 
-                        />
-                      </div>
+                      <img 
+                        src={generatedImages[0]?.url || uploadedImage} 
+                        alt="Premium headphones" 
+                        className="w-full h-auto max-h-72 object-contain drop-shadow-xl" 
+                      />
                     )}
-                    
-                    {/* Content Area */}
-                    <div className="p-6 text-center space-y-4 bg-gradient-to-t from-amber-100 to-transparent">
-                      <div>
-                        <h3 className="text-xl font-bold text-slate-900 uppercase tracking-wide mb-2">
-                          PREMIUM SOUND
-                        </h3>
-                        <p className="text-xs text-slate-600 font-medium uppercase tracking-wider mb-4">
-                          MINIMALIST DESIGN
+                    {/* Arrow decoration */}
+                    <div className="absolute top-6 left-4">
+                      <svg width="20" height="12" viewBox="0 0 20 12" className="text-white opacity-80">
+                        <path d="M2 6h16M14 2l4 4-4 4" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    </div>
+                  </div>
+                  
+                  {/* Bottom section with black background */}
+                  <div className="h-52 bg-black text-white flex flex-col justify-center px-6 text-center">
+                    <div className="space-y-3">
+                      <h3 className="text-2xl font-bold uppercase tracking-wide">
+                        PREMIUM SOUND
+                      </h3>
+                      <p className="text-sm font-medium uppercase tracking-wider opacity-80">
+                        MINIMALIST DESIGN
+                      </p>
+                      <div className="pt-4 space-y-2">
+                        <p className="text-sm font-medium">
+                          SMASH THE COMPETITION<br/>WITH 30% DISCOUNT
                         </p>
+                        <button className="bg-white text-black font-semibold px-8 py-3 rounded-full hover:bg-gray-100 transition-colors">
+                          Shop Now
+                        </button>
                       </div>
-                      
-                      <div className="space-y-2 text-sm text-slate-700">
-                        <p className="font-medium">SMASH THE COMPETITION</p>
-                        <p className="font-bold text-slate-900">WITH 30% DISCOUNT</p>
-                      </div>
-                      
-                      <Button className="w-full bg-slate-900 hover:bg-slate-800 text-white font-semibold py-3">
-                        Shop Now
-                      </Button>
                     </div>
                   </div>
                 </div>
-              </CardContent>
-            </Card>
+              </div>
+            </div>
 
             {/* Medium Rectangle Banner */}
-            <Card className="overflow-hidden">
-              <CardContent className="p-0">
-                <div className="bg-muted/30 p-4 border-b">
-                  <h2 className="text-lg font-semibold">Medium Rectangle Banner</h2>
-                  <p className="text-sm text-muted-foreground">(300×250)</p>
-                </div>
-                
-                <div className="p-6 flex justify-center">
-                  <div 
-                    className="relative bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg overflow-hidden border-2 border-border shadow-lg"
-                    style={{ width: '300px', height: '250px' }}
-                  >
-                    <div className="relative h-full flex flex-col">
-                      {/* Product showcase area */}
-                      <div className="flex-1 flex items-center justify-center p-4">
-                        {(generatedImages[1]?.url || uploadedImage) && (
-                          <img 
-                            src={generatedImages[1]?.url || uploadedImage} 
-                            alt="Product" 
-                            className="w-32 h-32 object-contain drop-shadow-lg" 
-                          />
-                        )}
-                      </div>
-                      
-                      {/* Bottom text area */}
-                      <div className="bg-amber-100 p-4 text-center">
-                        <div className="space-y-1">
-                          <h3 className="text-lg font-bold text-slate-900 uppercase tracking-wide">
-                            PREMIUM SOUND
-                          </h3>
-                          <p className="text-xs text-slate-600 font-medium uppercase tracking-wider">
-                            MINIMALIST DESIGN
-                          </p>
-                          <div className="pt-2">
-                            <div className="text-xs text-slate-700 font-medium mb-2">
-                              SMASH THE COMPETITION WITH 30% DISCOUNT
-                            </div>
-                            <Button size="sm" className="bg-slate-900 hover:bg-slate-800 text-white font-semibold">
-                              Shop Now
-                            </Button>
-                          </div>
+            <div className="space-y-4">
+              <h2 className="text-xl font-semibold text-gray-900">
+                Medium Rectangle Banner <span className="text-gray-500 font-normal">(300×250)</span>
+              </h2>
+              
+              <div className="flex justify-center lg:justify-start">
+                <div 
+                  className="relative bg-gradient-to-br from-gray-100 to-gray-200 overflow-hidden shadow-lg"
+                  style={{ width: '300px', height: '250px' }}
+                >
+                  {/* Top section with product */}
+                  <div className="h-32 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center p-4">
+                    {(generatedImages[0]?.url || uploadedImage) && (
+                      <img 
+                        src={generatedImages[0]?.url || uploadedImage} 
+                        alt="Premium headphones" 
+                        className="w-24 h-24 object-contain drop-shadow-lg" 
+                      />
+                    )}
+                  </div>
+                  
+                  {/* Bottom section with tan background */}
+                  <div className="h-32 bg-amber-100 flex flex-col justify-center px-4 text-center">
+                    <div className="space-y-2">
+                      <h3 className="text-lg font-bold text-black uppercase tracking-wide">
+                        PREMIUM SOUND
+                      </h3>
+                      <p className="text-xs text-gray-600 font-medium uppercase tracking-wider">
+                        MINIMALIST DESIGN
+                      </p>
+                      <div className="pt-2">
+                        <div className="text-xs text-black font-medium mb-3">
+                          SMASH THE COMPETITION<br/>WITH 30% DISCOUNT
                         </div>
+                        <button className="bg-black text-white font-semibold px-6 py-2 rounded-full text-sm hover:bg-gray-800 transition-colors">
+                          Shop Now
+                        </button>
                       </div>
                     </div>
                   </div>
                 </div>
-              </CardContent>
-            </Card>
+              </div>
+            </div>
           </div>
-
-          {/* Banner Content Details */}
-          {bannerAds.length > 0 && (
-            <Card>
-              <CardContent className="p-6">
-                <h3 className="text-lg font-semibold mb-4">Banner Ad Content</h3>
-                <div className="space-y-4">
-                  {bannerAds.map((ad, index) => (
-                    <div key={index} className="border rounded-lg p-4">
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div>
-                          <label className="text-sm font-medium text-muted-foreground">Headline</label>
-                          <p className="mt-1 text-sm font-medium">{ad.headline}</p>
-                        </div>
-                        <div>
-                          <label className="text-sm font-medium text-muted-foreground">Call to Action</label>
-                          <p className="mt-1 text-sm font-medium text-primary">{ad.cta}</p>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          )}
         </div>
       </div>
 
