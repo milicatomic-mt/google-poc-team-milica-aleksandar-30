@@ -789,15 +789,15 @@ const PreviewResultsScreen: React.FC = () => {
       case 'Video Scripts':
         const firstScript = activeCampaignResults.video_scripts?.[0];
         return (
-          <div className="max-w-7xl mx-auto space-y-8">
-            {/* Video Scenario Layout */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div className="max-w-6xl mx-auto">
+            {/* Clean, minimal layout */}
+            <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
               
-              {/* Left Side - Video Preview & Platform Info */}
-              <div className="space-y-6">
-                <div className="border-2 border-border rounded-xl overflow-hidden bg-background shadow-2xl">
+              {/* Left Side - Video Preview */}
+              <div className="lg:col-span-2 space-y-4">
+                <div className="border border-gray-100 rounded-lg overflow-hidden bg-white">
                   {/* Video Preview */}
-                  <div className="bg-gradient-to-br from-gray-900 to-black text-white relative">
+                  <div className="bg-gray-50 relative">
                     <div className="relative aspect-[9/16]">
                       {generatedVideoUrl ? (
                         <VideoPlayer
@@ -808,19 +808,19 @@ const PreviewResultsScreen: React.FC = () => {
                         />
                       ) : (
                         <>
-                          {/* Video Thumbnail with 9:16 aspect ratio */}
+                          {/* Video Thumbnail */}
                           {activeCampaignResults?.generated_images?.[0]?.url ? (
                             <img src={activeCampaignResults.generated_images[0].url} alt="Video thumbnail" className="w-full h-full object-cover" />
                           ) : uploadedImage ? (
                             <img src={uploadedImage} alt="Video thumbnail" className="w-full h-full object-cover" />
                           ) : null}
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30"></div>
+                          <div className="absolute inset-0 bg-black/5"></div>
                           <div className="absolute inset-0 flex items-center justify-center">
-                            <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center backdrop-blur-md border border-white/20">
-                              <Play className="w-8 h-8 text-white ml-1" />
+                            <div className="w-12 h-12 bg-black/10 rounded-full flex items-center justify-center border border-black/10">
+                              <Play className="w-5 h-5 text-black/60 ml-0.5" />
                             </div>
                           </div>
-                          <div className="absolute bottom-4 right-4 bg-black/80 text-white text-xs px-2 py-1 rounded-full backdrop-blur-sm">
+                          <div className="absolute bottom-3 right-3 bg-black/80 text-white text-xs px-2 py-1 rounded">
                             0:15
                           </div>
                         </>
@@ -829,35 +829,35 @@ const PreviewResultsScreen: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Platform Specs */}
-                <div className="bg-white rounded-xl p-4 shadow-xl border border-gray-100">
-                  <h4 className="font-bold text-lg text-gray-900 mb-4">Platform Optimization</h4>
-                  <div className="space-y-3">
-                    <div className="flex items-center gap-3 p-3 bg-gradient-to-r from-pink-50 to-purple-50 rounded-lg">
-                      <div className="w-8 h-8 bg-gradient-to-r from-pink-500 to-purple-600 rounded flex items-center justify-center">
-                        <span className="text-white text-xs font-bold">T</span>
+                {/* Platform Info - Simplified */}
+                <div className="bg-white border border-gray-100 rounded-lg p-4">
+                  <h4 className="text-sm font-medium text-gray-900 mb-3">Optimized For</h4>
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-3 p-2 bg-gray-50 rounded-md">
+                      <div className="w-6 h-6 bg-gray-900 rounded text-white text-xs flex items-center justify-center font-medium">
+                        T
                       </div>
-                      <div>
-                        <p className="font-semibold text-sm">TikTok</p>
-                        <p className="text-xs text-gray-600">9:16 • 15-60s • Trending Audio</p>
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-3 p-3 bg-gradient-to-r from-purple-50 to-pink-50 rounded-lg">
-                      <div className="w-8 h-8 bg-gradient-to-r from-purple-500 to-pink-500 rounded flex items-center justify-center">
-                        <span className="text-white text-xs font-bold">IG</span>
-                      </div>
-                      <div>
-                        <p className="font-semibold text-sm">Instagram Reels</p>
-                        <p className="text-xs text-gray-600">9:16 • 15-90s • Music + Captions</p>
+                      <div className="text-sm">
+                        <p className="font-medium text-gray-900">TikTok</p>
+                        <p className="text-xs text-gray-500">9:16 • 15-60s</p>
                       </div>
                     </div>
-                    <div className="flex items-center gap-3 p-3 bg-gradient-to-r from-red-50 to-pink-50 rounded-lg">
-                      <div className="w-8 h-8 bg-gradient-to-r from-red-500 to-pink-500 rounded flex items-center justify-center">
-                        <span className="text-white text-xs font-bold">YT</span>
+                    <div className="flex items-center gap-3 p-2 bg-gray-50 rounded-md">
+                      <div className="w-6 h-6 bg-gray-700 rounded text-white text-xs flex items-center justify-center font-medium">
+                        IG
                       </div>
-                      <div>
-                        <p className="font-semibold text-sm">YouTube Shorts</p>
-                        <p className="text-xs text-gray-600">9:16 • 15-60s • Searchable</p>
+                      <div className="text-sm">
+                        <p className="font-medium text-gray-900">Instagram Reels</p>
+                        <p className="text-xs text-gray-500">9:16 • 15-90s</p>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-3 p-2 bg-gray-50 rounded-md">
+                      <div className="w-6 h-6 bg-gray-600 rounded text-white text-xs flex items-center justify-center font-medium">
+                        YT
+                      </div>
+                      <div className="text-sm">
+                        <p className="font-medium text-gray-900">YouTube Shorts</p>
+                        <p className="text-xs text-gray-500">9:16 • 15-60s</p>
                       </div>
                     </div>
                   </div>
@@ -865,216 +865,155 @@ const PreviewResultsScreen: React.FC = () => {
               </div>
 
               {/* Center - Video Script Timeline */}
-              <div className="space-y-6">
-                <div className="bg-white rounded-xl p-6 shadow-xl border border-gray-100">
-                  <div className="text-center pb-6 border-b border-gray-200">
-                    <h4 className="font-bold text-xl text-gray-900 mb-2">Video Script Timeline</h4>
-                    <p className="text-gray-600">Scene-by-scene breakdown optimized for engagement</p>
+              <div className="lg:col-span-3">
+                <div className="bg-white border border-gray-100 rounded-lg p-6">
+                  <div className="mb-6">
+                    <h4 className="text-lg font-medium text-gray-900 mb-1">Video Script</h4>
+                    <p className="text-sm text-gray-500">Scene-by-scene breakdown</p>
                   </div>
                   
-                  {/* Script Timeline */}
-                  <div className="space-y-4 mt-6">
-                    {/* Hook - 0-3s */}
-                    <div className="relative">
-                      <div className="flex items-start gap-4">
-                        <div className="flex flex-col items-center">
-                          <div className="w-8 h-8 rounded-full bg-red-500 text-white text-xs font-bold flex items-center justify-center">1</div>
-                          <div className="w-0.5 h-16 bg-red-200 mt-2"></div>
+                  {/* Script Timeline - Clean minimal design */}
+                  <div className="space-y-4">
+                    {/* Hook */}
+                    <div className="flex gap-4">
+                      <div className="flex flex-col items-center">
+                        <div className="w-6 h-6 rounded-full bg-gray-900 text-white text-xs flex items-center justify-center font-medium">
+                          1
                         </div>
-                        <div className="flex-1">
-                          <div className="bg-red-50 p-4 rounded-lg border-l-4 border-red-500">
-                            <div className="flex justify-between items-center mb-2">
-                              <span className="font-bold text-red-700">HOOK</span>
-                              <span className="text-xs bg-red-500 text-white px-2 py-1 rounded">0-3s</span>
-                            </div>
-                            <p className="text-sm font-semibold mb-2">
-                              "{activeCampaignResults.banner_ads?.[0]?.headline || 'Stop scrolling! This will change everything...'}"
-                            </p>
-                            <p className="text-xs text-gray-600">
-                              <strong>Visual:</strong> Quick product reveal with dramatic zoom
-                            </p>
+                        <div className="w-px h-12 bg-gray-200 mt-2"></div>
+                      </div>
+                      <div className="flex-1 pb-4">
+                        <div className="border-l-2 border-gray-100 pl-4">
+                          <div className="flex items-center gap-2 mb-2">
+                            <span className="text-xs font-medium text-gray-900 uppercase tracking-wide">Hook</span>
+                            <span className="text-xs text-gray-400 bg-gray-50 px-2 py-0.5 rounded">0-3s</span>
                           </div>
+                          <p className="text-sm text-gray-700 mb-2">
+                            "{activeCampaignResults.banner_ads?.[0]?.headline || 'Stop scrolling! This will change everything...'}"
+                          </p>
+                          <p className="text-xs text-gray-500">
+                            Visual: Quick product reveal with dramatic zoom
+                          </p>
                         </div>
                       </div>
                     </div>
 
-                    {/* Problem/Context - 3-6s */}
-                    <div className="relative">
-                      <div className="flex items-start gap-4">
-                        <div className="flex flex-col items-center">
-                          <div className="w-8 h-8 rounded-full bg-orange-500 text-white text-xs font-bold flex items-center justify-center">2</div>
-                          <div className="w-0.5 h-16 bg-orange-200 mt-2"></div>
+                    {/* Problem */}
+                    <div className="flex gap-4">
+                      <div className="flex flex-col items-center">
+                        <div className="w-6 h-6 rounded-full bg-gray-700 text-white text-xs flex items-center justify-center font-medium">
+                          2
                         </div>
-                        <div className="flex-1">
-                          <div className="bg-orange-50 p-4 rounded-lg border-l-4 border-orange-500">
-                            <div className="flex justify-between items-center mb-2">
-                              <span className="font-bold text-orange-700">PROBLEM</span>
-                              <span className="text-xs bg-orange-500 text-white px-2 py-1 rounded">3-6s</span>
-                            </div>
-                            <p className="text-sm mb-2">
-                              "Tired of [common problem]? You're not alone..."
-                            </p>
-                            <p className="text-xs text-gray-600">
-                              <strong>Visual:</strong> Relatable scenario, quick cuts
-                            </p>
+                        <div className="w-px h-12 bg-gray-200 mt-2"></div>
+                      </div>
+                      <div className="flex-1 pb-4">
+                        <div className="border-l-2 border-gray-100 pl-4">
+                          <div className="flex items-center gap-2 mb-2">
+                            <span className="text-xs font-medium text-gray-900 uppercase tracking-wide">Problem</span>
+                            <span className="text-xs text-gray-400 bg-gray-50 px-2 py-0.5 rounded">3-6s</span>
                           </div>
+                          <p className="text-sm text-gray-700 mb-2">
+                            "Tired of [common problem]? You're not alone..."
+                          </p>
+                          <p className="text-xs text-gray-500">
+                            Visual: Relatable scenario, quick cuts
+                          </p>
                         </div>
                       </div>
                     </div>
 
-                    {/* Solution - 6-10s */}
-                    <div className="relative">
-                      <div className="flex items-start gap-4">
-                        <div className="flex flex-col items-center">
-                          <div className="w-8 h-8 rounded-full bg-green-500 text-white text-xs font-bold flex items-center justify-center">3</div>
-                          <div className="w-0.5 h-16 bg-green-200 mt-2"></div>
+                    {/* Solution */}
+                    <div className="flex gap-4">
+                      <div className="flex flex-col items-center">
+                        <div className="w-6 h-6 rounded-full bg-gray-600 text-white text-xs flex items-center justify-center font-medium">
+                          3
                         </div>
-                        <div className="flex-1">
-                          <div className="bg-green-50 p-4 rounded-lg border-l-4 border-green-500">
-                            <div className="flex justify-between items-center mb-2">
-                              <span className="font-bold text-green-700">SOLUTION</span>
-                              <span className="text-xs bg-green-500 text-white px-2 py-1 rounded">6-10s</span>
-                            </div>
-                            <p className="text-sm mb-2">
-                              {firstScript?.script?.substring(0, 80) || "Here's how our product solves this perfectly..."}
-                            </p>
-                            <p className="text-xs text-gray-600">
-                              <strong>Visual:</strong> Product in action, key features
-                            </p>
+                        <div className="w-px h-12 bg-gray-200 mt-2"></div>
+                      </div>
+                      <div className="flex-1 pb-4">
+                        <div className="border-l-2 border-gray-100 pl-4">
+                          <div className="flex items-center gap-2 mb-2">
+                            <span className="text-xs font-medium text-gray-900 uppercase tracking-wide">Solution</span>
+                            <span className="text-xs text-gray-400 bg-gray-50 px-2 py-0.5 rounded">6-10s</span>
                           </div>
+                          <p className="text-sm text-gray-700 mb-2">
+                            {firstScript?.script?.substring(0, 80) || "Here's how our product solves this perfectly..."}
+                          </p>
+                          <p className="text-xs text-gray-500">
+                            Visual: Product in action, key features
+                          </p>
                         </div>
                       </div>
                     </div>
 
-                    {/* Proof/Demo - 10-13s */}
-                    <div className="relative">
-                      <div className="flex items-start gap-4">
-                        <div className="flex flex-col items-center">
-                          <div className="w-8 h-8 rounded-full bg-blue-500 text-white text-xs font-bold flex items-center justify-center">4</div>
-                          <div className="w-0.5 h-16 bg-blue-200 mt-2"></div>
+                    {/* Proof */}
+                    <div className="flex gap-4">
+                      <div className="flex flex-col items-center">
+                        <div className="w-6 h-6 rounded-full bg-gray-500 text-white text-xs flex items-center justify-center font-medium">
+                          4
                         </div>
-                        <div className="flex-1">
-                          <div className="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-500">
-                            <div className="flex justify-between items-center mb-2">
-                              <span className="font-bold text-blue-700">PROOF</span>
-                              <span className="text-xs bg-blue-500 text-white px-2 py-1 rounded">10-13s</span>
-                            </div>
-                            <p className="text-sm mb-2">
-                              "Look at these results! Over 10,000 happy customers..."
-                            </p>
-                            <p className="text-xs text-gray-600">
-                              <strong>Visual:</strong> Before/after, testimonials, stats
-                            </p>
+                        <div className="w-px h-12 bg-gray-200 mt-2"></div>
+                      </div>
+                      <div className="flex-1 pb-4">
+                        <div className="border-l-2 border-gray-100 pl-4">
+                          <div className="flex items-center gap-2 mb-2">
+                            <span className="text-xs font-medium text-gray-900 uppercase tracking-wide">Proof</span>
+                            <span className="text-xs text-gray-400 bg-gray-50 px-2 py-0.5 rounded">10-13s</span>
                           </div>
+                          <p className="text-sm text-gray-700 mb-2">
+                            "Look at these results! Over 10,000 happy customers..."
+                          </p>
+                          <p className="text-xs text-gray-500">
+                            Visual: Before/after, testimonials, stats
+                          </p>
                         </div>
                       </div>
                     </div>
 
-                    {/* CTA - 13-15s */}
-                    <div className="relative">
-                      <div className="flex items-start gap-4">
-                        <div className="flex flex-col items-center">
-                          <div className="w-8 h-8 rounded-full bg-purple-500 text-white text-xs font-bold flex items-center justify-center">5</div>
+                    {/* CTA */}
+                    <div className="flex gap-4">
+                      <div className="flex flex-col items-center">
+                        <div className="w-6 h-6 rounded-full bg-gray-400 text-white text-xs flex items-center justify-center font-medium">
+                          5
                         </div>
-                        <div className="flex-1">
-                          <div className="bg-purple-50 p-4 rounded-lg border-l-4 border-purple-500">
-                            <div className="flex justify-between items-center mb-2">
-                              <span className="font-bold text-purple-700">CALL TO ACTION</span>
-                              <span className="text-xs bg-purple-500 text-white px-2 py-1 rounded">13-15s</span>
-                            </div>
-                            <p className="text-sm mb-2">
-                              "{activeCampaignResults.banner_ads?.[0]?.cta || 'Get yours now'} - Link in bio!"
-                            </p>
-                            <p className="text-xs text-gray-600">
-                              <strong>Visual:</strong> Product close-up, animated CTA
-                            </p>
+                      </div>
+                      <div className="flex-1">
+                        <div className="border-l-2 border-gray-100 pl-4">
+                          <div className="flex items-center gap-2 mb-2">
+                            <span className="text-xs font-medium text-gray-900 uppercase tracking-wide">Call to Action</span>
+                            <span className="text-xs text-gray-400 bg-gray-50 px-2 py-0.5 rounded">13-15s</span>
                           </div>
+                          <p className="text-sm text-gray-700 mb-2">
+                            "{activeCampaignResults.banner_ads?.[0]?.cta || 'Get yours now'} - Link in bio!"
+                          </p>
+                          <p className="text-xs text-gray-500">
+                            Visual: Product close-up, animated CTA
+                          </p>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              </div>
 
-              {/* Right Side - Social Media Examples */}
-              <div className="space-y-6">
-                {/* TikTok Example */}
-                <div className="bg-gradient-to-br from-pink-500 to-purple-600 rounded-xl p-1 shadow-xl">
-                  <div className="bg-white rounded-lg p-4">
-                    <div className="flex items-center gap-2 mb-3">
-                      <div className="w-6 h-6 bg-gradient-to-r from-pink-500 to-purple-600 rounded flex items-center justify-center">
-                        <span className="text-white text-xs font-bold">T</span>
+                  {/* Production Notes */}
+                  <div className="mt-8 pt-6 border-t border-gray-100">
+                    <h5 className="text-sm font-medium text-gray-900 mb-3">Production Notes</h5>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs text-gray-600">
+                      <div className="flex gap-2">
+                        <span className="font-medium text-gray-900">Format:</span>
+                        <span>Vertical 9:16, mobile-first</span>
                       </div>
-                      <span className="font-bold text-sm">TikTok Post</span>
-                    </div>
-                    <div className="bg-black text-white p-3 rounded text-xs mb-3 aspect-[9/16] flex flex-col justify-between">
-                      <div>
-                        <p className="font-bold">@yourbrand</p>
-                        <p className="text-xs opacity-80 mt-1">Trending audio playing...</p>
+                      <div className="flex gap-2">
+                        <span className="font-medium text-gray-900">Audio:</span>
+                        <span>Trending sounds + clear voiceover</span>
                       </div>
-                      <div className="space-y-1">
-                        <p className="text-xs">✨ {activeCampaignResults.banner_ads?.[0]?.headline || 'Game changer alert'}</p>
-                        <p className="text-xs opacity-80">Follow for more tips! 💫</p>
+                      <div className="flex gap-2">
+                        <span className="font-medium text-gray-900">Text:</span>
+                        <span>Large, readable fonts with high contrast</span>
                       </div>
-                    </div>
-                    <div className="text-xs text-gray-600">
-                      <p><strong>Caption:</strong> Life hack you need to try! 🤯 #fyp #trending</p>
-                      <p><strong>Audio:</strong> Trending sound + voiceover</p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Instagram Example */}
-                <div className="bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl p-1 shadow-xl">
-                  <div className="bg-white rounded-lg p-4">
-                    <div className="flex items-center gap-2 mb-3">
-                      <div className="w-6 h-6 bg-gradient-to-r from-purple-500 to-pink-500 rounded flex items-center justify-center">
-                        <span className="text-white text-xs font-bold">IG</span>
+                      <div className="flex gap-2">
+                        <span className="font-medium text-gray-900">Pace:</span>
+                        <span>Quick cuts, 1-2 seconds per shot</span>
                       </div>
-                      <span className="font-bold text-sm">Instagram Reel</span>
-                    </div>
-                    <div className="bg-gradient-to-br from-purple-400 to-pink-400 text-white p-3 rounded text-xs mb-3 aspect-[9/16] flex flex-col justify-between">
-                      <div>
-                        <p className="font-bold">your_brand</p>
-                        <p className="text-xs opacity-80">🎵 Original audio</p>
-                      </div>
-                      <div className="space-y-1">
-                        <p className="text-center font-bold">
-                          {activeCampaignResults.banner_ads?.[0]?.headline?.toUpperCase() || 'MIND = BLOWN'}
-                        </p>
-                        <p className="text-center text-xs">Swipe up for link 👆</p>
-                      </div>
-                    </div>
-                    <div className="text-xs text-gray-600">
-                      <p><strong>Caption:</strong> You won't believe this! Link in bio 🔗</p>
-                      <p><strong>Hashtags:</strong> #reels #viral #musthave</p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Production Notes */}
-                <div className="bg-white rounded-xl p-4 shadow-xl border border-gray-100">
-                  <h5 className="font-bold text-sm mb-3 text-gray-900">Production Notes</h5>
-                  <div className="space-y-2 text-xs text-gray-600">
-                    <div className="flex items-start gap-2">
-                      <span className="font-semibold">📱 Format:</span>
-                      <span>Vertical 9:16, mobile-first</span>
-                    </div>
-                    <div className="flex items-start gap-2">
-                      <span className="font-semibold">🎵 Audio:</span>
-                      <span>Trending sounds + clear voiceover</span>
-                    </div>
-                    <div className="flex items-start gap-2">
-                      <span className="font-semibold">✏️ Text:</span>
-                      <span>Large, readable fonts with high contrast</span>
-                    </div>
-                    <div className="flex items-start gap-2">
-                      <span className="font-semibold">⚡ Pace:</span>
-                      <span>Quick cuts, 1-2 seconds per shot</span>
-                    </div>
-                    <div className="flex items-start gap-2">
-                      <span className="font-semibold">🎯 Hook:</span>
-                      <span>Attention-grabbing within first 1.5s</span>
                     </div>
                   </div>
                 </div>
