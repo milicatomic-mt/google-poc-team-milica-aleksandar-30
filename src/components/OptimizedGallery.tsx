@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { ArrowLeft, Play, Image, FileText, Calendar, Download, QrCode, Edit } from 'lucide-react';
+import { ArrowLeft, Play, Image, FileText, Calendar, Download, QrCode } from 'lucide-react';
 import RibbedSphere from '@/components/RibbedSphere';
 import { useGalleryData, useGalleryItemDetails, type GalleryItem } from '@/hooks/useGalleryData';
 import { VideoPlayer } from '@/components/VideoPlayer';
@@ -41,21 +41,22 @@ const OptimizedGallery = () => {
     });
   };
 
-  const handleEdit = (item: GalleryItem) => {
+  const handlePreview = (item: GalleryItem, itemDetails: any) => {
     if (item.type === 'campaign') {
-      navigate('/campaign-prompt', {
+      navigate('/preview-results', {
         state: {
-          editMode: true,
-          campaignId: item.id,
-          uploadedImage: item.image_url
+          campaignResults: itemDetails?.result,
+          uploadedImage: item.image_url,
+          campaignId: item.id
         }
       });
     } else if (item.type === 'catalog') {
-      navigate('/catalog-prompt', {
+      // Navigate to catalog results or create a catalog preview page
+      navigate('/catalog-results', {
         state: {
-          editMode: true,
-          catalogId: item.id,
-          uploadedImage: item.image_url
+          catalogResults: itemDetails?.result,
+          uploadedImage: item.image_url,
+          catalogId: item.id
         }
       });
     }
@@ -219,7 +220,7 @@ const OptimizedGallery = () => {
               <GalleryItemDisplay 
                 key={item.id} 
                 item={item}
-                onEdit={handleEdit}
+                onPreview={handlePreview}
                 onDownload={handleDownload}
                 onViewDetails={handleViewDetails}
                 formatDate={formatDate}
@@ -242,11 +243,11 @@ const OptimizedGallery = () => {
 // Component to display individual gallery items with their full content
 const GalleryItemDisplay: React.FC<{
   item: GalleryItem;
-  onEdit: (item: GalleryItem) => void;
+  onPreview: (item: GalleryItem, itemDetails: any) => void;
   onDownload: (item: GalleryItem, campaignResults: any) => void;
   onViewDetails: (category: string, item: GalleryItem, itemDetails: any) => void;
   formatDate: (dateString: string) => string;
-}> = ({ item, onEdit, onDownload, onViewDetails, formatDate }) => {
+}> = ({ item, onPreview, onDownload, onViewDetails, formatDate }) => {
   const { data: itemDetails, isLoading } = useGalleryItemDetails(item.id, item.type);
 
   if (isLoading) {
@@ -302,11 +303,11 @@ const GalleryItemDisplay: React.FC<{
               <Button
                 variant="outline"
                 size="sm"
-                onClick={() => onEdit(item)}
+                onClick={() => onPreview(item, itemDetails)}
                 className="gap-2"
               >
-                <Edit className="w-4 h-4" />
-                Edit
+                <Play className="w-4 h-4" />
+                Preview
               </Button>
               <Button
                 variant="default"
