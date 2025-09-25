@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import RibbedSphere from '@/components/RibbedSphere';
-import { saveCampaignRequest, generateCampaign } from '@/lib/database';
+import { saveCampaignRequest, generateCampaign, uploadBase64Image } from '@/lib/database';
 import type { CampaignCreationRequest } from '@/types/api';
 import { Progress } from '@/components/ui/progress';
 import { supabase } from "@/integrations/supabase/client";
@@ -44,9 +44,23 @@ const GenerateCampaignScreen = () => {
           await new Promise(resolve => setTimeout(resolve, 1200)); // Wait 1.2s between steps
         }
 
+        // Handle image upload if it's a base64 data URL
+        let imageUrl = state.uploadedImage;
+        if (state.uploadedImage && state.uploadedImage.startsWith('data:image/')) {
+          setCurrentAction("Uploading your image...");
+          setProgress(15);
+          try {
+            imageUrl = await uploadBase64Image(state.uploadedImage, 'campaign-uploads');
+            console.log('Image uploaded successfully:', imageUrl);
+          } catch (error) {
+            console.error('Failed to upload image:', error);
+            throw new Error('Failed to upload image');
+          }
+        }
+
         // This component now only handles campaign generation
         const campaignData: CampaignCreationRequest = {
-          image: state.uploadedImage,
+          image: imageUrl,
           campaign_prompt: state.campaignPrompt,
           target_audience: state.selectedAudiences?.join(', ') || ''
         };

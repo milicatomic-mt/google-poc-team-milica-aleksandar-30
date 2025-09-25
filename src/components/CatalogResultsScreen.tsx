@@ -29,7 +29,7 @@ import {
   AlertDialogOverlay,
   AlertDialogPortal,
 } from '@/components/ui/alert-dialog';
-import { saveCatalogRequest, generateCatalog } from '@/lib/database';
+import { saveCatalogRequest, generateCatalog, uploadBase64Image } from '@/lib/database';
 import type { CatalogEnrichmentRequest, CatalogEnrichmentResponse } from '@/types/api';
 import RibbedSphere from '@/components/RibbedSphere';
 
@@ -77,9 +77,23 @@ const CatalogResultsScreen: React.FC = () => {
           await new Promise(resolve => setTimeout(resolve, 1200)); // Wait 1.2s between steps
         }
 
+        // Handle image upload if it's a base64 data URL
+        let imageUrl = catalogData.uploadedImage;
+        if (catalogData.uploadedImage && catalogData.uploadedImage.startsWith('data:image/')) {
+          setCurrentAction("Uploading your image...");
+          setProgress(15);
+          try {
+            imageUrl = await uploadBase64Image(catalogData.uploadedImage, 'catalog-uploads');
+            console.log('Image uploaded successfully:', imageUrl);
+          } catch (error) {
+            console.error('Failed to upload image:', error);
+            throw new Error('Failed to upload image');
+          }
+        }
+
         // Save the catalog request to database first
         const catalogRequest: CatalogEnrichmentRequest = {
-          image: catalogData.uploadedImage,
+          image: imageUrl,
           category: catalogData.category,
           tone: catalogData.tone,
           platform: catalogData.platform,

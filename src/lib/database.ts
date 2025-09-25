@@ -1,6 +1,46 @@
 import { supabase } from "@/integrations/supabase/client";
 import type { CampaignCreationRequest, CatalogEnrichmentRequest, CatalogEnrichmentResponse } from "@/types/api";
 
+// Helper function to upload base64 image to storage
+export const uploadBase64Image = async (base64Data: string, folder: string = 'uploads'): Promise<string> => {
+  try {
+    // Extract the base64 data without the data URL prefix
+    const base64Match = base64Data.match(/data:image\/([a-zA-Z]*);base64,(.+)/);
+    if (!base64Match) {
+      throw new Error('Invalid base64 image format');
+    }
+    
+    const [, imageType, base64String] = base64Match;
+    const imageBuffer = Uint8Array.from(atob(base64String), c => c.charCodeAt(0));
+    
+    // Generate unique filename
+    const fileName = `${folder}/${Date.now()}-${Math.random().toString(36).substring(7)}.${imageType}`;
+    
+    // Upload to storage
+    const { data, error } = await supabase.storage
+      .from('campaign-assets')
+      .upload(fileName, imageBuffer, {
+        contentType: `image/${imageType}`,
+        upsert: false
+      });
+    
+    if (error) {
+      console.error('Storage upload error:', error);
+      throw error;
+    }
+    
+    // Get public URL
+    const { data: { publicUrl } } = supabase.storage
+      .from('campaign-assets')
+      .getPublicUrl(fileName);
+    
+    return publicUrl;
+  } catch (error) {
+    console.error('Error uploading base64 image:', error);
+    throw error;
+  }
+};
+
 export const saveCampaignRequest = async (data: CampaignCreationRequest, generatedImages?: any[]) => {
   const { data: result, error } = await supabase
     .from('campaign_results')
