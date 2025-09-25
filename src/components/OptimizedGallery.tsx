@@ -79,10 +79,14 @@ const OptimizedGallery = () => {
     if (route) {
       navigate(route, {
         state: { 
-          campaignResults: itemDetails?.result, 
+          campaignResults: {
+            ...itemDetails?.result,
+            generated_video_url: itemDetails?.generated_video_url,
+            generated_images: itemDetails?.generated_images
+          }, 
           uploadedImage: item.image_url, 
           campaignId: item.id,
-          returnTo: '/gallery' // Add return path for gallery navigation
+          returnTo: '/gallery'
         }
       });
     }
