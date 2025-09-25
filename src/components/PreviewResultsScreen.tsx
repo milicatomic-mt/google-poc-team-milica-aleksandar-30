@@ -1960,7 +1960,7 @@ const PreviewResultsScreen: React.FC = () => {
       <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
         <DialogContent className="max-w-6xl h-[85vh] flex flex-col">
           <DialogHeader className="shrink-0">
-            <DialogTitle>
+            <DialogTitle className={selectedSection === 'Banner Ads' ? 'text-center text-3xl font-bold' : ''}>
               {selectedSection === 'Email Templates' ? 'Email Template Preview' :
                selectedSection === 'Banner Ads' ? 'Professional Web Banner Suite' :
                selectedSection === 'Web Creative' ? 'Landing Page Design' :
