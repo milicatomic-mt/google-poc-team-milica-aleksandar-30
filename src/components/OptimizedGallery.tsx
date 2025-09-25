@@ -41,26 +41,6 @@ const OptimizedGallery = () => {
     });
   };
 
-  const handlePreview = (item: GalleryItem, itemDetails: any) => {
-    if (item.type === 'campaign') {
-      navigate('/preview-results', {
-        state: {
-          campaignResults: itemDetails?.result,
-          uploadedImage: item.image_url,
-          campaignId: item.id
-        }
-      });
-    } else if (item.type === 'catalog') {
-      // Navigate to catalog results or create a catalog preview page
-      navigate('/catalog-results', {
-        state: {
-          catalogResults: itemDetails?.result,
-          uploadedImage: item.image_url,
-          catalogId: item.id
-        }
-      });
-    }
-  };
 
   const handleDownload = async (item: any, campaignResults: any) => {
     setSelectedItemForDownload(campaignResults);
@@ -220,7 +200,6 @@ const OptimizedGallery = () => {
               <GalleryItemDisplay 
                 key={item.id} 
                 item={item}
-                onPreview={handlePreview}
                 onDownload={handleDownload}
                 onViewDetails={handleViewDetails}
                 formatDate={formatDate}
@@ -243,11 +222,10 @@ const OptimizedGallery = () => {
 // Component to display individual gallery items with their full content
 const GalleryItemDisplay: React.FC<{
   item: GalleryItem;
-  onPreview: (item: GalleryItem, itemDetails: any) => void;
   onDownload: (item: GalleryItem, campaignResults: any) => void;
   onViewDetails: (category: string, item: GalleryItem, itemDetails: any) => void;
   formatDate: (dateString: string) => string;
-}> = ({ item, onPreview, onDownload, onViewDetails, formatDate }) => {
+}> = ({ item, onDownload, onViewDetails, formatDate }) => {
   const { data: itemDetails, isLoading } = useGalleryItemDetails(item.id, item.type);
 
   if (isLoading) {
@@ -300,15 +278,6 @@ const GalleryItemDisplay: React.FC<{
             </div>
             
             <div className="flex items-center space-x-2">
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => onPreview(item, itemDetails)}
-                className="gap-2"
-              >
-                <Play className="w-4 h-4" />
-                Preview
-              </Button>
               <Button
                 variant="default"
                 size="sm"
