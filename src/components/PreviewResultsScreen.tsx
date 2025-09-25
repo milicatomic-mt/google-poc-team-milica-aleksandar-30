@@ -14,6 +14,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
+import { toast } from "sonner";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -100,16 +101,19 @@ const PreviewResultsScreen: React.FC = () => {
     navigate('/');
   };
 
-  const handleOpenDownloadModal = () => {
-    // Generate a download URL for the campaign results
-    const downloadData = {
-      type: 'campaign',
-      results: activeCampaignResults,
-      image: uploadedImage
-    };
-    const dataUrl = `data:application/json;base64,${btoa(JSON.stringify(downloadData))}`;
-    setDownloadUrl(window.location.origin + `/download?data=${encodeURIComponent(dataUrl)}`);
-    setIsDownloadModalOpen(true);
+  const handleOpenDownloadModal = async () => {
+    try {
+      const { createDownloadSession } = await import('@/lib/download-session');
+      const sessionToken = await createDownloadSession({
+        ...activeCampaignResults,
+        uploadedImageUrl: uploadedImage
+      });
+      setDownloadUrl(window.location.origin + `/download?session=${sessionToken}`);
+      setIsDownloadModalOpen(true);
+    } catch (error) {
+      console.error('Failed to create download session:', error);
+      toast.error('Failed to prepare download. Please try again.');
+    }
   };
 
   // Modal handlers
@@ -1870,26 +1874,43 @@ const PreviewResultsScreen: React.FC = () => {
 
       {/* Download QR Code Modal */}
       <Dialog open={isDownloadModalOpen} onOpenChange={setIsDownloadModalOpen}>
-        <DialogContent className="max-w-md">
-          <DialogHeader>
-            <DialogTitle className="text-center">Download Campaign Results</DialogTitle>
-            <DialogDescription className="text-center">
-              Scan the QR code with your mobile device to download your campaign results
+        <DialogContent className="max-w-md mx-auto">
+          <DialogHeader className="space-y-3">
+            <DialogTitle className="text-center text-2xl font-bold text-foreground">
+              Download Your Content
+            </DialogTitle>
+            <DialogDescription className="text-center text-muted-foreground">
+              Scan the QR Code to download
             </DialogDescription>
           </DialogHeader>
-          <div className="flex flex-col items-center py-6">
-            <div className="bg-white p-4 rounded-lg shadow-md">
+          
+          <div className="flex flex-col items-center py-8 space-y-6">
+            {/* QR Code */}
+            <div className="bg-white p-6 rounded-2xl shadow-lg">
               <QRCodeSVG 
                 value={downloadUrl}
-                size={171}
-                level="L"
-                includeMargin={true}
+                size={200}
+                level="M"
+                includeMargin={false}
                 fgColor="#000000"
-                bgColor="transparent"
+                bgColor="#ffffff"
               />
             </div>
-            <div className="bg-indigo-600 text-white px-4 py-1.5 rounded-full text-sm font-semibold mt-4">
+            
+            {/* Scan Me Button */}
+            <Button 
+              className="bg-primary hover:bg-primary/90 text-white px-8 py-2 rounded-full font-semibold text-sm"
+              size="sm"
+            >
               SCAN ME
+            </Button>
+            
+            {/* File Name */}
+            <div className="flex items-center gap-2 text-muted-foreground">
+              <div className="w-4 h-4 bg-primary/20 rounded-sm flex items-center justify-center">
+                <div className="w-2 h-2 bg-primary rounded-xs"></div>
+              </div>
+              <span className="text-sm font-medium">Campaign Creative.zip</span>
             </div>
           </div>
         </DialogContent>
