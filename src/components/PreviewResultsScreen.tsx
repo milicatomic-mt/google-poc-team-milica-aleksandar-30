@@ -94,7 +94,18 @@ const PreviewResultsScreen: React.FC = () => {
   }, [activeCampaignResults]);
 
   const handleBack = () => {
-    navigate(-1);
+    // Navigate to campaign-prompt for editing with campaign data
+    if (campaignId) {
+      navigate('/campaign-prompt', {
+        state: {
+          editMode: true,
+          campaignId: campaignId,
+          uploadedImage: uploadedImage
+        }
+      });
+    } else {
+      navigate(-1);
+    }
   };
 
   const handleStartOver = () => {

@@ -19,9 +19,12 @@ const CampaignPromptScreen = () => {
   const [selectedAudiences, setSelectedAudiences] = useState<string[]>([]);
   const [allSuggestions, setAllSuggestions] = useState<string[]>([]);
   const [currentSuggestionIndex, setCurrentSuggestionIndex] = useState(0);
+  const [isLoadingExistingData, setIsLoadingExistingData] = useState(false);
   
   const uploadedImage = location.state?.uploadedImage;
   const uploadedFile = location.state?.uploadedFile;
+  const editMode = location.state?.editMode;
+  const campaignId = location.state?.campaignId;
 
   // Target audience options
   const ageGroups = ['Gen Z (18-24)', 'Millennials (25-40)', 'Gen X (41-56)', 'Baby Boomers (57+)'];
@@ -84,7 +87,9 @@ const CampaignPromptScreen = () => {
         state: { 
           ...location.state, 
           campaignPrompt: prompt.trim(), // Map prompt to campaignPrompt
-          selectedAudiences: selectedAudiences
+          selectedAudiences: selectedAudiences,
+          editMode: editMode, // Pass edit mode to generate screen
+          campaignId: editMode ? campaignId : undefined // Pass campaign ID for updates
         } 
       });
     }
@@ -95,27 +100,66 @@ const CampaignPromptScreen = () => {
     navigate(`/upload/${mode}`);
   };
 
-  // Load initial AI-generated prompt and auto-fill fields
+  // Load existing campaign data in edit mode or AI-generated prompt for new campaigns
   useEffect(() => {
-    const aiGeneratedPrompt = location.state?.aiGeneratedPrompt;
-    const aiAnalysisData = location.state?.aiAnalysisData;
-    
-    if (aiGeneratedPrompt && !prompt) {
-      setPrompt(aiGeneratedPrompt);
-      typePrompt(aiGeneratedPrompt);
-    }
-    
-    // Store all suggestions from AI analysis
-    if (aiAnalysisData?.suggestions && allSuggestions.length === 0) {
-      setAllSuggestions(aiAnalysisData.suggestions);
-      setCurrentSuggestionIndex(0);
-    }
-    
-    // Auto-fill target audience from AI analysis
-    if (aiAnalysisData?.targetAudience && selectedAudiences.length === 0) {
-      setSelectedAudiences(aiAnalysisData.targetAudience);
-    }
-  }, [location.state, prompt, selectedAudiences, allSuggestions]);
+    const loadExistingCampaignData = async () => {
+      if (editMode && campaignId && !isLoadingExistingData) {
+        setIsLoadingExistingData(true);
+        try {
+          const { data, error } = await supabase
+            .from('campaign_results')
+            .select('campaign_prompt, target_audience, image_url')
+            .eq('id', campaignId)
+            .single();
+
+          if (error) {
+            console.error('Error fetching campaign data:', error);
+            toast.error('Failed to load campaign data');
+          } else if (data) {
+            // Set the prompt
+            if (data.campaign_prompt) {
+              setPrompt(data.campaign_prompt);
+              setDisplayedPrompt(data.campaign_prompt);
+            }
+            
+            // Parse and set target audiences
+            if (data.target_audience) {
+              const audiences = data.target_audience.split(', ').filter(Boolean);
+              setSelectedAudiences(audiences);
+            }
+          }
+        } catch (error) {
+          console.error('Error loading campaign data:', error);
+          toast.error('Failed to load campaign data');
+        } finally {
+          setIsLoadingExistingData(false);
+        }
+        return; // Exit early in edit mode
+      }
+
+      // Original logic for new campaigns
+      const aiGeneratedPrompt = location.state?.aiGeneratedPrompt;
+      const aiAnalysisData = location.state?.aiAnalysisData;
+      
+      if (aiGeneratedPrompt && !prompt) {
+        setPrompt(aiGeneratedPrompt);
+        typePrompt(aiGeneratedPrompt);
+      }
+      
+      // Store all suggestions from AI analysis
+      if (aiAnalysisData?.suggestions && allSuggestions.length === 0) {
+        setAllSuggestions(aiAnalysisData.suggestions);
+        setCurrentSuggestionIndex(0);
+      }
+      
+      // Auto-fill target audience from AI analysis
+      if (aiAnalysisData?.targetAudience && selectedAudiences.length === 0) {
+        setSelectedAudiences(aiAnalysisData.targetAudience);
+      }
+    };
+
+    loadExistingCampaignData();
+  }, [location.state, editMode, campaignId, isLoadingExistingData]);
 
   // Auto-adjust height when prompt changes
   useEffect(() => {
@@ -200,11 +244,17 @@ const CampaignPromptScreen = () => {
           {/* Header Section */}
           <div className="w-full max-w-6xl mx-auto text-center mb-6 animate-fade-in flex-shrink-0">
             <h1 className="text-4xl font-semibold text-foreground mb-4">
-              Turn Your Image Into a Campaign
+              {editMode ? 'Edit Your Campaign' : 'Turn Your Image Into a Campaign'}
             </h1>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              We've generated a prompt from your photo. You can use it as is, tweak it, or start fresh.
+              {editMode 
+                ? 'Update your campaign prompt and target audience settings below.'
+                : 'We\'ve generated a prompt from your photo. You can use it as is, tweak it, or start fresh.'
+              }
             </p>
+            {isLoadingExistingData && (
+              <p className="text-sm text-muted-foreground mt-2">Loading existing campaign data...</p>
+            )}
           </div>
 
           {/* Image and Prompt Section */}
@@ -337,9 +387,9 @@ const CampaignPromptScreen = () => {
               size="lg"
               onClick={handleCreateCampaign}
               className={`tap-target focus-ring w-96 px-12 bg-indigo-600 hover:bg-indigo-700 text-white transition-opacity duration-300 rounded-full ${prompt.trim() ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
-              aria-label="Create campaign"
+              aria-label={editMode ? "Update campaign" : "Create campaign"}
             >
-              Create Campaign
+              {editMode ? 'Update Campaign' : 'Create Campaign'}
             </Button>
           </div>
         </footer>

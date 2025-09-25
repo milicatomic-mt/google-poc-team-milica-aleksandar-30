@@ -58,7 +58,7 @@ const GenerateCampaignScreen = () => {
           }
         }
 
-        // This component now only handles campaign generation
+        // This component now handles both campaign generation and updates
         const campaignData: CampaignCreationRequest = {
           image: imageUrl,
           campaign_prompt: state.campaignPrompt,
@@ -68,11 +68,40 @@ const GenerateCampaignScreen = () => {
         // Extract generated images from analysis data
         const generatedImages = state.aiAnalysisData?.generatedImages || [];
         
-        // Save the initial campaign request with generated images
-        const campaignResult = await saveCampaignRequest(campaignData, generatedImages);
+        let campaignResult;
         
-        // Generate the campaign using AI
-        await generateCampaign(campaignResult.id, campaignData);
+        if (state.editMode && state.campaignId) {
+          // Update existing campaign
+          setCurrentAction("Updating campaign content...");
+          
+          // Update the campaign data in the database
+          const { data: updateData, error: updateError } = await supabase
+            .from('campaign_results')
+            .update({
+              campaign_prompt: campaignData.campaign_prompt,
+              target_audience: campaignData.target_audience,
+              image_url: imageUrl
+            })
+            .eq('id', state.campaignId)
+            .select()
+            .single();
+
+          if (updateError) {
+            console.error('Failed to update campaign:', updateError);
+            throw new Error('Failed to update campaign');
+          }
+          
+          campaignResult = { id: state.campaignId };
+          
+          // Generate the updated campaign using AI
+          await generateCampaign(state.campaignId, campaignData);
+        } else {
+          // Create new campaign (existing logic)
+          campaignResult = await saveCampaignRequest(campaignData, generatedImages);
+          
+          // Generate the campaign using AI
+          await generateCampaign(campaignResult.id, campaignData);
+        }
         
         // Start polling for results so we only navigate when content is ready
         setCurrentAction("Finalizing and assembling results...");
@@ -178,7 +207,7 @@ const GenerateCampaignScreen = () => {
                 {currentAction}
               </p>
               <p className="text-sm text-muted-foreground">
-                Creating your perfect marketing campaign
+                {location.state?.editMode ? 'Updating your marketing campaign' : 'Creating your perfect marketing campaign'}
               </p>
             </div>
 
