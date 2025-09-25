@@ -118,7 +118,7 @@ const CatalogResultsScreen: React.FC = () => {
         let imageUrl = catalogData.uploadedImage;
         if (catalogData.uploadedImage && catalogData.uploadedImage.startsWith('data:image/')) {
           setCurrentAction("Uploading your image...");
-          setProgress(15);
+          // Don't reset progress - keep it at current level (90%)
           const uploadKey = 'catalog:upload:' + hashString(catalogData.uploadedImage.slice(0, 256));
           const cachedUrl = sessionStorage.getItem(uploadKey);
           if (cachedUrl) {
