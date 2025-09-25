@@ -41,6 +41,10 @@ const CatalogResultsScreen: React.FC = () => {
   const catalogData = location.state as CatalogEnrichmentRequest & { 
     uploadedImage: string; 
     aiAnalysisData?: any;
+    editMode?: boolean;
+    catalogId?: string;
+    existingResults?: CatalogEnrichmentResponse;
+    prompt?: string;
   };
 
   const [isGenerating, setIsGenerating] = useState(true);
@@ -51,6 +55,7 @@ const CatalogResultsScreen: React.FC = () => {
   const [progress, setProgress] = useState(0);
   const [isDownloadModalOpen, setIsDownloadModalOpen] = useState(false);
   const [hasStartedGeneration, setHasStartedGeneration] = useState(false);
+  const [savedRequestId, setSavedRequestId] = useState<string | null>(null);
 
   useEffect(() => {
     if (!catalogData?.uploadedImage) {
@@ -156,9 +161,38 @@ const CatalogResultsScreen: React.FC = () => {
 
         const { data: existing } = await query.maybeSingle();
 
-        const savedRequest = existing
-          ? { id: existing.id }
-          : await saveCatalogRequest(catalogRequest, generatedImages);
+        let savedRequest;
+        
+        // Check if we're in edit mode and should update existing record
+        if (catalogData.editMode && catalogData.catalogId) {
+          // Update existing catalog record
+          const { data: updateData, error: updateError } = await supabase
+            .from('catalog_results')
+            .update({
+              image_url: catalogRequest.image,
+              product_category: catalogRequest.category,
+              tone: catalogRequest.tone,
+              platform: catalogRequest.platform
+            })
+            .eq('id', catalogData.catalogId)
+            .select()
+            .single();
+
+          if (updateError) {
+            console.error('Failed to update catalog:', updateError);
+            throw new Error('Failed to update catalog');
+          }
+          
+          savedRequest = { id: catalogData.catalogId };
+          setSavedRequestId(catalogData.catalogId);
+        } else {
+          // Create new catalog or reuse recent identical one
+          savedRequest = existing
+            ? { id: existing.id }
+            : await saveCatalogRequest(catalogRequest, generatedImages);
+          
+          setSavedRequestId(savedRequest.id);
+        }
 
         // Generate the catalog content using AI
         const results = await generateCatalog(savedRequest.id, catalogRequest);
@@ -316,7 +350,20 @@ const CatalogResultsScreen: React.FC = () => {
               {/* Edit and Download buttons beneath title */}
               <div className="flex justify-center gap-3 mt-8">
                 <Button
-                  onClick={handleBack}
+                  onClick={() => navigate('/catalog-prompt', { 
+                    state: { 
+                      ...catalogData,
+                      editMode: true,
+                      catalogId: savedRequestId,
+                      existingResults: catalogResults,
+                      aiGeneratedPrompt: catalogResults?.description || catalogData.prompt || '',
+                      prompt: catalogResults?.description || catalogData.prompt || '',
+                      category: catalogData.category,
+                      tone: catalogData.tone,
+                      platform: catalogData.platform,
+                      brand: catalogData.brand
+                    }
+                  })}
                   variant="outline"
                   className="tap-target focus-ring bg-white hover:bg-white/90 text-black hover:text-black border-white rounded-full px-6 py-2 flex items-center gap-2"
                 >

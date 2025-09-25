@@ -169,7 +169,11 @@ const CatalogPromptScreen = () => {
         category: productCategory === 'custom' ? customCategory : productCategory,
         tone: brandTone,
         platform,
-        brand: brandName
+        brand: brandName,
+        // Pass edit mode data if we're editing
+        editMode: location.state?.editMode,
+        catalogId: location.state?.catalogId,
+        existingResults: location.state?.existingResults
       };
       
       navigate('/catalog-results', { state: catalogData });
@@ -185,10 +189,37 @@ const CatalogPromptScreen = () => {
   useEffect(() => {
     const aiGeneratedPrompt = location.state?.aiGeneratedPrompt;
     const aiAnalysisData = location.state?.aiAnalysisData;
+    const isEditMode = location.state?.editMode;
     
     if (aiGeneratedPrompt && !prompt) {
       setPrompt(aiGeneratedPrompt);
-      typePrompt(aiGeneratedPrompt);
+      if (isEditMode) {
+        // In edit mode, show the prompt immediately without typing animation
+        setDisplayedPrompt(aiGeneratedPrompt);
+      } else {
+        typePrompt(aiGeneratedPrompt);
+      }
+    }
+    
+    // Load existing values when in edit mode
+    if (isEditMode) {
+      if (location.state?.category && !productCategory) {
+        if (predefinedCategories.includes(location.state.category)) {
+          setProductCategory(location.state.category);
+        } else {
+          setProductCategory("custom");
+          setCustomCategory(location.state.category);
+        }
+      }
+      if (location.state?.tone && !brandTone) {
+        setBrandTone(location.state.tone);
+      }
+      if (location.state?.platform && !platform) {
+        setPlatform(location.state.platform);
+      }
+      if (location.state?.brand && !brandName) {
+        setBrandName(location.state.brand);
+      }
     }
     
     // Auto-fill fields from AI analysis
@@ -265,7 +296,9 @@ const CatalogPromptScreen = () => {
               <div className="h-8 w-8 mr-3">
                 <RibbedSphere className="w-full h-full" />
               </div>
-              <h1 className="text-lg font-semibold text-foreground">Catalog Enrichment</h1>
+            <h1 className="text-lg font-semibold text-foreground">
+              {location.state?.editMode ? 'Edit Catalog' : 'Catalog Enrichment'}
+            </h1>
             </div>
           </div>
 
@@ -313,10 +346,13 @@ const CatalogPromptScreen = () => {
           {/* Header Section */}
           <div className="w-full max-w-6xl mx-auto text-center mb-8 animate-fade-in flex-shrink-0">
             <h1 className="text-4xl font-semibold text-foreground mb-4">
-              Catalog Enrichment
+              {location.state?.editMode ? 'Edit Your Catalog' : 'Catalog Enrichment'}
             </h1>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              We've created a product description from your image. You can use it, edit it, or add more details.
+              {location.state?.editMode 
+                ? 'Update your catalog details and regenerate the content with your changes.'
+                : 'We\'ve created a product description from your image. You can use it, edit it, or add more details.'
+              }
             </p>
           </div>
 
