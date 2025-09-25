@@ -150,7 +150,7 @@ const VideoScriptsPreview: React.FC = () => {
                       </div>
                       <span className="font-bold text-base">TikTok</span>
                     </div>
-                    <div className="w-44 mx-auto bg-black rounded-3xl overflow-hidden shadow-2xl relative">
+                    <div className="w-48 mx-auto bg-black rounded-3xl overflow-hidden shadow-2xl relative">
                       {/* Phone Frame */}
                       <div className="aspect-[9/19.5] relative bg-black">
                         {/* Status Bar */}
@@ -261,7 +261,7 @@ const VideoScriptsPreview: React.FC = () => {
                       </div>
                       <span className="font-bold text-base">Instagram</span>
                     </div>
-                    <div className="w-44 mx-auto bg-black rounded-3xl overflow-hidden shadow-2xl relative">
+                    <div className="w-48 mx-auto bg-black rounded-3xl overflow-hidden shadow-2xl relative">
                       <div className="aspect-[9/19.5] relative bg-white">
                         {/* Status Bar */}
                         <div className="absolute top-2 left-4 right-4 flex justify-between items-center z-20">
@@ -282,9 +282,7 @@ const VideoScriptsPreview: React.FC = () => {
                         {/* Instagram Header */}
                         <div className="pt-10 pb-2 px-4 border-b border-gray-200">
                           <div className="flex justify-between items-center">
-                            <svg className="w-24 h-6" viewBox="0 0 103 29" fill="none">
-                              <path d="M12.5 2.5c3.3 0 3.7 0 5 0 1.2 0 1.9 0.2 2.3 0.4 0.6 0.2 1 0.5 1.4 0.9 0.4 0.4 0.7 0.8 0.9 1.4 0.2 0.4 0.3 1.1 0.4 2.3 0 1.3 0 1.7 0 5s0 3.7 0 5c0 1.2-0.2 1.9-0.4 2.3-0.2 0.6-0.5 1-0.9 1.4-0.4 0.4-0.8 0.7-1.4 0.9-0.4 0.2-1.1 0.3-2.3 0.4-1.3 0-1.7 0-5 0s-3.7 0-5 0c-1.2 0-1.9-0.2-2.3-0.4-0.6-0.2-1-0.5-1.4-0.9-0.4-0.4-0.7-0.8-0.9-1.4-0.2-0.4-0.3-1.1-0.4-2.3 0-1.3 0-1.7 0-5s0-3.7 0-5c0-1.2 0.2-1.9 0.4-2.3 0.2-0.6 0.5-1 0.9-1.4 0.4-0.4 0.8-0.7 1.4-0.9 0.4-0.2 1.1-0.3 2.3-0.4 1.3 0 1.7 0 5 0zm0-2.5c-3.4 0-3.8 0-5.1 0.1-1.3 0.1-2.2 0.2-3 0.5-0.8 0.3-1.5 0.7-2.2 1.4-0.7 0.7-1.1 1.4-1.4 2.2-0.3 0.8-0.4 1.7-0.5 3C0.1 8.7 0 9.1 0 12.5s0.1 3.8 0.1 5.1c0.1 1.3 0.2 2.2 0.5 3 0.3 0.8 0.7 1.5 1.4 2.2 0.7 0.7 1.4 1.1 2.2 1.4 0.8 0.3 1.7 0.4 3 0.5 1.3 0.1 1.7 0.1 5.1 0.1s3.8-0.1 5.1-0.1c1.3-0.1 2.2-0.2 3-0.5 0.8-0.3 1.5-0.7 2.2-1.4 0.7-0.7 1.1-1.4 1.4-2.2 0.3-0.8 0.4-1.7 0.5-3 0.1-1.3 0.1-1.7 0.1-5.1s-0.1-3.8-0.1-5.1c-0.1-1.3-0.2-2.2-0.5-3-0.3-0.8-0.7-1.5-1.4-2.2-0.7-0.7-1.4-1.1-2.2-1.4-0.8-0.3-1.7-0.4-3-0.5C16.3 0.1 15.9 0 12.5 0zm0 6.1c-3.5 0-6.4 2.9-6.4 6.4s2.9 6.4 6.4 6.4 6.4-2.9 6.4-6.4-2.9-6.4-6.4-6.4zm0 10.5c-2.3 0-4.1-1.8-4.1-4.1s1.8-4.1 4.1-4.1 4.1 1.8 4.1 4.1-1.8 4.1-4.1 4.1zm8.1-10.8c0-0.8-0.7-1.5-1.5-1.5s-1.5 0.7-1.5 1.5 0.7 1.5 1.5 1.5 1.5-0.7 1.5-1.5z" fill="black"/>
-                            </svg>
+                            <div className="text-black font-bold text-lg">Instagram</div>
                             <div className="flex items-center gap-4">
                               <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                                 <circle cx="12" cy="12" r="3"/>
@@ -295,89 +293,66 @@ const VideoScriptsPreview: React.FC = () => {
                               </svg>
                             </div>
                           </div>
-                          
-                          {/* Stories */}
-                          <div className="flex gap-3 mt-3 overflow-x-auto">
-                            <div className="flex-shrink-0 text-center">
-                              <div className="w-14 h-14 bg-gradient-to-tr from-purple-600 to-pink-600 rounded-full p-0.5">
-                                <div className="w-full h-full bg-white rounded-full p-0.5">
-                                  <div className="w-full h-full bg-gray-200 rounded-full"></div>
-                                </div>
-                              </div>
-                              <span className="text-xs mt-1 block">Your Story</span>
-                            </div>
-                            <div className="flex-shrink-0 text-center">
-                              <div className="w-14 h-14 bg-gradient-to-tr from-purple-600 to-pink-600 rounded-full p-0.5">
-                                <div className="w-full h-full bg-white rounded-full p-0.5">
-                                  <div className="w-full h-full bg-gray-300 rounded-full"></div>
-                                </div>
-                              </div>
-                              <span className="text-xs mt-1 block">music</span>
-                            </div>
-                            <div className="flex-shrink-0 text-center">
-                              <div className="w-14 h-14 bg-gradient-to-tr from-purple-600 to-pink-600 rounded-full p-0.5">
-                                <div className="w-full h-full bg-white rounded-full p-0.5">
-                                  <div className="w-full h-full bg-gray-400 rounded-full"></div>
-                                </div>
-                              </div>
-                              <span className="text-xs mt-1 block">headphones</span>
-                            </div>
+                        </div>
+                        
+                        {/* Post Header */}
+                        <div className="p-3 flex items-center gap-3">
+                          <div className="w-8 h-8 bg-gradient-to-br from-pink-400 to-purple-500 rounded-full"></div>
+                          <div>
+                            <p className="text-sm font-semibold text-black">musicbrand</p>
+                            <p className="text-xs text-gray-500">Sponsored</p>
+                          </div>
+                          <div className="ml-auto">
+                            <svg className="w-5 h-5 text-black" fill="currentColor" viewBox="0 0 24 24">
+                              <circle cx="12" cy="5" r="2"/>
+                              <circle cx="12" cy="12" r="2"/>
+                              <circle cx="12" cy="19" r="2"/>
+                            </svg>
                           </div>
                         </div>
                         
-                        {/* Post */}
-                        <div className="bg-white">
-                          {/* Post Header */}
-                          <div className="flex items-center justify-between p-3">
-                            <div className="flex items-center gap-2">
-                              <div className="w-8 h-8 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full"></div>
-                              <span className="font-semibold text-sm">musicbrand</span>
-                            </div>
-                            <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
-                              <path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/>
+                        {/* Post Image */}
+                        <div className="relative">
+                          {(generatedImages[0]?.url || uploadedImage) && (
+                            <img 
+                              src={generatedImages[0]?.url || uploadedImage}
+                              alt="Instagram post"
+                              className="w-full aspect-square object-cover"
+                            />
+                          )}
+                        </div>
+                        
+                        {/* Post Actions */}
+                        <div className="p-3">
+                          <div className="flex items-center gap-4 mb-2">
+                            <svg className="w-6 h-6 text-red-500" fill="currentColor" viewBox="0 0 24 24">
+                              <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
                             </svg>
-                          </div>
-                          
-                          {/* Post Image */}
-                          <div className="aspect-square relative">
-                            {(generatedImages[0]?.url || uploadedImage) && (
-                              <img 
-                                src={generatedImages[0]?.url || uploadedImage}
-                                alt="Instagram post"
-                                className="w-full h-full object-cover"
-                              />
-                            )}
-                          </div>
-                          
-                          {/* Post Actions */}
-                          <div className="p-3">
-                            <div className="flex items-center justify-between mb-2">
-                              <div className="flex items-center gap-4">
-                                <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
-                                </svg>
-                                <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-                                </svg>
-                                <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                  <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
-                                  <polyline points="16,6 12,2 8,6"/>
-                                  <line x1="12" y1="2" x2="12" y2="15"/>
-                                </svg>
-                              </div>
-                              <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.51 4.04 3 5.5"/>
+                            <svg className="w-6 h-6 text-black" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                            </svg>
+                            <svg className="w-6 h-6 text-black" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                              <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
+                              <polyline points="16,6 12,2 8,6"/>
+                              <line x1="12" y1="2" x2="12" y2="15"/>
+                            </svg>
+                            <div className="ml-auto">
+                              <svg className="w-6 h-6 text-black" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                                <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.51 4.04 3 5.5l7 7z"/>
                               </svg>
                             </div>
-                            <p className="font-semibold text-sm mb-1">Liked by craig_love and 44,686 others</p>
-                            <p className="text-sm"><span className="font-semibold">musicbrand</span> Premium wireless headphones for the ultimate music experience 🎧✨</p>
                           </div>
+                          
+                          <p className="text-sm text-black font-semibold mb-1">15,847 likes</p>
+                          <p className="text-sm text-black">
+                            <span className="font-semibold">musicbrand</span> Transform your music experience with premium wireless headphones 🎧✨ #MusicLovers #Headphones
+                          </p>
                         </div>
                       </div>
                     </div>
                   </div>
 
-                  {/* YouTube */}
+                  {/* YouTube Shorts */}
                   <div className="text-center">
                     <div className="flex items-center justify-center gap-2 mb-4">
                       <div className="w-7 h-7 bg-red-600 rounded-2xl flex items-center justify-center">
@@ -385,9 +360,9 @@ const VideoScriptsPreview: React.FC = () => {
                           <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
                         </svg>
                       </div>
-                      <span className="font-bold text-base">YouTube</span>
+                      <span className="font-bold text-base">YouTube Shorts</span>
                     </div>
-                    <div className="w-44 mx-auto bg-black rounded-3xl overflow-hidden shadow-2xl relative">
+                    <div className="w-48 mx-auto bg-black rounded-3xl overflow-hidden shadow-2xl relative">
                       <div className="aspect-[9/19.5] relative bg-black">
                         {/* Status Bar */}
                         <div className="absolute top-2 left-4 right-4 flex justify-between items-center z-20">
@@ -400,84 +375,89 @@ const VideoScriptsPreview: React.FC = () => {
                           </div>
                         </div>
                         
+                        {/* YouTube Shorts Header */}
+                        <div className="absolute top-10 left-4 right-4 flex justify-between items-center z-20">
+                          <svg className="w-20 h-6 text-white" viewBox="0 0 90 20" fill="currentColor">
+                            <path d="M27.9727 3.12324C27.6435 1.89323 26.6768 0.926623 25.4468 0.597366C23.2197 2.24288e-07 14.285 0 14.285 0C14.285 0 5.35042 2.24288e-07 3.12323 0.597366C1.89323 0.926623 0.926623 1.89323 0.597366 3.12324C2.24288e-07 5.35042 0 10 0 10C0 10 2.24288e-07 14.6496 0.597366 16.8768C0.926623 18.1068 1.89323 19.0734 3.12323 19.4026C5.35042 20 14.285 20 14.285 20C14.285 20 23.2197 20 25.4468 19.4026C26.6768 19.0734 27.6435 18.1068 27.9727 16.8768C28.5701 14.6496 28.5701 10 28.5701 10C28.5701 10 28.5701 5.35042 27.9727 3.12324Z"/>
+                            <path d="M11.4253 14.2854L18.8477 10.0004L11.4253 5.71533V14.2854Z" fill="black"/>
+                          </svg>
+                          <div className="flex items-center gap-3">
+                            <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                              <circle cx="11" cy="11" r="8"/>
+                              <path d="m21 21-4.35-4.35"/>
+                            </svg>
+                            <div className="w-7 h-7 bg-gray-600 rounded-full"></div>
+                          </div>
+                        </div>
+                        
                         {/* Video Content */}
                         {(generatedImages[0]?.url || uploadedImage) && (
                           <img 
                             src={generatedImages[0]?.url || uploadedImage}
-                            alt="YouTube video content"
+                            alt="YouTube Shorts video"
                             className="w-full h-full object-cover"
                           />
                         )}
                         
-                        {/* YouTube UI Overlay */}
-                        <div className="absolute top-12 left-4 right-4">
-                          <div className="bg-black/60 backdrop-blur-sm rounded-lg p-3">
-                            <div className="flex items-center gap-2">
-                              <div className="w-8 h-8 bg-red-600 rounded-full flex items-center justify-center">
-                                <svg className="w-4 h-4 text-white fill-current" viewBox="0 0 24 24">
-                                  <path d="M8 5v14l11-7z"/>
-                                </svg>
-                              </div>
-                              <div>
-                                <p className="text-white font-semibold text-xs">Premium Headphones Review</p>
-                                <p className="text-gray-300 text-xs">MusicBrand Official</p>
-                              </div>
+                        {/* Right Side Actions */}
+                        <div className="absolute right-3 bottom-32 space-y-6">
+                          <div className="text-center">
+                            <div className="w-12 h-12 flex items-center justify-center">
+                              <svg className="w-8 h-8 text-white fill-current" viewBox="0 0 24 24">
+                                <path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/>
+                              </svg>
                             </div>
+                            <span className="text-white text-xs font-medium">8.2K</span>
+                          </div>
+                          
+                          <div className="text-center">
+                            <div className="w-12 h-12 flex items-center justify-center">
+                              <svg className="w-8 h-8 text-white fill-current" viewBox="0 0 24 24">
+                                <path d="M15 3H6c-.83 0-1.54.5-1.84 1.22l-3.02 7.05c-.09.23-.14.47-.14.73v2c0 1.1.9 2 2 2h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L9.83 23l6.59-6.59c.36-.36.58-.86.58-1.41V5c0-1.1-.9-2-2-2zm4 0v12h4V3h-4z"/>
+                              </svg>
+                            </div>
+                            <span className="text-white text-xs font-medium">Dislike</span>
+                          </div>
+                          
+                          <div className="text-center">
+                            <div className="w-12 h-12 flex items-center justify-center">
+                              <svg className="w-7 h-7 text-white fill-current" viewBox="0 0 24 24">
+                                <path d="M20 2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h4l4 4 4-4h4c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/>
+                              </svg>
+                            </div>
+                            <span className="text-white text-xs font-medium">Comments</span>
+                          </div>
+                          
+                          <div className="text-center">
+                            <div className="w-12 h-12 flex items-center justify-center">
+                              <svg className="w-7 h-7 text-white fill-current" viewBox="0 0 24 24">
+                                <path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/>
+                              </svg>
+                            </div>
+                            <span className="text-white text-xs font-medium">Share</span>
                           </div>
                         </div>
                         
-                        {/* Bottom Actions */}
-                        <div className="absolute bottom-20 left-0 right-0 px-4">
-                          <div className="bg-black/60 backdrop-blur-sm rounded-2xl p-4">
-                            <div className="flex items-center justify-between mb-3">
-                              <div className="flex items-center gap-3">
-                                <button className="flex flex-col items-center">
-                                  <svg className="w-6 h-6 text-white mb-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                    <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/>
-                                  </svg>
-                                  <span className="text-white text-xs">125</span>
-                                </button>
-                                <button className="flex flex-col items-center">
-                                  <svg className="w-6 h-6 text-white mb-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                    <path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3zm7-13h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17"/>
-                                  </svg>
-                                  <span className="text-white text-xs">12</span>
-                                </button>
-                                <button className="flex flex-col items-center">
-                                  <svg className="w-6 h-6 text-white mb-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-                                  </svg>
-                                  <span className="text-white text-xs">8</span>
-                                </button>
+                        {/* Bottom Content */}
+                        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-4">
+                          <div className="text-white mb-20">
+                            <div className="flex items-center gap-2 mb-2">
+                              <div className="w-8 h-8 bg-gradient-to-br from-red-500 to-red-600 rounded-full flex items-center justify-center">
+                                <span className="text-white text-xs font-bold">M</span>
                               </div>
-                              <button className="bg-red-600 text-white px-4 py-2 rounded-full text-xs font-medium">
+                              <span className="font-semibold text-sm">MusicBrand</span>
+                              <button className="bg-red-600 text-white px-3 py-1 rounded-full text-xs font-medium">
                                 Subscribe
                               </button>
                             </div>
-                            <p className="text-white text-xs leading-relaxed">Experience premium sound quality with our wireless headphones. Perfect for music lovers! #Shorts</p>
+                            <p className="text-sm leading-relaxed">Transform your music experience with premium wireless headphones 🎧✨ #Shorts #MusicLovers</p>
                           </div>
                         </div>
                         
                         {/* Bottom Navigation */}
                         <div className="absolute bottom-0 left-0 right-0 bg-black/20 backdrop-blur-sm border-t border-white/10">
-                          <div className="flex justify-around items-center py-2">
-                            <svg className="w-6 h-6 text-white" viewBox="0 0 24 24" fill="currentColor">
-                              <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
-                            </svg>
-                            <svg className="w-6 h-6 text-white" viewBox="0 0 24 24" fill="currentColor">
-                              <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
-                            </svg>
-                            <div className="w-8 h-8 bg-red-600 rounded-lg flex items-center justify-center">
-                              <svg className="w-4 h-4 text-white fill-current" viewBox="0 0 24 24">
-                                <path d="M8 5v14l11-7z"/>
-                              </svg>
-                            </div>
-                            <svg className="w-6 h-6 text-white/60" viewBox="0 0 24 24" fill="currentColor">
-                              <path d="M14 6l-3.75 5 2.85 3.8-1.6 1.2C9.81 13.75 7 10 7 10l-6 8c0 0 6.85-8.81 8.9-12 2.05-3.19 4.2-6 4.2-6H14z"/>
-                            </svg>
-                            <svg className="w-6 h-6 text-white/60" viewBox="0 0 24 24" fill="currentColor">
-                              <path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-1 9H9V9h10v2zm-4 4H9v-2h6v2zm4-8H9V5h10v2z"/>
-                            </svg>
+                          <div className="flex justify-center items-center py-2">
+                            <div className="text-white text-xs font-medium">Shorts</div>
                           </div>
                         </div>
                       </div>
@@ -488,85 +468,91 @@ const VideoScriptsPreview: React.FC = () => {
             </CardContent>
           </Card>
 
-          {/* Video Scripts Section */}
-          <Card>
-            <CardContent className="p-6">
-              <h3 className="text-lg font-semibold mb-4">Video Script</h3>
-              <p className="text-sm text-muted-foreground mb-6">Storyboard for your product</p>
-              
-              <div className="space-y-4">
-                {videoScripts.map((script, index) => (
-                  <div key={index} className="space-y-4">
-                    <div className="flex items-center gap-2">
-                      <Badge className="bg-primary text-primary-foreground">
-                        {script.platform}
-                      </Badge>
-                    </div>
-                    
-                    {/* Break script into scenes */}
-                    <div className="space-y-3">
-                      {script.script.split('\n\n').map((scene, sceneIndex) => {
-                        if (scene.trim()) {
-                          return (
-                            <div key={sceneIndex} className="bg-primary/5 rounded-lg p-4">
-                              <div className="bg-primary text-primary-foreground text-xs px-3 py-1 rounded-full inline-block mb-3">
-                                Scene {sceneIndex + 1}: {sceneIndex === 0 ? 'Opening Shot' : sceneIndex === 1 ? 'Product Highlight' : 'Call to Action'}
-                              </div>
-                              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                <div>
-                                  <div className="text-xs font-semibold text-muted-foreground mb-1">
-                                    Visual: {sceneIndex === 0 ? 'Close-up of a woman wearing sleek white headphones.' : 
-                                            sceneIndex === 1 ? 'Smooth pan across the headphones on a neutral background.' :
-                                            'Wireless freedom, all-day comfort, and powerful sound'}
-                                  </div>
-                                </div>
-                                <div>
-                                  <div className="text-xs font-semibold text-muted-foreground mb-1">Voiceover:</div>
-                                  <div className="text-sm leading-relaxed">{scene.trim()}</div>
-                                </div>
-                              </div>
+          {/* Video Scripts Content */}
+          {videoScripts.length > 0 && (
+            <Card className="overflow-hidden">
+              <CardContent className="p-0">
+                <div className="bg-muted/30 p-4 border-b">
+                  <h2 className="text-lg font-semibold mb-1">Video Scripts</h2>
+                  <p className="text-sm text-muted-foreground">AI-generated scripts for your video content</p>
+                </div>
+                
+                <div className="p-6">
+                  <div className="grid gap-6">
+                    {videoScripts.map((script, index) => (
+                      <div key={index} className="border border-border rounded-lg p-4">
+                        <div className="flex items-center justify-between mb-3">
+                          <h3 className="font-semibold text-lg capitalize">
+                            {script.platform.replace('_', ' ')} Script
+                          </h3>
+                          <Badge variant="outline" className="capitalize">
+                            {script.duration}
+                          </Badge>
+                        </div>
+                        
+                        <div className="space-y-3">
+                          <div>
+                            <h4 className="font-medium text-sm text-muted-foreground mb-1">Hook</h4>
+                            <p className="text-sm">{script.hook}</p>
+                          </div>
+                          
+                          <div>
+                            <h4 className="font-medium text-sm text-muted-foreground mb-1">Main Content</h4>
+                            <p className="text-sm">{script.main_content}</p>
+                          </div>
+                          
+                          <div>
+                            <h4 className="font-medium text-sm text-muted-foreground mb-1">Call to Action</h4>
+                            <p className="text-sm">{script.cta}</p>
+                          </div>
+                          
+                          {script.visual_direction && (
+                            <div>
+                              <h4 className="font-medium text-sm text-muted-foreground mb-1">Visual Direction</h4>
+                              <p className="text-sm text-muted-foreground">{script.visual_direction}</p>
                             </div>
-                          );
-                        }
-                        return null;
-                      })}
-                    </div>
+                          )}
+                        </div>
+                      </div>
+                    ))}
                   </div>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
+                </div>
+              </CardContent>
+            </Card>
+          )}
         </div>
       </div>
 
       {/* Download Modal */}
       <Dialog open={isDownloadModalOpen} onOpenChange={setIsDownloadModalOpen}>
-        <DialogContent className="max-w-md">
+        <DialogContent className="sm:max-w-md">
           <DialogHeader>
-            <DialogTitle className="flex items-center gap-2">
-              <QrCode className="w-5 h-5" />
-              Download Video Scripts
-            </DialogTitle>
+            <DialogTitle>Download QR Code</DialogTitle>
           </DialogHeader>
-          <div className="flex flex-col items-center space-y-4">
-            <div className="bg-white p-4 rounded-lg border">
-              <QRCodeSVG value={downloadUrl} size={200} />
+          <div className="flex flex-col items-center space-y-4 py-4">
+            <div className="bg-white p-4 rounded-lg">
+              {downloadUrl && (
+                <QRCodeSVG
+                  value={downloadUrl}
+                  size={200}
+                  level="M"
+                  includeMargin={true}
+                />
+              )}
             </div>
-            <div className="text-center">
-              <p className="text-sm text-muted-foreground mb-2">
-                Scan with your mobile device to download
-              </p>
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => {
-                  navigator.clipboard.writeText(downloadUrl);
-                  toast.success('Download link copied to clipboard');
-                }}
-              >
-                Copy Link
-              </Button>
-            </div>
+            <p className="text-sm text-muted-foreground text-center">
+              Scan this QR code with your mobile device to download your video scripts
+            </p>
+            <Button
+              variant="outline"
+              onClick={() => {
+                navigator.clipboard.writeText(downloadUrl);
+                toast.success('Download link copied to clipboard');
+              }}
+              className="w-full"
+            >
+              Copy Download Link
+            </Button>
           </div>
         </DialogContent>
       </Dialog>
