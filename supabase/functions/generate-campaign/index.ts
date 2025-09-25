@@ -14,33 +14,46 @@ const supabase = createClient(supabaseUrl, supabaseServiceKey);
 
 Deno.serve(async (req) => {
   
-  // Handle CORS preflight requests
-  if (req.method === 'OPTIONS') {
-    return new Response(null, { headers: corsHeaders });
-  }
-
-  try {
-    const requestBody = await req.json();
-    
-    const { campaignId, image, campaignPrompt, targetAudience } = requestBody;
-
-    console.log('Generating campaign for:', { campaignId, campaignPrompt, targetAudience });
-
-    if (!geminiApiKey) {
-      throw new Error('GEMINI_API_KEY is not configured');
+    // Handle CORS preflight requests
+    if (req.method === 'OPTIONS') {
+      return new Response(null, { headers: corsHeaders });
     }
 
-    // First, fetch the existing campaign record to get generated images
-    const { data: campaignData, error: fetchError } = await supabase
-      .from('campaign_results')
-      .select('generated_images')
-      .eq('id', campaignId)
-      .single();
+    try {
+      const requestBody = await req.json();
+      
+      const { campaignId, image, campaignPrompt, targetAudience } = requestBody;
 
-    if (fetchError) {
-      console.error('Error fetching campaign data:', fetchError);
-      throw fetchError;
-    }
+      console.log('Generating campaign for:', { campaignId, campaignPrompt, targetAudience });
+
+      if (!geminiApiKey) {
+        throw new Error('GEMINI_API_KEY is not configured');
+      }
+
+      // First, fetch the existing campaign record to get generated images and check processing status
+      const { data: campaignData, error: fetchError } = await supabase
+        .from('campaign_results')
+        .select('generated_images, result')
+        .eq('id', campaignId)
+        .single();
+
+      if (fetchError) {
+        console.error('Error fetching campaign data:', fetchError);
+        throw fetchError;
+      }
+
+      // Check if campaign already has generated content (prevent duplicate processing)
+      if (campaignData?.result && Object.keys(campaignData.result).length > 0) {
+        console.log('Campaign already processed, returning existing content');
+        return new Response(JSON.stringify({ 
+          success: true, 
+          campaign: campaignData.result,
+          generatedImages: (campaignData.generated_images || []).length,
+          message: `Campaign content already exists, skipping regeneration.`
+        }), {
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        });
+      }
 
     const generatedImages = campaignData?.generated_images || [];
     console.log('Found generated images:', generatedImages.length);

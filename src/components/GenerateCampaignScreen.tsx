@@ -68,9 +68,28 @@ const GenerateCampaignScreen = () => {
         // Extract generated images from analysis data
         const generatedImages = state.aiAnalysisData?.generatedImages || [];
         
-        let campaignResult;
+        let campaignResult: any;
         
         if (state.editMode && state.campaignId) {
+          // Check if this campaign is already being processed
+          const { data: existingCampaign } = await supabase
+            .from('campaign_results')
+            .select('result, id')
+            .eq('id', state.campaignId)
+            .single();
+
+          if (existingCampaign?.result && Object.keys(existingCampaign.result).length > 0) {
+            console.log('Campaign already processed, skipping to results');
+            navigate('/preview-results', { 
+              state: { 
+                ...location.state, 
+                campaignId: state.campaignId,
+                campaignResults: existingCampaign.result
+              } 
+            });
+            return;
+          }
+
           // Update existing campaign
           setCurrentAction("Updating campaign content...");
           
@@ -173,7 +192,7 @@ const GenerateCampaignScreen = () => {
     };
 
     generateContent();
-  }, [navigate, location.state]);
+  }, []);
 
   return (
     <div className="relative min-h-screen w-full overflow-hidden bg-background">
