@@ -1427,66 +1427,135 @@ const PreviewResultsScreen: React.FC = () => {
                   </Button>
                 </div>
                 <CardContent className="p-4">
-                  <div className="grid grid-cols-2 gap-3 h-80">
-                    {/* Top Left - Portrait Banner with Background Image */}
-                    <div 
-                      className="relative rounded-lg overflow-hidden shadow-sm"
-                      style={{
-                        backgroundImage: `url(${activeCampaignResults?.generated_images?.[0]?.url || uploadedImage || '/lovable-uploads/836ed724-52fb-4a61-a4e7-ffecbc89e80e.png'})`,
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center',
-                        backgroundRepeat: 'no-repeat'
-                      }}
-                    >
-                      {/* Background overlay */}
-                      <div className="absolute inset-0 bg-black/30"></div>
+                  <div className="h-80 space-y-3">
+                    {/* Leaderboard Banner Example */}
+                    <div className="bg-white border rounded-lg overflow-hidden shadow-sm h-20">
+                      {/* Website Header Mockup */}
+                      <div className="bg-gray-100 px-2 py-1 border-b text-[6px]">
+                        <div className="flex items-center justify-between">
+                          <div className="font-semibold text-gray-700">NewsWebsite.com</div>
+                          <div className="flex gap-2 text-gray-600">
+                            <span>Home</span>
+                            <span>Sports</span>
+                            <span>Tech</span>
+                          </div>
+                        </div>
+                      </div>
                       
-                      {/* Bottom overlay for text */}
-                      <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
-                        <div className="bg-black text-white px-3 py-1.5 rounded text-xs font-bold uppercase tracking-wide inline-block" style={{ fontSize: '10px' }}>
-                          {activeCampaignResults.banner_ads?.[0]?.headline || "INDULGE IN DAILY SELF CARE"}
+                      {/* Highlighted Banner Area */}
+                      <div className="p-2 bg-gray-50 flex-1 relative">
+                        <div className="relative">
+                          {/* Highlight border */}
+                          <div className="absolute -inset-1 bg-blue-500/20 border border-blue-500 border-dashed rounded"></div>
+                          
+                          {/* Banner Content */}
+                          <div 
+                            className="relative bg-gradient-to-r from-amber-200 to-amber-100 h-8 flex items-center"
+                            style={{ fontSize: '5px' }}
+                          >
+                            <div className="absolute left-2 flex items-center gap-1">
+                              {(activeCampaignResults?.generated_images?.[0]?.url || uploadedImage) && (
+                                <img 
+                                  src={activeCampaignResults?.generated_images?.[0]?.url || uploadedImage} 
+                                  alt="Product" 
+                                  className="w-4 h-4 object-contain" 
+                                />
+                              )}
+                              <div>
+                                <div className="font-bold text-black">PREMIUM SOUND</div>
+                                <div className="text-gray-700 uppercase">728×90</div>
+                              </div>
+                            </div>
+                            <div className="absolute right-2">
+                              <button className="bg-white text-black font-semibold px-2 py-1 rounded-full text-[4px]">
+                                Shop Now
+                              </button>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
 
-                    {/* Top Right - Product Focus Banner */}
-                    <div 
-                      className="relative rounded-lg overflow-hidden shadow-sm"
-                      style={{
-                        backgroundImage: `url(${activeCampaignResults?.generated_images?.[1]?.url || activeCampaignResults?.generated_images?.[0]?.url || uploadedImage || '/lovable-uploads/836ed724-52fb-4a61-a4e7-ffecbc89e80e.png'})`,
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center',
-                        backgroundRepeat: 'no-repeat'
-                      }}
-                    >
-                      {/* Background overlay */}
-                      <div className="absolute inset-0 bg-black/30"></div>
+                    {/* Medium Rectangle Example */}
+                    <div className="bg-white border rounded-lg overflow-hidden shadow-sm flex h-16">
+                      {/* Main Content */}
+                      <div className="flex-1 p-1.5">
+                        <div className="text-[5px] font-semibold mb-1">Article Title</div>
+                        <div className="w-full h-6 bg-gray-200 rounded text-[4px]"></div>
+                      </div>
                       
-                      {/* Bottom overlay for text */}
-                      <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-amber-600/95 to-transparent p-4 text-center">
-                        <div className="bg-amber-600 text-white px-3 py-1.5 rounded text-xs font-bold uppercase tracking-wide inline-block" style={{ fontSize: '10px' }}>
-                          {activeCampaignResults.banner_ads?.[1]?.headline || "PREMIUM EXPERIENCE"}
+                      {/* Sidebar with Banner */}
+                      <div className="w-20 p-1.5 bg-gray-50 border-l">
+                        <div className="text-[4px] font-semibold mb-1">Ad</div>
+                        
+                        {/* Highlighted Banner Area */}
+                        <div className="relative">
+                          <div className="absolute -inset-1 bg-blue-500/20 border border-blue-500 border-dashed rounded"></div>
+                          
+                          <div 
+                            className="relative bg-gradient-to-br from-gray-200 to-gray-300 h-10"
+                            style={{ width: '15px', fontSize: '3px' }}
+                          >
+                            <div className="h-full flex items-center justify-center relative">
+                              {(activeCampaignResults?.generated_images?.[0]?.url || uploadedImage) && (
+                                <img 
+                                  src={activeCampaignResults?.generated_images?.[0]?.url || uploadedImage} 
+                                  alt="Product" 
+                                  className="w-6 h-6 object-contain absolute top-1" 
+                                />
+                              )}
+                              
+                              <div className="absolute bottom-0 left-0 right-0 h-4 bg-amber-100 flex flex-col justify-center px-1 text-center">
+                                <div className="font-bold text-black uppercase text-[3px]">300×250</div>
+                                <button className="bg-black text-white font-semibold px-1 rounded-full text-[2px]">
+                                  Shop
+                                </button>
+                              </div>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
 
-                    {/* Bottom - Wide Banner with Background Image */}
-                    <div 
-                      className="relative rounded-lg overflow-hidden shadow-sm col-span-2"
-                      style={{
-                        backgroundImage: `url(${activeCampaignResults?.generated_images?.[0]?.url || uploadedImage || '/lovable-uploads/836ed724-52fb-4a61-a4e7-ffecbc89e80e.png'})`,
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center',
-                        backgroundRepeat: 'no-repeat'
-                      }}
-                    >
-                      {/* Background overlay */}
-                      <div className="absolute inset-0 bg-black/40"></div>
+                    {/* Billboard Example */}
+                    <div className="bg-white border rounded-lg overflow-hidden shadow-sm h-16">
+                      {/* Website Header */}
+                      <div className="bg-gray-100 px-2 py-1 border-b text-[6px]">
+                        <div className="flex items-center justify-between">
+                          <div className="font-semibold text-gray-700">TechBlog.com</div>
+                          <div className="flex gap-2 text-gray-600">
+                            <span>Reviews</span>
+                            <span>News</span>
+                          </div>
+                        </div>
+                      </div>
                       
-                      {/* Content positioned at bottom left */}
-                      <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
-                        <div className="bg-black text-white px-3 py-1.5 rounded text-xs font-bold uppercase tracking-wide inline-block" style={{ fontSize: '10px' }}>
-                          {activeCampaignResults.banner_ads?.[1]?.cta || activeCampaignResults.banner_ads?.[0]?.cta || "SHOP NOW"}
+                      {/* Highlighted Banner Area */}
+                      <div className="p-1 bg-gray-50 flex-1">
+                        <div className="relative">
+                          <div className="absolute -inset-1 bg-blue-500/20 border border-blue-500 border-dashed rounded"></div>
+                          
+                          <div 
+                            className="relative bg-gradient-to-r from-amber-200 to-amber-100 h-8 flex items-center justify-between px-2"
+                          >
+                            <div className="text-[5px]">
+                              <div className="font-bold text-black">PREMIUM SOUND</div>
+                              <div className="text-gray-700">970×250 Billboard</div>
+                            </div>
+                            
+                            <div className="flex items-center gap-1">
+                              {(activeCampaignResults?.generated_images?.[0]?.url || uploadedImage) && (
+                                <img 
+                                  src={activeCampaignResults?.generated_images?.[0]?.url || uploadedImage} 
+                                  alt="Product" 
+                                  className="w-6 h-6 object-contain" 
+                                />
+                              )}
+                              <button className="bg-black text-white font-semibold px-2 py-1 rounded-full text-[4px]">
+                                Shop Now
+                              </button>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
