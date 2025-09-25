@@ -61,7 +61,7 @@ const WebCreativePreview: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen relative">
+    <div className="h-screen overflow-hidden relative">
       {/* Fullscreen Background Image */}
       <div 
         className="fixed inset-0 bg-cover bg-center bg-no-repeat"
@@ -90,7 +90,7 @@ const WebCreativePreview: React.FC = () => {
       </div>
 
       {/* Main Content Overlay */}
-      <div className="relative z-10 min-h-screen flex flex-col items-center justify-center px-6">
+      <div className="relative z-10 h-[calc(100vh-80px)] flex flex-col items-center justify-center px-6">
         <div className="text-center space-y-6 max-w-2xl mx-auto">
           {/* Badge */}
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium bg-white/10 text-white border border-white/20 backdrop-blur-sm">
