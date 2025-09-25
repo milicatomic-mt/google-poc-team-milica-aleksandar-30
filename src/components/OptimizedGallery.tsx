@@ -314,7 +314,7 @@ const GalleryItemDisplay: React.FC<{
   );
 };
 
-// Campaign content display component
+// Campaign content display component - using identical cards from PreviewResultsScreen
 const CampaignContent: React.FC<{
   campaignResults: any;
   generatedImages: any[];
@@ -323,164 +323,544 @@ const CampaignContent: React.FC<{
   onViewDetails: (category: string) => void;
 }> = ({ campaignResults, generatedImages, generatedVideoUrl, uploadedImage, onViewDetails }) => {
   
-  const categories = [
-    {
-      title: 'Web Creative',
-      description: 'Hero sections and landing page concepts',
-      icon: FileText,
-      available: true,
-      preview: (
-        <div className="aspect-video bg-gradient-to-br from-amber-100 to-amber-200 rounded-lg overflow-hidden relative">
-          {(generatedImages[0]?.url || uploadedImage) && (
-            <img 
-              src={generatedImages[0]?.url || uploadedImage}
-              alt="Web creative preview"
-              className="w-full h-full object-cover"
-            />
-          )}
-          <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
-            <div className="text-center text-white p-4">
-              <h3 className="text-xl font-bold mb-2">
-                {campaignResults.landing_page_concept?.hero_text || 'Elevate Your Experience'}
-              </h3>
-              <p className="text-sm mb-4">
-                {campaignResults.landing_page_concept?.sub_text || 'Discover premium quality'}
-              </p>
-              <div className="bg-white text-black px-4 py-2 rounded-full text-sm font-semibold">
-                {campaignResults.landing_page_concept?.cta || 'Shop Now'}
-              </div>
-            </div>
-          </div>
-        </div>
-      )
-    },
-    {
-      title: 'Banner Ads',
-      description: 'Display ads for various platforms',
-      icon: Image,
-      available: campaignResults.banner_ads && campaignResults.banner_ads.length > 0,
-      preview: (
-        <div className="bg-gradient-to-r from-amber-200 to-amber-100 rounded-lg p-4 h-24 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            {(generatedImages[0]?.url || uploadedImage) && (
-              <img 
-                src={generatedImages[0]?.url || uploadedImage}
-                alt="Banner preview"
-                className="w-12 h-12 object-contain"
-              />
-            )}
-            <div>
-              <div className="font-bold text-sm">
-                {campaignResults.banner_ads?.[0]?.headline || 'PREMIUM QUALITY'}
-              </div>
-              <div className="text-xs text-gray-600">Premium Experience</div>
-            </div>
-          </div>
-          <div className="bg-black text-white px-3 py-1 rounded-full text-xs font-semibold">
-            {campaignResults.banner_ads?.[0]?.cta || 'Shop Now'}
-          </div>
-        </div>
-      )
-    },
-    {
-      title: 'Video Scripts',
-      description: 'Scripts for social media videos',
-      icon: Play,
-      available: campaignResults.video_scripts && campaignResults.video_scripts.length > 0,
-      preview: (
-        <div className="aspect-video bg-gradient-to-br from-amber-100 to-amber-200 rounded-lg overflow-hidden relative">
-          {generatedVideoUrl ? (
-            <video
-              src={generatedVideoUrl}
-              className="w-full h-full object-cover"
-              muted
-              poster={generatedImages[0]?.url || uploadedImage}
-            />
-          ) : (
-            <>
-              {(generatedImages[0]?.url || uploadedImage) && (
-                <img 
-                  src={generatedImages[0]?.url || uploadedImage}
-                  alt="Video preview"
-                  className="w-full h-full object-cover"
-                />
-              )}
-              <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
-                <div className="w-12 h-12 bg-white/90 rounded-full flex items-center justify-center">
-                  <Play className="w-4 h-4 text-gray-700 ml-1" />
-                </div>
-              </div>
-            </>
-          )}
-        </div>
-      )
-    },
-    {
-      title: 'Email Templates',
-      description: 'Marketing email campaigns',
-      icon: FileText,
-      available: campaignResults.email_copy,
-      preview: (
-        <div className="bg-white border rounded-lg p-4 text-sm">
-          <div className="border-b pb-2 mb-3">
-            <div className="font-semibold text-xs text-gray-500">Subject:</div>
-            <div className="font-medium">
-              {campaignResults.email_copy?.subject || 'Discover Your New Favorite'}
-            </div>
-          </div>
-          <div className="text-gray-600 line-clamp-3">
-            {campaignResults.email_copy?.body || 'Experience premium quality like never before...'}
-          </div>
-        </div>
-      )
-    }
-  ];
+  const activeCampaignResults = campaignResults;
+  
+  // Create consistent image mapping for preview cards
+  const imageMapping = generatedImages ? {
+    image_0: generatedImages[0]?.url || null,
+    image_1: generatedImages[1]?.url || null,
+    image_2: generatedImages[2]?.url || null,
+    image_3: generatedImages[3]?.url || null,
+  } : {};
 
   return (
-    <div className="space-y-6">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {categories.map((category) => (
-          <div
-            key={category.title}
-            className={`group cursor-pointer transition-all duration-300 ${
-              category.available ? 'hover:scale-[1.02]' : 'opacity-50 cursor-not-allowed'
-            }`}
-            onClick={() => category.available && onViewDetails(category.title)}
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      
+      {/* Banner Ads Card - Exact copy from PreviewResultsScreen */}
+      <Card 
+        className="card-elegant backdrop-blur-xl bg-white/5 border-white/50 border-2 shadow-2xl hover:shadow-elegant-lg transition-all duration-smooth cursor-pointer" 
+        onClick={() => onViewDetails('Banner Ads')}
+      >
+        <div className="px-4 py-2 flex items-center justify-between transition-all duration-smooth">
+          <div className="flex items-center space-x-2">
+            <h3 className="text-foreground font-medium">Banner Ads</h3>
+            <span className="bg-muted text-primary text-xs px-2 py-1 rounded-full font-medium">4</span>
+          </div>
+          <Button 
+            variant="outline"
+            size="lg" 
+            onClick={(e) => {
+              e.stopPropagation();
+              onViewDetails('Banner Ads');
+            }}
+            className="tap-target focus-ring group bg-white/40 border-white/30 hover:bg-white/60 rounded-full px-6"
           >
-            <Card className={`h-full ${category.available ? 'hover:shadow-lg' : ''}`}>
-              <CardContent className="p-4">
-                <div className="flex items-center justify-between mb-3">
-                  <div className="flex items-center gap-2">
-                    <category.icon className="w-5 h-5 text-primary" />
-                    <h3 className="font-semibold">{category.title}</h3>
+            <span className="text-indigo-600 group-hover:text-indigo-700 transition-colors">
+              View All
+            </span>
+          </Button>
+        </div>
+        <CardContent className="px-4 pb-4 pt-2">
+          <div className="h-80 p-4">
+            {/* Top Row - Two Square Banners */}
+            <div className="grid grid-cols-2 gap-3 mb-4">
+              {/* Left Banner - Person with Headphones */}
+              <div className="aspect-square bg-gradient-to-br from-amber-200 to-orange-300 rounded-lg overflow-hidden relative">
+                {(imageMapping?.image_0 || uploadedImage) && (
+                  <img 
+                    src={imageMapping?.image_0 || uploadedImage} 
+                    alt="Person with headphones" 
+                    className="w-full h-full object-cover" 
+                  />
+                )}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
+                <div className="absolute bottom-0 left-0 right-0 p-3">
+                  <div className="space-y-1">
+                    <h3 className="text-white text-xs font-bold uppercase tracking-wide">
+                      Premium Sound
+                    </h3>
+                    <p className="text-white/90 text-[8px] uppercase tracking-wider">
+                      Minimalist Design
+                    </p>
+                    <div className="flex items-center justify-between mt-2">
+                      <span className="text-white/80 text-[7px]">
+                        WIRELESS BLUETOOTH CONNECTION<br/>
+                        WITH BASS RESONANCE
+                      </span>
+                      <button className="bg-white text-gray-900 text-[8px] px-2 py-1 rounded font-semibold">
+                        Shop Now
+                      </button>
+                    </div>
                   </div>
-                  {category.available && (
-                    <Badge variant="outline" className="text-xs">Available</Badge>
+                </div>
+              </div>
+              
+              {/* Right Banner - Just Headphones Product */}
+              <div className="aspect-square bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg overflow-hidden relative">
+                {(imageMapping?.image_1 || imageMapping?.image_0 || uploadedImage) && (
+                  <img 
+                    src={imageMapping?.image_1 || imageMapping?.image_0 || uploadedImage} 
+                    alt="Headphones product" 
+                    className="w-full h-full object-cover" 
+                  />
+                )}
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-amber-200 to-amber-100 p-2">
+                  <div className="space-y-1">
+                    <h3 className="text-gray-900 text-[10px] font-bold uppercase tracking-wide">
+                      Premium Sound
+                    </h3>
+                    <p className="text-gray-700 text-[7px] uppercase tracking-wider">
+                      Minimalist Design
+                    </p>
+                    <div className="flex items-center justify-between mt-1">
+                      <span className="text-gray-600 text-[6px]">
+                        WIRELESS BLUETOOTH CONNECTION<br/>
+                        WITH BASS RESONANCE
+                      </span>
+                      <button className="bg-gray-900 text-white text-[7px] px-2 py-1 rounded font-semibold">
+                        Shop Now
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            {/* Bottom Row - Wide Horizontal Banner */}
+            <div className="bg-gradient-to-r from-amber-200 to-orange-200 rounded-lg overflow-hidden relative h-20">
+              <div className="flex items-center h-full">
+                {/* Left - Person Image */}
+                <div className="w-20 h-full relative overflow-hidden">
+                  {(imageMapping?.image_0 || uploadedImage) && (
+                    <img 
+                      src={imageMapping?.image_0 || uploadedImage} 
+                      alt="Person with headphones" 
+                      className="w-full h-full object-cover" 
+                    />
                   )}
                 </div>
                 
-                <p className="text-sm text-muted-foreground mb-4">
-                  {category.description}
-                </p>
-                
-                <div className="mb-3">
-                  {category.preview}
+                {/* Middle - Text Content */}
+                <div className="flex-1 px-4 py-3">
+                  <h3 className="text-gray-900 text-sm font-bold uppercase tracking-wide mb-1">
+                    Premium Sound
+                  </h3>
+                  <p className="text-gray-700 text-[10px] uppercase tracking-wider mb-2">
+                    Minimalist Design
+                  </p>
+                  <p className="text-gray-600 text-[8px] leading-tight">
+                    WIRELESS BLUETOOTH CONNECTION<br/>
+                    WITH BASS RESONANCE
+                  </p>
                 </div>
                 
-                {category.available && (
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    className="w-full opacity-0 group-hover:opacity-100 transition-opacity"
-                  >
-                    View Details
-                  </Button>
-                )}
-              </CardContent>
-            </Card>
+                {/* Right - CTA Button */}
+                <div className="pr-4">
+                  <button className="bg-gray-900 text-white text-xs px-4 py-2 rounded-lg font-semibold">
+                    Shop Now
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
-        ))}
-      </div>
+        </CardContent>
+      </Card>
+
+      {/* Web Creative Card - Exact copy from PreviewResultsScreen */}
+      <Card 
+        className="card-elegant backdrop-blur-xl bg-white/5 border-white/50 border-2 shadow-2xl hover:shadow-elegant-lg transition-all duration-smooth cursor-pointer"
+        onClick={() => onViewDetails('Web Creative')}
+      >
+        <div className="px-4 py-3 flex items-center justify-between transition-all duration-smooth">
+          <div className="flex items-center space-x-2">
+            <h3 className="text-foreground font-medium">Web Creative</h3>
+            <span className="bg-muted text-primary text-xs px-2 py-1 rounded-full font-medium">1</span>
+          </div>
+          <Button 
+            variant="outline"
+            size="lg" 
+            onClick={(e) => {
+              e.stopPropagation();
+              onViewDetails('Web Creative');
+            }}
+            className="tap-target focus-ring group bg-white/40 border-white/30 hover:bg-white/60 rounded-full px-6"
+          >
+            <span className="text-indigo-600 group-hover:text-indigo-700 transition-colors">
+              View All
+            </span>
+          </Button>
+        </div>
+        <CardContent className="p-4">
+          <div className="h-80 bg-gray-100 rounded overflow-hidden border border-gray-300 shadow-sm">
+            {/* Browser-like Screenshot Mockup */}
+            <div className="h-full bg-white">
+              {/* Browser Header */}
+              <div className="bg-gray-200 px-2 py-1 flex items-center gap-1 border-b">
+                <div className="flex gap-1">
+                  <div className="w-2 h-2 bg-red-400 rounded-full"></div>
+                  <div className="w-2 h-2 bg-yellow-400 rounded-full"></div>
+                  <div className="w-2 h-2 bg-green-400 rounded-full"></div>
+                </div>
+                <div className="flex-1 bg-white mx-2 rounded px-2 py-0.5">
+                  <div className="text-[6px] text-gray-500">https://yoursite.com</div>
+                </div>
+              </div>
+
+              {/* Landing Page with Background Image */}
+              <div className="h-full relative overflow-hidden">
+                {/* Background Image with Overlay */}
+                <div className="absolute inset-0">
+                   {activeCampaignResults?.generated_images?.[0]?.url ? (
+                     <img 
+                       src={activeCampaignResults.generated_images[0].url} 
+                       alt="Background" 
+                       className="w-full h-full object-cover"
+                     />
+                   ) : uploadedImage ? (
+                    <img 
+                      src={uploadedImage} 
+                      alt="Background" 
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <div className="w-full h-full bg-gradient-to-br from-blue-500 to-purple-600"></div>
+                  )}
+                  {/* Dark overlay for better text readability */}
+                  <div className="absolute inset-0 bg-black/40"></div>
+                  {/* Gradient overlay for better text contrast */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30"></div>
+                </div>
+
+                {/* Navigation Bar - Floating */}
+                <div className="relative z-10 bg-white/10 backdrop-blur-md border-b border-white/20">
+                  <div className="px-3 py-1 flex justify-between items-center">
+                    <div className="text-[8px] font-bold text-white">BRAND</div>
+                    <div className="flex gap-3 text-[6px] text-white/80">
+                      <span>Home</span> <span>Products</span> <span>About</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Hero Content - Centered with Text Overlays */}
+                <div className="relative z-10 h-full flex flex-col justify-center items-center text-center px-4">
+                  {/* Badge */}
+                  <div className="inline-flex items-center px-2 py-0.5 rounded-full bg-white/20 backdrop-blur-md border border-white/30 mb-2">
+                    <div className="text-[5px] font-medium text-white">✨ New Launch</div>
+                  </div>
+                  
+                  {/* Main Headline with Text Shadow */}
+                  <h1 className="text-[12px] font-bold text-white leading-tight mb-2 max-w-24 drop-shadow-lg">
+                    Transform Your Experience Today
+                  </h1>
+                  
+                  {/* Subtext */}
+                  <p className="text-[6px] text-white/90 leading-relaxed mb-3 max-w-20 drop-shadow-md">
+                    Discover innovative solutions that drive exceptional results for your business.
+                  </p>
+                  
+                  {/* CTA Button */}
+                  <div className="bg-white text-gray-900 text-[6px] px-3 py-1 rounded-full font-medium shadow-lg hover:bg-white/90 transition-all mb-3">
+                    Get Started Now
+                  </div>
+
+                  {/* Features Bar - Bottom Overlay */}
+                  <div className="bg-white/10 backdrop-blur-md rounded px-3 py-1 border border-white/20">
+                    <div className="flex items-center gap-3 text-center">
+                      <div className="flex items-center gap-1">
+                        <div className="w-1.5 h-1.5 bg-green-400 rounded-full"></div>
+                        <div className="text-[4px] text-white font-medium">Free Ship</div>
+                      </div>
+                      <div className="w-px h-2 bg-white/30"></div>
+                      <div className="flex items-center gap-1">
+                        <div className="w-1.5 h-1.5 bg-blue-400 rounded-full"></div>
+                        <div className="text-[4px] text-white font-medium">30d Returns</div>
+                      </div>
+                      <div className="w-px h-2 bg-white/30"></div>
+                      <div className="flex items-center gap-1">
+                        <div className="w-1.5 h-1.5 bg-purple-400 rounded-full"></div>
+                        <div className="text-[4px] text-white font-medium">Premium</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Footer - Bottom Overlay */}
+                <div className="absolute bottom-0 left-0 right-0 z-10 bg-black/20 backdrop-blur-sm border-t border-white/10">
+                  <div className="px-2 py-1">
+                    <div className="text-[4px] text-white/70 text-center">© 2024 Brand. All rights reserved.</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Video Scripts Card - Exact copy from PreviewResultsScreen */}
+      <Card 
+        className="card-elegant backdrop-blur-xl bg-white/5 border-white/50 border-2 shadow-2xl hover:shadow-elegant-lg transition-all duration-smooth cursor-pointer"
+        onClick={() => onViewDetails('Video Scripts')}
+      >
+        <div className="px-4 py-3 flex items-center justify-between transition-all duration-smooth">
+          <div className="flex items-center space-x-2">
+            <h3 className="text-foreground font-medium">Video Scripts</h3>
+            <span className="bg-muted text-primary text-xs px-2 py-1 rounded-full font-medium">1</span>
+          </div>
+          <Button 
+            variant="outline"
+            size="lg" 
+            onClick={(e) => {
+              e.stopPropagation();
+              onViewDetails('Video Scripts');
+            }}
+            className="tap-target focus-ring group bg-white/40 border-white/30 hover:bg-white/60 rounded-full px-6"
+          >
+            <span className="text-indigo-600 group-hover:text-indigo-700 transition-colors">
+              View All
+            </span>
+          </Button>
+        </div>
+        <CardContent className="p-4">
+          {/* Mobile-First Vertical Layout */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 h-80">
+            {/* Left Side - Video Preview */}
+            <div className="bg-black rounded overflow-hidden relative min-h-[120px] lg:h-full">
+              {/* Video Thumbnail with Play Button */}
+              <div className="relative w-full h-full">
+                {activeCampaignResults?.generated_images?.[0]?.url ? (
+                  <img src={activeCampaignResults.generated_images[0].url} alt="Video thumbnail" className="w-full h-full object-cover" />
+                ) : uploadedImage ? (
+                  <img src={uploadedImage} alt="Video thumbnail" className="w-full h-full object-cover" />
+                ) : null}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30"></div>
+                
+                {/* Play Button */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center backdrop-blur-md border border-white/20 hover:bg-white/20 transition-all duration-300">
+                    <Play className="w-6 h-6 text-white ml-1" />
+                  </div>
+                </div>
+                
+                {/* Duration Badge */}
+                <div className="absolute bottom-3 right-3 bg-black/80 text-white text-xs px-2 py-1 rounded-full backdrop-blur-sm">
+                  0:30
+                </div>
+              </div>
+            </div>
+
+            {/* Right Side - Script Preview */}
+            <div className="bg-white backdrop-blur-sm rounded p-4 overflow-y-auto border border-white/20">
+              <div className="space-y-3">
+                {/* Script Header */}
+                <div className="text-center pb-2 border-b border-white/30">
+                  <h4 className="font-semibold text-sm text-gray-900">Professional Script</h4>
+                  <p className="text-xs text-gray-600">Multi-platform optimized</p>
+                </div>
+                
+                {/* Script Sections */}
+                <div className="space-y-2">
+                  <div className="bg-white/60 p-3 rounded">
+                    <div className="flex items-center gap-2 mb-1">
+                      <div className="w-5 h-5 rounded-full bg-black text-white text-xs font-bold flex items-center justify-center">1</div>
+                      <span className="font-medium text-xs text-gray-800">Hook</span>
+                    </div>
+                    <p className="text-xs text-gray-700 font-medium">
+                      "Transform your experience..."
+                    </p>
+                  </div>
+                  
+                  <div className="bg-white/60 p-3 rounded">
+                    <div className="flex items-center gap-2 mb-1">
+                      <div className="w-5 h-5 rounded-full bg-black text-white text-xs font-bold flex items-center justify-center">2</div>
+                      <span className="font-medium text-xs text-gray-800">Content</span>
+                    </div>
+                    <p className="text-xs text-gray-700">
+                      Product demo with features...
+                    </p>
+                  </div>
+                  
+                  <div className="bg-white/60 p-3 rounded">
+                    <div className="flex items-center gap-2 mb-1">
+                      <div className="w-5 h-5 rounded-full bg-black text-white text-xs font-bold flex items-center justify-center">3</div>
+                      <span className="font-medium text-xs text-gray-800">CTA</span>
+                    </div>
+                    <p className="text-xs text-gray-700 font-medium">
+                      "Get started today!"
+                    </p>
+                  </div>
+                </div>
+                
+                {/* Social Icons Preview */}
+                <div className="pt-2 border-t border-white/30">
+                  <p className="text-xs text-gray-600 text-center mb-2">Perfect for:</p>
+                  <div className="flex justify-center gap-2">
+                    <div className="w-6 h-6 bg-gradient-to-r from-pink-500 to-purple-600 rounded-lg flex items-center justify-center">
+                      <span className="text-white text-xs font-bold">T</span>
+                    </div>
+                    <div className="w-6 h-6 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg flex items-center justify-center">
+                      <span className="text-white text-xs font-bold">I</span>
+                    </div>
+                    <div className="w-6 h-6 bg-gradient-to-r from-red-500 to-pink-500 rounded-lg flex items-center justify-center">
+                      <span className="text-white text-xs font-bold">Y</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Email Templates Card - Exact copy from PreviewResultsScreen */}
+      <Card 
+        className="card-elegant backdrop-blur-xl bg-white/5 border-white/50 border-2 shadow-2xl hover:shadow-elegant-lg transition-all duration-smooth cursor-pointer"
+        onClick={() => onViewDetails('Email Templates')}
+      >
+        <div className="px-4 py-3 flex items-center justify-between transition-all duration-smooth">
+          <div className="flex items-center space-x-2">
+            <h3 className="text-foreground font-medium">Email Templates</h3>
+            <span className="bg-muted text-primary text-xs px-2 py-1 rounded-full font-medium">2</span>
+          </div>
+          <Button 
+            variant="outline"
+            size="lg" 
+            onClick={(e) => {
+              e.stopPropagation();
+              onViewDetails('Email Templates');
+            }}
+            className="tap-target focus-ring group bg-white/40 border-white/30 hover:bg-white/60 rounded-full px-6"
+          >
+            <span className="text-indigo-600 group-hover:text-indigo-700 transition-colors">
+              View All
+            </span>
+          </Button>
+        </div>
+        <CardContent className="p-4">
+          <div className="h-80 relative">
+            {/* Modern Email Client Interface */}
+            <div className="bg-white backdrop-blur-sm rounded-lg overflow-hidden h-full border border-white/20 shadow-inner">
+              {/* Email Client Header */}
+              <div className="bg-gradient-to-r from-slate-50 to-gray-50 px-3 py-2 border-b border-gray-200">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                    <div className="text-[8px] font-semibold text-gray-900">Your Brand Newsletter</div>
+                  </div>
+                </div>
+                <div className="text-[6px] text-gray-600 mt-1">From: hello@yourbrand.com</div>
+              </div>
+
+              {/* Email Content */}
+              <div className="relative h-full overflow-hidden">
+                {/* Hero Section with Gradient */}
+                <div className="bg-gradient-to-br from-gray-900 via-black to-gray-800 px-3 py-4 relative">
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/10"></div>
+                  <div className="absolute top-0 right-0 w-16 h-16 bg-white/5 rounded-full blur-xl"></div>
+                  <div className="relative z-10 text-center">
+                    <div className="inline-flex items-center gap-1 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-2 py-1 mb-2">
+                      <div className="w-1 h-1 bg-green-400 rounded-full"></div>
+                      <span className="text-[6px] font-medium text-white">New Launch</span>
+                    </div>
+                    <h2 className="text-[10px] font-bold text-white mb-1 leading-tight">
+                      Transform Your Experience ✨
+                    </h2>
+                    <p className="text-[6px] text-gray-300 leading-relaxed">
+                      Discover premium solutions designed for you
+                    </p>
+                  </div>
+                </div>
+
+                {/* Product Showcase - Expanded */}
+                <div className="bg-gradient-to-br from-white to-slate-50 px-3 py-4 relative">
+                  <div className="flex items-center gap-3">
+                    {/* Product Image */}
+                    <div className="relative">
+                      <div className="w-16 h-16 bg-primary/10 rounded-lg overflow-hidden shadow-sm border border-white/50">
+                        {activeCampaignResults?.generated_images?.[0]?.url ? (
+                          <img src={activeCampaignResults.generated_images[0].url} alt="Product" className="w-full h-full object-cover" />
+                        ) : uploadedImage ? (
+                          <img src={uploadedImage} alt="Product" className="w-full h-full object-cover" />
+                        ) : null}
+                      </div>
+                      <div className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full flex items-center justify-center">
+                        <span className="text-[5px] text-white font-bold">!</span>
+                      </div>
+                    </div>
+                    
+                    {/* Product Info - Expanded */}
+                    <div className="flex-1 min-w-0">
+                      <h3 className="text-[10px] font-bold text-gray-900 leading-tight mb-2">
+                        Exclusive Premium Collection
+                      </h3>
+                      <p className="text-[7px] text-gray-600 leading-relaxed mb-3">
+                        Limited time offer - Save up to 40% on our bestselling products. Premium quality meets exceptional value in this curated selection.
+                      </p>
+                      <div className="flex items-center gap-2 mb-2">
+                        <div className="bg-gradient-to-r from-slate-700 to-slate-800 text-white text-[6px] px-3 py-1 rounded-full font-medium shadow-sm">
+                          Shop Now
+                        </div>
+                        <div className="text-[6px] text-gray-500">Free shipping included</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Features Section - Condensed */}
+                <div className="bg-gray-50 px-3 py-1.5">
+                  <div className="grid grid-cols-3 gap-1">
+                    <div className="text-center">
+                      <div className="w-3 h-3 bg-gradient-to-br from-slate-500 to-slate-600 rounded-full mx-auto mb-0.5 flex items-center justify-center">
+                        <div className="w-1 h-1 bg-white rounded-full"></div>
+                      </div>
+                      <div className="text-[4px] font-semibold text-gray-700">Premium</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="w-3 h-3 bg-gradient-to-br from-slate-500 to-slate-600 rounded-full mx-auto mb-0.5 flex items-center justify-center">
+                        <div className="w-1 h-1 bg-white rounded-full"></div>
+                      </div>
+                      <div className="text-[4px] font-semibold text-gray-700">Fast</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="w-3 h-3 bg-gradient-to-br from-slate-500 to-slate-600 rounded-full mx-auto mb-0.5 flex items-center justify-center">
+                        <div className="w-1 h-1 bg-white rounded-full"></div>
+                      </div>
+                      <div className="text-[4px] font-semibold text-gray-700">Returns</div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Social Proof */}
+                <div className="bg-gradient-to-r from-slate-50 to-gray-50 px-3 py-2 border-t border-gray-100">
+                  <div className="flex items-center justify-center gap-1 mb-1">
+                    {[...Array(5)].map((_, i) => (
+                      <div key={i} className="w-2 h-2 bg-yellow-400 rounded-full flex items-center justify-center">
+                        <span className="text-[3px] text-white">★</span>
+                      </div>
+                    ))}
+                    <span className="text-[5px] text-gray-700 font-semibold ml-1">4.9/5</span>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-[5px] text-gray-600 italic">"Best purchase I've made this year!"</div>
+                    <div className="text-[4px] text-gray-500 mt-0.5">- Sarah M., Verified Customer</div>
+                  </div>
+                </div>
+
+                {/* Footer */}
+                <div className="bg-gradient-to-r from-gray-900 to-black px-3 py-2 absolute bottom-0 left-0 right-0">
+                  <div className="flex items-center justify-between">
+                    <div className="flex gap-1">
+                      <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                      <div className="w-2 h-2 bg-pink-500 rounded-full"></div>
+                      <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
+                    </div>
+                    <div className="text-[4px] text-gray-400">© 2024 Your Brand</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
     </div>
   );
 };
