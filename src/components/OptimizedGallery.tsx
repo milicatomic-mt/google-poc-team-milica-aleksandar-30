@@ -650,9 +650,9 @@ const CampaignContent: React.FC<{
           {/* Mobile-First Vertical Layout */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 h-80">
             {/* Left Side - Video Preview */}
-            <div className="bg-black rounded overflow-hidden relative min-h-[120px] lg:h-full">
+            <div className="bg-black rounded-lg overflow-hidden relative min-h-[120px] lg:h-full">
               {/* Video Thumbnail with Play Button */}
-              <div className="relative w-full h-full">
+              <div className="relative w-full h-full overflow-hidden">
                 {activeCampaignResults?.generated_images?.[0]?.url ? (
                   <OptimizedImage src={activeCampaignResults.generated_images[0].url} alt="Video thumbnail" className="w-full h-full object-cover" />
                 ) : uploadedImage ? (
