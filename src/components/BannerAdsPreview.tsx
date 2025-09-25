@@ -142,9 +142,9 @@ const BannerAdsPreview: React.FC = () => {
                 Half Page Banner <span className="text-gray-500 font-normal">(300×600)</span>
               </h2>
               
-              <div className="bg-gradient-to-b from-amber-200 to-orange-200 rounded-lg overflow-hidden relative shadow-lg max-w-sm" style={{ height: '600px' }}>
+              <div className="bg-gradient-to-b from-amber-200 to-orange-200 rounded-lg overflow-hidden relative shadow-lg w-full" style={{ height: '400px' }}>
                 {/* Top - Person Image */}
-                <div className="h-96 relative overflow-hidden">
+                <div className="h-64 relative overflow-hidden">
                   {(imageMapping?.image_0 || uploadedImage) && (
                     <img 
                       src={imageMapping?.image_0 || uploadedImage} 
@@ -155,18 +155,18 @@ const BannerAdsPreview: React.FC = () => {
                 </div>
                 
                 {/* Bottom - Dark Section with Text */}
-                <div className="h-52 bg-black text-white flex flex-col justify-center px-6 text-center">
-                  <h3 className="text-white text-2xl font-bold uppercase tracking-wide mb-2">
+                <div className="h-36 bg-black text-white flex flex-col justify-center px-6 text-center">
+                  <h3 className="text-white text-xl font-bold uppercase tracking-wide mb-2">
                     Premium Sound
                   </h3>
-                  <p className="text-white/90 text-sm uppercase tracking-wider mb-4">
+                  <p className="text-white/90 text-sm uppercase tracking-wider mb-3">
                     Minimalist Design
                   </p>
-                  <p className="text-white text-sm font-semibold mb-6">
+                  <p className="text-white text-xs font-semibold mb-4">
                     SMASH THE COMPETITION<br/>
                     WITH 30% DISCOUNT
                   </p>
-                  <button className="bg-white text-black text-lg px-6 py-3 rounded-2xl font-semibold hover:bg-gray-100 transition-colors">
+                  <button className="bg-white text-black text-sm px-6 py-2 rounded-xl font-semibold hover:bg-gray-800 transition-colors">
                     Shop Now
                   </button>
                 </div>
@@ -179,7 +179,7 @@ const BannerAdsPreview: React.FC = () => {
                 Medium Rectangle Banner <span className="text-gray-500 font-normal">(300×250)</span>
               </h2>
               
-              <div className="bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg overflow-hidden relative shadow-lg max-w-sm" style={{ height: '400px' }}>
+              <div className="bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg overflow-hidden relative shadow-lg w-full" style={{ height: '400px' }}>
                 {/* Top - Product Image */}
                 <div className="h-64 relative overflow-hidden flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-200">
                   {(imageMapping?.image_1 || imageMapping?.image_0 || uploadedImage) && (
