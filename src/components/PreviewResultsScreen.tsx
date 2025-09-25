@@ -1717,12 +1717,12 @@ const PreviewResultsScreen: React.FC = () => {
                       </div>
                       
                       {/* Right Banner - Just Headphones Product */}
-                      <div className="aspect-square bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg overflow-hidden relative flex items-center justify-center">
+                      <div className="aspect-square bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg overflow-hidden relative">
                         {(imageMapping?.image_1 || imageMapping?.image_0 || uploadedImage) && (
                           <img 
                             src={imageMapping?.image_1 || imageMapping?.image_0 || uploadedImage} 
                             alt="Headphones product" 
-                            className="w-16 h-16 object-contain" 
+                            className="w-full h-full object-cover" 
                           />
                         )}
                         <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-amber-200 to-amber-100 p-3">
