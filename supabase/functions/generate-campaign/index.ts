@@ -26,6 +26,10 @@ Deno.serve(async (req) => {
 
     console.log('Generating campaign for:', { campaignId, campaignPrompt, targetAudience });
 
+    if (!geminiApiKey) {
+      throw new Error('GEMINI_API_KEY is not configured');
+    }
+
     // First, fetch the existing campaign record to get generated images
     const { data: campaignData, error: fetchError } = await supabase
       .from('campaign_results')
@@ -100,7 +104,7 @@ Create a comprehensive marketing campaign with video scripts for TikTok, Instagr
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'X-goog-api-key': geminiApiKey,
+        'X-goog-api-key': geminiApiKey!,
       },
       body: JSON.stringify({
         contents: [
@@ -185,9 +189,11 @@ Create a comprehensive marketing campaign with video scripts for TikTok, Instagr
     });
   } catch (error) {
     console.error('Error in generate-campaign function:', error);
+    const errorMessage = error instanceof Error ? error.message : 'Failed to generate campaign';
+    const errorDetails = error instanceof Error ? error.toString() : String(error);
     return new Response(JSON.stringify({ 
-      error: error.message || 'Failed to generate campaign',
-      details: error.toString()
+      error: errorMessage,
+      details: errorDetails
     }), {
       status: 500,
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },

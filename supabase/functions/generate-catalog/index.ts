@@ -50,7 +50,8 @@ serve(async (req) => {
         
         
       } catch (error) {
-        throw new Error(`Failed to fetch image: ${error.message}`);
+        const errorMessage = error instanceof Error ? error.message : 'Unknown fetch error';
+        throw new Error(`Failed to fetch image: ${errorMessage}`);
       }
     } else {
       throw new Error('Invalid image format. Expected base64 data URL or HTTP URL.');
@@ -174,8 +175,9 @@ Focus on:
     });
 
   } catch (error) {
+    const errorMessage = error instanceof Error ? error.message : 'An error occurred while generating catalog content';
     return new Response(JSON.stringify({ 
-      error: error.message || 'An error occurred while generating catalog content'
+      error: errorMessage
     }), {
       status: 500,
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },

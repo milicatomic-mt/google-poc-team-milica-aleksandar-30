@@ -97,9 +97,9 @@ serve(async (req) => {
           // Manual parsing fallback
           const lines = generatedText
             .split('\n')
-            .filter(line => line.trim().length > 0)
-            .map(line => line.replace(/^\d+\.\s*/, '').replace(/^[-*]\s*/, '').trim())
-            .filter(line => line.length > 10);
+            .filter((line: string) => line.trim().length > 0)
+            .map((line: string) => line.replace(/^\d+\.\s*/, '').replace(/^[-*]\s*/, '').trim())
+            .filter((line: string) => line.length > 10);
           
           // Take first 5 as campaign suggestions, next 2 as image prompts
           suggestions = lines.slice(0, 5);
@@ -192,7 +192,8 @@ serve(async (req) => {
     });
   } catch (error) {
     console.error('Error in analyze-image function:', error);
-    return new Response(JSON.stringify({ error: error.message }), {
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
+    return new Response(JSON.stringify({ error: errorMessage }), {
       status: 500,
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     });

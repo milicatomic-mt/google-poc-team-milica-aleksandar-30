@@ -155,9 +155,11 @@ Deno.serve(async (req) => {
     
   } catch (error) {
     console.error('Error in generate-video function:', error);
+    const errorMessage = error instanceof Error ? error.message : 'Failed to generate video';
+    const errorDetails = error instanceof Error ? error.toString() : String(error);
     return new Response(JSON.stringify({ 
-      error: error.message || 'Failed to generate video',
-      details: error.toString()
+      error: errorMessage,
+      details: errorDetails
     }), {
       status: 500,
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
