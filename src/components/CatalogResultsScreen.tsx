@@ -163,9 +163,15 @@ const CatalogResultsScreen: React.FC = () => {
         // Generate the catalog content using AI
         const results = await generateCatalog(savedRequest.id, catalogRequest);
 
-        // Final progress update
+        // Smoothly progress from 90% to 100%
+        setCurrentAction("Completing your catalog...");
+        for (let i = 91; i <= 100; i++) {
+          setProgress(i);
+          await new Promise(resolve => setTimeout(resolve, 50)); // 50ms per percent
+        }
+        
         setCurrentAction("Complete!");
-        setProgress(100);
+        await new Promise(resolve => setTimeout(resolve, 500)); // Brief pause at 100%
 
         setCatalogResults(results);
         toast.success('Catalog content generated successfully!');
@@ -245,7 +251,7 @@ const CatalogResultsScreen: React.FC = () => {
                 <div className="relative overflow-hidden rounded-full">
                   <Progress 
                     value={progress} 
-                    className="h-0.5 bg-muted"
+                    className="h-0.5 bg-white/20"
                   />
                 </div>
                 <div className="flex justify-center items-center mt-2 text-sm text-muted-foreground">
