@@ -287,11 +287,24 @@ Deno.serve(async (req) => {
   "banner_ads": [
     {
       "headline": "Primary ad headline",
-      "cta": "Primary call-to-action"
+      "description": "Detailed description of banner design concept",
+      "cta": "Primary call-to-action",
+      "style": "playful & colorful",
+      "dimensions": "300x250"
     },
     {
       "headline": "Alternative ad headline", 
-      "cta": "Alternative call-to-action"
+      "description": "Detailed description of banner design concept",
+      "cta": "Alternative call-to-action",
+      "style": "sleek & minimal",
+      "dimensions": "728x90"
+    },
+    {
+      "headline": "Premium ad headline",
+      "description": "Detailed description of banner design concept", 
+      "cta": "Premium call-to-action",
+      "style": "premium/luxury",
+      "dimensions": "160x600"
     }
   ],
   "landing_page_concept": {
@@ -299,7 +312,11 @@ Deno.serve(async (req) => {
     "sub_text": "Supporting subheading that explains value",
     "cta": "Landing page call-to-action button"
   }
-}`;
+}
+
+Make the content compelling, actionable, and tailored to the target audience.
+
+For banner ads specifically: Analyze the uploaded product image and generate banner ads in multiple styles. Extract colors, textures, and mood from the image to define the visual theme. For each banner, propose a creative headline, subheadline, and CTA button text. Include at least 3 style variations: playful & colorful, sleek & minimal, and premium/luxury. Adapt layouts for common dimensions (300x250, 728x90, 160x600). Ensure designs are optimized for both web and social ad placements.`;
 
       const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent`, {
         method: 'POST',

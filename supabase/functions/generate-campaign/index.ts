@@ -89,11 +89,24 @@ Deno.serve(async (req) => {
   "banner_ads": [
     {
       "headline": "Primary ad headline",
-      "cta": "Primary call-to-action"
+      "description": "Detailed description of banner design concept",
+      "cta": "Primary call-to-action",
+      "style": "playful & colorful",
+      "dimensions": "300x250"
     },
     {
-      "headline": "Alternative ad headline",
-      "cta": "Alternative call-to-action"
+      "headline": "Alternative ad headline", 
+      "description": "Detailed description of banner design concept",
+      "cta": "Alternative call-to-action",
+      "style": "sleek & minimal",
+      "dimensions": "728x90"
+    },
+    {
+      "headline": "Premium ad headline",
+      "description": "Detailed description of banner design concept", 
+      "cta": "Premium call-to-action",
+      "style": "premium/luxury",
+      "dimensions": "160x600"
     }
   ],
   "landing_page_concept": {
@@ -103,7 +116,9 @@ Deno.serve(async (req) => {
   }
 }
 
-Make the content compelling, actionable, and tailored to the target audience.`;
+Make the content compelling, actionable, and tailored to the target audience.
+
+For banner ads specifically: Analyze the uploaded product image and generate banner ads in multiple styles. Extract colors, textures, and mood from the image to define the visual theme. For each banner, propose a creative headline, subheadline, and CTA button text. Include at least 3 style variations: playful & colorful, sleek & minimal, and premium/luxury. Adapt layouts for common dimensions (300x250, 728x90, 160x600). Ensure designs are optimized for both web and social ad placements.`;
 
     const fullPrompt = `${systemPrompt}
 
