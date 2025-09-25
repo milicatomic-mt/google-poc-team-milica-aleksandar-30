@@ -156,16 +156,16 @@ const BannerAdsPreview: React.FC = () => {
                 
                 {/* Bottom - Dark Section with Text */}
                 <div className="h-20 bg-black text-white flex flex-col justify-center px-4 text-center">
-                  <h3 className="text-white text-sm font-bold uppercase tracking-wide mb-1">
+                  <h3 className="text-white text-xs font-bold uppercase tracking-wide mb-0.5">
                     Premium Sound
                   </h3>
-                  <p className="text-white/90 text-xs uppercase tracking-wider mb-1">
+                  <p className="text-white/90 text-xs uppercase tracking-wider mb-0.5">
                     Minimalist Design
                   </p>
-                  <p className="text-white text-xs font-semibold mb-2">
+                  <p className="text-white text-xs font-semibold mb-1">
                     SMASH THE COMPETITION WITH 30% DISCOUNT
                   </p>
-                  <button className="bg-white text-black text-xs px-4 py-1 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+                  <button className="bg-white text-black text-xs px-3 py-0.5 rounded font-semibold hover:bg-gray-100 transition-colors">
                     Shop Now
                   </button>
                 </div>
