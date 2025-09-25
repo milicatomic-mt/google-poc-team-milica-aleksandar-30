@@ -94,293 +94,364 @@ const WebCreativePreview: React.FC = () => {
                 <h2 className="text-xl font-semibold mb-2">Landing Page</h2>
               </div>
               
-              {/* Browser mockup */}
-              <div className="bg-white">
-                {/* Browser header */}
-                <div className="flex items-center gap-2 px-4 py-3 bg-gray-100 border-b">
-                  <div className="flex gap-1">
-                    <div className="w-3 h-3 rounded-full bg-red-400"></div>
-                    <div className="w-3 h-3 rounded-full bg-yellow-400"></div>
-                    <div className="w-3 h-3 rounded-full bg-green-400"></div>
-                  </div>
-                  <div className="flex-1 mx-4">
-                    <div className="bg-white rounded px-3 py-1 text-xs text-muted-foreground border">
-                      headphones-logo.com
-                    </div>
-                  </div>
-                </div>
-
-                {/* Website content */}
-                <div className="relative">
-                  {/* Header navigation */}
-                  <div className="flex items-center justify-between px-8 py-4 border-b border-gray-200">
-                    <div className="text-sm font-semibold">Headphones Logo</div>
-                    <nav className="flex gap-6 text-sm">
-                      <span>Kit</span>
-                      <span>Collections</span>
-                      <span>Collections</span>
-                      <span>Variables Set</span>
-                    </nav>
-                    <div className="flex items-center gap-2">
-                      <div className="text-xs bg-red-100 text-red-800 px-2 py-1 rounded-full">🇺🇸</div>
-                      <div className="text-xs">🛍️ 1</div>
-                    </div>
-                  </div>
-
+              {/* Complete Landing Page Preview */}
+              <div className="border-2 border-border rounded-lg overflow-hidden bg-background shadow-2xl max-h-[70vh] overflow-y-auto">
+                <div className="w-full">
+                  
                   {/* Hero Section */}
-                  <div className="flex min-h-[500px]">
-                    {/* Left content */}
-                    <div className="flex-1 flex flex-col justify-center px-8 py-12 bg-gradient-to-r from-gray-50 to-white">
-                      <div className="max-w-md">
-                        <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-2">
-                          PREMIUM QUALITY
-                        </div>
-                        
-                        <h1 className="text-4xl font-bold text-slate-900 mb-4 leading-tight">
-                          {landingPage?.hero_text || 'Experience Premium Quality Like Never Before'}
-                        </h1>
-                        
-                        <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-                          {landingPage?.sub_text || 'Discover our premium collection designed for the modern lifestyle. Quality meets innovation.'}
-                        </p>
-                        
-                        <Button className="bg-slate-900 hover:bg-slate-800 text-white font-semibold px-8 py-3 text-lg">
-                          {landingPage?.cta || 'Shop Now - $299'}
-                        </Button>
-                      </div>
-                    </div>
-
-                    {/* Right hero image */}
-                    <div className="flex-1 relative bg-gradient-to-br from-amber-100 to-amber-200 overflow-hidden">
-                      {generatedImages[0]?.url || uploadedImage ? (
-                        <img 
-                          src={generatedImages[0]?.url || uploadedImage}
-                          alt="Product showcase"
-                          className="w-full h-full object-cover"
-                        />
-                      ) : (
-                        <div className="w-full h-full flex items-center justify-center">
-                          <div className="w-64 h-64 bg-white/20 rounded-full flex items-center justify-center">
-                            <div className="w-48 h-48 bg-white/30 rounded-full"></div>
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-
-                  {/* Product Highlights */}
-                  <div className="px-8 py-12 bg-gray-50">
-                    <div className="max-w-6xl mx-auto">
-                      <h2 className="text-3xl font-bold text-center mb-12 text-slate-900">Why Choose Our Product</h2>
-                      <div className="grid grid-cols-3 gap-8">
-                        {[
-                          { 
-                            title: 'Premium Materials', 
-                            description: 'Crafted with the finest materials for lasting durability',
-                            icon: '✨'
-                          },
-                          { 
-                            title: 'Advanced Technology', 
-                            description: 'State-of-the-art features for superior performance',
-                            icon: '⚡'
-                          },
-                          { 
-                            title: 'Lifetime Warranty', 
-                            description: 'Complete peace of mind with our lifetime guarantee',
-                            icon: '🛡️'
-                          }
-                        ].map((feature, index) => (
-                          <div key={index} className="text-center bg-white p-6 rounded-lg shadow-sm">
-                            <div className="text-3xl mb-4">{feature.icon}</div>
-                            <h3 className="text-xl font-semibold mb-3 text-slate-900">{feature.title}</h3>
-                            <p className="text-slate-600">{feature.description}</p>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Detailed Product Section */}
-                  <div className="px-8 py-12 bg-white">
-                    <div className="max-w-6xl mx-auto grid grid-cols-2 gap-12 items-center">
+                  <section className="relative min-h-[500px] bg-gradient-to-br from-primary/5 via-background to-secondary/5">
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(120,119,198,0.1),transparent_50%)]"></div>
+                    
+                    <div className="relative z-10 container mx-auto px-8 py-12 grid lg:grid-cols-2 gap-8 items-center min-h-[500px]">
+                      {/* Left Column - Content */}
                       <div className="space-y-6">
-                        <h2 className="text-3xl font-bold text-slate-900">Product Details</h2>
-                        <p className="text-lg text-slate-600 leading-relaxed">
-                          Every detail has been carefully crafted to deliver an exceptional experience. From the premium materials to the innovative design, this product represents the perfect fusion of form and function.
-                        </p>
                         <div className="space-y-4">
-                          <div className="flex items-start gap-3">
-                            <div className="w-2 h-2 bg-slate-900 rounded-full mt-2"></div>
-                            <div>
-                              <h4 className="font-semibold text-slate-900">Superior Construction</h4>
-                              <p className="text-slate-600">Built to last with premium materials and expert craftsmanship</p>
-                            </div>
+                          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium bg-primary/10 text-primary border border-primary/20">
+                            ✨ {campaignResults.banner_ads?.[0]?.headline ? 'New Launch' : 'Premium Product'}
                           </div>
-                          <div className="flex items-start gap-3">
-                            <div className="w-2 h-2 bg-slate-900 rounded-full mt-2"></div>
-                            <div>
-                              <h4 className="font-semibold text-slate-900">Innovative Features</h4>
-                              <p className="text-slate-600">Advanced technology that enhances your daily experience</p>
-                            </div>
+                          <h1 className="text-3xl lg:text-5xl font-bold text-foreground leading-tight">
+                            {landingPage?.hero_text || 
+                             campaignResults.banner_ads?.[0]?.headline || 
+                             'Transform Your Experience Today'}
+                          </h1>
+                          <p className="text-lg text-muted-foreground leading-relaxed">
+                            {landingPage?.sub_text || 
+                             campaignResults.banner_ads?.[0]?.description || 
+                             'Discover innovative solutions that drive exceptional results and elevate your lifestyle to new heights.'}
+                          </p>
+                        </div>
+                        
+                        <div className="flex flex-col sm:flex-row gap-4">
+                          <Button size="lg" className="text-lg px-8 py-3 shadow-lg">
+                            {landingPage?.cta || 
+                             campaignResults.banner_ads?.[0]?.cta || 
+                             'Get Started Now'}
+                          </Button>
+                          <Button variant="outline" size="lg" className="text-lg px-8 py-3">
+                            Learn More
+                          </Button>
+                        </div>
+                        
+                        {/* Trust Indicators */}
+                        <div className="flex flex-wrap items-center gap-6 text-sm text-muted-foreground pt-4">
+                          <div className="flex items-center gap-2">
+                            <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                            <span>Free Shipping</span>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                            <span>30-Day Returns</span>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
+                            <span>Premium Quality</span>
                           </div>
                         </div>
                       </div>
-                      <div className="bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg p-8 h-80 flex items-center justify-center">
-                        {generatedImages[1]?.url || uploadedImage ? (
-                          <img 
-                            src={generatedImages[1]?.url || uploadedImage}
-                            alt="Product details"
-                            className="max-w-full max-h-full object-contain"
-                          />
-                        ) : (
-                          <div className="text-slate-500">Product Detail Image</div>
+                      
+                      {/* Right Column - Hero Image */}
+                      <div className="relative flex justify-center">
+                        {(generatedImages?.[0]?.url || uploadedImage) && (
+                          <div className="relative">
+                            <div className="absolute -inset-6 bg-gradient-to-br from-primary/20 via-secondary/20 to-accent/20 rounded-3xl blur-2xl opacity-60"></div>
+                            <div className="relative bg-background/90 backdrop-blur-sm rounded-2xl p-6 shadow-2xl border border-border">
+                              <img 
+                                src={generatedImages?.[0]?.url || uploadedImage} 
+                                alt="Hero product showcase" 
+                                className="w-full h-auto max-h-80 object-contain rounded-lg"
+                              />
+                            </div>
+                          </div>
                         )}
                       </div>
                     </div>
-                  </div>
+                  </section>
 
-                  {/* Social Proof */}
-                  <div className="px-8 py-12 bg-slate-50">
-                    <div className="max-w-6xl mx-auto">
-                      <h2 className="text-3xl font-bold text-center mb-4 text-slate-900">Loved by Thousands</h2>
-                      <div className="flex items-center justify-center gap-2 mb-8">
-                        <div className="flex">
-                          {[1,2,3,4,5].map(star => (
-                            <span key={star} className="text-yellow-400 text-2xl">★</span>
-                          ))}
-                        </div>
-                        <span className="text-lg font-semibold text-slate-900">4.9/5</span>
-                        <span className="text-slate-600">(2,847 reviews)</span>
+                  {/* Features/Benefits Section */}
+                  <section className="py-16 bg-muted/20">
+                    <div className="container mx-auto px-8">
+                      <div className="text-center mb-12">
+                        <h2 className="text-3xl font-bold text-foreground mb-4">Why Choose Our Solution</h2>
+                        <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                          Discover the features that make us the preferred choice for thousands of customers
+                        </p>
                       </div>
-                      <div className="grid grid-cols-3 gap-6">
-                        {[
-                          {
-                            name: "Sarah Johnson",
-                            review: "Absolutely amazing quality! Exceeded all my expectations.",
-                            rating: 5
-                          },
-                          {
-                            name: "Michael Chen", 
-                            review: "Best purchase I've made this year. Highly recommended!",
-                            rating: 5
-                          },
-                          {
-                            name: "Emily Rodriguez",
-                            review: "Perfect blend of style and functionality. Love it!",
-                            rating: 5
-                          }
-                        ].map((testimonial, index) => (
-                          <div key={index} className="bg-white p-6 rounded-lg shadow-sm">
-                            <div className="flex mb-3">
-                              {[1,2,3,4,5].map(star => (
-                                <span key={star} className="text-yellow-400">★</span>
-                              ))}
-                            </div>
-                            <p className="text-slate-600 mb-3 italic">"{testimonial.review}"</p>
-                            <p className="font-semibold text-slate-900">- {testimonial.name}</p>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Pricing & Purchase Options */}
-                  <div className="px-8 py-12 bg-white">
-                    <div className="max-w-4xl mx-auto text-center">
-                      <h2 className="text-3xl font-bold mb-4 text-slate-900">Simple, Transparent Pricing</h2>
-                      <p className="text-lg text-slate-600 mb-8">Choose the perfect option for your needs</p>
                       
-                      <div className="bg-gradient-to-r from-slate-50 to-white border-2 border-slate-200 rounded-xl p-8 mb-8">
-                        <div className="text-6xl font-bold text-slate-900 mb-2">$299</div>
-                        <div className="text-lg text-slate-600 mb-6">One-time purchase</div>
-                        <div className="space-y-2 text-slate-600 mb-6">
-                          <div className="flex items-center justify-center gap-2">
-                            <span className="text-green-500">✓</span>
-                            <span>Free shipping worldwide</span>
+                      <div className="grid md:grid-cols-3 gap-8">
+                        {/* Feature 1 */}
+                        <div className="text-center space-y-4 p-6 bg-background rounded-xl border border-border hover:shadow-lg transition-shadow">
+                          <div className="relative">
+                            <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto">
+                              <div className="w-8 h-8 bg-primary rounded-full"></div>
+                            </div>
+                            {generatedImages?.[1]?.url && (
+                              <div className="absolute -top-2 -right-2 w-12 h-12 rounded-lg overflow-hidden border-2 border-background shadow-lg">
+                                <img src={generatedImages[1].url} alt="Feature 1" className="w-full h-full object-cover" />
+                              </div>
+                            )}
                           </div>
-                          <div className="flex items-center justify-center gap-2">
-                            <span className="text-green-500">✓</span>
-                            <span>30-day money-back guarantee</span>
-                          </div>
-                          <div className="flex items-center justify-center gap-2">
-                            <span className="text-green-500">✓</span>
-                            <span>Lifetime warranty</span>
-                          </div>
+                          <h3 className="text-xl font-semibold">
+                            {campaignResults.banner_ads?.[0]?.headline || 'Premium Quality'}
+                          </h3>
+                          <p className="text-muted-foreground">
+                            {campaignResults.banner_ads?.[0]?.description || 'Experience unmatched quality with our carefully crafted solutions designed for excellence.'}
+                          </p>
                         </div>
-                        <Button className="bg-slate-900 hover:bg-slate-800 text-white font-semibold px-8 py-3 text-lg">
-                          Order Now - Limited Stock!
-                        </Button>
+
+                        {/* Feature 2 */}
+                        <div className="text-center space-y-4 p-6 bg-background rounded-xl border border-border hover:shadow-lg transition-shadow">
+                          <div className="relative">
+                            <div className="w-16 h-16 bg-secondary/10 rounded-full flex items-center justify-center mx-auto">
+                              <div className="w-8 h-8 bg-secondary rounded-full"></div>
+                            </div>
+                            {generatedImages?.[2]?.url && (
+                              <div className="absolute -top-2 -right-2 w-12 h-12 rounded-lg overflow-hidden border-2 border-background shadow-lg">
+                                <img src={generatedImages[2].url} alt="Feature 2" className="w-full h-full object-cover" />
+                              </div>
+                            )}
+                          </div>
+                          <h3 className="text-xl font-semibold">
+                            {campaignResults.banner_ads?.[1]?.headline || 'Fast & Reliable'}
+                          </h3>
+                          <p className="text-muted-foreground">
+                            {campaignResults.banner_ads?.[1]?.description || 'Lightning-fast performance with 99.9% reliability ensures you never miss a beat.'}
+                          </p>
+                        </div>
+
+                        {/* Feature 3 */}
+                        <div className="text-center space-y-4 p-6 bg-background rounded-xl border border-border hover:shadow-lg transition-shadow">
+                          <div className="relative">
+                            <div className="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mx-auto">
+                              <div className="w-8 h-8 bg-accent rounded-full"></div>
+                            </div>
+                            {generatedImages?.[3]?.url && (
+                              <div className="absolute -top-2 -right-2 w-12 h-12 rounded-lg overflow-hidden border-2 border-background shadow-lg">
+                                <img src={generatedImages[3].url} alt="Feature 3" className="w-full h-full object-cover" />
+                              </div>
+                            )}
+                          </div>
+                          <h3 className="text-xl font-semibold">
+                            {campaignResults.banner_ads?.[2]?.headline || '24/7 Support'}
+                          </h3>
+                          <p className="text-muted-foreground">
+                            {campaignResults.banner_ads?.[2]?.description || 'Round-the-clock expert support to help you succeed every step of the way.'}
+                          </p>
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  </section>
 
-                  {/* Call-to-Action Section */}
-                  <div className="px-8 py-12 bg-slate-900 text-white">
-                    <div className="max-w-4xl mx-auto text-center">
-                      <h2 className="text-4xl font-bold mb-4">Ready to Experience the Difference?</h2>
-                      <p className="text-xl text-slate-300 mb-8">Join thousands of satisfied customers who've made the switch</p>
-                      <div className="flex items-center justify-center gap-8 mb-8">
-                        <div className="bg-gradient-to-br from-gray-700 to-gray-800 rounded-lg p-4 w-32 h-32 flex items-center justify-center">
-                          {generatedImages[0]?.url || uploadedImage ? (
-                            <img 
-                              src={generatedImages[0]?.url || uploadedImage}
-                              alt="Product"
-                              className="max-w-full max-h-full object-contain"
-                            />
-                          ) : (
-                            <div className="text-gray-400">Product</div>
+                  {/* Product/Service Details Section */}
+                  <section className="py-16">
+                    <div className="container mx-auto px-8">
+                      <div className="grid lg:grid-cols-2 gap-12 items-center">
+                        <div className="space-y-6">
+                          <div className="space-y-4">
+                            <h2 className="text-3xl font-bold text-foreground">
+                              Complete Solution for Your Needs
+                            </h2>
+                            <p className="text-lg text-muted-foreground leading-relaxed">
+                              {landingPage?.sub_text || 
+                               'Our comprehensive approach ensures you get everything you need to succeed, backed by industry-leading technology and expert support.'}
+                            </p>
+                          </div>
+
+                          <div className="space-y-4">
+                            {(campaignResults.banner_ads || [
+                              { headline: "Advanced Technology", description: "Cutting-edge solutions that stay ahead of the curve" },
+                              { headline: "Expert Team", description: "Dedicated professionals committed to your success" },
+                              { headline: "Proven Results", description: "Track record of delivering exceptional outcomes" }
+                            ]).slice(0, 3).map((item, index) => (
+                              <div key={index} className="flex items-start gap-4 p-4 bg-muted/20 rounded-lg">
+                                <div className="w-8 h-8 bg-primary/20 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                  <span className="text-primary font-bold text-sm">{index + 1}</span>
+                                </div>
+                                <div>
+                                  <h4 className="font-semibold text-foreground mb-1">
+                                    {item.headline}
+                                  </h4>
+                                  <p className="text-muted-foreground text-sm">
+                                    {item.description}
+                                  </p>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+
+                          <Button size="lg" className="px-8 py-3">
+                            Explore Features
+                          </Button>
+                        </div>
+
+                        <div className="relative">
+                          {uploadedImage && (
+                            <div className="relative">
+                              <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-secondary/10 to-accent/10 rounded-2xl blur-xl transform rotate-2"></div>
+                              <div className="relative bg-background/95 backdrop-blur-sm rounded-xl p-6 shadow-xl border border-border">
+                                <img 
+                                  src={uploadedImage} 
+                                  alt="Product details showcase" 
+                                  className="w-full h-auto rounded-lg"
+                                />
+                              </div>
+                            </div>
                           )}
                         </div>
                       </div>
-                      <Button className="bg-white hover:bg-gray-100 text-slate-900 font-semibold px-8 py-3 text-lg">
-                        Order Yours Today - Limited Stock!
-                      </Button>
-                      <p className="text-sm text-slate-400 mt-4">✓ Free shipping ✓ 30-day returns ✓ Lifetime warranty</p>
                     </div>
-                  </div>
+                  </section>
+
+                  {/* Social Proof Section */}
+                  <section className="py-16 bg-muted/20">
+                    <div className="container mx-auto px-8">
+                      <div className="text-center mb-12">
+                        <h2 className="text-3xl font-bold text-foreground mb-4">Trusted by Industry Leaders</h2>
+                        <p className="text-lg text-muted-foreground">
+                          Join thousands of satisfied customers who have transformed their business
+                        </p>
+                      </div>
+
+                      <div className="grid md:grid-cols-3 gap-8 mb-12">
+                        {[
+                          {
+                            quote: "This solution completely transformed our workflow. The results exceeded our expectations by 300%.",
+                            author: "Sarah Johnson",
+                            role: "CEO, TechCorp",
+                            rating: 5
+                          },
+                          {
+                            quote: "Outstanding quality and support. The team went above and beyond to ensure our success.",
+                            author: "Michael Chen", 
+                            role: "Director, InnovateNow",
+                            rating: 5
+                          },
+                          {
+                            quote: "The ROI was immediate. We saw improvements within the first week of implementation.",
+                            author: "Emily Rodriguez",
+                            role: "Manager, GrowthLab",
+                            rating: 5
+                          }
+                        ].map((testimonial, index) => (
+                          <div key={index} className="p-6 bg-background rounded-xl border border-border">
+                            <div className="flex items-center gap-1 text-yellow-500 mb-4">
+                              {[...Array(testimonial.rating)].map((_, i) => (
+                                <div key={i} className="w-4 h-4 bg-yellow-500 rounded-sm"></div>
+                              ))}
+                            </div>
+                            <p className="text-muted-foreground italic mb-4">"{testimonial.quote}"</p>
+                            <div>
+                              <div className="font-semibold text-foreground">{testimonial.author}</div>
+                              <div className="text-sm text-muted-foreground">{testimonial.role}</div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+
+                      {/* Trust Badges */}
+                      <div className="flex justify-center items-center gap-8 opacity-60">
+                        <div className="text-center">
+                          <div className="text-2xl font-bold text-foreground">10K+</div>
+                          <div className="text-sm text-muted-foreground">Happy Customers</div>
+                        </div>
+                        <div className="text-center">
+                          <div className="text-2xl font-bold text-foreground">99.9%</div>
+                          <div className="text-sm text-muted-foreground">Uptime</div>
+                        </div>
+                        <div className="text-center">
+                          <div className="text-2xl font-bold text-foreground">24/7</div>
+                          <div className="text-sm text-muted-foreground">Support</div>
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+
+                  {/* Final CTA Section */}
+                  <section className="py-16 bg-gradient-to-br from-primary/10 via-background to-secondary/10">
+                    <div className="container mx-auto px-8 text-center">
+                      <div className="max-w-3xl mx-auto space-y-6">
+                        <h2 className="text-4xl font-bold text-foreground">
+                          Ready to Transform Your Business?
+                        </h2>
+                        <p className="text-xl text-muted-foreground">
+                          Join thousands of successful businesses and start your journey today. 
+                          No setup fees, no long-term contracts.
+                        </p>
+                        
+                        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
+                          <Button size="lg" className="text-lg px-12 py-4 shadow-lg">
+                            {landingPage?.cta || 'Start Free Trial'}
+                          </Button>
+                          <Button variant="outline" size="lg" className="text-lg px-8 py-4">
+                            Schedule Demo
+                          </Button>
+                        </div>
+
+                        {/* Supporting Visual */}
+                        {generatedImages?.[0]?.url && (
+                          <div className="mt-8 flex justify-center">
+                            <div className="relative">
+                              <div className="absolute -inset-4 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-2xl blur-xl opacity-60"></div>
+                              <div className="relative w-32 h-32 rounded-2xl overflow-hidden border-4 border-background shadow-2xl">
+                                <img 
+                                  src={generatedImages[0].url} 
+                                  alt="Success guarantee" 
+                                  className="w-full h-full object-cover"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </section>
 
                   {/* Footer */}
-                  <div className="px-8 py-8 bg-gray-100 border-t">
-                    <div className="max-w-6xl mx-auto">
-                      <div className="grid grid-cols-4 gap-8 mb-6">
-                        <div>
-                          <h4 className="font-semibold text-slate-900 mb-3">Support</h4>
-                          <div className="space-y-2 text-sm text-slate-600">
-                            <div>Help Center</div>
-                            <div>Contact Us</div>
-                            <div>Live Chat</div>
-                          </div>
-                        </div>
-                        <div>
-                          <h4 className="font-semibold text-slate-900 mb-3">Policies</h4>
-                          <div className="space-y-2 text-sm text-slate-600">
-                            <div>Shipping</div>
-                            <div>Returns</div>
-                            <div>Privacy</div>
-                          </div>
-                        </div>
-                        <div>
-                          <h4 className="font-semibold text-slate-900 mb-3">Company</h4>
-                          <div className="space-y-2 text-sm text-slate-600">
+                  <footer className="bg-background border-t border-border py-12">
+                    <div className="container mx-auto px-8">
+                      <div className="grid md:grid-cols-4 gap-8">
+                        <div className="space-y-4">
+                          <h3 className="font-bold text-foreground">Company</h3>
+                          <div className="space-y-2 text-sm text-muted-foreground">
                             <div>About Us</div>
                             <div>Careers</div>
                             <div>Press</div>
+                            <div>Contact</div>
                           </div>
                         </div>
-                        <div>
-                          <h4 className="font-semibold text-slate-900 mb-3">Follow Us</h4>
-                          <div className="space-y-2 text-sm text-slate-600">
-                            <div>Facebook</div>
-                            <div>Instagram</div>
-                            <div>Twitter</div>
+                        <div className="space-y-4">
+                          <h3 className="font-bold text-foreground">Product</h3>
+                          <div className="space-y-2 text-sm text-muted-foreground">
+                            <div>Features</div>
+                            <div>Pricing</div>
+                            <div>Integrations</div>
+                            <div>API</div>
+                          </div>
+                        </div>
+                        <div className="space-y-4">
+                          <h3 className="font-bold text-foreground">Support</h3>
+                          <div className="space-y-2 text-sm text-muted-foreground">
+                            <div>Help Center</div>
+                            <div>Documentation</div>
+                            <div>Community</div>
+                            <div>Status</div>
+                          </div>
+                        </div>
+                        <div className="space-y-4">
+                          <h3 className="font-bold text-foreground">Legal</h3>
+                          <div className="space-y-2 text-sm text-muted-foreground">
+                            <div>Privacy Policy</div>
+                            <div>Terms of Service</div>
+                            <div>Cookie Policy</div>
+                            <div>GDPR</div>
                           </div>
                         </div>
                       </div>
-                      <div className="border-t pt-4 text-center text-xs text-slate-500">
-                        © 2024 Premium Brand. All rights reserved.
+                      
+                      <div className="border-t border-border pt-8 mt-8 text-center text-sm text-muted-foreground">
+                        © 2024 Your Company. All rights reserved.
                       </div>
                     </div>
-                  </div>
+                  </footer>
                 </div>
               </div>
             </CardContent>
