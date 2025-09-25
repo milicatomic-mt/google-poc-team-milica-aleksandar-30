@@ -1,16 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { ArrowLeft, Play, Image, FileText, Calendar } from 'lucide-react';
+import { Card, CardContent } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { ArrowLeft, Play, Image, FileText, Calendar, Download, QrCode, Edit } from 'lucide-react';
 import RibbedSphere from '@/components/RibbedSphere';
-import OptimizedGalleryPreviewModal from '@/components/OptimizedGalleryPreviewModal';
-import { useGalleryData, type GalleryItem } from '@/hooks/useGalleryData';
+import { useGalleryData, useGalleryItemDetails, type GalleryItem } from '@/hooks/useGalleryData';
+import { VideoPlayer } from '@/components/VideoPlayer';
+import QRDownloadModal from '@/components/QRDownloadModal';
+import { toast } from "sonner";
 
 const OptimizedGallery = () => {
   const navigate = useNavigate();
   const [selectedFilter, setSelectedFilter] = useState<'all' | 'campaigns' | 'catalogs'>('all');
-  const [selectedItem, setSelectedItem] = useState<GalleryItem | null>(null);
-  const [isPreviewOpen, setIsPreviewOpen] = useState(false);
+  const [isDownloadModalOpen, setIsDownloadModalOpen] = useState(false);
+  const [selectedItemForDownload, setSelectedItemForDownload] = useState<any>(null);
+
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const { data: items = [], isLoading, error } = useGalleryData();
 
@@ -32,14 +41,49 @@ const OptimizedGallery = () => {
     });
   };
 
-  const handleItemClick = (item: GalleryItem) => {
-    setSelectedItem(item);
-    setIsPreviewOpen(true);
+  const handleEdit = (item: GalleryItem) => {
+    if (item.type === 'campaign') {
+      navigate('/campaign-prompt', {
+        state: {
+          editMode: true,
+          campaignId: item.id,
+          uploadedImage: item.image_url
+        }
+      });
+    } else if (item.type === 'catalog') {
+      navigate('/catalog-prompt', {
+        state: {
+          editMode: true,
+          catalogId: item.id,
+          uploadedImage: item.image_url
+        }
+      });
+    }
   };
 
-  const handlePreviewClose = () => {
-    setIsPreviewOpen(false);
-    setSelectedItem(null);
+  const handleDownload = async (item: any, campaignResults: any) => {
+    setSelectedItemForDownload(campaignResults);
+    setIsDownloadModalOpen(true);
+  };
+
+  const handleViewDetails = (category: string, item: GalleryItem, itemDetails: any) => {
+    const routeMap = {
+      'Web Creative': '/web-creative',
+      'Banner Ads': '/banner-ads', 
+      'Video Scripts': '/video-scripts',
+      'Email Templates': '/email-templates'
+    };
+    
+    const route = routeMap[category as keyof typeof routeMap];
+    if (route) {
+      navigate(route, {
+        state: { 
+          campaignResults: itemDetails?.result, 
+          uploadedImage: item.image_url, 
+          campaignId: item.id 
+        }
+      });
+    }
   };
 
   if (error) {
@@ -170,113 +214,377 @@ const OptimizedGallery = () => {
             </Button>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <div className="space-y-12">
             {filteredItems.map((item) => (
-              <div
-                key={item.id}
-                className="group bg-card border border-border/50 rounded-xl overflow-hidden hover:shadow-lg hover:border-border transition-all duration-300 hover:scale-[1.02] cursor-pointer"
-                onClick={() => handleItemClick(item)}
-              >
-                {/* Media Preview */}
-                <div className="aspect-video bg-muted/30 relative overflow-hidden">
-                  {item.image_url ? (
-                    <img
-                      src={item.image_url}
-                      alt="Content preview"
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                      loading="lazy"
-                      onError={(e) => {
-                        e.currentTarget.style.display = 'none';
-                      }}
-                    />
-                  ) : (
-                    <div className="w-full h-full flex items-center justify-center">
-                      <FileText className="w-8 h-8 text-muted-foreground/50" />
-                    </div>
-                  )}
-                  
-                  {/* Video Indicator */}
-                  {item.has_video && (
-                    <div className="absolute top-2 left-2 bg-black/60 text-white text-xs px-2 py-1 rounded-full backdrop-blur-sm flex items-center space-x-1">
-                      <Play className="w-3 h-3" />
-                      <span>Video</span>
-                    </div>
-                  )}
-
-                  {/* Images Indicator */}
-                  {item.has_images && (
-                    <div className="absolute top-2 right-2 bg-black/60 text-white text-xs px-2 py-1 rounded-full backdrop-blur-sm">
-                      <Image className="w-3 h-3" />
-                    </div>
-                  )}
-                </div>
-
-                {/* Content Info */}
-                <div className="p-4">
-                  <div className="flex items-center justify-between mb-2">
-                    <span className={`text-xs font-medium px-2 py-1 rounded-full ${
-                      item.type === 'campaign' 
-                        ? 'bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300' 
-                        : 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300'
-                    }`}>
-                      {item.type === 'campaign' ? 'Campaign' : 'Catalog'}
-                    </span>
-                    <div className="flex items-center text-xs text-muted-foreground">
-                      <Calendar className="w-3 h-3 mr-1" />
-                      {formatDate(item.created_at)}
-                    </div>
-                  </div>
-
-                  <h3 className="font-semibold text-foreground mb-1 line-clamp-1 group-hover:text-primary transition-colors">
-                    {item.title}
-                  </h3>
-                  
-                  <p className="text-sm text-muted-foreground line-clamp-2 mb-3">
-                    {item.description}
-                  </p>
-
-                  {/* Asset Count */}
-                  <div className="flex items-center justify-between text-xs text-muted-foreground">
-                    <div className="flex items-center space-x-3">
-                      {item.has_images && (
-                        <div className="flex items-center space-x-1">
-                          <Image className="w-3 h-3" />
-                          <span>Images</span>
-                        </div>
-                      )}
-                      {item.has_video && (
-                        <div className="flex items-center space-x-1">
-                          <Play className="w-3 h-3" />
-                          <span>Video</span>
-                        </div>
-                      )}
-                    </div>
-                    
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      className="text-xs h-6 px-2 opacity-0 group-hover:opacity-100 transition-opacity"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        handleItemClick(item);
-                      }}
-                    >
-                      View
-                    </Button>
-                  </div>
-                </div>
-              </div>
+              <GalleryItemDisplay 
+                key={item.id} 
+                item={item}
+                onEdit={handleEdit}
+                onDownload={handleDownload}
+                onViewDetails={handleViewDetails}
+                formatDate={formatDate}
+              />
             ))}
           </div>
         )}
       </div>
 
-      {/* Preview Modal */}
-      <OptimizedGalleryPreviewModal 
-        item={selectedItem}
-        isOpen={isPreviewOpen}
-        onClose={handlePreviewClose}
+      {/* Download Modal */}
+      <QRDownloadModal 
+        isOpen={isDownloadModalOpen}
+        onClose={() => setIsDownloadModalOpen(false)}
+        campaignData={selectedItemForDownload}
       />
+    </div>
+  );
+};
+
+// Component to display individual gallery items with their full content
+const GalleryItemDisplay: React.FC<{
+  item: GalleryItem;
+  onEdit: (item: GalleryItem) => void;
+  onDownload: (item: GalleryItem, campaignResults: any) => void;
+  onViewDetails: (category: string, item: GalleryItem, itemDetails: any) => void;
+  formatDate: (dateString: string) => string;
+}> = ({ item, onEdit, onDownload, onViewDetails, formatDate }) => {
+  const { data: itemDetails, isLoading } = useGalleryItemDetails(item.id, item.type);
+
+  if (isLoading) {
+    return (
+      <Card className="w-full">
+        <CardContent className="p-8">
+          <div className="flex items-center justify-center">
+            <div className="w-8 h-8 animate-spin">
+              <RibbedSphere className="w-full h-full" />
+            </div>
+            <span className="ml-3 text-muted-foreground">Loading content...</span>
+          </div>
+        </CardContent>
+      </Card>
+    );
+  }
+
+  if (!itemDetails?.result) {
+    return (
+      <Card className="w-full">
+        <CardContent className="p-8">
+          <div className="text-center text-muted-foreground">
+            Content not available
+          </div>
+        </CardContent>
+      </Card>
+    );
+  }
+
+  const campaignResults = itemDetails.result;
+  const generatedImages = itemDetails.generated_images || [];
+  const generatedVideoUrl = itemDetails.generated_video_url;
+
+  return (
+    <Card className="w-full overflow-hidden">
+      <CardContent className="p-0">
+        {/* Header */}
+        <div className="bg-muted/30 p-4 border-b">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-4">
+              <Badge variant={item.type === 'campaign' ? 'default' : 'secondary'}>
+                {item.type === 'campaign' ? 'Campaign' : 'Catalog'}
+              </Badge>
+              <div>
+                <h2 className="text-lg font-semibold">{item.title}</h2>
+                <p className="text-sm text-muted-foreground">
+                  Created {formatDate(item.created_at)}
+                </p>
+              </div>
+            </div>
+            
+            <div className="flex items-center space-x-2">
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => onEdit(item)}
+                className="gap-2"
+              >
+                <Edit className="w-4 h-4" />
+                Edit
+              </Button>
+              <Button
+                variant="default"
+                size="sm"
+                onClick={() => onDownload(item, campaignResults)}
+                className="gap-2"
+              >
+                <Download className="w-4 h-4" />
+                Download
+              </Button>
+            </div>
+          </div>
+        </div>
+
+        {/* Content based on type */}
+        <div className="p-6">
+          {item.type === 'campaign' ? (
+            <CampaignContent 
+              campaignResults={campaignResults}
+              generatedImages={generatedImages}
+              generatedVideoUrl={generatedVideoUrl}
+              uploadedImage={item.image_url}
+              onViewDetails={(category) => onViewDetails(category, item, itemDetails)}
+            />
+          ) : (
+            <CatalogContent 
+              catalogResults={campaignResults}
+              uploadedImage={item.image_url}
+            />
+          )}
+        </div>
+      </CardContent>
+    </Card>
+  );
+};
+
+// Campaign content display component
+const CampaignContent: React.FC<{
+  campaignResults: any;
+  generatedImages: any[];
+  generatedVideoUrl: string | null;
+  uploadedImage: string;
+  onViewDetails: (category: string) => void;
+}> = ({ campaignResults, generatedImages, generatedVideoUrl, uploadedImage, onViewDetails }) => {
+  
+  const categories = [
+    {
+      title: 'Web Creative',
+      description: 'Hero sections and landing page concepts',
+      icon: FileText,
+      available: true,
+      preview: (
+        <div className="aspect-video bg-gradient-to-br from-amber-100 to-amber-200 rounded-lg overflow-hidden relative">
+          {(generatedImages[0]?.url || uploadedImage) && (
+            <img 
+              src={generatedImages[0]?.url || uploadedImage}
+              alt="Web creative preview"
+              className="w-full h-full object-cover"
+            />
+          )}
+          <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
+            <div className="text-center text-white p-4">
+              <h3 className="text-xl font-bold mb-2">
+                {campaignResults.landing_page_concept?.hero_text || 'Elevate Your Experience'}
+              </h3>
+              <p className="text-sm mb-4">
+                {campaignResults.landing_page_concept?.sub_text || 'Discover premium quality'}
+              </p>
+              <div className="bg-white text-black px-4 py-2 rounded-full text-sm font-semibold">
+                {campaignResults.landing_page_concept?.cta || 'Shop Now'}
+              </div>
+            </div>
+          </div>
+        </div>
+      )
+    },
+    {
+      title: 'Banner Ads',
+      description: 'Display ads for various platforms',
+      icon: Image,
+      available: campaignResults.banner_ads && campaignResults.banner_ads.length > 0,
+      preview: (
+        <div className="bg-gradient-to-r from-amber-200 to-amber-100 rounded-lg p-4 h-24 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            {(generatedImages[0]?.url || uploadedImage) && (
+              <img 
+                src={generatedImages[0]?.url || uploadedImage}
+                alt="Banner preview"
+                className="w-12 h-12 object-contain"
+              />
+            )}
+            <div>
+              <div className="font-bold text-sm">
+                {campaignResults.banner_ads?.[0]?.headline || 'PREMIUM QUALITY'}
+              </div>
+              <div className="text-xs text-gray-600">Premium Experience</div>
+            </div>
+          </div>
+          <div className="bg-black text-white px-3 py-1 rounded-full text-xs font-semibold">
+            {campaignResults.banner_ads?.[0]?.cta || 'Shop Now'}
+          </div>
+        </div>
+      )
+    },
+    {
+      title: 'Video Scripts',
+      description: 'Scripts for social media videos',
+      icon: Play,
+      available: campaignResults.video_scripts && campaignResults.video_scripts.length > 0,
+      preview: (
+        <div className="aspect-video bg-gradient-to-br from-amber-100 to-amber-200 rounded-lg overflow-hidden relative">
+          {generatedVideoUrl ? (
+            <video
+              src={generatedVideoUrl}
+              className="w-full h-full object-cover"
+              muted
+              poster={generatedImages[0]?.url || uploadedImage}
+            />
+          ) : (
+            <>
+              {(generatedImages[0]?.url || uploadedImage) && (
+                <img 
+                  src={generatedImages[0]?.url || uploadedImage}
+                  alt="Video preview"
+                  className="w-full h-full object-cover"
+                />
+              )}
+              <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
+                <div className="w-12 h-12 bg-white/90 rounded-full flex items-center justify-center">
+                  <Play className="w-4 h-4 text-gray-700 ml-1" />
+                </div>
+              </div>
+            </>
+          )}
+        </div>
+      )
+    },
+    {
+      title: 'Email Templates',
+      description: 'Marketing email campaigns',
+      icon: FileText,
+      available: campaignResults.email_copy,
+      preview: (
+        <div className="bg-white border rounded-lg p-4 text-sm">
+          <div className="border-b pb-2 mb-3">
+            <div className="font-semibold text-xs text-gray-500">Subject:</div>
+            <div className="font-medium">
+              {campaignResults.email_copy?.subject || 'Discover Your New Favorite'}
+            </div>
+          </div>
+          <div className="text-gray-600 line-clamp-3">
+            {campaignResults.email_copy?.body || 'Experience premium quality like never before...'}
+          </div>
+        </div>
+      )
+    }
+  ];
+
+  return (
+    <div className="space-y-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {categories.map((category) => (
+          <div
+            key={category.title}
+            className={`group cursor-pointer transition-all duration-300 ${
+              category.available ? 'hover:scale-[1.02]' : 'opacity-50 cursor-not-allowed'
+            }`}
+            onClick={() => category.available && onViewDetails(category.title)}
+          >
+            <Card className={`h-full ${category.available ? 'hover:shadow-lg' : ''}`}>
+              <CardContent className="p-4">
+                <div className="flex items-center justify-between mb-3">
+                  <div className="flex items-center gap-2">
+                    <category.icon className="w-5 h-5 text-primary" />
+                    <h3 className="font-semibold">{category.title}</h3>
+                  </div>
+                  {category.available && (
+                    <Badge variant="outline" className="text-xs">Available</Badge>
+                  )}
+                </div>
+                
+                <p className="text-sm text-muted-foreground mb-4">
+                  {category.description}
+                </p>
+                
+                <div className="mb-3">
+                  {category.preview}
+                </div>
+                
+                {category.available && (
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="w-full opacity-0 group-hover:opacity-100 transition-opacity"
+                  >
+                    View Details
+                  </Button>
+                )}
+              </CardContent>
+            </Card>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+// Catalog content display component
+const CatalogContent: React.FC<{
+  catalogResults: any;
+  uploadedImage: string;
+}> = ({ catalogResults, uploadedImage }) => {
+  return (
+    <div className="space-y-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {/* Original Image */}
+        <Card>
+          <CardContent className="p-4">
+            <h3 className="font-semibold mb-3">Original Product</h3>
+            <div className="aspect-square bg-muted rounded-lg overflow-hidden">
+              <img 
+                src={uploadedImage}
+                alt="Original product"
+                className="w-full h-full object-contain"
+              />
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Generated Content */}
+        <Card>
+          <CardContent className="p-4">
+            <h3 className="font-semibold mb-3">Generated Content</h3>
+            <div className="space-y-4">
+              {catalogResults.product_category && (
+                <div>
+                  <div className="text-sm font-medium text-muted-foreground">Product Category</div>
+                  <div className="text-sm">{catalogResults.product_category}</div>
+                </div>
+              )}
+              
+              {catalogResults.platform && (
+                <div>
+                  <div className="text-sm font-medium text-muted-foreground">Platform</div>
+                  <div className="text-sm">{catalogResults.platform}</div>
+                </div>
+              )}
+              
+              {catalogResults.tone && (
+                <div>
+                  <div className="text-sm font-medium text-muted-foreground">Tone</div>
+                  <div className="text-sm">{catalogResults.tone}</div>
+                </div>
+              )}
+              
+              {catalogResults.description && (
+                <div>
+                  <div className="text-sm font-medium text-muted-foreground">Description</div>
+                  <div className="text-sm line-clamp-3">{catalogResults.description}</div>
+                </div>
+              )}
+              
+              {catalogResults.tags && catalogResults.tags.length > 0 && (
+                <div>
+                  <div className="text-sm font-medium text-muted-foreground mb-2">Tags</div>
+                  <div className="flex flex-wrap gap-1">
+                    {catalogResults.tags.slice(0, 6).map((tag: string, index: number) => (
+                      <Badge key={index} variant="outline" className="text-xs">
+                        {tag}
+                      </Badge>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          </CardContent>
+        </Card>
+      </div>
     </div>
   );
 };
