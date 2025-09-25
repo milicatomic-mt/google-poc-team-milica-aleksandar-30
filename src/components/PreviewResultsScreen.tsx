@@ -799,189 +799,291 @@ const PreviewResultsScreen: React.FC = () => {
         const firstScript = activeCampaignResults.video_scripts?.[0];
         return (
           <div className="max-w-7xl mx-auto space-y-8">
-            {/* Mobile-First Layout: Side by Side */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              {/* Left Side - Video Preview */}
+            {/* Video Scenario Layout */}
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+              
+              {/* Left Side - Video Preview & Platform Info */}
               <div className="space-y-6">
                 <div className="border-2 border-border rounded-xl overflow-hidden bg-background shadow-2xl">
-                {/* Video Script Preview */}
-                <div className="bg-gradient-to-br from-gray-900 to-black text-white relative">
-                  <div className="relative aspect-video">
-                    {generatedVideoUrl ? (
-                      <VideoPlayer
-                        videoUrl={generatedVideoUrl}
-                        posterUrl={activeCampaignResults?.generated_images?.[0]?.url || uploadedImage}
-                        title="Generated Campaign Video"
-                        className="w-full h-full"
-                      />
-                    ) : (
-                      <>
-                        {/* Video Thumbnail (fallback while video not ready) */}
-                        {activeCampaignResults?.generated_images?.[0]?.url ? (
-                          <img src={activeCampaignResults.generated_images[0].url} alt="Video thumbnail" className="w-full h-full object-cover" />
-                        ) : uploadedImage ? (
-                          <img src={uploadedImage} alt="Video thumbnail" className="w-full h-full object-cover" />
-                        ) : null}
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30"></div>
-                        <div className="absolute inset-0 flex items-center justify-center">
-                          <div className="w-24 h-24 bg-white/10 rounded-full flex items-center justify-center backdrop-blur-md border border-white/20">
-                            <Play className="w-10 h-10 text-white ml-1" />
+                  {/* Video Preview */}
+                  <div className="bg-gradient-to-br from-gray-900 to-black text-white relative">
+                    <div className="relative aspect-[9/16]">
+                      {generatedVideoUrl ? (
+                        <VideoPlayer
+                          videoUrl={generatedVideoUrl}
+                          posterUrl={activeCampaignResults?.generated_images?.[0]?.url || uploadedImage}
+                          title="Generated Campaign Video"
+                          className="w-full h-full"
+                        />
+                      ) : (
+                        <>
+                          {/* Video Thumbnail with 9:16 aspect ratio */}
+                          {activeCampaignResults?.generated_images?.[0]?.url ? (
+                            <img src={activeCampaignResults.generated_images[0].url} alt="Video thumbnail" className="w-full h-full object-cover" />
+                          ) : uploadedImage ? (
+                            <img src={uploadedImage} alt="Video thumbnail" className="w-full h-full object-cover" />
+                          ) : null}
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30"></div>
+                          <div className="absolute inset-0 flex items-center justify-center">
+                            <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center backdrop-blur-md border border-white/20">
+                              <Play className="w-8 h-8 text-white ml-1" />
+                            </div>
                           </div>
-                        </div>
-                        <div className="absolute bottom-6 right-6 bg-black/80 text-white text-sm px-3 py-1 rounded-full backdrop-blur-sm">
-                          0:30
-                        </div>
-                      </>
-                    )}
-                  </div>
-                  {/* Video Title Bar */}
-                  <div className="p-6 bg-gradient-to-r from-gray-900/90 to-black/90 backdrop-blur-sm">
-                    <h3 className="font-bold text-2xl mb-3 text-white">
-                      {activeCampaignResults.banner_ads?.[0]?.headline || 'Transform Your Experience'}
-                    </h3>
-                    <div className="flex items-center gap-6 text-gray-300">
-                      <span className="flex items-center gap-2">
-                        <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-                        Live Campaign
-                      </span>
-                      <span>• Optimized for all platforms</span>
+                          <div className="absolute bottom-4 right-4 bg-black/80 text-white text-xs px-2 py-1 rounded-full backdrop-blur-sm">
+                            0:15
+                          </div>
+                        </>
+                      )}
                     </div>
                   </div>
-                </div>
                 </div>
 
-                {/* Social Media Platforms Section - Moved to left */}
-                <div className="bg-white rounded-xl p-6 shadow-xl border border-gray-100">
-                  <div className="text-center mb-6">
-                    <h3 className="font-bold text-xl text-gray-900 mb-2">Perfect for All Platforms</h3>
-                    <p className="text-gray-600">Optimized and ready to deploy</p>
-                  </div>
-                  
-                  {/* Social Platform Icons */}
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="group text-center p-4 rounded bg-gradient-to-br from-pink-50 to-purple-50 hover:from-pink-100 hover:to-purple-100 transition-all duration-300 cursor-pointer">
-                      <div className="w-12 h-12 mx-auto mb-3 bg-gradient-to-r from-pink-500 to-purple-600 rounded flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                        <svg className="w-6 h-6 text-white" viewBox="0 0 24 24" fill="currentColor">
-                          <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.174-.105-.949-.199-2.403.042-3.441.219-.937 1.404-5.965 1.404-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 01.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.357-.631-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24.009 12.017 24c6.624 0 11.99-5.367 11.99-11.987C24.007 5.367 18.641.001 12.017.001z"/>
-                        </svg>
+                {/* Platform Specs */}
+                <div className="bg-white rounded-xl p-4 shadow-xl border border-gray-100">
+                  <h4 className="font-bold text-lg text-gray-900 mb-4">Platform Optimization</h4>
+                  <div className="space-y-3">
+                    <div className="flex items-center gap-3 p-3 bg-gradient-to-r from-pink-50 to-purple-50 rounded-lg">
+                      <div className="w-8 h-8 bg-gradient-to-r from-pink-500 to-purple-600 rounded flex items-center justify-center">
+                        <span className="text-white text-xs font-bold">T</span>
                       </div>
-                      <h4 className="font-semibold text-sm text-gray-900 mb-1">TikTok</h4>
-                      <p className="text-xs text-gray-600">9:16 Vertical</p>
+                      <div>
+                        <p className="font-semibold text-sm">TikTok</p>
+                        <p className="text-xs text-gray-600">9:16 • 15-60s • Trending Audio</p>
+                      </div>
                     </div>
-                    
-                    <div className="group text-center p-4 rounded bg-gradient-to-br from-purple-50 to-pink-50 hover:from-purple-100 hover:to-pink-100 transition-all duration-300 cursor-pointer">
-                      <div className="w-12 h-12 mx-auto mb-3 bg-gradient-to-r from-purple-500 to-pink-500 rounded flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                        <svg className="w-6 h-6 text-white" viewBox="0 0 24 24" fill="currentColor">
-                          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                        </svg>
+                    <div className="flex items-center gap-3 p-3 bg-gradient-to-r from-purple-50 to-pink-50 rounded-lg">
+                      <div className="w-8 h-8 bg-gradient-to-r from-purple-500 to-pink-500 rounded flex items-center justify-center">
+                        <span className="text-white text-xs font-bold">IG</span>
                       </div>
-                      <h4 className="font-semibold text-sm text-gray-900 mb-1">Instagram</h4>
-                      <p className="text-xs text-gray-600">Stories & Reels</p>
+                      <div>
+                        <p className="font-semibold text-sm">Instagram Reels</p>
+                        <p className="text-xs text-gray-600">9:16 • 15-90s • Music + Captions</p>
+                      </div>
                     </div>
-                    
-                    <div className="group text-center p-4 rounded bg-gradient-to-br from-red-50 to-pink-50 hover:from-red-100 hover:to-pink-100 transition-all duration-300 cursor-pointer">
-                      <div className="w-12 h-12 mx-auto mb-3 bg-gradient-to-r from-red-500 to-pink-500 rounded flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                        <svg className="w-6 h-6 text-white" viewBox="0 0 24 24" fill="currentColor">
-                          <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-                        </svg>
+                    <div className="flex items-center gap-3 p-3 bg-gradient-to-r from-red-50 to-pink-50 rounded-lg">
+                      <div className="w-8 h-8 bg-gradient-to-r from-red-500 to-pink-500 rounded flex items-center justify-center">
+                        <span className="text-white text-xs font-bold">YT</span>
                       </div>
-                      <h4 className="font-semibold text-sm text-gray-900 mb-1">YouTube</h4>
-                      <p className="text-xs text-gray-600">Shorts & Standard</p>
-                    </div>
-                    
-                    <div className="group text-center p-4 rounded bg-gradient-to-br from-blue-50 to-cyan-50 hover:from-blue-100 hover:to-cyan-100 transition-all duration-300 cursor-pointer">
-                      <div className="w-12 h-12 mx-auto mb-3 bg-gradient-to-r from-blue-500 to-cyan-500 rounded flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                        <svg className="w-6 h-6 text-white" viewBox="0 0 24 24" fill="currentColor">
-                          <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
-                        </svg>
+                      <div>
+                        <p className="font-semibold text-sm">YouTube Shorts</p>
+                        <p className="text-xs text-gray-600">9:16 • 15-60s • Searchable</p>
                       </div>
-                      <h4 className="font-semibold text-sm text-gray-900 mb-1">Twitter</h4>
-                      <p className="text-xs text-gray-600">Video tweets</p>
                     </div>
                   </div>
                 </div>
               </div>
 
-              {/* Right Side - Script Content */}
+              {/* Center - Video Script Timeline */}
               <div className="space-y-6">
-                <div className="bg-white rounded-xl p-8 shadow-xl border border-gray-100">
-                  {/* Script Header */}
+                <div className="bg-white rounded-xl p-6 shadow-xl border border-gray-100">
                   <div className="text-center pb-6 border-b border-gray-200">
-                    <h4 className="font-bold text-2xl text-gray-900 mb-2">Professional Video Script</h4>
-                    <p className="text-gray-600">Optimized for maximum engagement across all social platforms</p>
+                    <h4 className="font-bold text-xl text-gray-900 mb-2">Video Script Timeline</h4>
+                    <p className="text-gray-600">Scene-by-scene breakdown optimized for engagement</p>
                   </div>
                   
-                  {/* Script Breakdown */}
-                  <div className="space-y-6 mt-8">
-                    <div className="p-6 bg-white rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
-                      <div className="flex items-center gap-3 mb-4">
-                        <div className="w-10 h-10 rounded-full bg-black text-white text-sm font-bold flex items-center justify-center">1</div>
-                        <div>
-                          <span className="font-semibold text-lg text-gray-900">Opening Hook</span>
-                          <p className="text-sm text-gray-500">0-3 seconds</p>
+                  {/* Script Timeline */}
+                  <div className="space-y-4 mt-6">
+                    {/* Hook - 0-3s */}
+                    <div className="relative">
+                      <div className="flex items-start gap-4">
+                        <div className="flex flex-col items-center">
+                          <div className="w-8 h-8 rounded-full bg-red-500 text-white text-xs font-bold flex items-center justify-center">1</div>
+                          <div className="w-0.5 h-16 bg-red-200 mt-2"></div>
+                        </div>
+                        <div className="flex-1">
+                          <div className="bg-red-50 p-4 rounded-lg border-l-4 border-red-500">
+                            <div className="flex justify-between items-center mb-2">
+                              <span className="font-bold text-red-700">HOOK</span>
+                              <span className="text-xs bg-red-500 text-white px-2 py-1 rounded">0-3s</span>
+                            </div>
+                            <p className="text-sm font-semibold mb-2">
+                              "{activeCampaignResults.banner_ads?.[0]?.headline || 'Stop scrolling! This will change everything...'}"
+                            </p>
+                            <p className="text-xs text-gray-600">
+                              <strong>Visual:</strong> Quick product reveal with dramatic zoom
+                            </p>
+                          </div>
                         </div>
                       </div>
-                      <p className="text-lg font-semibold mb-3 text-gray-900">
-                        "{activeCampaignResults.banner_ads?.[0]?.headline || 'Ready to transform your experience?'}"
-                      </p>
-                      <p className="text-sm text-gray-600 bg-gray-50 p-3 rounded-sm">
-                        <strong>Visual Direction:</strong> Close-up of product with dynamic zoom and smooth transition
-                      </p>
                     </div>
-                    
-                    <div className="p-6 bg-white rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
-                      <div className="flex items-center gap-3 mb-4">
-                        <div className="w-10 h-10 rounded-full bg-black text-white text-sm font-bold flex items-center justify-center">2</div>
-                        <div>
-                          <span className="font-semibold text-lg text-gray-900">Main Content</span>
-                          <p className="text-sm text-gray-500">3-25 seconds</p>
+
+                    {/* Problem/Context - 3-6s */}
+                    <div className="relative">
+                      <div className="flex items-start gap-4">
+                        <div className="flex flex-col items-center">
+                          <div className="w-8 h-8 rounded-full bg-orange-500 text-white text-xs font-bold flex items-center justify-center">2</div>
+                          <div className="w-0.5 h-16 bg-orange-200 mt-2"></div>
+                        </div>
+                        <div className="flex-1">
+                          <div className="bg-orange-50 p-4 rounded-lg border-l-4 border-orange-500">
+                            <div className="flex justify-between items-center mb-2">
+                              <span className="font-bold text-orange-700">PROBLEM</span>
+                              <span className="text-xs bg-orange-500 text-white px-2 py-1 rounded">3-6s</span>
+                            </div>
+                            <p className="text-sm mb-2">
+                              "Tired of [common problem]? You're not alone..."
+                            </p>
+                            <p className="text-xs text-gray-600">
+                              <strong>Visual:</strong> Relatable scenario, quick cuts
+                            </p>
+                          </div>
                         </div>
                       </div>
-                      <p className="text-base mb-4 whitespace-pre-wrap text-gray-800 leading-relaxed">
-                        {firstScript?.script || "Discover the perfect solution that transforms your daily experience with innovative features designed for modern life. Experience the difference that premium quality makes."}
-                      </p>
-                      <p className="text-sm text-gray-600 bg-gray-50 p-3 rounded-sm">
-                        <strong>Visual Direction:</strong> Product demonstration with key features highlighted and lifestyle shots
-                      </p>
                     </div>
-                    
-                    <div className="p-6 bg-white rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
-                      <div className="flex items-center gap-3 mb-4">
-                        <div className="w-10 h-10 rounded-full bg-black text-white text-sm font-bold flex items-center justify-center">3</div>
-                        <div>
-                          <span className="font-semibold text-lg text-gray-900">Call to Action</span>
-                          <p className="text-sm text-gray-500">25-30 seconds</p>
+
+                    {/* Solution - 6-10s */}
+                    <div className="relative">
+                      <div className="flex items-start gap-4">
+                        <div className="flex flex-col items-center">
+                          <div className="w-8 h-8 rounded-full bg-green-500 text-white text-xs font-bold flex items-center justify-center">3</div>
+                          <div className="w-0.5 h-16 bg-green-200 mt-2"></div>
+                        </div>
+                        <div className="flex-1">
+                          <div className="bg-green-50 p-4 rounded-lg border-l-4 border-green-500">
+                            <div className="flex justify-between items-center mb-2">
+                              <span className="font-bold text-green-700">SOLUTION</span>
+                              <span className="text-xs bg-green-500 text-white px-2 py-1 rounded">6-10s</span>
+                            </div>
+                            <p className="text-sm mb-2">
+                              {firstScript?.script?.substring(0, 80) || "Here's how our product solves this perfectly..."}
+                            </p>
+                            <p className="text-xs text-gray-600">
+                              <strong>Visual:</strong> Product in action, key features
+                            </p>
+                          </div>
                         </div>
                       </div>
-                      <p className="text-lg font-semibold mb-3 text-gray-900">
-                        "{activeCampaignResults.banner_ads?.[0]?.cta || 'Get Started Today'} - Limited time offer!"
-                      </p>
-                      <p className="text-sm text-gray-600 bg-gray-50 p-3 rounded-sm">
-                        <strong>Visual Direction:</strong> Product showcase with animated CTA button and compelling offer display
-                      </p>
+                    </div>
+
+                    {/* Proof/Demo - 10-13s */}
+                    <div className="relative">
+                      <div className="flex items-start gap-4">
+                        <div className="flex flex-col items-center">
+                          <div className="w-8 h-8 rounded-full bg-blue-500 text-white text-xs font-bold flex items-center justify-center">4</div>
+                          <div className="w-0.5 h-16 bg-blue-200 mt-2"></div>
+                        </div>
+                        <div className="flex-1">
+                          <div className="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-500">
+                            <div className="flex justify-between items-center mb-2">
+                              <span className="font-bold text-blue-700">PROOF</span>
+                              <span className="text-xs bg-blue-500 text-white px-2 py-1 rounded">10-13s</span>
+                            </div>
+                            <p className="text-sm mb-2">
+                              "Look at these results! Over 10,000 happy customers..."
+                            </p>
+                            <p className="text-xs text-gray-600">
+                              <strong>Visual:</strong> Before/after, testimonials, stats
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* CTA - 13-15s */}
+                    <div className="relative">
+                      <div className="flex items-start gap-4">
+                        <div className="flex flex-col items-center">
+                          <div className="w-8 h-8 rounded-full bg-purple-500 text-white text-xs font-bold flex items-center justify-center">5</div>
+                        </div>
+                        <div className="flex-1">
+                          <div className="bg-purple-50 p-4 rounded-lg border-l-4 border-purple-500">
+                            <div className="flex justify-between items-center mb-2">
+                              <span className="font-bold text-purple-700">CALL TO ACTION</span>
+                              <span className="text-xs bg-purple-500 text-white px-2 py-1 rounded">13-15s</span>
+                            </div>
+                            <p className="text-sm mb-2">
+                              "{activeCampaignResults.banner_ads?.[0]?.cta || 'Get yours now'} - Link in bio!"
+                            </p>
+                            <p className="text-xs text-gray-600">
+                              <strong>Visual:</strong> Product close-up, animated CTA
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Right Side - Social Media Examples */}
+              <div className="space-y-6">
+                {/* TikTok Example */}
+                <div className="bg-gradient-to-br from-pink-500 to-purple-600 rounded-xl p-1 shadow-xl">
+                  <div className="bg-white rounded-lg p-4">
+                    <div className="flex items-center gap-2 mb-3">
+                      <div className="w-6 h-6 bg-gradient-to-r from-pink-500 to-purple-600 rounded flex items-center justify-center">
+                        <span className="text-white text-xs font-bold">T</span>
+                      </div>
+                      <span className="font-bold text-sm">TikTok Post</span>
+                    </div>
+                    <div className="bg-black text-white p-3 rounded text-xs mb-3 aspect-[9/16] flex flex-col justify-between">
+                      <div>
+                        <p className="font-bold">@yourbrand</p>
+                        <p className="text-xs opacity-80 mt-1">Trending audio playing...</p>
+                      </div>
+                      <div className="space-y-1">
+                        <p className="text-xs">✨ {activeCampaignResults.banner_ads?.[0]?.headline || 'Game changer alert'}</p>
+                        <p className="text-xs opacity-80">Follow for more tips! 💫</p>
+                      </div>
+                    </div>
+                    <div className="text-xs text-gray-600">
+                      <p><strong>Caption:</strong> Life hack you need to try! 🤯 #fyp #trending</p>
+                      <p><strong>Audio:</strong> Trending sound + voiceover</p>
                     </div>
                   </div>
                 </div>
 
-                {/* Technical Specifications */}
-                <div className="bg-white rounded-xl p-6 shadow-xl border border-gray-100">
-                  <h5 className="font-bold text-lg mb-4 text-gray-900">Technical Specifications</h5>
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="text-center p-4 bg-gray-50 rounded">
-                      <p className="font-semibold text-gray-900 mb-1">Duration</p>
-                      <p className="text-sm text-gray-600">30 seconds</p>
+                {/* Instagram Example */}
+                <div className="bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl p-1 shadow-xl">
+                  <div className="bg-white rounded-lg p-4">
+                    <div className="flex items-center gap-2 mb-3">
+                      <div className="w-6 h-6 bg-gradient-to-r from-purple-500 to-pink-500 rounded flex items-center justify-center">
+                        <span className="text-white text-xs font-bold">IG</span>
+                      </div>
+                      <span className="font-bold text-sm">Instagram Reel</span>
                     </div>
-                    <div className="text-center p-4 bg-gray-50 rounded">
-                      <p className="font-semibold text-gray-900 mb-1">Format</p>
-                      <p className="text-sm text-gray-600">Multi-ratio</p>
+                    <div className="bg-gradient-to-br from-purple-400 to-pink-400 text-white p-3 rounded text-xs mb-3 aspect-[9/16] flex flex-col justify-between">
+                      <div>
+                        <p className="font-bold">your_brand</p>
+                        <p className="text-xs opacity-80">🎵 Original audio</p>
+                      </div>
+                      <div className="space-y-1">
+                        <p className="text-center font-bold">
+                          {activeCampaignResults.banner_ads?.[0]?.headline?.toUpperCase() || 'MIND = BLOWN'}
+                        </p>
+                        <p className="text-center text-xs">Swipe up for link 👆</p>
+                      </div>
                     </div>
-                    <div className="text-center p-4 bg-gray-50 rounded">
-                      <p className="font-semibold text-gray-900 mb-1">Music</p>
-                      <p className="text-sm text-gray-600">Upbeat, energetic</p>
+                    <div className="text-xs text-gray-600">
+                      <p><strong>Caption:</strong> You won't believe this! Link in bio 🔗</p>
+                      <p><strong>Hashtags:</strong> #reels #viral #musthave</p>
                     </div>
-                    <div className="text-center p-4 bg-gray-50 rounded">
-                      <p className="font-semibold text-gray-900 mb-1">Captions</p>
-                      <p className="text-sm text-gray-600">Auto-generated</p>
+                  </div>
+                </div>
+
+                {/* Production Notes */}
+                <div className="bg-white rounded-xl p-4 shadow-xl border border-gray-100">
+                  <h5 className="font-bold text-sm mb-3 text-gray-900">Production Notes</h5>
+                  <div className="space-y-2 text-xs text-gray-600">
+                    <div className="flex items-start gap-2">
+                      <span className="font-semibold">📱 Format:</span>
+                      <span>Vertical 9:16, mobile-first</span>
+                    </div>
+                    <div className="flex items-start gap-2">
+                      <span className="font-semibold">🎵 Audio:</span>
+                      <span>Trending sounds + clear voiceover</span>
+                    </div>
+                    <div className="flex items-start gap-2">
+                      <span className="font-semibold">✏️ Text:</span>
+                      <span>Large, readable fonts with high contrast</span>
+                    </div>
+                    <div className="flex items-start gap-2">
+                      <span className="font-semibold">⚡ Pace:</span>
+                      <span>Quick cuts, 1-2 seconds per shot</span>
+                    </div>
+                    <div className="flex items-start gap-2">
+                      <span className="font-semibold">🎯 Hook:</span>
+                      <span>Attention-grabbing within first 1.5s</span>
                     </div>
                   </div>
                 </div>
