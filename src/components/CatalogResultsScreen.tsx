@@ -32,6 +32,7 @@ import {
 import { saveCatalogRequest, generateCatalog, uploadBase64Image } from '@/lib/database';
 import type { CatalogEnrichmentRequest, CatalogEnrichmentResponse } from '@/types/api';
 import RibbedSphere from '@/components/RibbedSphere';
+import QRDownloadModal from '@/components/QRDownloadModal';
 
 const CatalogResultsScreen: React.FC = () => {
   const location = useLocation();
@@ -48,7 +49,6 @@ const CatalogResultsScreen: React.FC = () => {
   const [currentAction, setCurrentAction] = useState("Preparing catalog generation...");
   const [progress, setProgress] = useState(0);
   const [isDownloadModalOpen, setIsDownloadModalOpen] = useState(false);
-  const [downloadUrl, setDownloadUrl] = useState<string>('');
   const [hasStartedGeneration, setHasStartedGeneration] = useState(false);
 
   useEffect(() => {
@@ -154,16 +154,8 @@ const CatalogResultsScreen: React.FC = () => {
     navigate('/');
   };
 
-  const handleOpenDownloadModal = async () => {
-    try {
-      const { createDownloadSession } = await import('@/lib/download-session');
-      const sessionToken = await createDownloadSession(catalogResults as any);
-      setDownloadUrl(window.location.origin + `/download?session=${sessionToken}`);
-      setIsDownloadModalOpen(true);
-    } catch (error) {
-      console.error('Failed to create download session:', error);
-      toast.error('Failed to prepare download. Please try again.');
-    }
+  const handleOpenDownloadModal = () => {
+    setIsDownloadModalOpen(true);
   };
 
   if (isGenerating) {
@@ -520,49 +512,13 @@ const CatalogResultsScreen: React.FC = () => {
         </main>
       </div>
       
-      {/* Download QR Code Modal */}
-      <Dialog open={isDownloadModalOpen} onOpenChange={setIsDownloadModalOpen}>
-        <DialogContent className="max-w-md mx-auto">
-          <DialogHeader className="space-y-3">
-            <DialogTitle className="text-center text-2xl font-bold text-foreground">
-              Download Your Content
-            </DialogTitle>
-            <DialogDescription className="text-center text-muted-foreground">
-              Scan the QR Code to download
-            </DialogDescription>
-          </DialogHeader>
-          
-          <div className="flex flex-col items-center py-8 space-y-6">
-            {/* QR Code */}
-            <div className="bg-white p-6 rounded-2xl shadow-lg">
-              <QRCodeSVG 
-                value={downloadUrl}
-                size={200}
-                level="M"
-                includeMargin={false}
-                fgColor="#000000"
-                bgColor="#ffffff"
-              />
-            </div>
-            
-            {/* Scan Me Button */}
-            <Button 
-              className="bg-primary hover:bg-primary/90 text-white px-8 py-2 rounded-full font-semibold text-sm"
-              size="sm"
-            >
-              SCAN ME
-            </Button>
-            
-            {/* File Name */}
-            <div className="flex items-center gap-2 text-muted-foreground">
-              <div className="w-4 h-4 bg-primary/20 rounded-sm flex items-center justify-center">
-                <div className="w-2 h-2 bg-primary rounded-xs"></div>
-              </div>
-              <span className="text-sm font-medium">Catalog Results.zip</span>
-            </div>
-          </div>
-        </DialogContent>
-      </Dialog>
+      {/* QR Download Modal */}
+      <QRDownloadModal 
+        isOpen={isDownloadModalOpen}
+        onClose={() => setIsDownloadModalOpen(false)}
+        campaignData={catalogResults}
+        title="Download Catalog Content"
+      />
     </div>
   );
 };
