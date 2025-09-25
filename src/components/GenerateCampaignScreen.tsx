@@ -11,8 +11,15 @@ const GenerateCampaignScreen = () => {
   const navigate = useNavigate();
   const [currentAction, setCurrentAction] = useState("Preparing your content...");
   const [progress, setProgress] = useState(0);
+  const [hasStartedGeneration, setHasStartedGeneration] = useState(false);
 
   useEffect(() => {
+    if (hasStartedGeneration) {
+      return;
+    }
+    
+    setHasStartedGeneration(true);
+    
     const generateContent = async () => {
       try {
         const state = location.state;

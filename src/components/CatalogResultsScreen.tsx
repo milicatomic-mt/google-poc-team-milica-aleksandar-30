@@ -49,12 +49,18 @@ const CatalogResultsScreen: React.FC = () => {
   const [progress, setProgress] = useState(0);
   const [isDownloadModalOpen, setIsDownloadModalOpen] = useState(false);
   const [downloadUrl, setDownloadUrl] = useState<string>('');
+  const [hasStartedGeneration, setHasStartedGeneration] = useState(false);
 
   useEffect(() => {
-    if (!catalogData?.uploadedImage) {
-      navigate('/');
+    if (!catalogData?.uploadedImage || hasStartedGeneration) {
       return;
     }
+
+    if (hasStartedGeneration) {
+      return;
+    }
+    
+    setHasStartedGeneration(true);
 
     const generateCatalogContent = async () => {
       try {
@@ -124,7 +130,7 @@ const CatalogResultsScreen: React.FC = () => {
     };
 
     generateCatalogContent();
-  }, [catalogData, navigate]);
+  }, []);
 
   const handleBack = () => {
     navigate(-1);
