@@ -1682,139 +1682,111 @@ const PreviewResultsScreen: React.FC = () => {
                   </Button>
                 </div>
                 <CardContent className="p-4">
-                  <div className="h-80 space-y-3">
-                    {/* Leaderboard Banner in Website Context - Compact Version */}
-                    <div className="bg-white rounded-lg overflow-hidden shadow-sm border border-gray-200 h-24">
-                      {/* Mini Website Header */}
-                      <div className="bg-gray-100 px-2 py-1 border-b text-[8px]">
-                        <div className="flex justify-between items-center">
-                          <span className="font-semibold text-gray-700">NewsWebsite.com</span>
-                          <div className="flex gap-2 text-gray-600">
-                            <span>Home</span> <span>Tech</span> <span>Sports</span>
+                  <div className="h-80 bg-gray-50 rounded-lg overflow-hidden">
+                    <div className="p-4 space-y-4">
+                      {/* Header */}
+                      <div className="flex items-center justify-between">
+                        <h4 className="text-sm font-semibold text-gray-900">Banner Ads</h4>
+                        <span className="text-xs text-blue-600 font-medium cursor-pointer">Open</span>
+                      </div>
+                      
+                      {/* Top Row - Two Square Banners */}
+                      <div className="grid grid-cols-2 gap-3">
+                        {/* Left Banner - Person with Headphones */}
+                        <div className="aspect-square bg-gradient-to-br from-amber-200 to-orange-300 rounded-lg overflow-hidden relative">
+                          {(imageMapping?.image_0 || uploadedImage) && (
+                            <img 
+                              src={imageMapping?.image_0 || uploadedImage} 
+                              alt="Person with headphones" 
+                              className="w-full h-full object-cover" 
+                            />
+                          )}
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
+                          <div className="absolute bottom-0 left-0 right-0 p-3">
+                            <div className="space-y-1">
+                              <h3 className="text-white text-xs font-bold uppercase tracking-wide">
+                                Premium Sound
+                              </h3>
+                              <p className="text-white/90 text-[8px] uppercase tracking-wider">
+                                Minimalist Design
+                              </p>
+                              <div className="flex items-center justify-between mt-2">
+                                <span className="text-white/80 text-[7px]">
+                                  WIRELESS BLUETOOTH CONNECTION<br/>
+                                  WITH BASS RESONANCE
+                                </span>
+                                <button className="bg-white text-gray-900 text-[8px] px-2 py-1 rounded font-semibold">
+                                  Shop Now
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        
+                        {/* Right Banner - Just Headphones Product */}
+                        <div className="aspect-square bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg overflow-hidden relative flex items-center justify-center">
+                          {(imageMapping?.image_1 || imageMapping?.image_0 || uploadedImage) && (
+                            <img 
+                              src={imageMapping?.image_1 || imageMapping?.image_0 || uploadedImage} 
+                              alt="Headphones product" 
+                              className="w-16 h-16 object-contain" 
+                            />
+                          )}
+                          <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-amber-200 to-amber-100 p-3">
+                            <div className="space-y-1">
+                              <h3 className="text-gray-900 text-xs font-bold uppercase tracking-wide">
+                                Premium Sound
+                              </h3>
+                              <p className="text-gray-700 text-[8px] uppercase tracking-wider">
+                                Minimalist Design
+                              </p>
+                              <div className="flex items-center justify-between mt-2">
+                                <span className="text-gray-600 text-[7px]">
+                                  WIRELESS BLUETOOTH CONNECTION<br/>
+                                  WITH BASS RESONANCE
+                                </span>
+                                <button className="bg-gray-900 text-white text-[8px] px-2 py-1 rounded font-semibold">
+                                  Shop Now
+                                </button>
+                              </div>
+                            </div>
                           </div>
                         </div>
                       </div>
                       
-                      {/* Banner Area with Blue Highlight */}
-                      <div className="relative p-2">
-                        <div className="absolute -inset-1 bg-blue-500/20 border border-blue-500 border-dashed rounded"></div>
-                        <div className="relative bg-gradient-to-r from-amber-200 to-amber-100 rounded p-2 h-12 flex items-center justify-between">
-                          <div className="flex items-center gap-2">
+                      {/* Bottom Row - Wide Horizontal Banner */}
+                      <div className="bg-gradient-to-r from-amber-200 to-orange-200 rounded-lg overflow-hidden relative h-20">
+                        <div className="flex items-center h-full">
+                          {/* Left - Person Image */}
+                          <div className="w-20 h-full relative overflow-hidden">
                             {(imageMapping?.image_0 || uploadedImage) && (
                               <img 
                                 src={imageMapping?.image_0 || uploadedImage} 
-                                alt="Product" 
-                                className="w-6 h-6 object-contain" 
+                                alt="Person with headphones" 
+                                className="w-full h-full object-cover" 
                               />
                             )}
-                            <div>
-                              <div className="text-[8px] font-bold text-black">
-                                {activeCampaignResults.banner_ads?.[0]?.headline || 'PREMIUM SOUND'}
-                              </div>
-                              <div className="text-[6px] text-gray-700">MINIMALIST DESIGN</div>
-                            </div>
                           </div>
-                          <div className="bg-white text-black text-[6px] px-2 py-1 rounded-full font-medium">
-                            {activeCampaignResults.banner_ads?.[0]?.cta || 'Shop Now'}
+                          
+                          {/* Middle - Text Content */}
+                          <div className="flex-1 px-4 py-3">
+                            <h3 className="text-gray-900 text-sm font-bold uppercase tracking-wide mb-1">
+                              Premium Sound
+                            </h3>
+                            <p className="text-gray-700 text-[10px] uppercase tracking-wider mb-2">
+                              Minimalist Design
+                            </p>
+                            <p className="text-gray-600 text-[8px] leading-tight">
+                              WIRELESS BLUETOOTH CONNECTION<br/>
+                              WITH BASS RESONANCE
+                            </p>
                           </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Medium Rectangle in Article Context */}
-                    <div className="bg-white rounded-lg overflow-hidden shadow-sm border border-gray-200 h-24">
-                      <div className="flex h-full">
-                        {/* Mini Article Content */}
-                        <div className="flex-1 p-2 text-[6px]">
-                          <div className="font-semibold mb-1">Latest Technology News</div>
-                          <div className="w-full h-8 bg-gray-200 rounded mb-1"></div>
-                          <div className="text-gray-600">Industry updates and insights...</div>
-                        </div>
-                        
-                        {/* Sidebar Banner with Blue Highlight */}
-                        <div className="w-20 bg-gray-50 p-2 border-l relative">
-                          <div className="absolute -inset-1 bg-blue-500/20 border border-blue-500 border-dashed rounded"></div>
-                          <div className="relative bg-gradient-to-br from-gray-200 to-gray-300 rounded h-full flex flex-col">
-                            {(imageMapping?.image_0 || uploadedImage) && (
-                              <div className="flex-1 flex items-center justify-center">
-                                <img 
-                                  src={imageMapping?.image_0 || uploadedImage} 
-                                  alt="Product" 
-                                  className="w-8 h-8 object-contain" 
-                                />
-                              </div>
-                            )}
-                            <div className="bg-amber-100 p-1 text-center">
-                              <div className="text-[6px] font-bold text-black">
-                                {activeCampaignResults.banner_ads?.[0]?.headline || 'PREMIUM'}
-                              </div>
-                              <div className="bg-black text-white text-[5px] px-1 rounded-full mt-0.5">
-                                {activeCampaignResults.banner_ads?.[0]?.cta || 'Shop'}
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Wide Skyscraper in Website Sidebar Context */}
-                    <div className="bg-white rounded-lg overflow-hidden shadow-sm border border-gray-200 h-24">
-                      <div className="flex h-full">
-                        {/* Mini Sidebar Banner with Blue Highlight */}
-                        <div className="w-12 bg-gray-50 p-1 border-r relative">
-                          <div className="absolute -inset-1 bg-blue-500/20 border border-blue-500 border-dashed rounded"></div>
-                          <div className="relative bg-gradient-to-b from-gray-900 to-black rounded h-full text-center flex flex-col justify-center">
-                            <div className="text-white text-[6px] font-bold mb-1 transform -rotate-90 origin-center whitespace-nowrap">
-                              {activeCampaignResults.banner_ads?.[0]?.headline || 'PREMIUM'}
-                            </div>
-                            {(imageMapping?.image_0 || uploadedImage) && (
-                              <img 
-                                src={imageMapping?.image_0 || uploadedImage} 
-                                alt="Product" 
-                                className="w-6 h-6 object-contain mx-auto mb-1" 
-                              />
-                            )}
-                            <div className="bg-white text-black text-[5px] px-1 py-0.5 rounded mx-1">
-                              {activeCampaignResults.banner_ads?.[0]?.cta || 'Buy'}
-                            </div>
-                          </div>
-                        </div>
-                        
-                        {/* Main Content Area */}
-                        <div className="flex-1 p-2 text-[6px]">
-                          <div className="font-semibold mb-1">Main Website Content</div>
-                          <div className="grid grid-cols-2 gap-1 h-12">
-                            <div className="bg-gray-200 rounded"></div>
-                            <div className="bg-gray-200 rounded"></div>
-                          </div>
-                          <div className="text-gray-600 mt-1">Navigation and content area...</div>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Billboard Banner Context */}
-                    <div className="bg-white rounded-lg overflow-hidden shadow-sm border border-gray-200 h-16">
-                      <div className="h-full relative">
-                        {/* Billboard Area with Blue Highlight */}
-                        <div className="absolute inset-1 bg-blue-500/20 border border-blue-500 border-dashed rounded"></div>
-                        <div className="relative bg-gradient-to-r from-indigo-600 to-purple-600 h-full flex items-center justify-between px-4">
-                          <div className="flex items-center gap-3">
-                            {(imageMapping?.image_0 || uploadedImage) && (
-                              <img 
-                                src={imageMapping?.image_0 || uploadedImage} 
-                                alt="Product" 
-                                className="w-8 h-8 object-contain" 
-                              />
-                            )}
-                            <div className="text-white">
-                              <div className="text-[10px] font-bold">
-                                {activeCampaignResults.banner_ads?.[0]?.headline || 'PREMIUM HEADPHONES'}
-                              </div>
-                              <div className="text-[6px] text-gray-200">Experience Superior Sound Quality</div>
-                            </div>
-                          </div>
-                          <div className="bg-white text-indigo-600 text-[8px] px-3 py-1 rounded-full font-bold">
-                            {activeCampaignResults.banner_ads?.[0]?.cta || 'SHOP NOW'}
+                          
+                          {/* Right - CTA Button */}
+                          <div className="pr-4">
+                            <button className="bg-gray-900 text-white text-xs px-4 py-2 rounded-lg font-semibold">
+                              Shop Now
+                            </button>
                           </div>
                         </div>
                       </div>
