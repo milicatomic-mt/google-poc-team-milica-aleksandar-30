@@ -121,37 +121,6 @@ const QRDownloadModal: React.FC<QRDownloadModalProps> = ({
             </p>
           </div>
 
-          {/* Action Buttons */}
-          <div className="flex flex-col space-y-3 w-full">
-            <Button
-              onClick={handleDirectDownload}
-              disabled={!qrUrl}
-              className="w-full flex items-center justify-center gap-2 bg-primary hover:bg-primary/90"
-            >
-              <Download className="w-4 h-4" />
-              Download Now
-            </Button>
-            
-            <Button
-              onClick={copyToClipboard}
-              variant="outline"
-              disabled={!qrUrl}
-              className="w-full flex items-center justify-center gap-2"
-            >
-              {copied ? (
-                <>
-                  <CheckCircle className="w-4 h-4 text-green-600" />
-                  Copied!
-                </>
-              ) : (
-                <>
-                  <Copy className="w-4 h-4" />
-                  Copy Link
-                </>
-              )}
-            </Button>
-          </div>
-
           {/* Session Info */}
           {sessionToken && (
             <div className="text-xs text-gray-400 text-center">
