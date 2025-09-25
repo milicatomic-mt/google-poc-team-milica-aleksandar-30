@@ -202,11 +202,37 @@ Create a comprehensive marketing campaign with video scripts for TikTok, Instagr
 
     // Clean the response text by removing markdown formatting
     let responseText = geminiData.candidates[0].content.parts[0].text;
+    console.log('Raw Gemini response length:', responseText.length);
+    console.log('Raw Gemini response first 200 chars:', responseText.substring(0, 200));
+    console.log('Raw Gemini response last 200 chars:', responseText.substring(responseText.length - 200));
     
     // Remove markdown code blocks if present
     responseText = responseText.replace(/^```json\s*\n?/i, '').replace(/\n?```\s*$/i, '');
     
-    const generatedContent = JSON.parse(responseText);
+    // Remove any trailing incomplete content that might cause JSON parsing errors
+    responseText = responseText.trim();
+    
+    // Find the last complete JSON object by looking for the last closing brace
+    const lastBraceIndex = responseText.lastIndexOf('}');
+    if (lastBraceIndex === -1) {
+      throw new Error('No valid JSON structure found in Gemini response');
+    }
+    
+    // Truncate to the last complete JSON object
+    responseText = responseText.substring(0, lastBraceIndex + 1);
+    
+    console.log('Cleaned response length:', responseText.length);
+    console.log('Cleaned response last 100 chars:', responseText.substring(responseText.length - 100));
+    
+    let generatedContent;
+    try {
+      generatedContent = JSON.parse(responseText);
+    } catch (parseError) {
+      console.error('JSON Parse Error:', parseError);
+      console.error('Failed to parse text:', responseText);
+      const errorMsg = parseError instanceof Error ? parseError.message : String(parseError);
+      throw new Error(`Failed to parse Gemini response as JSON: ${errorMsg}`);
+    }
 
     console.log('Generated text content successfully with Gemini');
 
