@@ -102,7 +102,6 @@ export const saveCatalogRequest = async (data: CatalogEnrichmentRequest, generat
       platform: data.platform,
       product_category: data.category,
       result: {}, // Will be updated when AI generates the catalog content
-      generated_images: generatedImages || []
     })
     .select()
     .single();

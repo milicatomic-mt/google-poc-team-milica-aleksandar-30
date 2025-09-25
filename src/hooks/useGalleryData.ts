@@ -82,7 +82,7 @@ const fetchGalleryItemDetails = async (id: string, type: 'campaign' | 'catalog')
   const table = type === 'campaign' ? 'campaign_results' : 'catalog_results';
   const selectFields = type === 'campaign' 
     ? 'id, created_at, generated_images, generated_video_url, result, image_url'
-    : 'id, created_at, generated_images, result, image_url, product_category, platform, tone';
+    : 'id, created_at, result, image_url, product_category, platform, tone';
 
   const { data, error } = await supabase
     .from(table)
@@ -100,10 +100,10 @@ const fetchGalleryItemDetails = async (id: string, type: 'campaign' | 'catalog')
     type,
     created_at: itemData.created_at,
     image_url: itemData.image_url,
-    generated_images: itemData.generated_images || [],
+    generated_images: type === 'campaign' ? (itemData.generated_images || []) : [],
     result: itemData.result || {},
     has_video: type === 'campaign' ? !!itemData.generated_video_url : false,
-    has_images: true
+    has_images: type === 'campaign'
   };
 
   if (type === 'campaign') {
