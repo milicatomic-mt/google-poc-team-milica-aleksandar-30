@@ -1662,7 +1662,7 @@ const PreviewResultsScreen: React.FC = () => {
                 className="card-elegant backdrop-blur-xl bg-white/5 border-white/50 border-2 shadow-2xl hover:shadow-elegant-lg transition-all duration-smooth cursor-pointer" 
                 onClick={() => handleOpenCategory('Banner Ads')}
               >
-                <div className="px-4 py-3 flex items-center justify-between transition-all duration-smooth">
+                <div className="px-4 py-2 flex items-center justify-between transition-all duration-smooth">
                   <div className="flex items-center space-x-2">
                     <h3 className="text-foreground font-medium">Banner Ads</h3>
                     <span className="bg-muted text-primary text-xs px-2 py-1 rounded-full font-medium">4</span>
@@ -1681,7 +1681,7 @@ const PreviewResultsScreen: React.FC = () => {
                     </span>
                   </Button>
                 </div>
-                <CardContent className="p-4">
+                <CardContent className="px-4 pb-4 pt-2">
                   <div className="h-80 p-4">
                     {/* Top Row - Two Square Banners */}
                     <div className="grid grid-cols-2 gap-3 mb-4">
