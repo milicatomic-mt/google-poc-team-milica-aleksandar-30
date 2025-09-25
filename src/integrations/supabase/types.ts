@@ -53,7 +53,6 @@ export type Database = {
       catalog_results: {
         Row: {
           created_at: string | null
-          generated_images: Json | null
           id: string
           image_url: string
           platform: string | null
@@ -64,7 +63,6 @@ export type Database = {
         }
         Insert: {
           created_at?: string | null
-          generated_images?: Json | null
           id?: string
           image_url: string
           platform?: string | null
@@ -75,7 +73,6 @@ export type Database = {
         }
         Update: {
           created_at?: string | null
-          generated_images?: Json | null
           id?: string
           image_url?: string
           platform?: string | null

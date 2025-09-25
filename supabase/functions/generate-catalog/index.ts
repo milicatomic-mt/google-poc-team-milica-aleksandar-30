@@ -1,5 +1,6 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import "https://deno.land/x/xhr@0.1.0/mod.ts";
+import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.57.4';
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -14,11 +15,26 @@ serve(async (req) => {
 
   try {
     const GEMINI_API_KEY = Deno.env.get('GEMINI_API_KEY');
+    const SUPABASE_URL = Deno.env.get('SUPABASE_URL');
+    const SUPABASE_SERVICE_ROLE_KEY = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY');
+    
     if (!GEMINI_API_KEY) {
       throw new Error('GEMINI_API_KEY is not set');
     }
+    if (!SUPABASE_URL || !SUPABASE_SERVICE_ROLE_KEY) {
+      throw new Error('Supabase configuration is missing');
+    }
 
-    const { image, category, tone, platform, brand } = await req.json();
+    // Initialize Supabase client
+    const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY);
+
+    const { catalogId, image, category, tone, platform, brand } = await req.json();
+    
+    if (!catalogId) {
+      throw new Error('catalogId is required');
+    }
+
+    console.log('Generating catalog for:', { catalogId, category, tone, platform, brand });
 
 
     // Process image data - convert to base64 if it's a URL
@@ -177,12 +193,29 @@ Focus on:
       throw new Error('Invalid catalog content structure from AI');
     }
 
+    console.log('Generated catalog content successfully');
+
+    // Save the result to the database
+    const { data: updateData, error: updateError } = await supabase
+      .from('catalog_results')
+      .update({ result: catalogContent })
+      .eq('id', catalogId)
+      .select()
+      .single();
+
+    if (updateError) {
+      console.error('Failed to save catalog result:', updateError);
+      throw new Error('Failed to save catalog result to database');
+    }
+
+    console.log('Catalog result saved to database successfully');
 
     return new Response(JSON.stringify(catalogContent), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     });
 
   } catch (error) {
+    console.error('Error in generate-catalog function:', error);
     const errorMessage = error instanceof Error ? error.message : 'An error occurred while generating catalog content';
     return new Response(JSON.stringify({ 
       error: errorMessage
