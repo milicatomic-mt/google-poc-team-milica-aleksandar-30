@@ -29,20 +29,20 @@ const Gallery = () => {
     try {
       setLoading(true);
       
-      // Fetch campaigns with generated videos only
+      // Fetch campaigns with generated videos only (max 10)
       const { data: campaigns, error: campaignsError } = await supabase
         .from('campaign_results')
         .select('id, created_at, generated_images, generated_video_url, result, image_url')
         .not('generated_video_url', 'is', null)
         .order('created_at', { ascending: false })
-        .limit(24);
+        .limit(10);
 
-      // Fetch catalogs with limit to prevent timeouts
+      // Fetch recent catalogs (max 10)
       const { data: catalogs, error: catalogsError } = await supabase
         .from('catalog_results')
         .select('id, created_at, generated_images, result, image_url')
         .order('created_at', { ascending: false })
-        .limit(24);
+        .limit(10);
 
       // Handle partial failures
       if (campaignsError) {
