@@ -148,6 +148,8 @@ Create a comprehensive marketing campaign with video scripts for TikTok, Instagr
     console.log('Campaign generation completed successfully');
 
     // Now automatically call generate-video with the generated video prompt
+    // COMMENTED OUT: Video generation API call
+    /*
     if (generatedContent.video_prompt) {
       console.log('Calling generate-video with prompt:', generatedContent.video_prompt);
       
@@ -170,13 +172,14 @@ Create a comprehensive marketing campaign with video scripts for TikTok, Instagr
         // Don't fail the entire request, just log the error
       }
     }
+    */
 
     return new Response(JSON.stringify({ 
       success: true, 
       campaign: generatedContent,
       videoPrompt: generatedContent.video_prompt,
       generatedImages: generatedImages.length,
-      message: `Generated campaign content successfully using Gemini AI. Video generation initiated.`
+      message: `Generated campaign content successfully using Gemini AI.`
     }), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     });
