@@ -178,7 +178,7 @@ const PreviewResultsScreen: React.FC = () => {
                   <Badge className="text-xs bg-green-100 text-green-800">Most Popular</Badge>
                 </div>
                 <div className="flex gap-4">
-                  <div className="overflow-hidden rounded-lg border-2 border-border bg-white shadow-lg" style={{ width: '240px', height: '200px' }}>
+                  <div className="overflow-hidden rounded-lg bg-white shadow-lg" style={{ width: '240px', height: '200px' }}>
                     <div 
                       className="relative h-full flex flex-col"
                       style={{
@@ -226,7 +226,7 @@ const PreviewResultsScreen: React.FC = () => {
                   <Badge variant="secondary" className="text-xs">Header/Footer</Badge>
                 </div>
                 <div className="space-y-2">
-                  <div className="overflow-hidden rounded-lg border-2 border-border bg-white shadow-lg" style={{ width: '100%', height: '70px', maxWidth: '580px' }}>
+                  <div className="overflow-hidden rounded-lg bg-white shadow-lg" style={{ width: '100%', height: '70px', maxWidth: '580px' }}>
                     <div className="relative h-full flex items-center bg-gradient-to-r from-slate-50 to-white">
                       {/* Left Product Image */}
                       {(generatedImages[1]?.url || uploadedImage) && (
@@ -267,7 +267,7 @@ const PreviewResultsScreen: React.FC = () => {
                   <Badge className="text-xs bg-purple-100 text-purple-800">Premium</Badge>
                 </div>
                 <div className="space-y-2">
-                  <div className="overflow-hidden rounded-lg border-2 border-border bg-white shadow-lg" style={{ width: '100%', height: '100px', maxWidth: '580px' }}>
+                  <div className="overflow-hidden rounded-lg bg-white shadow-lg" style={{ width: '100%', height: '100px', maxWidth: '580px' }}>
                     <div className="relative h-full flex items-center bg-gradient-to-r from-slate-50 via-white to-slate-50">
                       {/* Left Content */}
                       <div className="flex-1 p-4 space-y-2">
@@ -311,7 +311,7 @@ const PreviewResultsScreen: React.FC = () => {
                   <Badge variant="secondary" className="text-xs">Sidebar</Badge>
                 </div>
                 <div className="flex gap-4">
-                  <div className="overflow-hidden rounded-lg border-2 border-border bg-white shadow-lg" style={{ width: '160px', height: '280px' }}>
+                  <div className="overflow-hidden rounded-lg bg-white shadow-lg" style={{ width: '160px', height: '280px' }}>
                     <div className="relative h-full flex flex-col bg-gradient-to-b from-slate-50 to-white">
                       {/* Top Product Image */}
                       {(generatedImages[2]?.url || uploadedImage) && (
@@ -379,7 +379,7 @@ const PreviewResultsScreen: React.FC = () => {
                   <Badge className="text-xs bg-blue-100 text-blue-800">High Impact</Badge>
                 </div>
                 <div className="flex gap-4">
-                  <div className="overflow-hidden rounded-lg border-2 border-border bg-white shadow-lg" style={{ width: '240px', height: '280px' }}>
+                  <div className="overflow-hidden rounded-lg bg-white shadow-lg" style={{ width: '240px', height: '280px' }}>
                     <div className="relative h-full flex flex-col bg-gradient-to-b from-slate-50 to-white">
                       {/* Hero Product Area */}
                       <div className="relative h-24 bg-slate-100 flex items-center justify-center p-4">
@@ -450,7 +450,7 @@ const PreviewResultsScreen: React.FC = () => {
         return (
           <div className="space-y-0">
             {/* Complete Landing Page Preview */}
-            <div className="border-2 border-border rounded-lg overflow-hidden bg-background shadow-2xl max-h-[70vh] overflow-y-auto">
+            <div className="rounded-lg overflow-hidden bg-background shadow-2xl max-h-[70vh] overflow-y-auto">
               <div className="w-full">
                 
                 {/* Hero Section */}
@@ -1050,7 +1050,7 @@ const PreviewResultsScreen: React.FC = () => {
 
       case 'Email Templates':
         return (
-          <div className="border-2 border-border rounded-lg overflow-hidden bg-background shadow-2xl max-w-3xl mx-auto">
+          <div className="rounded-lg overflow-hidden bg-background shadow-2xl max-w-3xl mx-auto">
             {/* Email Template Preview */}
             <div className="bg-white text-gray-900 font-sans" style={{ maxWidth: '640px', width: '100%', margin: '0 auto' }}>
               
