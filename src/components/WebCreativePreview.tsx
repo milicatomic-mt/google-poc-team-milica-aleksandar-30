@@ -14,10 +14,6 @@ const WebCreativePreview: React.FC = () => {
   const [isDownloadModalOpen, setIsDownloadModalOpen] = useState(false);
   const [downloadUrl, setDownloadUrl] = useState<string>('');
 
-  // Scroll to top when component mounts
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
 
   useEffect(() => {
     if (!campaignResults) {
@@ -79,33 +75,16 @@ const WebCreativePreview: React.FC = () => {
       {/* Navigation Bar */}
       <div className="relative z-20 bg-black/20 backdrop-blur-sm border-b border-white/10">
         <div className="container mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-8">
-              <h1 className="text-xl font-bold text-white">BRAND</h1>
-              <nav className="hidden md:flex items-center gap-6">
-                <a href="#" className="text-white/90 hover:text-white transition-colors">Home</a>
-                <a href="#" className="text-white/90 hover:text-white transition-colors">Products</a>
-                <a href="#" className="text-white/90 hover:text-white transition-colors">About</a>
-              </nav>
-            </div>
-            <div className="flex items-center gap-4">
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={handleBack}
-                className="gap-2 text-white/90 hover:text-white hover:bg-white/10"
-              >
-                <ArrowLeft className="w-4 h-4" />
-                Back
-              </Button>
-              <Button 
-                onClick={handleDownload} 
-                className="gap-2 bg-white/20 hover:bg-white/30 text-white border-white/20"
-              >
-                <Download className="w-4 h-4" />
-                Download
-              </Button>
-            </div>
+          <div className="flex items-center justify-start">
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={handleBack}
+              className="gap-2 text-white/90 hover:text-white hover:bg-white/10"
+            >
+              <ArrowLeft className="w-4 h-4" />
+              Back
+            </Button>
           </div>
         </div>
       </div>
