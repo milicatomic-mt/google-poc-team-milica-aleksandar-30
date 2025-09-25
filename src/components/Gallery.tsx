@@ -32,20 +32,20 @@ const Gallery = () => {
     try {
       setLoading(true);
       
-      // Fetch campaigns with generated videos only (max 10)
+      // Fetch campaigns with generated videos only (max 5, distinct results)
       const { data: campaigns, error: campaignsError } = await supabase
         .from('campaign_results')
         .select('id, created_at, generated_images, generated_video_url, result, image_url')
         .not('generated_video_url', 'is', null)
         .order('created_at', { ascending: false })
-        .limit(10);
+        .limit(5);
 
-      // Fetch recent catalogs (max 10)
+      // Fetch recent catalogs (max 5, distinct results)
       const { data: catalogs, error: catalogsError } = await supabase
         .from('catalog_results')
         .select('id, created_at, generated_images, result, image_url')
         .order('created_at', { ascending: false })
-        .limit(10);
+        .limit(5);
 
       // Handle partial failures
       if (campaignsError) {
@@ -69,7 +69,11 @@ const Gallery = () => {
       }));
 
       const allItems: GalleryItem[] = [...safeCampaigns, ...safeCatalogs]
-        .sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
+        .sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())
+        .filter((item, index, array) => 
+          // Remove duplicates by ID
+          array.findIndex(i => i.id === item.id) === index
+        );
 
       setItems(allItems);
     } catch (error) {
