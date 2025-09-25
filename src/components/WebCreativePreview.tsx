@@ -11,7 +11,7 @@ import type { CampaignCreationResponse } from '@/types/api';
 const WebCreativePreview: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { campaignResults, uploadedImage, campaignId } = location.state || {};
+  const { campaignResults, uploadedImage, campaignId, imageMapping } = location.state || {};
   const [isDownloadModalOpen, setIsDownloadModalOpen] = useState(false);
   const [downloadUrl, setDownloadUrl] = useState<string>('');
 
@@ -23,7 +23,7 @@ const WebCreativePreview: React.FC = () => {
 
   const handleBack = () => {
     navigate('/preview-results', {
-      state: { campaignResults, uploadedImage, campaignId }
+      state: { campaignResults, uploadedImage, campaignId, imageMapping }
     });
   };
 
@@ -54,6 +54,11 @@ const WebCreativePreview: React.FC = () => {
 
   const landingPage = campaignResults.landing_page_concept;
   const generatedImages = campaignResults.generated_images || [];
+  
+  // Use imageMapping for consistent images, fallback to generatedImages if not available
+  const getImage = (index: number) => {
+    return imageMapping?.[`image_${index}`] || generatedImages?.[index]?.url || null;
+  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -151,12 +156,12 @@ const WebCreativePreview: React.FC = () => {
                       
                       {/* Right Column - Hero Image */}
                       <div className="relative flex justify-center">
-                        {(generatedImages?.[0]?.url || uploadedImage) && (
+                        {(getImage(0) || uploadedImage) && (
                           <div className="relative">
                             <div className="absolute -inset-6 bg-gradient-to-br from-primary/20 via-secondary/20 to-accent/20 rounded-3xl blur-2xl opacity-60"></div>
                             <div className="relative bg-background/90 backdrop-blur-sm rounded-2xl p-6 shadow-2xl border border-border">
                               <img 
-                                src={generatedImages?.[0]?.url || uploadedImage} 
+                                src={getImage(0) || uploadedImage} 
                                 alt="Hero product showcase" 
                                 className="w-full h-auto max-h-80 object-contain rounded-lg"
                               />
@@ -184,9 +189,9 @@ const WebCreativePreview: React.FC = () => {
                             <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto">
                               <div className="w-8 h-8 bg-primary rounded-full"></div>
                             </div>
-                            {generatedImages?.[1]?.url && (
+                            {getImage(1) && (
                               <div className="absolute -top-2 -right-2 w-12 h-12 rounded-lg overflow-hidden border-2 border-background shadow-lg">
-                                <img src={generatedImages[1].url} alt="Feature 1" className="w-full h-full object-cover" />
+                                <img src={getImage(1)} alt="Feature 1" className="w-full h-full object-cover" />
                               </div>
                             )}
                           </div>
@@ -204,9 +209,9 @@ const WebCreativePreview: React.FC = () => {
                             <div className="w-16 h-16 bg-secondary/10 rounded-full flex items-center justify-center mx-auto">
                               <div className="w-8 h-8 bg-secondary rounded-full"></div>
                             </div>
-                            {generatedImages?.[2]?.url && (
+                            {getImage(2) && (
                               <div className="absolute -top-2 -right-2 w-12 h-12 rounded-lg overflow-hidden border-2 border-background shadow-lg">
-                                <img src={generatedImages[2].url} alt="Feature 2" className="w-full h-full object-cover" />
+                                <img src={getImage(2)} alt="Feature 2" className="w-full h-full object-cover" />
                               </div>
                             )}
                           </div>
@@ -224,9 +229,9 @@ const WebCreativePreview: React.FC = () => {
                             <div className="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mx-auto">
                               <div className="w-8 h-8 bg-accent rounded-full"></div>
                             </div>
-                            {generatedImages?.[3]?.url && (
+                            {getImage(3) && (
                               <div className="absolute -top-2 -right-2 w-12 h-12 rounded-lg overflow-hidden border-2 border-background shadow-lg">
-                                <img src={generatedImages[3].url} alt="Feature 3" className="w-full h-full object-cover" />
+                                <img src={getImage(3)} alt="Feature 3" className="w-full h-full object-cover" />
                               </div>
                             )}
                           </div>
@@ -387,13 +392,13 @@ const WebCreativePreview: React.FC = () => {
                         </div>
 
                         {/* Supporting Visual */}
-                        {generatedImages?.[0]?.url && (
+                        {getImage(0) && (
                           <div className="mt-8 flex justify-center">
                             <div className="relative">
                               <div className="absolute -inset-4 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-2xl blur-xl opacity-60"></div>
                               <div className="relative w-32 h-32 rounded-2xl overflow-hidden border-4 border-background shadow-2xl">
                                 <img 
-                                  src={generatedImages[0].url} 
+                                  src={getImage(0)} 
                                   alt="Success guarantee" 
                                   className="w-full h-full object-cover"
                                 />
