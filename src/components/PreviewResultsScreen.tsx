@@ -711,7 +711,7 @@ const PreviewResultsScreen: React.FC = () => {
         return (
           <div className="space-y-0">
             {/* Complete Landing Page Preview */}
-            <div className="rounded-lg overflow-hidden bg-background shadow-2xl max-h-[70vh] overflow-y-auto">
+            <div className="rounded-lg overflow-hidden bg-background shadow-2xl max-h-[70vh]">
               <div className="w-full">
                 
                 {/* Hero Section */}
@@ -1976,7 +1976,7 @@ const PreviewResultsScreen: React.FC = () => {
                     </div>
 
                     {/* Right Side - Script Preview */}
-                    <div className="bg-white backdrop-blur-sm rounded p-4 overflow-y-auto border border-white/20">
+                    <div className="bg-white backdrop-blur-sm rounded p-4 border border-white/20">
                       <div className="space-y-3">
                         {/* Script Header */}
                         <div className="text-center pb-2 border-b border-white/30">

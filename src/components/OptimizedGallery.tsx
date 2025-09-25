@@ -675,7 +675,7 @@ const CampaignContent: React.FC<{
             </div>
 
             {/* Right Side - Script Preview */}
-            <div className="bg-white backdrop-blur-sm rounded p-4 overflow-y-auto border border-white/20">
+            <div className="bg-white backdrop-blur-sm rounded p-4 border border-white/20">
               <div className="space-y-3">
                 {/* Script Header */}
                 <div className="text-center pb-2 border-b border-white/30">
