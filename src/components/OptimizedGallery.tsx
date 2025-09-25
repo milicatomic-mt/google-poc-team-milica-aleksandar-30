@@ -58,12 +58,42 @@ const OptimizedGallery = () => {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen w-full bg-background flex items-center justify-center">
-        <div className="flex flex-col items-center space-y-4">
-          <div className="w-16 h-16">
-            <RibbedSphere className="w-full h-full animate-pulse" />
+      <div className="relative min-h-screen w-full overflow-hidden bg-background">
+        {/* Background Video */}
+        <video 
+          className="absolute inset-0 w-full h-full object-cover object-center opacity-50 z-0" 
+          autoPlay 
+          loop 
+          muted 
+          playsInline
+          preload="metadata"
+          onError={(e) => {
+            console.warn('Background video failed to load');
+            e.currentTarget.style.display = 'none';
+          }}
+        >
+          <source src="/background-video.mp4" type="video/mp4" />
+        </video>
+        
+        <div className="relative z-10 min-h-screen flex flex-col">
+          <div className="flex-1 flex items-center justify-center px-4 py-8">
+            <div className="flex flex-col items-center justify-center space-y-6">
+              {/* Animated Sphere - 200x200px */}
+              <div className="w-[200px] h-[200px] animate-fade-in">
+                <RibbedSphere className="w-full h-full" />
+              </div>
+
+              {/* Loading Text */}
+              <div className="text-center animate-fade-in animation-delay-300 min-h-[80px] flex flex-col justify-center">
+                <p className="text-2xl font-semibold text-foreground mb-2">
+                  Loading your gallery...
+                </p>
+                <p className="text-sm text-muted-foreground">
+                  Preparing your creative content
+                </p>
+              </div>
+            </div>
           </div>
-          <p className="text-muted-foreground">Loading your gallery...</p>
         </div>
       </div>
     );
