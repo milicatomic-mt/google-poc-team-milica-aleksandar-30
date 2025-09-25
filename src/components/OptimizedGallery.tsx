@@ -61,7 +61,8 @@ const OptimizedGallery = () => {
         state: { 
           campaignResults: itemDetails?.result, 
           uploadedImage: item.image_url, 
-          campaignId: item.id 
+          campaignId: item.id,
+          returnTo: '/gallery' // Add return path for gallery navigation
         }
       });
     }

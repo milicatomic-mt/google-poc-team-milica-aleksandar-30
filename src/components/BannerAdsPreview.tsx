@@ -10,7 +10,7 @@ import type { CampaignCreationResponse } from '@/types/api';
 const BannerAdsPreview: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { campaignResults, uploadedImage, campaignId, imageMapping } = location.state || {};
+  const { campaignResults, uploadedImage, campaignId, imageMapping, returnTo } = location.state || {};
   const [isDownloadModalOpen, setIsDownloadModalOpen] = useState(false);
   const [downloadUrl, setDownloadUrl] = useState<string>('');
 
@@ -21,12 +21,12 @@ const BannerAdsPreview: React.FC = () => {
 
   useEffect(() => {
     if (!campaignResults) {
-      navigate('/preview-results');
+      navigate(returnTo || '/preview-results');
     }
-  }, [campaignResults, navigate]);
+  }, [campaignResults, navigate, returnTo]);
 
   const handleBack = () => {
-    navigate('/preview-results', {
+    navigate(returnTo || '/preview-results', {
       state: { campaignResults, uploadedImage, campaignId, imageMapping }
     });
   };

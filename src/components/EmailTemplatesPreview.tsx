@@ -11,15 +11,15 @@ import type { CampaignCreationResponse } from '@/types/api';
 const EmailTemplatesPreview: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { campaignResults, uploadedImage, campaignId } = location.state || {};
+  const { campaignResults, uploadedImage, campaignId, returnTo } = location.state || {};
   const [isDownloadModalOpen, setIsDownloadModalOpen] = useState(false);
   const [downloadUrl, setDownloadUrl] = useState<string>('');
 
   useEffect(() => {
     if (!campaignResults) {
-      navigate('/preview-results');
+      navigate(returnTo || '/preview-results');
     }
-  }, [campaignResults, navigate]);
+  }, [campaignResults, navigate, returnTo]);
 
   // Scroll to top when component mounts
   useEffect(() => {
@@ -27,7 +27,7 @@ const EmailTemplatesPreview: React.FC = () => {
   }, []);
 
   const handleBack = () => {
-    navigate('/preview-results', {
+    navigate(returnTo || '/preview-results', {
       state: { campaignResults, uploadedImage, campaignId }
     });
   };

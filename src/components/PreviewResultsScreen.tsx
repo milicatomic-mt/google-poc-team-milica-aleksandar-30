@@ -136,7 +136,13 @@ const PreviewResultsScreen: React.FC = () => {
     const route = routeMap[category as keyof typeof routeMap];
     if (route) {
       navigate(route, {
-        state: { campaignResults: activeCampaignResults, uploadedImage, campaignId, imageMapping }
+        state: { 
+          campaignResults: activeCampaignResults, 
+          uploadedImage, 
+          campaignId, 
+          imageMapping,
+          returnTo: '/preview-results' // Ensure it returns to preview results from the normal flow
+        }
       });
     }
   };
