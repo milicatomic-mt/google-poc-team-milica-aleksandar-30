@@ -63,7 +63,7 @@ const EmailTemplatesPreview: React.FC = () => {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <div className="bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <div className="border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
@@ -97,7 +97,7 @@ const EmailTemplatesPreview: React.FC = () => {
           <Card className="overflow-hidden">
             <CardContent className="p-0">
               {/* Logo header */}
-              <div className="bg-muted/30 p-4">
+              <div className="bg-muted/30 p-4 border-b">
                 <h2 className="text-lg font-semibold">Logo</h2>
               </div>
               
@@ -161,7 +161,7 @@ const EmailTemplatesPreview: React.FC = () => {
                 </div>
 
                 {/* Footer */}
-                <div className="bg-slate-50 py-6 text-center">
+                <div className="bg-slate-50 py-6 text-center border-t">
                   <p className="text-xs text-slate-500">
                     © 2024 Premium Sound. All rights reserved.
                   </p>
@@ -198,7 +198,7 @@ const EmailTemplatesPreview: React.FC = () => {
                 )}
 
                 {/* Email Stats Preview */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4 border-t">
                   <div className="text-center">
                     <div className="text-2xl font-bold text-green-600">24.5%</div>
                     <div className="text-xs text-muted-foreground">Expected Open Rate</div>
@@ -255,7 +255,7 @@ const EmailTemplatesPreview: React.FC = () => {
             </DialogTitle>
           </DialogHeader>
           <div className="flex flex-col items-center space-y-4">
-            <div className="bg-white p-4 rounded-lg">
+            <div className="bg-white p-4 rounded-lg border">
               <QRCodeSVG value={downloadUrl} size={200} />
             </div>
             <div className="text-center">
