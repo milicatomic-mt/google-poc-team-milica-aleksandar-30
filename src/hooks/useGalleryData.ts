@@ -32,7 +32,7 @@ const fetchGalleryData = async (): Promise<GalleryItem[]> => {
       .select('id, created_at, image_url, generated_video_url, result')
       .not('generated_video_url', 'is', null)
       .order('created_at', { ascending: false })
-      .limit(5),
+      .limit(10),
     
     supabase
       .from('catalog_results')
