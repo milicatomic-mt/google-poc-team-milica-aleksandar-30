@@ -344,6 +344,7 @@ const CampaignContent: React.FC<{
 }> = ({ campaignResults, generatedImages, generatedVideoUrl, uploadedImage, onViewDetails }) => {
   
   const activeCampaignResults = campaignResults;
+  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
   
   // Create consistent image mapping for preview cards
   const imageMapping = generatedImages ? {
@@ -647,26 +648,60 @@ const CampaignContent: React.FC<{
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 h-80">
             {/* Left Side - Video Preview */}
             <div className="bg-black rounded overflow-hidden relative min-h-[120px] lg:h-full">
-              {/* Video Thumbnail with Play Button */}
+              {/* Video Player or Thumbnail */}
               <div className="relative w-full h-full">
-                {activeCampaignResults?.generated_images?.[0]?.url ? (
-                  <OptimizedImage src={activeCampaignResults.generated_images[0].url} alt="Video thumbnail" className="w-full h-full object-cover" />
-                ) : uploadedImage ? (
-                  <OptimizedImage src={uploadedImage} alt="Video thumbnail" className="w-full h-full object-cover" />
-                ) : null}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30"></div>
-                
-                {/* Play Button */}
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center backdrop-blur-md border border-white/20 hover:bg-white/20 transition-all duration-300">
-                    <Play className="w-6 h-6 text-white ml-1" />
-                  </div>
-                </div>
-                
-                {/* Duration Badge */}
-                <div className="absolute bottom-3 right-3 bg-black/80 text-white text-xs px-2 py-1 rounded-full backdrop-blur-sm">
-                  0:30
-                </div>
+                {isVideoPlaying && generatedVideoUrl ? (
+                  // Actual Video Player
+                  <video
+                    src={generatedVideoUrl}
+                    className="w-full h-full object-cover"
+                    controls
+                    autoPlay
+                    preload="metadata"
+                    poster={activeCampaignResults?.generated_images?.[0]?.url || uploadedImage}
+                    onEnded={() => setIsVideoPlaying(false)}
+                    onError={() => {
+                      console.error('Video failed to load:', generatedVideoUrl);
+                      setIsVideoPlaying(false);
+                    }}
+                  />
+                ) : (
+                  // Video Thumbnail with Play Button
+                  <>
+                    {activeCampaignResults?.generated_images?.[0]?.url ? (
+                      <OptimizedImage src={activeCampaignResults.generated_images[0].url} alt="Video thumbnail" className="w-full h-full object-cover" />
+                    ) : uploadedImage ? (
+                      <OptimizedImage src={uploadedImage} alt="Video thumbnail" className="w-full h-full object-cover" />
+                    ) : null}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30"></div>
+                    
+                    {/* Play Button */}
+                    <div 
+                      className="absolute inset-0 flex items-center justify-center cursor-pointer"
+                      onClick={() => {
+                        if (generatedVideoUrl) {
+                          setIsVideoPlaying(true);
+                        } else {
+                          toast.error('Video not available');
+                        }
+                      }}
+                    >
+                      <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center backdrop-blur-md border border-white/20 hover:bg-white/20 transition-all duration-300 group">
+                        <Play className="w-6 h-6 text-white ml-1 group-hover:scale-110 transition-transform" />
+                      </div>
+                    </div>
+                    
+                    {/* Duration Badge */}
+                    <div className="absolute bottom-3 right-3 bg-black/80 text-white text-xs px-2 py-1 rounded-full backdrop-blur-sm">
+                      0:30
+                    </div>
+                    
+                    {/* Video Status Badge */}
+                    <div className="absolute top-3 left-3 bg-black/80 text-white text-xs px-2 py-1 rounded-full backdrop-blur-sm">
+                      {generatedVideoUrl ? '▶ Ready' : '⏸ Preview'}
+                    </div>
+                  </>
+                )}
               </div>
             </div>
 
