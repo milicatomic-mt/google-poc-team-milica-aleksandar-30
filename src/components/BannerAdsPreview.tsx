@@ -144,7 +144,7 @@ const BannerAdsPreview: React.FC = () => {
               
               <div className="bg-gradient-to-b from-amber-200 to-orange-200 rounded-lg overflow-hidden relative shadow-lg w-full" style={{ height: '400px' }}>
                 {/* Top - Person Image */}
-                <div className="h-64 relative overflow-hidden">
+                <div className="h-80 relative overflow-hidden">
                   {(imageMapping?.image_0 || uploadedImage) && (
                     <img 
                       src={imageMapping?.image_0 || uploadedImage} 
@@ -155,18 +155,17 @@ const BannerAdsPreview: React.FC = () => {
                 </div>
                 
                 {/* Bottom - Dark Section with Text */}
-                <div className="h-36 bg-black text-white flex flex-col justify-center px-6 text-center">
-                  <h3 className="text-white text-xl font-bold uppercase tracking-wide mb-2">
+                <div className="h-20 bg-black text-white flex flex-col justify-center px-4 text-center">
+                  <h3 className="text-white text-sm font-bold uppercase tracking-wide mb-1">
                     Premium Sound
                   </h3>
-                  <p className="text-white/90 text-sm uppercase tracking-wider mb-3">
+                  <p className="text-white/90 text-xs uppercase tracking-wider mb-1">
                     Minimalist Design
                   </p>
-                  <p className="text-white text-xs font-semibold mb-4">
-                    SMASH THE COMPETITION<br/>
-                    WITH 30% DISCOUNT
+                  <p className="text-white text-xs font-semibold mb-2">
+                    SMASH THE COMPETITION WITH 30% DISCOUNT
                   </p>
-                  <button className="bg-white text-black text-sm px-6 py-2 rounded-xl font-semibold hover:bg-gray-800 transition-colors">
+                  <button className="bg-white text-black text-xs px-4 py-1 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
                     Shop Now
                   </button>
                 </div>
@@ -181,29 +180,28 @@ const BannerAdsPreview: React.FC = () => {
               
               <div className="bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg overflow-hidden relative shadow-lg w-full" style={{ height: '400px' }}>
                 {/* Top - Product Image */}
-                <div className="h-64 relative overflow-hidden flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-200">
+                <div className="h-72 relative overflow-hidden flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-200">
                   {(imageMapping?.image_1 || imageMapping?.image_0 || uploadedImage) && (
                     <img 
                       src={imageMapping?.image_1 || imageMapping?.image_0 || uploadedImage} 
                       alt="Headphones product" 
-                      className="w-32 h-32 object-contain" 
+                      className="w-48 h-48 object-contain" 
                     />
                   )}
                 </div>
                 
                 {/* Bottom - Text Section */}
-                <div className="h-36 bg-gradient-to-r from-amber-200 to-orange-200 flex flex-col justify-center px-6 text-center">
-                  <h3 className="text-gray-900 text-xl font-bold uppercase tracking-wide mb-2">
+                <div className="h-28 bg-gradient-to-r from-amber-200 to-orange-200 flex flex-col justify-center px-4 text-center">
+                  <h3 className="text-gray-900 text-sm font-bold uppercase tracking-wide mb-1">
                     Premium Sound
                   </h3>
-                  <p className="text-gray-700 text-sm uppercase tracking-wider mb-3">
+                  <p className="text-gray-700 text-xs uppercase tracking-wider mb-1">
                     Minimalist Design
                   </p>
-                  <p className="text-gray-600 text-xs font-semibold mb-4">
-                    SMASH THE COMPETITION<br/>
-                    WITH 30% DISCOUNT
+                  <p className="text-gray-600 text-xs font-semibold mb-2">
+                    SMASH THE COMPETITION WITH 30% DISCOUNT
                   </p>
-                  <button className="bg-black text-white text-sm px-6 py-2 rounded-xl font-semibold hover:bg-gray-800 transition-colors">
+                  <button className="bg-black text-white text-xs px-4 py-1 rounded-lg font-semibold hover:bg-gray-800 transition-colors">
                     Shop Now
                   </button>
                 </div>
