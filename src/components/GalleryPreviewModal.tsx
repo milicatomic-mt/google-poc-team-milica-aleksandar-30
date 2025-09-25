@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
-import { ChevronLeft, ChevronRight, Play, Pause, X, Calendar, Image as ImageIcon } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Play, Pause, Calendar, Image as ImageIcon } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 
 interface GalleryItem {
@@ -96,9 +96,6 @@ const GalleryPreviewModal = ({ item, isOpen, onClose }: GalleryPreviewModalProps
               {formatDate(item.created_at)}
             </div>
           </div>
-          <Button variant="ghost" size="sm" onClick={onClose}>
-            <X className="w-4 h-4" />
-          </Button>
         </DialogHeader>
 
         <div className="space-y-6">
