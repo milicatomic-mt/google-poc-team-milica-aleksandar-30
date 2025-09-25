@@ -76,7 +76,7 @@ export const createQRDownloadSession = async (campaignData: any): Promise<{ qrUr
     throw error;
   }
 
-  const qrUrl = `https://cuwkuomczaoxbaysabii.supabase.co/functions/v1/download-zip?session=${sessionToken}`;
+  const qrUrl = `${window.location.origin}/download-content?type=zip&token=${sessionToken}`;
   
   // Cache the result
   qrCodeCache.set(contentHash, { qrUrl, sessionToken });
