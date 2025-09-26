@@ -435,7 +435,7 @@ const CampaignContent: React.FC<{
               {/* Banner Ads Content - Mini versions of actual layouts */}
               <div className="h-full p-2 pb-2 overflow-hidden space-y-1">
                 {/* Leaderboard Banner (mini) */}
-                <div className="bg-gradient-to-r from-slate-200 to-stone-200 overflow-hidden relative" style={{height: '24px', borderRadius: '1px'}}>
+                <div className="bg-gradient-to-r from-slate-200 to-stone-200 overflow-hidden relative opacity-100" style={{height: '24px', borderRadius: '1px'}}>
                   <div className="flex items-center h-full">
                     {/* Left - Person Image */}
                     <div className="w-6 h-full relative overflow-hidden flex-shrink-0">
@@ -473,7 +473,7 @@ const CampaignContent: React.FC<{
                 {/* Bottom Row - Half Page and Medium Rectangle (mini) */}
                 <div className="grid grid-cols-2 gap-1">
                   {/* Half Page Banner (mini) */}
-                  <div className="bg-gradient-to-b from-slate-200 to-stone-200 overflow-hidden relative" style={{height: '36px', borderRadius: '1px'}}>
+                  <div className="bg-gradient-to-b from-slate-200 to-stone-200 overflow-hidden relative opacity-100" style={{height: '36px', borderRadius: '1px'}}>
                     {/* Top - Person Image */}
                     <div className="h-6 relative overflow-hidden">
                       {getImage(0) && (
@@ -500,7 +500,7 @@ const CampaignContent: React.FC<{
                    </div>
 
                   {/* Medium Rectangle (mini) */}
-                  <div className="bg-gradient-to-br from-gray-100 to-gray-200 overflow-hidden relative" style={{height: '36px', borderRadius: '1px'}}>
+                  <div className="bg-gradient-to-br from-slate-200 to-stone-200 overflow-hidden relative opacity-100" style={{height: '36px', borderRadius: '1px'}}>
                     <div className="flex items-center h-full">
                       {/* Left - Product Image */}
                       <div className="w-4 h-full relative overflow-hidden flex-shrink-0">
