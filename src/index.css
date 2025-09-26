@@ -841,4 +841,32 @@ All colors MUST be HSL.
       height: 2rem;
     }
   }
+
+  /* Smooth audience selection animation */
+  .selecting-animation {
+    animation: smooth-select 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  @keyframes smooth-select {
+    0% {
+      transform: scale(1) rotate(0deg);
+      box-shadow: 0 0 0 0 hsl(231 48% 48% / 0);
+    }
+    25% {
+      transform: scale(1.15) rotate(-1deg);
+      box-shadow: 0 0 0 8px hsl(231 48% 48% / 0.2);
+    }
+    50% {
+      transform: scale(1.1) rotate(1deg);
+      box-shadow: 0 0 0 12px hsl(231 48% 48% / 0.1);
+    }
+    75% {
+      transform: scale(1.05) rotate(-0.5deg);
+      box-shadow: 0 0 0 6px hsl(231 48% 48% / 0.05);
+    }
+    100% {
+      transform: scale(1.05) rotate(0deg);
+      box-shadow: 0 0 0 0 hsl(231 48% 48% / 0);
+    }
+  }
 }
