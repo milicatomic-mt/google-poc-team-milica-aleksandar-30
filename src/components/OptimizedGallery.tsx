@@ -419,119 +419,107 @@ const CampaignContent: React.FC<{
           {/* Removed download button from banner ads section */}
         </div>
         <CardContent className="p-4">
-          <div className="h-72 bg-gray-100 overflow-hidden border border-gray-300 shadow-sm" style={{borderRadius: '1px'}}>
-            {/* Browser-like Screenshot Mockup */}
-            <div className="h-full bg-white">
-              {/* Browser Header */}
-              <div className="bg-gray-200 px-2 py-1 flex items-center gap-1 border-b">
-                <div className="flex gap-1">
-                  <div className="w-2 h-2 bg-red-400 rounded-full"></div>
-                  <div className="w-2 h-2 bg-slate-400 rounded-full"></div>
-                  <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-                </div>
-                <div className="flex-1 bg-white mx-2 rounded px-2 py-0.5">
-                  <div className="text-[6px] text-gray-500">https://yourads.com</div>
+          <div className="h-80">
+            {/* Top Row - Two Square Banners */}
+            <div className="grid grid-cols-2 gap-3 mb-4">
+              {/* Left Banner - Person with Headphones */}
+              <div className="aspect-square bg-gradient-to-br from-slate-200 to-gray-300 overflow-hidden relative" style={{borderRadius: '1px'}}>
+                {getImage(0) && (
+                  <OptimizedImage
+                    src={getImage(0)} 
+                    alt="Person with headphones" 
+                    className="w-full h-full object-cover transition-opacity duration-300 opacity-100"
+                    priority={true}
+                  />
+                )}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
+                <div className="absolute bottom-0 left-0 right-0 p-3">
+                  <div className="space-y-1">
+                    <h3 className="text-white text-xs font-bold uppercase tracking-wide">
+                      {campaignResults?.banner_ads?.[0]?.headline || 'Premium Sound'}
+                    </h3>
+                    <p className="text-white/90 text-[8px] uppercase tracking-wider">
+                      Minimalist Design
+                    </p>
+                    <div className="flex items-center justify-between mt-2">
+                      <span className="text-white/80 text-[7px]">
+                        WIRELESS BLUETOOTH CONNECTION<br/>
+                        WITH BASS RESONANCE
+                      </span>
+                      <button className="bg-white text-gray-900 text-[8px] px-2 py-1 rounded font-semibold">
+                        {campaignResults?.banner_ads?.[0]?.cta || 'Shop Now'}
+                      </button>
+                    </div>
+                  </div>
                 </div>
               </div>
-
-              {/* Banner Ads Content - Mini versions of actual layouts */}
-              <div className="h-full p-2 pb-2 overflow-hidden space-y-1">
-                {/* Leaderboard Banner (mini) */}
-                <div className="bg-gradient-to-r from-slate-200 to-stone-200 overflow-hidden relative opacity-100" style={{height: '24px', borderRadius: '1px'}}>
-                  <div className="flex items-center h-full">
-                    {/* Left - Person Image */}
-                    <div className="w-6 h-full relative overflow-hidden flex-shrink-0">
-                      {getImage(0) && (
-                        <OptimizedImage
-                          src={getImage(0)}
-                          alt="Person with headphones" 
-                          className="w-full h-full object-cover"
-                          priority={true}
-                        />
-                      )}
+              
+              {/* Right Banner - Just Headphones Product */}
+              <div className="aspect-square bg-gradient-to-br from-gray-100 to-gray-200 overflow-hidden relative" style={{borderRadius: '1px'}}>
+                {(getImage(1) || getImage(0)) && (
+                  <OptimizedImage
+                    src={getImage(1) || getImage(0)} 
+                    alt="Headphones product" 
+                    className="w-full h-full object-cover transition-opacity duration-300 opacity-100"
+                    priority={true}
+                  />
+                )}
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-slate-200 to-gray-100 p-2">
+                  <div className="space-y-1">
+                    <h3 className="text-gray-900 text-[10px] font-bold uppercase tracking-wide">
+                      {campaignResults?.banner_ads?.[1]?.headline || 'Premium Sound'}
+                    </h3>
+                    <p className="text-gray-700 text-[7px] uppercase tracking-wider">
+                      Minimalist Design
+                    </p>
+                    <div className="flex items-center justify-between mt-1">
+                      <span className="text-gray-600 text-[6px]">
+                        WIRELESS BLUETOOTH CONNECTION<br/>
+                        WITH BASS RESONANCE
+                      </span>
+                      <button className="bg-gray-900 text-white text-[7px] px-2 py-1 rounded font-semibold">
+                        {campaignResults?.banner_ads?.[1]?.cta || 'Shop Now'}
+                      </button>
                     </div>
-                    {/* Middle - Text Content */}
-                     <div className="flex-1 px-2">
-               <h3 className="text-gray-900 text-[6px] font-bold uppercase leading-none">
-                 {campaignResults?.banner_ads?.[0]?.headline || 'Premium Sound'}
-               </h3>
-               <p className="text-gray-700 text-[4px] uppercase leading-none">
-                 Minimalist Design
-               </p>
-               <p className="text-gray-600 text-[3px] font-semibold leading-none">
-                 SMASH THE COMPETITION<br/>
-                 WITH 30% DISCOUNT
-               </p>
-             </div>
-             {/* Right - CTA Button */}
-              <div className="pr-1 flex-shrink-0">
-                <button className="bg-white/90 text-gray-900 text-[4px] px-1 py-0.5 font-semibold border border-gray-200 leading-none">
-                  {campaignResults?.banner_ads?.[0]?.cta || 'Shop Now'}
-                </button>
-                      </div>
                   </div>
                 </div>
-
-                {/* Bottom Row - Half Page and Medium Rectangle (mini) */}
-                <div className="grid grid-cols-2 gap-1">
-                  {/* Half Page Banner (mini) */}
-                  <div className="bg-gradient-to-b from-slate-200 to-stone-200 overflow-hidden relative opacity-100" style={{height: '36px', borderRadius: '1px'}}>
-                    {/* Top - Person Image */}
-                    <div className="h-6 relative overflow-hidden">
-                      {getImage(0) && (
-                        <OptimizedImage
-                          src={getImage(0)}
-                          alt="Person with headphones" 
-                          className="w-full h-full object-cover"
-                          priority={true}
-                        />
-                      )}
-                    </div>
-                    {/* Bottom - Dark Section with Text */}
-                     <div className="h-3 bg-black text-white flex flex-col justify-center px-1 text-center mt-4">
-                      <h3 className="text-white text-[4px] font-bold uppercase leading-none">
-                        {campaignResults?.banner_ads?.[0]?.headline || 'Premium Sound'}
-                      </h3>
-                      <p className="text-white/90 text-[3px] uppercase leading-none">
-                        Minimalist Design
-                      </p>
-                      <p className="text-white text-[3px] font-semibold leading-none">
-                        SMASH THE COMPETITION WITH 30% DISCOUNT
-                      </p>
-                     </div>
-                   </div>
-
-                  {/* Medium Rectangle (mini) */}
-                  <div className="bg-gradient-to-br from-slate-200 to-stone-200 overflow-hidden relative opacity-100" style={{height: '36px', borderRadius: '1px'}}>
-                    <div className="flex items-center h-full">
-                      {/* Left - Product Image */}
-                      <div className="w-4 h-full relative overflow-hidden flex-shrink-0">
-                        {(getImage(1) || getImage(0)) && (
-                          <OptimizedImage
-                            src={getImage(1) || getImage(0)}
-                            alt="Headphones product" 
-                            className="w-full h-full object-cover"
-                            priority={true}
-                          />
-                        )}
-                      </div>
-                      {/* Right - Text Content */}
-                       <div className="flex-1 px-1">
-                        <h3 className="text-gray-900 text-[5px] font-bold uppercase leading-none">
-                          {campaignResults?.banner_ads?.[0]?.headline || 'Premium Sound'}
-                        </h3>
-                        <p className="text-gray-700 text-[4px] uppercase leading-none">
-                          Minimalist Design
-                        </p>
-                        <p className="text-gray-600 text-[3px] font-semibold leading-none">
-                          30% DISCOUNT
-                        </p>
-                        <button className="bg-gray-900 text-white text-[3px] px-1 py-0.5 font-semibold mt-0.5 leading-none">
-                          {campaignResults?.banner_ads?.[0]?.cta || 'Shop Now'}
-                        </button>
-                      </div>
-                    </div>
-                  </div>
+              </div>
+            </div>
+            
+            {/* Bottom Row - Wide Horizontal Banner */}
+            <div className="bg-gradient-to-r from-slate-200 to-gray-200 overflow-hidden relative h-20" style={{borderRadius: '1px'}}>
+              <div className="flex items-center h-full">
+                {/* Left - Person Image */}
+                <div className="w-20 h-full relative overflow-hidden">
+                  {getImage(0) && (
+                    <OptimizedImage
+                      src={getImage(0)} 
+                      alt="Person with headphones" 
+                      className="w-full h-full object-cover transition-opacity duration-300 opacity-100"
+                      priority={true}
+                    />
+                  )}
+                </div>
+                
+                {/* Middle - Text Content */}
+                <div className="flex-1 px-4 py-3">
+                  <h3 className="text-gray-900 text-sm font-bold uppercase tracking-wide mb-1">
+                    {campaignResults?.banner_ads?.[2]?.headline || 'Premium Sound'}
+                  </h3>
+                  <p className="text-gray-700 text-[10px] uppercase tracking-wider mb-2">
+                    Minimalist Design
+                  </p>
+                  <p className="text-gray-600 text-[8px] leading-tight">
+                    WIRELESS BLUETOOTH CONNECTION<br/>
+                    WITH BASS RESONANCE
+                  </p>
+                </div>
+                
+                {/* Right - CTA Button */}
+                <div className="pr-4">
+                  <button className="bg-gray-900 text-white text-xs px-4 py-2 rounded-lg font-semibold">
+                    {campaignResults?.banner_ads?.[2]?.cta || 'Shop Now'}
+                  </button>
                 </div>
               </div>
             </div>
@@ -567,99 +555,90 @@ const CampaignContent: React.FC<{
                 </div>
               </div>
 
-              {/* Web Creative Preview - Matching WebCreativePreview design */}
-              <div className="h-full relative overflow-hidden bg-gradient-to-br from-primary/10 via-background to-secondary/10">
+              {/* Landing Page with Background Image */}
+              <div className="h-full relative overflow-hidden">
                 {/* Background Image with Overlay */}
                 <div className="absolute inset-0">
-                  {getImage(0) ? (
-                    <OptimizedImage
-                      src={getImage(0)} 
-                      alt="Background" 
-                      className="w-full h-full object-cover"
-                    />
-                  ) : (
-                    <div className="w-full h-full bg-gradient-to-br from-blue-500 to-purple-600"></div>
-                  )}
+                   {getImage(0) ? (
+                     <OptimizedImage
+                       src={getImage(0)} 
+                       alt="Background" 
+                       className="w-full h-full object-cover transition-opacity duration-300 opacity-100"
+                     />
+                   ) : (
+                     <div className="w-full h-full bg-gradient-to-br from-blue-500 to-purple-600"></div>
+                   )}
+                  {/* Dark overlay for better text readability */}
                   <div className="absolute inset-0 bg-black/40"></div>
+                  {/* Gradient overlay for better text contrast */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30"></div>
                 </div>
 
-                {/* Hero Section - Matching WebCreativePreview layout */}
-                <div className="relative z-10 py-4 px-3">
-                  <div className="grid grid-cols-2 gap-2 items-center">
-                    <div className="space-y-1">
-                      <div className="inline-flex items-center gap-1 px-1 py-0.5 rounded-full text-[3px] font-medium bg-primary/10 text-primary border border-primary/20">
-                        ✨ New Launch  
-                      </div>
-                      <h1 className="text-[7px] font-bold text-white leading-tight">
-                        {activeCampaignResults?.landing_page_concept?.hero_text || 
-                         activeCampaignResults?.banner_ads?.[0]?.headline || 
-                         'Transform Your Experience Today'}
-                      </h1>
-                      <p className="text-[4px] text-white/80 leading-relaxed">
-                        {activeCampaignResults?.landing_page_concept?.sub_text || 
-                         'Discover innovative solutions that drive exceptional results for your business.'}
-                      </p>
-                      <div className="flex gap-1">
-                        <button className="bg-primary text-white text-[3px] px-1 py-0.5 rounded font-medium">
-                          {activeCampaignResults?.landing_page_concept?.cta || 
-                           activeCampaignResults?.banner_ads?.[0]?.cta || 
-                           'Get Started Now'}
-                        </button>
-                        <button className="border border-white/30 text-white text-[3px] px-1 py-0.5 rounded">
-                          Learn More
-                        </button>
-                      </div>
-                    </div>
-                    <div className="relative">
-                      {getImage(0) && (
-                        <OptimizedImage 
-                          src={getImage(0)} 
-                          alt="Product showcase"
-                          className="w-full h-10 object-cover rounded shadow-lg"
-                        />
-                      )}
+                {/* Navigation Bar - Floating */}
+                <div className="relative z-10 bg-white/10 backdrop-blur-md border-b border-white/20">
+                  <div className="px-3 py-1 flex justify-between items-center">
+                    <div className="text-[8px] font-bold text-white">BRAND</div>
+                    <div className="flex gap-3 text-[6px] text-white/80">
+                      <span>Home</span> <span>Products</span> <span>About</span>
                     </div>
                   </div>
                 </div>
 
-                {/* Product Highlights Section */}
-                <div className="relative z-10 px-3 py-2">
-                  <h2 className="text-[5px] font-bold text-white mb-1">Product Highlights</h2>
-                  <div className="grid grid-cols-2 gap-1 text-white/80">
-                    <div className="text-[4px]">• Premium Quality Materials</div>
-                    <div className="text-[4px]">• Advanced Technology</div>
-                    <div className="text-[4px]">• Modern Design</div>
-                    <div className="text-[4px]">• Expert Craftsmanship</div>
+                {/* Hero Content - Centered with Text Overlays */}
+                <div className="relative z-10 h-full flex flex-col justify-center items-center text-center px-4">
+                  {/* Campaign Badge - Using actual campaign data */}
+                  <div className="inline-flex items-center px-2 py-0.5 rounded-full bg-primary/80 backdrop-blur-md border border-primary/50 mb-2">
+                    <div className="text-[5px] font-medium text-white">✨ New Launch</div>
+                  </div>
+                  
+                  {/* Main Headline - Using actual campaign data */}
+                  <h1 className="text-[10px] font-bold text-white leading-tight mb-2 max-w-28 drop-shadow-lg">
+                    {activeCampaignResults?.landing_page_concept?.hero_text ||
+                     activeCampaignResults?.banner_ads?.[0]?.headline || 
+                     'Your Custom Headline'}
+                  </h1>
+                  
+                  {/* Subtext - Using actual campaign data */}
+                  <p className="text-[5px] text-white/90 leading-relaxed mb-2 max-w-24 drop-shadow-md">
+                    {activeCampaignResults?.landing_page_concept?.sub_text ||
+                     activeCampaignResults?.banner_ads?.[0]?.description || 
+                     'Your custom description here'}
+                  </p>
+                  
+                  {/* Template indicator */}
+                  <div className="text-[4px] text-slate-300 mb-3 font-medium">+ Standard Template Sections Below</div>
+                  
+                  {/* CTA Button - Using actual campaign data */}
+                  <div className="bg-white text-gray-900 text-[6px] px-3 py-1 rounded-full font-medium shadow-lg hover:bg-white/90 transition-all mb-3">
+                    {activeCampaignResults?.landing_page_concept?.cta ||
+                     activeCampaignResults?.banner_ads?.[0]?.cta || 
+                     'Your CTA'}
+                  </div>
+
+                  {/* Standard Template Features Preview */}
+                  <div className="bg-white/10 backdrop-blur-md rounded px-3 py-1 border border-white/20">
+                    <div className="flex items-center gap-2 text-center">
+                      <div className="text-[4px] text-white/70 font-medium">Template includes:</div>
+                      <div className="flex items-center gap-1">
+                        <div className="w-1 h-1 bg-blue-400 rounded-full"></div>
+                        <div className="text-[4px] text-white font-medium">Features</div>
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <div className="w-1 h-1 bg-green-400 rounded-full"></div>
+                        <div className="text-[4px] text-white font-medium">Reviews</div>
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <div className="w-1 h-1 bg-purple-400 rounded-full"></div>
+                        <div className="text-[4px] text-white font-medium">Pricing</div>
+                      </div>
+                    </div>
                   </div>
                 </div>
 
-                {/* Testimonials Section */}
-                <div className="relative z-10 px-3 py-2">
-                  <div className="bg-white/10 backdrop-blur-sm rounded p-1.5">
-                    <h3 className="text-[4px] font-bold text-white mb-0.5">What Our Customers Say</h3>
-                    <p className="text-[3px] text-white/80 italic">
-                      "This product has transformed my daily experience. Highly recommend!"
-                    </p>
-                    <p className="text-[3px] text-white/60 mt-0.5">- Sarah J., Marketing Manager</p>
-                  </div>
-                </div>
-
-                {/* Call to Action Section */}
-                <div className="absolute bottom-4 left-3 right-3 z-10">
-                  <div className="bg-primary/90 backdrop-blur-sm rounded-lg p-2 text-center">
-                    <div className="text-[4px] text-white font-bold mb-0.5">Special Offer</div>
-                    <div className="text-[3px] text-white/90 mb-1">Get 30% off your first order</div>
-                    <button className="bg-white text-primary text-[3px] px-2 py-0.5 rounded font-medium w-full">
-                      Claim Offer Now
-                    </button>
-                  </div>
-                </div>
-
-                {/* Footer */}
+                {/* Footer - Bottom Overlay */}
                 <div className="absolute bottom-0 left-0 right-0 z-10 bg-black/20 backdrop-blur-sm border-t border-white/10">
-                  <div className="px-2 py-0.5">
-                    <div className="text-[3px] text-white/70 text-center">© 2024 Brand. All rights reserved.</div>
+                  <div className="px-2 py-1">
+                    <div className="text-[4px] text-white/70 text-center">© 2024 Brand. All rights reserved.</div>
                   </div>
                 </div>
               </div>
@@ -827,71 +806,181 @@ const CatalogContent: React.FC<{
   uploadedImage: string;
 }> = ({ catalogResults, uploadedImage }) => {
   return (
-    <div className="space-y-6">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {/* Original Image */}
-        <Card>
-          <CardContent className="p-4">
-            <h3 className="font-semibold mb-3">Original Product</h3>
-            <div className="aspect-square bg-muted overflow-hidden">
-              <img 
-                src={uploadedImage}
-                alt="Original product"
-                className="w-full h-full object-contain"
-              />
-            </div>
-          </CardContent>
-        </Card>
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      
+      {/* Catalog Enrichment Card - Matching campaign card styling */}
+      <Card 
+        className="card-elegant backdrop-blur-xl bg-white/60 border-white/50 border-2 shadow-2xl hover:shadow-elegant-lg transition-all duration-smooth cursor-pointer"
+      >
+        <div className="px-4 py-3 flex items-center justify-between transition-all duration-smooth">
+          <div className="flex items-center space-x-2">
+            <h3 className="text-foreground font-medium">Product Enrichment</h3>
+            <span className="bg-muted text-primary text-xs px-2 py-1 rounded-full font-medium">1</span>
+          </div>
+        </div>
+        <CardContent className="p-4">
+          <div className="h-80 bg-gray-100 overflow-hidden border border-gray-300 shadow-sm" style={{borderRadius: '1px'}}>
+            {/* Catalog Preview Layout */}
+            <div className="h-full bg-white">
+              {/* Header */}
+              <div className="bg-gray-200 px-2 py-1 flex items-center gap-1 border-b">
+                <div className="flex gap-1">
+                  <div className="w-2 h-2 bg-red-400 rounded-full"></div>
+                  <div className="w-2 h-2 bg-slate-400 rounded-full"></div>
+                  <div className="w-2 h-2 bg-green-400 rounded-full"></div>
+                </div>
+                <div className="flex-1 bg-white mx-2 rounded px-2 py-0.5">
+                  <div className="text-[6px] text-gray-500">catalog.yoursite.com</div>
+                </div>
+              </div>
 
-        {/* Generated Content */}
-        <Card>
-          <CardContent className="p-4">
-            <h3 className="font-semibold mb-3">Generated Content</h3>
-            <div className="space-y-4">
-              {catalogResults.product_category && (
-                <div>
-                  <div className="text-sm font-medium text-muted-foreground">Product Category</div>
-                  <div className="text-sm">{catalogResults.product_category}</div>
-                </div>
-              )}
-              
-              {catalogResults.platform && (
-                <div>
-                  <div className="text-sm font-medium text-muted-foreground">Platform</div>
-                  <div className="text-sm">{catalogResults.platform}</div>
-                </div>
-              )}
-              
-              {catalogResults.tone && (
-                <div>
-                  <div className="text-sm font-medium text-muted-foreground">Tone</div>
-                  <div className="text-sm">{catalogResults.tone}</div>
-                </div>
-              )}
-              
-              {catalogResults.description && (
-                <div>
-                  <div className="text-sm font-medium text-muted-foreground">Description</div>
-                  <div className="text-sm line-clamp-3">{catalogResults.description}</div>
-                </div>
-              )}
-              
-              {catalogResults.tags && catalogResults.tags.length > 0 && (
-                <div>
-                  <div className="text-sm font-medium text-muted-foreground mb-2">Tags</div>
-                  <div className="flex flex-wrap gap-1">
-                    {catalogResults.tags.slice(0, 6).map((tag: string, index: number) => (
-                      <Badge key={index} variant="outline" className="text-xs">
-                        {tag}
-                      </Badge>
-                    ))}
+              {/* Product Display */}
+              <div className="h-full p-3 space-y-2">
+                {/* Product Image Section */}
+                <div className="bg-gradient-to-br from-slate-50 to-gray-100 p-2 rounded overflow-hidden" style={{height: '120px'}}>
+                  <div className="flex items-center h-full gap-2">
+                    {/* Product Image */}
+                    <div className="w-20 h-full flex-shrink-0 bg-white rounded border overflow-hidden">
+                      {uploadedImage && (
+                        <OptimizedImage
+                          src={uploadedImage}
+                          alt="Product"
+                          className="w-full h-full object-contain"
+                        />
+                      )}
+                    </div>
+                    
+                    {/* Product Details */}
+                    <div className="flex-1 space-y-1">
+                      <div className="bg-primary/10 text-primary text-[5px] px-1 py-0.5 rounded-full w-fit">
+                        {catalogResults?.product_category || 'Electronics'}
+                      </div>
+                      <h3 className="text-[8px] font-bold text-gray-900 line-clamp-2">
+                        {catalogResults?.product_title || catalogResults?.title || 'Premium Product'}
+                      </h3>
+                      <p className="text-[6px] text-gray-600 line-clamp-2">
+                        {catalogResults?.description?.substring(0, 80) || 'Enhanced product description with SEO optimization...'}
+                      </p>
+                      <div className="flex items-center gap-1">
+                        <div className="text-[6px] font-bold text-gray-900">★★★★★</div>
+                        <div className="text-[5px] text-gray-500">(4.8)</div>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              )}
+
+                {/* Features Section */}
+                <div className="bg-white border border-gray-200 p-2 rounded" style={{height: '80px'}}>
+                  <h4 className="text-[7px] font-semibold text-gray-900 mb-1">Key Features</h4>
+                  <div className="space-y-1">
+                    {catalogResults?.features?.slice(0, 3).map((feature: string, index: number) => (
+                      <div key={index} className="flex items-center gap-1">
+                        <div className="w-1 h-1 bg-green-500 rounded-full"></div>
+                        <span className="text-[6px] text-gray-700">{feature}</span>
+                      </div>
+                    )) || (
+                      <>
+                        <div className="flex items-center gap-1">
+                          <div className="w-1 h-1 bg-green-500 rounded-full"></div>
+                          <span className="text-[6px] text-gray-700">Premium Quality Materials</span>
+                        </div>
+                        <div className="flex items-center gap-1">
+                          <div className="w-1 h-1 bg-green-500 rounded-full"></div>
+                          <span className="text-[6px] text-gray-700">Advanced Technology</span>
+                        </div>
+                        <div className="flex items-center gap-1">
+                          <div className="w-1 h-1 bg-green-500 rounded-full"></div>
+                          <span className="text-[6px] text-gray-700">Customer Satisfaction</span>
+                        </div>
+                      </>
+                    )}
+                  </div>
+                </div>
+
+                {/* Tags Section */}
+                <div className="bg-gray-50 p-2 rounded" style={{height: '40px'}}>
+                  <h4 className="text-[6px] font-semibold text-gray-900 mb-1">Tags</h4>
+                  <div className="flex flex-wrap gap-1">
+                    {catalogResults?.tags?.slice(0, 4).map((tag: string, index: number) => (
+                      <span key={index} className="bg-white text-gray-700 text-[5px] px-1 py-0.5 rounded border text-center">
+                        {tag}
+                      </span>
+                    )) || (
+                      <>
+                        <span className="bg-white text-gray-700 text-[5px] px-1 py-0.5 rounded border">Premium</span>
+                        <span className="bg-white text-gray-700 text-[5px] px-1 py-0.5 rounded border">Quality</span>
+                        <span className="bg-white text-gray-700 text-[5px] px-1 py-0.5 rounded border">Modern</span>
+                      </>
+                    )}
+                  </div>
+                </div>
+
+                {/* Platform Badge */}
+                <div className="absolute bottom-2 right-2 bg-black/80 text-white text-[5px] px-1 py-0.5 rounded backdrop-blur-sm">
+                  {catalogResults?.platform || 'E-commerce'}
+                </div>
+              </div>
             </div>
-          </CardContent>
-        </Card>
-      </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Catalog Details Card - Matching campaign card styling */}
+      <Card 
+        className="card-elegant backdrop-blur-xl bg-white/60 border-white/50 border-2 shadow-2xl hover:shadow-elegant-lg transition-all duration-smooth cursor-pointer"
+      >
+        <div className="px-4 py-3 flex items-center justify-between transition-all duration-smooth">
+          <div className="flex items-center space-x-2">
+            <h3 className="text-foreground font-medium">Content Analysis</h3>
+            <span className="bg-muted text-primary text-xs px-2 py-1 rounded-full font-medium">SEO</span>
+          </div>
+        </div>
+        <CardContent className="p-4">
+          <div className="space-y-4">
+            {/* Platform & Tone */}
+            <div className="grid grid-cols-2 gap-3">
+              <div className="bg-white/80 p-3 rounded border">
+                <div className="text-xs font-medium text-muted-foreground mb-1">Platform</div>
+                <div className="text-sm font-semibold">{catalogResults?.platform || 'E-commerce'}</div>
+              </div>
+              <div className="bg-white/80 p-3 rounded border">
+                <div className="text-xs font-medium text-muted-foreground mb-1">Tone</div>
+                <div className="text-sm font-semibold">{catalogResults?.tone || 'Professional'}</div>
+              </div>
+            </div>
+
+            {/* Description */}
+            {catalogResults?.description && (
+              <div className="bg-white/80 p-3 rounded border">
+                <div className="text-xs font-medium text-muted-foreground mb-2">SEO Description</div>
+                <div className="text-sm text-gray-700 line-clamp-4">{catalogResults.description}</div>
+              </div>
+            )}
+
+            {/* Tags */}
+            {catalogResults?.tags && catalogResults.tags.length > 0 && (
+              <div className="bg-white/80 p-3 rounded border">
+                <div className="text-xs font-medium text-muted-foreground mb-2">Keywords & Tags</div>
+                <div className="flex flex-wrap gap-1">
+                  {catalogResults.tags.slice(0, 8).map((tag: string, index: number) => (
+                    <Badge key={index} variant="outline" className="text-xs">
+                      {tag}
+                    </Badge>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Category */}
+            {catalogResults?.product_category && (
+              <div className="bg-white/80 p-3 rounded border">
+                <div className="text-xs font-medium text-muted-foreground mb-1">Product Category</div>
+                <div className="text-sm font-semibold">{catalogResults.product_category}</div>
+              </div>
+            )}
+          </div>
+        </CardContent>
+      </Card>
     </div>
   );
 };
