@@ -388,6 +388,12 @@ const CampaignContent: React.FC<{
   
   const activeCampaignResults = campaignResults;
   
+  // Debug: Check what data we actually have
+  console.log('🏗️ OptimizedGallery - campaignResults:', campaignResults);
+  console.log('🏗️ OptimizedGallery - activeCampaignResults:', activeCampaignResults);
+  console.log('🏗️ OptimizedGallery - banner_ads:', activeCampaignResults?.banner_ads);
+  console.log('🏗️ OptimizedGallery - first banner:', activeCampaignResults?.banner_ads?.[0]);
+  
   // Create consistent image mapping for preview cards
   const imageMapping = generatedImages ? {
     image_0: generatedImages[0]?.url || null,
