@@ -101,8 +101,9 @@ const WebCreativePreview: React.FC = () => {
         <div className="absolute top-8 right-8">
           <Button 
             onClick={handleDownload} 
-            className="bg-indigo-600 hover:bg-indigo-700 text-white rounded-full px-6"
+            className="bg-indigo-600 hover:bg-indigo-700 text-white rounded-full px-6 gap-2"
           >
+            <Download className="w-4 h-4" />
             Download
           </Button>
         </div>
