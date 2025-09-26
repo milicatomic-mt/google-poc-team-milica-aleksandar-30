@@ -103,34 +103,27 @@ const EmailTemplatesPreview: React.FC = () => {
           <div className="bg-white rounded-lg overflow-hidden">
             {/* Header with Background Image */}
             <div 
-              className="relative text-center py-8 bg-cover bg-center bg-no-repeat min-h-[200px] flex flex-col justify-center"
+              className="relative text-center py-16 bg-cover bg-center bg-no-repeat min-h-[300px] flex flex-col justify-center"
               style={{
                 backgroundImage: (getImage(0) || uploadedImage) 
-                  ? `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(${getImage(0) || uploadedImage})`
+                  ? `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${getImage(0) || uploadedImage})`
                   : 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
               }}
             >
-              <h1 className="text-3xl font-bold text-white mb-2 drop-shadow-lg">Premium sound</h1>
-              <p className="text-sm text-white/90 uppercase tracking-wider drop-shadow">MINIMALIST DESIGN</p>
+              <h1 className="text-4xl font-bold text-white mb-4 drop-shadow-lg">Premium sound</h1>
+              <p className="text-lg text-white/90 uppercase tracking-wider drop-shadow">MINIMALIST DESIGN</p>
             </div>
 
-            {/* Hero Image Section */}
-            <div 
-              className="relative bg-cover bg-center bg-no-repeat py-12 min-h-[400px] flex items-center justify-center"
-              style={{
-                backgroundImage: (getImage(1) || getImage(0) || uploadedImage) 
-                  ? `linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1)), url(${getImage(1) || getImage(0) || uploadedImage})`
-                  : 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
-              }}
-            >
-              <div className="container mx-auto px-8 max-w-2xl">
+            {/* Product Showcase Section */}
+            <div className="bg-gradient-to-b from-gray-50 to-white py-16">
+              <div className="container mx-auto px-8 max-w-4xl">
                 <div className="flex items-center justify-center">
                   {(getImage(0) || uploadedImage) && (
-                    <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-8 shadow-2xl">
+                    <div className="bg-white rounded-3xl p-12 shadow-xl max-w-md">
                       <OptimizedImage 
                         src={getImage(0) || uploadedImage}
-                        alt="Premium wireless headphones"
-                        className="w-64 h-64 object-contain"
+                        alt="Premium product"
+                        className="w-full h-auto object-contain max-h-80"
                       />
                     </div>
                   )}
@@ -139,19 +132,19 @@ const EmailTemplatesPreview: React.FC = () => {
             </div>
 
             {/* Content section */}
-            <div className="container mx-auto px-8 py-8 max-w-2xl">
-              <div className="text-center mb-8">
-                <h2 className="text-2xl font-bold text-slate-900 mb-4">
+            <div className="container mx-auto px-8 py-12 max-w-3xl">
+              <div className="text-center">
+                <h2 className="text-3xl font-bold text-slate-900 mb-6">
                   Premium wireless headphones with a sleek ivory finish, designed for immersive sound and all-day comfort.
                 </h2>
                 
-                <p className="text-slate-600 leading-relaxed mb-6">
+                <p className="text-lg text-slate-600 leading-relaxed mb-8">
                   {emailCopy?.body || 'Experience high-quality audio with these stylish over-ear wireless headphones. Featuring soft cushioned ear pads, a minimalist design, and advanced noise isolation, they\'re perfect for music, calls, or daily use. Lightweight yet durable, these headphones combine performance with modern aesthetics, making them ideal for both casual listeners and professionals.'}
                 </p>
                 
                 <Button 
                   size="lg" 
-                  className="bg-slate-900 hover:bg-slate-800 text-white font-semibold px-8 py-3 rounded-full"
+                  className="bg-slate-900 hover:bg-slate-800 text-white font-semibold px-12 py-4 rounded-full text-lg"
                 >
                   Shop Now
                 </Button>
