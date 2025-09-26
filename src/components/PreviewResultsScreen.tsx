@@ -82,6 +82,14 @@ const PreviewResultsScreen: React.FC = () => {
   // Use either passed campaignResults or fetched results
   const activeCampaignResults = campaignResults || fetchedCampaignResults;
 
+  // Debug: Log the actual landing page structure
+  useEffect(() => {
+    if (activeCampaignResults?.landing_page_concept) {
+      console.log('🏗️ Landing Page Concept Structure:', activeCampaignResults.landing_page_concept);
+      console.log('🏗️ Available fields:', Object.keys(activeCampaignResults.landing_page_concept));
+    }
+  }, [activeCampaignResults]);
+
   // Create consistent image mapping for preview cards and detail pages
   const imageMapping = activeCampaignResults?.generated_images ? {
     image_0: activeCampaignResults.generated_images[0]?.url || null,
@@ -787,72 +795,42 @@ const PreviewResultsScreen: React.FC = () => {
                 <section className="py-16 bg-muted/20">
                   <div className="container mx-auto px-8">
                     <div className="text-center mb-12">
-                      <h2 className="text-3xl font-bold text-foreground mb-4">Why Choose Our Solution</h2>
-                      <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                        Discover the features that make us the preferred choice for thousands of customers
-                      </p>
+                         <h2 className="text-3xl font-bold text-foreground mb-4">
+                           {activeCampaignResults.landing_page_concept?.product_highlights?.title || 'Why Choose Our Solution'}
+                         </h2>
+                         <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                           {activeCampaignResults.landing_page_concept?.product_highlights?.description || 
+                            'Discover the features that make us the preferred choice for thousands of customers'}
+                         </p>
                     </div>
                     
-                    <div className="grid md:grid-cols-3 gap-8">
-                      {/* Feature 1 */}
-                      <div className="text-center space-y-4 p-6 bg-background rounded-xl border border-border hover:shadow-lg transition-shadow">
-                        <div className="relative">
-                          <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto">
-                            <div className="w-8 h-8 bg-primary rounded-full"></div>
-                          </div>
-                          {generatedImages?.[1]?.url && (
-                            <div className="absolute -top-2 -right-2 w-12 h-12 rounded-lg overflow-hidden border-2 border-background shadow-lg">
-                              <img src={generatedImages[1].url} alt="Feature 1" className="w-full h-full object-cover" />
-                            </div>
-                          )}
-                        </div>
-                        <h3 className="text-xl font-semibold">
-                          {activeCampaignResults.banner_ads?.[0]?.headline || 'Premium Quality'}
-                        </h3>
-                        <p className="text-muted-foreground">
-                          {activeCampaignResults.banner_ads?.[0]?.description || 'Experience unmatched quality with our carefully crafted solutions designed for excellence.'}
-                        </p>
-                      </div>
-
-                      {/* Feature 2 */}
-                      <div className="text-center space-y-4 p-6 bg-background rounded-xl border border-border hover:shadow-lg transition-shadow">
-                        <div className="relative">
-                          <div className="w-16 h-16 bg-secondary/10 rounded-full flex items-center justify-center mx-auto">
-                            <div className="w-8 h-8 bg-secondary rounded-full"></div>
-                          </div>
-                          {generatedImages?.[2]?.url && (
-                            <div className="absolute -top-2 -right-2 w-12 h-12 rounded-lg overflow-hidden border-2 border-background shadow-lg">
-                              <img src={generatedImages[2].url} alt="Feature 2" className="w-full h-full object-cover" />
-                            </div>
-                          )}
-                        </div>
-                        <h3 className="text-xl font-semibold">
-                          {activeCampaignResults.banner_ads?.[1]?.headline || 'Fast & Reliable'}
-                        </h3>
-                        <p className="text-muted-foreground">
-                          {activeCampaignResults.banner_ads?.[1]?.description || 'Lightning-fast performance with 99.9% reliability ensures you never miss a beat.'}
-                        </p>
-                      </div>
-
-                      {/* Feature 3 */}
-                      <div className="text-center space-y-4 p-6 bg-background rounded-xl border border-border hover:shadow-lg transition-shadow">
-                        <div className="relative">
-                          <div className="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mx-auto">
-                            <div className="w-8 h-8 bg-accent rounded-full"></div>
-                          </div>
-                          {generatedImages?.[3]?.url && (
-                            <div className="absolute -top-2 -right-2 w-12 h-12 rounded-lg overflow-hidden border-2 border-background shadow-lg">
-                              <img src={generatedImages[3].url} alt="Feature 3" className="w-full h-full object-cover" />
-                            </div>
-                          )}
-                        </div>
-                        <h3 className="text-xl font-semibold">
-                          {activeCampaignResults.banner_ads?.[2]?.headline || '24/7 Support'}
-                        </h3>
-                        <p className="text-muted-foreground">
-                          {activeCampaignResults.banner_ads?.[2]?.description || 'Round-the-clock expert support to help you succeed every step of the way.'}
-                        </p>
-                      </div>
+                     <div className="grid md:grid-cols-3 gap-8">
+                       {/* Use actual product highlights if available, otherwise fallback to banner ads */}
+                       {(activeCampaignResults.landing_page_concept?.product_highlights?.features || 
+                         activeCampaignResults.banner_ads?.slice(0, 3) || [
+                         { headline: "Premium Quality", description: "Experience unmatched quality with our carefully crafted solutions designed for excellence." },
+                         { headline: "Fast & Reliable", description: "Lightning-fast performance with 99.9% reliability ensures you never miss a beat." },
+                         { headline: "24/7 Support", description: "Round-the-clock expert support to help you succeed every step of the way." }
+                       ]).map((item, index) => (
+                         <div key={index} className="text-center space-y-4 p-6 bg-background rounded-xl border border-border hover:shadow-lg transition-shadow">
+                           <div className="relative">
+                             <div className={`w-16 h-16 ${index === 0 ? 'bg-primary/10' : index === 1 ? 'bg-secondary/10' : 'bg-accent/10'} rounded-full flex items-center justify-center mx-auto`}>
+                               <div className={`w-8 h-8 ${index === 0 ? 'bg-primary' : index === 1 ? 'bg-secondary' : 'bg-accent'} rounded-full`}></div>
+                             </div>
+                             {generatedImages?.[index + 1]?.url && (
+                               <div className="absolute -top-2 -right-2 w-12 h-12 rounded-lg overflow-hidden border-2 border-background shadow-lg">
+                                 <img src={generatedImages[index + 1].url} alt={`Feature ${index + 1}`} className="w-full h-full object-cover" />
+                               </div>
+                             )}
+                           </div>
+                           <h3 className="text-xl font-semibold">
+                             {item.headline || item.title || `Feature ${index + 1}`}
+                           </h3>
+                           <p className="text-muted-foreground">
+                             {item.description || item.content || 'Feature description'}
+                           </p>
+                         </div>
+                       ))}
                     </div>
                   </div>
                 </section>
@@ -921,14 +899,17 @@ const PreviewResultsScreen: React.FC = () => {
                 <section className="py-16 bg-muted/20">
                   <div className="container mx-auto px-8">
                     <div className="text-center mb-12">
-                      <h2 className="text-3xl font-bold text-foreground mb-4">Trusted by Industry Leaders</h2>
+                      <h2 className="text-3xl font-bold text-foreground mb-4">
+                        {activeCampaignResults.landing_page_concept?.social_proof?.title || 'Trusted by Industry Leaders'}
+                      </h2>
                       <p className="text-lg text-muted-foreground">
-                        Join thousands of satisfied customers who have transformed their business
+                        {activeCampaignResults.landing_page_concept?.social_proof?.subtitle || 
+                         'Join thousands of satisfied customers who have transformed their business'}
                       </p>
                     </div>
 
                     <div className="grid md:grid-cols-3 gap-8 mb-12">
-                      {[
+                      {(activeCampaignResults.landing_page_concept?.social_proof?.testimonials || [
                         {
                           quote: "This solution completely transformed our workflow. The results exceeded our expectations by 300%.",
                           author: "Sarah Johnson",
@@ -947,7 +928,7 @@ const PreviewResultsScreen: React.FC = () => {
                           role: "Manager, GrowthLab",
                           rating: 5
                         }
-                      ].map((testimonial, index) => (
+                      ]).map((testimonial, index) => (
                         <div key={index} className="p-6 bg-background rounded-xl border border-border">
                           <div className="flex items-center gap-1 text-yellow-500 mb-4">
                             {[...Array(testimonial.rating)].map((_, i) => (
@@ -986,21 +967,45 @@ const PreviewResultsScreen: React.FC = () => {
                   <div className="container mx-auto px-8 text-center">
                     <div className="max-w-3xl mx-auto space-y-6">
                       <h2 className="text-4xl font-bold text-foreground">
-                        Ready to Transform Your Business?
+                        {activeCampaignResults.landing_page_concept?.cta_section?.headline || 
+                         'Ready to Transform Your Business?'}
                       </h2>
                       <p className="text-xl text-muted-foreground">
-                        Join thousands of successful businesses and start your journey today. 
-                        No setup fees, no long-term contracts.
+                        {activeCampaignResults.landing_page_concept?.cta_section?.description || 
+                         'Join thousands of successful businesses and start your journey today. No setup fees, no long-term contracts.'}
                       </p>
+                      
+                      {/* Pricing Section (if available) */}
+                      {activeCampaignResults.landing_page_concept?.pricing_section && (
+                        <div className="bg-background/50 backdrop-blur-sm rounded-xl p-6 border border-border my-8">
+                          <h3 className="text-2xl font-semibold mb-4">
+                            {activeCampaignResults.landing_page_concept.pricing_section.title || 'Choose Your Plan'}
+                          </h3>
+                          {activeCampaignResults.landing_page_concept.pricing_section.guarantees && (
+                            <p className="text-sm text-muted-foreground mb-4">
+                              {activeCampaignResults.landing_page_concept.pricing_section.guarantees}
+                            </p>
+                          )}
+                        </div>
+                      )}
                       
                       <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
                         <Button size="lg" className="text-lg px-12 py-4 shadow-lg">
-                          {activeCampaignResults.landing_page_concept?.cta || 'Start Free Trial'}
+                          {activeCampaignResults.landing_page_concept?.cta_section?.primary_cta || 
+                           activeCampaignResults.landing_page_concept?.cta || 
+                           'Start Free Trial'}
                         </Button>
                         <Button variant="outline" size="lg" className="text-lg px-8 py-4">
-                          Schedule Demo
+                          {activeCampaignResults.landing_page_concept?.cta_section?.secondary_cta || 
+                           'Schedule Demo'}
                         </Button>
                       </div>
+                      
+                      {activeCampaignResults.landing_page_concept?.cta_section?.urgency && (
+                        <p className="text-sm text-muted-foreground mt-4 font-medium">
+                          {activeCampaignResults.landing_page_concept.cta_section.urgency}
+                        </p>
+                      )}
 
                       {/* Supporting Visual */}
                       {generatedImages?.[0]?.url && (
@@ -1020,54 +1025,6 @@ const PreviewResultsScreen: React.FC = () => {
                     </div>
                   </div>
                 </section>
-
-                {/* Footer */}
-                <footer className="bg-background border-t border-border py-12">
-                  <div className="container mx-auto px-8">
-                    <div className="grid md:grid-cols-4 gap-8">
-                      <div className="space-y-4">
-                        <h3 className="font-bold text-foreground">Company</h3>
-                        <div className="space-y-2 text-sm text-muted-foreground">
-                          <div>About Us</div>
-                          <div>Careers</div>
-                          <div>Press</div>
-                          <div>Contact</div>
-                        </div>
-                      </div>
-                      <div className="space-y-4">
-                        <h3 className="font-bold text-foreground">Product</h3>
-                        <div className="space-y-2 text-sm text-muted-foreground">
-                          <div>Features</div>
-                          <div>Pricing</div>
-                          <div>Integrations</div>
-                          <div>API</div>
-                        </div>
-                      </div>
-                      <div className="space-y-4">
-                        <h3 className="font-bold text-foreground">Support</h3>
-                        <div className="space-y-2 text-sm text-muted-foreground">
-                          <div>Help Center</div>
-                          <div>Documentation</div>
-                          <div>Community</div>
-                          <div>Status</div>
-                        </div>
-                      </div>
-                      <div className="space-y-4">
-                        <h3 className="font-bold text-foreground">Legal</h3>
-                        <div className="space-y-2 text-sm text-muted-foreground">
-                          <div>Privacy Policy</div>
-                          <div>Terms of Service</div>
-                          <div>Cookie Policy</div>
-                          <div>GDPR</div>
-                        </div>
-                      </div>
-                    </div>
-                    
-                    <div className="border-t border-border mt-8 pt-8 text-center text-sm text-muted-foreground">
-                      <p>&copy; 2024 Your Company. All rights reserved.</p>
-                    </div>
-                  </div>
-                </footer>
               </div>
             </div>
           </div>
