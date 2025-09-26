@@ -324,9 +324,9 @@ const VideoScriptsPreview: React.FC = () => {
               {videoScripts.map((script, index) => (
                 <div key={index} className="bg-white rounded-lg p-8 shadow-lg space-y-4">
                   <div className="flex items-center gap-2">
-                    <Badge className="bg-primary text-primary-foreground">
+                    <h3 className="text-2xl font-bold text-gray-900">
                       {script.platform}
-                    </Badge>
+                    </h3>
                   </div>
                   
                   <div className="space-y-3">
