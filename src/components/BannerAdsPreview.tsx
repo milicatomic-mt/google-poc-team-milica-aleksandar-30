@@ -74,7 +74,7 @@ const BannerAdsPreview: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background relative">
+    <div className="min-h-screen bg-gray-50 relative">
       {/* Back Button - Top Left */}
       <div className="absolute top-8 left-8 z-20">
         <Button
@@ -87,33 +87,105 @@ const BannerAdsPreview: React.FC = () => {
         </Button>
       </div>
 
-      {/* Download Button - Absolute Top Right */}
-      <div className="absolute top-8 right-8">
-        <Button 
-          onClick={handleDownload} 
-          className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-6 gap-2"
-        >
-          <Download className="w-4 h-4" />
-          Download
-        </Button>
+      {/* Header */}
+      <div className="flex items-center justify-center px-8 py-6 pt-20">
+        <div className="text-center">
+          <h1 className="text-3xl font-bold text-gray-900">Banner Ads</h1>
+          <p className="text-gray-600 text-sm mt-1">Review your AI-generated designs before download</p>
+        </div>
+
+        {/* Download Button - Absolute Top Right */}
+        <div className="absolute top-8 right-8">
+          <Button 
+            onClick={handleDownload} 
+            className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-6 gap-2"
+          >
+            <Download className="w-4 h-4" />
+            Download
+          </Button>
+        </div>
       </div>
 
-      {/* Header */}
-      <div className="px-8 py-6 pt-20">
-        <h1 className="text-4xl font-bold text-foreground mb-8">
-          Banner Ads <span className="text-2xl text-muted-foreground">4</span>
-        </h1>
+      {/* Content with increased spacing */}
+      <div className="px-8 pb-8 mt-12">
+        <div className="max-w-7xl mx-auto">
+          {/* Banner Grid */}
+          <div className="space-y-6">
+            {/* Top Row - Two Banners Side by Side */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              
+              {/* Left Banner - Product Focus */}
+              <div className="bg-gradient-to-br from-gray-800 via-gray-700 to-gray-600 rounded-lg overflow-hidden shadow-lg h-64 relative">
+                <div className="flex items-center h-full px-8">
+                  {/* Left - Product Image */}
+                  <div className="w-32 h-40 flex-shrink-0 flex items-center justify-center">
+                    {getImage(1) && (
+                      <img 
+                        src={getImage(1)} 
+                        alt="Premium Sound Product" 
+                        className="w-full h-full object-contain filter drop-shadow-lg" 
+                      />
+                    )}
+                  </div>
+                  
+                  {/* Right - Text Content */}
+                  <div className="flex-1 ml-8 text-white">
+                    <h3 className="text-white text-2xl font-bold uppercase tracking-wide mb-2">
+                      PREMIUM SOUND
+                    </h3>
+                    <p className="text-white/90 text-sm uppercase tracking-wider mb-3">
+                      MINIMALIST DESIGN
+                    </p>
+                    <p className="text-white/80 text-xs font-medium mb-4">
+                      WIRELESS BLUETOOTH CONNECTION<br/>
+                      WITH BASS RESONANCE
+                    </p>
+                    <button className="bg-white text-gray-900 text-sm px-6 py-2 font-semibold hover:bg-gray-100 transition-colors rounded">
+                      Shop Now
+                    </button>
+                  </div>
+                </div>
+              </div>
 
-        {/* Banner Grid */}
-        <div className="space-y-6">
-          {/* Top Row - Two Banners Side by Side */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            
-            {/* Left Banner - Product Focus */}
-            <div className="bg-gradient-to-br from-gray-800 via-gray-700 to-gray-600 rounded-lg overflow-hidden shadow-lg h-64 relative">
-              <div className="flex items-center h-full px-8">
+              {/* Right Banner - Lifestyle Focus */}
+              <div className="bg-gradient-to-br from-slate-100 via-gray-50 to-stone-100 rounded-lg overflow-hidden shadow-lg h-64 relative">
+                <div className="flex items-center h-full">
+                  {/* Left - Person Image */}
+                  <div className="w-48 h-full relative overflow-hidden flex-shrink-0">
+                    {getImage(0) && (
+                      <img 
+                        src={getImage(0)} 
+                        alt="Person using product" 
+                        className="w-full h-full object-cover" 
+                      />
+                    )}
+                  </div>
+                  
+                  {/* Right - Text Content */}
+                  <div className="flex-1 px-6 text-gray-900">
+                    <h3 className="text-gray-900 text-2xl font-bold uppercase tracking-wide mb-2">
+                      PREMIUM SOUND
+                    </h3>
+                    <p className="text-gray-700 text-sm uppercase tracking-wider mb-3">
+                      MINIMALIST DESIGN
+                    </p>
+                    <p className="text-gray-600 text-xs font-medium mb-4">
+                      WIRELESS BLUETOOTH CONNECTION<br/>
+                      WITH BASS RESONANCE
+                    </p>
+                    <button className="bg-gray-900 text-white text-sm px-6 py-2 font-semibold hover:bg-gray-800 transition-colors rounded">
+                      Shop Now
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Bottom Banner - Horizontal Layout */}
+            <div className="bg-gradient-to-r from-slate-200 via-gray-100 to-stone-200 rounded-lg overflow-hidden shadow-lg h-32 relative">
+              <div className="flex items-center h-full">
                 {/* Left - Product Image */}
-                <div className="w-32 h-40 flex-shrink-0 flex items-center justify-center">
+                <div className="w-24 h-24 ml-6 flex-shrink-0 flex items-center justify-center">
                   {getImage(1) && (
                     <img 
                       src={getImage(1)} 
@@ -123,130 +195,62 @@ const BannerAdsPreview: React.FC = () => {
                   )}
                 </div>
                 
-                {/* Right - Text Content */}
-                <div className="flex-1 ml-8 text-white">
-                  <h3 className="text-white text-2xl font-bold uppercase tracking-wide mb-2">
+                {/* Middle - Text Content */}
+                <div className="flex-1 ml-8 text-gray-900">
+                  <h3 className="text-gray-900 text-xl font-bold uppercase tracking-wide mb-1">
                     PREMIUM SOUND
                   </h3>
-                  <p className="text-white/90 text-sm uppercase tracking-wider mb-3">
+                  <p className="text-gray-700 text-sm uppercase tracking-wider mb-2">
                     MINIMALIST DESIGN
                   </p>
-                  <p className="text-white/80 text-xs font-medium mb-4">
-                    WIRELESS BLUETOOTH CONNECTION<br/>
-                    WITH BASS RESONANCE
+                  <p className="text-gray-600 text-xs font-medium">
+                    WIRELESS BLUETOOTH CONNECTION WITH BASS RESONANCE
                   </p>
-                  <button className="bg-white text-gray-900 text-sm px-6 py-2 font-semibold hover:bg-gray-100 transition-colors rounded">
+                </div>
+                
+                {/* Right - CTA Button */}
+                <div className="pr-8 flex-shrink-0">
+                  <button className="bg-gray-900 text-white text-sm px-8 py-3 font-semibold hover:bg-gray-800 transition-colors rounded-full">
                     Shop Now
                   </button>
                 </div>
               </div>
             </div>
 
-            {/* Right Banner - Lifestyle Focus */}
-            <div className="bg-gradient-to-br from-slate-100 via-gray-50 to-stone-100 rounded-lg overflow-hidden shadow-lg h-64 relative">
+            {/* Bottom Row - Wide Horizontal Banner */}
+            <div className="bg-gradient-to-r from-slate-200 via-gray-100 to-stone-200 rounded-lg overflow-hidden shadow-lg h-32 relative">
               <div className="flex items-center h-full">
-                {/* Left - Person Image */}
-                <div className="w-48 h-full relative overflow-hidden flex-shrink-0">
-                  {getImage(0) && (
+                {/* Left - Product Image */}
+                <div className="w-24 h-24 ml-6 flex-shrink-0 flex items-center justify-center">
+                  {getImage(1) && (
                     <img 
-                      src={getImage(0)} 
-                      alt="Person using product" 
-                      className="w-full h-full object-cover" 
+                      src={getImage(1)} 
+                      alt="Premium Sound Product" 
+                      className="w-full h-full object-contain filter drop-shadow-lg" 
                     />
                   )}
                 </div>
                 
-                {/* Right - Text Content */}
-                <div className="flex-1 px-6 text-gray-900">
-                  <h3 className="text-gray-900 text-2xl font-bold uppercase tracking-wide mb-2">
+                {/* Middle - Text Content */}
+                <div className="flex-1 ml-8 text-gray-900">
+                  <h3 className="text-gray-900 text-xl font-bold uppercase tracking-wide mb-1">
                     PREMIUM SOUND
                   </h3>
-                  <p className="text-gray-700 text-sm uppercase tracking-wider mb-3">
+                  <p className="text-gray-700 text-sm uppercase tracking-wider mb-2">
                     MINIMALIST DESIGN
                   </p>
-                  <p className="text-gray-600 text-xs font-medium mb-4">
-                    WIRELESS BLUETOOTH CONNECTION<br/>
-                    WITH BASS RESONANCE
+                  <p className="text-gray-600 text-xs font-medium">
+                    WIRELESS BLUETOOTH CONNECTION WITH BASS RESONANCE
                   </p>
-                  <button className="bg-gray-900 text-white text-sm px-6 py-2 font-semibold hover:bg-gray-800 transition-colors rounded">
+                </div>
+                
+                {/* Right - CTA Button */}
+                <div className="pr-8 flex-shrink-0">
+                  <button className="bg-gray-900 text-white text-sm px-8 py-3 font-semibold hover:bg-gray-800 transition-colors rounded-full">
                     Shop Now
                   </button>
                 </div>
               </div>
-            </div>
-          </div>
-
-          {/* Bottom Banner - Horizontal Layout */}
-          <div className="bg-gradient-to-r from-slate-200 via-gray-100 to-stone-200 rounded-lg overflow-hidden shadow-lg h-32 relative">
-            <div className="flex items-center h-full">
-              {/* Left - Product Image */}
-              <div className="w-24 h-24 ml-6 flex-shrink-0 flex items-center justify-center">
-                {getImage(1) && (
-                  <img 
-                    src={getImage(1)} 
-                    alt="Premium Sound Product" 
-                    className="w-full h-full object-contain filter drop-shadow-lg" 
-                  />
-                )}
-              </div>
-              
-              {/* Middle - Text Content */}
-              <div className="flex-1 ml-8 text-gray-900">
-                <h3 className="text-gray-900 text-xl font-bold uppercase tracking-wide mb-1">
-                  PREMIUM SOUND
-                </h3>
-                <p className="text-gray-700 text-sm uppercase tracking-wider mb-2">
-                  MINIMALIST DESIGN
-                </p>
-                <p className="text-gray-600 text-xs font-medium">
-                  WIRELESS BLUETOOTH CONNECTION WITH BASS RESONANCE
-                </p>
-              </div>
-              
-              {/* Right - CTA Button */}
-              <div className="pr-8 flex-shrink-0">
-                <button className="bg-gray-900 text-white text-sm px-8 py-3 font-semibold hover:bg-gray-800 transition-colors rounded-full">
-                  Shop Now
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Bottom Row - Wide Horizontal Banner */}
-      <div className="px-8 pb-6">
-        <div className="bg-gradient-to-r from-slate-200 via-gray-100 to-stone-200 rounded-lg overflow-hidden shadow-lg h-32 relative">
-          <div className="flex items-center h-full">
-            {/* Left - Product Image */}
-            <div className="w-24 h-24 ml-6 flex-shrink-0 flex items-center justify-center">
-              {getImage(1) && (
-                <img 
-                  src={getImage(1)} 
-                  alt="Premium Sound Product" 
-                  className="w-full h-full object-contain filter drop-shadow-lg" 
-                />
-              )}
-            </div>
-            
-            {/* Middle - Text Content */}
-            <div className="flex-1 ml-8 text-gray-900">
-              <h3 className="text-gray-900 text-xl font-bold uppercase tracking-wide mb-1">
-                PREMIUM SOUND
-              </h3>
-              <p className="text-gray-700 text-sm uppercase tracking-wider mb-2">
-                MINIMALIST DESIGN
-              </p>
-              <p className="text-gray-600 text-xs font-medium">
-                WIRELESS BLUETOOTH CONNECTION WITH BASS RESONANCE
-              </p>
-            </div>
-            
-            {/* Right - CTA Button */}
-            <div className="pr-8 flex-shrink-0">
-              <button className="bg-gray-900 text-white text-sm px-8 py-3 font-semibold hover:bg-gray-800 transition-colors rounded-full">
-                Shop Now
-              </button>
             </div>
           </div>
         </div>
