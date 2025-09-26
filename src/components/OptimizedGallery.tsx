@@ -372,14 +372,13 @@ const CampaignContent: React.FC<{
           </div>
           <Button
             variant="default"
-            size="sm" 
             onClick={(e) => {
               e.stopPropagation();
               onViewDetails('Banner Ads');
             }}
-            className="tap-target focus-ring rounded-full p-2"
+            className="tap-target focus-ring rounded-full p-1 h-8 w-8"
           >
-            <Download className="w-4 h-4" />
+            <Download className="w-3 h-3" />
           </Button>
         </div>
         <CardContent className="px-4 pb-4 pt-2">
@@ -502,14 +501,13 @@ const CampaignContent: React.FC<{
           </div>
           <Button
             variant="default"
-            size="sm" 
             onClick={(e) => {
               e.stopPropagation();
               onViewDetails('Web Creative');
             }}
-            className="tap-target focus-ring rounded-full p-2"
+            className="tap-target focus-ring rounded-full p-1 h-8 w-8"
           >
-            <Download className="w-4 h-4" />
+            <Download className="w-3 h-3" />
           </Button>
         </div>
         <CardContent className="p-4">
@@ -630,14 +628,13 @@ const CampaignContent: React.FC<{
           </div>
           <Button
             variant="default"
-            size="sm" 
             onClick={(e) => {
               e.stopPropagation();
               onViewDetails('Video Scripts');
             }}
-            className="tap-target focus-ring rounded-full p-2"
+            className="tap-target focus-ring rounded-full p-1 h-8 w-8"
           >
-            <Download className="w-4 h-4" />
+            <Download className="w-3 h-3" />
           </Button>
         </div>
         <CardContent className="p-4">
@@ -743,14 +740,13 @@ const CampaignContent: React.FC<{
           </div>
           <Button
             variant="default"
-            size="sm" 
             onClick={(e) => {
               e.stopPropagation();
               onViewDetails('Email Templates');
             }}
-            className="tap-target focus-ring rounded-full p-2"
+            className="tap-target focus-ring rounded-full p-1 h-8 w-8"
           >
-            <Download className="w-4 h-4" />
+            <Download className="w-3 h-3" />
           </Button>
         </div>
         <CardContent className="p-4">
