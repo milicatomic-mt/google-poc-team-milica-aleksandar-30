@@ -214,6 +214,44 @@ const BannerAdsPreview: React.FC = () => {
         </div>
       </div>
 
+      {/* Bottom Row - Wide Horizontal Banner */}
+      <div className="px-8 pb-6">
+        <div className="bg-gradient-to-r from-slate-200 via-gray-100 to-stone-200 rounded-lg overflow-hidden shadow-lg h-32 relative">
+          <div className="flex items-center h-full">
+            {/* Left - Product Image */}
+            <div className="w-24 h-24 ml-6 flex-shrink-0 flex items-center justify-center">
+              {getImage(1) && (
+                <img 
+                  src={getImage(1)} 
+                  alt="Premium Sound Product" 
+                  className="w-full h-full object-contain filter drop-shadow-lg" 
+                />
+              )}
+            </div>
+            
+            {/* Middle - Text Content */}
+            <div className="flex-1 ml-8 text-gray-900">
+              <h3 className="text-gray-900 text-xl font-bold uppercase tracking-wide mb-1">
+                PREMIUM SOUND
+              </h3>
+              <p className="text-gray-700 text-sm uppercase tracking-wider mb-2">
+                MINIMALIST DESIGN
+              </p>
+              <p className="text-gray-600 text-xs font-medium">
+                WIRELESS BLUETOOTH CONNECTION WITH BASS RESONANCE
+              </p>
+            </div>
+            
+            {/* Right - CTA Button */}
+            <div className="pr-8 flex-shrink-0">
+              <button className="bg-gray-900 text-white text-sm px-8 py-3 font-semibold hover:bg-gray-800 transition-colors rounded-full">
+                Shop Now
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Download Modal */}
       <Dialog open={isDownloadModalOpen} onOpenChange={setIsDownloadModalOpen}>
         <DialogContent className="sm:max-w-md">
