@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { ArrowLeft, Download, Play } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { VideoPlayer } from '@/components/VideoPlayer';
 import QRDownloadModal from '@/components/QRDownloadModal';
 import type { CampaignCreationResponse } from '@/types/api';
 
@@ -86,16 +87,15 @@ const VideoScriptsPreview: React.FC = () => {
                 <div className="space-y-6 overflow-hidden">
                     {/* Main Video Player */}
                     <div>
-                      <div className="relative aspect-video bg-gradient-to-br from-amber-100 to-amber-200 rounded-lg overflow-hidden shadow-lg">
-                        {generatedVideoUrl ? (
-                          <video
-                            src={generatedVideoUrl}
-                            className="w-full h-full object-cover"
-                            controls
-                            preload="metadata"
-                            poster={generatedImages[0]?.url || uploadedImage}
-                          />
-                        ) : (
+                      {generatedVideoUrl ? (
+                        <VideoPlayer
+                          videoUrl={generatedVideoUrl}
+                          posterUrl={generatedImages[0]?.url || uploadedImage}
+                          title="Elevate your Music Experience"
+                          className="aspect-video rounded-lg shadow-lg"
+                        />
+                      ) : (
+                        <div className="relative aspect-video bg-gradient-to-br from-amber-100 to-amber-200 rounded-lg overflow-hidden shadow-lg">
                           <div className="relative w-full h-full flex items-center justify-center">
                             {(generatedImages[0]?.url || uploadedImage) && (
                               <img 
@@ -113,8 +113,8 @@ const VideoScriptsPreview: React.FC = () => {
                               Elevate your Music Experience
                             </div>
                           </div>
-                        )}
-                      </div>
+                        </div>
+                      )}
                     </div>
 
                     {/* Platform Examples - Professional Social Media Mockups */}
