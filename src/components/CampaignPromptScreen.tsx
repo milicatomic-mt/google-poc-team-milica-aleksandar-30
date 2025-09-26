@@ -20,6 +20,7 @@ const CampaignPromptScreen = () => {
   const [allSuggestions, setAllSuggestions] = useState<string[]>([]);
   const [currentSuggestionIndex, setCurrentSuggestionIndex] = useState(0);
   const [isLoadingExistingData, setIsLoadingExistingData] = useState(false);
+  const [isAutoSelecting, setIsAutoSelecting] = useState(false);
   
   const uploadedImage = location.state?.uploadedImage;
   const uploadedFile = location.state?.uploadedFile;
@@ -39,6 +40,38 @@ const CampaignPromptScreen = () => {
         ? prev.filter(a => a !== audience)
         : [...prev, audience]
     );
+  };
+
+  const animateAudienceSelection = (audiences: string[]) => {
+    if (audiences.length === 0) return;
+    
+    setIsAutoSelecting(true);
+    setSelectedAudiences([]); // Clear current selection
+    
+    // Select audiences one by one with animation
+    audiences.forEach((audience, index) => {
+      setTimeout(() => {
+        setSelectedAudiences(prev => {
+          const newSelection = [...prev, audience];
+          // Add a little scale animation by toggling a class
+          const element = document.querySelector(`[data-audience="${audience}"]`);
+          if (element) {
+            element.classList.add('animate-pulse');
+            setTimeout(() => {
+              element.classList.remove('animate-pulse');
+            }, 600);
+          }
+          return newSelection;
+        });
+        
+        // Stop auto-selecting when we've processed all audiences
+        if (index === audiences.length - 1) {
+          setTimeout(() => {
+            setIsAutoSelecting(false);
+          }, 300);
+        }
+      }, index * 400); // 400ms delay between each selection
+    });
   };
 
   const typePrompt = (text: string) => {
@@ -152,9 +185,9 @@ const CampaignPromptScreen = () => {
         setCurrentSuggestionIndex(0);
       }
       
-      // Auto-fill target audience from AI analysis
+      // Auto-fill target audience from AI analysis with animation
       if (aiAnalysisData?.targetAudience && selectedAudiences.length === 0) {
-        setSelectedAudiences(aiAnalysisData.targetAudience);
+        animateAudienceSelection(aiAnalysisData.targetAudience);
       }
     };
 
@@ -328,53 +361,59 @@ const CampaignPromptScreen = () => {
             <div className="space-y-4">
               {/* Age Groups - First row (4 items) */}
               <div className="grid grid-cols-4 gap-3 max-w-4xl mx-auto">
-                {ageGroups.map((age) => (
-                  <button
-                    key={age}
-                    onClick={() => toggleAudience(age)}
-                    className={`px-2 py-3 rounded-full border-2 transition-all duration-300 tap-target font-medium backdrop-blur-md text-sm transform hover:scale-105 active:scale-95 ${
-                      selectedAudiences.includes(age)
-                         ? 'bg-white border-primary text-primary scale-105 shadow-lg animate-scale-in'
-                        : 'bg-white/30 border-gray-200 text-black hover:border-gray-300 hover:shadow-sm hover:bg-white/40 scale-100'
-                    }`}
-                  >
-                    {age}
-                  </button>
-                ))}
+                 {ageGroups.map((age) => (
+                   <button
+                     key={age}
+                     data-audience={age}
+                     onClick={() => !isAutoSelecting && toggleAudience(age)}
+                     disabled={isAutoSelecting}
+                     className={`px-2 py-3 rounded-full border-2 transition-all duration-500 tap-target font-medium backdrop-blur-md text-sm transform hover:scale-105 active:scale-95 ${
+                       selectedAudiences.includes(age)
+                          ? 'bg-white border-primary text-primary scale-105 shadow-lg animate-scale-in'
+                         : 'bg-white/30 border-gray-200 text-black hover:border-gray-300 hover:shadow-sm hover:bg-white/40 scale-100'
+                     } ${isAutoSelecting && !selectedAudiences.includes(age) ? 'opacity-50' : 'opacity-100'}`}
+                   >
+                     {age}
+                   </button>
+                 ))}
               </div>
 
               {/* Interests - Second row (4 items) */}
               <div className="grid grid-cols-4 gap-3 max-w-4xl mx-auto">
-                {interests.slice(0, 4).map((interest) => (
-                  <button
-                    key={interest}
-                    onClick={() => toggleAudience(interest)}
-                    className={`px-2 py-3 rounded-full border-2 transition-all duration-300 tap-target font-medium backdrop-blur-md text-sm transform hover:scale-105 active:scale-95 ${
-                      selectedAudiences.includes(interest)
-                         ? 'bg-white border-primary text-primary scale-105 shadow-lg animate-scale-in'
-                        : 'bg-white/30 border-gray-200 text-black hover:border-gray-300 hover:shadow-sm hover:bg-white/40 scale-100'
-                    }`}
-                  >
-                    {interest}
-                  </button>
-                ))}
+                 {interests.slice(0, 4).map((interest) => (
+                   <button
+                     key={interest}
+                     data-audience={interest}
+                     onClick={() => !isAutoSelecting && toggleAudience(interest)}
+                     disabled={isAutoSelecting}
+                     className={`px-2 py-3 rounded-full border-2 transition-all duration-500 tap-target font-medium backdrop-blur-md text-sm transform hover:scale-105 active:scale-95 ${
+                       selectedAudiences.includes(interest)
+                          ? 'bg-white border-primary text-primary scale-105 shadow-lg animate-scale-in'
+                         : 'bg-white/30 border-gray-200 text-black hover:border-gray-300 hover:shadow-sm hover:bg-white/40 scale-100'
+                     } ${isAutoSelecting && !selectedAudiences.includes(interest) ? 'opacity-50' : 'opacity-100'}`}
+                   >
+                     {interest}
+                   </button>
+                 ))}
               </div>
 
               {/* Interests - Third row (2 items) */}
               <div className="grid grid-cols-2 gap-3 max-w-2xl mx-auto">
-                {interests.slice(4, 6).map((interest) => (
-                  <button
-                    key={interest}
-                    onClick={() => toggleAudience(interest)}
-                    className={`px-2 py-3 rounded-full border-2 transition-all duration-300 tap-target font-medium backdrop-blur-md text-sm transform hover:scale-105 active:scale-95 ${
-                      selectedAudiences.includes(interest)
-                        ? 'bg-white border-primary text-primary scale-105 shadow-lg animate-scale-in'
-                        : 'bg-white/30 border-gray-200 text-black hover:border-gray-300 hover:shadow-sm hover:bg-white/40 scale-100'
-                    }`}
-                  >
-                    {interest}
-                  </button>
-                ))}
+                 {interests.slice(4, 6).map((interest) => (
+                   <button
+                     key={interest}
+                     data-audience={interest}
+                     onClick={() => !isAutoSelecting && toggleAudience(interest)}
+                     disabled={isAutoSelecting}
+                     className={`px-2 py-3 rounded-full border-2 transition-all duration-500 tap-target font-medium backdrop-blur-md text-sm transform hover:scale-105 active:scale-95 ${
+                       selectedAudiences.includes(interest)
+                         ? 'bg-white border-primary text-primary scale-105 shadow-lg animate-scale-in'
+                         : 'bg-white/30 border-gray-200 text-black hover:border-gray-300 hover:shadow-sm hover:bg-white/40 scale-100'
+                     } ${isAutoSelecting && !selectedAudiences.includes(interest) ? 'opacity-50' : 'opacity-100'}`}
+                   >
+                     {interest}
+                   </button>
+                 ))}
               </div>
             </div>
           </div>
