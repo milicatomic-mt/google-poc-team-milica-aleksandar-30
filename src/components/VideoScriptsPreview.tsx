@@ -328,7 +328,7 @@ const VideoScriptsPreview: React.FC = () => {
                 </div>
                 
                 {/* Video Content Area */}
-                <div className="relative aspect-[9/16] bg-gradient-to-br from-teal-300 to-cyan-500">
+                <div className="relative aspect-square bg-gradient-to-br from-teal-300 to-cyan-500">
                   {/* Actual Video or Preview */}
                   {generatedVideoUrl ? (
                     <VideoPlayer
