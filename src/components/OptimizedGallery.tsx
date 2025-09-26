@@ -537,7 +537,7 @@ const CampaignContent: React.FC<{
           {/* Removed download button from web creative section */}
         </div>
         <CardContent className="p-4">
-          <div className="h-80 bg-gray-100 rounded overflow-hidden border border-gray-300 shadow-sm">
+          <div className="h-80 bg-gray-100 rounded-sm overflow-hidden border border-gray-300 shadow-sm">
             {/* Browser-like Screenshot Mockup */}
             <div className="h-full bg-white">
               {/* Browser Header */}
@@ -655,7 +655,7 @@ const CampaignContent: React.FC<{
           {/* Removed download button from video scripts section */}
         </div>
         <CardContent className="p-4">
-          <div className="h-80 bg-black rounded overflow-hidden relative">
+          <div className="h-80 bg-black rounded-sm overflow-hidden relative">
             {/* Video Preview - Simple and consistent */}
             <div className="relative w-full h-full">
               {getImage(0) ? (
