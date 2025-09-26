@@ -43,7 +43,7 @@ const VideoScriptsPreview: React.FC = () => {
   const generatedVideoUrl = campaignResults.generated_video_url;
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="h-screen bg-background overflow-hidden">
       {/* Header */}
       <div className="border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container mx-auto px-6 py-4">
@@ -72,8 +72,8 @@ const VideoScriptsPreview: React.FC = () => {
       </div>
 
       {/* Content */}
-      <div className="container mx-auto px-6 py-8 overflow-hidden">
-        <div className="max-w-6xl mx-auto space-y-8 overflow-hidden">
+      <div className="container mx-auto px-6 py-8 h-full overflow-y-hidden">
+        <div className="max-w-6xl mx-auto space-y-8 h-full overflow-y-hidden">
           
           {/* Video Examples Section */}
           <div className="bg-card border shadow-sm">
