@@ -366,6 +366,11 @@ const CampaignContent: React.FC<{
     image_3: generatedImages[3]?.url || null,
   } : {};
 
+  // Use same logic as detail pages for consistent images
+  const getImage = (index: number) => {
+    return imageMapping?.[`image_${index}`] || generatedImages?.[index]?.url || null;
+  };
+
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
       
@@ -396,9 +401,9 @@ const CampaignContent: React.FC<{
             <div className="grid grid-cols-2 gap-3 mb-4">
               {/* Left Banner - Person with Headphones */}
               <div className="aspect-square bg-gradient-to-br from-amber-200 to-orange-300 overflow-hidden relative">
-                {(imageMapping?.image_0 || uploadedImage) && (
+                {getImage(0) && (
                   <OptimizedImage
-                    src={imageMapping?.image_0 || uploadedImage} 
+                    src={getImage(0)}
                     alt="Person with headphones" 
                     className="w-full h-full object-cover"
                     priority={true}
@@ -428,9 +433,9 @@ const CampaignContent: React.FC<{
               
               {/* Right Banner - Just Headphones Product */}
               <div className="aspect-square bg-gradient-to-br from-gray-100 to-gray-200 overflow-hidden relative">
-                {(imageMapping?.image_1 || imageMapping?.image_0 || uploadedImage) && (
+                {(getImage(1) || getImage(0)) && (
                   <OptimizedImage
-                    src={imageMapping?.image_1 || imageMapping?.image_0 || uploadedImage} 
+                    src={getImage(1) || getImage(0)}
                     alt="Headphones product" 
                     className="w-full h-full object-cover"
                     priority={true}
@@ -463,9 +468,9 @@ const CampaignContent: React.FC<{
               <div className="flex items-center h-full">
                 {/* Left - Person Image */}
                 <div className="w-20 h-full relative overflow-hidden">
-                  {(imageMapping?.image_0 || uploadedImage) && (
+                  {getImage(0) && (
                     <OptimizedImage
-                      src={imageMapping?.image_0 || uploadedImage} 
+                      src={getImage(0)} 
                       alt="Person with headphones" 
                       className="w-full h-full object-cover"
                     />
@@ -545,9 +550,9 @@ const CampaignContent: React.FC<{
                       alt="Background" 
                       className="w-full h-full object-cover"
                     />
-                   ) : uploadedImage ? (
+                   ) : getImage(0) ? (
                     <OptimizedImage
-                      src={uploadedImage} 
+                      src={getImage(0)} 
                       alt="Background" 
                       className="w-full h-full object-cover"
                     />
@@ -653,10 +658,8 @@ const CampaignContent: React.FC<{
             <div className="bg-black rounded overflow-hidden relative min-h-[120px] lg:h-full">
               {/* Video Thumbnail with Play Button */}
               <div className="relative w-full h-full">
-                {activeCampaignResults?.generated_images?.[0]?.url ? (
-                  <OptimizedImage src={activeCampaignResults.generated_images[0].url} alt="Video thumbnail" className="w-full h-full object-cover" />
-                ) : uploadedImage ? (
-                  <OptimizedImage src={uploadedImage} alt="Video thumbnail" className="w-full h-full object-cover" />
+                {getImage(0) ? (
+                  <OptimizedImage src={getImage(0)} alt="Video thumbnail" className="w-full h-full object-cover" />
                 ) : null}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30"></div>
                 
@@ -799,10 +802,8 @@ const CampaignContent: React.FC<{
                     {/* Product Image */}
                     <div className="relative">
                       <div className="w-16 h-16 bg-primary/10 overflow-hidden shadow-sm border border-white/50">
-                        {activeCampaignResults?.generated_images?.[0]?.url ? (
-                          <OptimizedImage src={activeCampaignResults.generated_images[0].url} alt="Product" className="w-full h-full object-cover" />
-                        ) : uploadedImage ? (
-                          <OptimizedImage src={uploadedImage} alt="Product" className="w-full h-full object-cover" />
+                        {getImage(0) ? (
+                          <OptimizedImage src={getImage(0)} alt="Product" className="w-full h-full object-cover" />
                         ) : null}
                       </div>
                       <div className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full flex items-center justify-center">
