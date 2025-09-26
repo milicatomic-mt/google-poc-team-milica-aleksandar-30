@@ -565,17 +565,11 @@ const CampaignContent: React.FC<{
                 </div>
               </div>
 
-              {/* Landing Page with Background Image */}
-              <div className="h-full relative overflow-hidden">
+              {/* Web Creative Preview - Matching WebCreativePreview design */}
+              <div className="h-full relative overflow-hidden bg-gradient-to-br from-primary/10 via-background to-secondary/10">
                 {/* Background Image with Overlay */}
                 <div className="absolute inset-0">
-                 {activeCampaignResults?.generated_images?.[0]?.url ? (
-                    <OptimizedImage
-                      src={activeCampaignResults.generated_images[0].url} 
-                      alt="Background" 
-                      className="w-full h-full object-cover"
-                    />
-                   ) : getImage(0) ? (
+                  {getImage(0) ? (
                     <OptimizedImage
                       src={getImage(0)} 
                       alt="Background" 
@@ -584,69 +578,81 @@ const CampaignContent: React.FC<{
                   ) : (
                     <div className="w-full h-full bg-gradient-to-br from-blue-500 to-purple-600"></div>
                   )}
-                  {/* Dark overlay for better text readability */}
                   <div className="absolute inset-0 bg-black/40"></div>
-                  {/* Gradient overlay for better text contrast */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30"></div>
                 </div>
 
-                {/* Navigation Bar - Floating */}
-                <div className="relative z-10 bg-white/10 backdrop-blur-md border-b border-white/20">
-                  <div className="px-3 py-1 flex justify-between items-center">
-                    <div className="text-[8px] font-bold text-white">BRAND</div>
-                    <div className="flex gap-3 text-[6px] text-white/80">
-                      <span>Home</span> <span>Products</span> <span>About</span>
+                {/* Hero Section - Matching WebCreativePreview layout */}
+                <div className="relative z-10 py-4 px-3">
+                  <div className="grid grid-cols-2 gap-2 items-center">
+                    <div className="space-y-1">
+                      <div className="inline-flex items-center gap-1 px-1 py-0.5 rounded-full text-[3px] font-medium bg-primary/10 text-primary border border-primary/20">
+                        ✨ New Launch  
+                      </div>
+                      <h1 className="text-[7px] font-bold text-white leading-tight">
+                        Transform Your Experience Today
+                      </h1>
+                      <p className="text-[4px] text-white/80 leading-relaxed">
+                        Discover innovative solutions that drive exceptional results for your business.
+                      </p>
+                      <div className="flex gap-1">
+                        <button className="bg-primary text-white text-[3px] px-1 py-0.5 rounded font-medium">
+                          Get Started Now
+                        </button>
+                        <button className="border border-white/30 text-white text-[3px] px-1 py-0.5 rounded">
+                          Learn More
+                        </button>
+                      </div>
+                    </div>
+                    <div className="relative">
+                      {getImage(0) && (
+                        <OptimizedImage 
+                          src={getImage(0)} 
+                          alt="Product showcase"
+                          className="w-full h-10 object-cover rounded shadow-lg"
+                        />
+                      )}
                     </div>
                   </div>
                 </div>
 
-                {/* Hero Content - Centered with Text Overlays */}
-                <div className="relative z-10 h-full flex flex-col justify-center items-center text-center px-4">
-                  {/* Badge */}
-                  <div className="inline-flex items-center px-2 py-0.5 rounded-full bg-white/20 backdrop-blur-md border border-white/30 mb-2">
-                    <div className="text-[5px] font-medium text-white">✨ New Launch</div>
-                  </div>
-                  
-                  {/* Main Headline with Text Shadow */}
-                  <h1 className="text-[12px] font-bold text-white leading-tight mb-2 max-w-24 drop-shadow-lg">
-                    Transform Your Experience Today
-                  </h1>
-                  
-                  {/* Subtext */}
-                  <p className="text-[6px] text-white/90 leading-relaxed mb-3 max-w-20 drop-shadow-md">
-                    Discover innovative solutions that drive exceptional results for your business.
-                  </p>
-                  
-                  {/* CTA Button */}
-                  <div className="bg-white text-gray-900 text-[6px] px-3 py-1 rounded-full font-medium shadow-lg hover:bg-white/90 transition-all mb-3">
-                    Get Started Now
-                  </div>
-
-                  {/* Features Bar - Bottom Overlay */}
-                  <div className="bg-white/10 backdrop-blur-md rounded px-3 py-1 border border-white/20">
-                    <div className="flex items-center gap-3 text-center">
-                      <div className="flex items-center gap-1">
-                        <div className="w-1.5 h-1.5 bg-green-400 rounded-full"></div>
-                        <div className="text-[4px] text-white font-medium">Free Ship</div>
-                      </div>
-                      <div className="w-px h-2 bg-white/30"></div>
-                      <div className="flex items-center gap-1">
-                        <div className="w-1.5 h-1.5 bg-blue-400 rounded-full"></div>
-                        <div className="text-[4px] text-white font-medium">30d Returns</div>
-                      </div>
-                      <div className="w-px h-2 bg-white/30"></div>
-                      <div className="flex items-center gap-1">
-                        <div className="w-1.5 h-1.5 bg-purple-400 rounded-full"></div>
-                        <div className="text-[4px] text-white font-medium">Premium</div>
-                      </div>
-                    </div>
+                {/* Product Highlights Section */}
+                <div className="relative z-10 px-3 py-2">
+                  <h2 className="text-[5px] font-bold text-white mb-1">Product Highlights</h2>
+                  <div className="grid grid-cols-2 gap-1 text-white/80">
+                    <div className="text-[4px]">• Premium Quality Materials</div>
+                    <div className="text-[4px]">• Advanced Technology</div>
+                    <div className="text-[4px]">• Modern Design</div>
+                    <div className="text-[4px]">• Expert Craftsmanship</div>
                   </div>
                 </div>
 
-                {/* Footer - Bottom Overlay */}
+                {/* Testimonials Section */}
+                <div className="relative z-10 px-3 py-2">
+                  <div className="bg-white/10 backdrop-blur-sm rounded p-1.5">
+                    <h3 className="text-[4px] font-bold text-white mb-0.5">What Our Customers Say</h3>
+                    <p className="text-[3px] text-white/80 italic">
+                      "This product has transformed my daily experience. Highly recommend!"
+                    </p>
+                    <p className="text-[3px] text-white/60 mt-0.5">- Sarah J., Marketing Manager</p>
+                  </div>
+                </div>
+
+                {/* Call to Action Section */}
+                <div className="absolute bottom-4 left-3 right-3 z-10">
+                  <div className="bg-primary/90 backdrop-blur-sm rounded-lg p-2 text-center">
+                    <div className="text-[4px] text-white font-bold mb-0.5">Special Offer</div>
+                    <div className="text-[3px] text-white/90 mb-1">Get 30% off your first order</div>
+                    <button className="bg-white text-primary text-[3px] px-2 py-0.5 rounded font-medium w-full">
+                      Claim Offer Now
+                    </button>
+                  </div>
+                </div>
+
+                {/* Footer */}
                 <div className="absolute bottom-0 left-0 right-0 z-10 bg-black/20 backdrop-blur-sm border-t border-white/10">
-                  <div className="px-2 py-1">
-                    <div className="text-[4px] text-white/70 text-center">© 2024 Brand. All rights reserved.</div>
+                  <div className="px-2 py-0.5">
+                    <div className="text-[3px] text-white/70 text-center">© 2024 Brand. All rights reserved.</div>
                   </div>
                 </div>
               </div>
@@ -669,34 +675,40 @@ const CampaignContent: React.FC<{
         </div>
         <CardContent className="p-4">
           <div className="h-80 bg-black overflow-hidden relative" style={{borderRadius: '1px'}}>
-            {/* Video Preview - Simple and consistent */}
-            <div className="relative w-full h-full">
+            {/* Video Preview - Matching VideoScriptsPreview design */}
+            <div className="relative w-full h-full bg-gradient-to-br from-primary/10 to-secondary/10">
               {getImage(0) ? (
-                <OptimizedImage src={getImage(0)} alt="Video thumbnail" className="w-full h-full object-cover" />
-              ) : null}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30"></div>
-              
-              {/* Play Button */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center backdrop-blur-md border border-white/20">
-                  <Play className="w-6 h-6 text-white ml-1" />
+                <OptimizedImage 
+                  src={getImage(0)} 
+                  alt="Video preview"
+                  className="w-full h-full object-cover"
+                />
+              ) : (
+                <div className="w-full h-full bg-gradient-to-br from-primary/20 to-secondary/20"></div>
+              )}
+              <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
+                <div className="w-12 h-12 bg-white/90 rounded-full flex items-center justify-center shadow-lg">
+                  <Play className="w-4 h-4 text-gray-700 ml-0.5" />
                 </div>
               </div>
               
-              {/* Title Overlay */}
-              <div className="absolute bottom-0 left-0 right-0 p-4">
-                <div className="space-y-1">
-                  <h3 className="text-white text-sm font-bold uppercase tracking-wide">
-                    Professional Video Script
-                  </h3>
-                  <p className="text-white/90 text-xs uppercase tracking-wider">
-                    Multi-platform Optimized
-                  </p>
+              {/* Script Overlays */}
+              <div className="absolute top-2 left-2 right-2">
+                <div className="bg-black/60 backdrop-blur-sm rounded px-2 py-1">
+                  <div className="text-[6px] text-white font-medium">TikTok Script</div>
+                  <div className="text-[4px] text-white/80">Hook: Transform your daily routine...</div>
+                </div>
+              </div>
+              
+              <div className="absolute bottom-2 left-2 right-2">
+                <div className="bg-black/60 backdrop-blur-sm rounded px-2 py-1">
+                  <div className="text-[6px] text-white font-medium">Instagram Script</div>
+                  <div className="text-[4px] text-white/80">CTA: Swipe up to shop now!</div>
                 </div>
               </div>
               
               {/* Duration Badge */}
-              <div className="absolute top-3 right-3 bg-black/80 text-white text-xs px-2 py-1 rounded-full backdrop-blur-sm">
+              <div className="absolute top-2 right-2 bg-black/80 text-white text-[5px] px-1 py-0.5 rounded backdrop-blur-sm">
                 0:30
               </div>
             </div>
