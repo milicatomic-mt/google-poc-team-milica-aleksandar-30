@@ -189,30 +189,32 @@ const VideoScriptsPreview: React.FC = () => {
             </div>
             
             {/* Video Content Area with Generated Content */}
-            <div className="relative aspect-square bg-gradient-to-br from-cyan-300 to-blue-500">
+            <div className="relative aspect-square bg-black">
               {/* Page indicator */}
-              <div className="absolute top-4 right-4 bg-black/50 text-white text-xs px-2 py-1 rounded-full z-10">
+              <div className="absolute top-4 right-4 bg-black/50 text-white text-xs px-2 py-1 rounded-full z-20">
                 1/3
               </div>
               
               {/* Actual Video or Preview */}
               {generatedVideoUrl ? (
-                <VideoPlayer
-                  videoUrl={generatedVideoUrl}
-                  posterUrl={getImage(0) || uploadedImage}
-                  title="Instagram Video Post"
-                  className="w-full h-full object-cover rounded-none"
-                />
+                <div className="w-full h-full">
+                  <VideoPlayer
+                    videoUrl={generatedVideoUrl}
+                    posterUrl={getImage(0) || uploadedImage}
+                    title=""
+                    className="w-full h-full rounded-none aspect-square"
+                  />
+                </div>
               ) : (
-                <div className="absolute inset-0 flex items-center justify-center">
+                <div className="relative w-full h-full">
                   {(getImage(0) || uploadedImage) && (
                     <OptimizedImage 
                       src={getImage(0) || uploadedImage}
                       alt="Video preview"
-                      className="w-full h-full object-cover opacity-30"
+                      className="w-full h-full object-cover"
                     />
                   )}
-                  <div className="absolute inset-0 bg-gradient-to-br from-cyan-300/80 to-blue-500/80 flex items-center justify-center">
+                  <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
                     <div className="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center">
                       <Play className="w-6 h-6 text-gray-700 ml-1" />
                     </div>
