@@ -388,11 +388,6 @@ const CampaignContent: React.FC<{
   
   const activeCampaignResults = campaignResults;
   
-  // Debug: Check what data we actually have
-  console.log('🏗️ Campaign Results in OptimizedGallery:', campaignResults);
-  console.log('🏗️ Banner Ads Data:', campaignResults?.banner_ads);
-  console.log('🏗️ First Banner Ad:', campaignResults?.banner_ads?.[0]);
-  
   // Create consistent image mapping for preview cards
   const imageMapping = generatedImages ? {
     image_0: generatedImages[0]?.url || null,
@@ -456,7 +451,7 @@ const CampaignContent: React.FC<{
                     {/* Middle - Text Content */}
                      <div className="flex-1 px-2">
                <h3 className="text-gray-900 text-[6px] font-bold uppercase leading-none">
-                 {activeCampaignResults?.banner_ads?.[0]?.headline || 'Premium Sound'}
+                 {campaignResults?.banner_ads?.[0]?.headline || 'Premium Sound'}
                </h3>
                <p className="text-gray-700 text-[4px] uppercase leading-none">
                  Minimalist Design
@@ -469,7 +464,7 @@ const CampaignContent: React.FC<{
              {/* Right - CTA Button */}
               <div className="pr-1 flex-shrink-0">
                 <button className="bg-white/90 text-gray-900 text-[4px] px-1 py-0.5 font-semibold border border-gray-200 leading-none">
-                  {activeCampaignResults?.banner_ads?.[0]?.cta || 'Shop Now'}
+                  {campaignResults?.banner_ads?.[0]?.cta || 'Shop Now'}
                 </button>
                       </div>
                   </div>
@@ -493,7 +488,7 @@ const CampaignContent: React.FC<{
                     {/* Bottom - Dark Section with Text */}
                      <div className="h-3 bg-black text-white flex flex-col justify-center px-1 text-center">
                       <h3 className="text-white text-[4px] font-bold uppercase leading-none">
-                        {activeCampaignResults?.banner_ads?.[0]?.headline || 'Premium Sound'}
+                        {campaignResults?.banner_ads?.[0]?.headline || 'Premium Sound'}
                       </h3>
                       <p className="text-white/90 text-[3px] uppercase leading-none">
                         Minimalist Design
@@ -521,7 +516,7 @@ const CampaignContent: React.FC<{
                       {/* Right - Text Content */}
                        <div className="flex-1 px-1">
                         <h3 className="text-gray-900 text-[5px] font-bold uppercase leading-none">
-                          {activeCampaignResults?.banner_ads?.[0]?.headline || 'Premium Sound'}
+                          {campaignResults?.banner_ads?.[0]?.headline || 'Premium Sound'}
                         </h3>
                         <p className="text-gray-700 text-[4px] uppercase leading-none">
                           Minimalist Design
@@ -530,7 +525,7 @@ const CampaignContent: React.FC<{
                           30% DISCOUNT
                         </p>
                         <button className="bg-gray-900 text-white text-[3px] px-1 py-0.5 font-semibold mt-0.5 leading-none">
-                          {activeCampaignResults?.banner_ads?.[0]?.cta || 'Shop Now'}
+                          {campaignResults?.banner_ads?.[0]?.cta || 'Shop Now'}
                         </button>
                       </div>
                     </div>
