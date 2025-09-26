@@ -827,71 +827,181 @@ const CatalogContent: React.FC<{
   uploadedImage: string;
 }> = ({ catalogResults, uploadedImage }) => {
   return (
-    <div className="space-y-6">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {/* Original Image */}
-        <Card>
-          <CardContent className="p-4">
-            <h3 className="font-semibold mb-3">Original Product</h3>
-            <div className="aspect-square bg-muted overflow-hidden">
-              <img 
-                src={uploadedImage}
-                alt="Original product"
-                className="w-full h-full object-contain"
-              />
-            </div>
-          </CardContent>
-        </Card>
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      
+      {/* Catalog Enrichment Card - Matching campaign card styling */}
+      <Card 
+        className="card-elegant backdrop-blur-xl bg-white/60 border-white/50 border-2 shadow-2xl hover:shadow-elegant-lg transition-all duration-smooth cursor-pointer"
+      >
+        <div className="px-4 py-3 flex items-center justify-between transition-all duration-smooth">
+          <div className="flex items-center space-x-2">
+            <h3 className="text-foreground font-medium">Product Enrichment</h3>
+            <span className="bg-muted text-primary text-xs px-2 py-1 rounded-full font-medium">1</span>
+          </div>
+        </div>
+        <CardContent className="p-4">
+          <div className="h-80 bg-gray-100 overflow-hidden border border-gray-300 shadow-sm" style={{borderRadius: '1px'}}>
+            {/* Catalog Preview Layout */}
+            <div className="h-full bg-white">
+              {/* Header */}
+              <div className="bg-gray-200 px-2 py-1 flex items-center gap-1 border-b">
+                <div className="flex gap-1">
+                  <div className="w-2 h-2 bg-red-400 rounded-full"></div>
+                  <div className="w-2 h-2 bg-slate-400 rounded-full"></div>
+                  <div className="w-2 h-2 bg-green-400 rounded-full"></div>
+                </div>
+                <div className="flex-1 bg-white mx-2 rounded px-2 py-0.5">
+                  <div className="text-[6px] text-gray-500">catalog.yoursite.com</div>
+                </div>
+              </div>
 
-        {/* Generated Content */}
-        <Card>
-          <CardContent className="p-4">
-            <h3 className="font-semibold mb-3">Generated Content</h3>
-            <div className="space-y-4">
-              {catalogResults.product_category && (
-                <div>
-                  <div className="text-sm font-medium text-muted-foreground">Product Category</div>
-                  <div className="text-sm">{catalogResults.product_category}</div>
-                </div>
-              )}
-              
-              {catalogResults.platform && (
-                <div>
-                  <div className="text-sm font-medium text-muted-foreground">Platform</div>
-                  <div className="text-sm">{catalogResults.platform}</div>
-                </div>
-              )}
-              
-              {catalogResults.tone && (
-                <div>
-                  <div className="text-sm font-medium text-muted-foreground">Tone</div>
-                  <div className="text-sm">{catalogResults.tone}</div>
-                </div>
-              )}
-              
-              {catalogResults.description && (
-                <div>
-                  <div className="text-sm font-medium text-muted-foreground">Description</div>
-                  <div className="text-sm line-clamp-3">{catalogResults.description}</div>
-                </div>
-              )}
-              
-              {catalogResults.tags && catalogResults.tags.length > 0 && (
-                <div>
-                  <div className="text-sm font-medium text-muted-foreground mb-2">Tags</div>
-                  <div className="flex flex-wrap gap-1">
-                    {catalogResults.tags.slice(0, 6).map((tag: string, index: number) => (
-                      <Badge key={index} variant="outline" className="text-xs">
-                        {tag}
-                      </Badge>
-                    ))}
+              {/* Product Display */}
+              <div className="h-full p-3 space-y-2">
+                {/* Product Image Section */}
+                <div className="bg-gradient-to-br from-slate-50 to-gray-100 p-2 rounded overflow-hidden" style={{height: '120px'}}>
+                  <div className="flex items-center h-full gap-2">
+                    {/* Product Image */}
+                    <div className="w-20 h-full flex-shrink-0 bg-white rounded border overflow-hidden">
+                      {uploadedImage && (
+                        <OptimizedImage
+                          src={uploadedImage}
+                          alt="Product"
+                          className="w-full h-full object-contain"
+                        />
+                      )}
+                    </div>
+                    
+                    {/* Product Details */}
+                    <div className="flex-1 space-y-1">
+                      <div className="bg-primary/10 text-primary text-[5px] px-1 py-0.5 rounded-full w-fit">
+                        {catalogResults?.product_category || 'Electronics'}
+                      </div>
+                      <h3 className="text-[8px] font-bold text-gray-900 line-clamp-2">
+                        {catalogResults?.product_title || catalogResults?.title || 'Premium Product'}
+                      </h3>
+                      <p className="text-[6px] text-gray-600 line-clamp-2">
+                        {catalogResults?.description?.substring(0, 80) || 'Enhanced product description with SEO optimization...'}
+                      </p>
+                      <div className="flex items-center gap-1">
+                        <div className="text-[6px] font-bold text-gray-900">★★★★★</div>
+                        <div className="text-[5px] text-gray-500">(4.8)</div>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              )}
+
+                {/* Features Section */}
+                <div className="bg-white border border-gray-200 p-2 rounded" style={{height: '80px'}}>
+                  <h4 className="text-[7px] font-semibold text-gray-900 mb-1">Key Features</h4>
+                  <div className="space-y-1">
+                    {catalogResults?.features?.slice(0, 3).map((feature: string, index: number) => (
+                      <div key={index} className="flex items-center gap-1">
+                        <div className="w-1 h-1 bg-green-500 rounded-full"></div>
+                        <span className="text-[6px] text-gray-700">{feature}</span>
+                      </div>
+                    )) || (
+                      <>
+                        <div className="flex items-center gap-1">
+                          <div className="w-1 h-1 bg-green-500 rounded-full"></div>
+                          <span className="text-[6px] text-gray-700">Premium Quality Materials</span>
+                        </div>
+                        <div className="flex items-center gap-1">
+                          <div className="w-1 h-1 bg-green-500 rounded-full"></div>
+                          <span className="text-[6px] text-gray-700">Advanced Technology</span>
+                        </div>
+                        <div className="flex items-center gap-1">
+                          <div className="w-1 h-1 bg-green-500 rounded-full"></div>
+                          <span className="text-[6px] text-gray-700">Customer Satisfaction</span>
+                        </div>
+                      </>
+                    )}
+                  </div>
+                </div>
+
+                {/* Tags Section */}
+                <div className="bg-gray-50 p-2 rounded" style={{height: '40px'}}>
+                  <h4 className="text-[6px] font-semibold text-gray-900 mb-1">Tags</h4>
+                  <div className="flex flex-wrap gap-1">
+                    {catalogResults?.tags?.slice(0, 4).map((tag: string, index: number) => (
+                      <span key={index} className="bg-white text-gray-700 text-[5px] px-1 py-0.5 rounded border text-center">
+                        {tag}
+                      </span>
+                    )) || (
+                      <>
+                        <span className="bg-white text-gray-700 text-[5px] px-1 py-0.5 rounded border">Premium</span>
+                        <span className="bg-white text-gray-700 text-[5px] px-1 py-0.5 rounded border">Quality</span>
+                        <span className="bg-white text-gray-700 text-[5px] px-1 py-0.5 rounded border">Modern</span>
+                      </>
+                    )}
+                  </div>
+                </div>
+
+                {/* Platform Badge */}
+                <div className="absolute bottom-2 right-2 bg-black/80 text-white text-[5px] px-1 py-0.5 rounded backdrop-blur-sm">
+                  {catalogResults?.platform || 'E-commerce'}
+                </div>
+              </div>
             </div>
-          </CardContent>
-        </Card>
-      </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Catalog Details Card - Matching campaign card styling */}
+      <Card 
+        className="card-elegant backdrop-blur-xl bg-white/60 border-white/50 border-2 shadow-2xl hover:shadow-elegant-lg transition-all duration-smooth cursor-pointer"
+      >
+        <div className="px-4 py-3 flex items-center justify-between transition-all duration-smooth">
+          <div className="flex items-center space-x-2">
+            <h3 className="text-foreground font-medium">Content Analysis</h3>
+            <span className="bg-muted text-primary text-xs px-2 py-1 rounded-full font-medium">SEO</span>
+          </div>
+        </div>
+        <CardContent className="p-4">
+          <div className="space-y-4">
+            {/* Platform & Tone */}
+            <div className="grid grid-cols-2 gap-3">
+              <div className="bg-white/80 p-3 rounded border">
+                <div className="text-xs font-medium text-muted-foreground mb-1">Platform</div>
+                <div className="text-sm font-semibold">{catalogResults?.platform || 'E-commerce'}</div>
+              </div>
+              <div className="bg-white/80 p-3 rounded border">
+                <div className="text-xs font-medium text-muted-foreground mb-1">Tone</div>
+                <div className="text-sm font-semibold">{catalogResults?.tone || 'Professional'}</div>
+              </div>
+            </div>
+
+            {/* Description */}
+            {catalogResults?.description && (
+              <div className="bg-white/80 p-3 rounded border">
+                <div className="text-xs font-medium text-muted-foreground mb-2">SEO Description</div>
+                <div className="text-sm text-gray-700 line-clamp-4">{catalogResults.description}</div>
+              </div>
+            )}
+
+            {/* Tags */}
+            {catalogResults?.tags && catalogResults.tags.length > 0 && (
+              <div className="bg-white/80 p-3 rounded border">
+                <div className="text-xs font-medium text-muted-foreground mb-2">Keywords & Tags</div>
+                <div className="flex flex-wrap gap-1">
+                  {catalogResults.tags.slice(0, 8).map((tag: string, index: number) => (
+                    <Badge key={index} variant="outline" className="text-xs">
+                      {tag}
+                    </Badge>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Category */}
+            {catalogResults?.product_category && (
+              <div className="bg-white/80 p-3 rounded border">
+                <div className="text-xs font-medium text-muted-foreground mb-1">Product Category</div>
+                <div className="text-sm font-semibold">{catalogResults.product_category}</div>
+              </div>
+            )}
+          </div>
+        </CardContent>
+      </Card>
     </div>
   );
 };
