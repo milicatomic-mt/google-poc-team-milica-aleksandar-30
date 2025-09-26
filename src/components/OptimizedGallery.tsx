@@ -350,15 +350,7 @@ const GalleryItemDisplay: React.FC<{
             </div>
             
             <div className="flex items-center space-x-2">
-              <Button
-                variant="default"
-                size="sm"
-                onClick={() => onDownload(item, campaignResults)}
-                className="gap-2"
-              >
-                <Download className="w-3 h-3" />
-                Download
-              </Button>
+              {/* Removed download button */}
             </div>
           </div>
         </div>
@@ -422,16 +414,7 @@ const CampaignContent: React.FC<{
             <h3 className="text-foreground font-medium">Banner Ads</h3>
             <span className="bg-muted text-primary text-xs px-2 py-1 rounded-full font-medium">4</span>
           </div>
-          <Button
-            variant="default"
-            onClick={(e) => {
-              e.stopPropagation();
-              onViewDetails('Banner Ads');
-            }}
-            className="tap-target focus-ring rounded-full py-0.5 px-1.5 h-auto"
-          >
-            <Download className="w-3 h-3 text-white" />
-          </Button>
+          {/* Removed download button from banner ads section */}
         </div>
         <CardContent className="px-4 pb-4 pt-2">
           <div className="h-80 p-4">
@@ -551,16 +534,7 @@ const CampaignContent: React.FC<{
             <h3 className="text-foreground font-medium">Web Creative</h3>
             <span className="bg-muted text-primary text-xs px-2 py-1 rounded-full font-medium">1</span>
           </div>
-          <Button
-            variant="default"
-            onClick={(e) => {
-              e.stopPropagation();
-              onViewDetails('Web Creative');
-            }}
-            className="tap-target focus-ring rounded-full py-1 px-2 h-auto"
-          >
-            <Download className="w-3 h-3 text-white" />
-          </Button>
+          {/* Removed download button from web creative section */}
         </div>
         <CardContent className="p-4">
           <div className="h-80 bg-gray-100 rounded overflow-hidden border border-gray-300 shadow-sm">
@@ -678,16 +652,7 @@ const CampaignContent: React.FC<{
             <h3 className="text-foreground font-medium">Video Scripts</h3>
             <span className="bg-muted text-primary text-xs px-2 py-1 rounded-full font-medium">1</span>
           </div>
-          <Button
-            variant="default"
-            onClick={(e) => {
-              e.stopPropagation();
-              onViewDetails('Video Scripts');
-            }}
-            className="tap-target focus-ring rounded-full py-0.5 px-1.5 h-auto"
-          >
-            <Download className="w-3 h-3 text-white" />
-          </Button>
+          {/* Removed download button from video scripts section */}
         </div>
         <CardContent className="p-4">
           {/* Mobile-First Vertical Layout */}
@@ -788,16 +753,7 @@ const CampaignContent: React.FC<{
             <h3 className="text-foreground font-medium">Email Templates</h3>
             <span className="bg-muted text-primary text-xs px-2 py-1 rounded-full font-medium">2</span>
           </div>
-          <Button
-            variant="default"
-            onClick={(e) => {
-              e.stopPropagation();
-              onViewDetails('Email Templates');
-            }}
-            className="tap-target focus-ring rounded-full py-0.5 px-1.5 h-auto"
-          >
-            <Download className="w-3 h-3 text-white" />
-          </Button>
+          {/* Removed download button from email templates section */}
         </div>
         <CardContent className="p-4">
           <div className="h-80 relative overflow-hidden">
