@@ -14,10 +14,7 @@ interface OptimizedGalleryPreviewModalProps {
 const OptimizedGalleryPreviewModal = ({ item, isOpen, onClose }: OptimizedGalleryPreviewModalProps) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   
-  const { data: itemDetails, isLoading } = useGalleryItemDetails(
-    item?.id || null, 
-    item?.type || null
-  );
+  const { data: itemDetails, isLoading } = useGalleryItemDetails(item);
 
   if (!item) return null;
 

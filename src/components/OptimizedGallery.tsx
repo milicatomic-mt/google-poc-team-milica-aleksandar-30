@@ -251,7 +251,7 @@ const GalleryItemDisplay: React.FC<{
   onViewDetails: (category: string, item: GalleryItem, itemDetails: any) => void;
   formatDate: (dateString: string) => string;
 }> = ({ item, onDownload, onViewDetails, formatDate }) => {
-  const { data: itemDetails, isLoading } = useGalleryItemDetails(item.id, item.type);
+  const { data: itemDetails, isLoading } = useGalleryItemDetails(item);
 
   if (isLoading) {
     return (
