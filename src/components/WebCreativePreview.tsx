@@ -21,6 +21,17 @@ const WebCreativePreview: React.FC = () => {
     }
   }, [campaignResults, navigate, returnTo]);
 
+  // Ensure page starts at the top on mount
+  useEffect(() => {
+    const prev = history.scrollRestoration as any;
+    try { (history as any).scrollRestoration = 'manual'; } catch {}
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+    try { sessionStorage.removeItem('gallery-restore'); } catch {}
+    return () => {
+      try { (history as any).scrollRestoration = prev; } catch {}
+    };
+  }, []);
+
   const handleBack = () => {
     navigate(returnTo || '/preview-results', {
       state: { 

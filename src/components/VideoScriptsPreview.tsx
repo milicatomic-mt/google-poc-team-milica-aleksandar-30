@@ -14,9 +14,15 @@ const VideoScriptsPreview: React.FC = () => {
   const { campaignResults, uploadedImage, campaignId, imageMapping, returnTo } = location.state || {};
   const [isDownloadModalOpen, setIsDownloadModalOpen] = useState(false);
 
-  // Scroll to top when component mounts
+  // Ensure page starts at the top on mount
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    const prev = history.scrollRestoration as any;
+    try { (history as any).scrollRestoration = 'manual'; } catch {}
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+    try { sessionStorage.removeItem('gallery-restore'); } catch {}
+    return () => {
+      try { (history as any).scrollRestoration = prev; } catch {}
+    };
   }, []);
 
   useEffect(() => {
