@@ -261,7 +261,7 @@ const OptimizedGallery = () => {
     </div>
 
       {/* Gallery Content */}
-      <div className="py-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {filteredItems.length === 0 ? (
           <div className="text-center py-16">
             <div className="w-16 h-16 mx-auto mb-4 opacity-40">
@@ -343,18 +343,19 @@ const GalleryItemDisplay: React.FC<{
 
   return (
     <Card className="w-full overflow-hidden bg-white border-0 shadow-sm">
-      <CardContent className="p-0 relative">        
+      <CardContent className="p-0 relative">
+        {/* Campaign/Catalog Badge - Top Right */}
+        <div className="absolute top-6 right-6 z-10">
+          <Badge variant="outline" className="text-xs border-primary text-primary">
+            {item.type === 'campaign' ? 'Campaign' : 'Catalog'}
+          </Badge>
+        </div>
+        
         {/* Header */}
-        <div className="bg-white p-8 border-b">
-          <div className="flex flex-col">
-            {/* Campaign/Catalog Badge - Above title, left aligned */}
-            <div className="mb-4">
-              <Badge variant="outline" className="text-xs border-primary text-primary">
-                {item.type === 'campaign' ? 'Campaign' : 'Catalog'}
-              </Badge>
-            </div>
+        <div className="bg-white p-6 border-b">
+          <div className="flex items-center justify-between pr-24">
             <div>
-              <h2 className="text-2xl font-bold text-gray-900 mb-2">{item.title}</h2>
+              <h2 className="text-lg font-semibold">{item.title}</h2>
               <p className="text-sm text-muted-foreground">
                 {formatDate(item.created_at)}
               </p>
