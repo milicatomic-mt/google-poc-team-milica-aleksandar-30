@@ -1644,7 +1644,7 @@ const PreviewResultsScreen: React.FC = () => {
                     </span>
                   </Button>
                 </div>
-                <CardContent className="px-4 pb-4 pt-2">
+                <CardContent className="p-4">
                   <div className="h-80 p-4">
                     {/* Top Row - Two Square Banners */}
                     <div className="grid grid-cols-2 gap-3 mb-4">
@@ -1912,7 +1912,7 @@ const PreviewResultsScreen: React.FC = () => {
                     </span>
                   </Button>
                 </div>
-                <CardContent className="px-4 pb-4 pt-2">
+                <CardContent className="p-4">
                   <div className="h-80 p-4">
                     {/* Mobile-First Vertical Layout */}
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 h-full">

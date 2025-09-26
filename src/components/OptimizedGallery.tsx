@@ -256,7 +256,7 @@ const GalleryItemDisplay: React.FC<{
   if (isLoading) {
     return (
       <Card className="w-full">
-        <CardContent className="p-8">
+        <CardContent className="p-4">
           <div className="flex items-center justify-center">
             <div className="w-8 h-8 animate-spin">
               <RibbedSphere className="w-full h-full" />
@@ -271,7 +271,7 @@ const GalleryItemDisplay: React.FC<{
   if (!itemDetails?.result) {
     return (
       <Card className="w-full">
-        <CardContent className="p-8">
+        <CardContent className="p-4">
           <div className="text-center text-muted-foreground">
             Content not available
           </div>

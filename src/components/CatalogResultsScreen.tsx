@@ -413,7 +413,7 @@ const CatalogResultsScreen: React.FC = () => {
             
             {/* Product Image Preview */}
             <Card className="card-elegant backdrop-blur-xl bg-white/60 border-white/50 border-2 shadow-2xl hover:shadow-elegant-lg transition-all duration-smooth">
-              <CardContent className="p-6">
+              <CardContent className="p-4">
                 <div className="flex items-center space-x-4">
                   <div className="w-48 h-48 overflow-hidden bg-muted">
                     <img
@@ -466,7 +466,7 @@ const CatalogResultsScreen: React.FC = () => {
                   </Button>
                 </div>
               </CardHeader>
-              <CardContent>
+              <CardContent className="p-4">
                 <p className="text-foreground leading-relaxed">
                   {catalogResults?.description}
                 </p>
@@ -492,7 +492,7 @@ const CatalogResultsScreen: React.FC = () => {
                     </Button>
                   </div>
                 </CardHeader>
-                <CardContent>
+                <CardContent className="p-4">
                   <ul className="space-y-2">
                     {catalogResults?.features.map((feature, index) => (
                       <li key={index} className="flex items-start space-x-2 text-foreground">
@@ -509,7 +509,7 @@ const CatalogResultsScreen: React.FC = () => {
                 <CardHeader className="pb-3">
                   <CardTitle>SEO Metadata</CardTitle>
                 </CardHeader>
-                <CardContent className="space-y-4">
+                <CardContent className="p-4 space-y-4">
                   <div>
                     <div className="flex items-center justify-between mb-2">
                       <h4 className="text-sm font-medium text-foreground">Keywords</h4>
@@ -579,7 +579,7 @@ const CatalogResultsScreen: React.FC = () => {
                   </Button>
                 </div>
               </CardHeader>
-              <CardContent>
+              <CardContent className="p-4">
                 <p className="text-foreground italic">
                   "{catalogResults?.alt_text}"
                 </p>
@@ -605,7 +605,7 @@ const CatalogResultsScreen: React.FC = () => {
                     </Button>
                   </div>
                 </CardHeader>
-                <CardContent>
+                <CardContent className="p-4">
                   <p className="text-foreground font-medium">
                     {catalogResults.short_marketing_copy}
                   </p>
