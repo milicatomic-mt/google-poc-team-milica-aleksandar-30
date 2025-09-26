@@ -145,7 +145,10 @@ const PreviewResultsScreen: React.FC = () => {
     if (route) {
       navigate(route, {
         state: { 
-          campaignResults: activeCampaignResults, 
+          campaignResults: {
+            ...activeCampaignResults,
+            generated_video_url: generatedVideoUrl 
+          }, 
           uploadedImage, 
           campaignId, 
           imageMapping,
