@@ -87,10 +87,16 @@ export const VideoPlayer = ({ videoUrl, posterUrl, title = "AI Generated Video",
         className="w-full h-full object-cover"
         poster={posterUrl}
         onLoadedData={handleVideoLoad}
+        onLoadedMetadata={handleVideoLoad}
         onError={handleVideoError}
         onPlay={handlePlay}
         onPause={handlePause}
         preload="metadata"
+        controls
+        playsInline
+        muted={isMuted}
+        onClick={togglePlay}
+        aria-label={title}
       >
         <source src={videoUrl} type="video/mp4" />
         Your browser does not support the video tag.
