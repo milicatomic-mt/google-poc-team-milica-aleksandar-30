@@ -218,7 +218,7 @@ const OptimizedGallery = () => {
             {/* Left - Back Button */}
             <Button
               variant="secondary"
-              onClick={() => navigate('/screensaver')}
+              onClick={() => navigate('/')}
               className="tap-target focus-ring bg-white border-white/30 hover:bg-white/90 rounded-full h-8 px-3 shadow-sm"
             >
               <ArrowLeft className="h-4 w-4 text-black" />
