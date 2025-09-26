@@ -450,22 +450,22 @@ const CampaignContent: React.FC<{
                     </div>
                     {/* Middle - Text Content */}
                      <div className="flex-1 px-2">
-                       <h3 className="text-gray-900 text-[6px] font-bold uppercase leading-none">
-                         Premium Sound
-                       </h3>
-                       <p className="text-gray-700 text-[4px] uppercase leading-none">
-                         Minimalist Design
-                       </p>
-                       <p className="text-gray-600 text-[3px] font-semibold leading-none">
-                         SMASH THE COMPETITION<br/>
-                         WITH 30% DISCOUNT
-                       </p>
-                     </div>
-                     {/* Right - CTA Button */}
-                      <div className="pr-1 flex-shrink-0">
-                        <button className="bg-white/90 text-gray-900 text-[4px] px-1 py-0.5 font-semibold border border-gray-200 leading-none">
-                          Shop Now
-                        </button>
+              <h3 className="text-gray-900 text-[6px] font-bold uppercase leading-none">
+                {activeCampaignResults?.banner_ads?.[0]?.headline || 'Premium Sound'}
+              </h3>
+              <p className="text-gray-700 text-[4px] uppercase leading-none">
+                {activeCampaignResults?.banner_ads?.[0]?.description || 'Minimalist Design'}
+              </p>
+              <p className="text-gray-600 text-[3px] font-semibold leading-none">
+                SMASH THE COMPETITION<br/>
+                WITH 30% DISCOUNT
+              </p>
+            </div>
+            {/* Right - CTA Button */}
+             <div className="pr-1 flex-shrink-0">
+               <button className="bg-white/90 text-gray-900 text-[4px] px-1 py-0.5 font-semibold border border-gray-200 leading-none">
+                 {activeCampaignResults?.banner_ads?.[0]?.cta || 'Shop Now'}
+               </button>
                       </div>
                   </div>
                 </div>
@@ -487,15 +487,15 @@ const CampaignContent: React.FC<{
                     </div>
                     {/* Bottom - Dark Section with Text */}
                      <div className="h-3 bg-black text-white flex flex-col justify-center px-1 text-center">
-                       <h3 className="text-white text-[4px] font-bold uppercase leading-none">
-                         Premium Sound
-                       </h3>
-                       <p className="text-white/90 text-[3px] uppercase leading-none">
-                         Minimalist Design
-                       </p>
-                       <p className="text-white text-[3px] font-semibold leading-none">
-                         SMASH THE COMPETITION WITH 30% DISCOUNT
-                       </p>
+                      <h3 className="text-white text-[4px] font-bold uppercase leading-none">
+                        {activeCampaignResults?.banner_ads?.[0]?.headline || 'Premium Sound'}
+                      </h3>
+                      <p className="text-white/90 text-[3px] uppercase leading-none">
+                        {activeCampaignResults?.banner_ads?.[0]?.description || 'Minimalist Design'}
+                      </p>
+                      <p className="text-white text-[3px] font-semibold leading-none">
+                        SMASH THE COMPETITION WITH 30% DISCOUNT
+                      </p>
                      </div>
                    </div>
 
@@ -515,18 +515,18 @@ const CampaignContent: React.FC<{
                       </div>
                       {/* Right - Text Content */}
                        <div className="flex-1 px-1">
-                         <h3 className="text-gray-900 text-[5px] font-bold uppercase leading-none">
-                           Premium Sound
-                         </h3>
-                         <p className="text-gray-700 text-[4px] uppercase leading-none">
-                           Minimalist Design  
-                         </p>
-                         <p className="text-gray-600 text-[3px] font-semibold leading-none">
-                           30% DISCOUNT
-                         </p>
-                         <button className="bg-gray-900 text-white text-[3px] px-1 py-0.5 font-semibold mt-0.5 leading-none">
-                           Shop Now
-                         </button>
+                        <h3 className="text-gray-900 text-[5px] font-bold uppercase leading-none">
+                          {activeCampaignResults?.banner_ads?.[0]?.headline || 'Premium Sound'}
+                        </h3>
+                        <p className="text-gray-700 text-[4px] uppercase leading-none">
+                          {activeCampaignResults?.banner_ads?.[0]?.description || 'Minimalist Design'}
+                        </p>
+                        <p className="text-gray-600 text-[3px] font-semibold leading-none">
+                          30% DISCOUNT
+                        </p>
+                        <button className="bg-gray-900 text-white text-[3px] px-1 py-0.5 font-semibold mt-0.5 leading-none">
+                          {activeCampaignResults?.banner_ads?.[0]?.cta || 'Shop Now'}
+                        </button>
                       </div>
                     </div>
                   </div>
@@ -590,14 +590,19 @@ const CampaignContent: React.FC<{
                         ✨ New Launch  
                       </div>
                       <h1 className="text-[7px] font-bold text-white leading-tight">
-                        Transform Your Experience Today
+                        {activeCampaignResults?.landing_page_concept?.hero_text || 
+                         activeCampaignResults?.banner_ads?.[0]?.headline || 
+                         'Transform Your Experience Today'}
                       </h1>
                       <p className="text-[4px] text-white/80 leading-relaxed">
-                        Discover innovative solutions that drive exceptional results for your business.
+                        {activeCampaignResults?.landing_page_concept?.sub_text || 
+                         'Discover innovative solutions that drive exceptional results for your business.'}
                       </p>
                       <div className="flex gap-1">
                         <button className="bg-primary text-white text-[3px] px-1 py-0.5 rounded font-medium">
-                          Get Started Now
+                          {activeCampaignResults?.landing_page_concept?.cta || 
+                           activeCampaignResults?.banner_ads?.[0]?.cta || 
+                           'Get Started Now'}
                         </button>
                         <button className="border border-white/30 text-white text-[3px] px-1 py-0.5 rounded">
                           Learn More
@@ -696,14 +701,18 @@ const CampaignContent: React.FC<{
               <div className="absolute top-2 left-2 right-2">
                 <div className="bg-black/60 backdrop-blur-sm rounded px-2 py-1">
                   <div className="text-[6px] text-white font-medium">TikTok Script</div>
-                  <div className="text-[4px] text-white/80">Hook: Transform your daily routine...</div>
+                  <div className="text-[4px] text-white/80">
+                    {activeCampaignResults?.video_scripts?.[0]?.platform || 'TikTok'}: {activeCampaignResults?.video_scripts?.[0]?.script?.substring(0, 50) || 'Hook: Transform your daily routine...'}
+                  </div>
                 </div>
               </div>
               
               <div className="absolute bottom-2 left-2 right-2">
                 <div className="bg-black/60 backdrop-blur-sm rounded px-2 py-1">
                   <div className="text-[6px] text-white font-medium">Instagram Script</div>
-                  <div className="text-[4px] text-white/80">CTA: Swipe up to shop now!</div>
+                  <div className="text-[4px] text-white/80">
+                    {activeCampaignResults?.video_scripts?.[1]?.platform || 'Instagram'}: {activeCampaignResults?.video_scripts?.[1]?.script?.substring(0, 30) || 'CTA: Swipe up to shop now!'}
+                  </div>
                 </div>
               </div>
               
@@ -741,8 +750,12 @@ const CampaignContent: React.FC<{
                   : 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
               }}
             >
-              <h1 className="text-xs font-bold text-white drop-shadow-lg">Premium sound</h1>
-              <p className="text-[8px] text-white/90 uppercase tracking-wider drop-shadow">MINIMALIST DESIGN</p>
+              <h1 className="text-xs font-bold text-white drop-shadow-lg">
+                {activeCampaignResults?.email_copy?.subject || 'Premium sound'}
+              </h1>
+              <p className="text-[8px] text-white/90 uppercase tracking-wider drop-shadow">
+                {activeCampaignResults?.banner_ads?.[0]?.description || 'MINIMALIST DESIGN'}
+              </p>
             </div>
 
             {/* Product Showcase Section */}
@@ -780,15 +793,15 @@ const CampaignContent: React.FC<{
             >
               <div className="text-center">
                 <h2 className="text-[9px] font-bold text-slate-900 mb-2 leading-tight">
-                  Premium wireless headphones with a sleek ivory finish
+                  {activeCampaignResults?.banner_ads?.[0]?.headline || 'Premium wireless headphones with a sleek ivory finish'}
                 </h2>
                 
                 <p className="text-[7px] text-slate-600 leading-relaxed mb-3 line-clamp-2">
-                  Experience high-quality audio with stylish over-ear wireless headphones featuring advanced noise isolation.
+                  {activeCampaignResults?.email_copy?.body?.substring(0, 100) || 'Experience high-quality audio with stylish over-ear wireless headphones featuring advanced noise isolation.'}
                 </p>
                 
                 <div className="bg-slate-900 hover:bg-slate-800 text-white text-[6px] px-3 py-1 rounded-full inline-block shadow-lg">
-                  Shop Now
+                  {activeCampaignResults?.banner_ads?.[0]?.cta || 'Shop Now'}
                 </div>
               </div>
             </div>
