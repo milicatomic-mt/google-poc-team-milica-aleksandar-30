@@ -565,9 +565,72 @@ const CampaignContent: React.FC<{
                 </div>
               </div>
 
-              {/* Web Creative Preview - Simple gray container */}
-              <div className="h-full bg-gray-200 flex items-center justify-center">
-                <div className="text-gray-500 text-xs">Web Creative Preview</div>
+              {/* Web Creative Preview - Using actual content from WebCreativePreview */}
+              <div className="h-full relative overflow-hidden bg-gradient-to-br from-primary/10 via-background to-secondary/10">
+                {/* Background Image with Overlay */}
+                <div className="absolute inset-0">
+                  {getImage(0) ? (
+                    <OptimizedImage
+                      src={getImage(0)} 
+                      alt="Background" 
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <div className="w-full h-full bg-gradient-to-br from-blue-500 to-purple-600"></div>
+                  )}
+                  <div className="absolute inset-0 bg-black/40"></div>
+                </div>
+
+                {/* Hero Section - Scaled down */}
+                <div className="relative z-10 p-2">
+                  <div className="grid grid-cols-2 gap-1 items-center h-full">
+                    <div className="space-y-1">
+                      <div className="inline-flex items-center gap-0.5 px-1 py-0.5 rounded-full text-[3px] font-medium bg-primary/20 text-primary border border-primary/30">
+                        ✨ New Launch
+                      </div>
+                      <h1 className="text-[6px] font-bold text-white leading-tight">
+                        {activeCampaignResults?.landing_page_concept?.hero_text || 
+                         activeCampaignResults?.banner_ads?.[0]?.headline || 
+                         'Transform Your Experience Today'}
+                      </h1>
+                      <p className="text-[3px] text-white/80 leading-relaxed">
+                        {activeCampaignResults?.landing_page_concept?.sub_text || 
+                         'Discover innovative solutions that drive exceptional results.'}
+                      </p>
+                      <div className="flex gap-0.5">
+                        <button className="bg-primary text-white text-[3px] px-1 py-0.5 rounded font-medium">
+                          {activeCampaignResults?.landing_page_concept?.cta || 
+                           activeCampaignResults?.banner_ads?.[0]?.cta || 
+                           'Get Started Now'}
+                        </button>
+                        <button className="border border-white/30 text-white text-[3px] px-1 py-0.5 rounded">
+                          Learn More
+                        </button>
+                      </div>
+                    </div>
+                    <div className="relative">
+                      {getImage(0) && (
+                        <OptimizedImage 
+                          src={getImage(0)} 
+                          alt="Product showcase"
+                          className="w-full h-8 object-cover rounded shadow-sm"
+                        />
+                      )}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Features Section - Mini */}
+                <div className="absolute bottom-1 left-2 right-2 z-10">
+                  <div className="bg-white/10 backdrop-blur-sm rounded p-1">
+                    <h2 className="text-[3px] font-semibold text-white mb-0.5">Key Features</h2>
+                    <div className="grid grid-cols-3 gap-0.5 text-[2.5px] text-white/80">
+                      <div>• Premium Quality</div>
+                      <div>• Fast Delivery</div>
+                      <div>• Expert Support</div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
