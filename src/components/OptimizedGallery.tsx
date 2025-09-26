@@ -75,6 +75,14 @@ const OptimizedGallery = () => {
       'Email Templates': '/email-templates'
     };
     
+    // Create consistent image mapping for detail pages
+    const imageMapping = itemDetails?.generated_images ? {
+      image_0: itemDetails.generated_images[0]?.url || null,
+      image_1: itemDetails.generated_images[1]?.url || null,
+      image_2: itemDetails.generated_images[2]?.url || null,
+      image_3: itemDetails.generated_images[3]?.url || null,
+    } : {};
+    
     const route = routeMap[category as keyof typeof routeMap];
     if (route) {
       navigate(route, {
@@ -86,6 +94,7 @@ const OptimizedGallery = () => {
           }, 
           uploadedImage: item.image_url, 
           campaignId: item.id,
+          imageMapping,  // ← ✅ NOW INCLUDED
           returnTo: '/gallery'
         }
       });
