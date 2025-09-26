@@ -437,7 +437,7 @@ const CampaignContent: React.FC<{
                 {/* Top Row - Two Square Banners */}
                 <div className="grid grid-cols-2 gap-2 mb-2">
                   {/* Left Banner - Person with Headphones */}
-                  <div className="aspect-[4/3] bg-gradient-to-br from-slate-200 to-stone-300 overflow-hidden relative" style={{borderRadius: '1px'}}>
+                  <div className="aspect-[4/3] bg-gradient-to-r from-slate-200 to-stone-200 overflow-hidden relative" style={{borderRadius: '1px'}}>
                     {getImage(0) && (
                       <OptimizedImage
                         src={getImage(0)}
