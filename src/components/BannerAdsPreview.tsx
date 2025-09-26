@@ -69,8 +69,12 @@ const BannerAdsPreview: React.FC = () => {
     return null;
   }
 
+  const getImage = (index: number) => {
+    return imageMapping?.[`image_${index}`] || uploadedImage;
+  };
+
   return (
-    <div className="min-h-screen bg-gray-50 relative">
+    <div className="min-h-screen bg-background relative">
       {/* Back Button - Top Left */}
       <div className="absolute top-8 left-8 z-20">
         <Button
@@ -83,144 +87,127 @@ const BannerAdsPreview: React.FC = () => {
         </Button>
       </div>
 
-      {/* Header */}
-      <div className="flex items-center justify-center px-8 py-6 pt-20">
-        <div className="text-center">
-          <h1 className="text-3xl font-bold text-gray-900">Banner Ads</h1>
-          <p className="text-gray-600 text-sm mt-1">Review your AI-generated designs before download</p>
-        </div>
-
-        {/* Download Button - Absolute Top Right */}
-        <div className="absolute top-8 right-8">
-          <Button 
-            onClick={handleDownload} 
-            className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-6 gap-2"
-          >
-            <Download className="w-4 h-4" />
-            Download
-          </Button>
-        </div>
+      {/* Download Button - Absolute Top Right */}
+      <div className="absolute top-8 right-8">
+        <Button 
+          onClick={handleDownload} 
+          className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-6 gap-2"
+        >
+          <Download className="w-4 h-4" />
+          Download
+        </Button>
       </div>
 
-      {/* Content with increased spacing */}
-      <div className="px-8 pb-8 mt-12">
-        <div className="max-w-7xl mx-auto space-y-8">
-          
-          {/* Leaderboard Banner (728×90) */}
-          <div className="space-y-4">
-            <h2 className="text-xl font-semibold text-gray-900">
-              Leaderboard Banner <span className="text-gray-500 font-normal">(728×90)</span>
-            </h2>
+      {/* Header */}
+      <div className="px-8 py-6 pt-20">
+        <h1 className="text-4xl font-bold text-foreground mb-8">
+          Banner Ads <span className="text-2xl text-muted-foreground">4</span>
+        </h1>
+
+        {/* Banner Grid */}
+        <div className="space-y-6">
+          {/* Top Row - Two Banners Side by Side */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             
-            <div className="bg-gradient-to-r from-slate-200 to-stone-200 overflow-hidden relative shadow-lg" style={{ height: '180px', maxWidth: '100%' }}>
+            {/* Left Banner - Product Focus */}
+            <div className="bg-gradient-to-br from-gray-800 via-gray-700 to-gray-600 rounded-lg overflow-hidden shadow-lg h-64 relative">
+              <div className="flex items-center h-full px-8">
+                {/* Left - Product Image */}
+                <div className="w-32 h-40 flex-shrink-0 flex items-center justify-center">
+                  {getImage(1) && (
+                    <img 
+                      src={getImage(1)} 
+                      alt="Premium Sound Product" 
+                      className="w-full h-full object-contain filter drop-shadow-lg" 
+                    />
+                  )}
+                </div>
+                
+                {/* Right - Text Content */}
+                <div className="flex-1 ml-8 text-white">
+                  <h3 className="text-white text-2xl font-bold uppercase tracking-wide mb-2">
+                    PREMIUM SOUND
+                  </h3>
+                  <p className="text-white/90 text-sm uppercase tracking-wider mb-3">
+                    MINIMALIST DESIGN
+                  </p>
+                  <p className="text-white/80 text-xs font-medium mb-4">
+                    WIRELESS BLUETOOTH CONNECTION<br/>
+                    WITH BASS RESONANCE
+                  </p>
+                  <button className="bg-white text-gray-900 text-sm px-6 py-2 font-semibold hover:bg-gray-100 transition-colors rounded">
+                    Shop Now
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Banner - Lifestyle Focus */}
+            <div className="bg-gradient-to-br from-amber-100 via-yellow-50 to-orange-100 rounded-lg overflow-hidden shadow-lg h-64 relative">
               <div className="flex items-center h-full">
                 {/* Left - Person Image */}
                 <div className="w-48 h-full relative overflow-hidden flex-shrink-0">
-                  {(imageMapping?.image_0 || uploadedImage) && (
+                  {getImage(0) && (
                     <img 
-                      src={imageMapping?.image_0 || uploadedImage} 
-                      alt="Person with headphones" 
+                      src={getImage(0)} 
+                      alt="Person using product" 
                       className="w-full h-full object-cover" 
                     />
                   )}
                 </div>
                 
-                {/* Middle - Text Content */}
-                <div className="flex-1 px-8 py-6">
-                  <h3 className="text-gray-900 text-3xl font-bold uppercase tracking-wide mb-2">
-                    {activeCampaignResults?.banner_ads?.[0]?.headline || 'Premium Sound'}
+                {/* Right - Text Content */}
+                <div className="flex-1 px-6 text-gray-900">
+                  <h3 className="text-gray-900 text-2xl font-bold uppercase tracking-wide mb-2">
+                    PREMIUM SOUND
                   </h3>
-                  <p className="text-gray-700 text-lg uppercase tracking-wider mb-3">
-                    Minimalist Design
+                  <p className="text-gray-700 text-sm uppercase tracking-wider mb-3">
+                    MINIMALIST DESIGN
                   </p>
-                  <p className="text-gray-600 text-sm font-semibold">
-                    SMASH THE COMPETITION<br/>
-                    WITH 30% DISCOUNT
+                  <p className="text-gray-600 text-xs font-medium mb-4">
+                    WIRELESS BLUETOOTH CONNECTION<br/>
+                    WITH BASS RESONANCE
                   </p>
-                </div>
-                
-                {/* Right - CTA Button */}
-                <div className="pr-8 flex-shrink-0">
-                  <button className="bg-white/90 text-gray-900 text-lg px-8 py-4 font-semibold shadow-lg hover:bg-white transition-colors border border-gray-200">
-                    {activeCampaignResults?.banner_ads?.[0]?.cta || 'Shop Now'}
+                  <button className="bg-gray-900 text-white text-sm px-6 py-2 font-semibold hover:bg-gray-800 transition-colors rounded">
+                    Shop Now
                   </button>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Bottom Row - Half Page and Medium Rectangle */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            
-            {/* Half Page Banner (300×600) */}
-            <div className="space-y-4">
-              <h2 className="text-xl font-semibold text-gray-900">
-                Half Page Banner <span className="text-gray-500 font-normal">(300×600)</span>
-              </h2>
-              
-              <div className="bg-gradient-to-b from-slate-200 to-stone-200 overflow-hidden relative shadow-lg w-full" style={{ height: '400px' }}>
-                {/* Top - Person Image */}
-                <div className="h-80 relative overflow-hidden">
-                  {(imageMapping?.image_0 || uploadedImage) && (
-                    <img 
-                      src={imageMapping?.image_0 || uploadedImage} 
-                      alt="Person with headphones" 
-                      className="w-full h-full object-cover" 
-                    />
-                  )}
-                </div>
-                
-                {/* Bottom - Dark Section with Text */}
-                <div className="h-20 bg-black text-white flex flex-col justify-center px-4 text-center">
-                  <h3 className="text-white text-xs font-bold uppercase tracking-wide mb-0.5">
-                    {activeCampaignResults?.banner_ads?.[0]?.headline || 'Premium Sound'}
-                  </h3>
-                  <p className="text-white/90 text-xs uppercase tracking-wider mb-0.5">
-                    Minimalist Design
-                  </p>
-                  <p className="text-white text-xs font-semibold mb-1">
-                    SMASH THE COMPETITION WITH 30% DISCOUNT
-                  </p>
-                  <button className="bg-white text-black text-xs px-3 py-0.5 rounded font-semibold hover:bg-gray-100 transition-colors">
-                    {activeCampaignResults?.banner_ads?.[0]?.cta || 'Shop Now'}
-                  </button>
-                </div>
+          {/* Bottom Banner - Horizontal Layout */}
+          <div className="bg-gradient-to-r from-yellow-200 via-amber-100 to-orange-200 rounded-lg overflow-hidden shadow-lg h-32 relative">
+            <div className="flex items-center h-full">
+              {/* Left - Product Image */}
+              <div className="w-24 h-24 ml-6 flex-shrink-0 flex items-center justify-center">
+                {getImage(1) && (
+                  <img 
+                    src={getImage(1)} 
+                    alt="Premium Sound Product" 
+                    className="w-full h-full object-contain filter drop-shadow-lg" 
+                  />
+                )}
               </div>
-            </div>
-
-            {/* Medium Rectangle Banner (300×250) */}
-            <div className="space-y-4">
-              <h2 className="text-xl font-semibold text-gray-900">
-                Medium Rectangle Banner <span className="text-gray-500 font-normal">(300×250)</span>
-              </h2>
               
-              <div className="bg-gradient-to-br from-gray-100 to-gray-200 overflow-hidden relative shadow-lg w-full" style={{ height: '400px' }}>
-                {/* Top - Product Image */}
-                <div className="h-72 relative overflow-hidden flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-200">
-                  {(imageMapping?.image_1 || imageMapping?.image_0 || uploadedImage) && (
-                    <img 
-                      src={imageMapping?.image_1 || imageMapping?.image_0 || uploadedImage} 
-                      alt="Headphones product" 
-                      className="w-48 h-48 object-contain" 
-                    />
-                  )}
-                </div>
-                
-                {/* Bottom - Text Section */}
-                <div className="h-28 bg-gradient-to-r from-slate-200 to-stone-200 flex flex-col justify-center px-4 text-center">
-                  <h3 className="text-gray-900 text-sm font-bold uppercase tracking-wide mb-1">
-                    {activeCampaignResults?.banner_ads?.[0]?.headline || 'Premium Sound'}
-                  </h3>
-                  <p className="text-gray-700 text-xs uppercase tracking-wider mb-1">
-                    Minimalist Design
-                  </p>
-                  <p className="text-gray-600 text-xs font-semibold mb-2">
-                    SMASH THE COMPETITION WITH 30% DISCOUNT
-                  </p>
-                  <button className="bg-black text-white text-xs px-4 py-1 font-semibold hover:bg-gray-800 transition-colors">
-                    {activeCampaignResults?.banner_ads?.[0]?.cta || 'Shop Now'}
-                  </button>
-                </div>
+              {/* Middle - Text Content */}
+              <div className="flex-1 ml-8 text-gray-900">
+                <h3 className="text-gray-900 text-xl font-bold uppercase tracking-wide mb-1">
+                  PREMIUM SOUND
+                </h3>
+                <p className="text-gray-700 text-sm uppercase tracking-wider mb-2">
+                  MINIMALIST DESIGN
+                </p>
+                <p className="text-gray-600 text-xs font-medium">
+                  WIRELESS BLUETOOTH CONNECTION WITH BASS RESONANCE
+                </p>
+              </div>
+              
+              {/* Right - CTA Button */}
+              <div className="pr-8 flex-shrink-0">
+                <button className="bg-gray-900 text-white text-sm px-8 py-3 font-semibold hover:bg-gray-800 transition-colors rounded-full">
+                  Shop Now
+                </button>
               </div>
             </div>
           </div>
