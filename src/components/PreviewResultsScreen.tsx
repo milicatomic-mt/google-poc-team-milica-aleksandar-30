@@ -721,22 +721,19 @@ const PreviewResultsScreen: React.FC = () => {
       case 'Web Creative':
         return (
           <div className="space-y-0">
-            {/* Complete Landing Page Preview */}
-            <div className="overflow-hidden bg-background shadow-2xl max-h-[70vh]">
-              <div className="w-full">
+            {/* Web Creative Preview - Match WebCreativePreview.tsx exactly */}
+            <div className="overflow-hidden bg-background shadow-2xl">
+              <div className="bg-white rounded-lg shadow-lg overflow-hidden">
                 
-                {/* Hero Section */}
-                <section className="relative min-h-[500px] bg-gradient-to-br from-primary/5 via-background to-secondary/5">
-                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(120,119,198,0.1),transparent_50%)]"></div>
-                  
-                  <div className="relative z-10 container mx-auto px-8 py-12 grid lg:grid-cols-2 gap-8 items-center min-h-[500px]">
-                    {/* Left Column - Content */}
-                    <div className="space-y-6">
-                      <div className="space-y-4">
+                {/* Hero Section - Match WebCreativePreview.tsx */}
+                <section className="py-16 bg-gradient-to-br from-primary/10 via-background to-secondary/10">
+                  <div className="container mx-auto px-6">
+                    <div className="grid lg:grid-cols-2 gap-12 items-center">
+                      <div className="space-y-6">
                         <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium bg-primary/10 text-primary border border-primary/20">
-                          ✨ {activeCampaignResults.banner_ads?.[0]?.headline ? 'New Launch' : 'Premium Product'}
+                          ✨ New Launch
                         </div>
-                        <h1 className="text-3xl lg:text-5xl font-bold text-foreground leading-tight">
+                        <h1 className="text-3xl md:text-5xl font-bold text-foreground leading-tight">
                           {activeCampaignResults.landing_page_concept?.hero_text || 
                            activeCampaignResults.banner_ads?.[0]?.headline || 
                            'Transform Your Experience Today'}
@@ -744,287 +741,126 @@ const PreviewResultsScreen: React.FC = () => {
                         <p className="text-lg text-muted-foreground leading-relaxed">
                           {activeCampaignResults.landing_page_concept?.sub_text || 
                            activeCampaignResults.banner_ads?.[0]?.description || 
-                           'Discover innovative solutions that drive exceptional results and elevate your lifestyle to new heights.'}
+                           'Discover innovative solutions that drive exceptional results for your business.'}
                         </p>
-                      </div>
-                      
-                      <div className="flex flex-col sm:flex-row gap-4">
-                        <Button size="lg" className="text-lg px-8 py-3 shadow-lg">
-                          {activeCampaignResults.landing_page_concept?.cta || 
-                           activeCampaignResults.banner_ads?.[0]?.cta || 
-                           'Get Started Now'}
-                        </Button>
-                        <Button variant="outline" size="lg" className="text-lg px-8 py-3">
-                          Learn More
-                        </Button>
-                      </div>
-                      
-                      {/* Trust Indicators */}
-                      <div className="flex flex-wrap items-center gap-6 text-sm text-muted-foreground pt-4">
-                        <div className="flex items-center gap-2">
-                          <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                          <span>Free Shipping</span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                          <span>30-Day Returns</span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
-                          <span>Premium Quality</span>
+                        <div className="flex flex-wrap gap-4">
+                          <Button size="lg" className="text-lg px-8 py-4">
+                            {activeCampaignResults.landing_page_concept?.cta || 
+                             activeCampaignResults.banner_ads?.[0]?.cta || 
+                             'Get Started Now'}
+                          </Button>
+                          <Button variant="outline" size="lg" className="text-lg px-8 py-4">
+                            Learn More
+                          </Button>
                         </div>
                       </div>
-                    </div>
-                    
-                    {/* Right Column - Hero Image */}
-                    <div className="relative flex justify-center">
-                      {(generatedImages?.[0]?.url || uploadedImage) && (
-                        <div className="relative">
-                          <div className="absolute -inset-6 bg-gradient-to-br from-primary/20 via-secondary/20 to-accent/20 rounded-3xl blur-2xl opacity-60"></div>
-                          <div className="relative bg-background/90 backdrop-blur-sm rounded-2xl p-6 shadow-2xl border border-border">
-                            <img 
-                              src={generatedImages?.[0]?.url || uploadedImage} 
-                              alt="Hero product showcase" 
-                              className="w-full h-auto max-h-80 object-contain rounded-lg"
-                            />
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                </section>
-
-                {/* Features/Benefits Section */}
-                <section className="py-16 bg-muted/20">
-                  <div className="container mx-auto px-8">
-                    <div className="text-center mb-12">
-                         <h2 className="text-3xl font-bold text-foreground mb-4">
-                           {activeCampaignResults.landing_page_concept?.product_highlights?.title || 'Why Choose Our Solution'}
-                         </h2>
-                         <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                           {activeCampaignResults.landing_page_concept?.product_highlights?.description || 
-                            'Discover the features that make us the preferred choice for thousands of customers'}
-                         </p>
-                    </div>
-                    
-                     <div className="grid md:grid-cols-3 gap-8">
-                       {/* Use actual product highlights if available, otherwise fallback to banner ads */}
-                       {(activeCampaignResults.landing_page_concept?.product_highlights?.features || 
-                         activeCampaignResults.banner_ads?.slice(0, 3) || [
-                         { headline: "Premium Quality", description: "Experience unmatched quality with our carefully crafted solutions designed for excellence." },
-                         { headline: "Fast & Reliable", description: "Lightning-fast performance with 99.9% reliability ensures you never miss a beat." },
-                         { headline: "24/7 Support", description: "Round-the-clock expert support to help you succeed every step of the way." }
-                       ]).map((item, index) => (
-                         <div key={index} className="text-center space-y-4 p-6 bg-background rounded-xl border border-border hover:shadow-lg transition-shadow">
-                           <div className="relative">
-                             <div className={`w-16 h-16 ${index === 0 ? 'bg-primary/10' : index === 1 ? 'bg-secondary/10' : 'bg-accent/10'} rounded-full flex items-center justify-center mx-auto`}>
-                               <div className={`w-8 h-8 ${index === 0 ? 'bg-primary' : index === 1 ? 'bg-secondary' : 'bg-accent'} rounded-full`}></div>
-                             </div>
-                             {generatedImages?.[index + 1]?.url && (
-                               <div className="absolute -top-2 -right-2 w-12 h-12 rounded-lg overflow-hidden border-2 border-background shadow-lg">
-                                 <img src={generatedImages[index + 1].url} alt={`Feature ${index + 1}`} className="w-full h-full object-cover" />
-                               </div>
-                             )}
-                           </div>
-                           <h3 className="text-xl font-semibold">
-                             {item.headline || item.title || `Feature ${index + 1}`}
-                           </h3>
-                           <p className="text-muted-foreground">
-                             {item.description || item.content || 'Feature description'}
-                           </p>
-                         </div>
-                       ))}
-                    </div>
-                  </div>
-                </section>
-
-                {/* Product/Service Details Section */}
-                <section className="py-16">
-                  <div className="container mx-auto px-8">
-                    <div className="grid lg:grid-cols-2 gap-12 items-center">
-                      <div className="space-y-6">
-                        <div className="space-y-4">
-                          <h2 className="text-3xl font-bold text-foreground">
-                            Complete Solution for Your Needs
-                          </h2>
-                          <p className="text-lg text-muted-foreground leading-relaxed">
-                            {activeCampaignResults.landing_page_concept?.sub_text || 
-                             'Our comprehensive approach ensures you get everything you need to succeed, backed by industry-leading technology and expert support.'}
-                          </p>
-                        </div>
-
-                        <div className="space-y-4">
-                          {(activeCampaignResults.banner_ads || [
-                            { headline: "Advanced Technology", description: "Cutting-edge solutions that stay ahead of the curve" },
-                            { headline: "Expert Team", description: "Dedicated professionals committed to your success" },
-                            { headline: "Proven Results", description: "Track record of delivering exceptional outcomes" }
-                          ]).slice(0, 3).map((item, index) => (
-                            <div key={index} className="flex items-start gap-4 p-4 bg-muted/20 rounded-lg">
-                              <div className="w-8 h-8 bg-primary/20 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                                <span className="text-primary font-bold text-sm">{index + 1}</span>
-                              </div>
-                              <div>
-                                <h4 className="font-semibold text-foreground mb-1">
-                                  {item.headline}
-                                </h4>
-                                <p className="text-muted-foreground text-sm">
-                                  {item.description}
-                                </p>
-                              </div>
-                            </div>
-                          ))}
-                        </div>
-
-                        <Button size="lg" className="px-8 py-3">
-                          Explore Features
-                        </Button>
-                      </div>
-
                       <div className="relative">
-                        {uploadedImage && (
-                          <div className="relative">
-                            <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-secondary/10 to-accent/10 rounded-2xl blur-xl transform rotate-2"></div>
-                            <div className="relative bg-background/95 backdrop-blur-sm rounded-xl p-6 shadow-xl border border-border">
-                              <img 
-                                src={uploadedImage} 
-                                alt="Product details showcase" 
-                                className="w-full h-auto rounded-lg"
-                              />
-                            </div>
-                          </div>
+                        {(imageMapping?.image_0 || uploadedImage) && (
+                          <img 
+                            src={imageMapping?.image_0 || uploadedImage} 
+                            alt="Product showcase"
+                            className="w-full h-80 object-cover rounded-lg shadow-xl"
+                          />
                         )}
                       </div>
                     </div>
                   </div>
                 </section>
 
-                {/* Social Proof Section */}
-                <section className="py-16 bg-muted/20">
-                  <div className="container mx-auto px-8">
-                    <div className="text-center mb-12">
-                      <h2 className="text-3xl font-bold text-foreground mb-4">
-                        {activeCampaignResults.landing_page_concept?.social_proof?.title || 'Trusted by Industry Leaders'}
-                      </h2>
-                      <p className="text-lg text-muted-foreground">
-                        {activeCampaignResults.landing_page_concept?.social_proof?.subtitle || 
-                         'Join thousands of satisfied customers who have transformed their business'}
+                {/* Product Highlights - Match WebCreativePreview.tsx */}
+                <section className="py-16 bg-muted/30">
+                  <div className="container mx-auto px-6">
+                    <div className="text-center space-y-6 mb-16">
+                      <h2 className="text-3xl md:text-4xl font-bold text-foreground">Key Features</h2>
+                      <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                        Discover what makes this product special for you.
                       </p>
                     </div>
-
-                    <div className="grid md:grid-cols-3 gap-8 mb-12">
-                      {(activeCampaignResults.landing_page_concept?.social_proof?.testimonials || [
-                        {
-                          quote: "This solution completely transformed our workflow. The results exceeded our expectations by 300%.",
-                          author: "Sarah Johnson",
-                          role: "CEO, TechCorp",
-                          rating: 5
-                        },
-                        {
-                          quote: "Outstanding quality and support. The team went above and beyond to ensure our success.",
-                          author: "Michael Chen", 
-                          role: "Director, InnovateNow",
-                          rating: 5
-                        },
-                        {
-                          quote: "The ROI was immediate. We saw improvements within the first week of implementation.",
-                          author: "Emily Rodriguez",
-                          role: "Manager, GrowthLab",
-                          rating: 5
-                        }
-                      ]).map((testimonial, index) => (
-                        <div key={index} className="p-6 bg-background rounded-xl border border-border">
-                          <div className="flex items-center gap-1 text-slate-500 mb-4">
-                            {[...Array(testimonial.rating)].map((_, i) => (
-                              <div key={i} className="w-4 h-4 bg-slate-500 rounded-sm"></div>
-                            ))}
-                          </div>
-                          <p className="text-muted-foreground italic mb-4">"{testimonial.quote}"</p>
-                          <div>
-                            <div className="font-semibold text-foreground">{testimonial.author}</div>
-                            <div className="text-sm text-muted-foreground">{testimonial.role}</div>
-                          </div>
+                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                      {[
+                        { title: "Premium Quality", description: "Built with the finest materials for lasting durability", icon: "⭐" },
+                        { title: "Fast Delivery", description: "Get your order delivered in 24-48 hours", icon: "🚀" },
+                        { title: "Money Back", description: "30-day satisfaction guarantee or full refund", icon: "💎" }
+                      ].map((feature, idx) => (
+                        <div key={idx} className="text-center space-y-4 p-6 rounded-lg bg-card border border-border">
+                          <div className="text-4xl">{feature.icon}</div>
+                          <h3 className="text-xl font-semibold text-foreground">{feature.title}</h3>
+                          <p className="text-muted-foreground">{feature.description}</p>
                         </div>
                       ))}
                     </div>
+                  </div>
+                </section>
 
-                    {/* Trust Badges */}
-                    <div className="flex justify-center items-center gap-8 opacity-60">
-                      <div className="text-center">
-                        <div className="text-2xl font-bold text-foreground">10K+</div>
-                        <div className="text-sm text-muted-foreground">Happy Customers</div>
+                {/* Detailed Product Section - Match WebCreativePreview.tsx */}
+                <section className="py-16">
+                  <div className="container mx-auto px-6">
+                    <div className="grid lg:grid-cols-2 gap-12 items-center">
+                      <div className="space-y-6">
+                        <h2 className="text-3xl md:text-4xl font-bold text-foreground">
+                          Why Choose Our Product?
+                        </h2>
+                        <div className="space-y-4">
+                          <div className="flex items-start gap-3">
+                            <div className="w-6 h-6 rounded-full bg-primary flex items-center justify-center flex-shrink-0 mt-1">
+                              <div className="w-2 h-2 bg-primary-foreground rounded-full"></div>
+                            </div>
+                            <div>
+                              <h3 className="font-semibold text-foreground mb-1">Advanced Technology</h3>
+                              <p className="text-muted-foreground">Cutting-edge innovation meets practical design for optimal performance.</p>
+                            </div>
+                          </div>
+                          <div className="flex items-start gap-3">
+                            <div className="w-6 h-6 rounded-full bg-primary flex items-center justify-center flex-shrink-0 mt-1">
+                              <div className="w-2 h-2 bg-primary-foreground rounded-full"></div>
+                            </div>
+                            <div>
+                              <h3 className="font-semibold text-foreground mb-1">Sustainable Materials</h3>
+                              <p className="text-muted-foreground">Eco-friendly construction that doesn't compromise on quality.</p>
+                            </div>
+                          </div>
+                          <div className="flex items-start gap-3">
+                            <div className="w-6 h-6 rounded-full bg-primary flex items-center justify-center flex-shrink-0 mt-1">
+                              <div className="w-2 h-2 bg-primary-foreground rounded-full"></div>
+                            </div>
+                            <div>
+                              <h3 className="font-semibold text-foreground mb-1">Expert Support</h3>
+                              <p className="text-muted-foreground">24/7 customer service from our dedicated support team.</p>
+                            </div>
+                          </div>
+                        </div>
                       </div>
-                      <div className="text-center">
-                        <div className="text-2xl font-bold text-foreground">99.9%</div>
-                        <div className="text-sm text-muted-foreground">Uptime</div>
-                      </div>
-                      <div className="text-center">
-                        <div className="text-2xl font-bold text-foreground">24/7</div>
-                        <div className="text-sm text-muted-foreground">Support</div>
+                      <div className="grid grid-cols-2 gap-4">
+                        {activeCampaignResults.generated_images?.slice(0, 4).map((img, idx) => (
+                          <img 
+                            key={idx}
+                            src={img.url} 
+                            alt={`Product view ${idx + 1}`}
+                            className="w-full h-32 object-cover rounded-lg"
+                          />
+                        )) || 
+                        // Fallback if no generated images
+                        Array.from({ length: 4 }).map((_, idx) => (
+                          <div key={idx} className="w-full h-32 bg-muted rounded-lg flex items-center justify-center text-muted-foreground">
+                            Product View {idx + 1}
+                          </div>
+                        ))}
                       </div>
                     </div>
                   </div>
                 </section>
 
-                {/* Final CTA Section */}
-                <section className="py-16 bg-gradient-to-br from-primary/10 via-background to-secondary/10">
-                  <div className="container mx-auto px-8 text-center">
-                    <div className="max-w-3xl mx-auto space-y-6">
-                      <h2 className="text-4xl font-bold text-foreground">
-                        {activeCampaignResults.landing_page_concept?.cta_section?.headline || 
-                         'Ready to Transform Your Business?'}
-                      </h2>
-                      <p className="text-xl text-muted-foreground">
-                        {activeCampaignResults.landing_page_concept?.cta_section?.description || 
-                         'Join thousands of successful businesses and start your journey today. No setup fees, no long-term contracts.'}
+                {/* Final CTA - Match WebCreativePreview.tsx */}
+                <section className="py-16 bg-primary text-primary-foreground">
+                  <div className="container mx-auto px-6">
+                    <div className="text-center space-y-6">
+                      <h2 className="text-3xl md:text-4xl font-bold">Ready to Get Started?</h2>
+                      <p className="text-lg max-w-2xl mx-auto">
+                        Join thousands of satisfied customers who have transformed their experience.
                       </p>
-                      
-                      {/* Pricing Section (if available) */}
-                      {activeCampaignResults.landing_page_concept?.pricing_section && (
-                        <div className="bg-background/50 backdrop-blur-sm rounded-xl p-6 border border-border my-8">
-                          <h3 className="text-2xl font-semibold mb-4">
-                            {activeCampaignResults.landing_page_concept.pricing_section.title || 'Choose Your Plan'}
-                          </h3>
-                          {activeCampaignResults.landing_page_concept.pricing_section.guarantees && (
-                            <p className="text-sm text-muted-foreground mb-4">
-                              {activeCampaignResults.landing_page_concept.pricing_section.guarantees}
-                            </p>
-                          )}
-                        </div>
-                      )}
-                      
-                      <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
-                        <Button size="lg" className="text-lg px-12 py-4 shadow-lg">
-                          {activeCampaignResults.landing_page_concept?.cta_section?.primary_cta || 
-                           activeCampaignResults.landing_page_concept?.cta || 
-                           'Start Free Trial'}
-                        </Button>
-                        <Button variant="outline" size="lg" className="text-lg px-8 py-4">
-                          {activeCampaignResults.landing_page_concept?.cta_section?.secondary_cta || 
-                           'Schedule Demo'}
-                        </Button>
-                      </div>
-                      
-                      {activeCampaignResults.landing_page_concept?.cta_section?.urgency && (
-                        <p className="text-sm text-muted-foreground mt-4 font-medium">
-                          {activeCampaignResults.landing_page_concept.cta_section.urgency}
-                        </p>
-                      )}
-
-                      {/* Supporting Visual */}
-                      {generatedImages?.[0]?.url && (
-                        <div className="mt-8 flex justify-center">
-                          <div className="relative">
-                            <div className="absolute -inset-4 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-2xl blur-xl opacity-60"></div>
-                            <div className="relative w-32 h-32 rounded-2xl overflow-hidden border-4 border-background shadow-2xl">
-                              <img 
-                                src={generatedImages[0].url} 
-                                alt="Success guarantee" 
-                                className="w-full h-full object-cover"
-                              />
-                            </div>
-                          </div>
-                        </div>
-                      )}
+                      <Button size="lg" variant="secondary" className="text-lg px-8 py-4">
+                        {activeCampaignResults.landing_page_concept?.cta || 'Get Started Today'}
+                      </Button>
                     </div>
                   </div>
                 </section>
