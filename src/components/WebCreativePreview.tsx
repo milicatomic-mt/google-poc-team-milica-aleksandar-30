@@ -77,7 +77,7 @@ const WebCreativePreview: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background relative">
+    <div className="min-h-screen bg-gray-50 relative">
       {/* Back Button - Top Left */}
       <div className="absolute top-8 left-8 z-20">
         <Button
@@ -90,24 +90,27 @@ const WebCreativePreview: React.FC = () => {
         </Button>
       </div>
 
-      {/* Download Button - Absolute Top Right */}
-      <div className="absolute top-8 right-8">
-        <Button 
-          onClick={handleDownload} 
-          className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-6 gap-2"
-        >
-          <Download className="w-4 h-4" />
-          Download
-        </Button>
+      {/* Header */}
+      <div className="flex items-center justify-center px-8 py-6 pt-20">
+        <div className="text-center">
+          <h1 className="text-3xl font-bold text-gray-900">Web Creative</h1>
+          <p className="text-gray-600 text-sm mt-1">Review your AI-generated designs before download</p>
+        </div>
+
+        {/* Download Button - Absolute Top Right */}
+        <div className="absolute top-8 right-8">
+          <Button 
+            onClick={handleDownload} 
+            className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-6 gap-2"
+          >
+            <Download className="w-4 h-4" />
+            Download
+          </Button>
+        </div>
       </div>
 
-      {/* Header */}
-      <div className="px-8 py-6 pt-20">
-        <h1 className="text-4xl font-bold text-foreground mb-8">
-          Web Creative <span className="text-2xl text-muted-foreground">1</span>
-        </h1>
-
-        {/* Content */}
+      {/* Content with increased spacing */}
+      <div className="px-8 pb-8 mt-12">
         <div className="max-w-7xl mx-auto">
           {/* Web Creative Preview */}
           <div className="bg-white rounded-lg shadow-lg overflow-hidden">
