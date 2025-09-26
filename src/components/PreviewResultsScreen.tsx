@@ -1806,9 +1806,9 @@ const PreviewResultsScreen: React.FC = () => {
 
                         {/* Hero Content - Centered with Text Overlays */}
                         <div className="relative z-10 h-full flex flex-col justify-center items-center text-center px-4">
-                          {/* Template Badge */}
-                          <div className="inline-flex items-center px-2 py-0.5 rounded-full bg-orange-500/80 backdrop-blur-md border border-orange-400/50 mb-2">
-                            <div className="text-[5px] font-medium text-white">📄 Template + Your Content</div>
+                          {/* Campaign Badge - Using actual campaign data */}
+                          <div className="inline-flex items-center px-2 py-0.5 rounded-full bg-primary/80 backdrop-blur-md border border-primary/50 mb-2">
+                            <div className="text-[5px] font-medium text-white">✨ New Launch</div>
                           </div>
                           
                           {/* Main Headline - Using actual campaign data */}

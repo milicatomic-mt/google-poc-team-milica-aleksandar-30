@@ -12,12 +12,6 @@ const BannerAdsPreview: React.FC = () => {
   const navigate = useNavigate();
   const { campaignResults, uploadedImage, campaignId, imageMapping, returnTo } = location.state || {};
   const activeCampaignResults = campaignResults;
-  
-  // Debug: Check what data we actually have
-  console.log('🎯 BannerAdsPreview - campaignResults:', campaignResults);
-  console.log('🎯 BannerAdsPreview - activeCampaignResults:', activeCampaignResults);
-  console.log('🎯 BannerAdsPreview - banner_ads:', activeCampaignResults?.banner_ads);
-  console.log('🎯 BannerAdsPreview - first banner:', activeCampaignResults?.banner_ads?.[0]);
   const [isDownloadModalOpen, setIsDownloadModalOpen] = useState(false);
   const [downloadUrl, setDownloadUrl] = useState<string>('');
 
