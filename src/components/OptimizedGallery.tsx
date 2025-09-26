@@ -78,7 +78,9 @@ const OptimizedGallery = () => {
 
   const filteredItems = items.filter(item => {
     if (selectedFilter === 'all') return true;
-    if (selectedFilter === 'campaigns') return item.type === 'campaign';
+    if (selectedFilter === 'campaigns') {
+      return item.type === 'campaign' && item._fullData?.generated_video_url;
+    }
     if (selectedFilter === 'catalogs') return item.type === 'catalog';
     return true;
   });
