@@ -72,8 +72,8 @@ const VideoScriptsPreview: React.FC = () => {
       </div>
 
       {/* Content */}
-      <div className="container mx-auto px-6 py-8">
-        <div className="max-w-6xl mx-auto space-y-8">
+      <div className="container mx-auto px-6 py-8 overflow-hidden">
+        <div className="max-w-6xl mx-auto space-y-8 overflow-hidden">
           
           {/* Video Examples Section */}
           <div className="bg-card border shadow-sm">
@@ -418,7 +418,7 @@ const VideoScriptsPreview: React.FC = () => {
           </div>
 
           {/* Video Scripts Section */}
-          <div className="bg-card border shadow-sm">
+          <div className="bg-card border shadow-sm overflow-hidden">
             <div className="p-6">
               <div className="space-y-6">
                 <div>
