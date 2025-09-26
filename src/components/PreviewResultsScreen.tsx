@@ -33,7 +33,6 @@ import { supabase } from "@/integrations/supabase/client";
 import type { CampaignCreationResponse } from '@/types/api';
 import { VideoPlayer } from '@/components/VideoPlayer';
 import QRDownloadModal from '@/components/QRDownloadModal';
-import { WebCreativeThumbnail } from '@/components/shared/WebCreativeThumbnail';
 
 const PreviewResultsScreen: React.FC = () => {
   const location = useLocation();
@@ -1452,7 +1451,7 @@ const PreviewResultsScreen: React.FC = () => {
                 </CardContent>
               </Card>
 
-              {/* Web Creative Card - Using thumbnail component */}
+              {/* Web Creative Card */}
               <Card 
                 className="card-elegant backdrop-blur-xl bg-white/60 border-white/50 border-2 shadow-2xl hover:shadow-elegant-lg transition-all duration-smooth cursor-pointer"
                 onClick={() => handleOpenCategory('Web Creative')}
@@ -1462,15 +1461,11 @@ const PreviewResultsScreen: React.FC = () => {
                     <h3 className="text-foreground font-medium">Web Creative</h3>
                     <span className="bg-muted text-primary text-xs px-2 py-1 rounded-full font-medium">1</span>
                   </div>
+                  {/* Removed download button from web creative section */}
                 </div>
                 <CardContent className="p-4">
-                  <WebCreativeThumbnail 
-                    campaignResults={activeCampaignResults}
-                    imageMapping={imageMapping}
-                    uploadedImage={uploadedImage}
-                  />
-                </CardContent>
-              </Card>
+                  <div className="h-80 bg-gray-100 overflow-hidden border border-gray-300 shadow-sm" style={{borderRadius: '1px'}}>
+                    {/* Browser-like Screenshot Mockup */}
                     <div className="h-full bg-white">
                       {/* Browser Header */}
                       <div className="bg-gray-200 px-2 py-1 flex items-center gap-1 border-b">
