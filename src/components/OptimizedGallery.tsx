@@ -389,7 +389,7 @@ const CampaignContent: React.FC<{
             {/* Top Row - Two Square Banners */}
             <div className="grid grid-cols-2 gap-3 mb-4">
               {/* Left Banner - Person with Headphones */}
-              <div className="aspect-square bg-gradient-to-br from-amber-200 to-orange-300 rounded-lg overflow-hidden relative">
+              <div className="aspect-square bg-gradient-to-br from-amber-200 to-orange-300 overflow-hidden relative">
                 {(imageMapping?.image_0 || uploadedImage) && (
                   <OptimizedImage
                     src={imageMapping?.image_0 || uploadedImage} 
@@ -421,7 +421,7 @@ const CampaignContent: React.FC<{
               </div>
               
               {/* Right Banner - Just Headphones Product */}
-              <div className="aspect-square bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg overflow-hidden relative">
+              <div className="aspect-square bg-gradient-to-br from-gray-100 to-gray-200 overflow-hidden relative">
                 {(imageMapping?.image_1 || imageMapping?.image_0 || uploadedImage) && (
                   <OptimizedImage
                     src={imageMapping?.image_1 || imageMapping?.image_0 || uploadedImage} 
@@ -453,7 +453,7 @@ const CampaignContent: React.FC<{
             </div>
             
             {/* Bottom Row - Wide Horizontal Banner */}
-            <div className="bg-gradient-to-r from-amber-200 to-orange-200 rounded-lg overflow-hidden relative h-20">
+            <div className="bg-gradient-to-r from-amber-200 to-orange-200 overflow-hidden relative h-20">
               <div className="flex items-center h-full">
                 {/* Left - Person Image */}
                 <div className="w-20 h-full relative overflow-hidden">
@@ -764,7 +764,7 @@ const CampaignContent: React.FC<{
         <CardContent className="p-4">
           <div className="h-80 relative">
             {/* Modern Email Client Interface */}
-            <div className="bg-white backdrop-blur-sm rounded-lg overflow-hidden h-full border border-white/20 shadow-inner">
+            <div className="bg-white backdrop-blur-sm overflow-hidden h-full border border-white/20 shadow-inner">
               {/* Email Client Header */}
               <div className="bg-gradient-to-r from-slate-50 to-gray-50 px-3 py-2 border-b border-gray-200">
                 <div className="flex items-center justify-between">
@@ -801,7 +801,7 @@ const CampaignContent: React.FC<{
                   <div className="flex items-center gap-3">
                     {/* Product Image */}
                     <div className="relative">
-                      <div className="w-16 h-16 bg-primary/10 rounded-lg overflow-hidden shadow-sm border border-white/50">
+                      <div className="w-16 h-16 bg-primary/10 overflow-hidden shadow-sm border border-white/50">
                         {activeCampaignResults?.generated_images?.[0]?.url ? (
                           <OptimizedImage src={activeCampaignResults.generated_images[0].url} alt="Product" className="w-full h-full object-cover" />
                         ) : uploadedImage ? (
@@ -903,7 +903,7 @@ const CatalogContent: React.FC<{
         <Card>
           <CardContent className="p-4">
             <h3 className="font-semibold mb-3">Original Product</h3>
-            <div className="aspect-square bg-muted rounded-lg overflow-hidden">
+            <div className="aspect-square bg-muted overflow-hidden">
               <img 
                 src={uploadedImage}
                 alt="Original product"
