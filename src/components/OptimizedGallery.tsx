@@ -376,7 +376,7 @@ const CampaignContent: React.FC<{
               e.stopPropagation();
               onViewDetails('Banner Ads');
             }}
-            className="tap-target focus-ring rounded-full p-1 h-8 w-8"
+            className="tap-target focus-ring rounded-full p-1 h-6 w-6"
           >
             <Download className="w-3 h-3" />
           </Button>
@@ -505,7 +505,7 @@ const CampaignContent: React.FC<{
               e.stopPropagation();
               onViewDetails('Web Creative');
             }}
-            className="tap-target focus-ring rounded-full p-1 h-8 w-8"
+            className="tap-target focus-ring rounded-full p-1 h-6 w-6"
           >
             <Download className="w-3 h-3" />
           </Button>
@@ -632,7 +632,7 @@ const CampaignContent: React.FC<{
               e.stopPropagation();
               onViewDetails('Video Scripts');
             }}
-            className="tap-target focus-ring rounded-full p-1 h-8 w-8"
+            className="tap-target focus-ring rounded-full p-1 h-6 w-6"
           >
             <Download className="w-3 h-3" />
           </Button>
@@ -744,7 +744,7 @@ const CampaignContent: React.FC<{
               e.stopPropagation();
               onViewDetails('Email Templates');
             }}
-            className="tap-target focus-ring rounded-full p-1 h-8 w-8"
+            className="tap-target focus-ring rounded-full p-1 h-6 w-6"
           >
             <Download className="w-3 h-3" />
           </Button>
