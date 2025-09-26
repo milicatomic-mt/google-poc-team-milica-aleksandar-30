@@ -210,7 +210,7 @@ const PreviewResultsScreen: React.FC = () => {
                     <div className="absolute -inset-2 bg-blue-500/20 border-2 border-blue-500 border-dashed rounded"></div>
                     
                     <div 
-                      className="relative bg-gradient-to-r from-amber-200 to-amber-100"
+                      className="relative bg-gradient-to-r from-slate-200 to-gray-100"
                       style={{ width: '728px', height: '90px', maxWidth: '100%' }}
                     >
                       <div className="absolute left-6 top-1/2 -translate-y-1/2 flex items-center gap-4">
@@ -291,7 +291,7 @@ const PreviewResultsScreen: React.FC = () => {
                               />
                             )}
                             
-                            <div className="absolute bottom-0 left-0 right-0 h-16 bg-amber-100 flex flex-col justify-center px-4 text-center">
+                            <div className="absolute bottom-0 left-0 right-0 h-16 bg-gray-100 flex flex-col justify-center px-4 text-center">
                               <h3 className="text-sm font-bold text-black uppercase">
                                 {activeCampaignResults.banner_ads?.[0]?.headline || 'PREMIUM SOUND'}
                               </h3>
@@ -327,7 +327,7 @@ const PreviewResultsScreen: React.FC = () => {
                         <div className="absolute -inset-2 bg-blue-500/20 border-2 border-blue-500 border-dashed rounded"></div>
                         
                         <div 
-                          className="relative bg-gradient-to-b from-amber-200 to-amber-100"
+                          className="relative bg-gradient-to-b from-slate-200 to-gray-100"
                           style={{ width: '160px', height: '400px' }}
                         >
                           {/* Top product area */}
@@ -404,7 +404,7 @@ const PreviewResultsScreen: React.FC = () => {
                     <div className="absolute -inset-2 bg-blue-500/20 border-2 border-blue-500 border-dashed rounded"></div>
                     
                     <div 
-                      className="relative bg-gradient-to-r from-amber-200 via-amber-100 to-amber-200"
+                      className="relative bg-gradient-to-r from-slate-200 via-gray-100 to-slate-200"
                       style={{ width: '970px', height: '250px', maxWidth: '100%' }}
                     >
                       {/* Left content area */}
@@ -1640,7 +1640,7 @@ const PreviewResultsScreen: React.FC = () => {
                     {/* Top Row - Two Square Banners */}
                     <div className="grid grid-cols-2 gap-3 mb-4">
                       {/* Left Banner - Person with Headphones */}
-                      <div className="aspect-square bg-gradient-to-br from-amber-200 to-orange-300 overflow-hidden relative" style={{borderRadius: '1px'}}>
+                      <div className="aspect-square bg-gradient-to-br from-slate-200 to-gray-300 overflow-hidden relative" style={{borderRadius: '1px'}}>
                         {(imageMapping?.image_0 || uploadedImage) && (
                           <img 
                             src={imageMapping?.image_0 || uploadedImage} 
@@ -1679,7 +1679,7 @@ const PreviewResultsScreen: React.FC = () => {
                             className="w-full h-full object-cover" 
                           />
                         )}
-                        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-amber-200 to-amber-100 p-2">
+                        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-slate-200 to-gray-100 p-2">
                           <div className="space-y-1">
                             <h3 className="text-gray-900 text-[10px] font-bold uppercase tracking-wide">
                               Premium Sound
@@ -1702,7 +1702,7 @@ const PreviewResultsScreen: React.FC = () => {
                     </div>
                     
                     {/* Bottom Row - Wide Horizontal Banner */}
-                    <div className="bg-gradient-to-r from-amber-200 to-orange-200 overflow-hidden relative h-20" style={{borderRadius: '1px'}}>
+                    <div className="bg-gradient-to-r from-slate-200 to-gray-200 overflow-hidden relative h-20" style={{borderRadius: '1px'}}>
                       <div className="flex items-center h-full">
                         {/* Left - Person Image */}
                         <div className="w-20 h-full relative overflow-hidden">
