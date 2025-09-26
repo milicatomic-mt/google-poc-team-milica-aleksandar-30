@@ -3,7 +3,8 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { ArrowLeft, Play, Image, FileText, Calendar, Download, QrCode } from 'lucide-react';
+import { ArrowLeft, Play, Image, FileText, Calendar, Download, QrCode, X } from 'lucide-react';
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger, DialogClose } from '@/components/ui/dialog';
 import RibbedSphere from '@/components/RibbedSphere';
 import { useGalleryData, useGalleryItemDetails, type GalleryItem } from '@/hooks/useGalleryData';
 import { VideoPlayer } from '@/components/VideoPlayer';
@@ -204,31 +205,44 @@ const OptimizedGallery = () => {
       <div className="border-b border-border/40 bg-background/80 backdrop-blur-sm sticky top-0 z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-4">
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => navigate('/')}
-                className="hover:bg-muted/80 shadow-sm"
-              >
-                <ArrowLeft className="w-4 h-4 mr-2" />
-                Back to Home
-              </Button>
-              <div>
-                <h1 className="text-2xl font-bold text-foreground">Gallery</h1>
-                <p className="text-sm text-muted-foreground">
-                  {filteredItems.length} {filteredItems.length === 1 ? 'item' : 'items'}
-                </p>
-              </div>
+            {/* Left - Close Button */}
+            <Dialog>
+              <DialogTrigger asChild>
+                <Button
+                  variant="secondary"
+                  className="tap-target focus-ring bg-white border-white/30 hover:bg-white/90 rounded-full h-8 px-3 shadow-sm"
+                >
+                  <X className="h-4 w-4 text-black" />
+                </Button>
+              </DialogTrigger>
+              <DialogContent>
+                <DialogHeader>
+                  <DialogTitle>Exit to Homepage?</DialogTitle>
+                  <DialogDescription>
+                    Are you sure you want to exit? Any current selection will be lost.
+                  </DialogDescription>
+                </DialogHeader>
+                <DialogFooter>
+                  <DialogClose asChild>
+                    <Button variant="outline" className="rounded-full">Cancel</Button>
+                  </DialogClose>
+                  <Button onClick={() => navigate('/')} className="rounded-full">Exit</Button>
+                </DialogFooter>
+              </DialogContent>
+            </Dialog>
+            
+            {/* Center - Gallery Title */}
+            <div className="absolute left-1/2 transform -translate-x-1/2 text-center">
+              <h1 className="text-2xl font-bold text-foreground">Gallery</h1>
             </div>
             
-            {/* Filter Buttons */}
+            {/* Right - Filter Buttons */}
             <div className="flex items-center space-x-2">
               <Button
                 variant={selectedFilter === 'all' ? 'default' : 'outline'}
                 size="sm"
                 onClick={() => setSelectedFilter('all')}
-                className="text-xs"
+                className="text-xs rounded-full"
               >
                 All
               </Button>
@@ -236,7 +250,7 @@ const OptimizedGallery = () => {
                 variant={selectedFilter === 'campaigns' ? 'default' : 'outline'}
                 size="sm"
                 onClick={() => setSelectedFilter('campaigns')}
-                className="text-xs"
+                className="text-xs rounded-full"
               >
                 Campaigns
               </Button>
@@ -244,7 +258,7 @@ const OptimizedGallery = () => {
                 variant={selectedFilter === 'catalogs' ? 'default' : 'outline'}
                 size="sm"
                 onClick={() => setSelectedFilter('catalogs')}
-                className="text-xs"
+                className="text-xs rounded-full"
               >
                 Catalogs
               </Button>
