@@ -1914,9 +1914,9 @@ const PreviewResultsScreen: React.FC = () => {
                 </div>
                 <CardContent className="p-4">
                   {/* Mobile-First Vertical Layout */}
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 h-80">
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                     {/* Left Side - Video Preview */}
-                    <div className="bg-black rounded-lg overflow-hidden relative min-h-[120px] lg:h-full">
+                    <div className="bg-black rounded-lg overflow-hidden relative h-[200px] lg:h-[280px]">
                       {/* Video Thumbnail with Play Button */}
                       <div className="relative w-full h-full">
                         {activeCampaignResults?.generated_images?.[0]?.url ? (
