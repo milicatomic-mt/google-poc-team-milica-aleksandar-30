@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -20,33 +20,44 @@ const OptimizedGallery = () => {
   const [selectedItemForDownload, setSelectedItemForDownload] = useState<any>(null);
   const { preloadImages, getCachedImageUrl } = useImageCache();
 
-  // Handle scroll position restoration
+  // Scroll position: prepare restore on mount
+  const savedScrollPositionRef = useRef<number | null>(null);
+  const shouldRestoreRef = useRef<boolean>(false);
   useEffect(() => {
-    const savedScrollPosition = sessionStorage.getItem('gallery-scroll-position');
-    
-    // If we're returning from a detail page, restore scroll position
-    if (location.state?.fromDetail && savedScrollPosition) {
-      const scrollPosition = parseInt(savedScrollPosition, 10);
-      // Use setTimeout to ensure the DOM is fully rendered
-      setTimeout(() => {
-        window.scrollTo({
-          top: scrollPosition,
-          behavior: 'smooth'
-        });
-      }, 100);
-      
-      // Clear the saved position after restoring
-      sessionStorage.removeItem('gallery-scroll-position');
-      
-      // Clear the state to prevent re-triggering on re-renders
-      window.history.replaceState({ ...location.state, fromDetail: false }, '');
+    const saved = sessionStorage.getItem('gallery-scroll-position');
+    const fromDetail = Boolean(location.state?.fromDetail);
+    const restoreFlag = sessionStorage.getItem('gallery-restore') === '1';
+    if ((fromDetail || restoreFlag) && saved) {
+      savedScrollPositionRef.current = parseInt(saved, 10);
+      shouldRestoreRef.current = true;
+      // Do not scroll to top now; wait for items to load/layout
     } else {
-      // Only scroll to top if we're not returning from a detail page
       window.scrollTo(0, 0);
     }
-  }, [location.state]);
+  // run once on mount
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const { data: items = [], isLoading, error } = useGalleryData();
+
+  // Restore scroll AFTER data renders
+  useEffect(() => {
+    if (shouldRestoreRef.current && !isLoading && items.length > 0 && savedScrollPositionRef.current !== null) {
+      const y = savedScrollPositionRef.current;
+      // Next frame ensures DOM laid out
+      requestAnimationFrame(() => {
+        window.scrollTo({ top: y, behavior: 'auto' });
+        // cleanup
+        shouldRestoreRef.current = false;
+        savedScrollPositionRef.current = null;
+        sessionStorage.removeItem('gallery-scroll-position');
+        sessionStorage.removeItem('gallery-restore');
+        try {
+          window.history.replaceState({ ...(location.state || {}), fromDetail: false }, document.title);
+        } catch {}
+      });
+    }
+  }, [isLoading, items.length, location.state]);
 
   // Preload critical images when items are loaded
   useEffect(() => {
@@ -90,6 +101,11 @@ const OptimizedGallery = () => {
   };
 
   const handleViewDetails = (category: string, item: GalleryItem, itemDetails: any) => {
+    // Save current scroll position before navigating
+    try {
+      sessionStorage.setItem('gallery-scroll-position', String(window.scrollY));
+      sessionStorage.setItem('gallery-restore', '1');
+    } catch {}
     const routeMap = {
       'Web Creative': '/web-creative',
       'Banner Ads': '/banner-ads', 
