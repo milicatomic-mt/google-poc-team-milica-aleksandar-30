@@ -417,106 +417,125 @@ const CampaignContent: React.FC<{
           {/* Removed download button from banner ads section */}
         </div>
         <CardContent className="p-4">
-          <div className="h-80">
-            {/* Top Row - Two Square Banners */}
-            <div className="grid grid-cols-2 gap-3 mb-4">
-              {/* Left Banner - Person with Headphones */}
-              <div className="aspect-square bg-gradient-to-br from-slate-200 to-stone-300 overflow-hidden relative" style={{borderRadius: '1px'}}>
-                {getImage(0) && (
-                  <OptimizedImage
-                    src={getImage(0)}
-                    alt="Person with headphones" 
-                    className="w-full h-full object-cover"
-                    priority={true}
-                  />
-                )}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
-                <div className="absolute bottom-0 left-0 right-0 p-3">
-                  <div className="space-y-1">
-                    <h3 className="text-white text-xs font-bold uppercase tracking-wide">
-                      Premium Sound
-                    </h3>
-                    <p className="text-white/90 text-[8px] uppercase tracking-wider">
-                      Minimalist Design
-                    </p>
-                    <div className="flex items-center justify-between mt-2">
-                      <span className="text-white/80 text-[7px]">
-                        WIRELESS BLUETOOTH CONNECTION<br/>
-                        WITH BASS RESONANCE
-                      </span>
-                      <button className="bg-white text-gray-900 text-[8px] px-2 py-1 rounded font-semibold">
+          <div className="h-80 bg-gray-100 overflow-hidden border border-gray-300 shadow-sm" style={{borderRadius: '1px'}}>
+            {/* Browser-like Screenshot Mockup */}
+            <div className="h-full bg-white">
+              {/* Browser Header */}
+              <div className="bg-gray-200 px-2 py-1 flex items-center gap-1 border-b">
+                <div className="flex gap-1">
+                  <div className="w-2 h-2 bg-red-400 rounded-full"></div>
+                  <div className="w-2 h-2 bg-slate-400 rounded-full"></div>
+                  <div className="w-2 h-2 bg-green-400 rounded-full"></div>
+                </div>
+                <div className="flex-1 bg-white mx-2 rounded px-2 py-0.5">
+                  <div className="text-[6px] text-gray-500">https://yourads.com</div>
+                </div>
+              </div>
+
+              {/* Banner Ads Content */}
+              <div className="h-full p-3 overflow-hidden">
+                {/* Top Row - Two Square Banners */}
+                <div className="grid grid-cols-2 gap-2 mb-3">
+                  {/* Left Banner - Person with Headphones */}
+                  <div className="aspect-square bg-gradient-to-br from-slate-200 to-stone-300 overflow-hidden relative" style={{borderRadius: '1px'}}>
+                    {getImage(0) && (
+                      <OptimizedImage
+                        src={getImage(0)}
+                        alt="Person with headphones" 
+                        className="w-full h-full object-cover"
+                        priority={true}
+                      />
+                    )}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
+                    <div className="absolute bottom-0 left-0 right-0 p-2">
+                      <div className="space-y-1">
+                        <h3 className="text-white text-[8px] font-bold uppercase tracking-wide">
+                          Premium Sound
+                        </h3>
+                        <p className="text-white/90 text-[6px] uppercase tracking-wider">
+                          Minimalist Design
+                        </p>
+                        <div className="flex items-center justify-between mt-1">
+                          <span className="text-white/80 text-[5px]">
+                            WIRELESS BLUETOOTH CONNECTION<br/>
+                            WITH BASS RESONANCE
+                          </span>
+                          <button className="bg-white text-gray-900 text-[6px] px-1.5 py-0.5 rounded font-semibold">
+                            Shop Now
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* Right Banner - Just Headphones Product */}
+                  <div className="aspect-square bg-gradient-to-br from-gray-100 to-gray-200 overflow-hidden relative" style={{borderRadius: '1px'}}>
+                    {(getImage(1) || getImage(0)) && (
+                      <OptimizedImage
+                        src={getImage(1) || getImage(0)}
+                        alt="Headphones product" 
+                        className="w-full h-full object-cover"
+                        priority={true}
+                      />
+                    )}
+                    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-stone-200 to-slate-100 p-2">
+                      <div className="space-y-1">
+                        <h3 className="text-gray-900 text-[8px] font-bold uppercase tracking-wide">
+                          Premium Sound
+                        </h3>
+                        <p className="text-gray-700 text-[6px] uppercase tracking-wider">
+                          Minimalist Design
+                        </p>
+                        <div className="flex items-center justify-between mt-1">
+                          <span className="text-gray-600 text-[5px]">
+                            WIRELESS BLUETOOTH CONNECTION<br/>
+                            WITH BASS RESONANCE
+                          </span>
+                          <button className="bg-gray-900 text-white text-[6px] px-1.5 py-0.5 rounded font-semibold">
+                            Shop Now
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Bottom Row - Wide Horizontal Banner */}
+                <div className="bg-gradient-to-r from-slate-200 to-stone-200 overflow-hidden relative h-16" style={{borderRadius: '1px'}}>
+                  <div className="flex items-center h-full">
+                    {/* Left - Person Image */}
+                    <div className="w-16 h-full relative overflow-hidden">
+                      {getImage(0) && (
+                        <OptimizedImage
+                          src={getImage(0)} 
+                          alt="Person with headphones" 
+                          className="w-full h-full object-cover"
+                        />
+                      )}
+                    </div>
+                    
+                    {/* Center - Text Content */}
+                    <div className="flex-1 px-2">
+                      <div className="space-y-0.5">
+                        <h3 className="text-gray-900 text-[8px] font-bold uppercase tracking-wide">
+                          Premium Sound
+                        </h3>
+                        <p className="text-gray-700 text-[6px] uppercase tracking-wider">
+                          Minimalist Design
+                        </p>
+                        <span className="text-gray-600 text-[5px] block">
+                          WIRELESS BLUETOOTH CONNECTION WITH BASS RESONANCE
+                        </span>
+                      </div>
+                    </div>
+                    
+                    {/* Right - CTA Button */}
+                    <div className="pr-2">
+                      <button className="bg-gray-900 text-white text-[7px] px-2 py-1 rounded-full font-semibold">
                         Shop Now
                       </button>
                     </div>
                   </div>
-                </div>
-              </div>
-              
-              {/* Right Banner - Just Headphones Product */}
-              <div className="aspect-square bg-gradient-to-br from-gray-100 to-gray-200 overflow-hidden relative" style={{borderRadius: '1px'}}>
-                {(getImage(1) || getImage(0)) && (
-                  <OptimizedImage
-                    src={getImage(1) || getImage(0)}
-                    alt="Headphones product" 
-                    className="w-full h-full object-cover"
-                    priority={true}
-                  />
-                )}
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-stone-200 to-slate-100 p-2">
-                  <div className="space-y-1">
-                    <h3 className="text-gray-900 text-[10px] font-bold uppercase tracking-wide">
-                      Premium Sound
-                    </h3>
-                    <p className="text-gray-700 text-[7px] uppercase tracking-wider">
-                      Minimalist Design
-                    </p>
-                    <div className="flex items-center justify-between mt-1">
-                      <span className="text-gray-600 text-[6px]">
-                        WIRELESS BLUETOOTH CONNECTION<br/>
-                        WITH BASS RESONANCE
-                      </span>
-                      <button className="bg-gray-900 text-white text-[7px] px-2 py-1 rounded font-semibold">
-                        Shop Now
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            {/* Bottom Row - Wide Horizontal Banner */}
-            <div className="bg-gradient-to-r from-slate-200 to-stone-200 overflow-hidden relative h-20" style={{borderRadius: '1px'}}>
-              <div className="flex items-center h-full">
-                {/* Left - Person Image */}
-                <div className="w-20 h-full relative overflow-hidden">
-                  {getImage(0) && (
-                    <OptimizedImage
-                      src={getImage(0)} 
-                      alt="Person with headphones" 
-                      className="w-full h-full object-cover"
-                    />
-                  )}
-                </div>
-                
-                {/* Middle - Text Content */}
-                <div className="flex-1 px-4 py-3">
-                  <h3 className="text-gray-900 text-sm font-bold uppercase tracking-wide mb-1">
-                    Premium Sound
-                  </h3>
-                  <p className="text-gray-700 text-[10px] uppercase tracking-wider mb-2">
-                    Minimalist Design
-                  </p>
-                  <p className="text-gray-600 text-[8px] leading-tight">
-                    WIRELESS BLUETOOTH CONNECTION<br/>
-                    WITH BASS RESONANCE
-                  </p>
-                </div>
-                
-                {/* Right - CTA Button */}
-                <div className="pr-4">
-                  <button className="bg-gray-900 text-white text-xs px-4 py-2 rounded-lg font-semibold">
-                    Shop Now
-                  </button>
                 </div>
               </div>
             </div>
