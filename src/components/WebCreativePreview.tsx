@@ -23,7 +23,13 @@ const WebCreativePreview: React.FC = () => {
 
   const handleBack = () => {
     navigate(returnTo || '/preview-results', {
-      state: { campaignResults, uploadedImage, campaignId, imageMapping }
+      state: { 
+        campaignResults, 
+        uploadedImage, 
+        campaignId, 
+        imageMapping,
+        fromDetail: true 
+      }
     });
   };
 

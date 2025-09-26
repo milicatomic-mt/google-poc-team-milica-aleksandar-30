@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -14,15 +14,37 @@ import { toast } from "sonner";
 
 const OptimizedGallery = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [selectedFilter, setSelectedFilter] = useState<'all' | 'campaigns' | 'catalogs'>('all');
   const [isDownloadModalOpen, setIsDownloadModalOpen] = useState(false);
   const [selectedItemForDownload, setSelectedItemForDownload] = useState<any>(null);
   const { preloadImages, getCachedImageUrl } = useImageCache();
 
-  // Scroll to top when component mounts
+  // Handle scroll position restoration
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+    const savedScrollPosition = sessionStorage.getItem('gallery-scroll-position');
+    
+    // If we're returning from a detail page, restore scroll position
+    if (location.state?.fromDetail && savedScrollPosition) {
+      const scrollPosition = parseInt(savedScrollPosition, 10);
+      // Use setTimeout to ensure the DOM is fully rendered
+      setTimeout(() => {
+        window.scrollTo({
+          top: scrollPosition,
+          behavior: 'smooth'
+        });
+      }, 100);
+      
+      // Clear the saved position after restoring
+      sessionStorage.removeItem('gallery-scroll-position');
+      
+      // Clear the state to prevent re-triggering on re-renders
+      window.history.replaceState({ ...location.state, fromDetail: false }, '');
+    } else {
+      // Only scroll to top if we're not returning from a detail page
+      window.scrollTo(0, 0);
+    }
+  }, [location.state]);
 
   const { data: items = [], isLoading, error } = useGalleryData();
 
