@@ -100,7 +100,7 @@ const EmailTemplatesPreview: React.FC = () => {
         <div className="max-w-4xl mx-auto">
           
           {/* Email Preview - Clean Layout */}
-          <div className="bg-white rounded-lg overflow-hidden">
+          <div className="overflow-hidden">
             {/* Header with Background Image */}
             <div 
               className="relative text-center py-16 bg-cover bg-center bg-no-repeat min-h-[300px] flex flex-col justify-center"
@@ -115,11 +115,18 @@ const EmailTemplatesPreview: React.FC = () => {
             </div>
 
             {/* Product Showcase Section */}
-            <div className="bg-gradient-to-b from-gray-50 to-white py-16">
+            <div 
+              className="py-16 bg-cover bg-center bg-no-repeat"
+              style={{
+                backgroundImage: (getImage(1) || getImage(0) || uploadedImage) 
+                  ? `linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url(${getImage(1) || getImage(0) || uploadedImage})`
+                  : 'linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%)'
+              }}
+            >
               <div className="container mx-auto px-8 max-w-4xl">
                 <div className="flex items-center justify-center">
                   {(getImage(0) || uploadedImage) && (
-                    <div className="bg-white rounded-3xl p-12 shadow-xl max-w-md">
+                    <div className="backdrop-blur-sm bg-white/10 rounded-3xl p-12 shadow-xl max-w-md">
                       <OptimizedImage 
                         src={getImage(0) || uploadedImage}
                         alt="Premium product"
@@ -132,7 +139,14 @@ const EmailTemplatesPreview: React.FC = () => {
             </div>
 
             {/* Content section */}
-            <div className="container mx-auto px-8 py-12 max-w-3xl">
+            <div 
+              className="container mx-auto px-8 py-12 max-w-3xl bg-gradient-to-b from-transparent to-black/5"
+              style={{
+                backgroundImage: (getImage(2) || getImage(0) || uploadedImage) 
+                  ? `linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url(${getImage(2) || getImage(0) || uploadedImage})`
+                  : 'linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%)'
+              }}
+            >
               <div className="text-center">
                 <h2 className="text-3xl font-bold text-slate-900 mb-6">
                   Premium wireless headphones with a sleek ivory finish, designed for immersive sound and all-day comfort.
@@ -144,7 +158,7 @@ const EmailTemplatesPreview: React.FC = () => {
                 
                 <Button 
                   size="lg" 
-                  className="bg-slate-900 hover:bg-slate-800 text-white font-semibold px-12 py-4 rounded-full text-lg"
+                  className="bg-slate-900 hover:bg-slate-800 text-white font-semibold px-12 py-4 rounded-full text-lg shadow-lg"
                 >
                   Shop Now
                 </Button>
@@ -152,8 +166,8 @@ const EmailTemplatesPreview: React.FC = () => {
             </div>
 
             {/* Footer */}
-            <div className="bg-slate-50 py-6 text-center">
-              <p className="text-xs text-slate-500">
+            <div className="bg-slate-900/90 backdrop-blur-sm py-6 text-center">
+              <p className="text-xs text-slate-300">
                 © 2024 Premium Sound. All rights reserved.
               </p>
             </div>
