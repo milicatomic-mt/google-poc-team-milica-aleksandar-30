@@ -198,7 +198,19 @@ const OptimizedGallery = () => {
   }
 
   return (
-    <div className="min-h-screen w-full bg-gray-150">
+    <div className="min-h-screen w-full bg-gray-150 relative">
+      {/* Background Video */}
+      <video 
+        className="absolute inset-0 w-full h-full object-cover object-center opacity-50 z-0" 
+        autoPlay 
+        loop 
+        muted 
+        playsInline
+      >
+        <source src="/background-video.mp4" type="video/mp4" />
+      </video>
+
+      <div className="relative z-10">
       {/* Header */}
       <div className="border-b border-border/40 bg-background/80 backdrop-blur-sm sticky top-0 z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
@@ -262,8 +274,8 @@ const OptimizedGallery = () => {
               </Button>
             </div>
           </div>
-        </div>
       </div>
+    </div>
 
       {/* Gallery Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -301,6 +313,7 @@ const OptimizedGallery = () => {
         onClose={() => setIsDownloadModalOpen(false)}
         campaignData={selectedItemForDownload}
       />
+      </div>
     </div>
   );
 };
