@@ -565,125 +565,100 @@ const CampaignContent: React.FC<{
                 </div>
               </div>
 
-              {/* Web Creative Preview - Screenshot-style with proper proportions */}
-              <div className="h-full overflow-hidden bg-white">
-                {/* Hero Section - Takes about 40% of height */}
-                <div className="h-[40%] relative bg-gradient-to-br from-primary/10 via-background to-secondary/10">
-                  {/* Background Image with Overlay */}
-                  <div className="absolute inset-0">
-                    {getImage(0) ? (
-                      <OptimizedImage
-                        src={getImage(0)} 
-                        alt="Background" 
-                        className="w-full h-full object-cover"
-                      />
-                    ) : (
-                      <div className="w-full h-full bg-gradient-to-br from-blue-500 to-purple-600"></div>
-                    )}
-                    <div className="absolute inset-0 bg-black/40"></div>
-                  </div>
-                  
-                  {/* Hero Content */}
-                  <div className="relative z-10 h-full flex items-center px-2">
-                    <div className="grid grid-cols-2 gap-1 w-full">
-                      <div className="space-y-0.5">
-                        <div className="inline-flex items-center px-1 py-0.5 rounded-full text-[2px] font-medium bg-primary/20 text-primary border border-primary/30">
-                          ✨ New Launch
-                        </div>
-                        <h1 className="text-[4px] font-bold text-white leading-tight">
-                          {activeCampaignResults?.landing_page_concept?.hero_text || 
-                           activeCampaignResults?.banner_ads?.[0]?.headline || 
-                           'Transform Your Experience Today'}
-                        </h1>
-                        <p className="text-[2px] text-white/80 leading-relaxed">
-                          {activeCampaignResults?.landing_page_concept?.sub_text || 
-                           'Discover innovative solutions'}
-                        </p>
-                        <div className="flex gap-0.5 mt-1">
-                          <div className="bg-primary text-white text-[2px] px-1 py-0.5 rounded font-medium">
-                            {activeCampaignResults?.landing_page_concept?.cta || 'Get Started'}
-                          </div>
-                          <div className="border border-white/30 text-white text-[2px] px-1 py-0.5 rounded">
-                            Learn More
-                          </div>
-                        </div>
+              {/* Web Creative Preview - Matching WebCreativePreview design */}
+              <div className="h-full relative overflow-hidden bg-gradient-to-br from-primary/10 via-background to-secondary/10">
+                {/* Background Image with Overlay */}
+                <div className="absolute inset-0">
+                  {getImage(0) ? (
+                    <OptimizedImage
+                      src={getImage(0)} 
+                      alt="Background" 
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <div className="w-full h-full bg-gradient-to-br from-blue-500 to-purple-600"></div>
+                  )}
+                  <div className="absolute inset-0 bg-black/40"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30"></div>
+                </div>
+
+                {/* Hero Section - Matching WebCreativePreview layout */}
+                <div className="relative z-10 py-4 px-3">
+                  <div className="grid grid-cols-2 gap-2 items-center">
+                    <div className="space-y-1">
+                      <div className="inline-flex items-center gap-1 px-1 py-0.5 rounded-full text-[3px] font-medium bg-primary/10 text-primary border border-primary/20">
+                        ✨ New Launch  
                       </div>
-                      <div className="flex justify-end">
-                        {getImage(0) && (
-                          <OptimizedImage 
-                            src={getImage(0)} 
-                            alt="Product showcase"
-                            className="w-8 h-6 object-cover rounded shadow-sm"
-                          />
-                        )}
+                      <h1 className="text-[7px] font-bold text-white leading-tight">
+                        {activeCampaignResults?.landing_page_concept?.hero_text || 
+                         activeCampaignResults?.banner_ads?.[0]?.headline || 
+                         'Transform Your Experience Today'}
+                      </h1>
+                      <p className="text-[4px] text-white/80 leading-relaxed">
+                        {activeCampaignResults?.landing_page_concept?.sub_text || 
+                         'Discover innovative solutions that drive exceptional results for your business.'}
+                      </p>
+                      <div className="flex gap-1">
+                        <button className="bg-primary text-white text-[3px] px-1 py-0.5 rounded font-medium">
+                          {activeCampaignResults?.landing_page_concept?.cta || 
+                           activeCampaignResults?.banner_ads?.[0]?.cta || 
+                           'Get Started Now'}
+                        </button>
+                        <button className="border border-white/30 text-white text-[3px] px-1 py-0.5 rounded">
+                          Learn More
+                        </button>
                       </div>
                     </div>
-                  </div>
-                </div>
-
-                {/* Features Section - Takes about 25% of height */}
-                <div className="h-[25%] bg-muted/20 px-2 py-1">
-                  <div className="text-center mb-1">
-                    <h2 className="text-[3px] font-bold text-foreground">Key Features</h2>
-                  </div>
-                  <div className="grid grid-cols-4 gap-0.5">
-                    <div className="text-center">
-                      <div className="text-[4px]">⭐</div>
-                      <div className="text-[2px] font-semibold">Premium</div>
-                    </div>
-                    <div className="text-center">
-                      <div className="text-[4px]">🚀</div>
-                      <div className="text-[2px] font-semibold">Fast</div>
-                    </div>
-                    <div className="text-center">
-                      <div className="text-[4px]">💎</div>
-                      <div className="text-[2px] font-semibold">Quality</div>
-                    </div>
-                    <div className="text-center">
-                      <div className="text-[4px]">❤️</div>
-                      <div className="text-[2px] font-semibold">Support</div>
+                    <div className="relative">
+                      {getImage(0) && (
+                        <OptimizedImage 
+                          src={getImage(0)} 
+                          alt="Product showcase"
+                          className="w-full h-10 object-cover rounded shadow-lg"
+                        />
+                      )}
                     </div>
                   </div>
                 </div>
 
-                {/* Product Details Section - Takes about 20% of height */}
-                <div className="h-[20%] px-2 py-1 bg-white">
-                  <div className="grid grid-cols-2 gap-1 h-full">
-                    <div className="space-y-0.5">
-                      <h3 className="text-[2.5px] font-bold">Why Choose Us?</h3>
-                      <div className="space-y-0.5">
-                        <div className="flex items-start gap-0.5">
-                          <div className="w-1 h-1 bg-primary rounded-full mt-0.5 flex-shrink-0"></div>
-                          <div className="text-[2px] text-muted-foreground">Advanced Technology</div>
-                        </div>
-                        <div className="flex items-start gap-0.5">
-                          <div className="w-1 h-1 bg-primary rounded-full mt-0.5 flex-shrink-0"></div>
-                          <div className="text-[2px] text-muted-foreground">Expert Support</div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="grid grid-cols-2 gap-0.5">
-                      {getImage(1) && <OptimizedImage src={getImage(1)} alt="Detail 1" className="w-full h-3 object-cover rounded" />}
-                      {getImage(2) && <OptimizedImage src={getImage(2)} alt="Detail 2" className="w-full h-3 object-cover rounded" />}
-                      {getImage(3) && <OptimizedImage src={getImage(3)} alt="Detail 3" className="w-full h-3 object-cover rounded" />}
-                      {getImage(0) && !getImage(1) && <OptimizedImage src={getImage(0)} alt="Detail 1" className="w-full h-3 object-cover rounded" />}
-                    </div>
+                {/* Product Highlights Section */}
+                <div className="relative z-10 px-3 py-2">
+                  <h2 className="text-[5px] font-bold text-white mb-1">Product Highlights</h2>
+                  <div className="grid grid-cols-2 gap-1 text-white/80">
+                    <div className="text-[4px]">• Premium Quality Materials</div>
+                    <div className="text-[4px]">• Advanced Technology</div>
+                    <div className="text-[4px]">• Modern Design</div>
+                    <div className="text-[4px]">• Expert Craftsmanship</div>
                   </div>
                 </div>
 
-                {/* CTA Section - Takes about 10% of height */}
-                <div className="h-[10%] bg-primary/10 px-2 py-1 flex items-center justify-center">
-                  <div className="text-center">
-                    <div className="text-[2px] font-bold text-primary mb-0.5">Special Offer</div>
-                    <div className="bg-primary text-white text-[2px] px-2 py-0.5 rounded font-medium">
-                      {activeCampaignResults?.landing_page_concept?.cta || 'Claim Now'}
-                    </div>
+                {/* Testimonials Section */}
+                <div className="relative z-10 px-3 py-2">
+                  <div className="bg-white/10 backdrop-blur-sm rounded p-1.5">
+                    <h3 className="text-[4px] font-bold text-white mb-0.5">What Our Customers Say</h3>
+                    <p className="text-[3px] text-white/80 italic">
+                      "This product has transformed my daily experience. Highly recommend!"
+                    </p>
+                    <p className="text-[3px] text-white/60 mt-0.5">- Sarah J., Marketing Manager</p>
                   </div>
                 </div>
 
-                {/* Footer - Takes about 5% of height */}
-                <div className="h-[5%] bg-gray-800 px-2 py-0.5 flex items-center justify-center">
-                  <div className="text-[2px] text-white/70">© 2024 Brand. All rights reserved.</div>
+                {/* Call to Action Section */}
+                <div className="absolute bottom-4 left-3 right-3 z-10">
+                  <div className="bg-primary/90 backdrop-blur-sm rounded-lg p-2 text-center">
+                    <div className="text-[4px] text-white font-bold mb-0.5">Special Offer</div>
+                    <div className="text-[3px] text-white/90 mb-1">Get 30% off your first order</div>
+                    <button className="bg-white text-primary text-[3px] px-2 py-0.5 rounded font-medium w-full">
+                      Claim Offer Now
+                    </button>
+                  </div>
+                </div>
+
+                {/* Footer */}
+                <div className="absolute bottom-0 left-0 right-0 z-10 bg-black/20 backdrop-blur-sm border-t border-white/10">
+                  <div className="px-2 py-0.5">
+                    <div className="text-[3px] text-white/70 text-center">© 2024 Brand. All rights reserved.</div>
+                  </div>
                 </div>
               </div>
             </div>
