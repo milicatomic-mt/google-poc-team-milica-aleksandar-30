@@ -24,7 +24,7 @@ const EmailTemplatesPreview: React.FC = () => {
 
   // Scroll to top when component mounts
   useEffect(() => {
-    window.scrollTo(0, 0);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
   const handleBack = () => {
@@ -69,7 +69,7 @@ const EmailTemplatesPreview: React.FC = () => {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <div className="border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <div className="bg-background">
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
@@ -97,186 +97,139 @@ const EmailTemplatesPreview: React.FC = () => {
 
       {/* Content */}
       <div className="container mx-auto px-6 py-8">
-        <div className="max-w-4xl mx-auto space-y-8">
+        <div className="max-w-4xl mx-auto">
           
-          {/* Email Preview */}
-          <Card className="overflow-hidden">
-            <CardContent className="p-0">
-              {/* Logo header */}
-              <div className="bg-muted/30 p-4 border-b">
-                <h2 className="text-lg font-semibold">Logo</h2>
-              </div>
-              
-              {/* Email content */}
-              <div className="bg-white">
-                {/* Header with Background Image */}
-                <div 
-                  className="relative text-center py-8 bg-cover bg-center bg-no-repeat min-h-[200px] flex flex-col justify-center"
-                  style={{
-                    backgroundImage: (getImage(0) || uploadedImage) 
-                      ? `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(${getImage(0) || uploadedImage})`
-                      : 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
-                  }}
-                >
-                  <h1 className="text-3xl font-bold text-white mb-2 drop-shadow-lg">Premium sound</h1>
-                  <p className="text-sm text-white/90 uppercase tracking-wider drop-shadow">MINIMALIST DESIGN</p>
-                </div>
+          {/* Email Preview - Clean Layout */}
+          <div className="bg-white rounded-lg overflow-hidden">
+            {/* Header with Background Image */}
+            <div 
+              className="relative text-center py-8 bg-cover bg-center bg-no-repeat min-h-[200px] flex flex-col justify-center"
+              style={{
+                backgroundImage: (getImage(0) || uploadedImage) 
+                  ? `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(${getImage(0) || uploadedImage})`
+                  : 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
+              }}
+            >
+              <h1 className="text-3xl font-bold text-white mb-2 drop-shadow-lg">Premium sound</h1>
+              <p className="text-sm text-white/90 uppercase tracking-wider drop-shadow">MINIMALIST DESIGN</p>
+            </div>
 
-                {/* Hero Image Section */}
-                <div 
-                  className="relative bg-cover bg-center bg-no-repeat py-12 min-h-[400px] flex items-center justify-center"
-                  style={{
-                    backgroundImage: (getImage(1) || getImage(0) || uploadedImage) 
-                      ? `linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1)), url(${getImage(1) || getImage(0) || uploadedImage})`
-                      : 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
-                  }}
-                >
-                  <div className="container mx-auto px-8 max-w-2xl">
-                    <div className="flex items-center justify-center">
-                      {(getImage(0) || uploadedImage) && (
-                        <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-8 shadow-2xl">
-                          <OptimizedImage 
-                            src={getImage(0) || uploadedImage}
-                            alt="Premium wireless headphones"
-                            className="w-64 h-64 object-contain"
-                          />
-                        </div>
-                      )}
+            {/* Hero Image Section */}
+            <div 
+              className="relative bg-cover bg-center bg-no-repeat py-12 min-h-[400px] flex items-center justify-center"
+              style={{
+                backgroundImage: (getImage(1) || getImage(0) || uploadedImage) 
+                  ? `linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1)), url(${getImage(1) || getImage(0) || uploadedImage})`
+                  : 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
+              }}
+            >
+              <div className="container mx-auto px-8 max-w-2xl">
+                <div className="flex items-center justify-center">
+                  {(getImage(0) || uploadedImage) && (
+                    <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-8 shadow-2xl">
+                      <OptimizedImage 
+                        src={getImage(0) || uploadedImage}
+                        alt="Premium wireless headphones"
+                        className="w-64 h-64 object-contain"
+                      />
                     </div>
-                  </div>
-                </div>
-
-                {/* Content section */}
-                <div className="container mx-auto px-8 py-8 max-w-2xl">
-                  <div className="text-center mb-8">
-                    <h2 className="text-2xl font-bold text-slate-900 mb-4">
-                      Premium wireless headphones with a sleek ivory finish, designed for immersive sound and all-day comfort.
-                    </h2>
-                    
-                    <p className="text-slate-600 leading-relaxed mb-6">
-                      {emailCopy?.body || 'Experience high-quality audio with these stylish over-ear wireless headphones. Featuring soft cushioned ear pads, a minimalist design, and advanced noise isolation, they\'re perfect for music, calls, or daily use. Lightweight yet durable, these headphones combine performance with modern aesthetics, making them ideal for both casual listeners and professionals.'}
-                    </p>
-                    
-                    <Button 
-                      size="lg" 
-                      className="bg-slate-900 hover:bg-slate-800 text-white font-semibold px-8 py-3 rounded-full"
-                    >
-                      Shop Now
-                    </Button>
-                  </div>
-                </div>
-
-                {/* Footer */}
-                <div className="bg-slate-50 py-6 text-center border-t">
-                  <p className="text-xs text-slate-500">
-                    © 2024 Premium Sound. All rights reserved.
-                  </p>
+                  )}
                 </div>
               </div>
-            </CardContent>
-          </Card>
+            </div>
 
-          {/* Email Details */}
-          <Card>
-            <CardContent className="p-6">
+            {/* Content section */}
+            <div className="container mx-auto px-8 py-8 max-w-2xl">
+              <div className="text-center mb-8">
+                <h2 className="text-2xl font-bold text-slate-900 mb-4">
+                  Premium wireless headphones with a sleek ivory finish, designed for immersive sound and all-day comfort.
+                </h2>
+                
+                <p className="text-slate-600 leading-relaxed mb-6">
+                  {emailCopy?.body || 'Experience high-quality audio with these stylish over-ear wireless headphones. Featuring soft cushioned ear pads, a minimalist design, and advanced noise isolation, they\'re perfect for music, calls, or daily use. Lightweight yet durable, these headphones combine performance with modern aesthetics, making them ideal for both casual listeners and professionals.'}
+                </p>
+                
+                <Button 
+                  size="lg" 
+                  className="bg-slate-900 hover:bg-slate-800 text-white font-semibold px-8 py-3 rounded-full"
+                >
+                  Shop Now
+                </Button>
+              </div>
+            </div>
+
+            {/* Footer */}
+            <div className="bg-slate-50 py-6 text-center">
+              <p className="text-xs text-slate-500">
+                © 2024 Premium Sound. All rights reserved.
+              </p>
+            </div>
+          </div>
+
+          {/* Email Details - Clean Layout */}
+          {(emailCopy?.subject || emailCopy?.body) && (
+            <div className="mt-8 space-y-6">
               <div className="flex items-center gap-2 mb-4">
                 <Mail className="w-5 h-5" />
                 <h3 className="text-lg font-semibold">Email Content Details</h3>
               </div>
               
-              <div className="space-y-4">
-                {emailCopy?.subject && (
-                  <div>
-                    <label className="text-sm font-medium text-muted-foreground">Subject Line</label>
-                    <div className="mt-1 p-3 bg-muted/30 rounded-lg">
-                      <p className="text-sm font-medium">{emailCopy.subject}</p>
-                    </div>
-                  </div>
-                )}
-                
-                {emailCopy?.body && (
-                  <div>
-                    <label className="text-sm font-medium text-muted-foreground">Email Body</label>
-                    <div className="mt-1 p-3 bg-muted/30 rounded-lg">
-                      <p className="text-sm leading-relaxed">{emailCopy.body}</p>
-                    </div>
-                  </div>
-                )}
-
-                {/* Email Stats Preview */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4 border-t">
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-green-600">24.5%</div>
-                    <div className="text-xs text-muted-foreground">Expected Open Rate</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-blue-600">3.2%</div>
-                    <div className="text-xs text-muted-foreground">Expected Click Rate</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-purple-600">8.7%</div>
-                    <div className="text-xs text-muted-foreground">Conversion Potential</div>
+              {emailCopy?.subject && (
+                <div>
+                  <label className="text-sm font-medium text-muted-foreground">Subject Line</label>
+                  <div className="mt-1 p-3 bg-muted/30 rounded-lg">
+                    <p className="text-sm font-medium">{emailCopy.subject}</p>
                   </div>
                 </div>
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Best Practices */}
-          <Card>
-            <CardContent className="p-6">
-              <h3 className="text-lg font-semibold mb-4">Email Best Practices</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <h4 className="font-medium text-sm">✅ What's Working</h4>
-                  <ul className="text-sm text-muted-foreground space-y-1">
-                    <li>• Clear, compelling subject line</li>
-                    <li>• Strong visual hierarchy</li>
-                    <li>• Single clear call-to-action</li>
-                    <li>• Mobile-responsive design</li>
-                  </ul>
+              )}
+              
+              {emailCopy?.body && (
+                <div>
+                  <label className="text-sm font-medium text-muted-foreground">Email Body</label>
+                  <div className="mt-1 p-3 bg-muted/30 rounded-lg">
+                    <p className="text-sm">{emailCopy.body}</p>
+                  </div>
                 </div>
-                <div className="space-y-2">
-                  <h4 className="font-medium text-sm">💡 Recommendations</h4>
-                  <ul className="text-sm text-muted-foreground space-y-1">
-                    <li>• A/B test subject variations</li>
-                    <li>• Add personalization tokens</li>
-                    <li>• Include social proof elements</li>
-                    <li>• Test send times for your audience</li>
-                  </ul>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
+              )}
+            </div>
+          )}
         </div>
       </div>
 
       {/* Download Modal */}
       <Dialog open={isDownloadModalOpen} onOpenChange={setIsDownloadModalOpen}>
-        <DialogContent className="max-w-md">
+        <DialogContent className="sm:max-w-md">
           <DialogHeader>
             <DialogTitle className="flex items-center gap-2">
               <QrCode className="w-5 h-5" />
-              Download Email Template
+              Download Email Templates
             </DialogTitle>
           </DialogHeader>
           <div className="flex flex-col items-center space-y-4">
-            <div className="bg-white p-4 rounded-lg border">
-              <QRCodeSVG value={downloadUrl} size={200} />
-            </div>
-            <div className="text-center">
-              <p className="text-sm text-muted-foreground mb-2">
-                Scan with your mobile device to download
-              </p>
-              <Button
-                variant="outline"
-                size="sm"
+            {downloadUrl && (
+              <div className="p-4 bg-white rounded-lg">
+                <QRCodeSVG value={downloadUrl} size={200} />
+              </div>
+            )}
+            <p className="text-sm text-center text-muted-foreground">
+              Scan this QR code with your mobile device to download the email templates.
+            </p>
+            <div className="flex gap-2 w-full">
+              <Button 
+                variant="outline" 
+                className="flex-1"
                 onClick={() => {
                   navigator.clipboard.writeText(downloadUrl);
-                  toast.success('Download link copied to clipboard');
+                  toast.success('Link copied to clipboard!');
                 }}
               >
                 Copy Link
+              </Button>
+              <Button 
+                className="flex-1"
+                onClick={() => window.open(downloadUrl, '_blank')}
+              >
+                Open Link
               </Button>
             </div>
           </div>
