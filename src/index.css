@@ -21,9 +21,9 @@ All colors MUST be HSL.
     --popover-foreground: 0 0% 12%;
 
     /* Brand Colors */
-    --primary: 238 83% 67%;  /* Indigo blue with purple undertones */
+    --primary: 231 48% 48%;  /* Indigo-600 to match download buttons */
     --primary-foreground: 0 0% 100%;
-    --primary-glow: 238 83% 77%;  /* Lighter indigo for glow */
+    --primary-glow: 231 48% 58%;  /* Lighter indigo for glow */
 
     --secondary: 6 100% 69%;  /* Warm coral #FF6F61 */
     --secondary-foreground: 0 0% 100%;
@@ -32,7 +32,7 @@ All colors MUST be HSL.
     --muted: 220 14% 96%;
     --muted-foreground: 220 9% 46%;  /* Medium gray #6B7280 */
 
-    --accent: 238 83% 67%;
+    --accent: 231 48% 48%;
     --accent-foreground: 0 0% 100%;
 
     /* Status Colors */
@@ -48,7 +48,7 @@ All colors MUST be HSL.
     /* UI Elements */
     --border: 220 13% 91%;
     --input: 220 13% 91%;
-    --ring: 238 83% 67%;
+    --ring: 231 48% 48%;
 
     /* Design System Values */
     --radius: 1rem;  /* 16px base radius */
@@ -56,17 +56,17 @@ All colors MUST be HSL.
     --radius-sm: 0.75rem;  /* 12px for buttons */
 
     /* Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(238 83% 67%), hsl(260 100% 68%));
-    --gradient-button: linear-gradient(135deg, hsl(238 83% 67%), hsl(260 85% 65%), hsl(238 83% 67%));
+    --gradient-primary: linear-gradient(135deg, hsl(231 48% 48%), hsl(231 48% 42%));
+    --gradient-button: linear-gradient(135deg, hsl(231 48% 48%), hsl(231 48% 42%), hsl(231 48% 48%));
     --gradient-subtle: linear-gradient(180deg, hsl(220 14% 98%), hsl(0 0% 100%));
-    --gradient-glow: linear-gradient(135deg, hsl(238 83% 77% / 0.2), hsl(260 100% 68% / 0.2));
+    --gradient-glow: linear-gradient(135deg, hsl(231 48% 58% / 0.2), hsl(231 48% 42% / 0.2));
 
     /* Shadows */
     --shadow-sm: 0 2px 4px 0 hsl(0 0% 0% / 0.09);
     --shadow: 0 6px 12px -1px hsl(0 0% 0% / 0.14), 0 4px 8px -2px hsl(0 0% 0% / 0.14);
     --shadow-lg: 0 16px 32px -3px hsl(0 0% 0% / 0.14), 0 8px 16px -4px hsl(0 0% 0% / 0.14);
-    --shadow-glow: 0 0 0 1px hsl(238 83% 67% / 0.3), 0 10px 20px -5px hsl(238 83% 67% / 0.3);
-    --shadow-blue: 0 8px 32px -8px hsl(238 83% 67% / 0.4), 0 0 0 1px hsl(238 83% 67% / 0.2);
+    --shadow-glow: 0 0 0 1px hsl(231 48% 48% / 0.3), 0 10px 20px -5px hsl(231 48% 48% / 0.3);
+    --shadow-blue: 0 8px 32px -8px hsl(231 48% 48% / 0.4), 0 0 0 1px hsl(231 48% 48% / 0.2);
     --shadow-coral: 0 0 0 1px hsl(6 100% 69% / 0.3), 0 10px 20px -5px hsl(6 100% 69% / 0.3);
 
     /* Typography Scale */
@@ -124,9 +124,9 @@ All colors MUST be HSL.
     --popover-foreground: 0 0% 98%;
 
     /* Brand Colors - Dark Mode */
-    --primary: 238 83% 77%;  /* Brighter indigo for dark */
-    --primary-foreground: 0 0% 12%;
-    --primary-glow: 238 83% 87%;
+    --primary: 231 48% 52%;  /* Slightly brighter indigo for dark mode */
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 231 48% 62%;
 
     --secondary: 6 90% 65%;  /* Slightly muted coral */
     --secondary-foreground: 0 0% 12%;
@@ -135,8 +135,8 @@ All colors MUST be HSL.
     --muted: 0 0% 12%;
     --muted-foreground: 220 9% 55%;
 
-    --accent: 238 83% 77%;
-    --accent-foreground: 0 0% 12%;
+    --accent: 231 48% 52%;
+    --accent-foreground: 0 0% 100%;
 
     /* Status Colors - Dark Mode */
     --success: 134 50% 55%;
@@ -151,15 +151,15 @@ All colors MUST be HSL.
     /* UI Elements - Dark Mode */
     --border: 0 0% 15%;
     --input: 0 0% 15%;
-    --ring: 238 83% 77%;
+    --ring: 231 48% 52%;
 
     /* Gradients - Dark Mode */
-    --gradient-primary: linear-gradient(135deg, hsl(238 83% 77%), hsl(260 80% 70%));
+    --gradient-primary: linear-gradient(135deg, hsl(231 48% 52%), hsl(231 48% 46%));
     --gradient-subtle: linear-gradient(180deg, hsl(0 0% 6%), hsl(0 0% 4%));
-    --gradient-glow: linear-gradient(135deg, hsl(238 83% 87% / 0.2), hsl(260 80% 70% / 0.2));
+    --gradient-glow: linear-gradient(135deg, hsl(231 48% 62% / 0.2), hsl(231 48% 46% / 0.2));
 
     /* Shadows - Dark Mode */
-    --shadow-glow: 0 0 0 1px hsl(238 83% 77% / 0.4), 0 10px 20px -5px hsl(238 83% 77% / 0.4);
+    --shadow-glow: 0 0 0 1px hsl(231 48% 52% / 0.4), 0 10px 20px -5px hsl(231 48% 52% / 0.4);
     --shadow-coral: 0 0 0 1px hsl(6 90% 65% / 0.4), 0 10px 20px -5px hsl(6 90% 65% / 0.4);
 
     --sidebar-background: 240 5.9% 10%;
@@ -367,7 +367,7 @@ All colors MUST be HSL.
   }
 
   .btn-gradient:hover {
-    box-shadow: var(--shadow-blue), 0 0 40px -10px hsl(238 83% 67% / 0.3);
+    box-shadow: var(--shadow-blue), 0 0 40px -10px hsl(231 48% 48% / 0.3);
   }
 
   /* Text Gradients */
