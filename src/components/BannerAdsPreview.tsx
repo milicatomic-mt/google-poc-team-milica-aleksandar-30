@@ -11,6 +11,7 @@ const BannerAdsPreview: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { campaignResults, uploadedImage, campaignId, imageMapping, returnTo } = location.state || {};
+  const activeCampaignResults = campaignResults;
   const [isDownloadModalOpen, setIsDownloadModalOpen] = useState(false);
   const [downloadUrl, setDownloadUrl] = useState<string>('');
 
@@ -126,7 +127,7 @@ const BannerAdsPreview: React.FC = () => {
                 {/* Middle - Text Content */}
                 <div className="flex-1 px-8 py-6">
                   <h3 className="text-gray-900 text-3xl font-bold uppercase tracking-wide mb-2">
-                    {campaignResults?.banner_ads?.[0]?.headline || 'Premium Sound'}
+                    {activeCampaignResults?.banner_ads?.[0]?.headline || 'Premium Sound'}
                   </h3>
                   <p className="text-gray-700 text-lg uppercase tracking-wider mb-3">
                     Minimalist Design
@@ -140,7 +141,7 @@ const BannerAdsPreview: React.FC = () => {
                 {/* Right - CTA Button */}
                 <div className="pr-8 flex-shrink-0">
                   <button className="bg-white/90 text-gray-900 text-lg px-8 py-4 font-semibold shadow-lg hover:bg-white transition-colors border border-gray-200">
-                    {campaignResults?.banner_ads?.[0]?.cta || 'Shop Now'}
+                    {activeCampaignResults?.banner_ads?.[0]?.cta || 'Shop Now'}
                   </button>
                 </div>
               </div>
@@ -171,7 +172,7 @@ const BannerAdsPreview: React.FC = () => {
                 {/* Bottom - Dark Section with Text */}
                 <div className="h-20 bg-black text-white flex flex-col justify-center px-4 text-center">
                   <h3 className="text-white text-xs font-bold uppercase tracking-wide mb-0.5">
-                    {campaignResults?.banner_ads?.[0]?.headline || 'Premium Sound'}
+                    {activeCampaignResults?.banner_ads?.[0]?.headline || 'Premium Sound'}
                   </h3>
                   <p className="text-white/90 text-xs uppercase tracking-wider mb-0.5">
                     Minimalist Design
@@ -180,7 +181,7 @@ const BannerAdsPreview: React.FC = () => {
                     SMASH THE COMPETITION WITH 30% DISCOUNT
                   </p>
                   <button className="bg-white text-black text-xs px-3 py-0.5 rounded font-semibold hover:bg-gray-100 transition-colors">
-                    {campaignResults?.banner_ads?.[0]?.cta || 'Shop Now'}
+                    {activeCampaignResults?.banner_ads?.[0]?.cta || 'Shop Now'}
                   </button>
                 </div>
               </div>
@@ -207,7 +208,7 @@ const BannerAdsPreview: React.FC = () => {
                 {/* Bottom - Text Section */}
                 <div className="h-28 bg-gradient-to-r from-slate-200 to-stone-200 flex flex-col justify-center px-4 text-center">
                   <h3 className="text-gray-900 text-sm font-bold uppercase tracking-wide mb-1">
-                    {campaignResults?.banner_ads?.[0]?.headline || 'Premium Sound'}
+                    {activeCampaignResults?.banner_ads?.[0]?.headline || 'Premium Sound'}
                   </h3>
                   <p className="text-gray-700 text-xs uppercase tracking-wider mb-1">
                     Minimalist Design
@@ -216,7 +217,7 @@ const BannerAdsPreview: React.FC = () => {
                     SMASH THE COMPETITION WITH 30% DISCOUNT
                   </p>
                   <button className="bg-black text-white text-xs px-4 py-1 font-semibold hover:bg-gray-800 transition-colors">
-                    {campaignResults?.banner_ads?.[0]?.cta || 'Shop Now'}
+                    {activeCampaignResults?.banner_ads?.[0]?.cta || 'Shop Now'}
                   </button>
                 </div>
               </div>
