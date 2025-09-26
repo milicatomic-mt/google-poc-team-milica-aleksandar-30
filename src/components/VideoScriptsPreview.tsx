@@ -6,11 +6,12 @@ import { Badge } from '@/components/ui/badge';
 import { VideoPlayer } from '@/components/VideoPlayer';
 import QRDownloadModal from '@/components/QRDownloadModal';
 import type { CampaignCreationResponse } from '@/types/api';
+import { OptimizedImage } from '@/components/ui/optimized-image';
 
 const VideoScriptsPreview: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { campaignResults, uploadedImage, campaignId, returnTo } = location.state || {};
+  const { campaignResults, uploadedImage, campaignId, imageMapping, returnTo } = location.state || {};
   const [isDownloadModalOpen, setIsDownloadModalOpen] = useState(false);
 
   // Scroll to top when component mounts
@@ -26,7 +27,7 @@ const VideoScriptsPreview: React.FC = () => {
 
   const handleBack = () => {
     navigate(returnTo || '/preview-results', {
-      state: { campaignResults, uploadedImage, campaignId }
+      state: { campaignResults, uploadedImage, campaignId, imageMapping }
     });
   };
 
@@ -41,6 +42,11 @@ const VideoScriptsPreview: React.FC = () => {
   const videoScripts = campaignResults.video_scripts || [];
   const generatedImages = campaignResults.generated_images || [];
   const generatedVideoUrl = campaignResults.generated_video_url;
+  
+  // Use imageMapping for consistent images, fallback to generatedImages if not available
+  const getImage = (index: number) => {
+    return imageMapping?.[`image_${index}`] || generatedImages?.[index]?.url || null;
+  };
 
   return (
     <div className="h-screen bg-background overflow-hidden">
@@ -90,16 +96,16 @@ const VideoScriptsPreview: React.FC = () => {
                       {generatedVideoUrl ? (
                         <VideoPlayer
                           videoUrl={generatedVideoUrl}
-                          posterUrl={generatedImages[0]?.url || uploadedImage}
+                          posterUrl={getImage(0) || uploadedImage}
                           title="Elevate your Music Experience"
                           className="aspect-video rounded-lg shadow-lg"
                         />
                       ) : (
                         <div className="relative aspect-video bg-gradient-to-br from-amber-100 to-amber-200 rounded-lg overflow-hidden shadow-lg">
                           <div className="relative w-full h-full flex items-center justify-center">
-                            {(generatedImages[0]?.url || uploadedImage) && (
-                              <img 
-                                src={generatedImages[0]?.url || uploadedImage}
+                            {(getImage(0) || uploadedImage) && (
+                              <OptimizedImage 
+                                src={getImage(0) || uploadedImage}
                                 alt="Video preview"
                                 className="w-full h-full object-cover"
                               />
@@ -140,9 +146,9 @@ const VideoScriptsPreview: React.FC = () => {
                             </div>
                             
                             {/* Video Content */}
-                            {(generatedImages[0]?.url || uploadedImage) && (
-                              <img 
-                                src={generatedImages[0]?.url || uploadedImage}
+                            {(getImage(0) || uploadedImage) && (
+                              <OptimizedImage 
+                                src={getImage(0) || uploadedImage}
                                 alt="TikTok video content"
                                 className="w-full h-full object-cover"
                               />
@@ -265,9 +271,9 @@ const VideoScriptsPreview: React.FC = () => {
 
                             {/* Post Image */}
                             <div className="aspect-square bg-gray-100">
-                              {(generatedImages[0]?.url || uploadedImage) && (
-                                <img 
-                                  src={generatedImages[0]?.url || uploadedImage}
+                              {(getImage(0) || uploadedImage) && (
+                                <OptimizedImage 
+                                  src={getImage(0) || uploadedImage}
                                   alt="Instagram post"
                                   className="w-full h-full object-cover"
                                 />
@@ -324,9 +330,9 @@ const VideoScriptsPreview: React.FC = () => {
                             </div>
                             
                             {/* Video Content */}
-                            {(generatedImages[0]?.url || uploadedImage) && (
-                              <img 
-                                src={generatedImages[0]?.url || uploadedImage}
+                            {(getImage(0) || uploadedImage) && (
+                              <OptimizedImage 
+                                src={getImage(0) || uploadedImage}
                                 alt="YouTube Shorts content"
                                 className="w-full h-full object-cover"
                               />

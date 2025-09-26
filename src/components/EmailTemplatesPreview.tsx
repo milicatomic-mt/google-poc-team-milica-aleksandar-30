@@ -7,11 +7,12 @@ import { QRCodeSVG } from "qrcode.react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { toast } from "sonner";
 import type { CampaignCreationResponse } from '@/types/api';
+import { OptimizedImage } from '@/components/ui/optimized-image';
 
 const EmailTemplatesPreview: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { campaignResults, uploadedImage, campaignId, returnTo } = location.state || {};
+  const { campaignResults, uploadedImage, campaignId, imageMapping, returnTo } = location.state || {};
   const [isDownloadModalOpen, setIsDownloadModalOpen] = useState(false);
   const [downloadUrl, setDownloadUrl] = useState<string>('');
 
@@ -28,7 +29,7 @@ const EmailTemplatesPreview: React.FC = () => {
 
   const handleBack = () => {
     navigate(returnTo || '/preview-results', {
-      state: { campaignResults, uploadedImage, campaignId }
+      state: { campaignResults, uploadedImage, campaignId, imageMapping }
     });
   };
 
@@ -59,6 +60,11 @@ const EmailTemplatesPreview: React.FC = () => {
 
   const emailCopy = campaignResults.email_copy;
   const generatedImages = campaignResults.generated_images || [];
+  
+  // Use imageMapping for consistent images, fallback to generatedImages if not available
+  const getImage = (index: number) => {
+    return imageMapping?.[`image_${index}`] || generatedImages?.[index]?.url || null;
+  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -107,8 +113,8 @@ const EmailTemplatesPreview: React.FC = () => {
                 <div 
                   className="relative text-center py-8 bg-cover bg-center bg-no-repeat min-h-[200px] flex flex-col justify-center"
                   style={{
-                    backgroundImage: (generatedImages[0]?.url || uploadedImage) 
-                      ? `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(${generatedImages[0]?.url || uploadedImage})`
+                    backgroundImage: (getImage(0) || uploadedImage) 
+                      ? `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(${getImage(0) || uploadedImage})`
                       : 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
                   }}
                 >
@@ -120,17 +126,17 @@ const EmailTemplatesPreview: React.FC = () => {
                 <div 
                   className="relative bg-cover bg-center bg-no-repeat py-12 min-h-[400px] flex items-center justify-center"
                   style={{
-                    backgroundImage: (generatedImages[1]?.url || generatedImages[0]?.url || uploadedImage) 
-                      ? `linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1)), url(${generatedImages[1]?.url || generatedImages[0]?.url || uploadedImage})`
+                    backgroundImage: (getImage(1) || getImage(0) || uploadedImage) 
+                      ? `linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1)), url(${getImage(1) || getImage(0) || uploadedImage})`
                       : 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
                   }}
                 >
                   <div className="container mx-auto px-8 max-w-2xl">
                     <div className="flex items-center justify-center">
-                      {(generatedImages[0]?.url || uploadedImage) && (
+                      {(getImage(0) || uploadedImage) && (
                         <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-8 shadow-2xl">
-                          <img 
-                            src={generatedImages[0]?.url || uploadedImage}
+                          <OptimizedImage 
+                            src={getImage(0) || uploadedImage}
                             alt="Premium wireless headphones"
                             className="w-64 h-64 object-contain"
                           />
