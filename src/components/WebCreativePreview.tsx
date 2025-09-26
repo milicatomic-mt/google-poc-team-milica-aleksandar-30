@@ -136,11 +136,21 @@ const WebCreativePreview: React.FC = () => {
           <div className="text-center space-y-6 mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground">Key Features</h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Experience the difference with our innovative features designed for your success.
+              Discover what makes this product special for you.
             </p>
           </div>
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {landingPage?.product_highlights?.features?.map((feature, idx) => {
+              const [title, description] = feature.split(': ');
+              const icons = ["⭐", "💰", "🎨", "❤️"];
+              return (
+                <div key={idx} className="text-center space-y-4 p-6 rounded-lg bg-card border border-border">
+                  <div className="text-4xl">{icons[idx] || "✨"}</div>
+                  <h3 className="text-xl font-semibold text-foreground">{title}</h3>
+                  <p className="text-muted-foreground">{description}</p>
+                </div>
+              );
+            }) || [
               { title: "Premium Quality", description: "Built with the finest materials for lasting durability", icon: "⭐" },
               { title: "Fast Delivery", description: "Get your order delivered in 24-48 hours", icon: "🚀" },
               { title: "Money Back", description: "30-day satisfaction guarantee or full refund", icon: "💎" }
@@ -160,36 +170,63 @@ const WebCreativePreview: React.FC = () => {
         <div className="container mx-auto px-6">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground">Why Choose Our Product?</h2>
-              <div className="space-y-4">
-                <div className="flex items-start gap-3">
-                  <div className="w-6 h-6 rounded-full bg-primary flex items-center justify-center flex-shrink-0 mt-1">
-                    <div className="w-2 h-2 bg-primary-foreground rounded-full"></div>
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground">
+                {landingPage?.detailed_product_section ? "Product Details" : "Why Choose Our Product?"}
+              </h2>
+              {landingPage?.detailed_product_section?.copy ? (
+                <p className="text-muted-foreground leading-relaxed">
+                  {landingPage.detailed_product_section.copy}
+                </p>
+              ) : landingPage?.value_proposition?.scannable_bullets ? (
+                <div className="space-y-4">
+                  {landingPage.value_proposition.scannable_bullets.map((bullet, idx) => (
+                    <div key={idx} className="flex items-start gap-3">
+                      <div className="w-6 h-6 rounded-full bg-primary flex items-center justify-center flex-shrink-0 mt-1">
+                        <div className="w-2 h-2 bg-primary-foreground rounded-full"></div>
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-foreground mb-1">{bullet}</h3>
+                        <p className="text-muted-foreground">Experience the benefits of our innovative approach.</p>
+                      </div>
+                    </div>
+                  ))}
+                  {landingPage?.value_proposition?.unique_selling_points && (
+                    <div className="mt-6 p-4 bg-primary/10 rounded-lg border border-primary/20">
+                      <p className="text-muted-foreground italic">{landingPage.value_proposition.unique_selling_points}</p>
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <div className="space-y-4">
+                  <div className="flex items-start gap-3">
+                    <div className="w-6 h-6 rounded-full bg-primary flex items-center justify-center flex-shrink-0 mt-1">
+                      <div className="w-2 h-2 bg-primary-foreground rounded-full"></div>
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-foreground mb-1">Advanced Technology</h3>
+                      <p className="text-muted-foreground">Cutting-edge innovation meets practical design for optimal performance.</p>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="font-semibold text-foreground mb-1">Advanced Technology</h3>
-                    <p className="text-muted-foreground">Cutting-edge innovation meets practical design for optimal performance.</p>
+                  <div className="flex items-start gap-3">
+                    <div className="w-6 h-6 rounded-full bg-primary flex items-center justify-center flex-shrink-0 mt-1">
+                      <div className="w-2 h-2 bg-primary-foreground rounded-full"></div>
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-foreground mb-1">Sustainable Materials</h3>
+                      <p className="text-muted-foreground">Eco-friendly construction that doesn't compromise on quality.</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-6 h-6 rounded-full bg-primary flex items-center justify-center flex-shrink-0 mt-1">
+                      <div className="w-2 h-2 bg-primary-foreground rounded-full"></div>
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-foreground mb-1">Expert Support</h3>
+                      <p className="text-muted-foreground">24/7 customer service from our dedicated support team.</p>
+                    </div>
                   </div>
                 </div>
-                <div className="flex items-start gap-3">
-                  <div className="w-6 h-6 rounded-full bg-primary flex items-center justify-center flex-shrink-0 mt-1">
-                    <div className="w-2 h-2 bg-primary-foreground rounded-full"></div>
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-foreground mb-1">Sustainable Materials</h3>
-                    <p className="text-muted-foreground">Eco-friendly construction that doesn't compromise on quality.</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <div className="w-6 h-6 rounded-full bg-primary flex items-center justify-center flex-shrink-0 mt-1">
-                    <div className="w-2 h-2 bg-primary-foreground rounded-full"></div>
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-foreground mb-1">Expert Support</h3>
-                    <p className="text-muted-foreground">24/7 customer service from our dedicated support team.</p>
-                  </div>
-                </div>
-              </div>
+              )}
             </div>
             <div className="grid grid-cols-2 gap-4">
               {generatedImages.slice(0, 4).map((img, idx) => (
@@ -211,25 +248,58 @@ const WebCreativePreview: React.FC = () => {
           <div className="text-center space-y-6 mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground">What Our Customers Say</h2>
           </div>
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              { name: "Sarah Johnson", role: "Verified Buyer", rating: 5, review: "Absolutely amazing quality! Exceeded all my expectations and arrived faster than promised." },
-              { name: "Mike Chen", role: "Repeat Customer", rating: 5, review: "I've ordered multiple times and the consistency is incredible. Highly recommend to everyone." },
-              { name: "Emma Davis", role: "First-time Buyer", rating: 5, review: "Was skeptical at first but now I'm a believer. The customer service is outstanding too." }
-            ].map((testimonial, idx) => (
-              <div key={idx} className="p-6 rounded-lg bg-card border border-border">
-                <div className="flex items-center gap-1 mb-4">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <span key={i} className="text-yellow-500">⭐</span>
-                  ))}
+          <div className="grid md:grid-cols-1 lg:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            {landingPage?.social_proof ? (
+              <>
+                {landingPage.social_proof.testimonials && (
+                  <div className="p-6 rounded-lg bg-card border border-border">
+                    <div className="flex items-center gap-1 mb-4">
+                      {[...Array(5)].map((_, i) => (
+                        <span key={i} className="text-yellow-500">⭐</span>
+                      ))}
+                    </div>
+                    <p className="text-muted-foreground mb-4 italic">"{landingPage.social_proof.testimonials}"</p>
+                  </div>
+                )}
+                {landingPage.social_proof.reviews_ratings && (
+                  <div className="p-6 rounded-lg bg-card border border-border">
+                    <div className="flex items-center gap-1 mb-4">
+                      {[...Array(5)].map((_, i) => (
+                        <span key={i} className="text-yellow-500">⭐</span>
+                      ))}
+                    </div>
+                    <p className="text-muted-foreground mb-4 italic">"{landingPage.social_proof.reviews_ratings}"</p>
+                  </div>
+                )}
+              </>
+            ) : (
+              <>
+                <div className="p-6 rounded-lg bg-card border border-border">
+                  <div className="flex items-center gap-1 mb-4">
+                    {[...Array(5)].map((_, i) => (
+                      <span key={i} className="text-yellow-500">⭐</span>
+                    ))}
+                  </div>
+                  <p className="text-muted-foreground mb-4">"Absolutely amazing quality! Exceeded all my expectations and arrived faster than promised."</p>
+                  <div>
+                    <div className="font-semibold text-foreground">Sarah Johnson</div>
+                    <div className="text-sm text-muted-foreground">Verified Buyer</div>
+                  </div>
                 </div>
-                <p className="text-muted-foreground mb-4">"{testimonial.review}"</p>
-                <div>
-                  <div className="font-semibold text-foreground">{testimonial.name}</div>
-                  <div className="text-sm text-muted-foreground">{testimonial.role}</div>
+                <div className="p-6 rounded-lg bg-card border border-border">
+                  <div className="flex items-center gap-1 mb-4">
+                    {[...Array(5)].map((_, i) => (
+                      <span key={i} className="text-yellow-500">⭐</span>
+                    ))}
+                  </div>
+                  <p className="text-muted-foreground mb-4">"I've ordered multiple times and the consistency is incredible. Highly recommend to everyone."</p>
+                  <div>
+                    <div className="font-semibold text-foreground">Mike Chen</div>
+                    <div className="text-sm text-muted-foreground">Repeat Customer</div>
+                  </div>
                 </div>
-              </div>
-            ))}
+              </>
+            )}
           </div>
         </div>
       </section>
@@ -241,60 +311,88 @@ const WebCreativePreview: React.FC = () => {
             <h2 className="text-3xl md:text-4xl font-bold text-foreground">Choose Your Package</h2>
             <p className="text-lg text-muted-foreground">Select the perfect option for your needs</p>
           </div>
-          <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-            <div className="p-6 rounded-lg border border-border bg-card">
-              <h3 className="text-xl font-semibold text-foreground mb-2">Starter</h3>
-              <div className="text-3xl font-bold text-foreground mb-4">$29</div>
-              <ul className="space-y-2 mb-6">
-                <li className="flex items-center gap-2 text-muted-foreground">
-                  <div className="w-1.5 h-1.5 bg-primary rounded-full"></div>
-                  Basic features
-                </li>
-                <li className="flex items-center gap-2 text-muted-foreground">
-                  <div className="w-1.5 h-1.5 bg-primary rounded-full"></div>
-                  Email support
-                </li>
-              </ul>
-              <Button variant="outline" className="w-full">Choose Starter</Button>
+          {landingPage?.pricing_section?.pricing_cards ? (
+            <div className="grid md:grid-cols-2 gap-8 max-w-2xl mx-auto">
+              {landingPage.pricing_section.pricing_cards.split(', ').map((card, idx) => {
+                const [name, price] = card.split(': ');
+                const isPopular = idx === 1; // Make second option popular by default
+                return (
+                  <div key={idx} className={`p-6 rounded-lg ${isPopular ? 'border-2 border-primary bg-card relative' : 'border border-border bg-card'}`}>
+                    {isPopular && (
+                      <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground px-4 py-1 rounded-full text-sm font-medium">
+                        Most Popular
+                      </div>
+                    )}
+                    <h3 className="text-xl font-semibold text-foreground mb-2">{name}</h3>
+                    <div className="text-3xl font-bold text-foreground mb-4">{price}</div>
+                    {landingPage.pricing_section.guarantees && (
+                      <div className="text-sm text-muted-foreground mb-4 p-3 bg-primary/10 rounded-lg">
+                        {landingPage.pricing_section.guarantees}
+                      </div>
+                    )}
+                    <Button className={`w-full ${isPopular ? '' : 'variant-outline'}`}>
+                      {landingPage?.cta_section?.repeated_cta?.split('!')[0] || landingPage?.cta || 'Buy Now'}
+                    </Button>
+                  </div>
+                );
+              })}
             </div>
-            <div className="p-6 rounded-lg border-2 border-primary bg-card relative">
-              <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground px-4 py-1 rounded-full text-sm font-medium">
-                Most Popular
+          ) : (
+            <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+              <div className="p-6 rounded-lg border border-border bg-card">
+                <h3 className="text-xl font-semibold text-foreground mb-2">Starter</h3>
+                <div className="text-3xl font-bold text-foreground mb-4">$29</div>
+                <ul className="space-y-2 mb-6">
+                  <li className="flex items-center gap-2 text-muted-foreground">
+                    <div className="w-1.5 h-1.5 bg-primary rounded-full"></div>
+                    Basic features
+                  </li>
+                  <li className="flex items-center gap-2 text-muted-foreground">
+                    <div className="w-1.5 h-1.5 bg-primary rounded-full"></div>
+                    Email support
+                  </li>
+                </ul>
+                <Button variant="outline" className="w-full">Choose Starter</Button>
               </div>
-              <h3 className="text-xl font-semibold text-foreground mb-2">Pro</h3>
-              <div className="text-3xl font-bold text-foreground mb-4">$59</div>
-              <ul className="space-y-2 mb-6">
-                <li className="flex items-center gap-2 text-muted-foreground">
-                  <div className="w-1.5 h-1.5 bg-primary rounded-full"></div>
-                  All features
-                </li>
-                <li className="flex items-center gap-2 text-muted-foreground">
-                  <div className="w-1.5 h-1.5 bg-primary rounded-full"></div>
-                  Priority support
-                </li>
-                <li className="flex items-center gap-2 text-muted-foreground">
-                  <div className="w-1.5 h-1.5 bg-primary rounded-full"></div>
-                  Advanced analytics
-                </li>
-              </ul>
-              <Button className="w-full">Choose Pro</Button>
+              <div className="p-6 rounded-lg border-2 border-primary bg-card relative">
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground px-4 py-1 rounded-full text-sm font-medium">
+                  Most Popular
+                </div>
+                <h3 className="text-xl font-semibold text-foreground mb-2">Pro</h3>
+                <div className="text-3xl font-bold text-foreground mb-4">$59</div>
+                <ul className="space-y-2 mb-6">
+                  <li className="flex items-center gap-2 text-muted-foreground">
+                    <div className="w-1.5 h-1.5 bg-primary rounded-full"></div>
+                    All features
+                  </li>
+                  <li className="flex items-center gap-2 text-muted-foreground">
+                    <div className="w-1.5 h-1.5 bg-primary rounded-full"></div>
+                    Priority support
+                  </li>
+                  <li className="flex items-center gap-2 text-muted-foreground">
+                    <div className="w-1.5 h-1.5 bg-primary rounded-full"></div>
+                    Advanced analytics
+                  </li>
+                </ul>
+                <Button className="w-full">Choose Pro</Button>
+              </div>
+              <div className="p-6 rounded-lg border border-border bg-card">
+                <h3 className="text-xl font-semibold text-foreground mb-2">Enterprise</h3>
+                <div className="text-3xl font-bold text-foreground mb-4">$99</div>
+                <ul className="space-y-2 mb-6">
+                  <li className="flex items-center gap-2 text-muted-foreground">
+                    <div className="w-1.5 h-1.5 bg-primary rounded-full"></div>
+                    Everything in Pro
+                  </li>
+                  <li className="flex items-center gap-2 text-muted-foreground">
+                    <div className="w-1.5 h-1.5 bg-primary rounded-full"></div>
+                    Custom integrations
+                  </li>
+                </ul>
+                <Button variant="outline" className="w-full">Contact Sales</Button>
+              </div>
             </div>
-            <div className="p-6 rounded-lg border border-border bg-card">
-              <h3 className="text-xl font-semibold text-foreground mb-2">Enterprise</h3>
-              <div className="text-3xl font-bold text-foreground mb-4">$99</div>
-              <ul className="space-y-2 mb-6">
-                <li className="flex items-center gap-2 text-muted-foreground">
-                  <div className="w-1.5 h-1.5 bg-primary rounded-full"></div>
-                  Everything in Pro
-                </li>
-                <li className="flex items-center gap-2 text-muted-foreground">
-                  <div className="w-1.5 h-1.5 bg-primary rounded-full"></div>
-                  Custom integrations
-                </li>
-              </ul>
-              <Button variant="outline" className="w-full">Contact Sales</Button>
-            </div>
-          </div>
+          )}
         </div>
       </section>
 
@@ -302,15 +400,27 @@ const WebCreativePreview: React.FC = () => {
       <section className="py-20 bg-primary text-primary-foreground">
         <div className="container mx-auto px-6 text-center">
           <div className="max-w-2xl mx-auto space-y-6">
-            <h2 className="text-3xl md:text-4xl font-bold">Ready to Get Started?</h2>
-            <p className="text-lg opacity-90">Join thousands of satisfied customers today. Limited stock available!</p>
+            <h2 className="text-3xl md:text-4xl font-bold">
+              {landingPage?.cta_section?.repeated_cta?.split('!')[0] || "Ready to Get Started?"}
+            </h2>
+            <p className="text-lg opacity-90">
+              {landingPage?.cta_section?.urgency || "Join thousands of satisfied customers today. Limited stock available!"}
+            </p>
             <Button size="lg" variant="secondary" className="text-lg px-8 py-4">
-              Order Yours Today
+              {landingPage?.cta_section?.repeated_cta || landingPage?.cta || "Order Yours Today"}
             </Button>
             <div className="flex items-center justify-center gap-6 pt-6 text-sm opacity-80">
-              <span>✓ Free shipping worldwide</span>
-              <span>✓ 30-day money-back guarantee</span>
-              <span>✓ 24/7 support</span>
+              {landingPage?.pricing_section?.guarantees ? (
+                landingPage.pricing_section.guarantees.split(', ').map((guarantee, idx) => (
+                  <span key={idx}>✓ {guarantee}</span>
+                ))
+              ) : (
+                <>
+                  <span>✓ Free shipping worldwide</span>
+                  <span>✓ 30-day money-back guarantee</span>
+                  <span>✓ 24/7 support</span>
+                </>
+              )}
             </div>
           </div>
         </div>
@@ -321,19 +431,35 @@ const WebCreativePreview: React.FC = () => {
         <div className="container mx-auto px-6">
           <div className="grid md:grid-cols-4 gap-8">
             <div>
-              <h3 className="font-semibold text-foreground mb-4">Support</h3>
+              <h3 className="font-semibold text-foreground mb-4">
+                {landingPage?.footer?.support_links ? "Support" : "Support"}
+              </h3>
               <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><a href="#" className="hover:text-foreground">Contact Us</a></li>
-                <li><a href="#" className="hover:text-foreground">Help Center</a></li>
-                <li><a href="#" className="hover:text-foreground">Live Chat</a></li>
+                {landingPage?.footer?.support_links ? 
+                  landingPage.footer.support_links.split(', ').map((link, idx) => (
+                    <li key={idx}><a href="#" className="hover:text-foreground">{link}</a></li>
+                  )) : (
+                  <>
+                    <li><a href="#" className="hover:text-foreground">Contact Us</a></li>
+                    <li><a href="#" className="hover:text-foreground">Help Center</a></li>
+                    <li><a href="#" className="hover:text-foreground">Live Chat</a></li>
+                  </>
+                )}
               </ul>
             </div>
             <div>
               <h3 className="font-semibold text-foreground mb-4">Policies</h3>
               <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><a href="#" className="hover:text-foreground">Shipping & Returns</a></li>
-                <li><a href="#" className="hover:text-foreground">Privacy Policy</a></li>
-                <li><a href="#" className="hover:text-foreground">Terms of Service</a></li>
+                {landingPage?.footer?.policies ? 
+                  landingPage.footer.policies.split(', ').map((policy, idx) => (
+                    <li key={idx}><a href="#" className="hover:text-foreground">{policy}</a></li>
+                  )) : (
+                  <>
+                    <li><a href="#" className="hover:text-foreground">Shipping & Returns</a></li>
+                    <li><a href="#" className="hover:text-foreground">Privacy Policy</a></li>
+                    <li><a href="#" className="hover:text-foreground">Terms of Service</a></li>
+                  </>
+                )}
               </ul>
             </div>
             <div>
@@ -345,11 +471,18 @@ const WebCreativePreview: React.FC = () => {
               </ul>
             </div>
             <div>
-              <h3 className="font-semibent text-foreground mb-4">Connect</h3>
+              <h3 className="font-semibold text-foreground mb-4">Connect</h3>
               <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><a href="#" className="hover:text-foreground">Twitter</a></li>
-                <li><a href="#" className="hover:text-foreground">Instagram</a></li>
-                <li><a href="#" className="hover:text-foreground">LinkedIn</a></li>
+                {landingPage?.footer?.social_media ? 
+                  landingPage.footer.social_media.split(', ').map((social, idx) => (
+                    <li key={idx}><a href="#" className="hover:text-foreground">{social}</a></li>
+                  )) : (
+                  <>
+                    <li><a href="#" className="hover:text-foreground">Twitter</a></li>
+                    <li><a href="#" className="hover:text-foreground">Instagram</a></li>
+                    <li><a href="#" className="hover:text-foreground">LinkedIn</a></li>
+                  </>
+                )}
               </ul>
             </div>
           </div>
