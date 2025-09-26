@@ -97,8 +97,8 @@ export const VideoPlayer = ({ videoUrl, posterUrl, title = "AI Generated Video",
         muted={isMuted}
         onClick={togglePlay}
         aria-label={title}
+        src={videoUrl}
       >
-        <source src={videoUrl} type="video/mp4" />
         Your browser does not support the video tag.
       </video>
 
@@ -112,49 +112,16 @@ export const VideoPlayer = ({ videoUrl, posterUrl, title = "AI Generated Video",
         </div>
       )}
 
-      {/* Controls Overlay */}
-      {showControls && !isLoading && (
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30">
-          {/* Top Controls */}
-          <div className="absolute top-4 left-4 right-4 flex items-center justify-start">
-            <Badge className="bg-white/20 text-white backdrop-blur-sm">
-              {title}
-            </Badge>
-          </div>
-
-          {/* Center Play Button */}
-          <div className="absolute inset-0 flex items-center justify-center">
-            <Button
-              variant="ghost"
-              size="lg"
-              onClick={togglePlay}
-              className="w-16 h-16 rounded-full bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white"
-            >
-              {isPlaying ? <Pause className="w-6 h-6" /> : <Play className="w-6 h-6 ml-1" />}
-            </Button>
-          </div>
-
-          {/* Bottom Controls */}
-          <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={toggleMute}
-                className="text-white hover:bg-white/20 backdrop-blur-sm"
-              >
-                {isMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
-              </Button>
+      {/* Overlay (visual only, doesn't block controls) */}
+      {!isLoading && (
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-black/20">
+          {title && (
+            <div className="absolute top-4 left-4 right-4 flex items-center justify-start">
+              <Badge className="bg-white/20 text-white backdrop-blur-sm">
+                {title}
+              </Badge>
             </div>
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={toggleFullscreen}
-              className="text-white hover:bg-white/20 backdrop-blur-sm"
-            >
-              <Maximize className="w-4 h-4" />
-            </Button>
-          </div>
+          )}
         </div>
       )}
     </div>
