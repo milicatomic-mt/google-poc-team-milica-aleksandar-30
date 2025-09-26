@@ -279,7 +279,7 @@ const GenerateCampaignScreen = () => {
                 {currentAction}
               </p>
               <p className="text-sm text-muted-foreground">
-                This usually takes about 20—35 seconds
+                Almost there! This process takes less than a minute
               </p>
             </div>
 
