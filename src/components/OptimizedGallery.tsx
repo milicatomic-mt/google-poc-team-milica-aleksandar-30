@@ -433,7 +433,7 @@ const CampaignContent: React.FC<{
               </div>
 
               {/* Banner Ads Content */}
-              <div className="h-full p-3 overflow-hidden">
+              <div className="h-full p-4 pb-4 overflow-hidden">
                 {/* Top Row - Two Square Banners */}
                 <div className="grid grid-cols-2 gap-2 mb-2">
                   {/* Left Banner - Person with Headphones */}
