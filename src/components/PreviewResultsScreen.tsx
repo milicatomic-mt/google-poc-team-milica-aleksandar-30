@@ -1880,92 +1880,38 @@ const PreviewResultsScreen: React.FC = () => {
                   {/* Removed download button from video scripts section */}
                 </div>
                 <CardContent className="p-4">
-                  <div className="h-80 p-4">
-                    {/* Mobile-First Vertical Layout */}
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 h-full">
-                      {/* Left Side - Video Preview */}
-                      <div className="bg-black overflow-hidden relative">
-                        {/* Video Thumbnail with Play Button */}
-                        <div className="relative w-full h-full">
-                          {activeCampaignResults?.generated_images?.[0]?.url ? (
-                            <img src={activeCampaignResults.generated_images[0].url} alt="Video thumbnail" className="w-full h-full object-cover" />
-                          ) : uploadedImage ? (
-                            <img src={uploadedImage} alt="Video thumbnail" className="w-full h-full object-cover" />
-                          ) : null}
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30"></div>
-                          
-                          {/* Play Button */}
-                          <div className="absolute inset-0 flex items-center justify-center">
-                            <div className="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center backdrop-blur-md border border-white/20 hover:bg-white/20 transition-all duration-300">
-                              <Play className="w-5 h-5 text-white ml-0.5" />
-                            </div>
-                          </div>
-                          
-                          {/* Duration Badge */}
-                          <div className="absolute bottom-2 right-2 bg-black/80 text-white text-xs px-2 py-1 rounded-full backdrop-blur-sm">
-                            0:30
-                          </div>
+                  <div className="h-80 bg-black rounded overflow-hidden relative">
+                    {/* Video Preview - Simple and consistent */}
+                    <div className="relative w-full h-full">
+                      {activeCampaignResults?.generated_images?.[0]?.url ? (
+                        <img src={activeCampaignResults.generated_images[0].url} alt="Video thumbnail" className="w-full h-full object-cover" />
+                      ) : uploadedImage ? (
+                        <img src={uploadedImage} alt="Video thumbnail" className="w-full h-full object-cover" />
+                      ) : null}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30"></div>
+                      
+                      {/* Play Button */}
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center backdrop-blur-md border border-white/20">
+                          <Play className="w-6 h-6 text-white ml-1" />
                         </div>
                       </div>
-
-                      {/* Right Side - Script Preview */}
-                      <div className="bg-white backdrop-blur-sm p-3 border border-white/20 overflow-hidden">
-                        <div className="space-y-2 h-full flex flex-col">
-                          {/* Script Header */}
-                          <div className="text-center pb-2 border-b border-white/30 flex-shrink-0">
-                            <h4 className="font-semibold text-sm text-gray-900">Professional Script</h4>
-                            <p className="text-xs text-gray-600">Multi-platform optimized</p>
-                          </div>
-                          
-                          {/* Script Sections */}
-                          <div className="space-y-2 flex-1 overflow-y-auto">
-                            <div className="bg-white/60 p-2 rounded-lg">
-                              <div className="flex items-center gap-2 mb-1">
-                                <div className="w-4 h-4 rounded-full bg-black text-white text-xs font-bold flex items-center justify-center">1</div>
-                                <span className="font-medium text-xs text-gray-800">Hook</span>
-                              </div>
-                              <p className="text-xs text-gray-700 font-medium">
-                                "Transform your experience..."
-                              </p>
-                            </div>
-                            
-                            <div className="bg-white/60 p-2 rounded-lg">
-                              <div className="flex items-center gap-2 mb-1">
-                                <div className="w-4 h-4 rounded-full bg-black text-white text-xs font-bold flex items-center justify-center">2</div>
-                                <span className="font-medium text-xs text-gray-800">Content</span>
-                              </div>
-                              <p className="text-xs text-gray-700">
-                                Product demo with features...
-                              </p>
-                            </div>
-                            
-                            <div className="bg-white/60 p-2 rounded-lg">
-                              <div className="flex items-center gap-2 mb-1">
-                                <div className="w-4 h-4 rounded-full bg-black text-white text-xs font-bold flex items-center justify-center">3</div>
-                                <span className="font-medium text-xs text-gray-800">CTA</span>
-                              </div>
-                              <p className="text-xs text-gray-700 font-medium">
-                                "Get started today!"
-                              </p>
-                            </div>
-                          </div>
-                          
-                          {/* Social Icons Preview */}
-                          <div className="pt-2 border-t border-white/30 flex-shrink-0">
-                            <p className="text-xs text-gray-600 text-center mb-1">Perfect for:</p>
-                            <div className="flex justify-center gap-1">
-                              <div className="w-5 h-5 bg-gradient-to-r from-pink-500 to-purple-600 rounded-lg flex items-center justify-center">
-                                <span className="text-white text-xs font-bold">T</span>
-                              </div>
-                              <div className="w-5 h-5 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg flex items-center justify-center">
-                                <span className="text-white text-xs font-bold">I</span>
-                              </div>
-                              <div className="w-5 h-5 bg-gradient-to-r from-red-500 to-pink-500 rounded-lg flex items-center justify-center">
-                                <span className="text-white text-xs font-bold">Y</span>
-                              </div>
-                            </div>
-                          </div>
+                      
+                      {/* Title Overlay */}
+                      <div className="absolute bottom-0 left-0 right-0 p-4">
+                        <div className="space-y-1">
+                          <h3 className="text-white text-sm font-bold uppercase tracking-wide">
+                            Professional Video Script
+                          </h3>
+                          <p className="text-white/90 text-xs uppercase tracking-wider">
+                            Multi-platform Optimized
+                          </p>
                         </div>
+                      </div>
+                      
+                      {/* Duration Badge */}
+                      <div className="absolute top-3 right-3 bg-black/80 text-white text-xs px-2 py-1 rounded-full backdrop-blur-sm">
+                        0:30
                       </div>
                     </div>
                   </div>
