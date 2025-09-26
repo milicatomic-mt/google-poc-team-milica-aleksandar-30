@@ -182,9 +182,9 @@ const PreviewResultsScreen: React.FC = () => {
       case 'Banner Ads':
         return (
           <div className="overflow-hidden bg-white shadow-2xl rounded-lg">
-            <div className="p-8">
+            <div className="p-2">
               {/* Grid layout matching reference image */}
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-4 mb-4">
                 
                 {/* Left Banner */}
                 <div 
