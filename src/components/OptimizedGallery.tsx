@@ -351,15 +351,15 @@ const GalleryItemDisplay: React.FC<{
     <Card className="w-full overflow-hidden bg-white border-0 shadow-sm">
       <CardContent className="p-0 relative">
         {/* Campaign/Catalog Badge - Top Right */}
-        <div className="absolute top-4 right-4 z-10">
+        <div className="absolute top-6 right-6 z-10">
           <Badge variant={item.type === 'campaign' ? 'default' : 'secondary'}>
             {item.type === 'campaign' ? 'Campaign' : 'Catalog'}
           </Badge>
         </div>
         
         {/* Header */}
-        <div className="bg-white p-4 border-b">
-          <div className="flex items-center justify-between pr-20">
+        <div className="bg-white p-6 border-b">
+          <div className="flex items-center justify-between pr-24">
             <div>
               <h2 className="text-lg font-semibold">{item.title}</h2>
               <p className="text-sm text-muted-foreground">
