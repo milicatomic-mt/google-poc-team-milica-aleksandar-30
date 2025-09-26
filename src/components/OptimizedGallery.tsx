@@ -348,25 +348,23 @@ const GalleryItemDisplay: React.FC<{
   const generatedVideoUrl = itemDetails.generated_video_url;
 
   return (
-    <Card className="w-full overflow-hidden">
-      <CardContent className="p-0">
+    <Card className="w-full overflow-hidden bg-white border-0 shadow-sm">
+      <CardContent className="p-0 relative">
+        {/* Campaign/Catalog Badge - Top Right */}
+        <div className="absolute top-4 right-4 z-10">
+          <Badge variant={item.type === 'campaign' ? 'default' : 'secondary'}>
+            {item.type === 'campaign' ? 'Campaign' : 'Catalog'}
+          </Badge>
+        </div>
+        
         {/* Header */}
-        <div className="bg-muted/30 p-4 border-b">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-4">
-              <Badge variant={item.type === 'campaign' ? 'default' : 'secondary'}>
-                {item.type === 'campaign' ? 'Campaign' : 'Catalog'}
-              </Badge>
-              <div>
-                <h2 className="text-lg font-semibold">{item.title}</h2>
-                <p className="text-sm text-muted-foreground">
-                  Created {formatDate(item.created_at)}
-                </p>
-              </div>
-            </div>
-            
-            <div className="flex items-center space-x-2">
-              {/* Removed download button */}
+        <div className="bg-white p-4 border-b">
+          <div className="flex items-center justify-between pr-20">
+            <div>
+              <h2 className="text-lg font-semibold">{item.title}</h2>
+              <p className="text-sm text-muted-foreground">
+                Created {formatDate(item.created_at)}
+              </p>
             </div>
           </div>
         </div>
