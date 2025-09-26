@@ -201,7 +201,7 @@ const OptimizedGallery = () => {
     <div className="min-h-screen w-full bg-gray-150 relative">
       {/* Background Video */}
       <video 
-        className="absolute inset-0 w-full h-full object-cover object-center opacity-50 z-0" 
+        className="absolute inset-0 w-full h-full object-cover object-center opacity-70 z-0" 
         autoPlay 
         loop 
         muted 
