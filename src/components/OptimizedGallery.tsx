@@ -205,14 +205,14 @@ const OptimizedGallery = () => {
       <div className="border-b border-border/40 bg-background/80 backdrop-blur-sm sticky top-0 z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center justify-between">
-            {/* Left - Close Button */}
+            {/* Left - Back Button */}
             <Dialog>
               <DialogTrigger asChild>
                 <Button
                   variant="secondary"
                   className="tap-target focus-ring bg-white border-white/30 hover:bg-white/90 rounded-full h-8 px-3 shadow-sm"
                 >
-                  <X className="h-4 w-4 text-black" />
+                  <ArrowLeft className="h-4 w-4 text-black" />
                 </Button>
               </DialogTrigger>
               <DialogContent>
@@ -233,7 +233,7 @@ const OptimizedGallery = () => {
             
             {/* Center - Gallery Title */}
             <div className="absolute left-1/2 transform -translate-x-1/2 text-center">
-              <h1 className="text-2xl font-bold text-foreground">Gallery</h1>
+              <h1 className="text-3xl font-bold text-foreground">Gallery</h1>
             </div>
             
             {/* Right - Filter Buttons */}
@@ -352,7 +352,7 @@ const GalleryItemDisplay: React.FC<{
       <CardContent className="p-0 relative">
         {/* Campaign/Catalog Badge - Top Right */}
         <div className="absolute top-6 right-6 z-10">
-          <Badge variant={item.type === 'campaign' ? 'default' : 'secondary'}>
+          <Badge variant="outline" className="text-xs border-primary text-primary">
             {item.type === 'campaign' ? 'Campaign' : 'Catalog'}
           </Badge>
         </div>
