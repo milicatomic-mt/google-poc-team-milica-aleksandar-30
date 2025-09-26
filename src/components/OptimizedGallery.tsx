@@ -216,30 +216,13 @@ const OptimizedGallery = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center justify-between">
             {/* Left - Back Button */}
-            <Dialog>
-              <DialogTrigger asChild>
-                <Button
-                  variant="secondary"
-                  className="tap-target focus-ring bg-white border-white/30 hover:bg-white/90 rounded-full h-8 px-3 shadow-sm"
-                >
-                  <ArrowLeft className="h-4 w-4 text-black" />
-                </Button>
-              </DialogTrigger>
-              <DialogContent>
-                <DialogHeader>
-                  <DialogTitle>Exit to Homepage?</DialogTitle>
-                  <DialogDescription>
-                    Are you sure you want to exit? Any current selection will be lost.
-                  </DialogDescription>
-                </DialogHeader>
-                <DialogFooter>
-                  <DialogClose asChild>
-                    <Button variant="outline" className="rounded-full">Cancel</Button>
-                  </DialogClose>
-                  <Button onClick={() => navigate('/')} className="rounded-full">Exit</Button>
-                </DialogFooter>
-              </DialogContent>
-            </Dialog>
+            <Button
+              variant="secondary"
+              onClick={() => navigate('/screensaver')}
+              className="tap-target focus-ring bg-white border-white/30 hover:bg-white/90 rounded-full h-8 px-3 shadow-sm"
+            >
+              <ArrowLeft className="h-4 w-4 text-black" />
+            </Button>
             
             {/* Center - Gallery Title */}
             <div className="absolute left-1/2 transform -translate-x-1/2 text-center">
