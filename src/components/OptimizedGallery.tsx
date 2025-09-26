@@ -555,99 +555,90 @@ const CampaignContent: React.FC<{
                 </div>
               </div>
 
-              {/* Web Creative Preview - Matching WebCreativePreview design */}
-              <div className="h-full relative overflow-hidden bg-gradient-to-br from-primary/10 via-background to-secondary/10">
+              {/* Landing Page with Background Image */}
+              <div className="h-full relative overflow-hidden">
                 {/* Background Image with Overlay */}
                 <div className="absolute inset-0">
-                  {getImage(0) ? (
-                    <OptimizedImage
-                      src={getImage(0)} 
-                      alt="Background" 
-                      className="w-full h-full object-cover"
-                    />
-                  ) : (
-                    <div className="w-full h-full bg-gradient-to-br from-blue-500 to-purple-600"></div>
-                  )}
+                   {getImage(0) ? (
+                     <OptimizedImage
+                       src={getImage(0)} 
+                       alt="Background" 
+                       className="w-full h-full object-cover transition-opacity duration-300 opacity-100"
+                     />
+                   ) : (
+                     <div className="w-full h-full bg-gradient-to-br from-blue-500 to-purple-600"></div>
+                   )}
+                  {/* Dark overlay for better text readability */}
                   <div className="absolute inset-0 bg-black/40"></div>
+                  {/* Gradient overlay for better text contrast */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30"></div>
                 </div>
 
-                {/* Hero Section - Matching WebCreativePreview layout */}
-                <div className="relative z-10 py-4 px-3">
-                  <div className="grid grid-cols-2 gap-2 items-center">
-                    <div className="space-y-1">
-                      <div className="inline-flex items-center gap-1 px-1 py-0.5 rounded-full text-[3px] font-medium bg-primary/10 text-primary border border-primary/20">
-                        ✨ New Launch  
-                      </div>
-                      <h1 className="text-[7px] font-bold text-white leading-tight">
-                        {activeCampaignResults?.landing_page_concept?.hero_text || 
-                         activeCampaignResults?.banner_ads?.[0]?.headline || 
-                         'Transform Your Experience Today'}
-                      </h1>
-                      <p className="text-[4px] text-white/80 leading-relaxed">
-                        {activeCampaignResults?.landing_page_concept?.sub_text || 
-                         'Discover innovative solutions that drive exceptional results for your business.'}
-                      </p>
-                      <div className="flex gap-1">
-                        <button className="bg-primary text-white text-[3px] px-1 py-0.5 rounded font-medium">
-                          {activeCampaignResults?.landing_page_concept?.cta || 
-                           activeCampaignResults?.banner_ads?.[0]?.cta || 
-                           'Get Started Now'}
-                        </button>
-                        <button className="border border-white/30 text-white text-[3px] px-1 py-0.5 rounded">
-                          Learn More
-                        </button>
-                      </div>
-                    </div>
-                    <div className="relative">
-                      {getImage(0) && (
-                        <OptimizedImage 
-                          src={getImage(0)} 
-                          alt="Product showcase"
-                          className="w-full h-10 object-cover rounded shadow-lg"
-                        />
-                      )}
+                {/* Navigation Bar - Floating */}
+                <div className="relative z-10 bg-white/10 backdrop-blur-md border-b border-white/20">
+                  <div className="px-3 py-1 flex justify-between items-center">
+                    <div className="text-[8px] font-bold text-white">BRAND</div>
+                    <div className="flex gap-3 text-[6px] text-white/80">
+                      <span>Home</span> <span>Products</span> <span>About</span>
                     </div>
                   </div>
                 </div>
 
-                {/* Product Highlights Section */}
-                <div className="relative z-10 px-3 py-2">
-                  <h2 className="text-[5px] font-bold text-white mb-1">Product Highlights</h2>
-                  <div className="grid grid-cols-2 gap-1 text-white/80">
-                    <div className="text-[4px]">• Premium Quality Materials</div>
-                    <div className="text-[4px]">• Advanced Technology</div>
-                    <div className="text-[4px]">• Modern Design</div>
-                    <div className="text-[4px]">• Expert Craftsmanship</div>
+                {/* Hero Content - Centered with Text Overlays */}
+                <div className="relative z-10 h-full flex flex-col justify-center items-center text-center px-4">
+                  {/* Campaign Badge - Using actual campaign data */}
+                  <div className="inline-flex items-center px-2 py-0.5 rounded-full bg-primary/80 backdrop-blur-md border border-primary/50 mb-2">
+                    <div className="text-[5px] font-medium text-white">✨ New Launch</div>
+                  </div>
+                  
+                  {/* Main Headline - Using actual campaign data */}
+                  <h1 className="text-[10px] font-bold text-white leading-tight mb-2 max-w-28 drop-shadow-lg">
+                    {activeCampaignResults?.landing_page_concept?.hero_text ||
+                     activeCampaignResults?.banner_ads?.[0]?.headline || 
+                     'Your Custom Headline'}
+                  </h1>
+                  
+                  {/* Subtext - Using actual campaign data */}
+                  <p className="text-[5px] text-white/90 leading-relaxed mb-2 max-w-24 drop-shadow-md">
+                    {activeCampaignResults?.landing_page_concept?.sub_text ||
+                     activeCampaignResults?.banner_ads?.[0]?.description || 
+                     'Your custom description here'}
+                  </p>
+                  
+                  {/* Template indicator */}
+                  <div className="text-[4px] text-slate-300 mb-3 font-medium">+ Standard Template Sections Below</div>
+                  
+                  {/* CTA Button - Using actual campaign data */}
+                  <div className="bg-white text-gray-900 text-[6px] px-3 py-1 rounded-full font-medium shadow-lg hover:bg-white/90 transition-all mb-3">
+                    {activeCampaignResults?.landing_page_concept?.cta ||
+                     activeCampaignResults?.banner_ads?.[0]?.cta || 
+                     'Your CTA'}
+                  </div>
+
+                  {/* Standard Template Features Preview */}
+                  <div className="bg-white/10 backdrop-blur-md rounded px-3 py-1 border border-white/20">
+                    <div className="flex items-center gap-2 text-center">
+                      <div className="text-[4px] text-white/70 font-medium">Template includes:</div>
+                      <div className="flex items-center gap-1">
+                        <div className="w-1 h-1 bg-blue-400 rounded-full"></div>
+                        <div className="text-[4px] text-white font-medium">Features</div>
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <div className="w-1 h-1 bg-green-400 rounded-full"></div>
+                        <div className="text-[4px] text-white font-medium">Reviews</div>
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <div className="w-1 h-1 bg-purple-400 rounded-full"></div>
+                        <div className="text-[4px] text-white font-medium">Pricing</div>
+                      </div>
+                    </div>
                   </div>
                 </div>
 
-                {/* Testimonials Section */}
-                <div className="relative z-10 px-3 py-2">
-                  <div className="bg-white/10 backdrop-blur-sm rounded p-1.5">
-                    <h3 className="text-[4px] font-bold text-white mb-0.5">What Our Customers Say</h3>
-                    <p className="text-[3px] text-white/80 italic">
-                      "This product has transformed my daily experience. Highly recommend!"
-                    </p>
-                    <p className="text-[3px] text-white/60 mt-0.5">- Sarah J., Marketing Manager</p>
-                  </div>
-                </div>
-
-                {/* Call to Action Section */}
-                <div className="absolute bottom-4 left-3 right-3 z-10">
-                  <div className="bg-primary/90 backdrop-blur-sm rounded-lg p-2 text-center">
-                    <div className="text-[4px] text-white font-bold mb-0.5">Special Offer</div>
-                    <div className="text-[3px] text-white/90 mb-1">Get 30% off your first order</div>
-                    <button className="bg-white text-primary text-[3px] px-2 py-0.5 rounded font-medium w-full">
-                      Claim Offer Now
-                    </button>
-                  </div>
-                </div>
-
-                {/* Footer */}
+                {/* Footer - Bottom Overlay */}
                 <div className="absolute bottom-0 left-0 right-0 z-10 bg-black/20 backdrop-blur-sm border-t border-white/10">
-                  <div className="px-2 py-0.5">
-                    <div className="text-[3px] text-white/70 text-center">© 2024 Brand. All rights reserved.</div>
+                  <div className="px-2 py-1">
+                    <div className="text-[4px] text-white/70 text-center">© 2024 Brand. All rights reserved.</div>
                   </div>
                 </div>
               </div>
