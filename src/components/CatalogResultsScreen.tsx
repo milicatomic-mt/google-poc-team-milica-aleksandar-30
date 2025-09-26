@@ -415,7 +415,7 @@ const CatalogResultsScreen: React.FC = () => {
             <Card className="card-elegant backdrop-blur-xl bg-white/60 border-white/50 border-2 shadow-2xl hover:shadow-elegant-lg transition-all duration-smooth">
               <CardContent className="p-4">
                 <div className="flex items-center space-x-4">
-                  <div className="w-48 h-48 overflow-hidden bg-muted">
+                  <div className="w-48 h-48 overflow-hidden bg-muted rounded">
                     <img
                       src={catalogData.uploadedImage}
                       alt="Product"
