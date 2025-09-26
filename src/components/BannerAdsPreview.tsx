@@ -69,7 +69,7 @@ const BannerAdsPreview: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-white relative">
+    <div className="min-h-screen bg-gray-50 relative">
       {/* Back Button - Top Left */}
       <div className="absolute top-8 left-8 z-20">
         <Button
