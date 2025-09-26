@@ -279,7 +279,7 @@ const GenerateCampaignScreen = () => {
                 {currentAction}
               </p>
               <p className="text-sm text-muted-foreground">
-                {location.state?.editMode ? 'Updating your marketing campaign' : 'Creating your perfect marketing campaign'}
+                This usually takes about 20—35 seconds
               </p>
             </div>
 
