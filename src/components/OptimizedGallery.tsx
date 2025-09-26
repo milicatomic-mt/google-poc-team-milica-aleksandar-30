@@ -370,18 +370,16 @@ const CampaignContent: React.FC<{
             <h3 className="text-foreground font-medium">Banner Ads</h3>
             <span className="bg-muted text-primary text-xs px-2 py-1 rounded-full font-medium">4</span>
           </div>
-          <Button 
-            variant="outline"
+          <Button
+            variant="default"
             size="lg" 
             onClick={(e) => {
               e.stopPropagation();
               onViewDetails('Banner Ads');
             }}
-            className="tap-target focus-ring group bg-white/40 border-white/30 hover:bg-white/60 rounded-full px-6"
+            className="tap-target focus-ring"
           >
-            <span className="text-indigo-600 group-hover:text-indigo-700 transition-colors">
-              View All
-            </span>
+            <Download className="w-4 h-4" />
           </Button>
         </div>
         <CardContent className="px-4 pb-4 pt-2">
@@ -502,18 +500,16 @@ const CampaignContent: React.FC<{
             <h3 className="text-foreground font-medium">Web Creative</h3>
             <span className="bg-muted text-primary text-xs px-2 py-1 rounded-full font-medium">1</span>
           </div>
-          <Button 
-            variant="outline"
+          <Button
+            variant="default"
             size="lg" 
             onClick={(e) => {
               e.stopPropagation();
               onViewDetails('Web Creative');
             }}
-            className="tap-target focus-ring group bg-white/40 border-white/30 hover:bg-white/60 rounded-full px-6"
+            className="tap-target focus-ring"
           >
-            <span className="text-indigo-600 group-hover:text-indigo-700 transition-colors">
-              View All
-            </span>
+            <Download className="w-4 h-4" />
           </Button>
         </div>
         <CardContent className="p-4">
@@ -632,18 +628,16 @@ const CampaignContent: React.FC<{
             <h3 className="text-foreground font-medium">Video Scripts</h3>
             <span className="bg-muted text-primary text-xs px-2 py-1 rounded-full font-medium">1</span>
           </div>
-          <Button 
-            variant="outline"
+          <Button
+            variant="default"
             size="lg" 
             onClick={(e) => {
               e.stopPropagation();
               onViewDetails('Video Scripts');
             }}
-            className="tap-target focus-ring group bg-white/40 border-white/30 hover:bg-white/60 rounded-full px-6"
+            className="tap-target focus-ring"
           >
-            <span className="text-indigo-600 group-hover:text-indigo-700 transition-colors">
-              View All
-            </span>
+            <Download className="w-4 h-4" />
           </Button>
         </div>
         <CardContent className="p-4">
@@ -747,18 +741,16 @@ const CampaignContent: React.FC<{
             <h3 className="text-foreground font-medium">Email Templates</h3>
             <span className="bg-muted text-primary text-xs px-2 py-1 rounded-full font-medium">2</span>
           </div>
-          <Button 
-            variant="outline"
+          <Button
+            variant="default"
             size="lg" 
             onClick={(e) => {
               e.stopPropagation();
               onViewDetails('Email Templates');
             }}
-            className="tap-target focus-ring group bg-white/40 border-white/30 hover:bg-white/60 rounded-full px-6"
+            className="tap-target focus-ring"
           >
-            <span className="text-indigo-600 group-hover:text-indigo-700 transition-colors">
-              View All
-            </span>
+            <Download className="w-4 h-4" />
           </Button>
         </div>
         <CardContent className="p-4">
