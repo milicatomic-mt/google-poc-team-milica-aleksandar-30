@@ -1631,15 +1631,14 @@ const PreviewResultsScreen: React.FC = () => {
                     <span className="bg-muted text-primary text-xs px-2 py-1 rounded-full font-medium">4</span>
                   </div>
                   <Button
-                    variant="outline"
-                    size="default"
+                    variant="default"
                     onClick={(e) => {
                       e.stopPropagation();
                       handleOpenCategory('Banner Ads');
                     }}
-                    className="tap-target focus-ring rounded-full bg-white border-white hover:bg-white/90"
+                    className="tap-target focus-ring rounded-full py-1 px-2"
                   >
-                    <Download className="w-4 h-4 text-primary" />
+                    <Download className="w-4 h-4 text-white" />
                   </Button>
                 </div>
                 <CardContent className="p-4">
@@ -1759,15 +1758,14 @@ const PreviewResultsScreen: React.FC = () => {
                     <span className="bg-muted text-primary text-xs px-2 py-1 rounded-full font-medium">1</span>
                   </div>
                   <Button
-                    variant="outline"
-                    size="default"
+                    variant="default"
                     onClick={(e) => {
                       e.stopPropagation();
                       handleOpenCategory('Web Creative');
                     }}
-                    className="tap-target focus-ring rounded-full bg-white border-white hover:bg-white/90"
+                    className="tap-target focus-ring rounded-full py-1 px-2"
                   >
-                    <Download className="w-4 h-4 text-primary" />
+                    <Download className="w-4 h-4 text-white" />
                   </Button>
                 </div>
                 <CardContent className="p-4">
@@ -1895,15 +1893,14 @@ const PreviewResultsScreen: React.FC = () => {
                     <span className="bg-muted text-primary text-xs px-2 py-1 rounded-full font-medium">1</span>
                   </div>
                   <Button
-                    variant="outline"
-                    size="default"
+                    variant="default"
                     onClick={(e) => {
                       e.stopPropagation();
                       handleOpenCategory('Video Scripts');
                     }}
-                    className="tap-target focus-ring rounded-full bg-white border-white hover:bg-white/90"
+                    className="tap-target focus-ring rounded-full py-1 px-2"
                   >
-                    <Download className="w-4 h-4 text-primary" />
+                    <Download className="w-4 h-4 text-white" />
                   </Button>
                 </div>
                 <CardContent className="p-4">
@@ -2010,15 +2007,14 @@ const PreviewResultsScreen: React.FC = () => {
                     <span className="bg-muted text-primary text-xs px-2 py-1 rounded-full font-medium">2</span>
                   </div>
                   <Button
-                    variant="outline"
-                    size="default"
+                    variant="default"
                     onClick={(e) => {
                       e.stopPropagation();
                       handleOpenCategory('Email Templates');
                     }}
-                    className="tap-target focus-ring rounded-full bg-white border-white hover:bg-white/90"
+                    className="tap-target focus-ring rounded-full py-1 px-2"
                   >
-                    <Download className="w-4 h-4 text-primary" />
+                    <Download className="w-4 h-4 text-white" />
                   </Button>
                 </div>
                 <CardContent className="p-4">
