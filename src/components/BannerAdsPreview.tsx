@@ -143,7 +143,7 @@ const BannerAdsPreview: React.FC = () => {
             </div>
 
             {/* Right Banner - Lifestyle Focus */}
-            <div className="bg-gradient-to-br from-amber-100 via-yellow-50 to-orange-100 rounded-lg overflow-hidden shadow-lg h-64 relative">
+            <div className="bg-gradient-to-br from-slate-100 via-gray-50 to-stone-100 rounded-lg overflow-hidden shadow-lg h-64 relative">
               <div className="flex items-center h-full">
                 {/* Left - Person Image */}
                 <div className="w-48 h-full relative overflow-hidden flex-shrink-0">
@@ -177,7 +177,7 @@ const BannerAdsPreview: React.FC = () => {
           </div>
 
           {/* Bottom Banner - Horizontal Layout */}
-          <div className="bg-gradient-to-r from-yellow-200 via-amber-100 to-orange-200 rounded-lg overflow-hidden shadow-lg h-32 relative">
+          <div className="bg-gradient-to-r from-slate-200 via-gray-100 to-stone-200 rounded-lg overflow-hidden shadow-lg h-32 relative">
             <div className="flex items-center h-full">
               {/* Left - Product Image */}
               <div className="w-24 h-24 ml-6 flex-shrink-0 flex items-center justify-center">
