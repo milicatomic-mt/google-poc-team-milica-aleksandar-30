@@ -1632,12 +1632,12 @@ const PreviewResultsScreen: React.FC = () => {
                   </div>
                   <Button
                     variant="default"
-                    size="lg" 
+                    size="sm" 
                     onClick={(e) => {
                       e.stopPropagation();
                       handleOpenCategory('Banner Ads');
                     }}
-                    className="tap-target focus-ring"
+                    className="tap-target focus-ring rounded-full"
                   >
                     <Download className="w-4 h-4" />
                   </Button>
@@ -1760,12 +1760,12 @@ const PreviewResultsScreen: React.FC = () => {
                   </div>
                   <Button
                     variant="default"
-                    size="lg" 
+                    size="sm" 
                     onClick={(e) => {
                       e.stopPropagation();
                       handleOpenCategory('Web Creative');
                     }}
-                    className="tap-target focus-ring"
+                    className="tap-target focus-ring rounded-full"
                   >
                     <Download className="w-4 h-4" />
                   </Button>
@@ -1896,12 +1896,12 @@ const PreviewResultsScreen: React.FC = () => {
                   </div>
                   <Button
                     variant="default"
-                    size="lg" 
+                    size="sm" 
                     onClick={(e) => {
                       e.stopPropagation();
                       handleOpenCategory('Video Scripts');
                     }}
-                    className="tap-target focus-ring"
+                    className="tap-target focus-ring rounded-full"
                   >
                     <Download className="w-4 h-4" />
                   </Button>
@@ -2011,12 +2011,12 @@ const PreviewResultsScreen: React.FC = () => {
                   </div>
                   <Button
                     variant="default"
-                    size="lg" 
+                    size="sm" 
                     onClick={(e) => {
                       e.stopPropagation();
                       handleOpenCategory('Email Templates');
                     }}
-                    className="tap-target focus-ring"
+                    className="tap-target focus-ring rounded-full"
                   >
                     <Download className="w-4 h-4" />
                   </Button>

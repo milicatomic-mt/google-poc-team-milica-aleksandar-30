@@ -372,12 +372,12 @@ const CampaignContent: React.FC<{
           </div>
           <Button
             variant="default"
-            size="lg" 
+            size="sm" 
             onClick={(e) => {
               e.stopPropagation();
               onViewDetails('Banner Ads');
             }}
-            className="tap-target focus-ring"
+            className="tap-target focus-ring rounded-full"
           >
             <Download className="w-4 h-4" />
           </Button>
@@ -502,12 +502,12 @@ const CampaignContent: React.FC<{
           </div>
           <Button
             variant="default"
-            size="lg" 
+            size="sm" 
             onClick={(e) => {
               e.stopPropagation();
               onViewDetails('Web Creative');
             }}
-            className="tap-target focus-ring"
+            className="tap-target focus-ring rounded-full"
           >
             <Download className="w-4 h-4" />
           </Button>
@@ -630,12 +630,12 @@ const CampaignContent: React.FC<{
           </div>
           <Button
             variant="default"
-            size="lg" 
+            size="sm" 
             onClick={(e) => {
               e.stopPropagation();
               onViewDetails('Video Scripts');
             }}
-            className="tap-target focus-ring"
+            className="tap-target focus-ring rounded-full"
           >
             <Download className="w-4 h-4" />
           </Button>
@@ -743,12 +743,12 @@ const CampaignContent: React.FC<{
           </div>
           <Button
             variant="default"
-            size="lg" 
+            size="sm" 
             onClick={(e) => {
               e.stopPropagation();
               onViewDetails('Email Templates');
             }}
-            className="tap-target focus-ring"
+            className="tap-target focus-ring rounded-full"
           >
             <Download className="w-4 h-4" />
           </Button>
