@@ -15,6 +15,7 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog';
 import { toast } from "sonner";
+import { WebCreativeThumbnail } from '@/components/WebCreativeThumbnail';
 import {
   AlertDialog,
   AlertDialogAction,
@@ -1451,7 +1452,7 @@ const PreviewResultsScreen: React.FC = () => {
                 </CardContent>
               </Card>
 
-              {/* Web Creative Card */}
+              {/* Web Creative Card - Using Static Thumbnail */}
               <Card 
                 className="card-elegant backdrop-blur-xl bg-white/60 border-white/50 border-2 shadow-2xl hover:shadow-elegant-lg transition-all duration-smooth cursor-pointer"
                 onClick={() => handleOpenCategory('Web Creative')}
@@ -1464,115 +1465,13 @@ const PreviewResultsScreen: React.FC = () => {
                   {/* Removed download button from web creative section */}
                 </div>
                 <CardContent className="p-4">
-                  <div className="h-80 bg-gray-100 overflow-hidden border border-gray-300 shadow-sm" style={{borderRadius: '1px'}}>
-                    {/* Browser-like Screenshot Mockup */}
-                    <div className="h-full bg-white">
-                      {/* Browser Header */}
-                      <div className="bg-gray-200 px-2 py-1 flex items-center gap-1 border-b">
-                        <div className="flex gap-1">
-                          <div className="w-2 h-2 bg-red-400 rounded-full"></div>
-                          <div className="w-2 h-2 bg-slate-400 rounded-full"></div>
-                          <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-                        </div>
-                        <div className="flex-1 bg-white mx-2 rounded px-2 py-0.5">
-                          <div className="text-[6px] text-gray-500">https://yoursite.com</div>
-                        </div>
-                      </div>
-
-                      {/* Landing Page with Background Image */}
-                      <div className="h-full relative overflow-hidden">
-                        {/* Background Image with Overlay */}
-                        <div className="absolute inset-0">
-                           {activeCampaignResults?.generated_images?.[0]?.url ? (
-                             <img 
-                               src={activeCampaignResults.generated_images[0].url} 
-                               alt="Background" 
-                               className="w-full h-full object-cover"
-                             />
-                           ) : uploadedImage ? (
-                            <img 
-                              src={uploadedImage} 
-                              alt="Background" 
-                              className="w-full h-full object-cover"
-                            />
-                          ) : (
-                            <div className="w-full h-full bg-gradient-to-br from-blue-500 to-purple-600"></div>
-                          )}
-                          {/* Dark overlay for better text readability */}
-                          <div className="absolute inset-0 bg-black/40"></div>
-                          {/* Gradient overlay for better text contrast */}
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30"></div>
-                        </div>
-
-                        {/* Navigation Bar - Floating */}
-                        <div className="relative z-10 bg-white/10 backdrop-blur-md border-b border-white/20">
-                          <div className="px-3 py-1 flex justify-between items-center">
-                            <div className="text-[8px] font-bold text-white">BRAND</div>
-                            <div className="flex gap-3 text-[6px] text-white/80">
-                              <span>Home</span> <span>Products</span> <span>About</span>
-                            </div>
-                          </div>
-                        </div>
-
-                        {/* Hero Content - Centered with Text Overlays */}
-                        <div className="relative z-10 h-full flex flex-col justify-center items-center text-center px-4">
-                          {/* Campaign Badge - Using actual campaign data */}
-                          <div className="inline-flex items-center px-2 py-0.5 rounded-full bg-primary/80 backdrop-blur-md border border-primary/50 mb-2">
-                            <div className="text-[5px] font-medium text-white">✨ New Launch</div>
-                          </div>
-                          
-                          {/* Main Headline - Using actual campaign data */}
-                          <h1 className="text-[10px] font-bold text-white leading-tight mb-2 max-w-28 drop-shadow-lg">
-                            {activeCampaignResults?.landing_page_concept?.hero_text ||
-                             activeCampaignResults?.banner_ads?.[0]?.headline || 
-                             'Your Custom Headline'}
-                          </h1>
-                          
-                          {/* Subtext - Using actual campaign data */}
-                          <p className="text-[5px] text-white/90 leading-relaxed mb-2 max-w-24 drop-shadow-md">
-                            {activeCampaignResults?.landing_page_concept?.sub_text ||
-                             activeCampaignResults?.banner_ads?.[0]?.description || 
-                             'Your custom description here'}
-                          </p>
-                          
-                          {/* Template indicator */}
-                          <div className="text-[4px] text-slate-300 mb-3 font-medium">+ Standard Template Sections Below</div>
-                          
-                          {/* CTA Button - Using actual campaign data */}
-                          <div className="bg-white text-gray-900 text-[6px] px-3 py-1 rounded-full font-medium shadow-lg hover:bg-white/90 transition-all mb-3">
-                            {activeCampaignResults?.landing_page_concept?.cta ||
-                             activeCampaignResults?.banner_ads?.[0]?.cta || 
-                             'Your CTA'}
-                          </div>
-
-                          {/* Standard Template Features Preview */}
-                          <div className="bg-white/10 backdrop-blur-md rounded px-3 py-1 border border-white/20">
-                            <div className="flex items-center gap-2 text-center">
-                              <div className="text-[4px] text-white/70 font-medium">Template includes:</div>
-                              <div className="flex items-center gap-1">
-                                <div className="w-1 h-1 bg-blue-400 rounded-full"></div>
-                                <div className="text-[4px] text-white font-medium">Features</div>
-                              </div>
-                              <div className="flex items-center gap-1">
-                                <div className="w-1 h-1 bg-green-400 rounded-full"></div>
-                                <div className="text-[4px] text-white font-medium">Reviews</div>
-                              </div>
-                              <div className="flex items-center gap-1">
-                                <div className="w-1 h-1 bg-purple-400 rounded-full"></div>
-                                <div className="text-[4px] text-white font-medium">Pricing</div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-
-                        {/* Footer - Bottom Overlay */}
-                        <div className="absolute bottom-0 left-0 right-0 z-10 bg-black/20 backdrop-blur-sm border-t border-white/10">
-                          <div className="px-2 py-1">
-                            <div className="text-[4px] text-white/70 text-center">© 2024 Brand. All rights reserved.</div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                  <div className="h-80 bg-white overflow-hidden relative shadow-inner rounded-lg">
+                    <WebCreativeThumbnail 
+                      campaignResults={activeCampaignResults}
+                      imageMapping={imageMapping}
+                      uploadedImage={uploadedImage}
+                      className="w-full h-full"
+                    />
                   </div>
                 </CardContent>
               </Card>
