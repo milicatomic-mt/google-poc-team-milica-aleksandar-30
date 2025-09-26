@@ -75,8 +75,10 @@ export const useWebCreativeThumbnail = () => {
 
       if (error) throw error;
 
-      if (data?.images?.[0]?.url) {
-        const thumbnailUrl = data.images[0].url;
+      console.log('Generate images response:', data);
+
+      if (data?.generatedImages?.[0]?.url) {
+        const thumbnailUrl = data.generatedImages[0].url;
         // Cache the result
         setThumbnailCache(prev => new Map(prev).set(cacheKey, thumbnailUrl));
         return thumbnailUrl;
