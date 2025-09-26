@@ -435,9 +435,9 @@ const CampaignContent: React.FC<{
               {/* Banner Ads Content */}
               <div className="h-full p-3 overflow-hidden">
                 {/* Top Row - Two Square Banners */}
-                <div className="grid grid-cols-2 gap-2 mb-3">
+                <div className="grid grid-cols-2 gap-2 mb-2">
                   {/* Left Banner - Person with Headphones */}
-                  <div className="aspect-square bg-gradient-to-br from-slate-200 to-stone-300 overflow-hidden relative" style={{borderRadius: '1px'}}>
+                  <div className="aspect-[4/3] bg-gradient-to-br from-slate-200 to-stone-300 overflow-hidden relative" style={{borderRadius: '1px'}}>
                     {getImage(0) && (
                       <OptimizedImage
                         src={getImage(0)}
@@ -449,18 +449,18 @@ const CampaignContent: React.FC<{
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
                     <div className="absolute bottom-0 left-0 right-0 p-2">
                       <div className="space-y-1">
-                        <h3 className="text-white text-[8px] font-bold uppercase tracking-wide">
+                        <h3 className="text-white text-[7px] font-bold uppercase tracking-wide">
                           Premium Sound
                         </h3>
-                        <p className="text-white/90 text-[6px] uppercase tracking-wider">
+                        <p className="text-white/90 text-[5px] uppercase tracking-wider">
                           Minimalist Design
                         </p>
                         <div className="flex items-center justify-between mt-1">
-                          <span className="text-white/80 text-[5px]">
+                          <span className="text-white/80 text-[4px]">
                             WIRELESS BLUETOOTH CONNECTION<br/>
                             WITH BASS RESONANCE
                           </span>
-                          <button className="bg-white text-gray-900 text-[6px] px-1.5 py-0.5 rounded font-semibold">
+                          <button className="bg-white text-gray-900 text-[5px] px-1 py-0.5 rounded font-semibold">
                             Shop Now
                           </button>
                         </div>
@@ -469,7 +469,7 @@ const CampaignContent: React.FC<{
                   </div>
                   
                   {/* Right Banner - Just Headphones Product */}
-                  <div className="aspect-square bg-gradient-to-br from-gray-100 to-gray-200 overflow-hidden relative" style={{borderRadius: '1px'}}>
+                  <div className="aspect-[4/3] bg-gradient-to-br from-gray-100 to-gray-200 overflow-hidden relative" style={{borderRadius: '1px'}}>
                     {(getImage(1) || getImage(0)) && (
                       <OptimizedImage
                         src={getImage(1) || getImage(0)}
@@ -480,18 +480,18 @@ const CampaignContent: React.FC<{
                     )}
                     <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-stone-200 to-slate-100 p-2">
                       <div className="space-y-1">
-                        <h3 className="text-gray-900 text-[8px] font-bold uppercase tracking-wide">
+                        <h3 className="text-gray-900 text-[7px] font-bold uppercase tracking-wide">
                           Premium Sound
                         </h3>
-                        <p className="text-gray-700 text-[6px] uppercase tracking-wider">
+                        <p className="text-gray-700 text-[5px] uppercase tracking-wider">
                           Minimalist Design
                         </p>
                         <div className="flex items-center justify-between mt-1">
-                          <span className="text-gray-600 text-[5px]">
+                          <span className="text-gray-600 text-[4px]">
                             WIRELESS BLUETOOTH CONNECTION<br/>
                             WITH BASS RESONANCE
                           </span>
-                          <button className="bg-gray-900 text-white text-[6px] px-1.5 py-0.5 rounded font-semibold">
+                          <button className="bg-gray-900 text-white text-[5px] px-1 py-0.5 rounded font-semibold">
                             Shop Now
                           </button>
                         </div>
@@ -501,10 +501,10 @@ const CampaignContent: React.FC<{
                 </div>
                 
                 {/* Bottom Row - Wide Horizontal Banner */}
-                <div className="bg-gradient-to-r from-slate-200 to-stone-200 overflow-hidden relative h-16" style={{borderRadius: '1px'}}>
+                <div className="bg-gradient-to-r from-slate-200 to-stone-200 overflow-hidden relative h-12" style={{borderRadius: '1px'}}>
                   <div className="flex items-center h-full">
                     {/* Left - Person Image */}
-                    <div className="w-16 h-full relative overflow-hidden">
+                    <div className="w-12 h-full relative overflow-hidden">
                       {getImage(0) && (
                         <OptimizedImage
                           src={getImage(0)} 
@@ -517,13 +517,13 @@ const CampaignContent: React.FC<{
                     {/* Center - Text Content */}
                     <div className="flex-1 px-2">
                       <div className="space-y-0.5">
-                        <h3 className="text-gray-900 text-[8px] font-bold uppercase tracking-wide">
+                        <h3 className="text-gray-900 text-[7px] font-bold uppercase tracking-wide">
                           Premium Sound
                         </h3>
-                        <p className="text-gray-700 text-[6px] uppercase tracking-wider">
+                        <p className="text-gray-700 text-[5px] uppercase tracking-wider">
                           Minimalist Design
                         </p>
-                        <span className="text-gray-600 text-[5px] block">
+                        <span className="text-gray-600 text-[4px] block">
                           WIRELESS BLUETOOTH CONNECTION WITH BASS RESONANCE
                         </span>
                       </div>
@@ -531,7 +531,7 @@ const CampaignContent: React.FC<{
                     
                     {/* Right - CTA Button */}
                     <div className="pr-2">
-                      <button className="bg-gray-900 text-white text-[7px] px-2 py-1 rounded-full font-semibold">
+                      <button className="bg-gray-900 text-white text-[6px] px-1.5 py-0.5 rounded-full font-semibold">
                         Shop Now
                       </button>
                     </div>
