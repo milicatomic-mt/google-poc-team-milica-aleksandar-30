@@ -421,7 +421,7 @@ const CampaignContent: React.FC<{
             {/* Top Row - Two Square Banners */}
             <div className="grid grid-cols-2 gap-3 mb-4">
               {/* Left Banner - Person with Headphones */}
-              <div className="aspect-square bg-gradient-to-br from-slate-200 to-stone-300 overflow-hidden relative">
+              <div className="aspect-square bg-gradient-to-br from-slate-200 to-stone-300 overflow-hidden relative" style={{borderRadius: '1px'}}>
                 {getImage(0) && (
                   <OptimizedImage
                     src={getImage(0)}
@@ -453,7 +453,7 @@ const CampaignContent: React.FC<{
               </div>
               
               {/* Right Banner - Just Headphones Product */}
-              <div className="aspect-square bg-gradient-to-br from-gray-100 to-gray-200 overflow-hidden relative">
+              <div className="aspect-square bg-gradient-to-br from-gray-100 to-gray-200 overflow-hidden relative" style={{borderRadius: '1px'}}>
                 {(getImage(1) || getImage(0)) && (
                   <OptimizedImage
                     src={getImage(1) || getImage(0)}
@@ -485,7 +485,7 @@ const CampaignContent: React.FC<{
             </div>
             
             {/* Bottom Row - Wide Horizontal Banner */}
-            <div className="bg-gradient-to-r from-slate-200 to-stone-200 overflow-hidden relative h-20">
+            <div className="bg-gradient-to-r from-slate-200 to-stone-200 overflow-hidden relative h-20" style={{borderRadius: '1px'}}>
               <div className="flex items-center h-full">
                 {/* Left - Person Image */}
                 <div className="w-20 h-full relative overflow-hidden">
@@ -537,7 +537,7 @@ const CampaignContent: React.FC<{
           {/* Removed download button from web creative section */}
         </div>
         <CardContent className="p-4">
-          <div className="h-80 bg-gray-100 rounded-sm overflow-hidden border border-gray-300 shadow-sm">
+          <div className="h-80 bg-gray-100 overflow-hidden border border-gray-300 shadow-sm" style={{borderRadius: '1px'}}>
             {/* Browser-like Screenshot Mockup */}
             <div className="h-full bg-white">
               {/* Browser Header */}
@@ -655,7 +655,7 @@ const CampaignContent: React.FC<{
           {/* Removed download button from video scripts section */}
         </div>
         <CardContent className="p-4">
-          <div className="h-80 bg-black rounded-sm overflow-hidden relative">
+          <div className="h-80 bg-black overflow-hidden relative" style={{borderRadius: '1px'}}>
             {/* Video Preview - Simple and consistent */}
             <div className="relative w-full h-full">
               {getImage(0) ? (
