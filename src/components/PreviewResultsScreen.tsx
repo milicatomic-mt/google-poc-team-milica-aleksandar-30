@@ -1827,42 +1827,50 @@ const PreviewResultsScreen: React.FC = () => {
 
                         {/* Hero Content - Centered with Text Overlays */}
                         <div className="relative z-10 h-full flex flex-col justify-center items-center text-center px-4">
-                          {/* Badge */}
-                          <div className="inline-flex items-center px-2 py-0.5 rounded-full bg-white/20 backdrop-blur-md border border-white/30 mb-2">
-                            <div className="text-[5px] font-medium text-white">✨ New Launch</div>
+                          {/* Template Badge */}
+                          <div className="inline-flex items-center px-2 py-0.5 rounded-full bg-orange-500/80 backdrop-blur-md border border-orange-400/50 mb-2">
+                            <div className="text-[5px] font-medium text-white">📄 Template + Your Content</div>
                           </div>
                           
-                          {/* Main Headline with Text Shadow */}
-                          <h1 className="text-[12px] font-bold text-white leading-tight mb-2 max-w-24 drop-shadow-lg">
-                            Transform Your Experience Today
+                          {/* Main Headline - Using actual campaign data */}
+                          <h1 className="text-[10px] font-bold text-white leading-tight mb-2 max-w-28 drop-shadow-lg">
+                            {activeCampaignResults?.landing_page_concept?.hero_text ||
+                             activeCampaignResults?.banner_ads?.[0]?.headline || 
+                             'Your Custom Headline'}
                           </h1>
                           
-                          {/* Subtext */}
-                          <p className="text-[6px] text-white/90 leading-relaxed mb-3 max-w-20 drop-shadow-md">
-                            Discover innovative solutions that drive exceptional results for your business.
+                          {/* Subtext - Using actual campaign data */}
+                          <p className="text-[5px] text-white/90 leading-relaxed mb-2 max-w-24 drop-shadow-md">
+                            {activeCampaignResults?.landing_page_concept?.sub_text ||
+                             activeCampaignResults?.banner_ads?.[0]?.description || 
+                             'Your custom description here'}
                           </p>
                           
-                          {/* CTA Button */}
+                          {/* Template indicator */}
+                          <div className="text-[4px] text-orange-300 mb-3 font-medium">+ Standard Template Sections Below</div>
+                          
+                          {/* CTA Button - Using actual campaign data */}
                           <div className="bg-white text-gray-900 text-[6px] px-3 py-1 rounded-full font-medium shadow-lg hover:bg-white/90 transition-all mb-3">
-                            Get Started Now
+                            {activeCampaignResults?.landing_page_concept?.cta ||
+                             activeCampaignResults?.banner_ads?.[0]?.cta || 
+                             'Your CTA'}
                           </div>
 
-                          {/* Features Bar - Bottom Overlay */}
+                          {/* Standard Template Features Preview */}
                           <div className="bg-white/10 backdrop-blur-md rounded px-3 py-1 border border-white/20">
-                            <div className="flex items-center gap-3 text-center">
+                            <div className="flex items-center gap-2 text-center">
+                              <div className="text-[4px] text-white/70 font-medium">Template includes:</div>
                               <div className="flex items-center gap-1">
-                                <div className="w-1.5 h-1.5 bg-green-400 rounded-full"></div>
-                                <div className="text-[4px] text-white font-medium">Free Ship</div>
+                                <div className="w-1 h-1 bg-blue-400 rounded-full"></div>
+                                <div className="text-[4px] text-white font-medium">Features</div>
                               </div>
-                              <div className="w-px h-2 bg-white/30"></div>
                               <div className="flex items-center gap-1">
-                                <div className="w-1.5 h-1.5 bg-blue-400 rounded-full"></div>
-                                <div className="text-[4px] text-white font-medium">30d Returns</div>
+                                <div className="w-1 h-1 bg-green-400 rounded-full"></div>
+                                <div className="text-[4px] text-white font-medium">Reviews</div>
                               </div>
-                              <div className="w-px h-2 bg-white/30"></div>
                               <div className="flex items-center gap-1">
-                                <div className="w-1.5 h-1.5 bg-purple-400 rounded-full"></div>
-                                <div className="text-[4px] text-white font-medium">Premium</div>
+                                <div className="w-1 h-1 bg-purple-400 rounded-full"></div>
+                                <div className="text-[4px] text-white font-medium">Pricing</div>
                               </div>
                             </div>
                           </div>
