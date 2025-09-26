@@ -63,7 +63,6 @@ export const WebCreativeCapturePreview: React.FC<WebCreativeCapturePreviewProps>
         ref={elementRef}
         className="absolute top-[-9999px] left-[-9999px] w-[1200px] bg-white"
         style={{ height: 'auto' }}
-        data-exclude-from-capture
       >
         {campaignResults && (
           <WebCreativePreviewShared 

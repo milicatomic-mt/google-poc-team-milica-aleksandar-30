@@ -24,21 +24,19 @@ export const useWebCreativeCapture = ({ campaignResults, imageMapping, uploadedI
       await new Promise(resolve => setTimeout(resolve, 1000));
       
       const dataUrl = await toPng(elementRef.current, {
-        quality: 0.9,
-        pixelRatio: 1,
+        quality: 0.92,
+        pixelRatio: window.devicePixelRatio > 2 ? 2 : window.devicePixelRatio || 1,
         width: 1200,
         height: 800,
+        backgroundColor: '#ffffff',
+        cacheBust: true,
+        // Attempt to load cross-origin images with CORS
+        // @ts-ignore - supported by html-to-image
+        useCORS: true,
         style: {
           transform: 'scale(1)',
           transformOrigin: 'top left',
         },
-        filter: (node) => {
-          // Exclude elements with data-exclude-from-capture
-          if (node instanceof Element && node.getAttribute('data-exclude-from-capture')) {
-            return false;
-          }
-          return true;
-        }
       });
 
       setCapturedImage(dataUrl);
