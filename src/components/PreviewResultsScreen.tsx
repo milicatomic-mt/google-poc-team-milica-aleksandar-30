@@ -1452,7 +1452,7 @@ const PreviewResultsScreen: React.FC = () => {
                 </CardContent>
               </Card>
 
-              {/* Web Creative Card */}
+              {/* Web Creative Card - Using thumbnail component */}
               <Card 
                 className="card-elegant backdrop-blur-xl bg-white/60 border-white/50 border-2 shadow-2xl hover:shadow-elegant-lg transition-all duration-smooth cursor-pointer"
                 onClick={() => handleOpenCategory('Web Creative')}
@@ -1462,7 +1462,6 @@ const PreviewResultsScreen: React.FC = () => {
                     <h3 className="text-foreground font-medium">Web Creative</h3>
                     <span className="bg-muted text-primary text-xs px-2 py-1 rounded-full font-medium">1</span>
                   </div>
-                  {/* Removed download button from web creative section */}
                 </div>
                 <CardContent className="p-4">
                   <WebCreativeThumbnail 
@@ -1470,7 +1469,8 @@ const PreviewResultsScreen: React.FC = () => {
                     imageMapping={imageMapping}
                     uploadedImage={uploadedImage}
                   />
-                    {/* Browser-like Screenshot Mockup */}
+                </CardContent>
+              </Card>
                     <div className="h-full bg-white">
                       {/* Browser Header */}
                       <div className="bg-gray-200 px-2 py-1 flex items-center gap-1 border-b">
