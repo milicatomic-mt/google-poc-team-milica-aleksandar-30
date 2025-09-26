@@ -61,39 +61,42 @@ const VideoScriptsPreview: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-gray-50 relative">
+      {/* Back Button - Top Left */}
+      <div className="absolute top-8 left-8 z-20">
+        <Button
+          variant="secondary"
+          onClick={handleBack}
+          className="tap-target hover-lift focus-ring bg-white border-white/30 hover:bg-white/90 rounded-full p-3 shadow-sm"
+          aria-label="Go back to previous step"
+        >
+          <ArrowLeft className="h-5 w-5 text-black" />
+        </Button>
+      </div>
+
       {/* Header */}
-      <div className="bg-background">
-        <div className="container mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-4">
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={handleBack}
-                className="gap-2 shadow-sm"
-              >
-                <ArrowLeft className="w-4 h-4" />
-                Back to Results
-              </Button>
-              <div>
-                <h1 className="text-2xl font-bold text-foreground">Video Scripts</h1>
-                <p className="text-sm text-muted-foreground">Review your AI-generated designs before download</p>
-              </div>
-            </div>
-            <Button onClick={handleDownload} className="gap-2">
-              <Download className="w-3 h-3" />
-              Download
-            </Button>
-          </div>
+      <div className="flex items-center justify-center px-8 py-6 pt-20">
+        <div className="text-center">
+          <h1 className="text-3xl font-bold text-gray-900">Video Scripts</h1>
+          <p className="text-gray-600 text-sm mt-1">Review your AI-generated designs before download</p>
+        </div>
+
+        {/* Download Button - Absolute Top Right */}
+        <div className="absolute top-8 right-8">
+          <Button 
+            onClick={handleDownload} 
+            className="bg-indigo-600 hover:bg-indigo-700 text-white rounded-full px-6"
+          >
+            Download
+          </Button>
         </div>
       </div>
 
-      {/* Content */}
-      <div className="container mx-auto px-6 py-8">
-        <div className="max-w-4xl mx-auto">
+      {/* Content with increased spacing */}
+      <div className="px-8 pb-8 mt-12">
+        <div className="max-w-7xl mx-auto">
           {/* Video Content */}
-          <div className="mb-8">
+          <div className="mb-8 bg-white rounded-lg p-8 shadow-lg">
             {generatedVideoUrl ? (
               <VideoPlayer
                 videoUrl={generatedVideoUrl}
@@ -125,7 +128,7 @@ const VideoScriptsPreview: React.FC = () => {
           {videoScripts && videoScripts.length > 0 && (
             <div className="space-y-6">
               {videoScripts.map((script, index) => (
-                <div key={index} className="space-y-4">
+                <div key={index} className="bg-white rounded-lg p-8 shadow-lg space-y-4">
                   <div className="flex items-center gap-2">
                     <Badge className="bg-primary text-primary-foreground">
                       {script.platform}
