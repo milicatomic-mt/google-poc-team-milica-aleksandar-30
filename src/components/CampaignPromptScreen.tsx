@@ -358,7 +358,7 @@ const CampaignPromptScreen = () => {
                      disabled={isAutoSelecting}
                       className={`px-3 py-2 rounded-full transition-all duration-300 ease-out tap-target font-medium backdrop-blur-md text-sm ${
                         selectedAudiences.includes(age)
-                           ? 'bg-white border border-primary text-primary shadow-lg transform scale-105'
+                           ? 'bg-white border border-black text-primary shadow-lg transform scale-105'
                           : 'bg-white/30 border-2 border-gray-200 text-black hover:border-gray-300 hover:shadow-sm hover:bg-white/40 hover:scale-[1.02] transform scale-100'
                       } ${isAutoSelecting && !selectedAudiences.includes(age) ? 'opacity-50' : 'opacity-100'}`}
                    >
@@ -377,7 +377,7 @@ const CampaignPromptScreen = () => {
                      disabled={isAutoSelecting}
                       className={`px-3 py-2 rounded-full transition-all duration-300 ease-out tap-target font-medium backdrop-blur-md text-sm ${
                         selectedAudiences.includes(interest)
-                           ? 'bg-white border border-primary text-primary shadow-lg transform scale-105'
+                           ? 'bg-white border border-black text-primary shadow-lg transform scale-105'
                           : 'bg-white/30 border-2 border-gray-200 text-black hover:border-gray-300 hover:shadow-sm hover:bg-white/40 hover:scale-[1.02] transform scale-100'
                       } ${isAutoSelecting && !selectedAudiences.includes(interest) ? 'opacity-50' : 'opacity-100'}`}
                    >
@@ -396,7 +396,7 @@ const CampaignPromptScreen = () => {
                      disabled={isAutoSelecting}
                       className={`px-3 py-2 rounded-full transition-all duration-300 ease-out tap-target font-medium backdrop-blur-md text-sm ${
                         selectedAudiences.includes(interest)
-                          ? 'bg-white border border-primary text-primary shadow-lg transform scale-105'
+                          ? 'bg-white border border-black text-primary shadow-lg transform scale-105'
                           : 'bg-white/30 border-2 border-gray-200 text-black hover:border-gray-300 hover:shadow-sm hover:bg-white/40 hover:scale-[1.02] transform scale-100'
                       } ${isAutoSelecting && !selectedAudiences.includes(interest) ? 'opacity-50' : 'opacity-100'}`}
                    >
