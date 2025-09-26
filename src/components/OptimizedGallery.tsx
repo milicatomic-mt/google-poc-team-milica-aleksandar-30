@@ -91,9 +91,7 @@ const OptimizedGallery = () => {
     return date.toLocaleDateString('en-US', { 
       month: 'short', 
       day: 'numeric',
-      year: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit'
+      year: 'numeric'
     });
   };
 
@@ -363,7 +361,7 @@ const GalleryItemDisplay: React.FC<{
             <div>
               <h2 className="text-lg font-semibold">{item.title}</h2>
               <p className="text-sm text-muted-foreground">
-                Created {formatDate(item.created_at)}
+                {formatDate(item.created_at)}
               </p>
             </div>
           </div>
