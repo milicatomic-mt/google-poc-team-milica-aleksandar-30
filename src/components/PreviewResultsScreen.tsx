@@ -1869,7 +1869,7 @@ const PreviewResultsScreen: React.FC = () => {
 
               {/* Video Scripts Card */}
               <Card 
-                className="card-elegant overflow-hidden backdrop-blur-xl bg-white/60 border-white/50 border-2 shadow-2xl hover:shadow-elegant-lg transition-all duration-smooth cursor-pointer"
+                className="card-elegant backdrop-blur-xl bg-white/60 border-white/50 border-2 shadow-2xl hover:shadow-elegant-lg transition-all duration-smooth cursor-pointer"
                 onClick={() => handleOpenCategory('Video Scripts')}
               >
                 <div className="px-4 py-3 flex items-center justify-between transition-all duration-smooth">
