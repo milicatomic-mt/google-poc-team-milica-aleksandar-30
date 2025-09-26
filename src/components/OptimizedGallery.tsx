@@ -762,125 +762,75 @@ const CampaignContent: React.FC<{
           </Button>
         </div>
         <CardContent className="p-4">
-          <div className="h-80 relative">
-            {/* Modern Email Client Interface */}
-            <div className="bg-white backdrop-blur-sm overflow-hidden h-full border border-white/20 shadow-inner">
-              {/* Email Client Header */}
-              <div className="bg-gradient-to-r from-slate-50 to-gray-50 px-3 py-2 border-b border-gray-200">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                    <div className="text-[8px] font-semibold text-gray-900">Your Brand Newsletter</div>
-                  </div>
-                </div>
-                <div className="text-[6px] text-gray-600 mt-1">From: hello@yourbrand.com</div>
-              </div>
+          <div className="h-80 relative overflow-hidden">
+            {/* Email Preview - Matching EmailTemplatesPreview design */}
+            
+            {/* Header with Background Image */}
+            <div 
+              className="relative text-center py-6 bg-cover bg-center bg-no-repeat h-20 flex flex-col justify-center"
+              style={{
+                backgroundImage: getImage(0) 
+                  ? `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${getImage(0)})`
+                  : 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
+              }}
+            >
+              <h1 className="text-xs font-bold text-white drop-shadow-lg">Premium sound</h1>
+              <p className="text-[8px] text-white/90 uppercase tracking-wider drop-shadow">MINIMALIST DESIGN</p>
+            </div>
 
-              {/* Email Content */}
-              <div className="relative h-full overflow-hidden">
-                {/* Hero Section with Gradient */}
-                <div className="bg-gradient-to-br from-gray-900 via-black to-gray-800 px-3 py-4 relative">
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/10"></div>
-                  <div className="absolute top-0 right-0 w-16 h-16 bg-white/5 rounded-full blur-xl"></div>
-                  <div className="relative z-10 text-center">
-                    <div className="inline-flex items-center gap-1 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-2 py-1 mb-2">
-                      <div className="w-1 h-1 bg-green-400 rounded-full"></div>
-                      <span className="text-[6px] font-medium text-white">New Launch</span>
+            {/* Product Showcase Section */}
+            <div 
+              className="py-6 bg-cover bg-center bg-no-repeat h-32 flex items-center"
+              style={{
+                backgroundImage: getImage(0) 
+                  ? `linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url(${getImage(0)})`
+                  : 'linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%)'
+              }}
+            >
+              <div className="w-full px-4">
+                <div className="flex items-center justify-center">
+                  {getImage(0) && (
+                    <div className="backdrop-blur-sm bg-white/10 rounded-lg p-3 shadow-lg max-w-16 max-h-16">
+                      <OptimizedImage 
+                        src={getImage(0)}
+                        alt="Premium product"
+                        className="w-full h-full object-contain"
+                      />
                     </div>
-                    <h2 className="text-[10px] font-bold text-white mb-1 leading-tight">
-                      Transform Your Experience ✨
-                    </h2>
-                    <p className="text-[6px] text-gray-300 leading-relaxed">
-                      Discover premium solutions designed for you
-                    </p>
-                  </div>
-                </div>
-
-                {/* Product Showcase - Expanded */}
-                <div className="bg-gradient-to-br from-white to-slate-50 px-3 py-4 relative">
-                  <div className="flex items-center gap-3">
-                    {/* Product Image */}
-                    <div className="relative">
-                      <div className="w-16 h-16 bg-primary/10 overflow-hidden shadow-sm border border-white/50">
-                        {getImage(0) ? (
-                          <OptimizedImage src={getImage(0)} alt="Product" className="w-full h-full object-cover" />
-                        ) : null}
-                      </div>
-                      <div className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full flex items-center justify-center">
-                        <span className="text-[5px] text-white font-bold">!</span>
-                      </div>
-                    </div>
-                    
-                    {/* Product Info - Expanded */}
-                    <div className="flex-1 min-w-0">
-                      <h3 className="text-[10px] font-bold text-gray-900 leading-tight mb-2">
-                        Exclusive Premium Collection
-                      </h3>
-                      <p className="text-[7px] text-gray-600 leading-relaxed mb-3">
-                        Limited time offer - Save up to 40% on our bestselling products. Premium quality meets exceptional value in this curated selection.
-                      </p>
-                      <div className="flex items-center gap-2 mb-2">
-                        <div className="bg-gradient-to-r from-slate-700 to-slate-800 text-white text-[6px] px-3 py-1 rounded-full font-medium shadow-sm">
-                          Shop Now
-                        </div>
-                        <div className="text-[6px] text-gray-500">Free shipping included</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Features Section - Condensed */}
-                <div className="bg-gray-50 px-3 py-1.5">
-                  <div className="grid grid-cols-3 gap-1">
-                    <div className="text-center">
-                      <div className="w-3 h-3 bg-gradient-to-br from-slate-500 to-slate-600 rounded-full mx-auto mb-0.5 flex items-center justify-center">
-                        <div className="w-1 h-1 bg-white rounded-full"></div>
-                      </div>
-                      <div className="text-[4px] font-semibold text-gray-700">Premium</div>
-                    </div>
-                    <div className="text-center">
-                      <div className="w-3 h-3 bg-gradient-to-br from-slate-500 to-slate-600 rounded-full mx-auto mb-0.5 flex items-center justify-center">
-                        <div className="w-1 h-1 bg-white rounded-full"></div>
-                      </div>
-                      <div className="text-[4px] font-semibold text-gray-700">Fast</div>
-                    </div>
-                    <div className="text-center">
-                      <div className="w-3 h-3 bg-gradient-to-br from-slate-500 to-slate-600 rounded-full mx-auto mb-0.5 flex items-center justify-center">
-                        <div className="w-1 h-1 bg-white rounded-full"></div>
-                      </div>
-                      <div className="text-[4px] font-semibold text-gray-700">Returns</div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Social Proof */}
-                <div className="bg-gradient-to-r from-slate-50 to-gray-50 px-3 py-2 border-t border-gray-100">
-                  <div className="flex items-center justify-center gap-1 mb-1">
-                    {[...Array(5)].map((_, i) => (
-                      <div key={i} className="w-2 h-2 bg-yellow-400 rounded-full flex items-center justify-center">
-                        <span className="text-[3px] text-white">★</span>
-                      </div>
-                    ))}
-                    <span className="text-[5px] text-gray-700 font-semibold ml-1">4.9/5</span>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-[5px] text-gray-600 italic">"Best purchase I've made this year!"</div>
-                    <div className="text-[4px] text-gray-500 mt-0.5">- Sarah M., Verified Customer</div>
-                  </div>
-                </div>
-
-                {/* Footer */}
-                <div className="bg-gradient-to-r from-gray-900 to-black px-3 py-2 absolute bottom-0 left-0 right-0">
-                  <div className="flex items-center justify-between">
-                    <div className="flex gap-1">
-                      <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                      <div className="w-2 h-2 bg-pink-500 rounded-full"></div>
-                      <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
-                    </div>
-                    <div className="text-[4px] text-gray-400">© 2024 Your Brand</div>
-                  </div>
+                  )}
                 </div>
               </div>
+            </div>
+
+            {/* Content section */}
+            <div 
+              className="px-3 py-4 bg-gradient-to-b from-transparent to-black/5 h-24"
+              style={{
+                backgroundImage: getImage(0) 
+                  ? `linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url(${getImage(0)})`
+                  : 'linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%)'
+              }}
+            >
+              <div className="text-center">
+                <h2 className="text-[9px] font-bold text-slate-900 mb-2 leading-tight">
+                  Premium wireless headphones with a sleek ivory finish
+                </h2>
+                
+                <p className="text-[7px] text-slate-600 leading-relaxed mb-3 line-clamp-2">
+                  Experience high-quality audio with stylish over-ear wireless headphones featuring advanced noise isolation.
+                </p>
+                
+                <div className="bg-slate-900 hover:bg-slate-800 text-white text-[6px] px-3 py-1 rounded-full inline-block shadow-lg">
+                  Shop Now
+                </div>
+              </div>
+            </div>
+
+            {/* Footer */}
+            <div className="bg-slate-900/90 backdrop-blur-sm py-1 text-center h-4 flex items-center justify-center">
+              <p className="text-[5px] text-slate-300">
+                © 2024 Premium Sound. All rights reserved.
+              </p>
             </div>
           </div>
         </CardContent>
