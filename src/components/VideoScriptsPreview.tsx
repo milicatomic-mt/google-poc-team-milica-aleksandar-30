@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { ArrowLeft, Download, Play } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { OptimizedImage } from '@/components/ui/optimized-image';
 import { Badge } from '@/components/ui/badge';
 import { VideoPlayer } from '@/components/VideoPlayer';
 import QRDownloadModal from '@/components/QRDownloadModal';
@@ -98,12 +99,12 @@ const VideoScriptsPreview: React.FC = () => {
                         <div className="relative aspect-video bg-gradient-to-br from-amber-100 to-amber-200 rounded-lg overflow-hidden shadow-lg">
                           <div className="relative w-full h-full flex items-center justify-center">
                             {(generatedImages[0]?.url || uploadedImage) && (
-                              <img 
-                                src={generatedImages[0]?.url || uploadedImage}
-                                alt="Video preview"
-                                className="w-full h-full object-cover"
-                              />
-                            )}
+                               <OptimizedImage 
+                                 src={generatedImages[0]?.url || uploadedImage}
+                                 alt="Video preview"
+                                 className="w-full h-full object-cover"
+                               />
+                             )}
                             <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
                               <div className="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center">
                                 <Play className="w-6 h-6 text-gray-700 ml-1" />
@@ -141,12 +142,12 @@ const VideoScriptsPreview: React.FC = () => {
                             
                             {/* Video Content */}
                             {(generatedImages[0]?.url || uploadedImage) && (
-                              <img 
-                                src={generatedImages[0]?.url || uploadedImage}
-                                alt="TikTok video content"
-                                className="w-full h-full object-cover"
-                              />
-                            )}
+                               <OptimizedImage 
+                                 src={generatedImages[0]?.url || uploadedImage}
+                                 alt="TikTok video content"
+                                 className="w-full h-full object-cover"
+                               />
+                             )}
                             
                             {/* Right Side Actions */}
                             <div className="absolute right-2 bottom-16 space-y-3">
@@ -266,12 +267,12 @@ const VideoScriptsPreview: React.FC = () => {
                             {/* Post Image */}
                             <div className="aspect-square bg-gray-100">
                               {(generatedImages[0]?.url || uploadedImage) && (
-                                <img 
-                                  src={generatedImages[0]?.url || uploadedImage}
-                                  alt="Instagram post"
-                                  className="w-full h-full object-cover"
-                                />
-                              )}
+                                 <OptimizedImage 
+                                   src={generatedImages[0]?.url || uploadedImage}
+                                   alt="Instagram post"
+                                   className="w-full h-full object-cover"
+                                 />
+                               )}
                             </div>
 
                             {/* Post Actions */}
@@ -325,12 +326,12 @@ const VideoScriptsPreview: React.FC = () => {
                             
                             {/* Video Content */}
                             {(generatedImages[0]?.url || uploadedImage) && (
-                              <img 
-                                src={generatedImages[0]?.url || uploadedImage}
-                                alt="YouTube Shorts content"
-                                className="w-full h-full object-cover"
-                              />
-                            )}
+                               <OptimizedImage 
+                                 src={generatedImages[0]?.url || uploadedImage}
+                                 alt="YouTube Shorts content"
+                                 className="w-full h-full object-cover"
+                               />
+                             )}
                             
                             {/* YouTube Shorts UI */}
                             <div className="absolute top-8 right-2">

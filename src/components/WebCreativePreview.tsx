@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { ArrowLeft, Download, QrCode } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { OptimizedImage } from '@/components/ui/optimized-image';
 import { QRCodeSVG } from "qrcode.react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { toast } from "sonner";
@@ -119,12 +120,12 @@ const WebCreativePreview: React.FC = () => {
             </div>
             <div className="relative">
               {(getImage(0) || uploadedImage) && (
-                <img 
-                  src={getImage(0) || uploadedImage} 
-                  alt="Product showcase"
-                  className="w-full h-[400px] object-cover rounded-lg shadow-xl"
-                />
-              )}
+                 <OptimizedImage 
+                   src={getImage(0) || uploadedImage} 
+                   alt="Product showcase"
+                   className="w-full h-[400px] object-cover rounded-lg shadow-xl"
+                 />
+               )}
             </div>
           </div>
         </div>
@@ -230,13 +231,13 @@ const WebCreativePreview: React.FC = () => {
             </div>
             <div className="grid grid-cols-2 gap-4">
               {generatedImages.slice(0, 4).map((img, idx) => (
-                <img 
-                  key={idx}
-                  src={img.url} 
-                  alt={`Product view ${idx + 1}`}
-                  className="w-full h-32 object-cover rounded-lg"
-                />
-              ))}
+                 <OptimizedImage 
+                   key={idx}
+                   src={img.url} 
+                   alt={`Product view ${idx + 1}`}
+                   className="w-full h-32 object-cover rounded-lg"
+                 />
+               ))}
             </div>
           </div>
         </div>

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { ArrowLeft, Download, QrCode, Mail } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { OptimizedImage } from '@/components/ui/optimized-image';
 import { Card, CardContent } from '@/components/ui/card';
 import { QRCodeSVG } from "qrcode.react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
@@ -128,14 +129,14 @@ const EmailTemplatesPreview: React.FC = () => {
                   <div className="container mx-auto px-8 max-w-2xl">
                     <div className="flex items-center justify-center">
                       {(generatedImages[0]?.url || uploadedImage) && (
-                        <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-8 shadow-2xl">
-                          <img 
-                            src={generatedImages[0]?.url || uploadedImage}
-                            alt="Premium wireless headphones"
-                            className="w-64 h-64 object-contain"
-                          />
-                        </div>
-                      )}
+                         <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-8 shadow-2xl">
+                           <OptimizedImage 
+                             src={generatedImages[0]?.url || uploadedImage}
+                             alt="Premium wireless headphones"
+                             className="w-64 h-64 object-contain"
+                           />
+                         </div>
+                       )}
                     </div>
                   </div>
                 </div>
