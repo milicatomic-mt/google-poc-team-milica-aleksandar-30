@@ -33,6 +33,7 @@ import { supabase } from "@/integrations/supabase/client";
 import type { CampaignCreationResponse } from '@/types/api';
 import { VideoPlayer } from '@/components/VideoPlayer';
 import QRDownloadModal from '@/components/QRDownloadModal';
+import { WebCreativeThumbnail } from '@/components/shared/WebCreativeThumbnail';
 
 const PreviewResultsScreen: React.FC = () => {
   const location = useLocation();
@@ -1464,7 +1465,11 @@ const PreviewResultsScreen: React.FC = () => {
                   {/* Removed download button from web creative section */}
                 </div>
                 <CardContent className="p-4">
-                  <div className="h-80 bg-gray-100 overflow-hidden border border-gray-300 shadow-sm" style={{borderRadius: '1px'}}>
+                  <WebCreativeThumbnail 
+                    campaignResults={activeCampaignResults}
+                    imageMapping={imageMapping}
+                    uploadedImage={uploadedImage}
+                  />
                     {/* Browser-like Screenshot Mockup */}
                     <div className="h-full bg-white">
                       {/* Browser Header */}

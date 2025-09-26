@@ -11,6 +11,7 @@ import QRDownloadModal from '@/components/QRDownloadModal';
 import { OptimizedImage } from '@/components/ui/optimized-image';
 import { useImageCache } from '@/hooks/useImageCache';
 import { toast } from "sonner";
+import { WebCreativeThumbnail } from '@/components/shared/WebCreativeThumbnail';
 
 const OptimizedGallery = () => {
   const navigate = useNavigate();
@@ -552,7 +553,11 @@ const CampaignContent: React.FC<{
           {/* Removed download button from web creative section */}
         </div>
         <CardContent className="p-4">
-          <div className="h-80 bg-gray-100 overflow-hidden border border-gray-300 shadow-sm" style={{borderRadius: '1px'}}>
+          <WebCreativeThumbnail 
+            campaignResults={activeCampaignResults}
+            imageMapping={imageMapping}
+            uploadedImage={uploadedImage}
+          />
             {/* Browser-like Screenshot Mockup */}
             <div className="h-full bg-white">
               {/* Browser Header */}
