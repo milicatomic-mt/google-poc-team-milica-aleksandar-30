@@ -933,9 +933,9 @@ const PreviewResultsScreen: React.FC = () => {
                         }
                       ]).map((testimonial, index) => (
                         <div key={index} className="p-6 bg-background rounded-xl border border-border">
-                          <div className="flex items-center gap-1 text-yellow-500 mb-4">
+                          <div className="flex items-center gap-1 text-slate-500 mb-4">
                             {[...Array(testimonial.rating)].map((_, i) => (
-                              <div key={i} className="w-4 h-4 bg-yellow-500 rounded-sm"></div>
+                              <div key={i} className="w-4 h-4 bg-slate-500 rounded-sm"></div>
                             ))}
                           </div>
                           <p className="text-muted-foreground italic mb-4">"{testimonial.quote}"</p>
@@ -1272,193 +1272,67 @@ const PreviewResultsScreen: React.FC = () => {
       case 'Email Templates':
         return (
           <div className="overflow-hidden bg-background shadow-2xl max-w-3xl mx-auto">
-            {/* Email Template Preview */}
-            <div className="bg-white text-gray-900 font-sans" style={{ maxWidth: '640px', width: '100%', margin: '0 auto' }}>
-              
-              {/* Email Client Header */}
-              <div className="bg-gradient-to-r from-slate-50 via-white to-slate-50 px-8 py-5 border-b border-slate-200">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <div className="w-3 h-3 bg-primary rounded-full animate-pulse"></div>
-                    <div className="text-sm font-semibold text-gray-900">
-                      {activeCampaignResults.email_copy?.subject || 'Transform Your Experience Today ✨'}
-                    </div>
+            {/* Email Template Preview - Match EmailTemplatesPreview.tsx */}
+            <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+              {/* Header with Background Image */}
+              <div 
+                className="relative text-center py-12 bg-cover bg-center bg-no-repeat min-h-[200px] flex flex-col justify-center"
+                style={{
+                  backgroundImage: (imageMapping?.image_0 || uploadedImage) 
+                    ? `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${imageMapping?.image_0 || uploadedImage})`
+                    : 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
+                }}
+              >
+                <h1 className="text-3xl font-bold text-white mb-2 drop-shadow-lg">Premium sound</h1>
+                <p className="text-sm text-white/90 uppercase tracking-wider drop-shadow">MINIMALIST DESIGN</p>
+              </div>
+
+              {/* Product Showcase Section */}
+              <div 
+                className="py-8 bg-cover bg-center bg-no-repeat"
+                style={{
+                  backgroundImage: (imageMapping?.image_1 || imageMapping?.image_0 || uploadedImage) 
+                    ? `linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url(${imageMapping?.image_1 || imageMapping?.image_0 || uploadedImage})`
+                    : 'linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%)'
+                }}
+              >
+                <div className="container mx-auto px-6">
+                  <div className="flex items-center justify-center">
+                    {(imageMapping?.image_0 || uploadedImage) && (
+                      <div className="backdrop-blur-sm bg-white/10 rounded-2xl p-6 shadow-xl max-w-xs">
+                        <img 
+                          src={imageMapping?.image_0 || uploadedImage}
+                          alt="Premium product"
+                          className="w-full h-auto object-contain max-h-40"
+                        />
+                      </div>
+                    )}
                   </div>
-                  <div className="text-xs text-slate-500 hover:text-primary cursor-pointer transition-colors">
-                    View in browser →
-                  </div>
-                </div>
-                <div className="text-xs text-slate-600 mt-2 font-medium">
-                  From: Your Brand &lt;hello@yourbrand.com&gt;
                 </div>
               </div>
 
-              {/* Email Content */}
-              <div className="relative">
-                {/* Brand Header */}
-                <div className="bg-gradient-to-br from-slate-900 via-gray-900 to-black text-white px-8 py-12 relative overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-secondary/10"></div>
-                  <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl from-white/5 to-transparent rounded-full blur-3xl"></div>
-                  <div className="relative z-10 text-center">
-                    <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-2 mb-6">
-                      <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                      <span className="text-sm font-medium">New Launch</span>
-                    </div>
-                    <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
-                      {activeCampaignResults.landing_page_concept?.hero_text || 'Transform Your Experience'}
-                    </h1>
-                    <p className="text-xl text-gray-300 max-w-lg mx-auto leading-relaxed">
-                      {activeCampaignResults.landing_page_concept?.sub_text || 'Discover innovative solutions designed for you'}
-                    </p>
-                  </div>
-                </div>
-
-                {/* Hero Product Section */}
-                <div className="bg-gradient-to-br from-white via-slate-50 to-gray-100 px-8 py-16 relative">
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5"></div>
-                  {uploadedImage && (
-                    <div className="relative z-10">
-                      <div className="max-w-md mx-auto relative">
-                        <div className="absolute -inset-8 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-3xl blur-2xl opacity-60"></div>
-                        <div className="relative bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-2xl border border-white/50">
-                          <img 
-                            src={uploadedImage} 
-                            alt="Featured product" 
-                            className="w-full h-auto rounded-xl shadow-lg hover:scale-105 transition-transform duration-500" 
-                          />
-                        </div>
-                      </div>
-                      
-                      {/* CTA Button */}
-                      <div className="text-center mt-12">
-                        <div className="inline-flex flex-col items-center gap-4">
-                          <button className="group relative bg-gradient-to-r from-gray-900 to-black text-white font-semibold text-lg px-12 py-4 rounded-full shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:scale-105 border border-gray-800">
-                            <span className="relative z-10">
-                              {activeCampaignResults.landing_page_concept?.cta || 'Shop Now'}
-                            </span>
-                            <div className="absolute inset-0 bg-gradient-to-r from-primary to-secondary opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full"></div>
-                          </button>
-                          <p className="text-sm text-gray-600 font-medium">
-                            Free shipping • 30-day returns • Premium quality
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  )}
-                </div>
-                
-                {/* Content Section */}
-                <div className="bg-white px-8 py-16">
-                  <div className="max-w-2xl mx-auto">
-                    <div className="text-center mb-12">
-                      <h2 className="text-3xl font-bold text-gray-900 mb-6">Why Choose Us?</h2>
-                      <div className="prose prose-lg max-w-none text-center">
-                        <p className="text-gray-700 leading-relaxed text-lg">
-                          {activeCampaignResults.email_copy?.body || 'We are excited to share our latest innovation that will transform how you experience our products. This exclusive launch features cutting-edge technology and premium design that sets new standards in the industry.'}
-                        </p>
-                      </div>
-                    </div>
-                    
-                    {/* Enhanced Feature Grid */}
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
-                      <div className="group text-center relative">
-                        <div className="relative mx-auto w-20 h-20 mb-6">
-                          <div className="absolute inset-0 bg-gradient-to-br from-primary to-primary/70 rounded-2xl shadow-xl group-hover:shadow-2xl transition-all duration-300"></div>
-                          <div className="relative z-10 w-full h-full rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center">
-                            <div className="w-8 h-8 bg-white rounded-lg"></div>
-                          </div>
-                        </div>
-                        <h4 className="font-bold text-lg text-gray-900 mb-3">Premium Quality</h4>
-                        <p className="text-gray-600 leading-relaxed">Exceptional materials and craftsmanship in every detail</p>
-                      </div>
-                      
-                      <div className="group text-center relative">
-                        <div className="relative mx-auto w-20 h-20 mb-6">
-                          <div className="absolute inset-0 bg-gradient-to-br from-secondary to-secondary/70 rounded-2xl shadow-xl group-hover:shadow-2xl transition-all duration-300"></div>
-                          <div className="relative z-10 w-full h-full rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center">
-                            <div className="w-8 h-8 bg-white rounded-lg"></div>
-                          </div>
-                        </div>
-                        <h4 className="font-bold text-lg text-gray-900 mb-3">Fast Delivery</h4>
-                        <p className="text-gray-600 leading-relaxed">Free 2-day shipping with tracking on all orders</p>
-                      </div>
-                      
-                      <div className="group text-center relative">
-                        <div className="relative mx-auto w-20 h-20 mb-6">
-                          <div className="absolute inset-0 bg-gradient-to-br from-accent to-accent/70 rounded-2xl shadow-xl group-hover:shadow-2xl transition-all duration-300"></div>
-                          <div className="relative z-10 w-full h-full rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center">
-                            <div className="w-8 h-8 bg-white rounded-lg"></div>
-                          </div>
-                        </div>
-                        <h4 className="font-bold text-lg text-gray-900 mb-3">Money Back</h4>
-                        <p className="text-gray-600 leading-relaxed">30-day money-back guarantee, no questions asked</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Social Proof Section */}
-                <div className="bg-gradient-to-br from-slate-50 to-gray-100 px-8 py-16">
-                  <div className="max-w-2xl mx-auto text-center">
-                    <h3 className="text-2xl font-bold text-gray-900 mb-8">Trusted by thousands</h3>
-                    <div className="flex justify-center items-center gap-2 mb-6">
-                      {[...Array(5)].map((_, i) => (
-                        <div key={i} className="w-6 h-6 bg-yellow-400 rounded-full flex items-center justify-center">
-                          <span className="text-white text-xs">★</span>
-                        </div>
-                      ))}
-                      <span className="ml-2 text-gray-700 font-semibold">4.9/5 from 2,847 reviews</span>
-                    </div>
-                    <p className="text-gray-600 italic text-lg">
-                      "This completely changed how I approach my daily routine. The quality is unmatched!"
-                    </p>
-                    <p className="text-sm text-gray-500 mt-2 font-medium">- Sarah M., Verified Customer</p>
-                  </div>
+              {/* Content section */}
+              <div className="container mx-auto px-6 py-8 bg-gradient-to-b from-transparent to-black/5">
+                <div className="text-center">
+                  <h2 className="text-xl font-bold text-slate-900 mb-4">
+                    Premium wireless headphones with a sleek ivory finish, designed for immersive sound and all-day comfort.
+                  </h2>
+                  
+                  <p className="text-sm text-slate-600 leading-relaxed mb-6">
+                    {activeCampaignResults?.email_copy?.body || "Experience high-quality audio with these stylish over-ear wireless headphones. Featuring soft cushioned ear pads, a minimalist design, and advanced noise isolation, they're perfect for music, calls, or daily use."}
+                  </p>
+                  
+                  <button className="bg-slate-900 hover:bg-slate-800 text-white font-semibold px-8 py-2 rounded-full text-sm shadow-lg">
+                    Shop Now
+                  </button>
                 </div>
               </div>
-              
-              {/* Enhanced Footer */}
-              <div className="bg-gradient-to-br from-gray-900 to-black text-white px-8 py-12">
-                <div className="text-center space-y-8">
-                  <div className="space-y-4">
-                    <h4 className="text-lg font-semibold">Stay Connected</h4>
-                    <p className="text-gray-300 max-w-md mx-auto">
-                      Follow us for exclusive updates, behind-the-scenes content, and special offers.
-                    </p>
-                  </div>
-                  
-                  {/* Social Icons */}
-                  <div className="flex justify-center gap-6">
-                    <div className="group cursor-pointer">
-                      <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110">
-                        <span className="text-white font-bold text-sm">f</span>
-                      </div>
-                    </div>
-                    <div className="group cursor-pointer">
-                      <div className="w-12 h-12 bg-gradient-to-br from-pink-500 to-purple-600 rounded-full flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110">
-                        <span className="text-white font-bold text-sm">@</span>
-                      </div>
-                    </div>
-                    <div className="group cursor-pointer">
-                      <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-500 rounded-full flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110">
-                        <span className="text-white font-bold text-sm">t</span>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  {/* Footer Links */}
-                  <div className="border-t border-gray-700 pt-8 space-y-4">
-                    <div className="flex justify-center gap-8 text-sm">
-                      <a href="#" className="text-gray-300 hover:text-white transition-colors">Privacy Policy</a>
-                      <a href="#" className="text-gray-300 hover:text-white transition-colors">Terms of Service</a>
-                      <a href="#" className="text-gray-300 hover:text-white transition-colors">Contact Us</a>
-                      <a href="#" className="text-gray-300 hover:text-white transition-colors">Unsubscribe</a>
-                    </div>
-                    <p className="text-xs text-gray-400">
-                      © 2024 Your Brand. All rights reserved. | 123 Innovation Drive, Tech City, TC 12345
-                    </p>
-                  </div>
-                </div>
+
+              {/* Footer */}
+              <div className="bg-slate-900/90 backdrop-blur-sm py-3 text-center">
+                <p className="text-xs text-slate-300">
+                  © 2024 Premium Sound. All rights reserved.
+                </p>
               </div>
             </div>
           </div>
@@ -1761,7 +1635,7 @@ const PreviewResultsScreen: React.FC = () => {
                       <div className="bg-gray-200 px-2 py-1 flex items-center gap-1 border-b">
                         <div className="flex gap-1">
                           <div className="w-2 h-2 bg-red-400 rounded-full"></div>
-                          <div className="w-2 h-2 bg-yellow-400 rounded-full"></div>
+                          <div className="w-2 h-2 bg-slate-400 rounded-full"></div>
                           <div className="w-2 h-2 bg-green-400 rounded-full"></div>
                         </div>
                         <div className="flex-1 bg-white mx-2 rounded px-2 py-0.5">
@@ -1826,7 +1700,7 @@ const PreviewResultsScreen: React.FC = () => {
                           </p>
                           
                           {/* Template indicator */}
-                          <div className="text-[4px] text-orange-300 mb-3 font-medium">+ Standard Template Sections Below</div>
+                          <div className="text-[4px] text-slate-300 mb-3 font-medium">+ Standard Template Sections Below</div>
                           
                           {/* CTA Button - Using actual campaign data */}
                           <div className="bg-white text-gray-900 text-[6px] px-3 py-1 rounded-full font-medium shadow-lg hover:bg-white/90 transition-all mb-3">
@@ -2028,7 +1902,7 @@ const PreviewResultsScreen: React.FC = () => {
                         <div className="bg-gradient-to-r from-slate-50 to-gray-50 px-3 py-2 border-t border-gray-100">
                           <div className="flex items-center justify-center gap-1 mb-1">
                             {[...Array(5)].map((_, i) => (
-                              <div key={i} className="w-2 h-2 bg-yellow-400 rounded-full flex items-center justify-center">
+                              <div key={i} className="w-2 h-2 bg-slate-400 rounded-full flex items-center justify-center">
                                 <span className="text-[3px] text-white">★</span>
                               </div>
                             ))}
