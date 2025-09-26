@@ -678,19 +678,19 @@ const CampaignContent: React.FC<{
             </div>
 
             {/* Right Side - Script Preview */}
-            <div className="bg-white backdrop-blur-sm rounded p-4 border border-white/20">
-              <div className="space-y-3">
+            <div className="bg-white backdrop-blur-sm rounded p-3 border border-white/20">
+              <div className="space-y-2">
                 {/* Script Header */}
-                <div className="text-center pb-2 border-b border-white/30">
+                <div className="text-center pb-1 border-b border-white/30">
                   <h4 className="font-semibold text-sm text-gray-900">Professional Script</h4>
                   <p className="text-xs text-gray-600">Multi-platform optimized</p>
                 </div>
                 
                 {/* Script Sections */}
-                <div className="space-y-2">
-                  <div className="bg-white/60 p-3 rounded">
-                    <div className="flex items-center gap-2 mb-1">
-                      <div className="w-5 h-5 rounded-full bg-black text-white text-xs font-bold flex items-center justify-center">1</div>
+                <div className="space-y-1">
+                  <div className="bg-white/60 p-2 rounded">
+                    <div className="flex items-center gap-2 mb-0.5">
+                      <div className="w-4 h-4 rounded-full bg-black text-white text-xs font-bold flex items-center justify-center">1</div>
                       <span className="font-medium text-xs text-gray-800">Hook</span>
                     </div>
                     <p className="text-xs text-gray-700 font-medium">
@@ -698,9 +698,9 @@ const CampaignContent: React.FC<{
                     </p>
                   </div>
                   
-                  <div className="bg-white/60 p-3 rounded">
-                    <div className="flex items-center gap-2 mb-1">
-                      <div className="w-5 h-5 rounded-full bg-black text-white text-xs font-bold flex items-center justify-center">2</div>
+                  <div className="bg-white/60 p-2 rounded">
+                    <div className="flex items-center gap-2 mb-0.5">
+                      <div className="w-4 h-4 rounded-full bg-black text-white text-xs font-bold flex items-center justify-center">2</div>
                       <span className="font-medium text-xs text-gray-800">Content</span>
                     </div>
                     <p className="text-xs text-gray-700">
@@ -708,9 +708,9 @@ const CampaignContent: React.FC<{
                     </p>
                   </div>
                   
-                  <div className="bg-white/60 p-3 rounded">
-                    <div className="flex items-center gap-2 mb-1">
-                      <div className="w-5 h-5 rounded-full bg-black text-white text-xs font-bold flex items-center justify-center">3</div>
+                  <div className="bg-white/60 p-2 rounded">
+                    <div className="flex items-center gap-2 mb-0.5">
+                      <div className="w-4 h-4 rounded-full bg-black text-white text-xs font-bold flex items-center justify-center">3</div>
                       <span className="font-medium text-xs text-gray-800">CTA</span>
                     </div>
                     <p className="text-xs text-gray-700 font-medium">
@@ -720,16 +720,16 @@ const CampaignContent: React.FC<{
                 </div>
                 
                 {/* Social Icons Preview */}
-                <div className="pt-2 border-t border-white/30">
-                  <p className="text-xs text-gray-600 text-center mb-2">Perfect for:</p>
+                <div className="pt-1 border-t border-white/30">
+                  <p className="text-xs text-gray-600 text-center mb-1">Perfect for:</p>
                   <div className="flex justify-center gap-2">
-                    <div className="w-6 h-6 bg-gradient-to-r from-pink-500 to-purple-600 rounded-lg flex items-center justify-center">
+                    <div className="w-5 h-5 bg-gradient-to-r from-pink-500 to-purple-600 rounded-lg flex items-center justify-center">
                       <span className="text-white text-xs font-bold">T</span>
                     </div>
-                    <div className="w-6 h-6 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg flex items-center justify-center">
+                    <div className="w-5 h-5 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg flex items-center justify-center">
                       <span className="text-white text-xs font-bold">I</span>
                     </div>
-                    <div className="w-6 h-6 bg-gradient-to-r from-red-500 to-pink-500 rounded-lg flex items-center justify-center">
+                    <div className="w-5 h-5 bg-gradient-to-r from-red-500 to-pink-500 rounded-lg flex items-center justify-center">
                       <span className="text-white text-xs font-bold">Y</span>
                     </div>
                   </div>
