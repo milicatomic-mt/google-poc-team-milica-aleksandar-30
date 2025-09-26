@@ -191,25 +191,34 @@ const VideoScriptsPreview: React.FC = () => {
             {/* Video Content Area with Generated Content */}
             <div className="relative aspect-square bg-gradient-to-br from-cyan-300 to-blue-500">
               {/* Page indicator */}
-              <div className="absolute top-4 right-4 bg-black/50 text-white text-xs px-2 py-1 rounded-full">
+              <div className="absolute top-4 right-4 bg-black/50 text-white text-xs px-2 py-1 rounded-full z-10">
                 1/3
               </div>
               
-              {/* Video Preview */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                {(getImage(0) || uploadedImage) && (
-                  <OptimizedImage 
-                    src={getImage(0) || uploadedImage}
-                    alt="Video preview"
-                    className="w-full h-full object-cover opacity-30"
-                  />
-                )}
-                <div className="absolute inset-0 bg-gradient-to-br from-cyan-300/80 to-blue-500/80 flex items-center justify-center">
-                  <div className="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center">
-                    <Play className="w-6 h-6 text-gray-700 ml-1" />
+              {/* Actual Video or Preview */}
+              {generatedVideoUrl ? (
+                <VideoPlayer
+                  videoUrl={generatedVideoUrl}
+                  posterUrl={getImage(0) || uploadedImage}
+                  title="Instagram Video Post"
+                  className="w-full h-full object-cover rounded-none"
+                />
+              ) : (
+                <div className="absolute inset-0 flex items-center justify-center">
+                  {(getImage(0) || uploadedImage) && (
+                    <OptimizedImage 
+                      src={getImage(0) || uploadedImage}
+                      alt="Video preview"
+                      className="w-full h-full object-cover opacity-30"
+                    />
+                  )}
+                  <div className="absolute inset-0 bg-gradient-to-br from-cyan-300/80 to-blue-500/80 flex items-center justify-center">
+                    <div className="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center">
+                      <Play className="w-6 h-6 text-gray-700 ml-1" />
+                    </div>
                   </div>
                 </div>
-              </div>
+              )}
             </div>
             
             {/* Instagram Post Actions */}
