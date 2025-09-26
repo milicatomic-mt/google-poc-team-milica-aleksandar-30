@@ -371,15 +371,15 @@ const CampaignContent: React.FC<{
             <span className="bg-muted text-primary text-xs px-2 py-1 rounded-full font-medium">4</span>
           </div>
           <Button
-            variant="default"
+            variant="outline"
             size="default"
             onClick={(e) => {
               e.stopPropagation();
               onViewDetails('Banner Ads');
             }}
-            className="tap-target focus-ring rounded-full"
+            className="tap-target focus-ring rounded-full bg-white border-white hover:bg-white/90"
           >
-            <Download className="w-4 h-4" />
+            <Download className="w-4 h-4 text-primary" />
           </Button>
         </div>
         <CardContent className="px-4 pb-4 pt-2">
@@ -501,15 +501,15 @@ const CampaignContent: React.FC<{
             <span className="bg-muted text-primary text-xs px-2 py-1 rounded-full font-medium">1</span>
           </div>
           <Button
-            variant="default"
+            variant="outline"
             size="default"
             onClick={(e) => {
               e.stopPropagation();
               onViewDetails('Web Creative');
             }}
-            className="tap-target focus-ring rounded-full"
+            className="tap-target focus-ring rounded-full bg-white border-white hover:bg-white/90"
           >
-            <Download className="w-4 h-4" />
+            <Download className="w-4 h-4 text-primary" />
           </Button>
         </div>
         <CardContent className="p-4">
@@ -629,15 +629,15 @@ const CampaignContent: React.FC<{
             <span className="bg-muted text-primary text-xs px-2 py-1 rounded-full font-medium">1</span>
           </div>
           <Button
-            variant="default"
+            variant="outline"
             size="default"
             onClick={(e) => {
               e.stopPropagation();
               onViewDetails('Video Scripts');
             }}
-            className="tap-target focus-ring rounded-full"
+            className="tap-target focus-ring rounded-full bg-white border-white hover:bg-white/90"
           >
-            <Download className="w-4 h-4" />
+            <Download className="w-4 h-4 text-primary" />
           </Button>
         </div>
         <CardContent className="p-4">
@@ -742,15 +742,15 @@ const CampaignContent: React.FC<{
             <span className="bg-muted text-primary text-xs px-2 py-1 rounded-full font-medium">2</span>
           </div>
           <Button
-            variant="default"
+            variant="outline"
             size="default"
             onClick={(e) => {
               e.stopPropagation();
               onViewDetails('Email Templates');
             }}
-            className="tap-target focus-ring rounded-full"
+            className="tap-target focus-ring rounded-full bg-white border-white hover:bg-white/90"
           >
-            <Download className="w-4 h-4" />
+            <Download className="w-4 h-4 text-primary" />
           </Button>
         </div>
         <CardContent className="p-4">
