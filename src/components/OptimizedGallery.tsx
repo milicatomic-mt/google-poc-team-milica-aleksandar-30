@@ -388,6 +388,11 @@ const CampaignContent: React.FC<{
   
   const activeCampaignResults = campaignResults;
   
+  // Debug: Check what data we actually have
+  console.log('🏗️ Campaign Results in OptimizedGallery:', campaignResults);
+  console.log('🏗️ Banner Ads Data:', campaignResults?.banner_ads);
+  console.log('🏗️ First Banner Ad:', campaignResults?.banner_ads?.[0]);
+  
   // Create consistent image mapping for preview cards
   const imageMapping = generatedImages ? {
     image_0: generatedImages[0]?.url || null,
@@ -450,22 +455,22 @@ const CampaignContent: React.FC<{
                     </div>
                     {/* Middle - Text Content */}
                      <div className="flex-1 px-2">
-              <h3 className="text-gray-900 text-[6px] font-bold uppercase leading-none">
-                {activeCampaignResults?.banner_ads?.[0]?.headline || 'Premium Sound'}
-              </h3>
-              <p className="text-gray-700 text-[4px] uppercase leading-none">
-                {activeCampaignResults?.banner_ads?.[0]?.description || 'Minimalist Design'}
-              </p>
-              <p className="text-gray-600 text-[3px] font-semibold leading-none">
-                SMASH THE COMPETITION<br/>
-                WITH 30% DISCOUNT
-              </p>
-            </div>
-            {/* Right - CTA Button */}
-             <div className="pr-1 flex-shrink-0">
-               <button className="bg-white/90 text-gray-900 text-[4px] px-1 py-0.5 font-semibold border border-gray-200 leading-none">
-                 {activeCampaignResults?.banner_ads?.[0]?.cta || 'Shop Now'}
-               </button>
+               <h3 className="text-gray-900 text-[6px] font-bold uppercase leading-none">
+                 {activeCampaignResults?.banner_ads?.[0]?.headline || 'Premium Sound'}
+               </h3>
+               <p className="text-gray-700 text-[4px] uppercase leading-none">
+                 Minimalist Design
+               </p>
+               <p className="text-gray-600 text-[3px] font-semibold leading-none">
+                 SMASH THE COMPETITION<br/>
+                 WITH 30% DISCOUNT
+               </p>
+             </div>
+             {/* Right - CTA Button */}
+              <div className="pr-1 flex-shrink-0">
+                <button className="bg-white/90 text-gray-900 text-[4px] px-1 py-0.5 font-semibold border border-gray-200 leading-none">
+                  {activeCampaignResults?.banner_ads?.[0]?.cta || 'Shop Now'}
+                </button>
                       </div>
                   </div>
                 </div>
@@ -491,7 +496,7 @@ const CampaignContent: React.FC<{
                         {activeCampaignResults?.banner_ads?.[0]?.headline || 'Premium Sound'}
                       </h3>
                       <p className="text-white/90 text-[3px] uppercase leading-none">
-                        {activeCampaignResults?.banner_ads?.[0]?.description || 'Minimalist Design'}
+                        Minimalist Design
                       </p>
                       <p className="text-white text-[3px] font-semibold leading-none">
                         SMASH THE COMPETITION WITH 30% DISCOUNT
@@ -519,7 +524,7 @@ const CampaignContent: React.FC<{
                           {activeCampaignResults?.banner_ads?.[0]?.headline || 'Premium Sound'}
                         </h3>
                         <p className="text-gray-700 text-[4px] uppercase leading-none">
-                          {activeCampaignResults?.banner_ads?.[0]?.description || 'Minimalist Design'}
+                          Minimalist Design
                         </p>
                         <p className="text-gray-600 text-[3px] font-semibold leading-none">
                           30% DISCOUNT

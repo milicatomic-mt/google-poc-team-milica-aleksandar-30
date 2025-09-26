@@ -11,6 +11,11 @@ const BannerAdsPreview: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { campaignResults, uploadedImage, campaignId, imageMapping, returnTo } = location.state || {};
+  
+  // Debug: Check what data we actually have
+  console.log('🎯 Campaign Results in BannerAdsPreview:', campaignResults);
+  console.log('🎯 Banner Ads Data:', campaignResults?.banner_ads);
+  console.log('🎯 First Banner Ad:', campaignResults?.banner_ads?.[0]);
   const [isDownloadModalOpen, setIsDownloadModalOpen] = useState(false);
   const [downloadUrl, setDownloadUrl] = useState<string>('');
 
@@ -129,7 +134,7 @@ const BannerAdsPreview: React.FC = () => {
                     {campaignResults?.banner_ads?.[0]?.headline || 'Premium Sound'}
                   </h3>
                   <p className="text-gray-700 text-lg uppercase tracking-wider mb-3">
-                    {campaignResults?.banner_ads?.[0]?.description || 'Minimalist Design'}
+                    Minimalist Design
                   </p>
                   <p className="text-gray-600 text-sm font-semibold">
                     SMASH THE COMPETITION<br/>
@@ -174,7 +179,7 @@ const BannerAdsPreview: React.FC = () => {
                     {campaignResults?.banner_ads?.[0]?.headline || 'Premium Sound'}
                   </h3>
                   <p className="text-white/90 text-xs uppercase tracking-wider mb-0.5">
-                    {campaignResults?.banner_ads?.[0]?.description || 'Minimalist Design'}
+                    Minimalist Design
                   </p>
                   <p className="text-white text-xs font-semibold mb-1">
                     SMASH THE COMPETITION WITH 30% DISCOUNT
@@ -210,7 +215,7 @@ const BannerAdsPreview: React.FC = () => {
                     {campaignResults?.banner_ads?.[0]?.headline || 'Premium Sound'}
                   </h3>
                   <p className="text-gray-700 text-xs uppercase tracking-wider mb-1">
-                    {campaignResults?.banner_ads?.[0]?.description || 'Minimalist Design'}
+                    Minimalist Design
                   </p>
                   <p className="text-gray-600 text-xs font-semibold mb-2">
                     SMASH THE COMPETITION WITH 30% DISCOUNT
