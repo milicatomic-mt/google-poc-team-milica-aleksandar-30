@@ -181,692 +181,89 @@ const PreviewResultsScreen: React.FC = () => {
 
       case 'Banner Ads':
         return (
-          <div className="space-y-0">
-            {/* Banner Ads Preview - Match consistent card layout */}
-            <div className="overflow-hidden bg-white shadow-2xl rounded-lg">
-              <div className="space-y-0">
+          <div className="overflow-hidden bg-white shadow-2xl rounded-lg">
+            <div className="p-8">
+              {/* Grid layout matching reference image */}
+              <div className="grid grid-cols-2 gap-4 mb-4">
                 
-                {/* Leaderboard Banner - 728×90 */}
-                <div className="space-y-4">
-                  <div className="flex items-center gap-3">
-                    <h4 className="text-xl font-semibold text-gray-900">Leaderboard Banner</h4>
-                    <Badge className="text-xs bg-green-100 text-green-800">728×90</Badge>
-                  </div>
-                  
-                  <div className="bg-white border overflow-hidden shadow-sm max-w-full">
-                    {/* Website Header Mockup */}
-                    <div className="bg-gray-100 px-4 py-2 border-b">
-                      <div className="flex items-center justify-between">
-                        <div className="text-sm font-semibold text-gray-700">NewsWebsite.com</div>
-                        <div className="flex gap-4 text-sm text-gray-600">
-                          <span>Home</span>
-                          <span>Sports</span>
-                          <span>Tech</span>
-                          <span>Business</span>
-                        </div>
-                      </div>
-                    </div>
-                    
-                    {/* Highlighted Banner Area */}
-                    <div className="p-4 bg-gray-50">
-                      <div className="relative">
-                        <div className="absolute -inset-2 bg-blue-500/20 border-2 border-blue-500 border-dashed rounded"></div>
-                        
-                        <div 
-                          className="relative bg-gradient-to-r from-slate-200 to-gray-100"
-                          style={{ width: '728px', height: '90px', maxWidth: '100%' }}
-                        >
-                          <div className="absolute left-6 top-1/2 -translate-y-1/2 flex items-center gap-4">
-                            {(generatedImages[0]?.url || uploadedImage) && (
-                              <img 
-                                src={generatedImages[0]?.url || uploadedImage} 
-                                alt="Premium headphones" 
-                                className="w-12 h-12 object-contain" 
-                              />
-                            )}
-                            <div>
-                              <h3 className="text-lg font-bold text-black">
-                                {activeCampaignResults.banner_ads?.[0]?.headline || 'PREMIUM SOUND'}
-                              </h3>
-                              <p className="text-xs text-gray-700 uppercase">MINIMALIST DESIGN</p>
-                            </div>
-                          </div>
-                          <div className="absolute right-6 top-1/2 -translate-y-1/2">
-                            <button className="bg-white text-black font-semibold px-6 py-2 rounded-full">
-                              {activeCampaignResults.banner_ads?.[0]?.cta || 'Shop Now'}
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                      <p className="text-xs text-blue-600 mt-2 font-medium">↑ Banner placement in header area</p>
-                    </div>
-                    
-                    {/* Website Content Preview */}
-                    <div className="p-4 space-y-2">
-                      <h3 className="text-lg font-semibold">Breaking News Today</h3>
-                      <div className="flex gap-4">
-                        <div className="w-20 h-16 bg-gray-200 rounded"></div>
-                        <div className="flex-1">
-                          <p className="text-sm text-gray-600">Latest updates in technology and business...</p>
-                        </div>
-                      </div>
-                    </div>
+                {/* Left Banner */}
+                <div 
+                  className="relative aspect-[4/3] rounded-lg overflow-hidden bg-cover bg-center"
+                  style={{
+                    backgroundImage: (generatedImages[0]?.url || uploadedImage) 
+                      ? `url(${generatedImages[0]?.url || uploadedImage})` 
+                      : 'linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%)'
+                  }}
+                >
+                  <div className="absolute inset-0 bg-black/30"></div>
+                  <div className="absolute bottom-4 left-4 text-white">
+                    <h3 className="text-lg font-bold uppercase tracking-wide">
+                      {activeCampaignResults.banner_ads?.[0]?.headline || 'PREMIUM SOUND'}
+                    </h3>
+                    <p className="text-sm opacity-90 uppercase tracking-wider mb-2">
+                      MINIMALIST DESIGN
+                    </p>
+                    <p className="text-xs opacity-75 mb-2">
+                      WIRELESS BLUETOOTH CONNECTION<br />
+                      WITH BASS RESONANCE
+                    </p>
+                    <Button size="sm" className="bg-white text-black hover:bg-gray-100 text-xs font-semibold px-4">
+                      {activeCampaignResults.banner_ads?.[0]?.cta || 'Shop Now'}
+                    </Button>
                   </div>
                 </div>
 
-                {/* Medium Rectangle - 300×250 */}
-                <div className="space-y-4">
-                  <div className="flex items-center gap-3">
-                    <h4 className="text-xl font-semibold text-gray-900">Medium Rectangle Banner</h4>
-                    <Badge className="text-xs bg-purple-100 text-purple-800">300×250</Badge>
-                  </div>
-                  
-                  <div className="bg-white border overflow-hidden shadow-sm">
-                    <div className="flex">
-                      {/* Main Content */}
-                      <div className="flex-1 p-4">
-                        <h3 className="text-lg font-semibold mb-3">Article Title Here</h3>
-                        <div className="space-y-3 text-sm text-gray-600">
-                          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.</p>
-                          <div className="w-full h-32 bg-gray-200 rounded"></div>
-                          <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.</p>
-                        </div>
-                      </div>
-                      
-                      {/* Sidebar with Banner */}
-                      <div className="w-80 p-4 bg-gray-50 border-l">
-                        <div className="space-y-4">
-                          <h4 className="font-semibold text-sm">Advertisement</h4>
-                          
-                          <div className="relative">
-                            <div className="absolute -inset-2 bg-blue-500/20 border-2 border-blue-500 border-dashed rounded"></div>
-                            
-                            <div 
-                              className="relative bg-gradient-to-br from-gray-200 to-gray-300"
-                              style={{ width: '300px', height: '250px' }}
-                            >
-                              <div className="h-full flex items-center justify-center relative">
-                                {(generatedImages[0]?.url || uploadedImage) && (
-                                  <img 
-                                    src={generatedImages[0]?.url || uploadedImage} 
-                                    alt="Premium headphones" 
-                                    className="w-28 h-28 object-contain absolute top-8" 
-                                  />
-                                )}
-                                
-                                <div className="absolute bottom-0 left-0 right-0 h-16 bg-gray-100 flex flex-col justify-center px-4 text-center">
-                                  <h3 className="text-sm font-bold text-black uppercase">
-                                    {activeCampaignResults.banner_ads?.[0]?.headline || 'PREMIUM SOUND'}
-                                  </h3>
-                                  <button className="bg-black text-white font-semibold px-4 py-1 rounded-full text-xs mt-1">
-                                    {activeCampaignResults.banner_ads?.[0]?.cta || 'Shop Now'}
-                                  </button>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <p className="text-xs text-blue-600 font-medium">↑ Sidebar placement</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Wide Skyscraper - 160×600 */}
-                <div className="space-y-4">
-                  <div className="flex items-center gap-3">
-                    <h4 className="text-xl font-semibold text-gray-900">Wide Skyscraper Banner</h4>
-                    <Badge variant="secondary" className="text-xs">160×600</Badge>
-                  </div>
-                  
-                  <div className="bg-white border overflow-hidden shadow-sm">
-                    <div className="flex">
-                      {/* Left Sidebar with Banner */}
-                      <div className="w-48 p-4 bg-gray-50 border-r">
-                        <div className="space-y-4">
-                          <h4 className="font-semibold text-sm">Advertisement</h4>
-                          
-                          <div className="relative">
-                            <div className="absolute -inset-2 bg-blue-500/20 border-2 border-blue-500 border-dashed rounded"></div>
-                            
-                            <div 
-                              className="relative bg-gradient-to-b from-slate-200 to-gray-100"
-                              style={{ width: '160px', height: '400px' }}
-                            >
-                              {/* Top product area */}
-                              <div className="h-32 flex items-center justify-center p-3">
-                                {(generatedImages[0]?.url || uploadedImage) && (
-                                  <img 
-                                    src={generatedImages[0]?.url || uploadedImage} 
-                                    alt="Premium headphones" 
-                                    className="w-16 h-16 object-contain" 
-                                  />
-                                )}
-                              </div>
-                              
-                              {/* Middle content */}
-                              <div className="px-3 py-4 text-center">
-                                <h3 className="text-xs font-bold text-black uppercase mb-2">
-                                  {activeCampaignResults.banner_ads?.[0]?.headline || 'PREMIUM SOUND'}
-                                </h3>
-                                <p className="text-xs text-gray-700 uppercase mb-3">MINIMALIST DESIGN</p>
-                                <div className="space-y-1 text-xs">
-                                  <div>✓ Superior Quality</div>
-                                  <div>✓ Wireless Freedom</div>
-                                </div>
-                              </div>
-                              
-                              {/* Bottom CTA */}
-                              <div className="absolute bottom-4 left-3 right-3">
-                                <button className="w-full bg-black text-white font-semibold py-2 rounded-full text-xs">
-                                  {activeCampaignResults.banner_ads?.[0]?.cta || 'Shop Now'}
-                                </button>
-                              </div>
-                            </div>
-                          </div>
-                          <p className="text-xs text-blue-600 font-medium">↑ Left sidebar placement</p>
-                        </div>
-                      </div>
-                      
-                      {/* Main Content */}
-                      <div className="flex-1 p-4">
-                        <h3 className="text-lg font-semibold mb-3">Main Article Content</h3>
-                        <div className="space-y-3 text-sm text-gray-600">
-                          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                          <div className="w-full h-32 bg-gray-200 rounded"></div>
-                          <p>Ut enim ad minim veniam, quis nostrud exercitation.</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Billboard - 970×250 */}
-                <div className="space-y-4">
-                  <div className="flex items-center gap-3">
-                    <h4 className="text-xl font-semibold text-gray-900">Billboard Banner</h4>
-                    <Badge className="text-xs bg-blue-100 text-blue-800">970×250</Badge>
-                  </div>
-                  
-                  <div className="bg-white border overflow-hidden shadow-sm">
-                    {/* Website Header */}
-                    <div className="bg-gray-100 px-4 py-2 border-b">
-                      <div className="flex items-center justify-between">
-                        <div className="text-sm font-semibold text-gray-700">TechBlog.com</div>
-                        <div className="flex gap-6 text-sm text-gray-600">
-                          <span>Reviews</span>
-                          <span>News</span>
-                          <span>Guides</span>
-                        </div>
-                      </div>
-                    </div>
-                    
-                    {/* Highlighted Banner Area */}
-                    <div className="p-4 bg-gray-50">
-                      <div className="relative">
-                        <div className="absolute -inset-2 bg-blue-500/20 border-2 border-blue-500 border-dashed rounded"></div>
-                        
-                        <div 
-                          className="relative bg-gradient-to-r from-slate-200 via-gray-100 to-slate-200"
-                          style={{ width: '970px', height: '250px', maxWidth: '100%' }}
-                        >
-                          {/* Left content area */}
-                          <div className="absolute left-8 top-1/2 -translate-y-1/2">
-                            <div className="space-y-3">
-                              <h2 className="text-3xl font-bold text-black uppercase">
-                                {activeCampaignResults.banner_ads?.[0]?.headline || 'PREMIUM SOUND'}
-                              </h2>
-                              <p className="text-lg font-semibold text-gray-800">WIRELESS FREEDOM</p>
-                              <button className="bg-black text-white font-bold px-8 py-3 rounded-full text-lg">
-                                {activeCampaignResults.banner_ads?.[0]?.cta || 'Shop Now'}
-                              </button>
-                            </div>
-                          </div>
-                          
-                          {/* Right product area */}
-                          <div className="absolute right-8 top-1/2 -translate-y-1/2">
-                            {(generatedImages[0]?.url || uploadedImage) && (
-                              <img 
-                                src={generatedImages[0]?.url || uploadedImage} 
-                                alt="Premium headphones" 
-                                className="w-40 h-40 object-contain" 
-                              />
-                            )}
-                          </div>
-                        </div>
-                      </div>
-                      <p className="text-xs text-blue-600 mt-2 font-medium">↑ Above the fold placement</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        );
-                              <div>✓ Superior Quality</div>
-                              <div>✓ Wireless Freedom</div>
-                            </div>
-                          </div>
-                          
-                          {/* Bottom CTA */}
-                          <div className="absolute bottom-4 left-3 right-3">
-                            <button className="w-full bg-black text-white font-semibold py-2 rounded-full text-xs">
-                              {activeCampaignResults.banner_ads?.[0]?.cta || 'Shop Now'}
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                      <p className="text-xs text-blue-600 font-medium">↑ Left sidebar placement</p>
-                    </div>
-                  </div>
-                  
-                  {/* Main Content */}
-                  <div className="flex-1 p-4">
-                    <h3 className="text-lg font-semibold mb-3">Main Article Content</h3>
-                    <div className="space-y-3 text-sm text-gray-600">
-                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                      <div className="w-full h-32 bg-gray-200 rounded"></div>
-                      <p>Ut enim ad minim veniam, quis nostrud exercitation.</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Billboard - 970×250 */}
-            <div className="space-y-4">
-              <div className="flex items-center gap-3">
-                <h4 className="text-xl font-semibold text-gray-900">Billboard Banner</h4>
-                <Badge className="text-xs bg-blue-100 text-blue-800">970×250</Badge>
-              </div>
-              
-              <div className="bg-white border overflow-hidden shadow-sm">
-                {/* Website Header */}
-                <div className="bg-gray-100 px-4 py-2 border-b">
-                  <div className="flex items-center justify-between">
-                    <div className="text-sm font-semibold text-gray-700">TechBlog.com</div>
-                    <div className="flex gap-6 text-sm text-gray-600">
-                      <span>Reviews</span>
-                      <span>News</span>
-                      <span>Guides</span>
-                    </div>
-                  </div>
-                </div>
-                
-                {/* Highlighted Banner Area */}
-                <div className="p-4 bg-gray-50">
-                  <div className="relative">
-                    <div className="absolute -inset-2 bg-blue-500/20 border-2 border-blue-500 border-dashed rounded"></div>
-                    
-                    <div 
-                      className="relative bg-gradient-to-r from-slate-200 via-gray-100 to-slate-200"
-                      style={{ width: '970px', height: '250px', maxWidth: '100%' }}
-                    >
-                      {/* Left content area */}
-                      <div className="absolute left-8 top-1/2 -translate-y-1/2">
-                        <div className="space-y-3">
-                          <h2 className="text-3xl font-bold text-black uppercase">
-                            {activeCampaignResults.banner_ads?.[0]?.headline || 'PREMIUM SOUND'}
-                          </h2>
-                          <p className="text-lg font-semibold text-gray-800">WIRELESS FREEDOM</p>
-                          <button className="bg-black text-white font-bold px-8 py-3 rounded-full text-lg">
-                            {activeCampaignResults.banner_ads?.[0]?.cta || 'Shop Now'}
-                          </button>
-                        </div>
-                      </div>
-                      
-                      {/* Right product area */}
-                      <div className="absolute right-8 top-1/2 -translate-y-1/2">
-                        {(generatedImages[0]?.url || uploadedImage) && (
-                          <img 
-                            src={generatedImages[0]?.url || uploadedImage} 
-                            alt="Premium headphones" 
-                            className="w-40 h-40 object-contain" 
-                          />
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                  <p className="text-xs text-blue-600 mt-2 font-medium">↑ Above the fold placement</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        );
-        return (
-          <div className="space-y-0 overflow-x-hidden">
-            {/* Single Column Layout - All Banners Stacked Vertically */}
-            <div className="space-y-8 max-w-full">
-              
-              {/* Medium Rectangle */}
-              <div className="space-y-3">
-                <div className="flex items-center gap-3">
-                  <h4 className="text-lg font-semibold">Medium Rectangle</h4>
-                  <Badge className="text-xs bg-green-100 text-green-800">Most Popular</Badge>
-                </div>
-                <div className="flex gap-4">
-                  <div className="overflow-hidden bg-white shadow-lg" style={{ width: '240px', height: '200px' }}>
-                    <div 
-                      className="relative h-full flex flex-col"
-                      style={{
-                        backgroundImage: `url(${generatedImages[0]?.url || uploadedImage})`,
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center',
-                        backgroundRepeat: 'no-repeat'
-                      }}
-                    >
-                      {/* Background overlay for better text contrast */}
-                      <div className="absolute inset-0 bg-black/20"></div>
-                      
-                      {/* Spacer to push content to bottom */}
-                      <div className="flex-1"></div>
-                      
-                      {/* Bottom text area - 1/4 of total height */}
-                      <div className="relative z-10 h-12 bg-gradient-to-t from-black/80 to-black/40 p-3 flex flex-col justify-center">
-                        <div className="text-xs font-bold text-white uppercase tracking-wide">
-                          {activeCampaignResults.banner_ads?.[0]?.headline || 'PREMIUM QUALITY'}
-                        </div>
-                        <div className="text-[9px] text-white/90 font-medium uppercase tracking-wider">
-                          MINIMALIST DESIGN
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex-1 text-xs">
-                    <div className="bg-muted/20 p-3 rounded-lg h-full">
-                      <h6 className="font-semibold mb-2">Layout Notes:</h6>
-                      <ul className="space-y-1 text-muted-foreground text-[11px]">
-                        <li>• Clean minimalist design</li>
-                        <li>• Bold typography hierarchy</li>
-                        <li>• Product showcase area</li>
-                        <li>• Premium color scheme</li>
-                      </ul>
-                    </div>
+                {/* Right Banner */}
+                <div 
+                  className="relative aspect-[4/3] rounded-lg overflow-hidden bg-cover bg-center"
+                  style={{
+                    backgroundImage: (generatedImages[1]?.url || uploadedImage) 
+                      ? `url(${generatedImages[1]?.url || uploadedImage})` 
+                      : 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)'
+                  }}
+                >
+                  <div className="absolute inset-0 bg-black/30"></div>
+                  <div className="absolute bottom-4 left-4 text-white">
+                    <h3 className="text-lg font-bold uppercase tracking-wide">
+                      {activeCampaignResults.banner_ads?.[1]?.headline || 'PREMIUM SOUND'}
+                    </h3>
+                    <p className="text-sm opacity-90 uppercase tracking-wider mb-2">
+                      MINIMALIST DESIGN
+                    </p>
+                    <p className="text-xs opacity-75 mb-2">
+                      WIRELESS BLUETOOTH CONNECTION<br />
+                      WITH BASS RESONANCE
+                    </p>
+                    <Button size="sm" className="bg-black text-white hover:bg-gray-900 text-xs font-semibold px-4">
+                      {activeCampaignResults.banner_ads?.[1]?.cta || 'Shop Now'}
+                    </Button>
                   </div>
                 </div>
               </div>
 
-              {/* Leaderboard */}
-              <div className="space-y-3">
-                <div className="flex items-center gap-3">
-                  <h4 className="text-lg font-semibold">Leaderboard</h4>
-                  <Badge variant="secondary" className="text-xs">Header/Footer</Badge>
+              {/* Bottom Banner */}
+              <div className="flex items-center gap-4 p-4 bg-gray-50 rounded-lg">
+                {(generatedImages[2]?.url || uploadedImage) && (
+                  <img 
+                    src={generatedImages[2]?.url || uploadedImage} 
+                    alt="Product" 
+                    className="w-16 h-16 object-contain rounded-lg bg-white p-2" 
+                  />
+                )}
+                <div className="flex-1">
+                  <h3 className="text-lg font-bold text-gray-900 uppercase tracking-wide">
+                    {activeCampaignResults.banner_ads?.[2]?.headline || 'PREMIUM SOUND'}
+                  </h3>
+                  <p className="text-sm text-gray-600 uppercase tracking-wider">
+                    MINIMALIST DESIGN
+                  </p>
+                  <p className="text-xs text-gray-500 mt-1">
+                    WIRELESS BLUETOOTH CONNECTION WITH BASS RESONANCE
+                  </p>
                 </div>
-                <div className="space-y-2">
-                  <div className="overflow-hidden bg-white shadow-lg" style={{ width: '100%', height: '70px', maxWidth: '580px' }}>
-                    <div className="relative h-full flex items-center bg-gradient-to-r from-slate-50 to-white">
-                      {/* Left Product Image */}
-                      {(generatedImages[1]?.url || uploadedImage) && (
-                        <div className="w-16 h-full bg-slate-100 flex items-center justify-center p-2">
-                          <img 
-                            src={generatedImages[1]?.url || uploadedImage} 
-                            alt="Product" 
-                            className="w-full h-auto max-h-10 object-contain drop-shadow-sm" 
-                          />
-                        </div>
-                      )}
-                      {/* Content Area */}
-                      <div className="flex-1 px-4 flex items-center justify-between">
-                        <div className="space-y-1">
-                          <h5 className="text-sm font-bold text-slate-900 uppercase tracking-wide">
-                            {activeCampaignResults.banner_ads?.[0]?.headline || 'PREMIUM QUALITY'}
-                          </h5>
-                          <p className="text-[10px] text-slate-600 font-medium uppercase tracking-wider">
-                            MINIMALIST DESIGN
-                          </p>
-                        </div>
-                        <Button size="sm" className="text-xs font-semibold px-4 py-1 bg-slate-900 hover:bg-slate-800 text-white">
-                          {activeCampaignResults.banner_ads?.[0]?.cta || 'Shop Now'}
-                        </Button>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="bg-muted/20 p-2 rounded-lg text-[11px] text-muted-foreground">
-                    Horizontal layout with prominent product image and clean typography.
-                  </div>
-                </div>
-              </div>
-
-              {/* Billboard */}
-              <div className="space-y-3">
-                <div className="flex items-center gap-3">
-                  <h4 className="text-lg font-semibold">Billboard</h4>
-                  <Badge className="text-xs bg-purple-100 text-purple-800">Premium</Badge>
-                </div>
-                <div className="space-y-2">
-                  <div className="overflow-hidden bg-white shadow-lg" style={{ width: '100%', height: '100px', maxWidth: '580px' }}>
-                    <div className="relative h-full flex items-center bg-gradient-to-r from-slate-50 via-white to-slate-50">
-                      {/* Left Content */}
-                      <div className="flex-1 p-4 space-y-2">
-                        <div className="text-lg font-bold text-slate-900 uppercase tracking-wide">
-                          {activeCampaignResults.banner_ads?.[0]?.headline || 'PREMIUM QUALITY'}
-                        </div>
-                        <div className="text-xs text-slate-600 font-medium uppercase tracking-wider">
-                          MINIMALIST DESIGN
-                        </div>
-                        <p className="text-[10px] text-slate-500 leading-relaxed">
-                          {activeCampaignResults.banner_ads?.[0]?.description?.substring(0, 50) || 'Experience the perfect blend of form and function'}
-                        </p>
-                      </div>
-                      {/* Right Area */}
-                      <div className="flex items-center gap-3 pr-4">
-                        {(generatedImages[0]?.url || uploadedImage) && (
-                          <div className="w-16 h-16 bg-slate-100 rounded-lg flex items-center justify-center p-2">
-                            <img 
-                              src={generatedImages[0]?.url || uploadedImage} 
-                              alt="Product" 
-                              className="w-full h-auto object-contain drop-shadow-sm" 
-                            />
-                          </div>
-                        )}
-                        <Button size="sm" className="text-xs font-semibold px-4 py-2 bg-slate-900 hover:bg-slate-800 text-white">
-                          {activeCampaignResults.banner_ads?.[0]?.cta || 'Shop Now'}
-                        </Button>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="bg-muted/20 p-2 rounded-lg text-[11px] text-muted-foreground">
-                    Wide premium format with clean product integration and strong CTA.
-                  </div>
-                </div>
-              </div>
-
-              {/* Wide Skyscraper */}
-              <div className="space-y-3">
-                <div className="flex items-center gap-3">
-                  <h4 className="text-lg font-semibold">Wide Skyscraper</h4>
-                  <Badge variant="secondary" className="text-xs">Sidebar</Badge>
-                </div>
-                <div className="flex gap-4">
-                  <div className="overflow-hidden bg-white shadow-lg" style={{ width: '160px', height: '280px' }}>
-                    <div className="relative h-full flex flex-col bg-gradient-to-b from-slate-50 to-white">
-                      {/* Top Product Image */}
-                      {(generatedImages[2]?.url || uploadedImage) && (
-                        <div className="h-24 bg-slate-100 flex items-center justify-center p-3">
-                          <img 
-                            src={generatedImages[2]?.url || uploadedImage} 
-                            alt="Product" 
-                            className="w-full h-auto max-h-16 object-contain drop-shadow-sm" 
-                          />
-                        </div>
-                      )}
-                      {/* Content Area */}
-                      <div className="flex-1 p-3 flex flex-col justify-between text-center">
-                        <div className="space-y-2">
-                          <h5 className="text-xs font-bold text-slate-900 uppercase tracking-wide leading-tight">
-                            {activeCampaignResults.banner_ads?.[0]?.headline || 'PREMIUM QUALITY'}
-                          </h5>
-                          <div className="text-[9px] text-slate-600 font-medium uppercase tracking-wider">
-                            MINIMALIST DESIGN
-                          </div>
-                          <p className="text-[9px] text-slate-500 leading-relaxed">
-                            {activeCampaignResults.banner_ads?.[0]?.description?.substring(0, 40) || 'Experience premium craftsmanship'}
-                          </p>
-                          
-                          {/* Feature Points */}
-                          <div className="space-y-1 py-2">
-                            <div className="flex items-center justify-center gap-1 text-[8px]">
-                              <div className="w-1 h-1 bg-slate-600 rounded-full"></div>
-                              <span className="text-slate-600 uppercase tracking-wide">Superior Quality</span>
-                            </div>
-                            <div className="flex items-center justify-center gap-1 text-[8px]">
-                              <div className="w-1 h-1 bg-slate-600 rounded-full"></div>
-                              <span className="text-slate-600 uppercase tracking-wide">Fast Delivery</span>
-                            </div>
-                          </div>
-                        </div>
-                        
-                        <div className="space-y-2">
-                          <div className="w-full h-px bg-slate-200"></div>
-                          <Button size="sm" className="w-full text-[10px] font-semibold py-1 bg-slate-900 hover:bg-slate-800 text-white">
-                            {activeCampaignResults.banner_ads?.[0]?.cta || 'Shop Now'}
-                          </Button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex-1 text-xs">
-                    <div className="bg-muted/20 p-3 rounded-lg h-full">
-                      <h6 className="font-semibold mb-2">Layout Notes:</h6>
-                      <ul className="space-y-1 text-muted-foreground text-[11px]">
-                        <li>• Vertical product showcase</li>
-                        <li>• Clean typography stack</li>
-                        <li>• Feature highlights</li>
-                        <li>• Minimalist aesthetic</li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Half Page */}
-              <div className="space-y-3">
-                <div className="flex items-center gap-3">
-                  <h4 className="text-lg font-semibold">Half Page</h4>
-                  <Badge className="text-xs bg-blue-100 text-blue-800">High Impact</Badge>
-                </div>
-                <div className="flex gap-4">
-                  <div className="overflow-hidden bg-white shadow-lg" style={{ width: '240px', height: '280px' }}>
-                    <div className="relative h-full flex flex-col bg-gradient-to-b from-slate-50 to-white">
-                      {/* Hero Product Area */}
-                      <div className="relative h-24 bg-slate-100 flex items-center justify-center p-4">
-                        {(generatedImages[3]?.url || uploadedImage) && (
-                          <img 
-                            src={generatedImages[3]?.url || uploadedImage} 
-                            alt="Product" 
-                            className="w-full h-auto max-h-16 object-contain drop-shadow-sm" 
-                          />
-                        )}
-                      </div>
-                      
-                      {/* Content Section */}
-                      <div className="flex-1 p-4 flex flex-col justify-between">
-                        <div className="space-y-2">
-                          <div className="text-center space-y-1">
-                            <h5 className="text-sm font-bold text-slate-900 uppercase tracking-wide leading-tight">
-                              {activeCampaignResults.banner_ads?.[0]?.headline || 'PREMIUM QUALITY'}
-                            </h5>
-                            <div className="text-[10px] text-slate-600 font-medium uppercase tracking-wider">
-                              MINIMALIST DESIGN
-                            </div>
-                            <p className="text-[9px] text-slate-500 leading-relaxed">
-                              {activeCampaignResults.banner_ads?.[0]?.description?.substring(0, 45) || 'Experience the perfect blend of form and function'}
-                            </p>
-                          </div>
-                          
-                          {/* Feature Grid */}
-                          <div className="grid grid-cols-2 gap-2 py-2">
-                            <div className="text-center p-2 bg-slate-50 rounded-lg text-[8px]">
-                              <div className="w-3 h-3 bg-slate-300 rounded-full mx-auto mb-1"></div>
-                              <span className="text-slate-700 uppercase tracking-wide font-medium">Quality</span>
-                            </div>
-                            <div className="text-center p-2 bg-slate-50 rounded-lg text-[8px]">
-                              <div className="w-3 h-3 bg-slate-300 rounded-full mx-auto mb-1"></div>
-                              <span className="text-slate-700 uppercase tracking-wide font-medium">Design</span>
-                            </div>
-                          </div>
-                        </div>
-                        
-                        <div className="space-y-2 text-center">
-                          <div className="w-full h-px bg-slate-200"></div>
-                          <Button size="sm" className="w-full text-[10px] font-semibold py-2 bg-slate-900 hover:bg-slate-800 text-white">
-                            {activeCampaignResults.banner_ads?.[0]?.cta || 'Shop Now'}
-                          </Button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex-1 text-xs">
-                    <div className="bg-muted/20 p-3 rounded-lg h-full">
-                      <h6 className="font-semibold mb-2">Layout Notes:</h6>
-                      <ul className="space-y-1 text-muted-foreground text-[11px]">
-                        <li>• Hero product showcase</li>
-                        <li>• Structured content hierarchy</li>
-                        <li>• Feature highlight grid</li>
-                        <li>• Premium brand aesthetic</li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        );
-
-      case 'Web Creative':
-        return (
-          <div className="space-y-0">
-            {/* Web Creative Preview - Minimalist Hero Layout */}
-            <div className="overflow-hidden bg-white shadow-2xl rounded-lg">
-              <div className="py-20 px-8 lg:px-16">
-                <div className="max-w-7xl mx-auto">
-                  <div className="grid lg:grid-cols-2 gap-16 items-center">
-                    <div className="space-y-8">
-                      <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium bg-blue-50 text-blue-600 border border-blue-200">
-                        <Star className="w-4 h-4" />
-                        New Launch
-                      </div>
-                      <h1 className="text-4xl lg:text-6xl font-bold text-gray-900 leading-tight">
-                        {activeCampaignResults.landing_page_concept?.hero_text || 
-                         activeCampaignResults.banner_ads?.[0]?.headline || 
-                         'The Adidas Samba: Timeless Style. Modern Comfort.'}
-                      </h1>
-                      <p className="text-xl text-gray-600 leading-relaxed">
-                        {activeCampaignResults.landing_page_concept?.sub_text || 
-                         activeCampaignResults.banner_ads?.[0]?.description || 
-                         'Step into a classic. Reimagined for today.'}
-                      </p>
-                      <div className="flex flex-wrap gap-4">
-                        <Button 
-                          size="lg" 
-                          className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg text-lg font-medium"
-                        >
-                          {activeCampaignResults.landing_page_concept?.cta || 
-                           activeCampaignResults.banner_ads?.[0]?.cta || 
-                           'Shop Now'}
-                        </Button>
-                        <Button 
-                          variant="ghost" 
-                          size="lg" 
-                          className="text-gray-700 hover:text-gray-900 px-8 py-4 text-lg font-medium"
-                        >
-                          Learn More
-                        </Button>
-                      </div>
-                    </div>
-                    <div className="relative">
-                      {(imageMapping?.image_0 || uploadedImage) && (
-                        <div className="relative overflow-hidden rounded-2xl shadow-2xl">
-                          <img 
-                            src={imageMapping?.image_0 || uploadedImage} 
-                            alt="Product showcase"
-                            className="w-full h-96 lg:h-[500px] object-cover"
-                          />
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                </div>
+                <Button className="bg-black text-white hover:bg-gray-900 text-sm font-semibold px-6 py-2 rounded-full">
+                  {activeCampaignResults.banner_ads?.[2]?.cta || 'Shop Now'}
+                </Button>
               </div>
             </div>
           </div>
