@@ -184,7 +184,7 @@ const PreviewResultsScreen: React.FC = () => {
           <div className="space-y-0">
             {/* Banner Ads Preview - Match consistent card layout */}
             <div className="overflow-hidden bg-white shadow-2xl rounded-lg">
-              <div className="p-8 space-y-8">
+              <div className="space-y-0">
                 
                 {/* Leaderboard Banner - 728×90 */}
                 <div className="space-y-4">
