@@ -76,7 +76,7 @@ const VideoScriptsPreview: React.FC = () => {
         <div className="max-w-6xl mx-auto space-y-8">
           
           {/* Video Examples Section */}
-          <div className="bg-card rounded-lg border overflow-hidden shadow-sm">
+          <div className="bg-card border shadow-sm">
             <div className="p-6">
               <div className="space-y-6">
                 <div>
@@ -84,7 +84,7 @@ const VideoScriptsPreview: React.FC = () => {
                   <p className="text-sm text-muted-foreground">Elevate your Music Experience</p>
                 </div>
                 
-                <div className="space-y-6 overflow-hidden">
+                <div className="space-y-6">
                     {/* Main Video Player */}
                     <div>
                       {generatedVideoUrl ? (
@@ -118,7 +118,7 @@ const VideoScriptsPreview: React.FC = () => {
                     </div>
 
                     {/* Platform Examples - Professional Social Media Mockups */}
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 overflow-hidden">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                       {/* TikTok */}
                       <div className="text-center">
                         <div className="flex items-center justify-center gap-2 mb-3">
@@ -418,7 +418,7 @@ const VideoScriptsPreview: React.FC = () => {
           </div>
 
           {/* Video Scripts Section */}
-          <div className="bg-card rounded-lg border overflow-hidden shadow-sm">
+          <div className="bg-card border shadow-sm">
             <div className="p-6">
               <div className="space-y-6">
                 <div>
@@ -426,7 +426,7 @@ const VideoScriptsPreview: React.FC = () => {
                   <p className="text-sm text-muted-foreground mb-6">Storyboard for your product</p>
                 </div>
                 
-                <div className="space-y-4 overflow-hidden">
+                <div className="space-y-4">
                   {videoScripts.map((script, index) => (
                     <div key={index} className="space-y-4">
                       <div className="flex items-center gap-2">
@@ -436,11 +436,11 @@ const VideoScriptsPreview: React.FC = () => {
                       </div>
                       
                       {/* Break script into scenes */}
-                      <div className="space-y-3 overflow-hidden">
+                      <div className="space-y-3">
                         {script.script.split('\n\n').map((scene, sceneIndex) => {
                           if (scene.trim()) {
                             return (
-                              <div key={sceneIndex} className="bg-primary/5 rounded-lg p-4 overflow-hidden">
+                              <div key={sceneIndex} className="bg-primary/5 p-4">
                                 <div className="bg-primary text-primary-foreground text-xs px-3 py-1 rounded-full inline-block mb-3">
                                   Scene {sceneIndex + 1}: {sceneIndex === 0 ? 'Opening Shot' : sceneIndex === 1 ? 'Product Highlight' : 'Call to Action'}
                                 </div>

@@ -96,7 +96,7 @@ const BannerAdsPreview: React.FC = () => {
               Leaderboard Banner <span className="text-gray-500 font-normal">(728×90)</span>
             </h2>
             
-            <div className="bg-gradient-to-r from-amber-200 to-orange-200 rounded-lg overflow-hidden relative shadow-lg" style={{ height: '180px', maxWidth: '100%' }}>
+            <div className="bg-gradient-to-r from-amber-200 to-orange-200 overflow-hidden relative shadow-lg" style={{ height: '180px', maxWidth: '100%' }}>
               <div className="flex items-center h-full">
                 {/* Left - Person Image */}
                 <div className="w-48 h-full relative overflow-hidden flex-shrink-0">
@@ -142,7 +142,7 @@ const BannerAdsPreview: React.FC = () => {
                 Half Page Banner <span className="text-gray-500 font-normal">(300×600)</span>
               </h2>
               
-              <div className="bg-gradient-to-b from-amber-200 to-orange-200 rounded-lg overflow-hidden relative shadow-lg w-full" style={{ height: '400px' }}>
+              <div className="bg-gradient-to-b from-amber-200 to-orange-200 overflow-hidden relative shadow-lg w-full" style={{ height: '400px' }}>
                 {/* Top - Person Image */}
                 <div className="h-80 relative overflow-hidden">
                   {(imageMapping?.image_0 || uploadedImage) && (
@@ -178,7 +178,7 @@ const BannerAdsPreview: React.FC = () => {
                 Medium Rectangle Banner <span className="text-gray-500 font-normal">(300×250)</span>
               </h2>
               
-              <div className="bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg overflow-hidden relative shadow-lg w-full" style={{ height: '400px' }}>
+              <div className="bg-gradient-to-br from-gray-100 to-gray-200 overflow-hidden relative shadow-lg w-full" style={{ height: '400px' }}>
                 {/* Top - Product Image */}
                 <div className="h-72 relative overflow-hidden flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-200">
                   {(imageMapping?.image_1 || imageMapping?.image_0 || uploadedImage) && (
