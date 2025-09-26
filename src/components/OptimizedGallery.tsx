@@ -356,7 +356,7 @@ const GalleryItemDisplay: React.FC<{
                 onClick={() => onDownload(item, campaignResults)}
                 className="gap-2"
               >
-                <Download className="w-4 h-4" />
+                <Download className="w-3 h-3" />
                 Download
               </Button>
             </div>
@@ -428,9 +428,9 @@ const CampaignContent: React.FC<{
               e.stopPropagation();
               onViewDetails('Banner Ads');
             }}
-            className="tap-target focus-ring rounded-full py-1 px-2 h-auto"
+            className="tap-target focus-ring rounded-full py-0.5 px-1.5 h-auto"
           >
-            <Download className="w-4 h-4 text-white" />
+            <Download className="w-3 h-3 text-white" />
           </Button>
         </div>
         <CardContent className="px-4 pb-4 pt-2">
@@ -559,7 +559,7 @@ const CampaignContent: React.FC<{
             }}
             className="tap-target focus-ring rounded-full py-1 px-2 h-auto"
           >
-            <Download className="w-4 h-4 text-white" />
+            <Download className="w-3 h-3 text-white" />
           </Button>
         </div>
         <CardContent className="p-4">
@@ -684,9 +684,9 @@ const CampaignContent: React.FC<{
               e.stopPropagation();
               onViewDetails('Video Scripts');
             }}
-            className="tap-target focus-ring rounded-full py-1 px-2 h-auto"
+            className="tap-target focus-ring rounded-full py-0.5 px-1.5 h-auto"
           >
-            <Download className="w-4 h-4 text-white" />
+            <Download className="w-3 h-3 text-white" />
           </Button>
         </div>
         <CardContent className="p-4">
@@ -794,9 +794,9 @@ const CampaignContent: React.FC<{
               e.stopPropagation();
               onViewDetails('Email Templates');
             }}
-            className="tap-target focus-ring rounded-full py-1 px-2 h-auto"
+            className="tap-target focus-ring rounded-full py-0.5 px-1.5 h-auto"
           >
-            <Download className="w-4 h-4 text-white" />
+            <Download className="w-3 h-3 text-white" />
           </Button>
         </div>
         <CardContent className="p-4">

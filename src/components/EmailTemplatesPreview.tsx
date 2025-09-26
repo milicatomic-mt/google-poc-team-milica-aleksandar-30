@@ -100,7 +100,7 @@ const EmailTemplatesPreview: React.FC = () => {
               </div>
             </div>
             <Button onClick={handleDownload} className="gap-2">
-              <Download className="w-4 h-4" />
+              <Download className="w-3 h-3" />
               Download
             </Button>
           </div>

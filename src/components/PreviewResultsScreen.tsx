@@ -1585,7 +1585,7 @@ const PreviewResultsScreen: React.FC = () => {
                   variant="default"
                   className="tap-target focus-ring bg-primary hover:bg-primary/90 text-white rounded-full px-6 py-2 flex items-center gap-2"
                 >
-                  <Download className="w-4 h-4" />
+                  <Download className="w-3 h-3" />
                   Download All
                 </Button>
               </div>
@@ -1639,9 +1639,9 @@ const PreviewResultsScreen: React.FC = () => {
                       e.stopPropagation();
                       handleOpenCategory('Banner Ads');
                     }}
-                    className="tap-target focus-ring rounded-full py-1 px-2 h-auto"
+                    className="tap-target focus-ring rounded-full py-0.5 px-1.5 h-auto"
                   >
-                    <Download className="w-4 h-4 text-white" />
+                    <Download className="w-3 h-3 text-white" />
                   </Button>
                 </div>
                 <CardContent className="p-4">
@@ -1766,9 +1766,9 @@ const PreviewResultsScreen: React.FC = () => {
                       e.stopPropagation();
                       handleOpenCategory('Web Creative');
                     }}
-                    className="tap-target focus-ring rounded-full py-1 px-2 h-auto"
+                    className="tap-target focus-ring rounded-full py-0.5 px-1.5 h-auto"
                   >
-                    <Download className="w-4 h-4 text-white" />
+                    <Download className="w-3 h-3 text-white" />
                   </Button>
                 </div>
                 <CardContent className="p-4">
@@ -1901,9 +1901,9 @@ const PreviewResultsScreen: React.FC = () => {
                       e.stopPropagation();
                       handleOpenCategory('Video Scripts');
                     }}
-                    className="tap-target focus-ring rounded-full py-1 px-2 h-auto"
+                    className="tap-target focus-ring rounded-full py-0.5 px-1.5 h-auto"
                   >
-                    <Download className="w-4 h-4 text-white" />
+                    <Download className="w-3 h-3 text-white" />
                   </Button>
                 </div>
                 <CardContent className="p-4">
@@ -2015,9 +2015,9 @@ const PreviewResultsScreen: React.FC = () => {
                       e.stopPropagation();
                       handleOpenCategory('Email Templates');
                     }}
-                    className="tap-target focus-ring rounded-full py-1 px-2 h-auto"
+                    className="tap-target focus-ring rounded-full py-0.5 px-1.5 h-auto"
                   >
-                    <Download className="w-4 h-4 text-white" />
+                    <Download className="w-3 h-3 text-white" />
                   </Button>
                 </div>
                 <CardContent className="p-4">
