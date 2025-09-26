@@ -187,7 +187,7 @@ const PreviewResultsScreen: React.FC = () => {
                 <Badge className="text-xs bg-green-100 text-green-800">728×90</Badge>
               </div>
               
-              <div className="bg-white border rounded-lg overflow-hidden shadow-sm max-w-full">
+              <div className="bg-white border overflow-hidden shadow-sm max-w-full">
                 {/* Website Header Mockup */}
                 <div className="bg-gray-100 px-4 py-2 border-b">
                   <div className="flex items-center justify-between">
@@ -255,7 +255,7 @@ const PreviewResultsScreen: React.FC = () => {
                 <Badge className="text-xs bg-purple-100 text-purple-800">300×250</Badge>
               </div>
               
-              <div className="bg-white border rounded-lg overflow-hidden shadow-sm">
+              <div className="bg-white border overflow-hidden shadow-sm">
                 <div className="flex">
                   {/* Main Content */}
                   <div className="flex-1 p-4">
@@ -313,7 +313,7 @@ const PreviewResultsScreen: React.FC = () => {
                 <Badge variant="secondary" className="text-xs">160×600</Badge>
               </div>
               
-              <div className="bg-white border rounded-lg overflow-hidden shadow-sm">
+              <div className="bg-white border overflow-hidden shadow-sm">
                 <div className="flex">
                   {/* Left Sidebar with Banner */}
                   <div className="w-48 p-4 bg-gray-50 border-r">
@@ -382,7 +382,7 @@ const PreviewResultsScreen: React.FC = () => {
                 <Badge className="text-xs bg-blue-100 text-blue-800">970×250</Badge>
               </div>
               
-              <div className="bg-white border rounded-lg overflow-hidden shadow-sm">
+              <div className="bg-white border overflow-hidden shadow-sm">
                 {/* Website Header */}
                 <div className="bg-gray-100 px-4 py-2 border-b">
                   <div className="flex items-center justify-between">
@@ -719,7 +719,7 @@ const PreviewResultsScreen: React.FC = () => {
         return (
           <div className="space-y-0">
             {/* Complete Landing Page Preview */}
-            <div className="rounded-lg overflow-hidden bg-background shadow-2xl max-h-[70vh]">
+            <div className="overflow-hidden bg-background shadow-2xl max-h-[70vh]">
               <div className="w-full">
                 
                 {/* Hero Section */}
@@ -1039,7 +1039,7 @@ const PreviewResultsScreen: React.FC = () => {
               
               {/* Left Side - Video Preview */}
               <div className="lg:col-span-2 space-y-4">
-                <div className="border border-gray-100 rounded-lg overflow-hidden bg-white">
+                <div className="border border-gray-100 overflow-hidden bg-white">
                   {/* Video Preview */}
                   <div className="bg-gray-50 relative">
                     <div className="relative aspect-[9/16]">
@@ -1074,7 +1074,7 @@ const PreviewResultsScreen: React.FC = () => {
                 </div>
 
                 {/* Platform Info - Simplified */}
-                <div className="bg-white border border-gray-100 rounded-lg p-4">
+                <div className="bg-white border border-gray-100 p-4">
                   <h4 className="text-sm font-medium text-gray-900 mb-3">Optimized For</h4>
                   <div className="space-y-2">
                     <div className="flex items-center gap-3 p-2 bg-gray-50 rounded-md">
@@ -1110,7 +1110,7 @@ const PreviewResultsScreen: React.FC = () => {
 
               {/* Center - Video Script Timeline */}
               <div className="lg:col-span-3">
-                <div className="bg-white border border-gray-100 rounded-lg p-6">
+                <div className="bg-white border border-gray-100 p-6">
                   <div className="mb-6">
                     <h4 className="text-lg font-medium text-gray-900 mb-1">Video Script</h4>
                     <p className="text-sm text-gray-500">Scene-by-scene breakdown</p>
@@ -1268,7 +1268,7 @@ const PreviewResultsScreen: React.FC = () => {
 
       case 'Email Templates':
         return (
-          <div className="rounded-lg overflow-hidden bg-background shadow-2xl max-w-3xl mx-auto">
+          <div className="overflow-hidden bg-background shadow-2xl max-w-3xl mx-auto">
             {/* Email Template Preview */}
             <div className="bg-white text-gray-900 font-sans" style={{ maxWidth: '640px', width: '100%', margin: '0 auto' }}>
               
@@ -1775,7 +1775,7 @@ const PreviewResultsScreen: React.FC = () => {
                   </Button>
                 </div>
                 <CardContent className="p-4">
-                  <div className="h-80 bg-gray-100 rounded-lg overflow-hidden border border-gray-300 shadow-sm">
+                  <div className="h-80 bg-gray-100 overflow-hidden border border-gray-300 shadow-sm">
                     {/* Browser-like Screenshot Mockup */}
                     <div className="h-full bg-white">
                       {/* Browser Header */}
@@ -2032,7 +2032,7 @@ const PreviewResultsScreen: React.FC = () => {
                 <CardContent className="p-4">
                   <div className="h-80 relative">
                     {/* Modern Email Client Interface */}
-                    <div className="bg-white backdrop-blur-sm rounded-lg overflow-hidden h-full border border-white/20 shadow-inner">
+                    <div className="bg-white backdrop-blur-sm overflow-hidden h-full border border-white/20 shadow-inner">
                       {/* Email Client Header */}
                       <div className="bg-gradient-to-r from-slate-50 to-gray-50 px-3 py-2 border-b border-gray-200">
                         <div className="flex items-center justify-between">

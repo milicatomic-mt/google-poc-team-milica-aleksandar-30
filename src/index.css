@@ -92,7 +92,7 @@ All colors MUST be HSL.
     /* Layout */
     --container-padding: 5rem;  /* 80px margins */
     --section-padding: 3rem;    /* 48px */
-    --card-padding: 1.5rem;     /* 24px */
+    --card-padding: 1rem;     /* 16px */
 
     --sidebar-background: 0 0% 98%;
 
