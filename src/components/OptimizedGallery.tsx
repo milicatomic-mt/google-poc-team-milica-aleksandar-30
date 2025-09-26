@@ -417,7 +417,7 @@ const CampaignContent: React.FC<{
           {/* Removed download button from banner ads section */}
         </div>
         <CardContent className="p-4">
-          <div className="h-80 bg-gray-100 overflow-hidden border border-gray-300 shadow-sm" style={{borderRadius: '1px'}}>
+          <div className="h-72 bg-gray-100 overflow-hidden border border-gray-300 shadow-sm" style={{borderRadius: '1px'}}>
             {/* Browser-like Screenshot Mockup */}
             <div className="h-full bg-white">
               {/* Browser Header */}
