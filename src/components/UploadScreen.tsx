@@ -475,7 +475,7 @@ const UploadScreen: React.FC<UploadScreenProps> = ({ mode }) => {
           <div className="absolute top-12 right-8">
             <Dialog>
               <DialogTrigger asChild>
-                <Button variant="secondary" className="tap-target focus-ring bg-white border-white/30 hover:bg-white/90 rounded-full h-8 px-3">
+                <Button variant="secondary" className="tap-target focus-ring bg-white border-white/30 hover:bg-white/90 rounded-full h-8 px-3 shadow-sm">
                   <X className="h-4 w-4 text-black" />
                 </Button>
               </DialogTrigger>
@@ -554,7 +554,7 @@ const UploadScreen: React.FC<UploadScreenProps> = ({ mode }) => {
                     />
                     <button
                       onClick={handleRemoveImage}
-                      className="absolute top-2 right-2 bg-white text-black rounded-full p-1.5 hover:bg-gray-100 transition-colors shadow-md z-10"
+                      className="absolute top-2 right-2 bg-white text-black rounded-full p-1.5 hover:bg-gray-100 transition-colors shadow-sm z-10"
                       title="Remove image"
                     >
                       <X className="w-4 h-4" />

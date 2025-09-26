@@ -135,7 +135,7 @@ const MobileUploadScreen: React.FC = () => {
             variant="ghost" 
             size="sm" 
             onClick={() => window.close()}
-            className="rounded-full"
+            className="rounded-full shadow-sm"
           >
             <X className="h-4 w-4" />
           </Button>

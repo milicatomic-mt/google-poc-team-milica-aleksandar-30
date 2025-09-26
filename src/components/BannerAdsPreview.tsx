@@ -75,7 +75,7 @@ const BannerAdsPreview: React.FC = () => {
         <Button
           variant="secondary"
           onClick={handleBack}
-          className="tap-target hover-lift focus-ring bg-white border-white/30 hover:bg-white/90 rounded-full p-3"
+          className="tap-target hover-lift focus-ring bg-white border-white/30 hover:bg-white/90 rounded-full p-3 shadow-sm"
           aria-label="Go back to previous step"
         >
           <ArrowLeft className="h-5 w-5 text-black" />

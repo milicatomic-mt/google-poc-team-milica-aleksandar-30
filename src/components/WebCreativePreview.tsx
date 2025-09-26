@@ -87,7 +87,7 @@ const WebCreativePreview: React.FC = () => {
               variant="ghost"
               size="sm"
               onClick={handleBack}
-              className="gap-2"
+              className="gap-2 shadow-sm"
             >
               <ArrowLeft className="w-4 h-4" />
               Back

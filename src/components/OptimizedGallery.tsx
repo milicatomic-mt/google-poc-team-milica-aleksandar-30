@@ -207,7 +207,7 @@ const OptimizedGallery = () => {
                 variant="ghost"
                 size="sm"
                 onClick={() => navigate('/')}
-                className="hover:bg-muted/80"
+                className="hover:bg-muted/80 shadow-sm"
               >
                 <ArrowLeft className="w-4 h-4 mr-2" />
                 Back to Home

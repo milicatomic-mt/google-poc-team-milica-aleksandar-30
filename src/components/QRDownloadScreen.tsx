@@ -180,7 +180,7 @@ const QRDownloadScreen = () => {
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center">
-              <Button onClick={handleBack} variant="ghost" size="sm" className="mr-2">
+              <Button onClick={handleBack} variant="ghost" size="sm" className="mr-2 shadow-sm">
                 <ArrowLeft className="w-4 h-4" />
               </Button>
               <div className="h-8 w-8 mr-3">

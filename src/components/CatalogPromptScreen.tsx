@@ -306,7 +306,7 @@ const CatalogPromptScreen = () => {
           <div className="absolute top-12 right-8">
             <Dialog>
               <DialogTrigger asChild>
-                <Button variant="secondary" className="tap-target focus-ring bg-white border-white/30 hover:bg-white/90 rounded-full h-8 px-3">
+                <Button variant="secondary" className="tap-target focus-ring bg-white border-white/30 hover:bg-white/90 rounded-full h-8 px-3 shadow-sm">
                   <X className="h-4 w-4 text-black" />
                 </Button>
               </DialogTrigger>
@@ -333,7 +333,7 @@ const CatalogPromptScreen = () => {
           <Button
             variant="secondary"
             onClick={handleBack}
-            className="tap-target hover-lift focus-ring bg-white border-white/30 hover:bg-white/90 rounded-full p-3"
+            className="tap-target hover-lift focus-ring bg-white border-white/30 hover:bg-white/90 rounded-full p-3 shadow-sm"
             aria-label="Go back to previous step"
           >
             <ArrowLeft className="h-5 w-5 text-black" />
