@@ -58,7 +58,8 @@ Deno.serve(async (req) => {
     }
     
     // Poll for completion (with timeout)
-    let videoUrl = null;
+    let videoUrl: string | null = null;
+    let filteredReasons: string[] | null = null;
     let attempts = 0;
     const maxAttempts = 30; // 5 minutes max
     
@@ -116,7 +117,10 @@ Deno.serve(async (req) => {
             videoUrl = videoUri;
           }
         } else {
-          throw new Error('No video URI in completed operation');
+          // No video returned, capture potential safety filter reasons instead of hard-failing
+          const reasons = statusData.response?.generateVideoResponse?.raiMediaFilteredReasons;
+          console.warn('Veo completed without video URI. Possible safety filter reasons:', reasons);
+          filteredReasons = Array.isArray(reasons) ? reasons : ['No video URI in completed operation'];
         }
         break;
       }
@@ -127,6 +131,17 @@ Deno.serve(async (req) => {
     }
     
     if (!videoUrl) {
+      if (filteredReasons) {
+        console.warn('Video generation filtered; returning info to client', filteredReasons);
+        return new Response(JSON.stringify({
+          success: false,
+          filtered: true,
+          reasons: filteredReasons,
+          message: 'Video request was filtered by the model (often due to audio content). Please modify your prompt and try again (e.g., remove music/audio or sensitive content).'
+        }), {
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        });
+      }
       throw new Error('Video generation timed out or failed');
     }
     
