@@ -197,7 +197,7 @@ const WelcomeScreen = () => {
           <div className="flex justify-center">
             <Button 
               size="lg" 
-              className={`tap-target focus-ring w-96 px-12 bg-indigo-600 hover:bg-indigo-700 text-white transition-opacity duration-300 rounded-full ${selectedOption ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+              className={`tap-target focus-ring w-96 px-12 bg-primary hover:bg-primary/90 text-primary-foreground transition-opacity duration-300 rounded-full ${selectedOption ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
               onClick={() => {
                 if (selectedOption === 'catalog') {
                   navigate('/upload/catalog');

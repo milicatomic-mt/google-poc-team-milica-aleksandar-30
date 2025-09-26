@@ -403,7 +403,7 @@ const CatalogPromptScreen = () => {
                     <Button
                       onClick={handleRegenerate}
                       disabled={isRegenerating}
-                      className="absolute bottom-3 right-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full w-8 h-8 p-0 flex items-center justify-center shadow-sm"
+                      className="absolute bottom-3 right-3 bg-primary hover:bg-primary/90 text-primary-foreground rounded-full w-8 h-8 p-0 flex items-center justify-center shadow-sm"
                     >
                       <RefreshCw className={`w-4 h-4 text-white ${isRegenerating ? 'animate-spin' : ''}`} />
                     </Button>
@@ -499,7 +499,7 @@ const CatalogPromptScreen = () => {
             <Button 
               size="lg"
               onClick={handleCreateCatalog}
-              className={`tap-target focus-ring w-96 px-12 bg-indigo-600 hover:bg-indigo-700 text-white transition-opacity duration-300 rounded-full ${prompt.trim() ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+              className={`tap-target focus-ring w-96 px-12 bg-primary hover:bg-primary/90 text-primary-foreground transition-opacity duration-300 rounded-full ${prompt.trim() ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
               aria-label="Create catalog enrichment"
             >
               Create Catalog Enrichment

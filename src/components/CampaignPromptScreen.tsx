@@ -309,7 +309,7 @@ const CampaignPromptScreen = () => {
                      <Button
                        onClick={handleRegenerate}
                        disabled={isRegenerating}
-                       className="absolute bottom-3 right-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full w-8 h-8 p-0 flex items-center justify-center shadow-sm"
+                       className="absolute bottom-3 right-3 bg-primary hover:bg-primary/90 text-primary-foreground rounded-full w-8 h-8 p-0 flex items-center justify-center shadow-sm"
                      >
                        <RefreshCw className={`w-4 h-4 text-white ${isRegenerating ? 'animate-spin' : ''}`} />
                      </Button>
@@ -334,7 +334,7 @@ const CampaignPromptScreen = () => {
                     onClick={() => toggleAudience(age)}
                     className={`px-2 py-3 rounded-full border-2 transition-all duration-300 tap-target font-medium backdrop-blur-md text-sm transform hover:scale-105 active:scale-95 ${
                       selectedAudiences.includes(age)
-                        ? 'bg-white border-indigo-600 text-indigo-600 scale-105 shadow-lg animate-scale-in'
+                         ? 'bg-white border-primary text-primary scale-105 shadow-lg animate-scale-in'
                         : 'bg-white/30 border-gray-200 text-black hover:border-gray-300 hover:shadow-sm hover:bg-white/40 scale-100'
                     }`}
                   >
@@ -351,7 +351,7 @@ const CampaignPromptScreen = () => {
                     onClick={() => toggleAudience(interest)}
                     className={`px-2 py-3 rounded-full border-2 transition-all duration-300 tap-target font-medium backdrop-blur-md text-sm transform hover:scale-105 active:scale-95 ${
                       selectedAudiences.includes(interest)
-                        ? 'bg-white border-indigo-600 text-indigo-600 scale-105 shadow-lg animate-scale-in'
+                         ? 'bg-white border-primary text-primary scale-105 shadow-lg animate-scale-in'
                         : 'bg-white/30 border-gray-200 text-black hover:border-gray-300 hover:shadow-sm hover:bg-white/40 scale-100'
                     }`}
                   >
@@ -368,7 +368,7 @@ const CampaignPromptScreen = () => {
                     onClick={() => toggleAudience(interest)}
                     className={`px-2 py-3 rounded-full border-2 transition-all duration-300 tap-target font-medium backdrop-blur-md text-sm transform hover:scale-105 active:scale-95 ${
                       selectedAudiences.includes(interest)
-                        ? 'bg-white border-indigo-600 text-indigo-600 scale-105 shadow-lg animate-scale-in'
+                        ? 'bg-white border-primary text-primary scale-105 shadow-lg animate-scale-in'
                         : 'bg-white/30 border-gray-200 text-black hover:border-gray-300 hover:shadow-sm hover:bg-white/40 scale-100'
                     }`}
                   >
@@ -386,7 +386,7 @@ const CampaignPromptScreen = () => {
             <Button 
               size="lg"
               onClick={handleCreateCampaign}
-              className={`tap-target focus-ring w-96 px-12 bg-indigo-600 hover:bg-indigo-700 text-white transition-opacity duration-300 rounded-full ${prompt.trim() ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+              className={`tap-target focus-ring w-96 px-12 bg-primary hover:bg-primary/90 text-primary-foreground transition-opacity duration-300 rounded-full ${prompt.trim() ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
               aria-label={editMode ? "Update campaign" : "Create campaign"}
             >
               {editMode ? 'Update Campaign' : 'Create Campaign'}

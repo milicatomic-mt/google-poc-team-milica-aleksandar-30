@@ -156,8 +156,8 @@ const ScreenSaver = () => {
           className="tap-target focus-ring group bg-white/20 border-white/30 hover:bg-white/30 rounded-full"
           onClick={e => e.stopPropagation()}
         >
-          <HelpCircle className="mr-2 w-5 h-5 text-indigo-600 group-hover:text-indigo-700 transition-colors" />
-          <span className="text-indigo-600 group-hover:text-indigo-700 transition-colors">
+          <HelpCircle className="mr-2 w-5 h-5 text-primary group-hover:text-primary/80 transition-colors" />
+          <span className="text-primary group-hover:text-primary/80 transition-colors">
             Help & Guide
           </span>
         </Button>
@@ -172,7 +172,7 @@ const ScreenSaver = () => {
             navigate('/gallery');
           }}
         >
-          <span className="text-indigo-600 group-hover:text-indigo-700 transition-colors">
+          <span className="text-primary group-hover:text-primary/80 transition-colors">
             Gallery
           </span>
         </Button>
@@ -193,7 +193,7 @@ const ScreenSaver = () => {
                 <RibbedSphere className="w-full h-full" />
               </div>
               <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold">
-                <span className="text-black">Bring Your Products to </span><span className="text-indigo-600">Life</span>
+                <span className="text-black">Bring Your Products to </span><span className="text-primary">Life</span>
               </h1>
             </div>
             <p className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl text-muted-foreground font-medium mx-auto min-h-[1.5rem] sm:min-h-[2rem] lg:min-h-[2.5rem] xl:min-h-[3rem] flex items-center justify-center px-4">
@@ -216,7 +216,7 @@ const ScreenSaver = () => {
           </div>
 
           {/* Get Started Button */}
-          <Button size="lg" className="tap-target focus-ring px-3 py-2 sm:px-4 sm:py-2 md:px-6 md:py-3 lg:px-8 lg:py-3 xl:px-10 xl:py-4 text-xs sm:text-xs md:text-sm lg:text-base xl:text-lg animate-button-breath rounded-full bg-indigo-600 text-white hover:bg-indigo-700" onClick={e => {
+          <Button size="lg" className="tap-target focus-ring px-3 py-2 sm:px-4 sm:py-2 md:px-6 md:py-3 lg:px-8 lg:py-3 xl:px-10 xl:py-4 text-xs sm:text-xs md:text-sm lg:text-base xl:text-lg animate-button-breath rounded-full bg-primary text-primary-foreground hover:bg-primary/90" onClick={e => {
           e.stopPropagation();
           handleClick();
         }}>

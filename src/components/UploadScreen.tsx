@@ -604,7 +604,7 @@ const UploadScreen: React.FC<UploadScreenProps> = ({ mode }) => {
                                 fgColor="#000000"
                                 bgColor="transparent"
                               />
-                              <div className="bg-indigo-600 text-white px-4 py-1.5 rounded-full text-sm font-semibold mt-2">
+                              <div className="bg-primary text-primary-foreground px-4 py-1.5 rounded-full text-sm font-semibold mt-2">
                                 SCAN ME
                               </div>
                             </div>
@@ -735,7 +735,7 @@ const UploadScreen: React.FC<UploadScreenProps> = ({ mode }) => {
             <Button 
               size="lg"
               onClick={handleContinue}
-              className={`tap-target focus-ring w-96 px-12 bg-indigo-600 hover:bg-indigo-700 text-white transition-opacity duration-300 rounded-full ${
+              className={`tap-target focus-ring w-96 px-12 bg-primary hover:bg-primary/90 text-primary-foreground transition-opacity duration-300 rounded-full ${
                 uploadedImage && validationResult?.isValid && !isAnalyzingImage
                   ? 'opacity-100' 
                   : 'opacity-0 pointer-events-none'

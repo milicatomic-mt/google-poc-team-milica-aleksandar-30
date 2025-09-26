@@ -334,7 +334,7 @@ const CatalogResultsScreen: React.FC = () => {
                 <RibbedSphere className="w-full h-full" />
               </div>
               <div className="text-sm text-foreground font-semibold">
-                Bring Your Products to <span className="text-indigo-600">Life</span>
+                Bring Your Products to <span className="text-primary">Life</span>
               </div>
             </div>
             
