@@ -1636,7 +1636,7 @@ const PreviewResultsScreen: React.FC = () => {
                       e.stopPropagation();
                       handleOpenCategory('Banner Ads');
                     }}
-                    className="tap-target focus-ring rounded-full py-1 px-2"
+                    className="tap-target focus-ring rounded-full py-1 px-2 h-auto"
                   >
                     <Download className="w-4 h-4 text-white" />
                   </Button>
@@ -1763,7 +1763,7 @@ const PreviewResultsScreen: React.FC = () => {
                       e.stopPropagation();
                       handleOpenCategory('Web Creative');
                     }}
-                    className="tap-target focus-ring rounded-full py-1 px-2"
+                    className="tap-target focus-ring rounded-full py-1 px-2 h-auto"
                   >
                     <Download className="w-4 h-4 text-white" />
                   </Button>
@@ -1898,7 +1898,7 @@ const PreviewResultsScreen: React.FC = () => {
                       e.stopPropagation();
                       handleOpenCategory('Video Scripts');
                     }}
-                    className="tap-target focus-ring rounded-full py-1 px-2"
+                    className="tap-target focus-ring rounded-full py-1 px-2 h-auto"
                   >
                     <Download className="w-4 h-4 text-white" />
                   </Button>
@@ -2012,7 +2012,7 @@ const PreviewResultsScreen: React.FC = () => {
                       e.stopPropagation();
                       handleOpenCategory('Email Templates');
                     }}
-                    className="tap-target focus-ring rounded-full py-1 px-2"
+                    className="tap-target focus-ring rounded-full py-1 px-2 h-auto"
                   >
                     <Download className="w-4 h-4 text-white" />
                   </Button>
