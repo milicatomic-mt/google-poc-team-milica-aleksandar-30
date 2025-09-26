@@ -182,7 +182,7 @@ const PreviewResultsScreen: React.FC = () => {
       case 'Banner Ads':
         return (
           <div className="overflow-hidden bg-white shadow-2xl rounded-lg">
-            <div className="p-2">
+            <div className="p-8">
               {/* Grid layout matching reference image */}
               <div className="grid grid-cols-2 gap-4 mb-4">
                 
@@ -812,7 +812,7 @@ const PreviewResultsScreen: React.FC = () => {
                     </div>
                     
                     {/* Bottom Row - Wide Horizontal Banner */}
-                    <div className="bg-gradient-to-r from-slate-200 to-gray-200 overflow-hidden relative h-20" style={{borderRadius: '1px'}}>
+                    <div className="bg-gradient-to-r from-slate-200 to-gray-200 overflow-hidden relative h-20" style={{borderRadius: '1px'}} mt-4>
                       <div className="flex items-center h-full">
                         {/* Left - Person Image */}
                         <div className="w-20 h-full relative overflow-hidden">
