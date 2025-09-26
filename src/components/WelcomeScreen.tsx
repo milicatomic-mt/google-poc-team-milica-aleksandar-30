@@ -131,7 +131,7 @@ const WelcomeScreen = () => {
         <main className="flex-1 flex items-center justify-center container-padding">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-6xl">
             {/* Campaign Creation Card */}
-            <div className={`card-elegant cursor-pointer group relative overflow-hidden transition-all duration-smooth border-2 backdrop-blur-md bg-white/20 border-white/30 ${selectedOption === 'campaign' ? 'shadow-elegant-lg border-white/50 bg-white/30' : 'hover:shadow-elegant-lg hover:border-white/50 hover:bg-white/30'}`} onClick={() => handleCardClick('campaign')}>
+            <div className={`card-elegant cursor-pointer group relative overflow-hidden transition-all duration-smooth border-2 backdrop-blur-xl bg-white/60 border-white/50 shadow-2xl ${selectedOption === 'campaign' ? 'shadow-elegant-lg' : 'hover:shadow-elegant-lg'}`} onClick={() => handleCardClick('campaign')}>
               {/* Hero Image */}
               <div className="relative h-64 mb-6 overflow-hidden rounded-lg">
                 <img src={campaignSample} alt="Campaign advertisement mockup" className="w-full h-full object-cover transition-transform duration-smooth group-hover:scale-105" />
@@ -160,7 +160,7 @@ const WelcomeScreen = () => {
             </div>
 
             {/* Catalog Enrichment Card */}
-            <div className={`card-elegant cursor-pointer group relative overflow-hidden transition-all duration-smooth border-2 backdrop-blur-md bg-white/20 border-white/30 ${selectedOption === 'catalog' ? 'shadow-elegant-lg border-white/50 bg-white/30' : 'hover:shadow-elegant-lg hover:border-white/50 hover:bg-white/30'}`} onClick={() => handleCardClick('catalog')}>
+            <div className={`card-elegant cursor-pointer group relative overflow-hidden transition-all duration-smooth border-2 backdrop-blur-xl bg-white/60 border-white/50 shadow-2xl ${selectedOption === 'catalog' ? 'shadow-elegant-lg' : 'hover:shadow-elegant-lg'}`} onClick={() => handleCardClick('catalog')}>
               {/* Hero Image */}
               <div className="relative h-64 mb-6 overflow-hidden rounded-lg">
                 <img src={catalogSample} alt="Catalog enrichment sample" className="w-full h-full object-cover transition-transform duration-smooth group-hover:scale-105" />

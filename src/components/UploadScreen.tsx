@@ -514,12 +514,12 @@ const UploadScreen: React.FC<UploadScreenProps> = ({ mode }) => {
             {/* Upload Zone */}
             <div
               className={`
-                card-elegant relative overflow-hidden transition-all duration-smooth border-2 p-8 text-center backdrop-blur-md bg-white/20 border-white/30
+                card-elegant relative overflow-hidden transition-all duration-smooth border-2 p-8 text-center backdrop-blur-xl bg-white/60 border-white/50 shadow-2xl
                 ${dragActive 
-                  ? 'border-white/60 shadow-elegant-lg scale-[1.02] bg-white/30' 
+                  ? 'shadow-elegant-lg scale-[1.02]' 
                   : uploadedImage 
-                    ? 'border-white/60 shadow-elegant-lg bg-white/30' 
-                    : 'hover:border-white/50 hover:shadow-elegant-lg hover:bg-white/30'
+                    ? 'shadow-elegant-lg' 
+                    : 'hover:shadow-elegant-lg'
                 }
               `}
               onDragEnter={handleDrag}
