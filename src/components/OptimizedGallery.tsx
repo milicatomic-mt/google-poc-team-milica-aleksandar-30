@@ -362,7 +362,7 @@ const CampaignContent: React.FC<{
       
       {/* Banner Ads Card - Exact copy from PreviewResultsScreen */}
       <Card 
-        className="card-elegant backdrop-blur-xl bg-white/5 border-white/50 border-2 shadow-2xl hover:shadow-elegant-lg transition-all duration-smooth cursor-pointer" 
+        className="card-elegant backdrop-blur-xl bg-white/60 border-white/50 border-2 shadow-2xl hover:shadow-elegant-lg transition-all duration-smooth cursor-pointer"
         onClick={() => onViewDetails('Banner Ads')}
       >
         <div className="px-4 py-2 flex items-center justify-between transition-all duration-smooth">
@@ -494,7 +494,7 @@ const CampaignContent: React.FC<{
 
       {/* Web Creative Card - Exact copy from PreviewResultsScreen */}
       <Card 
-        className="card-elegant backdrop-blur-xl bg-white/5 border-white/50 border-2 shadow-2xl hover:shadow-elegant-lg transition-all duration-smooth cursor-pointer"
+        className="card-elegant backdrop-blur-xl bg-white/60 border-white/50 border-2 shadow-2xl hover:shadow-elegant-lg transition-all duration-smooth cursor-pointer"
         onClick={() => onViewDetails('Web Creative')}
       >
         <div className="px-4 py-3 flex items-center justify-between transition-all duration-smooth">
@@ -739,7 +739,7 @@ const CampaignContent: React.FC<{
 
       {/* Email Templates Card - Exact copy from PreviewResultsScreen */}
       <Card 
-        className="card-elegant backdrop-blur-xl bg-white/5 border-white/50 border-2 shadow-2xl hover:shadow-elegant-lg transition-all duration-smooth cursor-pointer"
+        className="card-elegant backdrop-blur-xl bg-white/60 border-white/50 border-2 shadow-2xl hover:shadow-elegant-lg transition-all duration-smooth cursor-pointer"
         onClick={() => onViewDetails('Email Templates')}
       >
         <div className="px-4 py-3 flex items-center justify-between transition-all duration-smooth">

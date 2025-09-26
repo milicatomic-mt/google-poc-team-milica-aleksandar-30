@@ -1622,7 +1622,7 @@ const PreviewResultsScreen: React.FC = () => {
 
               {/* Banner Ads Card */}
               <Card 
-                className="card-elegant backdrop-blur-xl bg-white/5 border-white/50 border-2 shadow-2xl hover:shadow-elegant-lg transition-all duration-smooth cursor-pointer" 
+                className="card-elegant backdrop-blur-xl bg-white/60 border-white/50 border-2 shadow-2xl hover:shadow-elegant-lg transition-all duration-smooth cursor-pointer"
                 onClick={() => handleOpenCategory('Banner Ads')}
               >
                 <div className="px-4 py-2 flex items-center justify-between transition-all duration-smooth">
@@ -1752,7 +1752,7 @@ const PreviewResultsScreen: React.FC = () => {
 
               {/* Web Creative Card */}
               <Card 
-                className="card-elegant backdrop-blur-xl bg-white/5 border-white/50 border-2 shadow-2xl hover:shadow-elegant-lg transition-all duration-smooth cursor-pointer"
+                className="card-elegant backdrop-blur-xl bg-white/60 border-white/50 border-2 shadow-2xl hover:shadow-elegant-lg transition-all duration-smooth cursor-pointer"
                 onClick={() => handleOpenCategory('Web Creative')}
               >
                 <div className="px-4 py-3 flex items-center justify-between transition-all duration-smooth">
@@ -1890,7 +1890,7 @@ const PreviewResultsScreen: React.FC = () => {
 
               {/* Video Scripts Card */}
               <Card 
-                className="card-elegant overflow-hidden backdrop-blur-xl bg-white/5 border-white/50 border-2 shadow-2xl hover:shadow-elegant-lg transition-all duration-smooth cursor-pointer"
+                className="card-elegant overflow-hidden backdrop-blur-xl bg-white/60 border-white/50 border-2 shadow-2xl hover:shadow-elegant-lg transition-all duration-smooth cursor-pointer"
                 onClick={() => handleOpenCategory('Video Scripts')}
               >
                 <div className="px-4 py-3 flex items-center justify-between transition-all duration-smooth">
@@ -2007,7 +2007,7 @@ const PreviewResultsScreen: React.FC = () => {
 
               {/* Email Templates Card */}
               <Card 
-                className="card-elegant backdrop-blur-xl bg-white/5 border-white/50 border-2 shadow-2xl hover:shadow-elegant-lg transition-all duration-smooth cursor-pointer"
+                className="card-elegant backdrop-blur-xl bg-white/60 border-white/50 border-2 shadow-2xl hover:shadow-elegant-lg transition-all duration-smooth cursor-pointer"
                 onClick={() => handleOpenCategory('Email Templates')}
               >
                 <div className="px-4 py-3 flex items-center justify-between transition-all duration-smooth">
