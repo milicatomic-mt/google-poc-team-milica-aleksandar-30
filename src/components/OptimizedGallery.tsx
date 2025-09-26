@@ -400,7 +400,7 @@ const CampaignContent: React.FC<{
             {/* Top Row - Two Square Banners */}
             <div className="grid grid-cols-2 gap-3 mb-4">
               {/* Left Banner - Person with Headphones */}
-              <div className="aspect-square bg-gradient-to-br from-amber-200 to-orange-300 overflow-hidden relative">
+              <div className="aspect-square bg-gradient-to-br from-slate-200 to-stone-300 overflow-hidden relative">
                 {getImage(0) && (
                   <OptimizedImage
                     src={getImage(0)}
@@ -441,7 +441,7 @@ const CampaignContent: React.FC<{
                     priority={true}
                   />
                 )}
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-amber-200 to-amber-100 p-2">
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-stone-200 to-slate-100 p-2">
                   <div className="space-y-1">
                     <h3 className="text-gray-900 text-[10px] font-bold uppercase tracking-wide">
                       Premium Sound
@@ -464,7 +464,7 @@ const CampaignContent: React.FC<{
             </div>
             
             {/* Bottom Row - Wide Horizontal Banner */}
-            <div className="bg-gradient-to-r from-amber-200 to-orange-200 overflow-hidden relative h-20">
+            <div className="bg-gradient-to-r from-slate-200 to-stone-200 overflow-hidden relative h-20">
               <div className="flex items-center h-full">
                 {/* Left - Person Image */}
                 <div className="w-20 h-full relative overflow-hidden">
@@ -532,7 +532,7 @@ const CampaignContent: React.FC<{
               <div className="bg-gray-200 px-2 py-1 flex items-center gap-1 border-b">
                 <div className="flex gap-1">
                   <div className="w-2 h-2 bg-red-400 rounded-full"></div>
-                  <div className="w-2 h-2 bg-yellow-400 rounded-full"></div>
+                  <div className="w-2 h-2 bg-slate-400 rounded-full"></div>
                   <div className="w-2 h-2 bg-green-400 rounded-full"></div>
                 </div>
                 <div className="flex-1 bg-white mx-2 rounded px-2 py-0.5">

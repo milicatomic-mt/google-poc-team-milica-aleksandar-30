@@ -96,7 +96,7 @@ const BannerAdsPreview: React.FC = () => {
               Leaderboard Banner <span className="text-gray-500 font-normal">(728×90)</span>
             </h2>
             
-            <div className="bg-gradient-to-r from-amber-200 to-orange-200 overflow-hidden relative shadow-lg" style={{ height: '180px', maxWidth: '100%' }}>
+            <div className="bg-gradient-to-r from-slate-200 to-stone-200 overflow-hidden relative shadow-lg" style={{ height: '180px', maxWidth: '100%' }}>
               <div className="flex items-center h-full">
                 {/* Left - Person Image */}
                 <div className="w-48 h-full relative overflow-hidden flex-shrink-0">
@@ -142,7 +142,7 @@ const BannerAdsPreview: React.FC = () => {
                 Half Page Banner <span className="text-gray-500 font-normal">(300×600)</span>
               </h2>
               
-              <div className="bg-gradient-to-b from-amber-200 to-orange-200 overflow-hidden relative shadow-lg w-full" style={{ height: '400px' }}>
+              <div className="bg-gradient-to-b from-slate-200 to-stone-200 overflow-hidden relative shadow-lg w-full" style={{ height: '400px' }}>
                 {/* Top - Person Image */}
                 <div className="h-80 relative overflow-hidden">
                   {(imageMapping?.image_0 || uploadedImage) && (
@@ -191,7 +191,7 @@ const BannerAdsPreview: React.FC = () => {
                 </div>
                 
                 {/* Bottom - Text Section */}
-                <div className="h-28 bg-gradient-to-r from-amber-200 to-orange-200 flex flex-col justify-center px-4 text-center">
+                <div className="h-28 bg-gradient-to-r from-slate-200 to-stone-200 flex flex-col justify-center px-4 text-center">
                   <h3 className="text-gray-900 text-sm font-bold uppercase tracking-wide mb-1">
                     Premium Sound
                   </h3>
