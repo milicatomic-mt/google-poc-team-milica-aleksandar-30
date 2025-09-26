@@ -212,7 +212,7 @@ const OptimizedGallery = () => {
 
       <div className="relative z-10">
       {/* Header */}
-      <div className="border-b border-border/40 bg-background/80 backdrop-blur-sm sticky top-0 z-10">
+      <div className="border-b border-white/40 bg-white/40 backdrop-blur-xl sticky top-0 z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center justify-between">
             {/* Left - Back Button */}
