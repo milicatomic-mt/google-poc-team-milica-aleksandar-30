@@ -125,7 +125,7 @@ const BannerAdsPreview: React.FC = () => {
                 
                 {/* Right - CTA Button */}
                 <div className="pr-8 flex-shrink-0">
-                  <button className="bg-white/90 text-gray-900 text-lg px-8 py-4 rounded-2xl font-semibold shadow-lg hover:bg-white transition-colors border border-gray-200">
+                  <button className="bg-white/90 text-gray-900 text-lg px-8 py-4 font-semibold shadow-lg hover:bg-white transition-colors border border-gray-200">
                     Shop Now
                   </button>
                 </div>
@@ -201,7 +201,7 @@ const BannerAdsPreview: React.FC = () => {
                   <p className="text-gray-600 text-xs font-semibold mb-2">
                     SMASH THE COMPETITION WITH 30% DISCOUNT
                   </p>
-                  <button className="bg-black text-white text-xs px-4 py-1 rounded-lg font-semibold hover:bg-gray-800 transition-colors">
+                  <button className="bg-black text-white text-xs px-4 py-1 font-semibold hover:bg-gray-800 transition-colors">
                     Shop Now
                   </button>
                 </div>
