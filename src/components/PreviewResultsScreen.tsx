@@ -1890,7 +1890,7 @@ const PreviewResultsScreen: React.FC = () => {
 
               {/* Video Scripts Card */}
               <Card 
-                className="card-elegant backdrop-blur-xl bg-white/5 border-white/50 border-2 shadow-2xl hover:shadow-elegant-lg transition-all duration-smooth cursor-pointer"
+                className="card-elegant overflow-hidden backdrop-blur-xl bg-white/5 border-white/50 border-2 shadow-2xl hover:shadow-elegant-lg transition-all duration-smooth cursor-pointer"
                 onClick={() => handleOpenCategory('Video Scripts')}
               >
                 <div className="px-4 py-3 flex items-center justify-between transition-all duration-smooth">
@@ -1915,7 +1915,7 @@ const PreviewResultsScreen: React.FC = () => {
                 <CardContent className="px-4 pb-4 pt-2">
                   <div className="h-80 p-4">
                     {/* Mobile-First Vertical Layout */}
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 h-full">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 h-full">
                       {/* Left Side - Video Preview */}
                       <div className="bg-black rounded-lg overflow-hidden relative">
                         {/* Video Thumbnail with Play Button */}
