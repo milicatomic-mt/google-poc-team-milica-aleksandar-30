@@ -515,7 +515,7 @@ const PreviewResultsScreen: React.FC = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="bg-muted/20 p-2 rounded text-[11px] text-muted-foreground">
+                  <div className="bg-muted/20 p-2 rounded-lg text-[11px] text-muted-foreground">
                     Horizontal layout with prominent product image and clean typography.
                   </div>
                 </div>
@@ -559,7 +559,7 @@ const PreviewResultsScreen: React.FC = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="bg-muted/20 p-2 rounded text-[11px] text-muted-foreground">
+                  <div className="bg-muted/20 p-2 rounded-lg text-[11px] text-muted-foreground">
                     Wide premium format with clean product integration and strong CTA.
                   </div>
                 </div>
@@ -670,11 +670,11 @@ const PreviewResultsScreen: React.FC = () => {
                           
                           {/* Feature Grid */}
                           <div className="grid grid-cols-2 gap-2 py-2">
-                            <div className="text-center p-2 bg-slate-50 rounded text-[8px]">
+                            <div className="text-center p-2 bg-slate-50 rounded-lg text-[8px]">
                               <div className="w-3 h-3 bg-slate-300 rounded-full mx-auto mb-1"></div>
                               <span className="text-slate-700 uppercase tracking-wide font-medium">Quality</span>
                             </div>
-                            <div className="text-center p-2 bg-slate-50 rounded text-[8px]">
+                            <div className="text-center p-2 bg-slate-50 rounded-lg text-[8px]">
                               <div className="w-3 h-3 bg-slate-300 rounded-full mx-auto mb-1"></div>
                               <span className="text-slate-700 uppercase tracking-wide font-medium">Design</span>
                             </div>
@@ -1091,7 +1091,7 @@ const PreviewResultsScreen: React.FC = () => {
                           videoUrl={generatedVideoUrl}
                           posterUrl={activeCampaignResults?.generated_images?.[0]?.url || uploadedImage}
                           title="Generated Campaign Video"
-                          className="w-full h-full"
+                          className="w-full h-full rounded-lg"
                         />
                       ) : (
                         <>
@@ -1818,7 +1818,7 @@ const PreviewResultsScreen: React.FC = () => {
                   </Button>
                 </div>
                 <CardContent className="p-4">
-                  <div className="h-80 bg-gray-100 rounded overflow-hidden border border-gray-300 shadow-sm">
+                  <div className="h-80 bg-gray-100 rounded-lg overflow-hidden border border-gray-300 shadow-sm">
                     {/* Browser-like Screenshot Mockup */}
                     <div className="h-full bg-white">
                       {/* Browser Header */}
@@ -1951,7 +1951,7 @@ const PreviewResultsScreen: React.FC = () => {
                   {/* Mobile-First Vertical Layout */}
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 h-80">
                     {/* Left Side - Video Preview */}
-                    <div className="bg-black rounded overflow-hidden relative min-h-[120px] lg:h-full">
+                    <div className="bg-black rounded-lg overflow-hidden relative min-h-[120px] lg:h-full">
                       {/* Video Thumbnail with Play Button */}
                       <div className="relative w-full h-full">
                         {activeCampaignResults?.generated_images?.[0]?.url ? (
@@ -1976,7 +1976,7 @@ const PreviewResultsScreen: React.FC = () => {
                     </div>
 
                     {/* Right Side - Script Preview */}
-                    <div className="bg-white backdrop-blur-sm rounded p-4 border border-white/20">
+                    <div className="bg-white backdrop-blur-sm rounded-lg p-4 border border-white/20">
                       <div className="space-y-3">
                         {/* Script Header */}
                         <div className="text-center pb-2 border-b border-white/30">
@@ -1986,7 +1986,7 @@ const PreviewResultsScreen: React.FC = () => {
                         
                         {/* Script Sections */}
                         <div className="space-y-2">
-                          <div className="bg-white/60 p-3 rounded">
+                          <div className="bg-white/60 p-3 rounded-lg">
                             <div className="flex items-center gap-2 mb-1">
                               <div className="w-5 h-5 rounded-full bg-black text-white text-xs font-bold flex items-center justify-center">1</div>
                               <span className="font-medium text-xs text-gray-800">Hook</span>
@@ -1996,7 +1996,7 @@ const PreviewResultsScreen: React.FC = () => {
                             </p>
                           </div>
                           
-                          <div className="bg-white/60 p-3 rounded">
+                          <div className="bg-white/60 p-3 rounded-lg">
                             <div className="flex items-center gap-2 mb-1">
                               <div className="w-5 h-5 rounded-full bg-black text-white text-xs font-bold flex items-center justify-center">2</div>
                               <span className="font-medium text-xs text-gray-800">Content</span>
@@ -2006,7 +2006,7 @@ const PreviewResultsScreen: React.FC = () => {
                             </p>
                           </div>
                           
-                          <div className="bg-white/60 p-3 rounded">
+                          <div className="bg-white/60 p-3 rounded-lg">
                             <div className="flex items-center gap-2 mb-1">
                               <div className="w-5 h-5 rounded-full bg-black text-white text-xs font-bold flex items-center justify-center">3</div>
                               <span className="font-medium text-xs text-gray-800">CTA</span>
