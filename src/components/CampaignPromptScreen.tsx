@@ -48,18 +48,18 @@ const CampaignPromptScreen = () => {
     setIsAutoSelecting(true);
     setSelectedAudiences([]); // Clear current selection
     
-    // Select audiences one by one with smooth animation
+    // Select audiences one by one with animation
     audiences.forEach((audience, index) => {
       setTimeout(() => {
         setSelectedAudiences(prev => {
           const newSelection = [...prev, audience];
-          // Add smooth selection animation
+          // Add a little scale animation by toggling a class
           const element = document.querySelector(`[data-audience="${audience}"]`);
           if (element) {
-            element.classList.add('selecting-animation');
+            element.classList.add('animate-pulse');
             setTimeout(() => {
-              element.classList.remove('selecting-animation');
-            }, 800);
+              element.classList.remove('animate-pulse');
+            }, 600);
           }
           return newSelection;
         });
@@ -68,9 +68,9 @@ const CampaignPromptScreen = () => {
         if (index === audiences.length - 1) {
           setTimeout(() => {
             setIsAutoSelecting(false);
-          }, 600);
+          }, 300);
         }
-      }, index * 300); // Reduced delay for smoother flow
+      }, index * 400); // 400ms delay between each selection
     });
   };
 
@@ -367,11 +367,11 @@ const CampaignPromptScreen = () => {
                      data-audience={age}
                      onClick={() => !isAutoSelecting && toggleAudience(age)}
                      disabled={isAutoSelecting}
-                     className={`px-2 py-3 rounded-full border-2 transition-all duration-700 ease-out tap-target font-medium backdrop-blur-md text-sm transform hover:scale-105 active:scale-95 ${
+                     className={`px-2 py-3 rounded-full border-2 transition-all duration-500 tap-target font-medium backdrop-blur-md text-sm transform hover:scale-105 active:scale-95 ${
                        selectedAudiences.includes(age)
-                          ? 'bg-white border-primary text-primary scale-105 shadow-lg shadow-primary/20'
+                          ? 'bg-white border-primary text-primary scale-105 shadow-lg animate-scale-in'
                          : 'bg-white/30 border-gray-200 text-black hover:border-gray-300 hover:shadow-sm hover:bg-white/40 scale-100'
-                     } ${isAutoSelecting && !selectedAudiences.includes(age) ? 'opacity-40 blur-[0.5px]' : 'opacity-100 blur-0'}`}
+                     } ${isAutoSelecting && !selectedAudiences.includes(age) ? 'opacity-50' : 'opacity-100'}`}
                    >
                      {age}
                    </button>
@@ -386,11 +386,11 @@ const CampaignPromptScreen = () => {
                      data-audience={interest}
                      onClick={() => !isAutoSelecting && toggleAudience(interest)}
                      disabled={isAutoSelecting}
-                     className={`px-2 py-3 rounded-full border-2 transition-all duration-700 ease-out tap-target font-medium backdrop-blur-md text-sm transform hover:scale-105 active:scale-95 ${
+                     className={`px-2 py-3 rounded-full border-2 transition-all duration-500 tap-target font-medium backdrop-blur-md text-sm transform hover:scale-105 active:scale-95 ${
                        selectedAudiences.includes(interest)
-                          ? 'bg-white border-primary text-primary scale-105 shadow-lg shadow-primary/20'
+                          ? 'bg-white border-primary text-primary scale-105 shadow-lg animate-scale-in'
                          : 'bg-white/30 border-gray-200 text-black hover:border-gray-300 hover:shadow-sm hover:bg-white/40 scale-100'
-                     } ${isAutoSelecting && !selectedAudiences.includes(interest) ? 'opacity-40 blur-[0.5px]' : 'opacity-100 blur-0'}`}
+                     } ${isAutoSelecting && !selectedAudiences.includes(interest) ? 'opacity-50' : 'opacity-100'}`}
                    >
                      {interest}
                    </button>
@@ -405,11 +405,11 @@ const CampaignPromptScreen = () => {
                      data-audience={interest}
                      onClick={() => !isAutoSelecting && toggleAudience(interest)}
                      disabled={isAutoSelecting}
-                     className={`px-2 py-3 rounded-full border-2 transition-all duration-700 ease-out tap-target font-medium backdrop-blur-md text-sm transform hover:scale-105 active:scale-95 ${
+                     className={`px-2 py-3 rounded-full border-2 transition-all duration-500 tap-target font-medium backdrop-blur-md text-sm transform hover:scale-105 active:scale-95 ${
                        selectedAudiences.includes(interest)
-                         ? 'bg-white border-primary text-primary scale-105 shadow-lg shadow-primary/20'
+                         ? 'bg-white border-primary text-primary scale-105 shadow-lg animate-scale-in'
                          : 'bg-white/30 border-gray-200 text-black hover:border-gray-300 hover:shadow-sm hover:bg-white/40 scale-100'
-                     } ${isAutoSelecting && !selectedAudiences.includes(interest) ? 'opacity-40 blur-[0.5px]' : 'opacity-100 blur-0'}`}
+                     } ${isAutoSelecting && !selectedAudiences.includes(interest) ? 'opacity-50' : 'opacity-100'}`}
                    >
                      {interest}
                    </button>
