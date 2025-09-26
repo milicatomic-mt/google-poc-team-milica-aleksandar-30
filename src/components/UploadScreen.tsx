@@ -446,7 +446,7 @@ const UploadScreen: React.FC<UploadScreenProps> = ({ mode }) => {
   };
 
   return (
-    <div className="relative min-h-screen w-full overflow-hidden bg-background">
+    <div className="relative min-h-screen w-full bg-background">
       {/* Background Video */}
       <video 
         className="absolute inset-0 w-full h-full object-cover object-center opacity-50 z-0" 
@@ -458,7 +458,7 @@ const UploadScreen: React.FC<UploadScreenProps> = ({ mode }) => {
         <source src="/background-video.mp4" type="video/mp4" />
       </video>
 
-      <div className="relative z-10 flex min-h-screen flex-col overflow-y-auto">
+      <div className="relative z-10 flex min-h-screen flex-col">
         {/* Header */}
         <header className="container-padding pt-12 relative">
           {/* Logo and Flow Name - Top Left */}
@@ -509,7 +509,7 @@ const UploadScreen: React.FC<UploadScreenProps> = ({ mode }) => {
         </div>
 
         {/* Main Upload Area - Scrollable */}
-        <main className="flex-1 flex items-center justify-center container-padding pt-4 pb-8 overflow-y-auto">
+        <main className="flex-1 flex items-center justify-center container-padding pt-4 pb-8 px-12">
           <div className="w-full max-w-2xl space-y-8">
             {/* Upload Zone */}
             <div
