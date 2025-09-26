@@ -69,37 +69,39 @@ const BannerAdsPreview: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-white">
-      {/* Header */}
-      <div className="flex items-center justify-between px-8 py-6">
-        {/* Back Button - Left */}
+    <div className="min-h-screen bg-white relative">
+      {/* Back Button - Top Left */}
+      <div className="absolute top-8 left-8 z-20">
         <Button
-          variant="outline"
-          size="sm"
+          variant="secondary"
           onClick={handleBack}
-          className="gap-2"
+          className="tap-target hover-lift focus-ring bg-white border-white/30 hover:bg-white/90 rounded-full p-3"
+          aria-label="Go back to previous step"
         >
-          <ArrowLeft className="w-4 h-4" />
-          Back
+          <ArrowLeft className="h-5 w-5 text-black" />
         </Button>
+      </div>
 
-        {/* Title and Subtitle */}
+      {/* Header */}
+      <div className="flex items-center justify-center px-8 py-6 pt-20">
         <div className="text-center">
           <h1 className="text-3xl font-bold text-gray-900">Banner Ads</h1>
           <p className="text-gray-600 text-sm mt-1">Review your AI-generated designs before download</p>
         </div>
 
-        {/* Download Button - Right */}
-        <Button 
-          onClick={handleDownload} 
-          className="bg-indigo-600 hover:bg-indigo-700 text-white rounded-full px-6"
-        >
-          Download
-        </Button>
+        {/* Download Button - Absolute Top Right */}
+        <div className="absolute top-8 right-8">
+          <Button 
+            onClick={handleDownload} 
+            className="bg-indigo-600 hover:bg-indigo-700 text-white rounded-full px-6"
+          >
+            Download
+          </Button>
+        </div>
       </div>
 
-      {/* Content */}
-      <div className="px-8 pb-8">
+      {/* Content with increased spacing */}
+      <div className="px-8 pb-8 mt-12">
         <div className="max-w-7xl mx-auto space-y-8">
           
           {/* Leaderboard Banner (728×90) */}
