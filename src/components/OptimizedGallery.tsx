@@ -421,7 +421,7 @@ const CampaignContent: React.FC<{
         <CardContent className="pt-4 px-4 pb-0">
           <div className="h-80">
             {/* Top Row - Two Square Banners */}
-            <div className="grid grid-cols-2 gap-3 mb-4">
+            <div className="grid grid-cols-2 gap-3">
               {/* Left Banner - Person with Headphones */}
               <div className="aspect-square bg-gradient-to-br from-slate-200 to-gray-300 overflow-hidden relative" style={{borderRadius: '1px'}}>
                 {getImage(0) && (
