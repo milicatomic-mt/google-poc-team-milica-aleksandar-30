@@ -4,8 +4,7 @@ import { ArrowLeft, X, Play, Download, Edit } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { useImageCache } from '@/hooks/useImageCache';
-import { OptimizedImage } from '@/components/ui/optimized-image';
+import { QRCodeSVG } from "qrcode.react";
 import {
   Dialog,
   DialogContent,
@@ -822,9 +821,9 @@ const PreviewResultsScreen: React.FC = () => {
                                <div className={`w-8 h-8 ${index === 0 ? 'bg-primary' : index === 1 ? 'bg-secondary' : 'bg-accent'} rounded-full`}></div>
                              </div>
                              {generatedImages?.[index + 1]?.url && (
-                                <div className="absolute -top-2 -right-2 w-12 h-12 rounded-lg overflow-hidden border-2 border-background shadow-lg">
-                                  <OptimizedImage src={generatedImages[index + 1].url} alt={`Feature ${index + 1}`} className="w-full h-full object-cover" />
-                                </div>
+                               <div className="absolute -top-2 -right-2 w-12 h-12 rounded-lg overflow-hidden border-2 border-background shadow-lg">
+                                 <img src={generatedImages[index + 1].url} alt={`Feature ${index + 1}`} className="w-full h-full object-cover" />
+                               </div>
                              )}
                            </div>
                            <h3 className="text-xl font-semibold">
@@ -1056,12 +1055,12 @@ const PreviewResultsScreen: React.FC = () => {
                         />
                       ) : (
                         <>
-                           {/* Video Thumbnail */}
-                           {activeCampaignResults?.generated_images?.[0]?.url ? (
-                             <OptimizedImage src={activeCampaignResults.generated_images[0].url} alt="Video thumbnail" className="w-full h-full object-cover" />
-                           ) : uploadedImage ? (
-                             <OptimizedImage src={uploadedImage} alt="Video thumbnail" className="w-full h-full object-cover" />
-                           ) : null}
+                          {/* Video Thumbnail */}
+                          {activeCampaignResults?.generated_images?.[0]?.url ? (
+                            <img src={activeCampaignResults.generated_images[0].url} alt="Video thumbnail" className="w-full h-full object-cover" />
+                          ) : uploadedImage ? (
+                            <img src={uploadedImage} alt="Video thumbnail" className="w-full h-full object-cover" />
+                          ) : null}
                           <div className="absolute inset-0 bg-black/5"></div>
                           <div className="absolute inset-0 flex items-center justify-center">
                             <div className="w-12 h-12 bg-black/10 rounded-full flex items-center justify-center border border-black/10">
@@ -1914,12 +1913,12 @@ const PreviewResultsScreen: React.FC = () => {
                       {/* Left Side - Video Preview */}
                       <div className="bg-black overflow-hidden relative">
                         {/* Video Thumbnail with Play Button */}
-                         <div className="relative w-full h-full">
-                           {activeCampaignResults?.generated_images?.[0]?.url ? (
-                             <OptimizedImage src={activeCampaignResults.generated_images[0].url} alt="Video thumbnail" className="w-full h-full object-cover" />
-                           ) : uploadedImage ? (
-                             <OptimizedImage src={uploadedImage} alt="Video thumbnail" className="w-full h-full object-cover" />
-                           ) : null}
+                        <div className="relative w-full h-full">
+                          {activeCampaignResults?.generated_images?.[0]?.url ? (
+                            <img src={activeCampaignResults.generated_images[0].url} alt="Video thumbnail" className="w-full h-full object-cover" />
+                          ) : uploadedImage ? (
+                            <img src={uploadedImage} alt="Video thumbnail" className="w-full h-full object-cover" />
+                          ) : null}
                           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30"></div>
                           
                           {/* Play Button */}
@@ -2061,12 +2060,12 @@ const PreviewResultsScreen: React.FC = () => {
                           <div className="flex items-center gap-3">
                             {/* Product Image */}
                             <div className="relative">
-                               <div className="w-16 h-16 bg-primary/10 rounded-lg overflow-hidden shadow-sm border border-white/50">
-                                 {activeCampaignResults?.generated_images?.[0]?.url ? (
-                                   <OptimizedImage src={activeCampaignResults.generated_images[0].url} alt="Product" className="w-full h-full object-cover" />
-                                 ) : uploadedImage ? (
-                                   <OptimizedImage src={uploadedImage} alt="Product" className="w-full h-full object-cover" />
-                                 ) : null}
+                              <div className="w-16 h-16 bg-primary/10 rounded-lg overflow-hidden shadow-sm border border-white/50">
+                                {activeCampaignResults?.generated_images?.[0]?.url ? (
+                                  <img src={activeCampaignResults.generated_images[0].url} alt="Product" className="w-full h-full object-cover" />
+                                ) : uploadedImage ? (
+                                  <img src={uploadedImage} alt="Product" className="w-full h-full object-cover" />
+                                ) : null}
                               </div>
                               <div className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full flex items-center justify-center">
                                 <span className="text-[5px] text-white font-bold">!</span>

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { ArrowLeft, Download, QrCode } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { OptimizedImage } from '@/components/ui/optimized-image';
 import { QRCodeSVG } from "qrcode.react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { toast } from "sonner";
@@ -102,12 +101,12 @@ const BannerAdsPreview: React.FC = () => {
                 {/* Left - Person Image */}
                 <div className="w-48 h-full relative overflow-hidden flex-shrink-0">
                   {(imageMapping?.image_0 || uploadedImage) && (
-                     <OptimizedImage 
-                       src={imageMapping?.image_0 || uploadedImage} 
-                       alt="Person with headphones" 
-                       className="w-full h-full object-cover" 
-                     />
-                   )}
+                    <img 
+                      src={imageMapping?.image_0 || uploadedImage} 
+                      alt="Person with headphones" 
+                      className="w-full h-full object-cover" 
+                    />
+                  )}
                 </div>
                 
                 {/* Middle - Text Content */}
@@ -147,12 +146,12 @@ const BannerAdsPreview: React.FC = () => {
                 {/* Top - Person Image */}
                 <div className="h-80 relative overflow-hidden">
                   {(imageMapping?.image_0 || uploadedImage) && (
-                     <OptimizedImage 
-                       src={imageMapping?.image_0 || uploadedImage} 
-                       alt="Person with headphones" 
-                       className="w-full h-full object-cover" 
-                     />
-                   )}
+                    <img 
+                      src={imageMapping?.image_0 || uploadedImage} 
+                      alt="Person with headphones" 
+                      className="w-full h-full object-cover" 
+                    />
+                  )}
                 </div>
                 
                 {/* Bottom - Dark Section with Text */}
@@ -183,12 +182,12 @@ const BannerAdsPreview: React.FC = () => {
                 {/* Top - Product Image */}
                 <div className="h-72 relative overflow-hidden flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-200">
                   {(imageMapping?.image_1 || imageMapping?.image_0 || uploadedImage) && (
-                     <OptimizedImage 
-                       src={imageMapping?.image_1 || imageMapping?.image_0 || uploadedImage} 
-                       alt="Headphones product" 
-                       className="w-48 h-48 object-contain" 
-                     />
-                   )}
+                    <img 
+                      src={imageMapping?.image_1 || imageMapping?.image_0 || uploadedImage} 
+                      alt="Headphones product" 
+                      className="w-48 h-48 object-contain" 
+                    />
+                  )}
                 </div>
                 
                 {/* Bottom - Text Section */}
