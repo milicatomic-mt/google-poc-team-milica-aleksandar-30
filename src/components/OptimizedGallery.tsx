@@ -449,20 +449,24 @@ const CampaignContent: React.FC<{
                       )}
                     </div>
                     {/* Middle - Text Content */}
-                    <div className="flex-1 px-2">
-                      <h3 className="text-gray-900 text-[6px] font-bold uppercase leading-none">
-                        Premium Sound
-                      </h3>
-                      <p className="text-gray-700 text-[4px] uppercase leading-none">
-                        Minimalist Design
-                      </p>
-                    </div>
-                    {/* Right - CTA Button */}
-                    <div className="pr-1 flex-shrink-0">
-                      <button className="bg-white text-gray-900 text-[4px] px-1 py-0.5 font-semibold border border-gray-200 leading-none">
-                        Shop
-                      </button>
-                    </div>
+                     <div className="flex-1 px-2">
+                       <h3 className="text-gray-900 text-[6px] font-bold uppercase leading-none">
+                         Premium Sound
+                       </h3>
+                       <p className="text-gray-700 text-[4px] uppercase leading-none">
+                         Minimalist Design
+                       </p>
+                       <p className="text-gray-600 text-[3px] font-semibold leading-none">
+                         SMASH THE COMPETITION<br/>
+                         WITH 30% DISCOUNT
+                       </p>
+                     </div>
+                     {/* Right - CTA Button */}
+                      <div className="pr-1 flex-shrink-0">
+                        <button className="bg-white/90 text-gray-900 text-[4px] px-1 py-0.5 font-semibold border border-gray-200 leading-none">
+                          Shop Now
+                        </button>
+                      </div>
                   </div>
                 </div>
 
@@ -482,12 +486,18 @@ const CampaignContent: React.FC<{
                       )}
                     </div>
                     {/* Bottom - Dark Section with Text */}
-                    <div className="h-3 bg-black text-white flex flex-col justify-center px-1 text-center">
-                      <h3 className="text-white text-[4px] font-bold uppercase leading-none">
-                        Premium Sound
-                      </h3>
-                    </div>
-                  </div>
+                     <div className="h-3 bg-black text-white flex flex-col justify-center px-1 text-center">
+                       <h3 className="text-white text-[4px] font-bold uppercase leading-none">
+                         Premium Sound
+                       </h3>
+                       <p className="text-white/90 text-[3px] uppercase leading-none">
+                         Minimalist Design
+                       </p>
+                       <p className="text-white text-[3px] font-semibold leading-none">
+                         SMASH THE COMPETITION WITH 30% DISCOUNT
+                       </p>
+                     </div>
+                   </div>
 
                   {/* Medium Rectangle (mini) */}
                   <div className="bg-gradient-to-br from-gray-100 to-gray-200 overflow-hidden relative" style={{height: '36px', borderRadius: '1px'}}>
@@ -504,16 +514,19 @@ const CampaignContent: React.FC<{
                         )}
                       </div>
                       {/* Right - Text Content */}
-                      <div className="flex-1 px-1">
-                        <h3 className="text-gray-900 text-[5px] font-bold uppercase leading-none">
-                          Premium
-                        </h3>
-                        <p className="text-gray-700 text-[4px] uppercase leading-none">
-                          Design
-                        </p>
-                        <button className="bg-gray-900 text-white text-[3px] px-1 py-0.5 font-semibold mt-0.5 leading-none">
-                          Shop
-                        </button>
+                       <div className="flex-1 px-1">
+                         <h3 className="text-gray-900 text-[5px] font-bold uppercase leading-none">
+                           Premium Sound
+                         </h3>
+                         <p className="text-gray-700 text-[4px] uppercase leading-none">
+                           Minimalist Design  
+                         </p>
+                         <p className="text-gray-600 text-[3px] font-semibold leading-none">
+                           30% DISCOUNT
+                         </p>
+                         <button className="bg-gray-900 text-white text-[3px] px-1 py-0.5 font-semibold mt-0.5 leading-none">
+                           Shop Now
+                         </button>
                       </div>
                     </div>
                   </div>
