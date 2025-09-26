@@ -418,7 +418,7 @@ const CampaignContent: React.FC<{
           </div>
           {/* Removed download button from banner ads section */}
         </div>
-        <CardContent className="p-4">
+        <CardContent className="pt-4 px-4 pb-0">
           <div className="h-80">
             {/* Top Row - Two Square Banners */}
             <div className="grid grid-cols-2 gap-3 mb-4">
