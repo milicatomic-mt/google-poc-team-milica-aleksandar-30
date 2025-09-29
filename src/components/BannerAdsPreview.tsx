@@ -163,7 +163,7 @@ const BannerAdsPreview: React.FC = () => {
             <div className="bg-gradient-to-r from-slate-200 via-gray-100 to-stone-200 rounded-lg overflow-hidden shadow-lg h-[4.5rem] relative">
               <div className="flex items-center h-full">
                 {/* Left - Product Image */}
-                <div className="w-20 h-full flex items-center justify-center">
+                <div className="w-60 h-full flex items-center justify-center">
                   {getImage(1) && (
                     <img 
                       src={getImage(1)} 
@@ -196,7 +196,7 @@ const BannerAdsPreview: React.FC = () => {
             <div className="bg-gradient-to-r from-slate-200 via-gray-100 to-stone-200 rounded-lg overflow-hidden shadow-lg h-[4.5rem] relative">
               <div className="flex items-center h-full">
                 {/* Left - Product Image */}
-                <div className="w-20 h-full flex items-center justify-center">
+                <div className="w-60 h-full flex items-center justify-center">
                   {getImage(0) && (
                     <img 
                       src={getImage(0)} 
