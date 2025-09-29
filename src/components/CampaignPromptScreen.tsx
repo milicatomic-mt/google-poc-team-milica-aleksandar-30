@@ -422,7 +422,7 @@ const CampaignPromptScreen = () => {
             >
               <svg className="w-6 h-6 mr-3 fill-current" viewBox="0 0 24 24" fill="currentColor" style={{width: '24px', height: '24px'}}>
                 <path d="M12 2L14.5 8.5L21 11L14.5 13.5L12 20L9.5 13.5L3 11L9.5 8.5L12 2Z"/>
-                <path d="M18 4L19 6L21 7L19 8L18 10L17 8L15 7L17 6L18 4Z"/>
+                <path d="M18 2L19.5 5L22 6.5L19.5 8L18 11L16.5 8L14 6.5L16.5 5L18 2Z"/>
               </svg>
               {editMode ? 'Update Campaign' : 'Create Campaign'}
             </Button>
