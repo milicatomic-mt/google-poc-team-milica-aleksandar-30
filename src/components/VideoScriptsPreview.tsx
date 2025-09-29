@@ -760,8 +760,7 @@ const VideoScriptsPreview: React.FC = () => {
           {videoScripts && videoScripts.length > 0 && (
             <div className="space-y-6">
               <div className="mb-6">
-                <h2 className="text-2xl font-bold text-gray-900 mb-2">Social Video Collection</h2>
-                <p className="text-gray-600">Detailed scripts for your video content</p>
+                <h2 className="text-2xl font-bold text-gray-900 mb-2">Detailed scripts for your video content</h2>
               </div>
               {videoScripts.map((script, index) => (
                 <div key={index} className="bg-white rounded-lg p-8 shadow-lg space-y-4">
