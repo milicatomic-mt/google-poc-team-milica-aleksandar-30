@@ -105,6 +105,13 @@ const QRDownloadModal: React.FC<QRDownloadModalProps> = ({
             )}
           </div>
 
+          {/* Scan me text */}
+          <div className="text-center">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">
+              Scan me
+            </h3>
+          </div>
+
           {/* Instructions */}
           <div className="text-center space-y-2">
             <p className="text-sm text-gray-600 font-medium">
