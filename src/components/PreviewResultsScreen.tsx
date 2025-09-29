@@ -375,25 +375,25 @@ const PreviewResultsScreen: React.FC = () => {
                   <ArrowUpRight className="w-5 h-5 text-black" />
                 </div>
                 <CardContent className="p-4">
-                  <div className="h-80 bg-gray-100 overflow-hidden shadow-sm rounded">
+                  <div className="h-80 bg-gray-100 overflow-hidden shadow-sm rounded relative">
                     {/* Website Landing Page Layout */}
-                    <div className="h-full bg-white flex">
+                    <div className="h-full bg-white flex rounded">
                       {/* Left Side - Content */}
-                      <div className="flex-1 p-6 flex flex-col justify-center">
+                      <div className="flex-1 p-4 flex flex-col justify-center">
                         {/* New Launch Badge */}
-                        <div className="inline-flex items-center gap-1 bg-blue-100 text-blue-700 text-[8px] px-2 py-1 rounded-full mb-4 w-fit">
+                        <div className="inline-flex items-center gap-1 bg-blue-100 text-blue-700 text-[8px] px-2 py-1 rounded-full mb-3 w-fit">
                           <div className="w-1 h-1 bg-blue-500 rounded-full"></div>
                           <span className="font-medium">New Launch</span>
                         </div>
                         
                         {/* Main Headline */}
-                        <h1 className="text-black text-xl font-bold leading-tight mb-3">
+                        <h1 className="text-black text-lg font-bold leading-tight mb-2">
                           Sound & Style,<br/>
                           Perfectly Balanced.
                         </h1>
                         
                         {/* Description */}
-                        <p className="text-gray-600 text-xs leading-relaxed mb-4">
+                        <p className="text-gray-600 text-[10px] leading-relaxed mb-3">
                           Premium audio quality in a minimalist design that complements your unique style.
                         </p>
                         
@@ -414,17 +414,17 @@ const PreviewResultsScreen: React.FC = () => {
                           <img 
                             src={activeCampaignResults?.generated_images?.[0]?.url || uploadedImage} 
                             alt="Product showcase" 
-                            className="w-full h-full object-cover rounded-r-lg" 
+                            className="w-full h-full object-cover rounded-r" 
                           />
                         )}
                       </div>
                     </div>
                     
                     {/* Bottom Section - Key Features */}
-                    <div className="absolute bottom-0 left-0 right-0 bg-white/95 backdrop-blur-sm p-3 border-t border-gray-200">
+                    <div className="absolute bottom-0 left-0 right-0 bg-white/95 backdrop-blur-sm p-2 border-t border-gray-200 rounded-b">
                       <div className="text-center">
-                        <h3 className="text-black text-[10px] font-bold mb-1">Key Features</h3>
-                        <p className="text-gray-600 text-[8px]">Discover what makes this product special for you.</p>
+                        <h3 className="text-black text-[9px] font-bold mb-1">Key Features</h3>
+                        <p className="text-gray-600 text-[7px]">Discover what makes this product special for you.</p>
                       </div>
                     </div>
                   </div>
