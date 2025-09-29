@@ -19,16 +19,22 @@ const DownloadContentScreen = () => {
     const type = searchParams.get('type');
     const token = searchParams.get('token');
 
+    console.log('DownloadContentScreen loaded with params:', { type, token });
+    console.log('Current URL:', window.location.href);
+
     if (!type || !token) {
+      console.error('Missing required parameters:', { type, token });
       setError('Invalid download link');
       return;
     }
 
     if (type !== 'zip') {
+      console.error('Unsupported file type:', type);
       setError('Unsupported file type');
       return;
     }
 
+    console.log('Starting download with valid parameters');
     // Auto-start download
     handleDownload(type, token);
   }, [searchParams]);
