@@ -7,6 +7,7 @@ import QRDownloadModal from '@/components/QRDownloadModal';
 import { VideoPlayer } from '@/components/VideoPlayer';
 import { OptimizedImage } from '@/components/ui/optimized-image';
 import type { CampaignCreationResponse } from '@/types/api';
+import profileImage from '@/assets/profile-image.png';
 
 const VideoScriptsPreview: React.FC = () => {
   const location = useLocation();
@@ -145,7 +146,7 @@ const VideoScriptsPreview: React.FC = () => {
                   <div className="flex gap-3 mb-4">
                     <div className="flex flex-col items-center">
                       <div className="w-16 h-16 rounded-full bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-600 p-0.5">
-                        <div className="w-full h-full rounded-full bg-black border-2 border-black"></div>
+                        <img src={profileImage} alt="Your Story" className="w-full h-full rounded-full object-cover border-2 border-black" />
                       </div>
                       <span className="text-xs mt-1">Your Story</span>
                     </div>
@@ -166,7 +167,7 @@ const VideoScriptsPreview: React.FC = () => {
                   {/* Post Header */}
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-full bg-gray-300"></div>
+                      <img src={profileImage} alt="Profile" className="w-10 h-10 rounded-full object-cover" />
                       <div>
                         <div className="flex items-center gap-1">
                           <span className="font-semibold text-sm">joshua_l</span>
@@ -552,7 +553,7 @@ const VideoScriptsPreview: React.FC = () => {
                     {/* Post Header */}
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-full bg-gray-300"></div>
+                        <img src={profileImage} alt="Profile" className="w-10 h-10 rounded-full object-cover" />
                         <div>
                           <div className="flex items-center gap-1">
                             <span className="font-semibold text-sm text-white">BMW Group</span>
