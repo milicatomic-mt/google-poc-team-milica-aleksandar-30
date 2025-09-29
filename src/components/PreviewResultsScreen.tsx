@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { ArrowLeft, X, Play, Download, Edit, Star, QrCode } from 'lucide-react';
+import { ArrowLeft, X, Play, QrCode, Edit } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { QRCodeSVG } from "qrcode.react";
 import {
   Dialog,
   DialogContent,
@@ -12,9 +10,7 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from '@/components/ui/dialog';
-import { toast } from "sonner";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -25,8 +21,6 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-  AlertDialogOverlay,
-  AlertDialogPortal,
 } from '@/components/ui/alert-dialog';
 import RibbedSphere from '@/components/RibbedSphere';
 import { supabase } from "@/integrations/supabase/client";
@@ -42,15 +36,13 @@ const PreviewResultsScreen: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [fetchedCampaignResults, setFetchedCampaignResults] = useState<CampaignCreationResponse | null>(null);
   const [generatedVideoUrl, setGeneratedVideoUrl] = useState<string | null>(null);
-  const [isLoadingResults, setIsLoadingResults] = useState(false);
   const [isDownloadModalOpen, setIsDownloadModalOpen] = useState(false);
   const [isContentReady, setIsContentReady] = useState(!!campaignResults);
 
   // Fetch campaign results if not provided but campaignId is available
   useEffect(() => {
     const fetchCampaignResults = async () => {
-      if (campaignId && !isLoadingResults) {
-        setIsLoadingResults(true);
+      if (campaignId) {
         try {
           const { data, error } = await supabase
             .from('campaign_results')
@@ -70,25 +62,15 @@ const PreviewResultsScreen: React.FC = () => {
           }
         } catch (error) {
           console.error('Error fetching campaign results:', error);
-        } finally {
-          setIsLoadingResults(false);
         }
       }
     };
 
     fetchCampaignResults();
-  }, [campaignResults, campaignId]); // Removed isLoadingResults from dependencies
+  }, [campaignId]);
 
   // Use either passed campaignResults or fetched results
   const activeCampaignResults = campaignResults || fetchedCampaignResults;
-
-  // Debug: Log the actual landing page structure
-  useEffect(() => {
-    if (activeCampaignResults?.landing_page_concept) {
-      console.log('🏗️ Landing Page Concept Structure:', activeCampaignResults.landing_page_concept);
-      console.log('🏗️ Available fields:', Object.keys(activeCampaignResults.landing_page_concept));
-    }
-  }, [activeCampaignResults]);
 
   // Create consistent image mapping for preview cards and detail pages
   const imageMapping = activeCampaignResults?.generated_images ? {
@@ -101,7 +83,6 @@ const PreviewResultsScreen: React.FC = () => {
   // Set content ready state when we have campaign results
   useEffect(() => {
     if (activeCampaignResults) {
-      // Add a small delay to ensure images are loaded
       const timer = setTimeout(() => {
         setIsContentReady(true);
       }, 500);
@@ -161,14 +142,6 @@ const PreviewResultsScreen: React.FC = () => {
   const handleCloseModal = () => {
     setIsModalOpen(false);
     setSelectedSection(null);
-  };
-
-  // Scroll to section function
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
   };
 
   const renderModalContent = () => {
@@ -579,41 +552,6 @@ const PreviewResultsScreen: React.FC = () => {
     }
   };
 
-  const renderImageWithVariation = (src: string | null, alt: string, variation: 'original' | 'light' | 'medium' | 'dark' = 'original') => {
-    if (!src) {
-      return (
-        <div className="w-full h-full flex items-center justify-center text-muted-foreground text-sm">
-          {alt}
-        </div>
-      );
-    }
-
-    const opacityMap = {
-      original: 1,
-      light: 0.8,
-      medium: 0.6,
-      dark: 0.4
-    };
-
-    const filterMap = {
-      original: '',
-      light: 'brightness(1.2) contrast(0.9)',
-      medium: 'saturate(1.2) contrast(1.1)',
-      dark: 'brightness(0.8) sepia(0.2)'
-    };
-    
-    return (
-      <img 
-        src={src} 
-        alt={alt}
-        className="w-full h-full object-cover"
-        style={{ 
-          opacity: opacityMap[variation],
-          filter: filterMap[variation]
-        }}
-      />
-    );
-  };
 
   // Show loading screen until content is ready
   if (!isContentReady || !activeCampaignResults) {
@@ -812,7 +750,7 @@ const PreviewResultsScreen: React.FC = () => {
                     </div>
                     
                     {/* Bottom Row - Wide Horizontal Banner */}
-                    <div className="bg-gradient-to-r from-slate-200 to-gray-200 overflow-hidden relative h-15" style={{borderRadius: '1px'}}>
+                    <div className="bg-gradient-to-r from-slate-200 to-gray-200 overflow-hidden relative h-[4.5rem]" style={{borderRadius: '1px'}}>
                       <div className="flex items-center h-full">
                         {/* Left - Person Image */}
                         <div className="w-20 h-full relative overflow-hidden">
