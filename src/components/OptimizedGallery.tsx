@@ -448,18 +448,18 @@ const CampaignContent: React.FC<{
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
                 <div className="absolute bottom-0 left-0 right-0 p-3">
                   <div className="space-y-1">
-                     <h3 className="text-white text-sm font-bold uppercase tracking-wide">
+                     <h3 className="text-white text-xs font-bold uppercase tracking-wide">
                        {campaignResults?.banner_ads?.[0]?.headline || 'Premium Sound'}
                      </h3>
-                     <p className="text-white/90 text-xs uppercase tracking-wider">
+                     <p className="text-white/90 text-[10px] uppercase tracking-wider">
                        Minimalist Design
                      </p>
                      <div className="flex items-center justify-between mt-2">
-                       <span className="text-white/80 text-xs">
+                       <span className="text-white/80 text-[9px]">
                          WIRELESS BLUETOOTH CONNECTION<br/>
                          WITH BASS RESONANCE
                        </span>
-                       <button className="bg-white text-gray-900 text-xs px-2 py-1 rounded font-semibold">
+                       <button className="bg-white text-gray-900 text-[9px] px-2 py-1 rounded font-semibold">
                          {campaignResults?.banner_ads?.[0]?.cta || 'Shop Now'}
                        </button>
                     </div>
