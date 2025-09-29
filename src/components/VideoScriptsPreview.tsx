@@ -333,9 +333,9 @@ const VideoScriptsPreview: React.FC = () => {
 
               {/* TikTok Mobile Mockup - Full screen video with overlaid UI like in reference */}
               <div className="bg-black rounded-lg shadow-lg overflow-hidden max-w-sm h-[814px]">
-                <div className="relative">
-                  {/* Full Screen Video Background - Fill entire container to match Instagram height */}
-                  <div className="relative w-full" style={{aspectRatio: '9/16', minHeight: '700px'}}>
+                <div className="relative h-full">
+                  {/* Full Screen Video Background - Fill entire container height minus navigation */}
+                  <div className="absolute inset-0 pb-20">
                     {/* Video Content - Full background */}
                     {generatedVideoUrl ? (
                       <VideoPlayer
@@ -489,8 +489,8 @@ const VideoScriptsPreview: React.FC = () => {
                       </div>
                     </div>
 
-                    {/* Bottom Navigation Bar */}
-                    <div className="absolute bottom-0 left-0 right-0 bg-black text-white p-3">
+                    {/* Bottom Navigation Bar - Fixed to bottom with equal padding */}
+                    <div className="absolute bottom-0 left-0 right-0 bg-black text-white py-4 px-3">
                       <div className="flex justify-around items-center">
                         <div className="text-center">
                           <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
