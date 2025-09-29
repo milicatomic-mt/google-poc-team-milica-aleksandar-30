@@ -14,6 +14,11 @@ const VideoScriptsPreview: React.FC = () => {
   const { campaignResults, uploadedImage, campaignId, imageMapping, returnTo } = location.state || {};
   const [isDownloadModalOpen, setIsDownloadModalOpen] = useState(false);
 
+  // Scroll to top on mount
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   // Debug: Check if we have campaign results
   useEffect(() => {
     if (!campaignResults) {
