@@ -395,16 +395,12 @@ const PreviewResultsScreen: React.FC = () => {
                       <div className="flex-1 p-4 flex flex-col justify-center">
                         {/* New Launch Badge */}
                         <div 
-                          className="inline-flex items-center gap-1 text-[8px] px-2 py-1 rounded-full mb-3 w-fit"
-                          style={complementaryColor ? {
-                            backgroundColor: complementaryColor,
-                            color: 'hsl(0, 0%, 0%)'
-                          } : {
-                            backgroundColor: 'hsl(220, 70%, 50%)',
+                          className="inline-flex items-center text-[8px] px-2 py-1 rounded-full mb-3 w-fit"
+                          style={{
+                            backgroundColor: 'hsl(45, 100%, 51%)',
                             color: 'hsl(0, 0%, 100%)'
                           }}
                         >
-                          <div className="w-1 h-1 bg-current rounded-full"></div>
                           <span className="font-medium">New Launch</span>
                         </div>
                         
