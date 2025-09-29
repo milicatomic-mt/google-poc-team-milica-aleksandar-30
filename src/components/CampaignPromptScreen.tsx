@@ -103,6 +103,8 @@ const CampaignPromptScreen = () => {
   };
 
   const handleCreateCampaign = () => {
+    console.log('Create campaign clicked with prompt:', prompt.trim());
+    console.log('Selected audiences:', selectedAudiences);
     if (prompt.trim()) {
       // Navigate directly to generate campaign with properly mapped data
       navigate('/generate-campaign', { 
@@ -312,7 +314,7 @@ const CampaignPromptScreen = () => {
                           setPrompt(newValue);
                           setDisplayedPrompt(newValue);
                         }}
-                        placeholder="Enter your campaign description..."
+                        placeholder="Enter your campaign description... (e.g., 'Create an ad for premium headphones targeting young professionals')"
                         className="h-full w-full text-base resize-none bg-transparent border-0 p-0 focus-visible:ring-0 leading-relaxed text-gray-800 placeholder:text-gray-500 pr-28"
                         onInput={(e) => {
                           const target = e.target as HTMLTextAreaElement;
@@ -411,10 +413,11 @@ const CampaignPromptScreen = () => {
         {/* Fixed Footer with Create Campaign Button */}
         <footer className="container-padding pb-8 pt-4 flex-shrink-0 border-t border-white/10 backdrop-blur-sm">
           <div className="flex justify-center">
-            <Button 
+             <Button 
+               disabled={!prompt.trim()}
               size="lg"
               onClick={handleCreateCampaign}
-              className={`tap-target focus-ring w-96 px-12 bg-primary hover:bg-primary/90 text-primary-foreground transition-opacity duration-300 rounded-full ${prompt.trim() ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+              className={`tap-target focus-ring w-96 px-12 bg-primary hover:bg-primary/90 text-primary-foreground transition-all duration-300 rounded-full ${prompt.trim() ? 'opacity-100' : 'opacity-50'}`}
               aria-label={editMode ? "Update campaign" : "Create campaign"}
             >
               <svg className="w-6 h-6 mr-2 fill-current" viewBox="0 0 24 24" fill="currentColor">
