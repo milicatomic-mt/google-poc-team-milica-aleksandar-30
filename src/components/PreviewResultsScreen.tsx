@@ -563,16 +563,17 @@ const PreviewResultsScreen: React.FC = () => {
                       
                       {/* Main Content */}
                       <div className="relative flex-1">
-                        <div className="bg-white p-2 mb-2">
+                        <div className="bg-gray-900 p-2 mb-2">
                           <div className="flex items-center gap-2 mb-2">
                             <div className="w-6 h-6 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full p-0.5">
                               <img src={uploadedImage || activeCampaignResults?.generated_images?.[0]?.url} alt="Profile" className="w-full h-full rounded-full object-cover" />
                             </div>
                             <div>
-                              <div className="text-black text-[8px] font-semibold">joshua_l</div>
-                              <div className="text-gray-500 text-[6px]">Sponsored</div>
+                              <div className="text-white text-[8px] font-semibold">joshua_l</div>
+                              <div className="text-gray-400 text-[6px]">Sponsored</div>
                             </div>
                           </div>
+                        </div>
                         </div>
                         {(activeCampaignResults?.generated_images?.[0]?.url || uploadedImage) && (
                           <img 
@@ -581,19 +582,19 @@ const PreviewResultsScreen: React.FC = () => {
                             className="w-full h-48 object-cover"
                           />
                         )}
-                        <div className="bg-white p-2">
+                        <div className="bg-gray-900 p-2">
                           <div className="flex justify-between items-center mb-1">
                             <div className="flex gap-2">
-                              <Heart className="w-4 h-4 text-black" />
-                              <MessageCircle className="w-4 h-4 text-black" />
-                              <Send className="w-4 h-4 text-black" />
+                              <Heart className="w-4 h-4 text-white" />
+                              <MessageCircle className="w-4 h-4 text-white" />
+                              <Send className="w-4 h-4 text-white" />
                             </div>
-                            <Bookmark className="w-4 h-4 text-black" />
+                            <Bookmark className="w-4 h-4 text-white" />
                           </div>
-                          <div className="text-black text-[7px] font-semibold mb-1">
+                          <div className="text-white text-[7px] font-semibold mb-1">
                             Liked by craig.done and 43,840 others
                           </div>
-                          <div className="text-black text-[7px]">
+                          <div className="text-white text-[7px]">
                             <span className="font-semibold">joshua_l</span> The game in Japan was amazing and I want to share some photos
                         </div>
                       </div>
@@ -602,7 +603,7 @@ const PreviewResultsScreen: React.FC = () => {
                       {/* Bottom Navigation */}
                       <div className="bg-black px-3 py-2 border-t border-gray-700">
                         <div className="flex justify-around">
-                          <div className="w-4 h-4 bg-white rounded-sm"></div>
+                          <div className="w-4 h-4 bg-gray-700 rounded-sm"></div>
                           <Search className="w-4 h-4 text-gray-400" />
                           <Plus className="w-4 h-4 text-gray-400" />
                           <Heart className="w-4 h-4 text-gray-400" />
@@ -676,7 +677,7 @@ const PreviewResultsScreen: React.FC = () => {
                     </div>
 
                     {/* Facebook Phone Mockup */}
-                    <div className="flex-1 bg-white overflow-hidden relative border border-gray-300">
+                    <div className="flex-1 bg-gray-900 overflow-hidden relative border border-gray-300">
                       {/* Status Bar */}
                       <div className="bg-gray-800 px-3 py-1 flex justify-between items-center text-white text-[8px]">
                         <div className="flex items-center gap-1">
@@ -706,7 +707,7 @@ const PreviewResultsScreen: React.FC = () => {
                       </div>
                       
                       {/* Post Header */}
-                      <div className="bg-white px-3 py-2 border-b border-gray-200">
+                      <div className="bg-gray-900 px-3 py-2 border-b border-gray-700">
                         <div className="flex items-center gap-2">
                           <div className="w-7 h-7 bg-gray-600 rounded-full overflow-hidden flex items-center justify-center">
                             {(activeCampaignResults?.generated_images?.[0]?.url || uploadedImage) ? (
@@ -720,17 +721,17 @@ const PreviewResultsScreen: React.FC = () => {
                             )}
                           </div>
                           <div>
-                            <div className="text-black text-[9px] font-bold">Your Brand</div>
-                            <div className="text-gray-500 text-[7px]">Sponsored • Premium quality products for you</div>
+                            <div className="text-white text-[9px] font-bold">Your Brand</div>
+                            <div className="text-gray-400 text-[7px]">Sponsored • Premium quality products for you</div>
                           </div>
                           <div className="ml-auto">
-                            <MoreHorizontal className="w-3 h-3 text-gray-500" />
+                            <MoreHorizontal className="w-3 h-3 text-gray-400" />
                           </div>
                         </div>
                       </div>
                       
                       {/* Main Content */}
-                      <div className="relative flex-1 bg-white">
+                      <div className="relative flex-1 bg-gray-900">
                         {(activeCampaignResults?.generated_images?.[0]?.url || uploadedImage) && (
                           <img 
                             src={activeCampaignResults?.generated_images?.[0]?.url || uploadedImage} 
@@ -746,22 +747,22 @@ const PreviewResultsScreen: React.FC = () => {
                         </div>
                       </div>
                       
-                      <div className="absolute bottom-0 left-0 right-0 bg-white/95 backdrop-blur-sm px-3 py-2 border-t border-gray-200">
+                      <div className="absolute bottom-0 left-0 right-0 bg-gray-800/95 backdrop-blur-sm px-3 py-2 border-t border-gray-700">
                         <div className="flex justify-around">
                           <div className="flex items-center gap-1">
-                            <Heart className="w-3 h-3 text-gray-600" />
-                            <span className="text-[7px] text-gray-600">Like</span>
+                            <Heart className="w-3 h-3 text-gray-300" />
+                            <span className="text-[7px] text-gray-300">Like</span>
                           </div>
                           <div className="flex items-center gap-1">
-                            <MessageCircle className="w-3 h-3 text-gray-600" />
-                            <span className="text-[7px] text-gray-600">Comment</span>
+                            <MessageCircle className="w-3 h-3 text-gray-300" />
+                            <span className="text-[7px] text-gray-300">Comment</span>
                           </div>
                           <div className="flex items-center gap-1">
-                            <Share className="w-3 h-3 text-gray-600" />
-                            <span className="text-[7px] text-gray-600">Share</span>
+                            <Share className="w-3 h-3 text-gray-300" />
+                            <span className="text-[7px] text-gray-300">Share</span>
                           </div>
                         </div>
-                        <div className="text-center text-[6px] text-gray-500 mt-1">
+                        <div className="text-center text-[6px] text-gray-400 mt-1">
                           48 comments 75 shares 641 views
                         </div>
                       </div>
