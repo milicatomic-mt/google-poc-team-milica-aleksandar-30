@@ -142,13 +142,13 @@ const BannerAdsPreview: React.FC = () => {
                 
                 {/* Text Content Overlay */}
                 <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
-                  <h3 className="text-white text-2xl font-bold uppercase tracking-wide mb-2">
+                  <h3 className="text-white text-6xl font-bold uppercase tracking-wide mb-2">
                     PREMIUM SOUND
                   </h3>
-                  <p className="text-white/90 text-sm uppercase tracking-wider mb-3">
+                  <p className="text-white/90 text-3xl uppercase tracking-wider mb-3">
                     MINIMALIST DESIGN
                   </p>
-                  <p className="text-white/80 text-xs font-medium mb-4">
+                  <p className="text-white/80 text-2xl font-medium mb-4">
                     WIRELESS BLUETOOTH CONNECTION<br/>
                     WITH BASS RESONANCE
                   </p>
