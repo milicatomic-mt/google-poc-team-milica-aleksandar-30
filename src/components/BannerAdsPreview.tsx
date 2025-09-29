@@ -95,9 +95,9 @@ const BannerAdsPreview: React.FC = () => {
               
               {/* Left Banner - Product Focus */}
               <div className="aspect-square bg-gradient-to-br from-gray-800 via-gray-700 to-gray-600 rounded-lg overflow-hidden shadow-lg relative">
-                <div className="flex items-center h-full px-8">
+                <div className="flex items-center h-full">
                   {/* Left - Product Image */}
-                  <div className="w-32 h-40 flex-shrink-0 flex items-center justify-center">
+                  <div className="w-1/2 h-full flex items-center justify-center">
                     {getImage(1) && (
                       <img 
                         src={getImage(1)} 
@@ -108,7 +108,7 @@ const BannerAdsPreview: React.FC = () => {
                   </div>
                   
                   {/* Right - Text Content */}
-                  <div className="flex-1 ml-8 text-white">
+                  <div className="flex-1 px-8 text-white">
                     <h3 className="text-white text-2xl font-bold uppercase tracking-wide mb-2">
                       PREMIUM SOUND
                     </h3>
@@ -130,7 +130,7 @@ const BannerAdsPreview: React.FC = () => {
               <div className="aspect-square bg-gradient-to-br from-slate-100 via-gray-50 to-stone-100 rounded-lg overflow-hidden shadow-lg relative">
                 <div className="flex items-center h-full">
                   {/* Left - Person Image */}
-                  <div className="w-48 h-full relative overflow-hidden flex-shrink-0">
+                  <div className="w-1/2 h-full relative overflow-hidden flex-shrink-0">
                     {getImage(0) && (
                       <img 
                         src={getImage(0)} 
@@ -164,7 +164,7 @@ const BannerAdsPreview: React.FC = () => {
             <div className="bg-gradient-to-r from-slate-200 via-gray-100 to-stone-200 rounded-lg overflow-hidden shadow-lg h-[4.5rem] relative">
               <div className="flex items-center h-full">
                 {/* Left - Product Image */}
-                <div className="w-24 h-24 ml-6 flex-shrink-0 flex items-center justify-center">
+                <div className="w-20 h-full flex items-center justify-center">
                   {getImage(1) && (
                     <img 
                       src={getImage(1)} 
@@ -200,7 +200,7 @@ const BannerAdsPreview: React.FC = () => {
             <div className="bg-gradient-to-r from-slate-200 via-gray-100 to-stone-200 rounded-lg overflow-hidden shadow-lg h-[4.5rem] relative">
               <div className="flex items-center h-full">
                 {/* Left - Product Image */}
-                <div className="w-24 h-24 ml-6 flex-shrink-0 flex items-center justify-center">
+                <div className="w-20 h-full flex items-center justify-center">
                   {getImage(1) && (
                     <img 
                       src={getImage(1)} 
