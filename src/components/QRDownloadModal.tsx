@@ -86,30 +86,30 @@ const QRDownloadModal: React.FC<QRDownloadModalProps> = ({
         
         <div className="flex flex-col items-center space-y-6 py-4">
           {/* QR Code */}
-          <div className="bg-white p-4 rounded-lg border-2 border-gray-200">
+          <div className="flex flex-col items-center">
             {isGenerating ? (
               <div className="w-64 h-64 flex items-center justify-center bg-gray-100 rounded">
                 <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
               </div>
             ) : qrUrl ? (
-              <QRCodeSVG 
-                value={qrUrl}
-                size={256}
-                level="M"
-                includeMargin={true}
-              />
+              <>
+                <QRCodeSVG 
+                  value={qrUrl}
+                  size={256}
+                  level="M"
+                  includeMargin={true}
+                  fgColor="#000000"
+                  bgColor="transparent"
+                />
+                <div className="bg-primary text-primary-foreground px-4 py-1.5 rounded-full text-sm font-semibold mt-2">
+                  SCAN ME
+                </div>
+              </>
             ) : (
               <div className="w-64 h-64 flex items-center justify-center bg-gray-100 rounded">
                 <span className="text-gray-500">Failed to generate QR code</span>
               </div>
             )}
-          </div>
-
-          {/* Scan me text */}
-          <div className="text-center">
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">
-              Scan me
-            </h3>
           </div>
 
           {/* Instructions */}
