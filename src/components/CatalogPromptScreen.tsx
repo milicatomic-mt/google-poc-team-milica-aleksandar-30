@@ -428,16 +428,16 @@ const CatalogPromptScreen = () => {
               {/* Category */}
               <div>
                 <Select value={productCategory} onValueChange={setProductCategory}>
-                  <SelectTrigger className="h-16 text-lg bg-white/30 border-2 border-gray-200 backdrop-blur-md shadow-sm hover:shadow-md hover:bg-white/40 transition-all duration-200 focus:ring-2 focus:ring-primary/50">
+                  <SelectTrigger className="h-12 text-base bg-white/30 border-2 border-gray-200 backdrop-blur-md shadow-sm hover:shadow-md hover:bg-white/40 transition-all duration-200 focus:ring-2 focus:ring-primary/50">
                     <SelectValue placeholder="Select or enter category" />
                   </SelectTrigger>
                   <SelectContent className="bg-white backdrop-blur-md border-gray-200 z-50">
                     {predefinedCategories.map((category) => (
-                      <SelectItem key={category} value={category} className="text-base py-4 hover:bg-gray-100">
+                      <SelectItem key={category} value={category} className="text-sm py-3 hover:bg-gray-100">
                         {category}
                       </SelectItem>
                     ))}
-                    <SelectItem value="custom" className="text-base py-4 font-medium hover:bg-gray-100">
+                    <SelectItem value="custom" className="text-sm py-3 font-medium hover:bg-gray-100">
                       Custom Category...
                     </SelectItem>
                   </SelectContent>
@@ -448,7 +448,7 @@ const CatalogPromptScreen = () => {
                     placeholder="Enter custom category"
                     value={customCategory}
                     onChange={(e) => setCustomCategory(e.target.value)}
-                    className="h-16 text-lg bg-white/30 border-2 border-gray-200 backdrop-blur-md shadow-sm hover:shadow-md hover:bg-white/40 transition-all duration-200 placeholder:text-gray-500 mt-4"
+                    className="h-12 text-base bg-white/30 border-2 border-gray-200 backdrop-blur-md shadow-sm hover:shadow-md hover:bg-white/40 transition-all duration-200 placeholder:text-gray-500 mt-4"
                   />
                 )}
               </div>
@@ -456,12 +456,12 @@ const CatalogPromptScreen = () => {
               {/* Brand Tone */}
               <div>
                 <Select value={brandTone} onValueChange={setBrandTone}>
-                  <SelectTrigger className="h-16 text-lg bg-white/30 border-2 border-gray-200 backdrop-blur-md shadow-sm hover:shadow-md hover:bg-white/40 transition-all duration-200 focus:ring-2 focus:ring-primary/50">
+                  <SelectTrigger className="h-12 text-base bg-white/30 border-2 border-gray-200 backdrop-blur-md shadow-sm hover:shadow-md hover:bg-white/40 transition-all duration-200 focus:ring-2 focus:ring-primary/50">
                     <SelectValue placeholder="Select brand tone" />
                   </SelectTrigger>
                   <SelectContent className="bg-white backdrop-blur-md border-gray-200 z-50">
                     {brandTones.map((tone) => (
-                      <SelectItem key={tone} value={tone} className="text-base py-4 hover:bg-gray-100">
+                      <SelectItem key={tone} value={tone} className="text-sm py-3 hover:bg-gray-100">
                         {tone}
                       </SelectItem>
                     ))}
@@ -472,12 +472,12 @@ const CatalogPromptScreen = () => {
               {/* Platform */}
               <div>
                 <Select value={platform} onValueChange={setPlatform}>
-                  <SelectTrigger className="h-16 text-lg bg-white/30 border-2 border-gray-200 backdrop-blur-md shadow-sm hover:shadow-md hover:bg-white/40 transition-all duration-200 focus:ring-2 focus:ring-primary/50">
+                  <SelectTrigger className="h-12 text-base bg-white/30 border-2 border-gray-200 backdrop-blur-md shadow-sm hover:shadow-md hover:bg-white/40 transition-all duration-200 focus:ring-2 focus:ring-primary/50">
                     <SelectValue placeholder="Select platform" />
                   </SelectTrigger>
                   <SelectContent className="bg-white backdrop-blur-md border-gray-200 z-50">
                     {platforms.map((plat) => (
-                      <SelectItem key={plat} value={plat} className="text-base py-4 hover:bg-gray-100">
+                      <SelectItem key={plat} value={plat} className="text-sm py-3 hover:bg-gray-100">
                         {plat}
                       </SelectItem>
                     ))}
@@ -491,7 +491,7 @@ const CatalogPromptScreen = () => {
                   placeholder="Enter brand name"
                   value={brandName}
                   onChange={(e) => setBrandName(e.target.value)}
-                  className="h-16 !text-lg bg-white/30 border-2 border-gray-200 backdrop-blur-md shadow-sm hover:shadow-md hover:bg-white/40 transition-all duration-200 placeholder:text-gray-400 placeholder:text-lg focus:ring-2 focus:ring-primary/50"
+                  className="h-12 !text-base bg-white/30 border-2 border-gray-200 backdrop-blur-md shadow-sm hover:shadow-md hover:bg-white/40 transition-all duration-200 placeholder:text-gray-400 placeholder:text-base focus:ring-2 focus:ring-primary/50"
                 />
               </div>
             </div>
