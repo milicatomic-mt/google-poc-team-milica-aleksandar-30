@@ -215,7 +215,7 @@ const CatalogResultsScreen: React.FC = () => {
         toast.error('Failed to generate catalog content. Please try again.');
       } finally {
         setIsGenerating(false);
-        // Mark inflight as done to avoid re-entry
+  
         try { sessionStorage.setItem(inflightKey, 'done'); } catch {}
       }
     };
