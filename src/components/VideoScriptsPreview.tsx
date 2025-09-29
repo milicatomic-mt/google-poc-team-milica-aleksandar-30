@@ -149,7 +149,7 @@ const VideoScriptsPreview: React.FC = () => {
             
             <div className="flex flex-col lg:flex-row gap-8 justify-center items-start">
               {/* Instagram Mobile Mockup */}
-              <div className="bg-white rounded-lg shadow-lg overflow-hidden max-w-sm">
+              <div className="bg-white rounded-lg shadow-lg overflow-hidden max-w-sm h-[814px]">
                 {/* Instagram Header */}
                 <div className="bg-black text-white p-4">
                   <div className="flex items-center justify-between text-sm font-medium mb-4">
