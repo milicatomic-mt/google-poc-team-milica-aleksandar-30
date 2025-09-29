@@ -80,7 +80,10 @@ const OptimizedGallery = () => {
   const filteredItems = items.filter(item => {
     if (selectedFilter === 'all') return true;
     if (selectedFilter === 'campaigns') {
-      return item.type === 'campaign' && item._fullData?.generated_video_url;
+      // Only show campaigns that have generated videos
+      return item.type === 'campaign' && 
+             item._fullData?.generated_video_url && 
+             item._fullData.generated_video_url.trim() !== '';
     }
     if (selectedFilter === 'catalogs') return item.type === 'catalog';
     return true;
