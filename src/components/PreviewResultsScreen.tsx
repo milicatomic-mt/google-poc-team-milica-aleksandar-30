@@ -181,14 +181,14 @@ const PreviewResultsScreen: React.FC = () => {
 
       case 'Banner Ads':
         return (
-          <div className="overflow-hidden bg-white shadow-2xl rounded-lg h-[60vh]">
-            <div className="p-2 h-full flex flex-col">
+          <div className="overflow-hidden bg-white shadow-2xl rounded-lg">
+            <div className="p-2">
               {/* Grid layout matching reference image */}
-              <div className="grid grid-cols-2 gap-4 mb-2 flex-1 min-h-0">
+              <div className="grid grid-cols-2 gap-4 mb-4">
                 
                 {/* Left Banner */}
                 <div 
-                  className="relative h-full rounded-lg overflow-hidden bg-cover bg-center"
+                  className="relative aspect-[4/3] rounded-lg overflow-hidden bg-cover bg-center"
                   style={{
                     backgroundImage: (generatedImages[0]?.url || uploadedImage) 
                       ? `url(${generatedImages[0]?.url || uploadedImage})` 
@@ -215,7 +215,7 @@ const PreviewResultsScreen: React.FC = () => {
 
                 {/* Right Banner */}
                 <div 
-                  className="relative h-full rounded-lg overflow-hidden bg-cover bg-center"
+                  className="relative aspect-[4/3] rounded-lg overflow-hidden bg-cover bg-center"
                   style={{
                     backgroundImage: (generatedImages[1]?.url || uploadedImage) 
                       ? `url(${generatedImages[1]?.url || uploadedImage})` 
@@ -242,12 +242,12 @@ const PreviewResultsScreen: React.FC = () => {
               </div>
 
               {/* Bottom Banner */}
-              <div className="flex items-center gap-3 p-1 bg-gray-50 rounded-lg h-[4.5rem] flex-shrink-0">
+              <div className="flex items-center gap-4 p-4 bg-gray-50 rounded-lg">
                 {(generatedImages[2]?.url || uploadedImage) && (
                   <img 
                     src={generatedImages[2]?.url || uploadedImage} 
                     alt="Product" 
-                    className="w-12 h-12 object-contain rounded-lg bg-white p-1" 
+                    className="w-16 h-16 object-contain rounded-lg bg-white p-2" 
                   />
                 )}
                 <div className="flex-1">
@@ -812,7 +812,7 @@ const PreviewResultsScreen: React.FC = () => {
                     </div>
                     
                     {/* Bottom Row - Wide Horizontal Banner */}
-                    <div className="bg-gradient-to-r from-slate-200 to-gray-200 overflow-hidden relative h-20" style={{borderRadius: '1px'}}>
+                    <div className="bg-gradient-to-r from-slate-200 to-gray-200 overflow-hidden relative h-18" style={{borderRadius: '1px'}}>
                       <div className="flex items-center h-full">
                         {/* Left - Person Image */}
                         <div className="w-20 h-full relative overflow-hidden">
