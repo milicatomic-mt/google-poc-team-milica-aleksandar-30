@@ -504,12 +504,12 @@ const PreviewResultsScreen: React.FC = () => {
                   <ArrowUpRight className="w-5 h-5 text-black" />
                 </div>
                 <CardContent className="p-4">
-                  <div className="h-80 flex gap-4 justify-center items-start pt-4">
+                  <div className="h-80 flex gap-2 justify-center items-start">
                     
                     {/* Instagram Phone Mockup */}
-                    <div className="w-[100px] h-[180px] bg-black rounded-[16px] overflow-hidden relative shadow-xl border-2 border-gray-800">
+                    <div className="w-[130px] h-[300px] bg-black overflow-hidden relative shadow-xl border-2 border-gray-800">
                       {/* Status Bar */}
-                      <div className="bg-black px-3 py-1 flex justify-between items-center text-white text-[8px]">
+                      <div className="bg-black px-4 py-2 flex justify-between items-center text-white text-[10px]">
                         <span className="font-medium">9:41</span>
                         <div className="flex gap-0.5">
                           <div className="w-3 h-1.5 bg-white rounded-sm"></div>
@@ -519,11 +519,11 @@ const PreviewResultsScreen: React.FC = () => {
                       </div>
                       
                       {/* Instagram Header */}
-                      <div className="bg-black px-3 py-2 border-b border-gray-700">
+                      <div className="bg-black px-4 py-3 border-b border-gray-700">
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-2">
                             <Camera className="w-4 h-4 text-white" />
-                            <span className="text-white text-[10px] font-bold">Instagram</span>
+                            <span className="text-white text-[12px] font-bold">Instagram</span>
                           </div>
                           <div className="flex gap-1">
                             <Plus className="w-4 h-4 text-white" />
@@ -533,17 +533,17 @@ const PreviewResultsScreen: React.FC = () => {
                         </div>
                         
                         {/* Stories */}
-                        <div className="flex gap-2 mt-2">
-                          <div className="w-6 h-6 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full p-0.5">
-                            <div className="w-full h-full bg-black rounded-full"></div>
+                        <div className="flex gap-3 mt-3">
+                            <div className="w-8 h-8 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full p-0.5">
+                              <div className="w-full h-full bg-black rounded-full"></div>
+                            </div>
+                            <div className="w-8 h-8 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full p-0.5">
+                              <div className="w-full h-full bg-black rounded-full"></div>
+                            </div>
+                            <div className="w-8 h-8 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full p-0.5">
+                              <div className="w-full h-full bg-black rounded-full"></div>
+                            </div>
                           </div>
-                          <div className="w-6 h-6 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full p-0.5">
-                            <div className="w-full h-full bg-black rounded-full"></div>
-                          </div>
-                          <div className="w-6 h-6 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full p-0.5">
-                            <div className="w-full h-full bg-black rounded-full"></div>
-                          </div>
-                        </div>
                       </div>
                       
                       {/* Main Content */}
@@ -552,28 +552,28 @@ const PreviewResultsScreen: React.FC = () => {
                           <img 
                             src={activeCampaignResults?.generated_images?.[0]?.url || uploadedImage} 
                             alt="Instagram content" 
-                            className="w-full h-24 object-cover" 
+                            className="w-full h-40 object-cover" 
                           />
                         )}
                         
                         {/* Post Actions */}
-                        <div className="absolute bottom-0 left-0 right-0 bg-black/50 p-2">
+                        <div className="absolute bottom-0 left-0 right-0 bg-black/50 p-3">
                           <div className="flex justify-between items-center">
-                            <div className="flex gap-3">
+                            <div className="flex gap-4">
                               <Heart className="w-4 h-4 text-white" />
                               <MessageCircle className="w-4 h-4 text-white" />
                               <Send className="w-4 h-4 text-white" />
                             </div>
                             <Bookmark className="w-4 h-4 text-white" />
                           </div>
-                          <div className="text-white text-[7px] mt-1">
+                          <div className="text-white text-[9px] mt-1">
                             Liked by craig.done and 43,840 others
                           </div>
                         </div>
                       </div>
                       
                       {/* Bottom Navigation */}
-                      <div className="bg-black px-3 py-1 border-t border-gray-700">
+                      <div className="bg-black px-4 py-2 border-t border-gray-700">
                         <div className="flex justify-around">
                           <div className="w-4 h-4 bg-white rounded-sm"></div>
                           <Search className="w-4 h-4 text-gray-400" />
@@ -585,9 +585,9 @@ const PreviewResultsScreen: React.FC = () => {
                     </div>
 
                     {/* TikTok Phone Mockup */}
-                    <div className="w-[100px] h-[180px] bg-black rounded-[16px] overflow-hidden relative shadow-xl border-2 border-gray-800">
+                    <div className="w-[130px] h-[300px] bg-black overflow-hidden relative shadow-xl border-2 border-gray-800">
                       {/* Status Bar */}
-                      <div className="bg-black px-3 py-1 flex justify-between items-center text-white text-[8px]">
+                      <div className="bg-black px-4 py-2 flex justify-between items-center text-white text-[10px]">
                         <span className="font-medium">9:41</span>
                         <div className="flex gap-0.5">
                           <div className="w-3 h-1.5 bg-white rounded-sm"></div>
@@ -597,10 +597,10 @@ const PreviewResultsScreen: React.FC = () => {
                       </div>
                       
                       {/* TikTok Header */}
-                      <div className="bg-black px-3 py-2 flex justify-center">
+                      <div className="bg-black px-4 py-3 flex justify-center">
                         <div className="flex gap-4">
-                          <span className="text-gray-400 text-[10px]">Following</span>
-                          <span className="text-white text-[10px] font-bold border-b border-white">For You</span>
+                          <span className="text-gray-400 text-[12px]">Following</span>
+                          <span className="text-white text-[12px] font-bold border-b border-white">For You</span>
                         </div>
                       </div>
                       
@@ -610,42 +610,42 @@ const PreviewResultsScreen: React.FC = () => {
                           <img 
                             src={activeCampaignResults?.generated_images?.[0]?.url || uploadedImage} 
                             alt="TikTok content" 
-                            className="w-full h-28 object-cover" 
+                            className="w-full h-48 object-cover" 
                           />
                         )}
                         
                         {/* Play Button */}
                         <div className="absolute inset-0 flex items-center justify-center">
-                          <div className="w-12 h-12 bg-white/90 rounded-full flex items-center justify-center">
-                            <Play className="w-6 h-6 text-black ml-1" fill="black" />
+                          <div className="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center">
+                            <Play className="w-8 h-8 text-black ml-1" fill="black" />
                           </div>
                         </div>
                         
                         {/* Right Side Actions */}
-                        <div className="absolute right-2 bottom-16 flex flex-col gap-3">
-                          <div className="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center">
-                            <Heart className="w-4 h-4 text-white" />
+                        <div className="absolute right-3 bottom-20 flex flex-col gap-4">
+                          <div className="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center">
+                            <Heart className="w-5 h-5 text-white" />
                           </div>
-                          <div className="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center">
-                            <MessageCircle className="w-4 h-4 text-white" />
+                          <div className="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center">
+                            <MessageCircle className="w-5 h-5 text-white" />
                           </div>
-                          <div className="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center">
-                            <Share className="w-4 h-4 text-white" />
+                          <div className="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center">
+                            <Share className="w-5 h-5 text-white" />
                           </div>
                         </div>
                         
                         {/* Bottom Text */}
-                        <div className="absolute bottom-0 left-0 right-0 p-2 bg-gradient-to-t from-black/70 to-transparent">
-                          <div className="text-white text-[8px] font-bold mb-1">TOMORROW X TOGETHER 🎵</div>
-                          <div className="text-white text-[7px]">Let's have a good time 💫 #TXT #GoodBoy</div>
+                        <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/70 to-transparent">
+                          <div className="text-white text-[10px] font-bold mb-1">TOMORROW X TOGETHER 🎵</div>
+                          <div className="text-white text-[9px]">Let's have a good time 💫 #TXT #GoodBoy</div>
                         </div>
                       </div>
                     </div>
 
                     {/* Facebook Phone Mockup */}
-                    <div className="w-[100px] h-[180px] bg-white rounded-[16px] overflow-hidden relative shadow-xl border-2 border-gray-300">
+                    <div className="w-[130px] h-[300px] bg-white overflow-hidden relative shadow-xl border-2 border-gray-300">
                       {/* Status Bar */}
-                      <div className="bg-blue-600 px-3 py-1 flex justify-between items-center text-white text-[8px]">
+                      <div className="bg-blue-600 px-4 py-2 flex justify-between items-center text-white text-[10px]">
                         <span className="font-medium">15:47</span>
                         <div className="flex gap-0.5">
                           <div className="w-3 h-1.5 bg-white rounded-sm"></div>
@@ -655,8 +655,8 @@ const PreviewResultsScreen: React.FC = () => {
                       </div>
                       
                       {/* Facebook Header */}
-                      <div className="bg-blue-600 px-3 py-2 flex justify-between items-center">
-                        <span className="text-white text-[12px] font-bold">facebook</span>
+                      <div className="bg-blue-600 px-4 py-3 flex justify-between items-center">
+                        <span className="text-white text-[14px] font-bold">facebook</span>
                         <div className="flex gap-2">
                           <Plus className="w-4 h-4 text-white" />
                           <Search className="w-4 h-4 text-white" />
@@ -665,14 +665,14 @@ const PreviewResultsScreen: React.FC = () => {
                       </div>
                       
                       {/* Post Header */}
-                      <div className="bg-white px-3 py-2 border-b border-gray-200">
+                      <div className="bg-white px-4 py-3 border-b border-gray-200">
                         <div className="flex items-center gap-2">
-                          <div className="w-6 h-6 bg-blue-600 rounded-full flex items-center justify-center">
-                            <span className="text-white text-[8px] font-bold">BMW</span>
+                          <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
+                            <span className="text-white text-[10px] font-bold">BMW</span>
                           </div>
                           <div>
-                            <div className="text-black text-[8px] font-bold">BMW Group</div>
-                            <div className="text-gray-500 text-[6px]">From FCEV prototype to series production...</div>
+                            <div className="text-black text-[10px] font-bold">BMW Group</div>
+                            <div className="text-gray-500 text-[8px]">From FCEV prototype to series production...</div>
                           </div>
                         </div>
                       </div>
@@ -683,35 +683,35 @@ const PreviewResultsScreen: React.FC = () => {
                           <img 
                             src={activeCampaignResults?.generated_images?.[0]?.url || uploadedImage} 
                             alt="Facebook content" 
-                            className="w-full h-20 object-cover" 
+                            className="w-full h-32 object-cover" 
                           />
                         )}
                         
                         {/* Play Button */}
                         <div className="absolute inset-0 flex items-center justify-center">
-                          <div className="w-10 h-10 bg-black/70 rounded-full flex items-center justify-center">
-                            <Play className="w-5 h-5 text-white ml-0.5" fill="white" />
+                          <div className="w-12 h-12 bg-black/70 rounded-full flex items-center justify-center">
+                            <Play className="w-6 h-6 text-white ml-0.5" fill="white" />
                           </div>
                         </div>
                       </div>
                       
                       {/* Post Actions */}
-                      <div className="bg-white px-3 py-2 border-t border-gray-200">
+                      <div className="bg-white px-4 py-3 border-t border-gray-200">
                         <div className="flex justify-around">
                           <div className="flex items-center gap-1">
                             <Heart className="w-3 h-3 text-blue-600" />
-                            <span className="text-[7px] text-gray-600">Like</span>
+                            <span className="text-[8px] text-gray-600">Like</span>
                           </div>
                           <div className="flex items-center gap-1">
                             <MessageCircle className="w-3 h-3 text-gray-600" />
-                            <span className="text-[7px] text-gray-600">Comment</span>
+                            <span className="text-[8px] text-gray-600">Comment</span>
                           </div>
                           <div className="flex items-center gap-1">
                             <Share className="w-3 h-3 text-gray-600" />
-                            <span className="text-[7px] text-gray-600">Share</span>
+                            <span className="text-[8px] text-gray-600">Share</span>
                           </div>
                         </div>
-                        <div className="text-center text-[6px] text-gray-500 mt-1">
+                        <div className="text-center text-[8px] text-gray-500 mt-2">
                           48 comments 75 shares 641 views
                         </div>
                       </div>
