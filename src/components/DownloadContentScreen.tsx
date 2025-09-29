@@ -64,7 +64,7 @@ const DownloadContentScreen = () => {
         txtContent += "================\n\n";
         
         // Video Scripts
-        txtContent += "🎥 VIDEO SCRIPTS\n";
+        txtContent += "🎥 SOCIAL VIDEO COLLECTION\n";
         txtContent += "-----------------\n";
         campaignData.video_scripts.forEach((script) => {
           txtContent += `${script.platform.toUpperCase()}:\n${script.script}\n\n`;

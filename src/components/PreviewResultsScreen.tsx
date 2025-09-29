@@ -108,7 +108,7 @@ const PreviewResultsScreen: React.FC = () => {
     const routeMap = {
       'Web Creative': '/web-creative',
       'Banner Ads': '/banner-ads', 
-      'Video Scripts': '/video-scripts',
+      'Social Video Collection': '/video-scripts',
       'Email Templates': '/email-templates'
     };
     
@@ -423,14 +423,14 @@ const PreviewResultsScreen: React.FC = () => {
                 </CardContent>
               </Card>
 
-              {/* Video Scripts Card */}
+              {/* Social Video Collection Card */}
               <Card 
                 className="card-elegant backdrop-blur-xl bg-white/60 border-white/50 border-2 shadow-2xl hover:shadow-elegant-lg transition-all duration-smooth cursor-pointer"
-                onClick={() => handleOpenCategory('Video Scripts')}
+                onClick={() => handleOpenCategory('Social Video Collection')}
               >
                 <div className="px-4 py-3 flex items-center justify-between transition-all duration-smooth">
                   <div className="flex items-center space-x-2">
-                    <h3 className="text-foreground font-medium">Video Scripts</h3>
+                    <h3 className="text-foreground font-medium">Social Video Collection</h3>
                   </div>
                   <ArrowUpRight className="w-5 h-5 text-black" />
                 </div>

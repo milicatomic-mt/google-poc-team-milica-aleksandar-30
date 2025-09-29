@@ -214,10 +214,10 @@ const OptimizedGalleryPreviewModal = ({ item, isOpen, onClose }: OptimizedGaller
                       </div>
                     )}
 
-                    {/* Video Scripts */}
+                    {/* Social Video Collection */}
                     {itemDetails.result.video_scripts && Array.isArray(itemDetails.result.video_scripts) && itemDetails.result.video_scripts.length > 0 && (
                       <div>
-                        <h4 className="font-medium text-sm text-muted-foreground mb-3">Video Scripts</h4>
+                        <h4 className="font-medium text-sm text-muted-foreground mb-3">Social Video Collection</h4>
                         <div className="space-y-3">
                           {itemDetails.result.video_scripts.map((script: any, index: number) => (
                             <div key={index} className="border border-border/50 rounded-lg p-3">

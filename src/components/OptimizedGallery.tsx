@@ -117,7 +117,7 @@ const OptimizedGallery = () => {
     const routeMap = {
       'Web Creative': '/web-creative',
       'Banner Ads': '/banner-ads', 
-      'Video Scripts': '/video-scripts',
+      'Social Video Collection': '/video-scripts',
       'Email Templates': '/email-templates'
     };
     
@@ -660,17 +660,17 @@ const CampaignContent: React.FC<{
         </CardContent>
       </Card>
 
-      {/* Video Scripts Card - Exact copy from PreviewResultsScreen */}
+      {/* Social Video Collection Card - Exact copy from PreviewResultsScreen */}
       <Card 
         className="card-elegant backdrop-blur-xl bg-white/60 border-white/50 border-2 shadow-2xl hover:shadow-elegant-lg transition-all duration-smooth cursor-pointer flex flex-col"
-        onClick={() => onViewDetails('Video Scripts')}
+        onClick={() => onViewDetails('Social Video Collection')}
       >
         <div className="px-4 py-3 flex items-center justify-between transition-all duration-smooth">
           <div className="flex items-center space-x-2">
-            <h3 className="text-foreground font-medium">Video Scripts</h3>
+            <h3 className="text-foreground font-medium">Social Video Collection</h3>
             <span className="bg-muted text-primary text-xs px-2 py-1 rounded-full font-medium">1</span>
           </div>
-          {/* Removed download button from video scripts section */}
+          {/* Removed download button from Social Video Collection section */}
         </div>
         <CardContent className="p-4 flex-1 flex flex-col">
           <div className="h-80 bg-black overflow-hidden relative" style={{borderRadius: '1px'}}>

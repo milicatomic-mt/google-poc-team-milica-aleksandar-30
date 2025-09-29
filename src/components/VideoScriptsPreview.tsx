@@ -98,7 +98,7 @@ const VideoScriptsPreview: React.FC = () => {
       {/* Header */}
       <div className="flex items-center justify-center px-8 py-6 pt-20">
         <div className="text-center">
-          <h1 className="text-3xl font-bold text-gray-900">Video Scripts</h1>
+          <h1 className="text-3xl font-bold text-gray-900">Social Video Collection</h1>
           <p className="text-gray-600 text-sm mt-1">Optimized content for social media platforms</p>
         </div>
 
@@ -756,11 +756,11 @@ const VideoScriptsPreview: React.FC = () => {
             )}
           </div>
 
-          {/* 3. Video Scripts Text Content - Third */}
+          {/* 3. Social Video Collection Text Content - Third */}
           {videoScripts && videoScripts.length > 0 && (
             <div className="space-y-6">
               <div className="mb-6">
-                <h2 className="text-2xl font-bold text-gray-900 mb-2">Video Scripts</h2>
+                <h2 className="text-2xl font-bold text-gray-900 mb-2">Social Video Collection</h2>
                 <p className="text-gray-600">Detailed scripts for your video content</p>
               </div>
               {videoScripts.map((script, index) => (
@@ -816,7 +816,7 @@ const VideoScriptsPreview: React.FC = () => {
           generated_video_url: campaignResults?.generated_video_url,
           uploadedImageUrl: uploadedImage
         }}
-        title="Download Video Scripts"
+        title="Download Social Video Collection"
       />
     </div>
   );
