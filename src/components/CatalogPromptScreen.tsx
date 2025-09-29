@@ -351,7 +351,12 @@ const CatalogPromptScreen = () => {
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
               {location.state?.editMode 
                 ? 'Update your catalog details and regenerate the content with your changes.'
-                : 'We\'ve created a product description from your image. You can use it, edit it, or add more details.'
+                : (
+                  <>
+                    We've created a product description from your image. You can use it,<br />
+                    edit it, or add more details.
+                  </>
+                )
               }
             </p>
           </div>
