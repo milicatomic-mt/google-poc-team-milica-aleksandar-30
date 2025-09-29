@@ -376,60 +376,21 @@ const PreviewResultsScreen: React.FC = () => {
                 </div>
                 <CardContent className="p-4">
                   <div className="h-80 bg-gray-100 overflow-hidden border border-gray-300 shadow-sm rounded">
-                    {/* Browser-like Screenshot Mockup */}
-                    <div className="h-full bg-white">
-                      {/* Browser Header */}
-                      <div className="bg-gray-200 px-2 py-1 flex items-center gap-1 border-b">
-                        <div className="flex gap-1">
-                          <div className="w-2 h-2 bg-red-400 rounded-full"></div>
-                          <div className="w-2 h-2 bg-slate-400 rounded-full"></div>
-                          <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-                        </div>
-                        <div className="flex-1 bg-white mx-2 rounded px-2 py-0.5">
-                          <div className="text-[6px] text-gray-500">https://yoursite.com</div>
-                        </div>
-                      </div>
+                    {/* Simple Full Screen Website Preview */}
+                    <div className="w-full h-full relative overflow-hidden">
+                      {(activeCampaignResults?.generated_images?.[0]?.url || uploadedImage) && (
+                        <img 
+                          src={activeCampaignResults?.generated_images?.[0]?.url || uploadedImage} 
+                          alt="Website preview" 
+                          className="w-full h-full object-cover" 
+                        />
+                      )}
                       
-                      {/* Main Content Area */}
-                      <div className="relative h-full bg-gradient-to-br from-gray-900 via-black to-gray-800 overflow-hidden">
-                        <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/10"></div>
-                        <div className="absolute top-0 right-0 w-20 h-20 bg-white/5 rounded-full blur-xl"></div>
-                        <div className="relative z-10 p-6 text-center">
-                          <div className="inline-flex items-center gap-1 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-3 py-1 mb-4">
-                            <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-                            <span className="text-[8px] font-medium text-white">Premium Collection</span>
-                          </div>
-                          <h1 className="text-white text-lg font-bold mb-3 leading-tight">
-                            Transform Your Experience ✨
-                          </h1>
-                          <p className="text-white/80 text-sm mb-6 leading-relaxed">
-                            Discover premium solutions designed for you
-                          </p>
-                          <button className="bg-white text-gray-900 text-sm px-6 py-2 rounded-lg font-semibold hover:bg-white/90 transition-colors">
-                            Shop Now
-                          </button>
-                        </div>
-                        
-                        {/* Product Preview */}
-                        <div className="absolute bottom-4 left-4 right-4">
-                          <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-lg p-3">
-                            <div className="flex items-center gap-3">
-                              <div className="w-12 h-12 bg-white/20 rounded-lg overflow-hidden">
-                                {(imageMapping?.image_0 || uploadedImage) && (
-                                  <img 
-                                    src={imageMapping?.image_0 || uploadedImage} 
-                                    alt="Product preview" 
-                                    className="w-full h-full object-cover" 
-                                  />
-                                )}
-                              </div>
-                              <div className="flex-1">
-                                <div className="text-white text-[10px] font-semibold mb-1">Featured Product</div>
-                                <div className="text-white/70 text-[8px]">Premium quality • Free shipping</div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
+                      {/* Overlay content */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20"></div>
+                      <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
+                        <h3 className="text-sm font-bold mb-1">Professional Website</h3>
+                        <p className="text-xs opacity-90">Responsive design optimized for all devices</p>
                       </div>
                     </div>
                   </div>
