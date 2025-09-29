@@ -390,66 +390,44 @@ const PreviewResultsScreen: React.FC = () => {
                         </div>
                       </div>
                       
-                      {/* Website Content */}
-                      <div className="relative h-full bg-gradient-to-br from-white to-slate-50 overflow-hidden">
-                        {/* Navigation Bar */}
-                        <div className="bg-white shadow-sm px-3 py-2 border-b">
-                          <div className="flex items-center justify-between">
-                            <div className="text-[10px] font-bold text-gray-900">YourBrand</div>
-                            <div className="flex gap-2">
-                              <div className="text-[6px] text-gray-600">Home</div>
-                              <div className="text-[6px] text-gray-600">Products</div>
-                              <div className="text-[6px] text-gray-600">About</div>
-                            </div>
+                      {/* Main Content Area */}
+                      <div className="relative h-full bg-gradient-to-br from-gray-900 via-black to-gray-800 overflow-hidden">
+                        <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/10"></div>
+                        <div className="absolute top-0 right-0 w-20 h-20 bg-white/5 rounded-full blur-xl"></div>
+                        <div className="relative z-10 p-6 text-center">
+                          <div className="inline-flex items-center gap-1 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-3 py-1 mb-4">
+                            <div className="w-2 h-2 bg-green-400 rounded-full"></div>
+                            <span className="text-[8px] font-medium text-white">Premium Collection</span>
                           </div>
+                          <h1 className="text-white text-lg font-bold mb-3 leading-tight">
+                            Transform Your Experience ✨
+                          </h1>
+                          <p className="text-white/80 text-sm mb-6 leading-relaxed">
+                            Discover premium solutions designed for you
+                          </p>
+                          <button className="bg-white text-gray-900 text-sm px-6 py-2 rounded-lg font-semibold hover:bg-white/90 transition-colors">
+                            Shop Now
+                          </button>
                         </div>
                         
-                        {/* Hero Section */}
-                        <div className="relative bg-gradient-to-br from-gray-900 to-black p-4">
-                          <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/10"></div>
-                          <div className="relative text-center">
-                            <h1 className="text-white text-[12px] font-bold mb-2">
-                              Premium Products
-                            </h1>
-                            <p className="text-white/80 text-[8px] mb-3">
-                              Experience quality like never before
-                            </p>
-                            <button className="bg-white text-gray-900 text-[8px] px-3 py-1 rounded font-semibold">
-                              Shop Now
-                            </button>
-                          </div>
-                        </div>
-                        
-                        {/* Product Showcase */}
-                        <div className="p-3 bg-white">
-                          <div className="grid grid-cols-3 gap-2">
-                            <div className="text-center">
-                              <div className="w-full h-8 bg-gray-200 rounded mb-1 overflow-hidden">
+                        {/* Product Preview */}
+                        <div className="absolute bottom-4 left-4 right-4">
+                          <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-lg p-3">
+                            <div className="flex items-center gap-3">
+                              <div className="w-12 h-12 bg-white/20 rounded-lg overflow-hidden">
                                 {(imageMapping?.image_0 || uploadedImage) && (
                                   <img 
                                     src={imageMapping?.image_0 || uploadedImage} 
-                                    alt="Product" 
+                                    alt="Product preview" 
                                     className="w-full h-full object-cover" 
                                   />
                                 )}
                               </div>
-                              <div className="text-[6px] text-gray-700 font-semibold">Featured</div>
+                              <div className="flex-1">
+                                <div className="text-white text-[10px] font-semibold mb-1">Featured Product</div>
+                                <div className="text-white/70 text-[8px]">Premium quality • Free shipping</div>
+                              </div>
                             </div>
-                            <div className="text-center">
-                              <div className="w-full h-8 bg-gray-200 rounded mb-1"></div>
-                              <div className="text-[6px] text-gray-700 font-semibold">Popular</div>
-                            </div>
-                            <div className="text-center">
-                              <div className="w-full h-8 bg-gray-200 rounded mb-1"></div>
-                              <div className="text-[6px] text-gray-700 font-semibold">New</div>
-                            </div>
-                          </div>
-                        </div>
-                        
-                        {/* Footer */}
-                        <div className="absolute bottom-0 left-0 right-0 bg-gray-800 p-2">
-                          <div className="text-center">
-                            <div className="text-white text-[6px]">© 2024 YourBrand. All rights reserved.</div>
                           </div>
                         </div>
                       </div>
