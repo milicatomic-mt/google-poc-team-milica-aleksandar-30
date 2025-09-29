@@ -64,7 +64,6 @@ import EmailTemplatesPreview from "./components/EmailTemplatesPreview";
 
 import CatalogResultsScreen from "./components/CatalogResultsScreen";
 import MobileUploadScreen from "./components/MobileUploadScreen";
-import QRDownloadScreen from "./components/QRDownloadScreen";
 import DownloadContentScreen from "./components/DownloadContentScreen";
 import PreviewResultsScreen from "./components/PreviewResultsScreen";
 import OptimizedGallery from "./components/OptimizedGallery";
@@ -103,7 +102,6 @@ const App = () => (
             <Route path="/banner-ads" element={<BannerAdsPreview />} />
             <Route path="/video-scripts" element={<VideoScriptsPreview />} />
             <Route path="/email-templates" element={<EmailTemplatesPreview />} />
-            <Route path="/qr-download" element={<QRDownloadScreen />} />
             <Route path="/download-content" element={<DownloadContentScreen />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
