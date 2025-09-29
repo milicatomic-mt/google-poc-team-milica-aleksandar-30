@@ -600,8 +600,8 @@ const PreviewResultsScreen: React.FC = () => {
                         
                         {/* Bottom Text */}
                         <div className="absolute bottom-0 left-0 right-0 p-2 bg-gradient-to-t from-black/70 to-transparent">
-                          <div className="text-white text-[8px] font-bold mb-1">TOMORROW X TOGETHER 🎵</div>
-                          <div className="text-white text-[7px]">Let's have a good time 💫 #TXT #GoodBoy</div>
+                          <div className="text-white text-[8px] font-bold mb-1">TOMORROW X TOGETHER ✓</div>
+                          <div className="text-white text-[7px]">Let's keep dancing until the sun rises😊</div>
                         </div>
                       </div>
                     </div>
@@ -651,13 +651,20 @@ const PreviewResultsScreen: React.FC = () => {
                             )}
                           </div>
                           <div>
-                            <div className="text-white text-[9px] font-bold">Your Brand</div>
-                            <div className="text-gray-400 text-[7px]">Sponsored • Premium quality products for you</div>
+                            <div className="text-white text-[9px] font-bold">BMW Group ✓</div>
+                            <div className="text-gray-400 text-[7px]">Sponsored • 5</div>
                           </div>
                           <div className="ml-auto">
                             <MoreHorizontal className="w-3 h-3 text-gray-400" />
                           </div>
                         </div>
+                      </div>
+                      
+                      {/* Post Content */}
+                      <div className="bg-gray-900 px-3 py-2">
+                        <p className="text-white text-[8px] mb-2">
+                          From FCEV prototype to series production – The BMW iX5 Hydrogen 🚙 ... See more
+                        </p>
                       </div>
                       
                       {/* Main Content */}
@@ -695,7 +702,7 @@ const PreviewResultsScreen: React.FC = () => {
                           </div>
                         </div>
                         <div className="text-center text-[6px] text-gray-400 mt-1">
-                          48 comments 75 shares 641 views
+                          45 comments • 75 shares • 5M views
                         </div>
                       </div>
                     </div>
