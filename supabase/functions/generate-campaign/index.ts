@@ -154,9 +154,13 @@ Deno.serve(async (req) => {
 
 Make the content compelling, actionable, and tailored to the target audience.
 
-For banner ads specifically: Analyze the uploaded product image and generate banner ads in multiple styles. Extract colors, textures, and mood from the image to define the visual theme. For each banner, propose a creative headline, subheadline, and CTA button text. Include at least 3 style variations: playful & colorful, sleek & minimal, and premium/luxury. Adapt layouts for common dimensions (300x250, 728x90, 160x600). Ensure designs are optimized for both web and social ad placements.
+For banner ads specifically: Analyze the uploaded product image and generate banner ads in multiple styles. Extract colors, textures, and mood from the image to define the visual theme. For each banner, propose a creative headline, subheadline, and CTA button text. Include at least 3 style variations: playful & colorful, sleek & minimal, and premium/luxury. Adapt layouts for common dimensions (300x250, 728x90, 160x600). Ensure designs are optimized for both web and social ad placements. CRITICAL DESIGN RULES: Never use pure white backgrounds - always use random generated photos, textured backgrounds, or colored backgrounds. All secondary colors in the design must be complementary colors based on the dominant colors extracted from the uploaded image.
 
-For landing page specifically: Create a comprehensive product landing page following this structure:
+For video scripts specifically: Create engaging scripts optimized for each platform. CRITICAL DESIGN RULES: When describing visual elements in scripts, never specify pure white backgrounds - always use dynamic scenes with random generated photos, interesting locations, or textured environments. All color schemes mentioned should use complementary colors based on the uploaded product image.
+
+For email templates specifically: Design compelling email layouts with clear hierarchy. CRITICAL DESIGN RULES: Never use pure white backgrounds in email designs - use subtle gradient backgrounds, textured patterns, or background images. All secondary colors and accents must be complementary colors derived from the uploaded product image to maintain visual harmony.
+
+For landing page specifically: Create a comprehensive product landing page following this structure. CRITICAL DESIGN RULES: Never use pure white backgrounds - incorporate random generated photos as backgrounds, hero images, or section backgrounds. All secondary colors, accents, and UI elements must use complementary colors based on the dominant colors from the uploaded product image.
 - Hero Section: Product image (clean, centered, or lifestyle context), headline (clear product benefit), subheadline (supporting statement), primary CTA
 - Product Highlights: 3–4 key features with short, benefit-driven text and supporting visuals/icons  
 - Detailed Product Section: High-quality product visuals, longer copy about features, specs, and use cases
