@@ -78,7 +78,11 @@ const OptimizedGallery = () => {
   }, [items, preloadImages]);
 
   const filteredItems = items.filter(item => {
-    if (selectedFilter === 'all') return true;
+    if (selectedFilter === 'all') {
+      // Show catalogs and only campaigns with videos
+      return item.type === 'catalog' || 
+             (item.type === 'campaign' && item._fullData?.generated_video_url && item._fullData.generated_video_url.trim() !== '');
+    }
     if (selectedFilter === 'campaigns') {
       // Only show campaigns that have generated videos
       return item.type === 'campaign' && 
