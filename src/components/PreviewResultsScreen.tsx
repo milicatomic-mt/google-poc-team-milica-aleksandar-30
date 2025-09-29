@@ -507,7 +507,7 @@ const PreviewResultsScreen: React.FC = () => {
                   <div className="h-80 flex gap-2 justify-between">
                     
                     {/* Instagram Phone Mockup */}
-                    <div className="flex-1 bg-black overflow-hidden relative shadow-xl border border-gray-300">
+                    <div className="flex-1 bg-black overflow-hidden relative border border-gray-300">
                       {/* Status Bar */}
                       <div className="bg-black px-3 py-2 flex justify-between items-center text-white text-[10px]">
                         <span className="font-medium">9:41</span>
@@ -597,7 +597,7 @@ const PreviewResultsScreen: React.FC = () => {
                     </div>
 
                     {/* TikTok Phone Mockup */}
-                    <div className="flex-1 bg-black overflow-hidden relative shadow-xl border border-gray-300">
+                    <div className="flex-1 bg-black overflow-hidden relative border border-gray-300">
                       {/* Status Bar */}
                       <div className="bg-black px-3 py-2 flex justify-between items-center text-white text-[10px]">
                         <span className="font-medium">9:41</span>
@@ -655,7 +655,7 @@ const PreviewResultsScreen: React.FC = () => {
                     </div>
 
                     {/* Facebook Phone Mockup */}
-                    <div className="flex-1 bg-white overflow-hidden relative shadow-xl border border-gray-300">
+                    <div className="flex-1 bg-white overflow-hidden relative border border-gray-300">
                       {/* Status Bar */}
                       <div className="bg-gray-800 px-3 py-2 flex justify-between items-center text-white text-[10px]">
                         <span className="font-medium">15:47</span>
@@ -695,11 +695,10 @@ const PreviewResultsScreen: React.FC = () => {
                           <img 
                             src={activeCampaignResults?.generated_images?.[0]?.url || uploadedImage} 
                             alt="Facebook content" 
-                            className="w-full h-48 object-cover" 
+                            className="w-full h-full object-cover"
                           />
                         )}
                         
-                        {/* Play Button */}
                         <div className="absolute inset-0 flex items-center justify-center">
                           <div className="w-10 h-10 bg-black/70 rounded-full flex items-center justify-center">
                             <Play className="w-5 h-5 text-white ml-0.5" fill="white" />
@@ -707,8 +706,7 @@ const PreviewResultsScreen: React.FC = () => {
                         </div>
                       </div>
                       
-                      {/* Post Actions */}
-                      <div className="bg-white px-3 py-2 border-t border-gray-200">
+                      <div className="absolute bottom-0 left-0 right-0 bg-white/95 backdrop-blur-sm px-3 py-2 border-t border-gray-200">
                         <div className="flex justify-around">
                           <div className="flex items-center gap-1">
                             <Heart className="w-3 h-3 text-gray-600" />
