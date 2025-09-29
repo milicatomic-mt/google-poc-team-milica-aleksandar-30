@@ -184,7 +184,7 @@ const PreviewResultsScreen: React.FC = () => {
           <div className="overflow-hidden bg-white shadow-2xl rounded-lg h-[60vh]">
             <div className="p-2 h-full flex flex-col">
               {/* Grid layout matching reference image */}
-              <div className="grid grid-cols-2 gap-4 mb-4 flex-1">
+              <div className="grid grid-cols-2 gap-4 mb-2 flex-1 min-h-0">
                 
                 {/* Left Banner */}
                 <div 
@@ -242,12 +242,12 @@ const PreviewResultsScreen: React.FC = () => {
               </div>
 
               {/* Bottom Banner */}
-              <div className="flex items-center gap-4 p-2 bg-gray-50 rounded-lg h-12">
+              <div className="flex items-center gap-3 p-1 bg-gray-50 rounded-lg h-10 flex-shrink-0">
                 {(generatedImages[2]?.url || uploadedImage) && (
                   <img 
                     src={generatedImages[2]?.url || uploadedImage} 
                     alt="Product" 
-                    className="w-16 h-16 object-contain rounded-lg bg-white p-2" 
+                    className="w-12 h-12 object-contain rounded-lg bg-white p-1" 
                   />
                 )}
                 <div className="flex-1">
