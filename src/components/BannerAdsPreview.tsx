@@ -99,7 +99,7 @@ const BannerAdsPreview: React.FC = () => {
                   <h4 className="text-sm font-semibold text-gray-700">Split Layout Banner</h4>
                   <span className="text-xs text-gray-500">300x250</span>
                 </div>
-              <div className="aspect-square bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 rounded-lg overflow-hidden shadow-lg relative">
+              <div className="aspect-square bg-white rounded-lg overflow-hidden shadow-lg relative">
                 <div className="flex items-center h-full">
                   {/* Left - Product Image */}
                   <div className="w-1/2 h-full flex items-center justify-center">
@@ -113,18 +113,18 @@ const BannerAdsPreview: React.FC = () => {
                   </div>
                   
                   {/* Right - Text Content */}
-                  <div className="flex-1 px-8 text-white">
-                    <h3 className="text-white text-6xl font-bold uppercase tracking-wide mb-2">
+                  <div className="flex-1 px-8 text-gray-900">
+                    <h3 className="text-gray-900 text-6xl font-bold uppercase tracking-wide mb-2">
                       PREMIUM SOUND
                     </h3>
-                    <p className="text-white/90 text-3xl uppercase tracking-wider mb-3">
+                    <p className="text-gray-700 text-3xl uppercase tracking-wider mb-3">
                       MINIMALIST DESIGN
                     </p>
-                    <p className="text-white/80 text-2xl font-medium mb-4">
+                    <p className="text-gray-600 text-2xl font-medium mb-4">
                       WIRELESS BLUETOOTH CONNECTION<br/>
                       WITH BASS RESONANCE
                     </p>
-                    <button className="bg-white text-gray-900 text-sm px-6 py-2 font-semibold hover:bg-gray-100 transition-colors rounded-full">
+                    <button className="bg-gray-900 text-white text-sm px-6 py-2 font-semibold hover:bg-gray-800 transition-colors rounded-full">
                       Shop Now
                     </button>
                   </div>

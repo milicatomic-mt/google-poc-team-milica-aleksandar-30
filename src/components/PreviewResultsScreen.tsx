@@ -276,7 +276,7 @@ const PreviewResultsScreen: React.FC = () => {
                     <div className="grid grid-cols-2 gap-3 mb-3">
                       
                       {/* Left Banner - Product Focus */}
-                      <div className="aspect-square bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 rounded overflow-hidden relative">
+                      <div className="aspect-square bg-white rounded overflow-hidden relative">
                         <div className="flex items-center h-full">
                           {/* Left - Product Image */}
                           <div className="w-1/2 h-full flex items-center justify-center">
@@ -290,18 +290,18 @@ const PreviewResultsScreen: React.FC = () => {
                           </div>
                           
                           {/* Right - Text Content */}
-                          <div className="flex-1 px-4 text-white">
-                            <h3 className="text-white text-xl font-bold uppercase tracking-wide mb-1">
+                          <div className="flex-1 px-4 text-gray-900">
+                            <h3 className="text-gray-900 text-xl font-bold uppercase tracking-wide mb-1">
                               PREMIUM SOUND
                             </h3>
-                            <p className="text-white/90 text-[9px] uppercase tracking-wider mb-1">
+                            <p className="text-gray-700 text-[9px] uppercase tracking-wider mb-1">
                               MINIMALIST DESIGN
                             </p>
-                            <p className="text-white/80 text-[7px] font-medium mb-2">
+                            <p className="text-gray-600 text-[7px] font-medium mb-2">
                               WIRELESS BLUETOOTH CONNECTION<br/>
                               WITH BASS RESONANCE
                             </p>
-                            <button className="bg-white text-gray-900 text-[7px] px-3 py-1 font-semibold hover:bg-gray-100 transition-colors rounded-full">
+                            <button className="bg-gray-900 text-white text-[7px] px-3 py-1 font-semibold hover:bg-gray-800 transition-colors rounded-full">
                               Shop Now
                             </button>
                           </div>
