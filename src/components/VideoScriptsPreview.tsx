@@ -255,8 +255,7 @@ const VideoScriptsPreview: React.FC = () => {
                     <span className="text-sm">Liked by <span className="font-semibold">craig_love</span> and <span className="font-semibold">44,686 others</span></span>
                   </div>
                   
-                  {/* Caption */}
-                  <div className="text-sm">
+                  <div className="text-sm bg-primary/10 p-2 rounded">
                     <span className="font-semibold">joshua_l</span> {videoScripts && videoScripts.length > 0 
                       ? videoScripts[0].script.split('\n\n')[0]?.trim().substring(0, 100) + '...'
                       : 'Check out this amazing new product launch! 🎧 #tech #music #lifestyle'
@@ -444,8 +443,7 @@ const VideoScriptsPreview: React.FC = () => {
                         </div>
                       </div>
                       
-                      {/* Caption */}
-                      <div className="mb-3">
+                      <div className="mb-3 bg-primary/10 p-2 rounded">
                         <p className="text-sm leading-relaxed drop-shadow-lg">
                           {videoScripts && videoScripts.length > 0 
                             ? "Let's keep dancing until the sun rises😊" 
@@ -591,7 +589,7 @@ const VideoScriptsPreview: React.FC = () => {
 
                   {/* Post Content */}
                   <div className="bg-black text-white px-4 pb-4">
-                    <p className="text-sm mb-3">
+                    <p className="text-sm mb-3 bg-primary/10 p-2 rounded">
                       From FCEV prototype to series production – The BMW iX5 Hydrogen 🚙 ... See more
                     </p>
                   </div>
