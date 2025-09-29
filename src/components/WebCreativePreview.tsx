@@ -146,12 +146,12 @@ const WebCreativePreview: React.FC = () => {
                       </Button>
                     </div>
                   </div>
-                  <div className="relative">
+                  <div className="relative flex items-center justify-center">
                     {(getImage(0) || uploadedImage) && (
                       <img 
                         src={getImage(0) || uploadedImage} 
                         alt="Product showcase"
-                        className="w-full h-[400px] object-cover rounded-lg shadow-xl"
+                        className="w-full h-full object-contain"
                       />
                     )}
                   </div>
