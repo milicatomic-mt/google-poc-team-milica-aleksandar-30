@@ -376,21 +376,55 @@ const PreviewResultsScreen: React.FC = () => {
                 </div>
                 <CardContent className="p-4">
                   <div className="h-80 bg-gray-100 overflow-hidden border border-gray-300 shadow-sm rounded">
-                    {/* Simple Full Screen Website Preview */}
-                    <div className="w-full h-full relative overflow-hidden">
-                      {(activeCampaignResults?.generated_images?.[0]?.url || uploadedImage) && (
-                        <img 
-                          src={activeCampaignResults?.generated_images?.[0]?.url || uploadedImage} 
-                          alt="Website preview" 
-                          className="w-full h-full object-cover" 
-                        />
-                      )}
+                    {/* Website Landing Page Layout */}
+                    <div className="h-full bg-white flex">
+                      {/* Left Side - Content */}
+                      <div className="flex-1 p-6 flex flex-col justify-center">
+                        {/* New Launch Badge */}
+                        <div className="inline-flex items-center gap-1 bg-blue-100 text-blue-700 text-[8px] px-2 py-1 rounded-full mb-4 w-fit">
+                          <div className="w-1 h-1 bg-blue-500 rounded-full"></div>
+                          <span className="font-medium">New Launch</span>
+                        </div>
+                        
+                        {/* Main Headline */}
+                        <h1 className="text-black text-xl font-bold leading-tight mb-3">
+                          Sound & Style,<br/>
+                          Perfectly Balanced.
+                        </h1>
+                        
+                        {/* Description */}
+                        <p className="text-gray-600 text-xs leading-relaxed mb-4">
+                          Premium audio quality in a minimalist design that complements your unique style.
+                        </p>
+                        
+                        {/* Action Buttons */}
+                        <div className="flex gap-2">
+                          <button className="bg-black text-white text-[8px] px-3 py-1.5 rounded-full font-medium">
+                            Shop 'Her' Now
+                          </button>
+                          <button className="border border-gray-300 text-gray-700 text-[8px] px-3 py-1.5 rounded-full font-medium">
+                            Learn More
+                          </button>
+                        </div>
+                      </div>
                       
-                      {/* Overlay content */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20"></div>
-                      <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
-                        <h3 className="text-sm font-bold mb-1">Professional Website</h3>
-                        <p className="text-xs opacity-90">Responsive design optimized for all devices</p>
+                      {/* Right Side - Product Image */}
+                      <div className="flex-1 relative">
+                        {(activeCampaignResults?.generated_images?.[0]?.url || uploadedImage) && (
+                          <img 
+                            src={activeCampaignResults?.generated_images?.[0]?.url || uploadedImage} 
+                            alt="Product showcase" 
+                            className="w-full h-full object-cover rounded-r-lg" 
+                          />
+                        )}
+                      </div>
+                    </div>
+                    
+                    {/* Bottom Section - Key Features */}
+                    <div className="absolute bottom-0 left-0 right-0 bg-white/95 backdrop-blur-sm p-3 border-t border-gray-200">
+                      <div className="text-center">
+                        <h3 className="text-black text-[10px] font-bold mb-1">Key Features</h3>
+                        <p className="text-gray-600 text-[8px]">Discover what makes this product special for you.</p>
                       </div>
                     </div>
                   </div>
