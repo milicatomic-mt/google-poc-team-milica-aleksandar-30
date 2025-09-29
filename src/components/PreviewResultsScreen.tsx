@@ -258,7 +258,6 @@ const PreviewResultsScreen: React.FC = () => {
                 <div className="px-4 py-3 flex items-center justify-between transition-all duration-smooth">
                   <div className="flex items-center space-x-2">
                     <h3 className="text-foreground font-medium">Banner Ads</h3>
-                    <span className="bg-muted text-primary text-xs px-2 py-1 rounded-full font-medium">4</span>
                   </div>
                   {/* Removed download button from banner ads section */}
                 </div>
@@ -376,7 +375,6 @@ const PreviewResultsScreen: React.FC = () => {
                 <div className="px-4 py-3 flex items-center justify-between transition-all duration-smooth">
                   <div className="flex items-center space-x-2">
                     <h3 className="text-foreground font-medium">Web Creative</h3>
-                    <span className="bg-muted text-primary text-xs px-2 py-1 rounded-full font-medium">1</span>
                   </div>
                   {/* Removed download button from web creative section */}
                 </div>
@@ -502,7 +500,6 @@ const PreviewResultsScreen: React.FC = () => {
                 <div className="px-4 py-3 flex items-center justify-between transition-all duration-smooth">
                   <div className="flex items-center space-x-2">
                     <h3 className="text-foreground font-medium">Video Scripts</h3>
-                    <span className="bg-muted text-primary text-xs px-2 py-1 rounded-full font-medium">1</span>
                   </div>
                   {/* Removed download button from video scripts section */}
                 </div>
@@ -553,7 +550,6 @@ const PreviewResultsScreen: React.FC = () => {
                 <div className="px-4 py-3 flex items-center justify-between transition-all duration-smooth">
                   <div className="flex items-center space-x-2">
                     <h3 className="text-foreground font-medium">Email Templates</h3>
-                    <span className="bg-muted text-primary text-xs px-2 py-1 rounded-full font-medium">2</span>
                   </div>
                   {/* Removed download button from email templates section */}
                 </div>
