@@ -85,7 +85,7 @@ const EmailTemplatesPreview: React.FC = () => {
             className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-6 gap-2"
           >
             <QrCode className="w-4 h-4" />
-            Download All
+            Download
           </Button>
         </div>
       </div>
