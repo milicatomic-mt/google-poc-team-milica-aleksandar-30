@@ -165,8 +165,20 @@ const CatalogResultsScreen: React.FC = () => {
         
         // Check if we're in edit mode and should update existing record
         if (catalogData.editMode && catalogData.catalogId) {
-          // Update existing catalog record
-          const { data: updateData, error: updateError } = await supabase
+          // In edit mode, only update the description while keeping other catalog content
+          const { data: existingCatalog, error: fetchError } = await supabase
+            .from('catalog_results')
+            .select('result')
+            .eq('id', catalogData.catalogId)
+            .single();
+
+          if (fetchError) {
+            console.error('Failed to fetch existing catalog:', fetchError);
+            throw new Error('Failed to fetch existing catalog');
+          }
+
+          // Update catalog parameters but keep existing result structure
+          const { error: updateError } = await supabase
             .from('catalog_results')
             .update({
               image_url: catalogRequest.image,
@@ -174,9 +186,7 @@ const CatalogResultsScreen: React.FC = () => {
               tone: catalogRequest.tone,
               platform: catalogRequest.platform
             })
-            .eq('id', catalogData.catalogId)
-            .select()
-            .single();
+            .eq('id', catalogData.catalogId);
 
           if (updateError) {
             console.error('Failed to update catalog:', updateError);
@@ -185,6 +195,25 @@ const CatalogResultsScreen: React.FC = () => {
           
           savedRequest = { id: catalogData.catalogId };
           setSavedRequestId(catalogData.catalogId);
+          
+          // Only regenerate the description, keep other fields from existing result
+          setCurrentAction("Updating product description...");
+          const results = await generateCatalog(savedRequest.id, catalogRequest);
+          
+          // Merge with existing results, only updating description
+          const existingResult = existingCatalog.result as CatalogEnrichmentResponse;
+          const mergedResults: CatalogEnrichmentResponse = {
+            ...existingResult,
+            description: results.description // Only update the description
+          };
+          
+          // Update the database with merged results
+          await supabase
+            .from('catalog_results')
+            .update({ result: mergedResults })
+            .eq('id', catalogData.catalogId);
+            
+          setCatalogResults(mergedResults);
         } else {
           // Create new catalog or reuse recent identical one
           savedRequest = existing
@@ -192,10 +221,11 @@ const CatalogResultsScreen: React.FC = () => {
             : await saveCatalogRequest(catalogRequest, generatedImages);
           
           setSavedRequestId(savedRequest.id);
+          
+          // Generate the full catalog content using AI
+          const results = await generateCatalog(savedRequest.id, catalogRequest);
+          setCatalogResults(results);
         }
-
-        // Generate the catalog content using AI
-        const results = await generateCatalog(savedRequest.id, catalogRequest);
 
         // Smoothly progress from 90% to 100%
         setCurrentAction("Completing your catalog...");
@@ -207,7 +237,6 @@ const CatalogResultsScreen: React.FC = () => {
         setCurrentAction("Complete!");
         await new Promise(resolve => setTimeout(resolve, 500)); // Brief pause at 100%
 
-        setCatalogResults(results);
         toast.success('Catalog content generated successfully!');
 
       } catch (error) {
