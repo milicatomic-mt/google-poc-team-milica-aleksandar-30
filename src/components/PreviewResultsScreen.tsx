@@ -375,7 +375,7 @@ const PreviewResultsScreen: React.FC = () => {
                   <ArrowUpRight className="w-5 h-5 text-black" />
                 </div>
                 <CardContent className="p-4">
-                  <div className="h-80 bg-gray-100 overflow-hidden border border-gray-300 shadow-sm rounded">
+                  <div className="h-80 bg-gray-100 overflow-hidden shadow-sm rounded">
                     {/* Website Landing Page Layout */}
                     <div className="h-full bg-white flex">
                       {/* Left Side - Content */}
