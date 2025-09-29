@@ -195,7 +195,7 @@ const CampaignPromptScreen = () => {
     <div className="relative min-h-screen w-full overflow-hidden bg-background">
       {/* Background Video */}
       <video 
-        className="absolute inset-0 w-full h-full object-cover object-center opacity-50 z-0" 
+        className="absolute inset-0 w-full h-full object-cover object-center opacity-60 z-0" 
         autoPlay 
         loop 
         muted 

@@ -134,7 +134,7 @@ const ScreenSaver = () => {
   return <div className="min-h-screen w-full bg-gradient-to-b from-gray-400 via-gray-200 to-white cursor-pointer relative overflow-hidden" onClick={handleClick}>
       {/* Background Video */}
       <video 
-        className="absolute inset-0 w-full h-full object-cover object-center opacity-60 z-0" 
+        className="absolute inset-0 w-full h-full object-cover object-center opacity-70 z-0" 
         autoPlay 
         loop 
         muted 
