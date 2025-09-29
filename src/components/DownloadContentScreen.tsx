@@ -123,12 +123,36 @@ const DownloadContentScreen = () => {
       const a = document.createElement('a');
       a.href = url;
       a.download = filename;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
-
-      setDownloadComplete(true);
+      
+      // Mobile-friendly download handling
+      try {
+        document.body.appendChild(a);
+        a.click();
+        
+        // Set success immediately after click on mobile
+        setDownloadComplete(true);
+        
+        // Clean up DOM and URL safely
+        setTimeout(() => {
+          try {
+            if (document.body.contains(a)) {
+              document.body.removeChild(a);
+            }
+            URL.revokeObjectURL(url);
+          } catch (cleanupError) {
+            console.warn('Cleanup error (non-critical):', cleanupError);
+          }
+        }, 100);
+      } catch (downloadError) {
+        console.error('Download trigger error:', downloadError);
+        // Even if click fails, try direct navigation for mobile
+        try {
+          window.open(url, '_blank');
+          setDownloadComplete(true);
+        } catch (fallbackError) {
+          throw new Error('Download failed on all attempts');
+        }
+      }
     } catch (err) {
       setError('Failed to process download');
       console.error('Download error:', err);
