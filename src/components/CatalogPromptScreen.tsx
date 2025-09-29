@@ -25,6 +25,7 @@ const CatalogPromptScreen = () => {
   const [brandTone, setBrandTone] = useState<string>("");
   const [platform, setPlatform] = useState<string>("");
   const [brandName, setBrandName] = useState<string>("");
+  const [isAnimatingSelections, setIsAnimatingSelections] = useState(false);
   
   const uploadedImage = location.state?.uploadedImage;
   const uploadedFile = location.state?.uploadedFile;
@@ -222,10 +223,16 @@ const CatalogPromptScreen = () => {
       }
     }
     
-    // Auto-fill fields from AI analysis
-    if (aiAnalysisData) {
+    // Auto-fill fields from AI analysis with animation
+    if (aiAnalysisData && !isEditMode && !isAnimatingSelections) {
+      setIsAnimatingSelections(true);
+      
+      // Prepare the values to animate
+      let categoryToSet = '';
+      let toneToSet = '';
+      let platformToSet = '';
+      
       if (aiAnalysisData.category && !productCategory) {
-        // Map AI category to our predefined categories
         const categoryMapping: { [key: string]: string } = {
           "Fashion & Apparel": "Clothing & Apparel",
           "Beauty & Personal Care": "Beauty & Personal Care",
@@ -238,19 +245,18 @@ const CatalogPromptScreen = () => {
         
         const mappedCategory = categoryMapping[aiAnalysisData.category] || aiAnalysisData.category;
         if (predefinedCategories.includes(mappedCategory)) {
-          setProductCategory(mappedCategory);
+          categoryToSet = mappedCategory;
         } else {
-          setProductCategory("custom");
+          categoryToSet = "custom";
           setCustomCategory(aiAnalysisData.category);
         }
       }
       
       if (aiAnalysisData.tone && !brandTone && brandTones.includes(aiAnalysisData.tone)) {
-        setBrandTone(aiAnalysisData.tone);
+        toneToSet = aiAnalysisData.tone;
       }
       
       if (aiAnalysisData.platforms && aiAnalysisData.platforms.length > 0 && !platform) {
-        // Use first platform that matches our predefined list
         const matchingPlatform = aiAnalysisData.platforms.find((p: string) => 
           platforms.some(predefined => predefined.toLowerCase().includes(p.toLowerCase()))
         );
@@ -259,12 +265,34 @@ const CatalogPromptScreen = () => {
             p.toLowerCase().includes(matchingPlatform.toLowerCase())
           );
           if (foundPlatform) {
-            setPlatform(foundPlatform);
+            platformToSet = foundPlatform;
           }
         }
       }
+      
+      // Animate selections with delays
+      const animateSelections = async () => {
+        // Wait for typing animation to finish
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        
+        if (categoryToSet) {
+          setProductCategory(categoryToSet);
+          await new Promise(resolve => setTimeout(resolve, 600));
+        }
+        
+        if (toneToSet) {
+          setBrandTone(toneToSet);
+          await new Promise(resolve => setTimeout(resolve, 600));
+        }
+        
+        if (platformToSet) {
+          setPlatform(platformToSet);
+        }
+      };
+      
+      animateSelections();
     }
-  }, [location.state, prompt, productCategory, brandTone, platform]);
+  }, [location.state, prompt, productCategory, brandTone, platform, isAnimatingSelections]);
 
   // Auto-adjust height when prompt changes
   useEffect(() => {
