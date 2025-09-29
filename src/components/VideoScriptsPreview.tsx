@@ -149,7 +149,7 @@ const VideoScriptsPreview: React.FC = () => {
             
             <div className="flex flex-col lg:flex-row gap-8 justify-center items-start">
               {/* Instagram Mobile Mockup */}
-              <div className="bg-white rounded-lg shadow-lg overflow-hidden max-w-sm h-[814px]">
+              <div className="bg-white rounded-lg shadow-lg overflow-hidden max-w-sm h-[814px] relative">
                 {/* Instagram Header */}
                 <div className="bg-black text-white p-4">
                   <div className="flex items-center justify-between text-sm font-medium mb-4">
@@ -298,8 +298,8 @@ const VideoScriptsPreview: React.FC = () => {
                   </div>
                 </div>
                 
-                {/* Bottom Navigation */}
-                <div className="bg-black border-t border-gray-800 p-4">
+                {/* Bottom Navigation - Fixed to bottom */}
+                <div className="absolute bottom-0 left-0 right-0 bg-black border-t border-gray-800 p-4">
                   <div className="flex justify-around">
                     <button>
                       <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" className="text-white">
