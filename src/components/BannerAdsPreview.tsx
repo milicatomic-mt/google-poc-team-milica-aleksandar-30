@@ -193,7 +193,7 @@ const BannerAdsPreview: React.FC = () => {
             </div>
 
             {/* Bottom Row - Wide Horizontal Banner */}
-            <div className="bg-gradient-to-r from-slate-200 via-gray-100 to-stone-200 rounded-lg overflow-hidden shadow-lg h-[4.5rem] relative">
+            <div className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 rounded-lg overflow-hidden shadow-lg h-[4.5rem] relative">
               <div className="flex items-center h-full">
                 {/* Left - Product Image */}
                 <div className="w-60 h-full flex items-center justify-center">
@@ -207,18 +207,18 @@ const BannerAdsPreview: React.FC = () => {
                 </div>
                 
                 {/* Middle - Text Content */}
-                <div className="flex-1 ml-8 text-gray-900">
-                  <h3 className="text-gray-900 text-2xl font-bold uppercase tracking-wide mb-2">
+                <div className="flex-1 ml-8 text-white">
+                  <h3 className="text-white text-2xl font-bold uppercase tracking-wide mb-2">
                     PREMIUM SOUND
                   </h3>
-                  <p className="text-gray-600 text-xs font-medium">
+                  <p className="text-white/80 text-xs font-medium">
                     WIRELESS BLUETOOTH CONNECTION WITH BASS RESONANCE
                   </p>
                 </div>
                 
                 {/* Right - CTA Button */}
                 <div className="pr-8 flex-shrink-0">
-                  <button className="bg-gray-900 text-white text-sm px-8 py-3 font-semibold hover:bg-gray-800 transition-colors rounded-full">
+                  <button className="bg-white text-gray-900 text-sm px-8 py-3 font-semibold hover:bg-gray-100 transition-colors rounded-full">
                     Shop Now
                   </button>
                 </div>
