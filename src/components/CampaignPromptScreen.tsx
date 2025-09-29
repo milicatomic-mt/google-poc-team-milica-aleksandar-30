@@ -420,7 +420,7 @@ const CampaignPromptScreen = () => {
               className={`tap-target focus-ring w-96 px-12 bg-primary hover:bg-primary/90 text-primary-foreground transition-all duration-300 rounded-full ${prompt.trim() ? 'opacity-100' : 'opacity-50'}`}
               aria-label={editMode ? "Update campaign" : "Create campaign"}
             >
-              <svg className="w-6 h-6 mr-2 fill-current" viewBox="0 0 24 24" fill="currentColor">
+              <svg className="w-6 h-6 mr-3 fill-current" viewBox="0 0 24 24" fill="currentColor" style={{width: '24px', height: '24px'}}>
                 <path d="M12 2L14.5 8.5L21 11L14.5 13.5L12 20L9.5 13.5L3 11L9.5 8.5L12 2Z"/>
                 <path d="M18 4L19 6L21 7L19 8L18 10L17 8L15 7L17 6L18 4Z"/>
               </svg>
