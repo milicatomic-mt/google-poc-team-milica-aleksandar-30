@@ -199,7 +199,7 @@ const UploadScreen: React.FC<UploadScreenProps> = ({ mode }) => {
         } else if (img.width < 600 || img.height < 600) {
           resolve({ isValid: true, message: 'Image quality could be better. Consider using higher resolution.', type: 'warning' });
         } else {
-          resolve({ isValid: true, message: 'Perfect! High-quality product image detected.', type: 'success' });
+          resolve({ isValid: true, message: "Boom! That's a high-quality product image", type: 'success' });
         }
       };
       img.onerror = () => {
