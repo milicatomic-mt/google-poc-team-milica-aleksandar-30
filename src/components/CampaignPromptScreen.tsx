@@ -356,7 +356,7 @@ const CampaignPromptScreen = () => {
                      data-audience={age}
                      onClick={() => !isAutoSelecting && toggleAudience(age)}
                      disabled={isAutoSelecting}
-                        className={`px-3 py-2 rounded-full transition-all duration-300 ease-out tap-target font-normal backdrop-blur-md text-sm ${
+                         className={`px-6 py-2 rounded-full transition-all duration-300 ease-out tap-target font-normal backdrop-blur-md text-sm ${
                          selectedAudiences.includes(age)
                              ? 'bg-white/50 border border-white text-primary shadow-lg transform scale-105 font-semibold'
                             : 'bg-transparent border border-gray-300 text-black hover:bg-white/10 hover:scale-[1.02] transform scale-100'
@@ -375,7 +375,7 @@ const CampaignPromptScreen = () => {
                      data-audience={interest}
                      onClick={() => !isAutoSelecting && toggleAudience(interest)}
                      disabled={isAutoSelecting}
-                        className={`px-3 py-2 rounded-full transition-all duration-300 ease-out tap-target font-normal backdrop-blur-md text-sm ${
+                         className={`px-6 py-2 rounded-full transition-all duration-300 ease-out tap-target font-normal backdrop-blur-md text-sm ${
                          selectedAudiences.includes(interest)
                              ? 'bg-white/50 border border-white text-primary shadow-lg transform scale-105 font-semibold'
                             : 'bg-transparent border border-gray-300 text-black hover:bg-white/10 hover:scale-[1.02] transform scale-100'
@@ -394,7 +394,7 @@ const CampaignPromptScreen = () => {
                      data-audience={interest}
                      onClick={() => !isAutoSelecting && toggleAudience(interest)}
                      disabled={isAutoSelecting}
-                        className={`px-3 py-2 rounded-full transition-all duration-300 ease-out tap-target font-normal backdrop-blur-md text-sm ${
+                        className={`px-6 py-2 rounded-full transition-all duration-300 ease-out tap-target font-normal backdrop-blur-md text-sm ${
                          selectedAudiences.includes(interest)
                            ? 'bg-white/50 border border-white text-primary shadow-lg transform scale-105 font-semibold'
                            : 'bg-transparent border border-gray-300 text-black hover:bg-white/10 hover:scale-[1.02] transform scale-100'
