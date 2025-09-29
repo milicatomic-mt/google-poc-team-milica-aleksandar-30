@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { HelpCircle } from 'lucide-react';
 import RibbedSphere from '@/components/RibbedSphere';
-import galleryIcon from '@/assets/gallery-icon.svg';
 
 // Import card images
 import campaignExample1 from '@/assets/campaign-example-1.webp';
@@ -173,7 +172,12 @@ const ScreenSaver = () => {
             navigate('/gallery');
           }}
         >
-          <img src={galleryIcon} alt="" className="mr-2 w-5 h-5 text-primary" />
+          <svg className="mr-2 w-5 h-5 text-primary group-hover:text-primary/80 transition-colors" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" fillRule="evenodd" d="M9.44,2.67,3.13,5A.2.2,0,0,0,3,5.19V18.91a.18.18,0,0,0,.13.18l6.39,2.24a.2.2,0,0,0,.27-.19L9.71,2.86A.2.2,0,0,0,9.44,2.67Z"/>
+            <line fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" x1="13" y1="5.05" x2="13" y2="19.05"/>
+            <line fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" x1="17" y1="5.05" x2="17" y2="19.05"/>
+            <line fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" x1="21" y1="5.05" x2="21" y2="19.05"/>
+          </svg>
           <span className="text-primary group-hover:text-primary/80 transition-colors">
             Gallery
           </span>
