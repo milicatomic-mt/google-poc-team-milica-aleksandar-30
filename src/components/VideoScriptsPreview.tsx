@@ -141,13 +141,7 @@ const VideoScriptsPreview: React.FC = () => {
           </div>
 
           {/* Mobile Mockups Section */}
-          <div className="mb-8 bg-white rounded-lg p-8 shadow-lg">
-            <div className="mb-6">
-              <h2 className="text-2xl font-bold text-gray-900 mb-2">Social Media Previews</h2>
-              <p className="text-gray-600">See how your content will appear on different platforms</p>
-            </div>
-            
-            <div className="flex flex-col lg:flex-row gap-8 justify-center items-start">
+          <div className="flex flex-col lg:flex-row gap-8 justify-center items-start max-w-6xl mx-auto mb-8">
               {/* Instagram Mobile Mockup */}
               <div className="bg-white rounded-lg shadow-lg overflow-hidden max-w-sm h-[814px] relative">
                 {/* Instagram Header */}
@@ -533,7 +527,6 @@ const VideoScriptsPreview: React.FC = () => {
                 </div>
               </div>
             </div>
-          </div>
 
           {/* Video Scripts Text Content */}
           {videoScripts && videoScripts.length > 0 && (
