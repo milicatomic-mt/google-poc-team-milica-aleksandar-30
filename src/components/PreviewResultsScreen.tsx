@@ -129,9 +129,6 @@ const PreviewResultsScreen: React.FC = () => {
     }
   };
 
-
-
-
   // Show loading screen until content is ready
   if (!isContentReady || !activeCampaignResults) {
     return (
@@ -249,7 +246,6 @@ const PreviewResultsScreen: React.FC = () => {
           <div className="max-w-6xl mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               
-
               {/* Banner Ads Card */}
               <Card 
                 className="card-elegant backdrop-blur-xl bg-white/60 border-white/50 border-2 shadow-2xl hover:shadow-elegant-lg transition-all duration-smooth cursor-pointer"
@@ -262,11 +258,11 @@ const PreviewResultsScreen: React.FC = () => {
                   <ArrowUpRight className="w-5 h-5 text-black" />
                 </div>
                 <CardContent className="p-4">
-                  <div className="h-80">
+                  <div className="h-80 rounded">
                     {/* Top Row - Two Square Banners */}
                     <div className="grid grid-cols-2 gap-3 mb-4">
                       {/* Left Banner - Person with Headphones */}
-                      <div className="aspect-square bg-gradient-to-br from-slate-200 to-gray-300 overflow-hidden relative" style={{borderRadius: '1px'}}>
+                      <div className="aspect-square bg-gradient-to-br from-slate-200 to-gray-300 overflow-hidden relative rounded">
                         {(imageMapping?.image_0 || uploadedImage) && (
                           <img 
                             src={imageMapping?.image_0 || uploadedImage} 
@@ -297,7 +293,7 @@ const PreviewResultsScreen: React.FC = () => {
                       </div>
                       
                       {/* Right Banner - Just Headphones Product */}
-                      <div className="aspect-square bg-gradient-to-br from-gray-100 to-gray-200 overflow-hidden relative" style={{borderRadius: '1px'}}>
+                      <div className="aspect-square bg-gradient-to-br from-gray-100 to-gray-200 overflow-hidden relative rounded">
                         {(imageMapping?.image_1 || imageMapping?.image_0 || uploadedImage) && (
                           <img 
                             src={imageMapping?.image_1 || imageMapping?.image_0 || uploadedImage} 
@@ -328,7 +324,7 @@ const PreviewResultsScreen: React.FC = () => {
                     </div>
                     
                     {/* Bottom Row - Wide Horizontal Banner */}
-                    <div className="bg-gradient-to-r from-slate-200 to-gray-200 overflow-hidden relative h-[4.5rem]" style={{borderRadius: '1px'}}>
+                    <div className="bg-gradient-to-r from-slate-200 to-gray-200 overflow-hidden relative h-[4.5rem] rounded">
                       <div className="flex items-center h-full">
                         {/* Left - Person Image */}
                         <div className="w-20 h-full relative overflow-hidden">
@@ -379,7 +375,7 @@ const PreviewResultsScreen: React.FC = () => {
                   <ArrowUpRight className="w-5 h-5 text-black" />
                 </div>
                 <CardContent className="p-4">
-                  <div className="h-80 bg-gray-100 overflow-hidden border border-gray-300 shadow-sm" style={{borderRadius: '1px'}}>
+                  <div className="h-80 bg-gray-100 overflow-hidden border border-gray-300 shadow-sm rounded">
                     {/* Browser-like Screenshot Mockup */}
                     <div className="h-full bg-white">
                       {/* Browser Header */}
@@ -393,97 +389,67 @@ const PreviewResultsScreen: React.FC = () => {
                           <div className="text-[6px] text-gray-500">https://yoursite.com</div>
                         </div>
                       </div>
-
-                      {/* Landing Page with Background Image */}
-                      <div className="h-full relative overflow-hidden">
-                        {/* Background Image with Overlay */}
-                        <div className="absolute inset-0">
-                           {activeCampaignResults?.generated_images?.[0]?.url ? (
-                             <img 
-                               src={activeCampaignResults.generated_images[0].url} 
-                               alt="Background" 
-                               className="w-full h-full object-cover"
-                             />
-                           ) : uploadedImage ? (
-                            <img 
-                              src={uploadedImage} 
-                              alt="Background" 
-                              className="w-full h-full object-cover"
-                            />
-                          ) : (
-                            <div className="w-full h-full bg-gradient-to-br from-blue-500 to-purple-600"></div>
-                          )}
-                          {/* Dark overlay for better text readability */}
-                          <div className="absolute inset-0 bg-black/40"></div>
-                          {/* Gradient overlay for better text contrast */}
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30"></div>
-                        </div>
-
-                        {/* Navigation Bar - Floating */}
-                        <div className="relative z-10 bg-white/10 backdrop-blur-md border-b border-white/20">
-                          <div className="px-3 py-1 flex justify-between items-center">
-                            <div className="text-[8px] font-bold text-white">BRAND</div>
-                            <div className="flex gap-3 text-[6px] text-white/80">
-                              <span>Home</span> <span>Products</span> <span>About</span>
+                      
+                      {/* Website Content */}
+                      <div className="relative h-full bg-gradient-to-br from-white to-slate-50 overflow-hidden">
+                        {/* Navigation Bar */}
+                        <div className="bg-white shadow-sm px-3 py-2 border-b">
+                          <div className="flex items-center justify-between">
+                            <div className="text-[10px] font-bold text-gray-900">YourBrand</div>
+                            <div className="flex gap-2">
+                              <div className="text-[6px] text-gray-600">Home</div>
+                              <div className="text-[6px] text-gray-600">Products</div>
+                              <div className="text-[6px] text-gray-600">About</div>
                             </div>
                           </div>
                         </div>
-
-                        {/* Hero Content - Centered with Text Overlays */}
-                        <div className="relative z-10 h-full flex flex-col justify-center items-center text-center px-4">
-                          {/* Campaign Badge - Using actual campaign data */}
-                          <div className="inline-flex items-center px-2 py-0.5 rounded-full bg-primary/80 backdrop-blur-md border border-primary/50 mb-2">
-                            <div className="text-[5px] font-medium text-white">✨ New Launch</div>
+                        
+                        {/* Hero Section */}
+                        <div className="relative bg-gradient-to-br from-gray-900 to-black p-4">
+                          <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/10"></div>
+                          <div className="relative text-center">
+                            <h1 className="text-white text-[12px] font-bold mb-2">
+                              Premium Products
+                            </h1>
+                            <p className="text-white/80 text-[8px] mb-3">
+                              Experience quality like never before
+                            </p>
+                            <button className="bg-white text-gray-900 text-[8px] px-3 py-1 rounded font-semibold">
+                              Shop Now
+                            </button>
                           </div>
-                          
-                          {/* Main Headline - Using actual campaign data */}
-                          <h1 className="text-[10px] font-bold text-white leading-tight mb-2 max-w-28 drop-shadow-lg">
-                            {activeCampaignResults?.landing_page_concept?.hero_text ||
-                             activeCampaignResults?.banner_ads?.[0]?.headline || 
-                             'Your Custom Headline'}
-                          </h1>
-                          
-                          {/* Subtext - Using actual campaign data */}
-                          <p className="text-[5px] text-white/90 leading-relaxed mb-2 max-w-24 drop-shadow-md">
-                            {activeCampaignResults?.landing_page_concept?.sub_text ||
-                             activeCampaignResults?.banner_ads?.[0]?.description || 
-                             'Your custom description here'}
-                          </p>
-                          
-                          {/* Template indicator */}
-                          <div className="text-[4px] text-slate-300 mb-3 font-medium">+ Standard Template Sections Below</div>
-                          
-                          {/* CTA Button - Using actual campaign data */}
-                          <div className="bg-white text-gray-900 text-[6px] px-3 py-1 rounded-full font-medium shadow-lg hover:bg-white/90 transition-all mb-3">
-                            {activeCampaignResults?.landing_page_concept?.cta ||
-                             activeCampaignResults?.banner_ads?.[0]?.cta || 
-                             'Your CTA'}
-                          </div>
-
-                          {/* Standard Template Features Preview */}
-                          <div className="bg-white/10 backdrop-blur-md rounded px-3 py-1 border border-white/20">
-                            <div className="flex items-center gap-2 text-center">
-                              <div className="text-[4px] text-white/70 font-medium">Template includes:</div>
-                              <div className="flex items-center gap-1">
-                                <div className="w-1 h-1 bg-blue-400 rounded-full"></div>
-                                <div className="text-[4px] text-white font-medium">Features</div>
+                        </div>
+                        
+                        {/* Product Showcase */}
+                        <div className="p-3 bg-white">
+                          <div className="grid grid-cols-3 gap-2">
+                            <div className="text-center">
+                              <div className="w-full h-8 bg-gray-200 rounded mb-1 overflow-hidden">
+                                {(imageMapping?.image_0 || uploadedImage) && (
+                                  <img 
+                                    src={imageMapping?.image_0 || uploadedImage} 
+                                    alt="Product" 
+                                    className="w-full h-full object-cover" 
+                                  />
+                                )}
                               </div>
-                              <div className="flex items-center gap-1">
-                                <div className="w-1 h-1 bg-green-400 rounded-full"></div>
-                                <div className="text-[4px] text-white font-medium">Reviews</div>
-                              </div>
-                              <div className="flex items-center gap-1">
-                                <div className="w-1 h-1 bg-purple-400 rounded-full"></div>
-                                <div className="text-[4px] text-white font-medium">Pricing</div>
-                              </div>
+                              <div className="text-[6px] text-gray-700 font-semibold">Featured</div>
+                            </div>
+                            <div className="text-center">
+                              <div className="w-full h-8 bg-gray-200 rounded mb-1"></div>
+                              <div className="text-[6px] text-gray-700 font-semibold">Popular</div>
+                            </div>
+                            <div className="text-center">
+                              <div className="w-full h-8 bg-gray-200 rounded mb-1"></div>
+                              <div className="text-[6px] text-gray-700 font-semibold">New</div>
                             </div>
                           </div>
                         </div>
-
-                        {/* Footer - Bottom Overlay */}
-                        <div className="absolute bottom-0 left-0 right-0 z-10 bg-black/20 backdrop-blur-sm border-t border-white/10">
-                          <div className="px-2 py-1">
-                            <div className="text-[4px] text-white/70 text-center">© 2024 Brand. All rights reserved.</div>
+                        
+                        {/* Footer */}
+                        <div className="absolute bottom-0 left-0 right-0 bg-gray-800 p-2">
+                          <div className="text-center">
+                            <div className="text-white text-[6px]">© 2024 YourBrand. All rights reserved.</div>
                           </div>
                         </div>
                       </div>
@@ -507,7 +473,7 @@ const PreviewResultsScreen: React.FC = () => {
                   <div className="h-80 flex gap-2 justify-between">
                     
                     {/* Instagram Phone Mockup */}
-                    <div className="flex-1 bg-black overflow-hidden relative border border-gray-300">
+                    <div className="flex-1 bg-black overflow-hidden relative border border-gray-300 rounded">
                       {/* Status Bar */}
                       <div className="bg-black px-3 py-1 flex justify-between items-center text-white text-[8px]">
                         <div className="flex items-center gap-1">
@@ -574,7 +540,6 @@ const PreviewResultsScreen: React.FC = () => {
                             </div>
                           </div>
                         </div>
-                        </div>
                         {(activeCampaignResults?.generated_images?.[0]?.url || uploadedImage) && (
                           <img 
                             src={activeCampaignResults?.generated_images?.[0]?.url || uploadedImage} 
@@ -596,8 +561,8 @@ const PreviewResultsScreen: React.FC = () => {
                           </div>
                           <div className="text-white text-[7px]">
                             <span className="font-semibold">joshua_l</span> The game in Japan was amazing and I want to share some photos
+                          </div>
                         </div>
-                      </div>
                       </div>
                       
                       {/* Bottom Navigation */}
@@ -613,7 +578,7 @@ const PreviewResultsScreen: React.FC = () => {
                     </div>
 
                     {/* TikTok Phone Mockup */}
-                    <div className="flex-1 bg-black overflow-hidden relative border border-gray-300">
+                    <div className="flex-1 bg-black overflow-hidden relative border border-gray-300 rounded">
                       {/* Status Bar */}
                       <div className="bg-black px-3 py-1 flex justify-between items-center text-white text-[8px]">
                         <div className="flex items-center gap-1">
@@ -677,7 +642,7 @@ const PreviewResultsScreen: React.FC = () => {
                     </div>
 
                     {/* Facebook Phone Mockup */}
-                    <div className="flex-1 bg-gray-900 overflow-hidden relative border border-gray-300">
+                    <div className="flex-1 bg-gray-900 overflow-hidden relative border border-gray-300 rounded">
                       {/* Status Bar */}
                       <div className="bg-gray-800 px-3 py-1 flex justify-between items-center text-white text-[8px]">
                         <div className="flex items-center gap-1">
@@ -740,6 +705,7 @@ const PreviewResultsScreen: React.FC = () => {
                           />
                         )}
                         
+                        {/* Play Button */}
                         <div className="absolute inset-0 flex items-center justify-center">
                           <div className="w-10 h-10 bg-black/70 rounded-full flex items-center justify-center">
                             <Play className="w-5 h-5 text-white ml-0.5" fill="white" />
@@ -747,6 +713,7 @@ const PreviewResultsScreen: React.FC = () => {
                         </div>
                       </div>
                       
+                      {/* Post Actions */}
                       <div className="absolute bottom-0 left-0 right-0 bg-gray-800/95 backdrop-blur-sm px-3 py-2 border-t border-gray-700">
                         <div className="flex justify-around">
                           <div className="flex items-center gap-1">
@@ -784,9 +751,9 @@ const PreviewResultsScreen: React.FC = () => {
                   <ArrowUpRight className="w-5 h-5 text-black" />
                 </div>
                 <CardContent className="p-4">
-                  <div className="h-80 relative">
+                  <div className="h-80 relative rounded">
                     {/* Modern Email Client Interface */}
-                    <div className="bg-white backdrop-blur-sm overflow-hidden h-full border border-white/20 shadow-inner">
+                    <div className="bg-white backdrop-blur-sm overflow-hidden h-full border border-white/20 shadow-inner rounded">
                       {/* Email Client Header */}
                       <div className="bg-gradient-to-r from-slate-50 to-gray-50 px-3 py-2 border-b border-gray-200">
                         <div className="flex items-center justify-between">
@@ -874,34 +841,6 @@ const PreviewResultsScreen: React.FC = () => {
                               </div>
                               <div className="text-[4px] font-semibold text-gray-700">Returns</div>
                             </div>
-                          </div>
-                        </div>
-
-                        {/* Social Proof */}
-                        <div className="bg-gradient-to-r from-slate-50 to-gray-50 px-3 py-2 border-t border-gray-100">
-                          <div className="flex items-center justify-center gap-1 mb-1">
-                            {[...Array(5)].map((_, i) => (
-                              <div key={i} className="w-2 h-2 bg-slate-400 rounded-full flex items-center justify-center">
-                                <span className="text-[3px] text-white">★</span>
-                              </div>
-                            ))}
-                            <span className="text-[5px] text-gray-700 font-semibold ml-1">4.9/5</span>
-                          </div>
-                          <div className="text-center">
-                            <div className="text-[5px] text-gray-600 italic">"Best purchase I've made this year!"</div>
-                            <div className="text-[4px] text-gray-500 mt-0.5">- Sarah M., Verified Customer</div>
-                          </div>
-                        </div>
-
-                        {/* Footer */}
-                        <div className="bg-gradient-to-r from-gray-900 to-black px-3 py-2 absolute bottom-0 left-0 right-0">
-                          <div className="flex items-center justify-between">
-                            <div className="flex gap-1">
-                              <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                              <div className="w-2 h-2 bg-pink-500 rounded-full"></div>
-                              <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
-                            </div>
-                            <div className="text-[4px] text-gray-400">© 2024 Your Brand</div>
                           </div>
                         </div>
                       </div>
