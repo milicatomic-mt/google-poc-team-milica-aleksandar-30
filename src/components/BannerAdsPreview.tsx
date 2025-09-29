@@ -94,6 +94,11 @@ const BannerAdsPreview: React.FC = () => {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               
               {/* Left Banner - Product Focus */}
+              <div>
+                <div className="mb-2 flex items-center justify-between">
+                  <h4 className="text-sm font-semibold text-gray-700">Split Layout Banner</h4>
+                  <span className="text-xs text-gray-500">300x250</span>
+                </div>
               <div className="aspect-square bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 rounded-lg overflow-hidden shadow-lg relative">
                 <div className="flex items-center h-full">
                   {/* Left - Product Image */}
@@ -125,8 +130,14 @@ const BannerAdsPreview: React.FC = () => {
                   </div>
                 </div>
               </div>
+              </div>
 
               {/* Right Banner - Full Image Design */}
+              <div>
+                <div className="mb-2 flex items-center justify-between">
+                  <h4 className="text-sm font-semibold text-gray-700">Full Image Overlay Banner</h4>
+                  <span className="text-xs text-gray-500">300x250</span>
+                </div>
               <div className="aspect-square bg-gray-900 rounded-lg overflow-hidden shadow-lg relative">
                 {/* Full Background Image */}
                 {getImage(0) && (
@@ -156,10 +167,16 @@ const BannerAdsPreview: React.FC = () => {
                     Shop Now
                   </button>
                 </div>
+                </div>
               </div>
-            </div>
+              </div>
 
             {/* Bottom Banner - Horizontal Layout */}
+            <div>
+              <div className="mb-2 flex items-center justify-between">
+                <h4 className="text-sm font-semibold text-gray-700">Leaderboard Banner - Light</h4>
+                <span className="text-xs text-gray-500">728x90</span>
+              </div>
             <div className="bg-gradient-to-r from-slate-200 via-gray-100 to-stone-200 rounded-lg overflow-hidden shadow-lg h-[4.5rem] relative">
               <div className="flex items-center h-full">
                 {/* Left - Product Image */}
@@ -191,8 +208,14 @@ const BannerAdsPreview: React.FC = () => {
                 </div>
               </div>
             </div>
+            </div>
 
             {/* Bottom Row - Wide Horizontal Banner */}
+            <div>
+              <div className="mb-2 flex items-center justify-between">
+                <h4 className="text-sm font-semibold text-gray-700">Leaderboard Banner - Dark</h4>
+                <span className="text-xs text-gray-500">728x90</span>
+              </div>
             <div className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 rounded-lg overflow-hidden shadow-lg h-[4.5rem] relative">
               <div className="flex items-center h-full">
                 {/* Left - Product Image */}
@@ -225,8 +248,9 @@ const BannerAdsPreview: React.FC = () => {
               </div>
             </div>
           </div>
-        </div>
-      </div>
+              </div>
+            </div>
+            </div>
 
       {/* QR Download Modal */}
       <QRDownloadModal
