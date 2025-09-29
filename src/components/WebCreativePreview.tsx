@@ -62,7 +62,7 @@ const WebCreativePreview: React.FC = () => {
         <Button
           variant="secondary"
           onClick={handleBack}
-          className="tap-target hover-lift focus-ring bg-white border-white/30 hover:bg-white/90 rounded-full p-3 shadow-sm"
+          className="tap-target hover-lift focus-ring bg-white text-black border-white/30 hover:bg-gray-100 rounded-full p-3 shadow-sm"
           aria-label="Go back to previous step"
         >
           <ArrowLeft className="h-5 w-5 text-black" />
@@ -80,7 +80,7 @@ const WebCreativePreview: React.FC = () => {
         <div className="absolute top-8 right-8">
           <Button 
             onClick={handleDownload} 
-            className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-6 gap-2"
+            className="bg-black text-white hover:bg-gray-800 rounded-full px-6 gap-2"
           >
             <QrCode className="w-4 h-4" />
             Download
@@ -112,12 +112,12 @@ const WebCreativePreview: React.FC = () => {
                        'Discover innovative solutions that drive exceptional results for your business.'}
                     </p>
                     <div className="flex flex-wrap gap-4">
-                      <Button size="lg" className="text-lg px-8 py-4">
+                      <Button size="lg" className="bg-black text-white hover:bg-gray-800 text-lg px-8 py-4">
                         {landingPage?.cta || 
                          campaignResults.banner_ads?.[0]?.cta || 
                          'Get Started Now'}
                       </Button>
-                      <Button variant="outline" size="lg" className="text-lg px-8 py-4">
+                      <Button variant="outline" size="lg" className="bg-white text-black border-black hover:bg-gray-100 text-lg px-8 py-4">
                         Learn More
                       </Button>
                     </div>
@@ -220,7 +220,7 @@ const WebCreativePreview: React.FC = () => {
                   <p className="text-lg max-w-2xl mx-auto">
                     Join thousands of satisfied customers who have transformed their experience.
                   </p>
-                  <Button size="lg" variant="secondary" className="text-lg px-8 py-4">
+                  <Button size="lg" className="bg-white text-black hover:bg-gray-100 text-lg px-8 py-4">
                     {landingPage?.cta || 'Get Started Today'}
                   </Button>
                 </div>
