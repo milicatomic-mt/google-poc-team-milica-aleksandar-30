@@ -546,7 +546,7 @@ const UploadScreen: React.FC<UploadScreenProps> = ({ mode }) => {
               {uploadedImage ? (
                 /* Uploaded Image Display */
                 <div className="space-y-4">
-                  <div className="relative mx-auto w-48 h-48 rounded-xl overflow-hidden bg-muted">
+                  <div className="relative mx-auto w-64 h-64 rounded-xl overflow-hidden bg-muted">
                     <img
                       src={uploadedImage}
                       alt="Uploaded product"
@@ -572,9 +572,6 @@ const UploadScreen: React.FC<UploadScreenProps> = ({ mode }) => {
                         </div>
                       </div>
                     )}
-                  </div>
-                  <div className="space-y-2">
-                    <h3 className="text-lg font-semibold text-foreground">Image Uploaded</h3>
                   </div>
                 </div>
               ) : (
