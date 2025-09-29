@@ -80,7 +80,7 @@ const WebCreativePreview: React.FC = () => {
         <div className="absolute top-8 right-8">
           <Button 
             onClick={handleDownload} 
-            className="bg-black text-white hover:bg-gray-800 rounded-full px-6 gap-2"
+            className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-6 gap-2"
           >
             <QrCode className="w-4 h-4" />
             Download
