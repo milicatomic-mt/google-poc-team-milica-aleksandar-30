@@ -175,12 +175,9 @@ const BannerAdsPreview: React.FC = () => {
                 
                 {/* Middle - Text Content */}
                 <div className="flex-1 ml-8 text-gray-900">
-                  <h3 className="text-gray-900 text-xl font-bold uppercase tracking-wide mb-1">
+                  <h3 className="text-gray-900 text-2xl font-bold uppercase tracking-wide mb-2">
                     PREMIUM SOUND
                   </h3>
-                  <p className="text-gray-700 text-sm uppercase tracking-wider mb-2">
-                    MINIMALIST DESIGN
-                  </p>
                   <p className="text-gray-600 text-xs font-medium">
                     WIRELESS BLUETOOTH CONNECTION WITH BASS RESONANCE
                   </p>
@@ -211,12 +208,9 @@ const BannerAdsPreview: React.FC = () => {
                 
                 {/* Middle - Text Content */}
                 <div className="flex-1 ml-8 text-gray-900">
-                  <h3 className="text-gray-900 text-xl font-bold uppercase tracking-wide mb-1">
+                  <h3 className="text-gray-900 text-2xl font-bold uppercase tracking-wide mb-2">
                     PREMIUM SOUND
                   </h3>
-                  <p className="text-gray-700 text-sm uppercase tracking-wider mb-2">
-                    MINIMALIST DESIGN
-                  </p>
                   <p className="text-gray-600 text-xs font-medium">
                     WIRELESS BLUETOOTH CONNECTION WITH BASS RESONANCE
                   </p>
