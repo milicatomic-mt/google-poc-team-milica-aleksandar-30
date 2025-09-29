@@ -117,12 +117,12 @@ const WebCreativePreview: React.FC = () => {
                 <div className="grid lg:grid-cols-2 gap-12 items-center">
                   <div className="space-y-6">
                     <div 
-                      className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium border border-black"
+                      className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium border-0"
                       style={complementaryColor ? {
-                        backgroundColor: 'hsl(0, 0%, 0%)',
-                        color: complementaryColor
+                        backgroundColor: complementaryColor,
+                        color: 'hsl(0, 0%, 0%)'
                       } : {
-                        backgroundColor: 'hsl(0, 0%, 0%)',
+                        backgroundColor: 'hsl(220, 70%, 50%)',
                         color: 'hsl(0, 0%, 100%)'
                       }}
                     >
