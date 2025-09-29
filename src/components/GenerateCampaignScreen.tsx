@@ -28,11 +28,20 @@ const GenerateCampaignScreen = () => {
       navKey: location.key || ''
     })) : '';
     const inflightKey = requestHash ? `campaign:inflight:${requestHash}` : '';
-    if (inflightKey && sessionStorage.getItem(inflightKey)) {
-      console.log('GenerateCampaignScreen: deduped duplicate mount');
-      return;
+    
+    // Check if generation is already in progress (within last 5 seconds)
+    if (inflightKey) {
+      const inflightData = sessionStorage.getItem(inflightKey);
+      if (inflightData) {
+        const timestamp = parseInt(inflightData);
+        const fiveSecondsAgo = Date.now() - 5000;
+        if (timestamp > fiveSecondsAgo) {
+          console.log('GenerateCampaignScreen: deduped duplicate mount');
+          return;
+        }
+      }
+      sessionStorage.setItem(inflightKey, Date.now().toString());
     }
-    if (inflightKey) sessionStorage.setItem(inflightKey, '1');
 
     const generateContent = async () => {
       console.log('=== GenerateCampaignScreen: generateContent started ===');
@@ -263,9 +272,10 @@ const GenerateCampaignScreen = () => {
            campaignId: stateAny.campaignId || '',
            navKey: location.key || ''
          })) : '';
-         const inflightKey = requestHash ? `campaign:inflight:${requestHash}` : '';
-         if (inflightKey) sessionStorage.setItem(inflightKey, 'done');
-       } catch {}
+          const inflightKey = requestHash ? `campaign:inflight:${requestHash}` : '';
+          // Clear the inflight key after completion
+          if (inflightKey) sessionStorage.removeItem(inflightKey);
+        } catch {}
      });
    }, []);
 

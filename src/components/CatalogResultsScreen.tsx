@@ -63,7 +63,7 @@ const CatalogResultsScreen: React.FC = () => {
       return;
     }
 
-    // Dedupe guard across StrictMode mounts using sessionStorage
+    // Dedupe guard across StrictMode mounts using sessionStorage with timestamp
     const hashString = (str: string) => {
       let hash = 0;
       for (let i = 0; i < str.length; i++) { hash = ((hash << 5) - hash) + str.charCodeAt(i); hash |= 0; }
@@ -77,11 +77,18 @@ const CatalogResultsScreen: React.FC = () => {
       brand: catalogData.brand
     }));
     const inflightKey = `catalog:inflight:${requestHash}`;
-    if (sessionStorage.getItem(inflightKey)) {
-      console.log('CatalogResultsScreen: deduped duplicate mount');
-      return;
+    
+    // Check if generation is already in progress (within last 5 seconds)
+    const inflightData = sessionStorage.getItem(inflightKey);
+    if (inflightData) {
+      const timestamp = parseInt(inflightData);
+      const fiveSecondsAgo = Date.now() - 5000;
+      if (timestamp > fiveSecondsAgo) {
+        console.log('CatalogResultsScreen: deduped duplicate mount');
+        return;
+      }
     }
-    sessionStorage.setItem(inflightKey, '1');
+    sessionStorage.setItem(inflightKey, Date.now().toString());
 
     const generateCatalogContent = async () => {
       console.log('=== CatalogResultsScreen: generateCatalogContent started ===');
@@ -250,8 +257,8 @@ const CatalogResultsScreen: React.FC = () => {
         toast.error('Failed to generate catalog content. Please try again.');
       } finally {
         setIsGenerating(false);
-  
-        try { sessionStorage.setItem(inflightKey, 'done'); } catch {}
+        // Clear the inflight key after completion
+        try { sessionStorage.removeItem(inflightKey); } catch {}
       }
     };
 
