@@ -409,7 +409,7 @@ const PreviewResultsScreen: React.FC = () => {
                       </div>
                       
                       {/* Right Side - Product Image */}
-                      <div className="flex-1 relative">
+                      <div className="flex-[1.5] relative">
                         {(activeCampaignResults?.generated_images?.[0]?.url || uploadedImage) && (
                           <img 
                             src={activeCampaignResults?.generated_images?.[0]?.url || uploadedImage} 
@@ -417,14 +417,6 @@ const PreviewResultsScreen: React.FC = () => {
                             className="w-full h-full object-cover rounded-r" 
                           />
                         )}
-                      </div>
-                    </div>
-                    
-                    {/* Bottom Section - Key Features */}
-                    <div className="absolute bottom-0 left-0 right-0 bg-white/95 backdrop-blur-sm p-2 rounded-b">
-                      <div className="text-center">
-                        <h3 className="text-black text-[9px] font-bold mb-1">Key Features</h3>
-                        <p className="text-gray-600 text-[7px]">Discover what makes this product special for you.</p>
                       </div>
                     </div>
                   </div>
