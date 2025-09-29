@@ -381,8 +381,8 @@ const PreviewResultsScreen: React.FC = () => {
                       {/* Left Side - Content */}
                       <div className="flex-1 p-4 flex flex-col justify-center">
                         {/* New Launch Badge */}
-                        <div className="inline-flex items-center gap-1 bg-blue-100 text-blue-700 text-[8px] px-2 py-1 rounded-full mb-3 w-fit">
-                          <div className="w-1 h-1 bg-blue-500 rounded-full"></div>
+                        <div className="inline-flex items-center gap-1 bg-black text-white text-[8px] px-2 py-1 rounded-full mb-3 w-fit">
+                          <div className="w-1 h-1 bg-white rounded-full"></div>
                           <span className="font-medium">New Launch</span>
                         </div>
                         
