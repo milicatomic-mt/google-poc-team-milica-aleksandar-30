@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { HelpCircle } from 'lucide-react';
 import RibbedSphere from '@/components/RibbedSphere';
+import galleryIcon from '@/assets/gallery-icon.svg';
 
 // Import card images
 import campaignExample1 from '@/assets/campaign-example-1.webp';
@@ -172,6 +173,7 @@ const ScreenSaver = () => {
             navigate('/gallery');
           }}
         >
+          <img src={galleryIcon} alt="" className="mr-2 w-5 h-5" />
           <span className="text-primary group-hover:text-primary/80 transition-colors">
             Gallery
           </span>
