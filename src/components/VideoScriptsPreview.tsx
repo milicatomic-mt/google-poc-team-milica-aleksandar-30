@@ -332,7 +332,7 @@ const VideoScriptsPreview: React.FC = () => {
               </div>
 
               {/* TikTok Mobile Mockup */}
-              <div className="bg-white rounded-lg shadow-lg overflow-hidden max-w-sm">
+              <div className="bg-white rounded-lg shadow-lg overflow-hidden max-w-sm h-full">
                 {/* TikTok Status Bar */}
                 <div className="bg-green-500 text-white px-4 py-2 text-sm font-medium">
                   <div className="flex items-center justify-between">
@@ -356,7 +356,7 @@ const VideoScriptsPreview: React.FC = () => {
                 </div>
 
                 {/* LIVE indicator and navigation */}
-                <div className="bg-green-500 px-4 pb-4">
+                <div className="bg-green-500 px-4 pb-2">
                   <div className="flex items-center gap-4">
                     <div className="bg-red-500 text-white text-xs px-2 py-1 rounded">
                       LIVE
@@ -374,8 +374,8 @@ const VideoScriptsPreview: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Main Content Area - Full Green Background */}
-                <div className="relative bg-green-500 aspect-square">
+                {/* Expanded Video Content Area - Fills most of the green space */}
+                <div className="relative bg-green-500 h-80">
                   {/* Video Content - Fill entire green area */}
                   {generatedVideoUrl ? (
                     <VideoPlayer
@@ -402,7 +402,7 @@ const VideoScriptsPreview: React.FC = () => {
                   )}
 
                   {/* Right Side Actions */}
-                  <div className="absolute right-4 bottom-20 flex flex-col items-center gap-6">
+                  <div className="absolute right-4 bottom-16 flex flex-col items-center gap-4">
                     {/* Like button */}
                     <div className="text-center">
                       <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mb-1">
@@ -445,8 +445,15 @@ const VideoScriptsPreview: React.FC = () => {
                     </div>
                   </div>
 
-                  {/* Bottom Content */}
-                  <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
+                  {/* Profile circle bottom right */}
+                  <div className="absolute bottom-20 right-6">
+                    <div className="w-12 h-12 rounded-full bg-pink-500 flex items-center justify-center">
+                      <div className="w-10 h-10 rounded-full bg-gradient-to-br from-pink-400 to-purple-600"></div>
+                    </div>
+                  </div>
+
+                  {/* Bottom Content Overlay */}
+                  <div className="absolute bottom-0 left-0 right-0 p-4 text-white bg-gradient-to-t from-black/60 to-transparent">
                     {/* User info */}
                     <div className="flex items-center gap-2 mb-2">
                       <span className="font-bold text-lg">TOMORROW X TOGETHER</span>
@@ -475,13 +482,6 @@ const VideoScriptsPreview: React.FC = () => {
                         <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
                       </svg>
                       <span className="text-xs">Deja Vu Official MV - TXT</span>
-                    </div>
-                  </div>
-
-                  {/* Profile circle bottom right */}
-                  <div className="absolute bottom-32 right-6">
-                    <div className="w-12 h-12 rounded-full bg-pink-500 flex items-center justify-center">
-                      <div className="w-10 h-10 rounded-full bg-gradient-to-br from-pink-400 to-purple-600"></div>
                     </div>
                   </div>
                 </div>
