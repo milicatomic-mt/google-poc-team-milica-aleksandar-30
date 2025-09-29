@@ -448,20 +448,20 @@ const CampaignContent: React.FC<{
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
                 <div className="absolute bottom-0 left-0 right-0 p-3">
                   <div className="space-y-1">
-                     <h3 className="text-white text-xs font-bold uppercase tracking-wide">
-                       {campaignResults?.banner_ads?.[0]?.headline || 'Premium Sound'}
-                     </h3>
-                     <p className="text-white/90 text-[10px] uppercase tracking-wider">
-                       Minimalist Design
-                     </p>
-                     <div className="flex items-center justify-between mt-2">
-                       <span className="text-white/80 text-[9px]">
-                         WIRELESS BLUETOOTH CONNECTION<br/>
-                         WITH BASS RESONANCE
-                       </span>
-                       <button className="bg-white text-gray-900 text-[9px] px-2 py-1 rounded font-semibold">
-                         {campaignResults?.banner_ads?.[0]?.cta || 'Shop Now'}
-                       </button>
+                    <h3 className="text-white text-xs font-bold uppercase tracking-wide">
+                      {campaignResults?.banner_ads?.[0]?.headline || 'Premium Sound'}
+                    </h3>
+                    <p className="text-white/90 text-[8px] uppercase tracking-wider">
+                      Minimalist Design
+                    </p>
+                    <div className="flex items-center justify-between mt-2">
+                      <span className="text-white/80 text-[7px]">
+                        WIRELESS BLUETOOTH CONNECTION<br/>
+                        WITH BASS RESONANCE
+                      </span>
+                      <button className="bg-white text-gray-900 text-[8px] px-2 py-1 rounded font-semibold">
+                        {campaignResults?.banner_ads?.[0]?.cta || 'Shop Now'}
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -516,13 +516,13 @@ const CampaignContent: React.FC<{
                 
                 {/* Middle - Text Content */}
                 <div className="flex-1 px-4 py-3">
-                  <h3 className="text-gray-900 text-sm font-bold uppercase tracking-wide mb-1">
+                  <h3 className="text-gray-900 text-xs font-bold uppercase tracking-wide mb-1">
                     {campaignResults?.banner_ads?.[2]?.headline || 'Premium Sound'}
                   </h3>
-                  <p className="text-gray-700 text-[10px] uppercase tracking-wider mb-2">
+                  <p className="text-gray-700 text-[8px] uppercase tracking-wider mb-2">
                     Minimalist Design
                   </p>
-                  <p className="text-gray-600 text-[8px] leading-tight">
+                  <p className="text-gray-600 text-[6px] leading-tight">
                     WIRELESS BLUETOOTH CONNECTION<br/>
                     WITH BASS RESONANCE
                   </p>
@@ -530,7 +530,7 @@ const CampaignContent: React.FC<{
                 
                 {/* Right - CTA Button */}
                 <div className="pr-4">
-                  <button className="bg-gray-900 text-white text-xs px-4 py-2 rounded-lg font-semibold">
+                  <button className="bg-gray-900 text-white text-[8px] px-3 py-1 rounded-lg font-semibold">
                     {campaignResults?.banner_ads?.[2]?.cta || 'Shop Now'}
                   </button>
                 </div>
