@@ -242,7 +242,7 @@ const PreviewResultsScreen: React.FC = () => {
               </div>
 
               {/* Bottom Banner */}
-              <div className="flex items-center gap-3 p-1 bg-gray-50 rounded-lg h-10 flex-shrink-0">
+              <div className="flex items-center gap-3 p-1 bg-gray-50 rounded-lg h-[4.5rem] flex-shrink-0">
                 {(generatedImages[2]?.url || uploadedImage) && (
                   <img 
                     src={generatedImages[2]?.url || uploadedImage} 
