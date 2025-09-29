@@ -779,14 +779,15 @@ const VideoScriptsPreview: React.FC = () => {
                           <div key={sceneIndex} className="bg-primary/5 p-4 rounded-lg">
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                               <div>
-                                <div className="text-xs font-semibold text-muted-foreground mb-1">
-                                  Visual: {sceneIndex === 0 ? 'Close-up of a woman wearing sleek white headphones.' : 
-                                          sceneIndex === 1 ? 'Smooth pan across the headphones on a neutral background.' :
-                                          'Wireless freedom, all-day comfort, and powerful sound'}
+                                <div className="text-sm font-bold text-black mb-1">Visual:</div>
+                                <div className="text-sm leading-relaxed">
+                                  {sceneIndex === 0 ? 'Close-up of a woman wearing sleek white headphones.' : 
+                                   sceneIndex === 1 ? 'Smooth pan across the headphones on a neutral background.' :
+                                   'Wireless freedom, all-day comfort, and powerful sound'}
                                 </div>
                               </div>
                               <div>
-                                <div className="text-xs font-semibold text-muted-foreground mb-1">Voiceover:</div>
+                                <div className="text-sm font-bold text-black mb-1">Voiceover:</div>
                                 <div className="text-sm leading-relaxed">{scene.trim()}</div>
                               </div>
                             </div>
