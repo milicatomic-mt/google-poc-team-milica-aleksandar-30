@@ -181,10 +181,10 @@ const PreviewResultsScreen: React.FC = () => {
 
       case 'Banner Ads':
         return (
-          <div className="overflow-hidden bg-white shadow-2xl rounded-lg">
-            <div className="p-2">
+          <div className="overflow-hidden bg-white shadow-2xl rounded-lg h-80">
+            <div className="p-2 h-full flex flex-col">
               {/* Grid layout matching reference image */}
-              <div className="grid grid-cols-2 gap-4 mb-4">
+              <div className="grid grid-cols-2 gap-4 mb-4 flex-1">
                 
                 {/* Left Banner */}
                 <div 
@@ -242,7 +242,7 @@ const PreviewResultsScreen: React.FC = () => {
               </div>
 
               {/* Bottom Banner */}
-              <div className="flex items-center gap-4 p-4 bg-gray-50 rounded-lg">
+              <div className="flex items-center gap-4 p-3 bg-gray-50 rounded-lg h-16">
                 {(generatedImages[2]?.url || uploadedImage) && (
                   <img 
                     src={generatedImages[2]?.url || uploadedImage} 
