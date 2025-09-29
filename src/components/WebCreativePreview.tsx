@@ -213,7 +213,7 @@ const WebCreativePreview: React.FC = () => {
             </section>
 
             {/* Final CTA */}
-            <section className="py-20 bg-primary text-primary-foreground">
+            <section className="py-20 bg-black text-white">
               <div className="container mx-auto px-6">
                 <div className="text-center space-y-6">
                   <h2 className="text-3xl md:text-4xl font-bold">Ready to Get Started?</h2>
