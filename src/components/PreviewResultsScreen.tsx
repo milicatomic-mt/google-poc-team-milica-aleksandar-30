@@ -19,6 +19,7 @@ import { supabase } from "@/integrations/supabase/client";
 import type { CampaignCreationResponse } from '@/types/api';
 import { VideoPlayer } from '@/components/VideoPlayer';
 import QRDownloadModal from '@/components/QRDownloadModal';
+import { extractColorsFromImage } from '@/lib/color-extraction';
 
 const PreviewResultsScreen: React.FC = () => {
   const location = useLocation();
@@ -28,6 +29,7 @@ const PreviewResultsScreen: React.FC = () => {
   const [generatedVideoUrl, setGeneratedVideoUrl] = useState<string | null>(null);
   const [isDownloadModalOpen, setIsDownloadModalOpen] = useState(false);
   const [isContentReady, setIsContentReady] = useState(!!campaignResults);
+  const [complementaryColor, setComplementaryColor] = useState<string | null>(null);
 
   // Fetch campaign results if not provided but campaignId is available
   useEffect(() => {
@@ -79,6 +81,17 @@ const PreviewResultsScreen: React.FC = () => {
       return () => clearTimeout(timer);
     }
   }, [activeCampaignResults]);
+
+  // Extract color from uploaded image
+  useEffect(() => {
+    if (uploadedImage) {
+      extractColorsFromImage(uploadedImage).then(colors => {
+        setComplementaryColor(colors.secondary);
+      }).catch(() => {
+        setComplementaryColor(null);
+      });
+    }
+  }, [uploadedImage]);
 
   const handleBack = () => {
     // Navigate to campaign-prompt for editing with campaign data
@@ -381,8 +394,17 @@ const PreviewResultsScreen: React.FC = () => {
                       {/* Left Side - Content */}
                       <div className="flex-1 p-4 flex flex-col justify-center">
                         {/* New Launch Badge */}
-                        <div className="inline-flex items-center gap-1 bg-black text-white text-[8px] px-2 py-1 rounded-full mb-3 w-fit">
-                          <div className="w-1 h-1 bg-white rounded-full"></div>
+                        <div 
+                          className="inline-flex items-center gap-1 text-[8px] px-2 py-1 rounded-full mb-3 w-fit"
+                          style={complementaryColor ? {
+                            backgroundColor: complementaryColor,
+                            color: 'hsl(0, 0%, 0%)'
+                          } : {
+                            backgroundColor: 'hsl(220, 70%, 50%)',
+                            color: 'hsl(0, 0%, 100%)'
+                          }}
+                        >
+                          <div className="w-1 h-1 bg-current rounded-full"></div>
                           <span className="font-medium">New Launch</span>
                         </div>
                         
