@@ -494,7 +494,7 @@ const PreviewResultsScreen: React.FC = () => {
                       
                       {/* Main Content */}
                       <div className="relative flex-1">
-                        <div className="bg-gray-900 p-2 mb-2">
+                        <div className="bg-black p-2 mb-2">
                           <div className="flex items-center gap-2 mb-2">
                             <div className="w-6 h-6 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full p-0.5">
                               <img src={uploadedImage || activeCampaignResults?.generated_images?.[0]?.url} alt="Profile" className="w-full h-full rounded-full object-cover" />
@@ -512,7 +512,7 @@ const PreviewResultsScreen: React.FC = () => {
                             className="w-full h-48 object-cover"
                           />
                         )}
-                        <div className="bg-gray-900 p-2">
+                        <div className="bg-black p-2">
                           <div className="flex justify-between items-center mb-1">
                             <div className="flex gap-2">
                               <Heart className="w-4 h-4 text-white" />
