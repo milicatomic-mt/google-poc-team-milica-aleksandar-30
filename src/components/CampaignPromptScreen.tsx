@@ -421,7 +421,7 @@ const CampaignPromptScreen = () => {
               aria-label={editMode ? "Update campaign" : "Create campaign"}
             >
               {editMode ? 'Update Campaign' : 'Create Campaign'}
-              <svg className="w-9 h-9 ml-3 fill-white" viewBox="0 0 800 800">
+              <svg className="w-[36px] h-[36px] ml-3 fill-white flex-shrink-0" viewBox="0 0 800 800" style={{minWidth: '36px', minHeight: '36px'}}>
                 <path d="M504.999 295.947C453.359 244.288 418.014 154.079 400.473 72C382.905 154.096 347.597 244.324 295.938 295.982C244.299 347.605 154.062 382.951 72 400.527C154.096 418.068 244.315 453.393 295.955 505.053C347.595 556.693 382.94 646.921 400.508 729C418.049 646.904 453.384 556.676 505.015 505.018C556.655 453.378 646.892 418.049 728.954 400.473C646.877 382.932 556.657 347.589 504.999 295.947Z"/>
               </svg>
             </Button>
