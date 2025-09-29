@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { ArrowLeft, Download, QrCode, Mail } from 'lucide-react';
+import { ArrowLeft, QrCode, Mail } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { QRCodeSVG } from "qrcode.react";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
-import { toast } from "sonner";
-import type { CampaignCreationResponse } from '@/types/api';
+import QRDownloadModal from '@/components/QRDownloadModal';
 import { OptimizedImage } from '@/components/ui/optimized-image';
 
 const EmailTemplatesPreview: React.FC = () => {
@@ -14,7 +11,6 @@ const EmailTemplatesPreview: React.FC = () => {
   const navigate = useNavigate();
   const { campaignResults, uploadedImage, campaignId, imageMapping, returnTo } = location.state || {};
   const [isDownloadModalOpen, setIsDownloadModalOpen] = useState(false);
-  const [downloadUrl, setDownloadUrl] = useState<string>('');
 
   useEffect(() => {
     if (!campaignResults) {
@@ -45,25 +41,8 @@ const EmailTemplatesPreview: React.FC = () => {
     });
   };
 
-  const handleDownload = async () => {
-    try {
-      const { createDownloadSession } = await import('@/lib/download-session');
-      const emailData = {
-        email_copy: campaignResults?.email_copy,
-        generated_images: campaignResults?.generated_images,
-        video_scripts: [],
-        banner_ads: [],
-        landing_page_concept: { hero_text: '', sub_text: '', cta: '' },
-        uploadedImageUrl: uploadedImage
-      };
-      
-      const sessionToken = await createDownloadSession(emailData as CampaignCreationResponse);
-      setDownloadUrl(window.location.origin + `/download?session=${sessionToken}&type=email-templates`);
-      setIsDownloadModalOpen(true);
-    } catch (error) {
-      console.error('Failed to create download session:', error);
-      toast.error('Failed to prepare download. Please try again.');
-    }
+  const handleDownload = () => {
+    setIsDownloadModalOpen(true);
   };
 
   if (!campaignResults) {
@@ -99,14 +78,14 @@ const EmailTemplatesPreview: React.FC = () => {
           <p className="text-gray-600 text-sm mt-1">Review your AI-generated designs before download</p>
         </div>
 
-        {/* Download Button - Absolute Top Right */}
+        {/* QR Download Button - Absolute Top Right */}
         <div className="absolute top-8 right-8">
           <Button 
             onClick={handleDownload} 
             className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-6 gap-2"
           >
-            <Download className="w-4 h-4" />
-            Download
+            <QrCode className="w-4 h-4" />
+            Download All
           </Button>
         </div>
       </div>
@@ -218,45 +197,16 @@ const EmailTemplatesPreview: React.FC = () => {
         </div>
       </div>
 
-      {/* Download Modal */}
-      <Dialog open={isDownloadModalOpen} onOpenChange={setIsDownloadModalOpen}>
-        <DialogContent className="sm:max-w-md">
-          <DialogHeader>
-            <DialogTitle className="flex items-center gap-2">
-              <QrCode className="w-5 h-5" />
-              Download Email Templates
-            </DialogTitle>
-          </DialogHeader>
-          <div className="flex flex-col items-center space-y-4">
-            {downloadUrl && (
-              <div className="p-4 bg-white rounded-lg">
-                <QRCodeSVG value={downloadUrl} size={200} />
-              </div>
-            )}
-            <p className="text-sm text-center text-muted-foreground">
-              Scan this QR code with your mobile device to download the email templates.
-            </p>
-            <div className="flex gap-2 w-full">
-              <Button 
-                variant="outline" 
-                className="flex-1"
-                onClick={() => {
-                  navigator.clipboard.writeText(downloadUrl);
-                  toast.success('Link copied to clipboard!');
-                }}
-              >
-                Copy Link
-              </Button>
-              <Button 
-                className="flex-1"
-                onClick={() => window.open(downloadUrl, '_blank')}
-              >
-                Open Link
-              </Button>
-            </div>
-          </div>
-        </DialogContent>
-      </Dialog>
+      {/* QR Download Modal */}
+      <QRDownloadModal
+        isOpen={isDownloadModalOpen}
+        onClose={() => setIsDownloadModalOpen(false)}
+        campaignData={{
+          ...campaignResults,
+          uploadedImageUrl: uploadedImage
+        }}
+        title="Download Campaign Assets"
+      />
     </div>
   );
 };

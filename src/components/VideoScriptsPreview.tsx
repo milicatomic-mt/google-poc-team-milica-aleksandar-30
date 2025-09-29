@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { ArrowLeft, Download, Play } from 'lucide-react';
+import { ArrowLeft, QrCode, Play } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { VideoPlayer } from '@/components/VideoPlayer';
@@ -81,14 +81,14 @@ const VideoScriptsPreview: React.FC = () => {
           <p className="text-gray-600 text-sm mt-1">Review your AI-generated designs before download</p>
         </div>
 
-        {/* Download Button - Absolute Top Right */}
+        {/* QR Download Button - Absolute Top Right */}
         <div className="absolute top-8 right-8">
           <Button 
             onClick={handleDownload} 
             className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-6 gap-2"
           >
-            <Download className="w-4 h-4" />
-            Download
+            <QrCode className="w-4 h-4" />
+            Download All
           </Button>
         </div>
       </div>
