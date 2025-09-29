@@ -157,7 +157,7 @@ const PreviewResultsScreen: React.FC = () => {
         </video>
         
         <div className="relative z-10 text-center">
-          <div className="w-16 h-16 mx-auto mb-6">
+          <div className="w-[70px] h-[70px] mx-auto mb-6">
             <RibbedSphere className="w-full h-full animate-spin" />
           </div>
           <h2 className="text-2xl font-bold text-foreground mb-2">

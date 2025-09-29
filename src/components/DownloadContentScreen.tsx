@@ -235,7 +235,7 @@ const DownloadContentScreen = () => {
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="flex justify-center">
-            <div className="h-12 w-12">
+            <div className="h-[53px] w-[53px]">
               <RibbedSphere className="w-full h-full" />
             </div>
           </div>

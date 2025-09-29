@@ -281,8 +281,8 @@ const GenerateCampaignScreen = () => {
       <div className="relative z-10 min-h-screen flex flex-col">
         <div className="flex-1 flex items-center justify-center px-4 py-8">
           <div className="flex flex-col items-center justify-center space-y-6">
-            {/* Animated Sphere - 200x200px */}
-            <div className="w-[200px] h-[200px] animate-fade-in">
+            {/* Animated Sphere - 220x220px */}
+            <div className="w-[220px] h-[220px] animate-fade-in">
               <RibbedSphere className="w-full h-full" />
             </div>
 
