@@ -197,9 +197,9 @@ const BannerAdsPreview: React.FC = () => {
               <div className="flex items-center h-full">
                 {/* Left - Product Image */}
                 <div className="w-20 h-full flex items-center justify-center">
-                  {getImage(1) && (
+                  {getImage(0) && (
                     <img 
-                      src={getImage(1)} 
+                      src={getImage(0)} 
                       alt="Premium Sound Product" 
                       className="w-full h-full object-cover filter drop-shadow-lg" 
                     />
