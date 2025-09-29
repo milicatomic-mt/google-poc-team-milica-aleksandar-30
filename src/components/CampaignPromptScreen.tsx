@@ -348,8 +348,8 @@ const CampaignPromptScreen = () => {
             </h2>
             
             <div className="space-y-4">
-              {/* Age Groups - First row (4 items) */}
-              <div className="grid grid-cols-4 gap-3 max-w-4xl mx-auto">
+              {/* Age Groups - First row */}
+              <div className="flex flex-wrap gap-3 justify-center max-w-4xl mx-auto">
                  {ageGroups.map((age) => (
                    <button
                      key={age}
@@ -367,8 +367,8 @@ const CampaignPromptScreen = () => {
                  ))}
               </div>
 
-              {/* Interests - Second row (4 items) */}
-              <div className="grid grid-cols-4 gap-3 max-w-4xl mx-auto">
+              {/* Interests - Second row */}
+              <div className="flex flex-wrap gap-3 justify-center max-w-4xl mx-auto">
                  {interests.slice(0, 4).map((interest) => (
                    <button
                      key={interest}
@@ -386,8 +386,8 @@ const CampaignPromptScreen = () => {
                  ))}
               </div>
 
-              {/* Interests - Third row (2 items) */}
-              <div className="grid grid-cols-2 gap-3 max-w-2xl mx-auto">
+              {/* Interests - Third row */}
+              <div className="flex flex-wrap gap-3 justify-center max-w-2xl mx-auto">
                  {interests.slice(4, 6).map((interest) => (
                    <button
                      key={interest}
