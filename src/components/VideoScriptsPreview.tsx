@@ -116,36 +116,7 @@ const VideoScriptsPreview: React.FC = () => {
       {/* Content with increased spacing */}
       <div className="px-8 pb-8 mt-12">
         <div className="max-w-7xl mx-auto">
-          {/* Video Content */}
-          <div className="mb-8 bg-white rounded-lg p-8 shadow-lg">
-            {generatedVideoUrl ? (
-              <VideoPlayer
-                videoUrl={generatedVideoUrl}
-                posterUrl={getImage(0) || uploadedImage}
-                title="Elevate your Music Experience"
-                className="aspect-video rounded-lg"
-              />
-            ) : (
-              <div className="relative aspect-video bg-gradient-to-br from-primary/10 to-secondary/10 rounded-lg overflow-hidden">
-                <div className="relative w-full h-full flex items-center justify-center">
-                  {(getImage(0) || uploadedImage) && (
-                    <OptimizedImage 
-                      src={getImage(0) || uploadedImage}
-                      alt="Video preview"
-                      className="w-full h-full object-cover"
-                    />
-                  )}
-                  <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
-                    <div className="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center">
-                      <Play className="w-6 h-6 text-gray-700 ml-1" />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            )}
-          </div>
-
-          {/* Mobile Mockups Section */}
+          {/* 1. Social Media Previews - First */}
           <div className="mb-8 bg-white rounded-lg p-8 shadow-lg">
             <div className="mb-6">
               <h2 className="text-2xl font-bold text-gray-900 mb-2">Social Media Previews</h2>
@@ -541,9 +512,46 @@ const VideoScriptsPreview: React.FC = () => {
             </div>
           </div>
 
-          {/* Video Scripts Text Content */}
+          {/* 2. Full Video - Second with Title */}
+          <div className="mb-8 bg-white rounded-lg p-8 shadow-lg">
+            <div className="mb-6">
+              <h2 className="text-2xl font-bold text-gray-900 mb-2">Generated Video</h2>
+              <p className="text-gray-600">Your AI-generated video content</p>
+            </div>
+            {generatedVideoUrl ? (
+              <VideoPlayer
+                videoUrl={generatedVideoUrl}
+                posterUrl={getImage(0) || uploadedImage}
+                title="Elevate your Music Experience"
+                className="aspect-video rounded-lg"
+              />
+            ) : (
+              <div className="relative aspect-video bg-gradient-to-br from-primary/10 to-secondary/10 rounded-lg overflow-hidden">
+                <div className="relative w-full h-full flex items-center justify-center">
+                  {(getImage(0) || uploadedImage) && (
+                    <OptimizedImage 
+                      src={getImage(0) || uploadedImage}
+                      alt="Video preview"
+                      className="w-full h-full object-cover"
+                    />
+                  )}
+                  <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
+                    <div className="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center">
+                      <Play className="w-6 h-6 text-gray-700 ml-1" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* 3. Video Scripts Text Content - Third */}
           {videoScripts && videoScripts.length > 0 && (
             <div className="space-y-6">
+              <div className="mb-6">
+                <h2 className="text-2xl font-bold text-gray-900 mb-2">Video Scripts</h2>
+                <p className="text-gray-600">Detailed scripts for your video content</p>
+              </div>
               {videoScripts.map((script, index) => (
                 <div key={index} className="bg-white rounded-lg p-8 shadow-lg space-y-4">
                   <div className="flex items-center gap-2">
