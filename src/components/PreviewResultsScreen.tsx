@@ -433,6 +433,10 @@ const PreviewResultsScreen: React.FC = () => {
 
                         {/* Hero Content - Centered with Text Overlays */}
                         <div className="relative z-10 h-full flex flex-col justify-center items-center text-center px-4">
+                          {/* Campaign Badge - Using actual campaign data */}
+                          <div className="inline-flex items-center px-2 py-0.5 rounded-full bg-primary/80 backdrop-blur-md border border-primary/50 mb-2">
+                            <div className="text-[5px] font-medium text-white">✨ New Launch</div>
+                          </div>
                           
                           {/* Main Headline - Using actual campaign data */}
                           <h1 className="text-[10px] font-bold text-white leading-tight mb-2 max-w-28 drop-shadow-lg">
@@ -530,6 +534,11 @@ const PreviewResultsScreen: React.FC = () => {
                             Multi-platform Optimized
                           </p>
                         </div>
+                      </div>
+                      
+                      {/* Duration Badge */}
+                      <div className="absolute top-3 right-3 bg-black/80 text-white text-xs px-2 py-1 rounded-full backdrop-blur-sm">
+                        0:30
                       </div>
                     </div>
                   </div>
