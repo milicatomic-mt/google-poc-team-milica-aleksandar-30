@@ -673,7 +673,7 @@ const CampaignContent: React.FC<{
           {/* Removed download button from video scripts section */}
         </div>
         <CardContent className="p-4 flex-1 flex flex-col">
-          <div className="h-80 flex-1 bg-black overflow-hidden relative" style={{borderRadius: '1px'}}>
+          <div className="h-80 bg-black overflow-hidden relative" style={{borderRadius: '1px'}}>
             {/* Video Preview - Matching VideoScriptsPreview design */}
             <div className="relative w-full h-full bg-gradient-to-br from-primary/10 to-secondary/10">
               {getImage(0) ? (
@@ -732,29 +732,29 @@ const CampaignContent: React.FC<{
           {/* Removed download button from email templates section */}
         </div>
         <CardContent className="p-4 flex-1 flex flex-col">
-          <div className="h-80 flex-1 relative overflow-hidden">
+          <div className="h-80 relative overflow-hidden">
             {/* Email Preview - Matching EmailTemplatesPreview design */}
             
             {/* Header with Background Image */}
             <div 
-              className="relative text-center py-6 bg-cover bg-center bg-no-repeat h-20 flex flex-col justify-center"
+              className="relative text-center py-4 bg-cover bg-center bg-no-repeat h-20 flex flex-col justify-center"
               style={{
                 backgroundImage: getImage(0) 
                   ? `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${getImage(0)})`
                   : 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
               }}
             >
-              <h1 className="text-xs font-bold text-white drop-shadow-lg">
+              <h1 className="text-[10px] font-bold text-white drop-shadow-lg">
                 {activeCampaignResults?.email_copy?.subject || 'Premium sound'}
               </h1>
-              <p className="text-[8px] text-white/90 uppercase tracking-wider drop-shadow">
+              <p className="text-[6px] text-white/90 uppercase tracking-wider drop-shadow">
                 {activeCampaignResults?.banner_ads?.[0]?.description || 'MINIMALIST DESIGN'}
               </p>
             </div>
 
             {/* Product Showcase Section */}
             <div 
-              className="py-6 bg-cover bg-center bg-no-repeat h-32 flex items-center"
+              className="py-4 bg-cover bg-center bg-no-repeat h-28 flex items-center"
               style={{
                 backgroundImage: getImage(0) 
                   ? `linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url(${getImage(0)})`
@@ -764,7 +764,7 @@ const CampaignContent: React.FC<{
               <div className="w-full px-4">
                 <div className="flex items-center justify-center">
                   {getImage(0) && (
-                    <div className="backdrop-blur-sm bg-white/10 rounded-lg p-3 shadow-lg max-w-16 max-h-16">
+                    <div className="backdrop-blur-sm bg-white/10 rounded-lg p-2 shadow-lg max-w-12 max-h-12">
                       <OptimizedImage 
                         src={getImage(0)}
                         alt="Premium product"
@@ -778,7 +778,7 @@ const CampaignContent: React.FC<{
 
             {/* Content section */}
             <div 
-              className="px-3 py-4 bg-gradient-to-b from-transparent to-black/5 h-24"
+              className="px-3 py-3 bg-gradient-to-b from-transparent to-black/5 h-24"
               style={{
                 backgroundImage: getImage(0) 
                   ? `linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url(${getImage(0)})`
@@ -786,23 +786,23 @@ const CampaignContent: React.FC<{
               }}
             >
               <div className="text-center">
-                <h2 className="text-[9px] font-bold text-slate-900 mb-2 leading-tight">
+                <h2 className="text-[8px] font-bold text-slate-900 mb-1 leading-tight">
                   {activeCampaignResults?.banner_ads?.[0]?.headline || 'Premium wireless headphones with a sleek ivory finish'}
                 </h2>
                 
-                <p className="text-[7px] text-slate-600 leading-relaxed mb-3 line-clamp-2">
-                  {activeCampaignResults?.email_copy?.body?.substring(0, 100) || 'Experience high-quality audio with stylish over-ear wireless headphones featuring advanced noise isolation.'}
+                <p className="text-[6px] text-slate-600 leading-relaxed mb-2 line-clamp-2">
+                  {activeCampaignResults?.email_copy?.body?.substring(0, 80) || 'Experience high-quality audio with stylish over-ear wireless headphones featuring advanced noise isolation.'}
                 </p>
                 
-                <div className="bg-slate-900 hover:bg-slate-800 text-white text-[6px] px-3 py-1 rounded-full inline-block shadow-lg">
+                <div className="bg-slate-900 hover:bg-slate-800 text-white text-[5px] px-2 py-1 rounded-full inline-block shadow-lg">
                   {activeCampaignResults?.banner_ads?.[0]?.cta || 'Shop Now'}
                 </div>
               </div>
             </div>
 
             {/* Footer */}
-            <div className="bg-slate-900/90 backdrop-blur-sm py-1 text-center h-4 flex items-center justify-center">
-              <p className="text-[5px] text-slate-300">
+            <div className="bg-slate-900/90 backdrop-blur-sm py-1 text-center h-8 flex items-center justify-center">
+              <p className="text-[4px] text-slate-300">
                 © 2024 Premium Sound. All rights reserved.
               </p>
             </div>
