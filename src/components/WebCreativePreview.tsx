@@ -11,6 +11,7 @@ const WebCreativePreview: React.FC = () => {
   const { campaignResults, uploadedImage, campaignId, imageMapping, returnTo } = location.state || {};
   const [isDownloadModalOpen, setIsDownloadModalOpen] = useState(false);
   const [tagColor, setTagColor] = useState<string | null>(null);
+  const [complementaryColor, setComplementaryColor] = useState<string | null>(null);
 
   useEffect(() => {
     if (!campaignResults) {
@@ -63,9 +64,11 @@ const WebCreativePreview: React.FC = () => {
     if (heroImage) {
       extractColorsFromImage(heroImage).then(colors => {
         setTagColor(colors.primary);
+        setComplementaryColor(colors.secondary);
       }).catch(() => {
         // If extraction fails, keep default color
         setTagColor(null);
+        setComplementaryColor(null);
       });
     }
   }, [uploadedImage, imageMapping]);
@@ -114,12 +117,14 @@ const WebCreativePreview: React.FC = () => {
                 <div className="grid lg:grid-cols-2 gap-12 items-center">
                   <div className="space-y-6">
                     <div 
-                      className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium border"
-                      style={tagColor ? {
-                        backgroundColor: `hsl(${tagColor} / 0.1)`,
-                        color: `hsl(${tagColor})`,
-                        borderColor: `hsl(${tagColor} / 0.2)`
-                      } : undefined}
+                      className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium border border-black"
+                      style={complementaryColor ? {
+                        backgroundColor: 'hsl(0, 0%, 0%)',
+                        color: complementaryColor
+                      } : {
+                        backgroundColor: 'hsl(0, 0%, 0%)',
+                        color: 'hsl(0, 0%, 100%)'
+                      }}
                     >
                       ✨ New Launch
                     </div>
