@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { ArrowLeft, QrCode, Play } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
+
 import QRDownloadModal from '@/components/QRDownloadModal';
 import { VideoPlayer } from '@/components/VideoPlayer';
 import { OptimizedImage } from '@/components/ui/optimized-image';
@@ -777,9 +777,6 @@ const VideoScriptsPreview: React.FC = () => {
                       if (scene.trim()) {
                         return (
                           <div key={sceneIndex} className="bg-primary/5 p-4 rounded-lg">
-                            <div className="bg-primary text-primary-foreground text-xs px-3 py-1 rounded-full inline-block mb-3">
-                              Scene {sceneIndex + 1}: {sceneIndex === 0 ? 'Opening Shot' : sceneIndex === 1 ? 'Product Highlight' : 'Call to Action'}
-                            </div>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                               <div>
                                 <div className="text-xs font-semibold text-muted-foreground mb-1">
