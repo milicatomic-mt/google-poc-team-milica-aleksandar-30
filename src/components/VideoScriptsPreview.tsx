@@ -255,7 +255,7 @@ const VideoScriptsPreview: React.FC = () => {
                     <span className="text-sm">Liked by <span className="font-semibold">craig_love</span> and <span className="font-semibold">44,686 others</span></span>
                   </div>
                   
-                  <div className="text-sm bg-primary/20 p-2 rounded">
+                  <div className="text-sm p-2 rounded">
                     <span className="font-semibold">joshua_l</span> {videoScripts && videoScripts.length > 0 
                       ? videoScripts[0].script.split('\n\n')[0]?.trim().substring(0, 100) + '...'
                       : 'Check out this amazing new product launch! 🎧 #tech #music #lifestyle'
@@ -443,7 +443,7 @@ const VideoScriptsPreview: React.FC = () => {
                         </div>
                       </div>
                       
-                      <div className="mb-3 bg-primary/20 p-2 rounded">
+                      <div className="mb-3 p-2 rounded">
                         <p className="text-sm leading-relaxed drop-shadow-lg">
                           {videoScripts && videoScripts.length > 0 
                             ? "Let's keep dancing until the sun rises😊" 
@@ -589,7 +589,7 @@ const VideoScriptsPreview: React.FC = () => {
 
                   {/* Post Content */}
                   <div className="bg-black text-white px-4 pb-4">
-                    <p className="text-sm mb-3 bg-primary/20 p-2 rounded">
+                    <p className="text-sm mb-3 p-2 rounded">
                       From FCEV prototype to series production – The BMW iX5 Hydrogen 🚙 ... See more
                     </p>
                   </div>
@@ -774,7 +774,7 @@ const VideoScriptsPreview: React.FC = () => {
                     {script.script.split('\n\n').map((scene, sceneIndex) => {
                       if (scene.trim()) {
                         return (
-                          <div key={sceneIndex} className="bg-primary/5 p-4 rounded-lg">
+                          <div key={sceneIndex} className="p-4 rounded-lg border border-gray-200">
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                               <div>
                                 <div className="text-sm font-bold text-black mb-1">Visual:</div>
