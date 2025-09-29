@@ -16,12 +16,16 @@ const VideoScriptsPreview: React.FC = () => {
 
   // Debug: Check if we have campaign results
   useEffect(() => {
+    console.log('VideoScriptsPreview - Location state:', location.state);
+    console.log('VideoScriptsPreview - Campaign results:', campaignResults);
+    console.log('VideoScriptsPreview - Uploaded image:', uploadedImage);
+    
     if (!campaignResults) {
       console.log('No campaign results found, redirecting...');
       navigate('/');
       return;
     }
-  }, [campaignResults, navigate]);
+  }, [campaignResults, navigate, location.state, uploadedImage]);
 
   // Get generated video URL
   const generatedVideoUrl = campaignResults?.generated_video_url;
@@ -64,12 +68,99 @@ const VideoScriptsPreview: React.FC = () => {
   };
 
   if (!campaignResults) {
+    // Fallback for testing - provide sample data
+    const sampleData = {
+      video_scripts: [
+        {
+          platform: "Instagram",
+          script: "Discover the perfect sound that transforms your daily routine.\n\nWireless freedom meets premium audio quality.\n\nElevate your music experience today."
+        },
+        {
+          platform: "TikTok", 
+          script: "Ready to level up your audio game?\n\nThese headphones deliver crystal clear sound.\n\nJoin the audio revolution now!"
+        }
+      ],
+      generated_images: [
+        {
+          url: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&h=500&fit=crop"
+        }
+      ],
+      generated_video_url: null
+    };
+
     return (
-      <div className="min-h-screen bg-background flex items-center justify-center">
-        <div className="text-center">
-          <h2 className="text-2xl font-semibold mb-2">No Results Found</h2>
-          <p className="text-muted-foreground mb-4">Unable to load video script results.</p>
-          <Button onClick={() => navigate('/')}>Go to Home</Button>
+      <div className="min-h-screen bg-background">
+        {/* Back Button - Positioned absolute top-left */}
+        <div className="absolute top-8 left-8 z-10">
+          <Button
+            variant="secondary"
+            onClick={() => navigate('/')}
+            className="tap-target hover-lift focus-ring bg-white border-white/30 hover:bg-white/90 rounded-full p-3 shadow-sm"
+            aria-label="Go back to home"
+          >
+            <ArrowLeft className="h-5 w-5 text-black" />
+          </Button>
+        </div>
+
+        {/* Header */}
+        <div className="flex items-center justify-center px-8 py-6 pt-20">
+          <div className="text-center">
+            <h1 className="text-3xl font-bold text-gray-900">Video Scripts (Sample)</h1>
+            <p className="text-gray-600 text-sm mt-1">Optimized content for social media platforms</p>
+          </div>
+        </div>
+
+        {/* Render the same content structure but with sample data */}
+        <div className="px-8 pb-8 mt-12">
+          <div className="max-w-7xl mx-auto">
+            {/* Video Content */}
+            <div className="mb-8 bg-white rounded-lg p-8 shadow-lg">
+              <div className="relative aspect-video bg-gradient-to-br from-primary/10 to-secondary/10 rounded-lg overflow-hidden">
+                <div className="relative w-full h-full flex items-center justify-center">
+                  <OptimizedImage 
+                    src={sampleData.generated_images[0].url}
+                    alt="Sample preview"
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
+                    <div className="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center">
+                      <Play className="w-6 h-6 text-gray-700 ml-1" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Mobile Mockups Section */}
+            <div className="mb-8 bg-white rounded-lg p-8 shadow-lg">
+              <div className="mb-6">
+                <h2 className="text-2xl font-bold text-gray-900 mb-2">Social Media Previews</h2>
+                <p className="text-gray-600">See how your content will appear on different platforms</p>
+              </div>
+              
+              <div className="flex flex-col lg:flex-row gap-8 justify-center items-start">
+                {/* Instagram Mock */}
+                <div className="bg-white rounded-lg shadow-lg overflow-hidden max-w-sm h-[814px] relative">
+                  <div className="bg-black text-white p-4 h-full flex items-center justify-center">
+                    <div className="text-center">
+                      <h3 className="text-lg font-bold mb-2">Instagram Preview</h3>
+                      <p className="text-sm opacity-75">Sample content would appear here</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* TikTok Mock */}
+                <div className="bg-black rounded-lg shadow-lg overflow-hidden max-w-sm h-[814px] relative">
+                  <div className="h-full flex items-center justify-center text-white">
+                    <div className="text-center">
+                      <h3 className="text-lg font-bold mb-2">TikTok Preview</h3>
+                      <p className="text-sm opacity-75">Sample content would appear here</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     );
