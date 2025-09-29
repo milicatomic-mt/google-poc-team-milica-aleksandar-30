@@ -95,9 +95,20 @@ const BannerAdsPreview: React.FC = () => {
               
               {/* Left Banner - Product Focus */}
               <div className="aspect-square bg-gradient-to-br from-gray-800 via-gray-700 to-gray-600 rounded-lg overflow-hidden shadow-lg relative">
-                <div className="flex flex-col h-full">
-                  {/* Top - Text Content */}
-                  <div className="flex-1 px-8 pt-8 text-white">
+                <div className="flex items-center h-full">
+                  {/* Left - Product Image */}
+                  <div className="w-1/2 h-full flex items-center justify-center">
+                    {getImage(1) && (
+                      <img 
+                        src={getImage(1)} 
+                        alt="Premium Sound Product" 
+                        className="w-full h-full object-cover filter drop-shadow-lg" 
+                      />
+                    )}
+                  </div>
+                  
+                  {/* Right - Text Content */}
+                  <div className="flex-1 px-8 text-white">
                     <h3 className="text-white text-2xl font-bold uppercase tracking-wide mb-2">
                       PREMIUM SOUND
                     </h3>
@@ -111,17 +122,6 @@ const BannerAdsPreview: React.FC = () => {
                     <button className="bg-white text-gray-900 text-sm px-6 py-2 font-semibold hover:bg-gray-100 transition-colors rounded">
                       Shop Now
                     </button>
-                  </div>
-                  
-                  {/* Bottom - Product Image */}
-                  <div className="w-full h-1/2 flex items-center justify-center px-8 pb-8">
-                    {getImage(1) && (
-                      <img 
-                        src={getImage(1)} 
-                        alt="Premium Sound Product" 
-                        className="w-full h-full object-contain filter drop-shadow-lg" 
-                      />
-                    )}
                   </div>
                 </div>
               </div>
