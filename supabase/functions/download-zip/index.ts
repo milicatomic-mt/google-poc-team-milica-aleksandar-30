@@ -71,21 +71,41 @@ Deno.serve(async (req) => {
     // Create ZIP using JSZip-like functionality
     const files: { name: string; content: Uint8Array }[] = [];
 
-    // Download all images
-    for (const imageInfo of imageUrls) {
+    // Download all images with timeout and parallel processing
+    const imagePromises = imageUrls.map(async (imageInfo) => {
       try {
-        const imageResponse = await fetch(imageInfo.url);
+        // Add timeout to prevent hanging requests
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
+        
+        const imageResponse = await fetch(imageInfo.url, {
+          signal: controller.signal
+        });
+        
+        clearTimeout(timeoutId);
+        
         if (imageResponse.ok) {
           const imageBuffer = await imageResponse.arrayBuffer();
-          files.push({
+          return {
             name: imageInfo.filename,
             content: new Uint8Array(imageBuffer)
-          });
+          };
         }
+        return null;
       } catch (error) {
         console.warn(`Failed to download image: ${imageInfo.url}`, error);
+        return null;
       }
-    }
+    });
+
+    // Wait for all image downloads to complete (with timeout)
+    const downloadResults = await Promise.allSettled(imagePromises);
+    
+    downloadResults.forEach((result) => {
+      if (result.status === 'fulfilled' && result.value) {
+        files.push(result.value);
+      }
+    });
 
     // Add text content files
     const textFiles: { [key: string]: string } = {};
