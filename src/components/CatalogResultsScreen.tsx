@@ -84,6 +84,9 @@ const CatalogResultsScreen: React.FC = () => {
     sessionStorage.setItem(inflightKey, '1');
 
     const generateCatalogContent = async () => {
+      console.log('=== CatalogResultsScreen: generateCatalogContent started ===');
+      console.log('Catalog data:', catalogData);
+      
       try {
         setIsGenerating(true);
         setError(null);
@@ -222,8 +225,11 @@ const CatalogResultsScreen: React.FC = () => {
           
           setSavedRequestId(savedRequest.id);
           
+          console.log('Calling generateCatalog with:', { id: savedRequest.id, request: catalogRequest });
+          
           // Generate the full catalog content using AI
           const results = await generateCatalog(savedRequest.id, catalogRequest);
+          console.log('generateCatalog returned:', results);
           setCatalogResults(results);
         }
 

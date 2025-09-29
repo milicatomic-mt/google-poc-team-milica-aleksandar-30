@@ -35,9 +35,14 @@ const GenerateCampaignScreen = () => {
     if (inflightKey) sessionStorage.setItem(inflightKey, '1');
 
     const generateContent = async () => {
+      console.log('=== GenerateCampaignScreen: generateContent started ===');
+      
       try {
         const state = location.state;
+        console.log('Campaign state:', state);
+        
         if (!state) {
+          console.error('No state found, navigating to home');
           navigate('/');
           return;
         }
@@ -168,8 +173,12 @@ const GenerateCampaignScreen = () => {
           
           campaignResult = existing ? { id: existing.id } : await saveCampaignRequest(campaignData, generatedImages);
           
+          console.log('Calling generateCampaign with:', { id: campaignResult.id, data: campaignData });
+          
           // Generate the campaign using AI
           await generateCampaign(campaignResult.id, campaignData);
+          
+          console.log('generateCampaign completed');
         }
         
         // Start polling for results so we only navigate when content is ready
