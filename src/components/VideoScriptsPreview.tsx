@@ -331,14 +331,12 @@ const VideoScriptsPreview: React.FC = () => {
                 </div>
               </div>
 
-              {/* TikTok Mobile Mockup */}
-              <div className="bg-white rounded-lg shadow-lg overflow-hidden max-w-sm" style={{ height: 'auto' }}>
-                {/* TikTok Status Bar */}
-                <div className="bg-green-500 text-white px-4 py-2 text-sm font-medium">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-1">
-                      <span>9:41</span>
-                    </div>
+              {/* TikTok Mobile Mockup - Matching Instagram dimensions exactly */}
+              <div className="bg-white rounded-lg shadow-lg overflow-hidden max-w-sm">
+                {/* TikTok Header - Compact version matching IG header height */}
+                <div className="bg-green-500 text-white p-4">
+                  <div className="flex items-center justify-between text-sm font-medium mb-4">
+                    <span>9:41</span>
                     <div className="flex items-center gap-1">
                       <div className="flex gap-0.5">
                         <div className="w-1 h-3 bg-white rounded-full"></div>
@@ -353,11 +351,9 @@ const VideoScriptsPreview: React.FC = () => {
                       <div className="w-6 h-3 bg-white rounded-sm ml-1"></div>
                     </div>
                   </div>
-                </div>
-
-                {/* LIVE indicator and navigation */}
-                <div className="bg-green-500 px-4 pb-2">
-                  <div className="flex items-center gap-4">
+                  
+                  {/* TikTok Navigation - Taking same space as IG stories section */}
+                  <div className="flex items-center gap-4 mb-4">
                     <div className="bg-red-500 text-white text-xs px-2 py-1 rounded">
                       LIVE
                     </div>
@@ -372,11 +368,14 @@ const VideoScriptsPreview: React.FC = () => {
                       </div>
                     </div>
                   </div>
+                  
+                  {/* Empty space to match IG user header section height */}
+                  <div className="h-12"></div>
                 </div>
-
-                {/* Expanded Video Content Area - Much taller to match Instagram height */}
-                <div className="relative h-[600px]">
-                  {/* Video Content - Fill entire area */}
+                
+                {/* Video Content Area - EXACT same aspect-square as Instagram */}
+                <div className="relative aspect-square">
+                  {/* Video Content - No green background, pure video */}
                   {generatedVideoUrl ? (
                     <VideoPlayer
                       videoUrl={generatedVideoUrl}
@@ -401,8 +400,8 @@ const VideoScriptsPreview: React.FC = () => {
                     </div>
                   )}
 
-                  {/* Right Side Actions */}
-                  <div className="absolute right-4 bottom-32 flex flex-col items-center gap-4">
+                  {/* Right Side Actions - TikTok style */}
+                  <div className="absolute right-4 bottom-20 flex flex-col items-center gap-4">
                     {/* Like button */}
                     <div className="text-center">
                       <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mb-1">
@@ -446,13 +445,13 @@ const VideoScriptsPreview: React.FC = () => {
                   </div>
 
                   {/* Profile circle bottom right */}
-                  <div className="absolute bottom-36 right-6">
+                  <div className="absolute bottom-24 right-6">
                     <div className="w-12 h-12 rounded-full bg-pink-500 flex items-center justify-center">
                       <div className="w-10 h-10 rounded-full bg-gradient-to-br from-pink-400 to-purple-600"></div>
                     </div>
                   </div>
 
-                  {/* Bottom Content Overlay */}
+                  {/* Bottom Content Overlay - TikTok style */}
                   <div className="absolute bottom-0 left-0 right-0 p-4 text-white bg-gradient-to-t from-black/80 via-black/40 to-transparent">
                     {/* User info */}
                     <div className="flex items-center gap-2 mb-2">
@@ -485,6 +484,86 @@ const VideoScriptsPreview: React.FC = () => {
                     </div>
                   </div>
                 </div>
+                
+                {/* TikTok Actions Section - Matching Instagram actions padding */}
+                <div className="bg-black text-white p-4">
+                  <div className="flex justify-between items-center mb-3">
+                    <div className="flex gap-4">
+                      <button>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                        </svg>
+                      </button>
+                      <button>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                          <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                  
+                  {/* Engagement - Simplified for TikTok */}
+                  <div className="mb-2">
+                    <span className="text-sm">Liked by <span className="font-semibold">tomorrow_together</span> and <span className="font-semibold">250.5K others</span></span>
+                  </div>
+                  
+                  {/* Caption */}
+                  <div className="text-sm">
+                    <span className="font-semibold">TOMORROW X TOGETHER</span> New dance challenge! Who's joining? 🎵
+                  </div>
+                  
+                  {/* View Comments */}
+                  <button className="text-gray-400 text-sm mt-2">
+                    View all 100K comments
+                  </button>
+                  
+                  {/* Time */}
+                  <div className="text-gray-400 text-xs mt-2">
+                    3 hours ago
+                  </div>
+                </div>
+
+                {/* Bottom Navigation - Matching Instagram exactly */}
+                <div className="bg-black border-t border-gray-800 p-4">
+                  <div className="flex justify-around items-center">
+                    <div className="text-center">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" className="text-white">
+                        <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+                      </svg>
+                      <span className="text-xs mt-1">Home</span>
+                    </div>
+                    <div className="text-center opacity-60">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-white">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                        <circle cx="9" cy="7" r="4"/>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                      </svg>
+                      <span className="text-xs mt-1">Friends</span>
+                    </div>
+                    <div className="text-center">
+                      <div className="w-10 h-8 bg-white rounded-md flex items-center justify-center">
+                        <span className="text-black font-bold text-lg">+</span>
+                      </div>
+                    </div>
+                    <div className="text-center opacity-60">
+                      <div className="relative">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-white">
+                          <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
+                        </svg>
+                        <div className="absolute -top-1 -right-1 w-5 h-5 bg-red-500 rounded-full flex items-center justify-center">
+                          <span className="text-white text-xs font-bold">12</span>
+                        </div>
+                      </div>
+                      <span className="text-xs mt-1">Inbox</span>
+                    </div>
+                    <div className="text-center opacity-60">
+                      <div className="w-6 h-6 rounded-full bg-gray-400"></div>
+                      <span className="text-xs mt-1">Profile</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
                 {/* TikTok Status Bar */}
                 <div className="bg-green-500 text-white px-4 py-2 text-sm font-medium">
                   <div className="flex items-center justify-between">
