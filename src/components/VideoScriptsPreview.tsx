@@ -380,7 +380,7 @@ const VideoScriptsPreview: React.FC = () => {
                       {/* Profile Picture */}
                       <div className="relative">
                         <div className="w-12 h-12 rounded-full bg-gradient-to-br from-pink-400 to-purple-600 p-0.5">
-                          <div className="w-full h-full rounded-full bg-gray-300"></div>
+                          <img src={profileImage} alt="Profile" className="w-full h-full rounded-full object-cover" />
                         </div>
                         <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-6 h-6 bg-red-500 rounded-full flex items-center justify-center">
                           <span className="text-white text-xs font-bold">+</span>
