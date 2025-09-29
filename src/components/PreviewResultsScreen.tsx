@@ -251,17 +251,17 @@ const PreviewResultsScreen: React.FC = () => {
                   />
                 )}
                 <div className="flex-1">
-                  <h3 className="text-lg font-bold text-gray-900 uppercase tracking-wide">
+                  <h3 className="text-xs font-bold text-gray-900 uppercase tracking-wide">
                     {activeCampaignResults.banner_ads?.[2]?.headline || 'PREMIUM SOUND'}
                   </h3>
-                  <p className="text-sm text-gray-600 uppercase tracking-wider">
+                  <p className="text-[8px] text-gray-600 uppercase tracking-wider">
                     MINIMALIST DESIGN
                   </p>
-                  <p className="text-xs text-gray-500 mt-1">
+                  <p className="text-[6px] text-gray-500 mt-1">
                     WIRELESS BLUETOOTH CONNECTION WITH BASS RESONANCE
                   </p>
                 </div>
-                <Button className="bg-black text-white hover:bg-gray-900 text-sm font-semibold px-6 py-2 rounded-full">
+                <Button className="bg-black text-white hover:bg-gray-900 text-[8px] font-semibold px-3 py-1 rounded-full">
                   {activeCampaignResults.banner_ads?.[2]?.cta || 'Shop Now'}
                 </Button>
               </div>
