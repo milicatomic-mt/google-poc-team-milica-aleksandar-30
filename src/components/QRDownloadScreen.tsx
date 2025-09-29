@@ -222,6 +222,13 @@ const QRDownloadScreen = () => {
               </CardTitle>
             </CardHeader>
             <CardContent className="flex flex-col items-center space-y-6">
+              {/* Scan me text */}
+              <div className="text-center">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                  Scan me
+                </h3>
+              </div>
+              
               <div className="bg-white p-4 rounded-lg">
                 <QRCodeSVG
                   value={zipDownloadUrl}
