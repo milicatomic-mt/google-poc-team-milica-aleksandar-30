@@ -173,7 +173,7 @@ const ScreenSaver = () => {
             navigate('/gallery');
           }}
         >
-          <img src={galleryIcon} alt="" className="mr-2 w-5 h-5" />
+          <img src={galleryIcon} alt="" className="mr-2 w-5 h-5 text-primary" />
           <span className="text-primary group-hover:text-primary/80 transition-colors">
             Gallery
           </span>
