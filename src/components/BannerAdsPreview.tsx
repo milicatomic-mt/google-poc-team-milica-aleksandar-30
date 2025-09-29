@@ -119,7 +119,7 @@ const BannerAdsPreview: React.FC = () => {
                       WIRELESS BLUETOOTH CONNECTION<br/>
                       WITH BASS RESONANCE
                     </p>
-                    <button className="bg-white text-gray-900 text-sm px-6 py-2 font-semibold hover:bg-gray-100 transition-colors rounded">
+                    <button className="bg-white text-gray-900 text-sm px-6 py-2 font-semibold hover:bg-gray-100 transition-colors rounded-full">
                       Shop Now
                     </button>
                   </div>
@@ -152,7 +152,7 @@ const BannerAdsPreview: React.FC = () => {
                     WIRELESS BLUETOOTH CONNECTION<br/>
                     WITH BASS RESONANCE
                   </p>
-                  <button className="bg-white text-gray-900 text-sm px-6 py-2 font-semibold hover:bg-gray-100 transition-colors rounded">
+                  <button className="bg-white text-gray-900 text-sm px-6 py-2 font-semibold hover:bg-gray-100 transition-colors rounded-full">
                     Shop Now
                   </button>
                 </div>
