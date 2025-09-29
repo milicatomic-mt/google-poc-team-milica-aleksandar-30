@@ -332,7 +332,7 @@ const VideoScriptsPreview: React.FC = () => {
               </div>
 
               {/* TikTok Mobile Mockup - Full screen video with overlaid UI like in reference */}
-              <div className="bg-black rounded-lg shadow-lg overflow-hidden max-w-sm h-auto">
+              <div className="bg-black rounded-lg shadow-lg overflow-hidden max-w-sm h-[814px]">
                 <div className="relative">
                   {/* Full Screen Video Background - Fill entire container to match Instagram height */}
                   <div className="relative w-full" style={{aspectRatio: '9/16', minHeight: '700px'}}>
