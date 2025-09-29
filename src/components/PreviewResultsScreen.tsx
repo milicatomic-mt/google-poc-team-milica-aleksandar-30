@@ -637,7 +637,7 @@ const PreviewResultsScreen: React.FC = () => {
                       </div>
                       
                       {/* Post Header */}
-                      <div className="bg-gray-900 px-3 py-2 border-b border-gray-700">
+                      <div className="bg-gray-800 px-3 py-2 border-b border-gray-700">
                         <div className="flex items-center gap-2">
                           <div className="w-7 h-7 bg-gray-600 rounded-full overflow-hidden flex items-center justify-center">
                             {(activeCampaignResults?.generated_images?.[0]?.url || uploadedImage) ? (
@@ -661,14 +661,14 @@ const PreviewResultsScreen: React.FC = () => {
                       </div>
                       
                       {/* Post Content */}
-                      <div className="bg-gray-900 px-3 py-2">
+                      <div className="bg-gray-800 px-3 py-2">
                         <p className="text-white text-[8px] mb-2">
                           From FCEV prototype to series production – The BMW iX5 Hydrogen 🚙 ... See more
                         </p>
                       </div>
                       
                       {/* Main Content */}
-                      <div className="relative flex-1 bg-gray-900">
+                      <div className="relative flex-1 bg-gray-800">
                         {(activeCampaignResults?.generated_images?.[0]?.url || uploadedImage) && (
                           <img 
                             src={activeCampaignResults?.generated_images?.[0]?.url || uploadedImage} 
