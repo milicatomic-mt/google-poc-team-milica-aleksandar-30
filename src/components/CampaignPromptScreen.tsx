@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
-import { ArrowRight, ArrowLeft, RefreshCw, X } from 'lucide-react';
+import { ArrowRight, ArrowLeft, RefreshCw, X, Star } from 'lucide-react';
 import RibbedSphere from '@/components/RibbedSphere';
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger, DialogClose } from '@/components/ui/dialog';
 import { toast } from 'sonner';
@@ -417,6 +417,7 @@ const CampaignPromptScreen = () => {
               className={`tap-target focus-ring w-96 px-12 bg-primary hover:bg-primary/90 text-primary-foreground transition-opacity duration-300 rounded-full ${prompt.trim() ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
               aria-label={editMode ? "Update campaign" : "Create campaign"}
             >
+              <Star className="w-5 h-5 mr-2 fill-current" />
               {editMode ? 'Update Campaign' : 'Create Campaign'}
             </Button>
           </div>
