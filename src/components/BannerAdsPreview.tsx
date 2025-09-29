@@ -94,7 +94,7 @@ const BannerAdsPreview: React.FC = () => {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               
               {/* Left Banner - Product Focus */}
-              <div className="bg-gradient-to-br from-gray-800 via-gray-700 to-gray-600 rounded-lg overflow-hidden shadow-lg h-64 relative">
+              <div className="aspect-square bg-gradient-to-br from-gray-800 via-gray-700 to-gray-600 rounded-lg overflow-hidden shadow-lg relative">
                 <div className="flex items-center h-full px-8">
                   {/* Left - Product Image */}
                   <div className="w-32 h-40 flex-shrink-0 flex items-center justify-center">
@@ -102,7 +102,7 @@ const BannerAdsPreview: React.FC = () => {
                       <img 
                         src={getImage(1)} 
                         alt="Premium Sound Product" 
-                        className="w-full h-full object-contain filter drop-shadow-lg" 
+                        className="w-full h-full object-cover filter drop-shadow-lg" 
                       />
                     )}
                   </div>
@@ -127,7 +127,7 @@ const BannerAdsPreview: React.FC = () => {
               </div>
 
               {/* Right Banner - Lifestyle Focus */}
-              <div className="bg-gradient-to-br from-slate-100 via-gray-50 to-stone-100 rounded-lg overflow-hidden shadow-lg h-64 relative">
+              <div className="aspect-square bg-gradient-to-br from-slate-100 via-gray-50 to-stone-100 rounded-lg overflow-hidden shadow-lg relative">
                 <div className="flex items-center h-full">
                   {/* Left - Person Image */}
                   <div className="w-48 h-full relative overflow-hidden flex-shrink-0">
@@ -161,7 +161,7 @@ const BannerAdsPreview: React.FC = () => {
             </div>
 
             {/* Bottom Banner - Horizontal Layout */}
-            <div className="bg-gradient-to-r from-slate-200 via-gray-100 to-stone-200 rounded-lg overflow-hidden shadow-lg h-32 relative">
+            <div className="bg-gradient-to-r from-slate-200 via-gray-100 to-stone-200 rounded-lg overflow-hidden shadow-lg h-[4.5rem] relative">
               <div className="flex items-center h-full">
                 {/* Left - Product Image */}
                 <div className="w-24 h-24 ml-6 flex-shrink-0 flex items-center justify-center">
@@ -169,7 +169,7 @@ const BannerAdsPreview: React.FC = () => {
                     <img 
                       src={getImage(1)} 
                       alt="Premium Sound Product" 
-                      className="w-full h-full object-contain filter drop-shadow-lg" 
+                      className="w-full h-full object-cover filter drop-shadow-lg" 
                     />
                   )}
                 </div>
@@ -197,7 +197,7 @@ const BannerAdsPreview: React.FC = () => {
             </div>
 
             {/* Bottom Row - Wide Horizontal Banner */}
-            <div className="bg-gradient-to-r from-slate-200 via-gray-100 to-stone-200 rounded-lg overflow-hidden shadow-lg h-32 relative">
+            <div className="bg-gradient-to-r from-slate-200 via-gray-100 to-stone-200 rounded-lg overflow-hidden shadow-lg h-[4.5rem] relative">
               <div className="flex items-center h-full">
                 {/* Left - Product Image */}
                 <div className="w-24 h-24 ml-6 flex-shrink-0 flex items-center justify-center">
@@ -205,7 +205,7 @@ const BannerAdsPreview: React.FC = () => {
                     <img 
                       src={getImage(1)} 
                       alt="Premium Sound Product" 
-                      className="w-full h-full object-contain filter drop-shadow-lg" 
+                      className="w-full h-full object-cover filter drop-shadow-lg" 
                     />
                   )}
                 </div>
