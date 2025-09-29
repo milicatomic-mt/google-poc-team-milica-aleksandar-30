@@ -81,7 +81,7 @@ Deno.serve(async (req) => {
       "script": "Educational script for YouTube Shorts"
     }
   ],
-  "video_prompt": "A single, comprehensive prompt for AI video generation that captures the essence of the product and campaign. This should be a detailed visual description perfect for video generation AI, including camera angles, lighting, movement, and key visual elements.",
+  "video_prompt": "A single, comprehensive prompt for AI video generation that captures the essence of the product and campaign. This should be a detailed visual description perfect for video generation AI, including camera angles, lighting, movement, and key visual elements. IMPORTANT: Do not include any references to music, audio, sound effects, or background music in this prompt.",
   "email_copy": {
     "subject": "Compelling email subject line",
     "body": "Persuasive email body content with clear value proposition"
