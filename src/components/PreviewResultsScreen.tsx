@@ -184,11 +184,11 @@ const PreviewResultsScreen: React.FC = () => {
           <div className="overflow-hidden bg-white shadow-2xl rounded-lg h-80">
             <div className="p-2 h-full flex flex-col">
               {/* Grid layout matching reference image */}
-              <div className="grid grid-cols-2 gap-4 mb-4 flex-1">
+              <div className="grid grid-cols-2 gap-4 mb-4 h-48">
                 
                 {/* Left Banner */}
                 <div 
-                  className="relative aspect-[4/3] rounded-lg overflow-hidden bg-cover bg-center"
+                  className="relative h-full rounded-lg overflow-hidden bg-cover bg-center"
                   style={{
                     backgroundImage: (generatedImages[0]?.url || uploadedImage) 
                       ? `url(${generatedImages[0]?.url || uploadedImage})` 
@@ -215,7 +215,7 @@ const PreviewResultsScreen: React.FC = () => {
 
                 {/* Right Banner */}
                 <div 
-                  className="relative aspect-[4/3] rounded-lg overflow-hidden bg-cover bg-center"
+                  className="relative h-full rounded-lg overflow-hidden bg-cover bg-center"
                   style={{
                     backgroundImage: (generatedImages[1]?.url || uploadedImage) 
                       ? `url(${generatedImages[1]?.url || uploadedImage})` 
