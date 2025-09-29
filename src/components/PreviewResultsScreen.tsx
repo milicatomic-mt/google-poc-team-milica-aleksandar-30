@@ -812,7 +812,7 @@ const PreviewResultsScreen: React.FC = () => {
                     </div>
                     
                     {/* Bottom Row - Wide Horizontal Banner */}
-                    <div className="bg-gradient-to-r from-slate-200 to-gray-200 overflow-hidden relative h-18" style={{borderRadius: '1px'}}>
+                    <div className="bg-gradient-to-r from-slate-200 to-gray-200 overflow-hidden relative h-15" style={{borderRadius: '1px'}}>
                       <div className="flex items-center h-full">
                         {/* Left - Person Image */}
                         <div className="w-20 h-full relative overflow-hidden">
