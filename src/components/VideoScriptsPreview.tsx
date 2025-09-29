@@ -3,10 +3,10 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { ArrowLeft, QrCode, Play } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import QRDownloadModal from '@/components/QRDownloadModal';
 import { VideoPlayer } from '@/components/VideoPlayer';
-import { OptimizedImage } from '@/components/ui/optimized-image';
+import QRDownloadModal from '@/components/QRDownloadModal';
 import type { CampaignCreationResponse } from '@/types/api';
+import { OptimizedImage } from '@/components/ui/optimized-image';
 
 const VideoScriptsPreview: React.FC = () => {
   const location = useLocation();
@@ -14,49 +14,33 @@ const VideoScriptsPreview: React.FC = () => {
   const { campaignResults, uploadedImage, campaignId, imageMapping, returnTo } = location.state || {};
   const [isDownloadModalOpen, setIsDownloadModalOpen] = useState(false);
 
-  // Debug: Check if we have campaign results
+  // Ensure page starts at the top on mount
+  useEffect(() => {
+    const prev = history.scrollRestoration as any;
+    try { (history as any).scrollRestoration = 'manual'; } catch {}
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+    try { sessionStorage.removeItem('gallery-restore'); } catch {}
+    return () => {
+      try { (history as any).scrollRestoration = prev; } catch {}
+    };
+  }, []);
+
   useEffect(() => {
     if (!campaignResults) {
-      console.log('No campaign results found, redirecting...');
-      navigate('/');
-      return;
+      navigate(returnTo || '/preview-results');
     }
-  }, [campaignResults, navigate]);
-
-  // Get generated video URL
-  const generatedVideoUrl = campaignResults?.generated_video_url;
-
-  // Video scripts data
-  const videoScripts = campaignResults?.video_scripts;
-
-  // Function to get image with fallback using mapping first, then generated images
-  const getImage = (index: number): string | null => {
-    // First try imageMapping if provided
-    if (imageMapping && imageMapping[`image_${index}`]) {
-      return imageMapping[`image_${index}`];
-    }
-    
-    // Then try generated_images
-    if (campaignResults?.generated_images && campaignResults.generated_images[index]) {
-      return campaignResults.generated_images[index].url;
-    }
-    
-    return null;
-  };
+  }, [campaignResults, navigate, returnTo]);
 
   const handleBack = () => {
-    if (returnTo) {
-      navigate(returnTo, { 
-        state: { 
-          campaignResults, 
-          uploadedImage, 
-          campaignId, 
-          imageMapping 
-        } 
-      });
-    } else {
-      navigate(-1);
-    }
+    navigate(returnTo || '/preview-results', {
+      state: { 
+        campaignResults, 
+        uploadedImage, 
+        campaignId, 
+        imageMapping,
+        fromDetail: true 
+      }
+    });
   };
 
   const handleDownload = () => {
@@ -64,21 +48,22 @@ const VideoScriptsPreview: React.FC = () => {
   };
 
   if (!campaignResults) {
-    return (
-      <div className="min-h-screen bg-background flex items-center justify-center">
-        <div className="text-center">
-          <h2 className="text-2xl font-semibold mb-2">No Results Found</h2>
-          <p className="text-muted-foreground mb-4">Unable to load video script results.</p>
-          <Button onClick={() => navigate('/')}>Go to Home</Button>
-        </div>
-      </div>
-    );
+    return null;
   }
 
+  const videoScripts = campaignResults.video_scripts || [];
+  const generatedImages = campaignResults.generated_images || [];
+  const generatedVideoUrl = campaignResults.generated_video_url;
+  
+  // Use imageMapping for consistent images, fallback to generatedImages if not available
+  const getImage = (index: number) => {
+    return imageMapping?.[`image_${index}`] || generatedImages?.[index]?.url || null;
+  };
+
   return (
-    <div className="min-h-screen bg-background">
-      {/* Back Button - Positioned absolute top-left */}
-      <div className="absolute top-8 left-8 z-10">
+    <div className="min-h-screen bg-gray-50 relative">
+      {/* Back Button - Top Left */}
+      <div className="absolute top-8 left-8 z-20">
         <Button
           variant="secondary"
           onClick={handleBack}
@@ -93,7 +78,7 @@ const VideoScriptsPreview: React.FC = () => {
       <div className="flex items-center justify-center px-8 py-6 pt-20">
         <div className="text-center">
           <h1 className="text-3xl font-bold text-gray-900">Video Scripts</h1>
-          <p className="text-gray-600 text-sm mt-1">Optimized content for social media platforms</p>
+          <p className="text-gray-600 text-sm mt-1">Review your AI-generated designs before download</p>
         </div>
 
         {/* QR Download Button - Absolute Top Right */}
@@ -103,7 +88,7 @@ const VideoScriptsPreview: React.FC = () => {
             className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-6 gap-2"
           >
             <QrCode className="w-4 h-4" />
-            Download
+            Download All
           </Button>
         </div>
       </div>
@@ -147,9 +132,10 @@ const VideoScriptsPreview: React.FC = () => {
               <p className="text-gray-600">See how your content will appear on different platforms</p>
             </div>
             
-            <div className="flex flex-col lg:flex-row gap-8 justify-center items-start max-w-6xl mx-auto">
-              <div className="flex flex-col items-center flex-1">
-                <div className="bg-white rounded-lg shadow-lg overflow-hidden w-full max-w-sm h-[814px] relative">
+            <div className="flex flex-col lg:flex-row gap-4 justify-center items-start">
+              {/* Instagram Mobile Mockup */}
+              <div className="bg-white rounded-lg shadow-lg overflow-hidden max-w-sm">
+                {/* Instagram Header */}
                 <div className="bg-black text-white p-4">
                   <div className="flex items-center justify-between text-sm font-medium mb-4">
                     <span>9:41</span>
@@ -297,8 +283,8 @@ const VideoScriptsPreview: React.FC = () => {
                   </div>
                 </div>
                 
-                {/* Bottom Navigation - Fixed to bottom */}
-                <div className="absolute bottom-0 left-0 right-0 bg-black border-t border-gray-800 p-4">
+                {/* Bottom Navigation */}
+                <div className="bg-black border-t border-gray-800 p-4">
                   <div className="flex justify-around">
                     <button>
                       <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" className="text-white">
@@ -327,210 +313,6 @@ const VideoScriptsPreview: React.FC = () => {
                       <div className="w-6 h-6 rounded-full bg-gray-300"></div>
                     </button>
                   </div>
-                </div>
-                </div>
-              </div>
-
-              <div className="flex flex-col items-center flex-1">
-                <div className="bg-black rounded-lg shadow-lg overflow-hidden w-full max-w-sm h-[814px] relative">
-                <div className="relative h-full">
-                  {/* Full Screen Video Background - Fill entire container height minus navigation */}
-                  <div className="absolute inset-0 pb-20">
-                    {/* Video Content - Full background */}
-                    {generatedVideoUrl ? (
-                      <VideoPlayer
-                        videoUrl={generatedVideoUrl}
-                        posterUrl={getImage(0) || uploadedImage}
-                        title=""
-                        className="w-full h-full rounded-lg object-cover"
-                      />
-                    ) : (
-                      <div className="relative w-full h-full">
-                        {(getImage(0) || uploadedImage) ? (
-                          <OptimizedImage 
-                            src={getImage(0) || uploadedImage}
-                            alt="Video preview"
-                            className="w-full h-full object-cover rounded-lg"
-                          />
-                        ) : (
-                          <div className="w-full h-full bg-gradient-to-br from-purple-500 via-pink-500 to-red-500"></div>
-                        )}
-                        <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
-                          <div className="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center">
-                            <Play className="w-6 h-6 text-gray-700 ml-1" />
-                          </div>
-                        </div>
-                      </div>
-                    )}
-
-                    {/* Status Bar Overlay - Top */}
-                    <div className="absolute top-0 left-0 right-0 flex items-center justify-between text-white text-sm font-medium p-4 bg-gradient-to-b from-black/50 to-transparent">
-                      <span>9:41</span>
-                      <div className="flex items-center gap-1">
-                        <div className="flex gap-0.5">
-                          <div className="w-1 h-3 bg-white rounded-full"></div>
-                          <div className="w-1 h-3 bg-white rounded-full"></div>
-                          <div className="w-1 h-3 bg-white rounded-full"></div>
-                          <div className="w-1 h-3 bg-white/50 rounded-full"></div>
-                        </div>
-                        <svg width="18" height="12" viewBox="0 0 24 12" className="text-white ml-2">
-                          <rect x="2" y="3" width="6" height="2" fill="currentColor"/>
-                          <rect x="2" y="7" width="6" height="2" fill="currentColor"/>
-                          <rect x="16" y="1" width="4" height="10" fill="currentColor"/>
-                        </svg>
-                        <div className="w-6 h-3 bg-white rounded-sm ml-1"></div>
-                      </div>
-                    </div>
-
-                    {/* TikTok Navigation Overlay - Top Center */}
-                    <div className="absolute top-12 left-0 right-0 flex items-center justify-center gap-6 text-white">
-                      <div className="bg-red-500 text-white text-xs px-2 py-1 rounded absolute left-4">
-                        LIVE
-                      </div>
-                      <button className="text-sm font-medium opacity-75">Following</button>
-                      <button className="text-sm font-bold border-b-2 border-white pb-1">For You</button>
-                      <div className="absolute right-4">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-white">
-                          <circle cx="11" cy="11" r="8"/>
-                          <path d="M21 21l-4.35-4.35"/>
-                        </svg>
-                      </div>
-                    </div>
-
-                    {/* Right Side Actions - Profile and Interactions */}
-                    <div className="absolute right-3 bottom-32 flex flex-col items-center gap-6">
-                      {/* Profile Picture */}
-                      <div className="relative">
-                        <div className="w-12 h-12 rounded-full bg-gradient-to-br from-pink-400 to-purple-600 p-0.5">
-                          <div className="w-full h-full rounded-full bg-gray-300"></div>
-                        </div>
-                        <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-6 h-6 bg-red-500 rounded-full flex items-center justify-center">
-                          <span className="text-white text-xs font-bold">+</span>
-                        </div>
-                      </div>
-
-                      {/* Like Button */}
-                      <div className="text-center">
-                        <div className="w-12 h-12 flex items-center justify-center mb-1">
-                          <svg width="32" height="32" viewBox="0 0 24 24" fill="white" className="text-white drop-shadow-lg">
-                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-                          </svg>
-                        </div>
-                        <span className="text-white text-xs font-bold drop-shadow-lg">250.5K</span>
-                      </div>
-
-                      {/* Comment Button */}
-                      <div className="text-center">
-                        <div className="w-12 h-12 flex items-center justify-center mb-1">
-                          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" className="drop-shadow-lg">
-                            <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
-                          </svg>
-                        </div>
-                        <span className="text-white text-xs font-bold drop-shadow-lg">100K</span>
-                      </div>
-
-                      {/* Bookmark Button */}
-                      <div className="text-center">
-                        <div className="w-12 h-12 flex items-center justify-center mb-1">
-                          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" className="drop-shadow-lg">
-                            <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" />
-                          </svg>
-                        </div>
-                        <span className="text-white text-xs font-bold drop-shadow-lg">89K</span>
-                      </div>
-
-                      {/* Share Button */}
-                      <div className="text-center">
-                        <div className="w-12 h-12 flex items-center justify-center mb-1">
-                          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" className="drop-shadow-lg">
-                            <line x1="22" y1="2" x2="11" y2="13" />
-                            <polygon points="22,2 15,22 11,13 2,9 22,2" />
-                          </svg>
-                        </div>
-                        <span className="text-white text-xs font-bold drop-shadow-lg">132.5K</span>
-                      </div>
-
-                      {/* Rotating Record Icon */}
-                      <div className="w-12 h-12 rounded-full bg-gradient-to-br from-pink-500 to-purple-600 flex items-center justify-center animate-spin">
-                        <div className="w-8 h-8 rounded-full bg-black"></div>
-                      </div>
-                    </div>
-
-                    {/* Bottom Content Overlay */}
-                    <div className="absolute bottom-16 left-0 right-16 p-4 text-white">
-                      {/* User Info */}
-                      <div className="flex items-center gap-2 mb-2">
-                        <span className="font-bold text-base drop-shadow-lg">TOMORROW X TOGETHER</span>
-                        <div className="w-4 h-4 bg-blue-500 rounded-full flex items-center justify-center">
-                          <span className="text-xs text-white">✓</span>
-                        </div>
-                      </div>
-                      
-                      {/* Caption */}
-                      <div className="mb-3">
-                        <p className="text-sm leading-relaxed drop-shadow-lg">
-                          {videoScripts && videoScripts.length > 0 
-                            ? "Let's keep dancing until the sun rises😊" 
-                            : "Let's keep dancing until the sun rises😊"
-                          }
-                        </p>
-                        <button className="text-white text-sm">... more</button>
-                      </div>
-                      
-                      {/* Original Sound */}
-                      <div className="text-xs opacity-90 mb-1 drop-shadow-lg">See original</div>
-                      
-                      {/* Music Info */}
-                      <div className="flex items-center gap-2">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" className="text-white">
-                          <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
-                        </svg>
-                        <span className="text-xs drop-shadow-lg">Deja Vu Official MV - TXT</span>
-                      </div>
-                    </div>
-
-                    {/* Bottom Navigation Bar - Fixed to bottom with equal padding */}
-                    <div className="absolute bottom-0 left-0 right-0 bg-black text-white py-4 px-3">
-                      <div className="flex justify-around items-center">
-                        <div className="text-center">
-                          <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
-                          </svg>
-                          <span className="text-xs mt-1 font-medium">Home</span>
-                        </div>
-                        <div className="text-center opacity-60">
-                          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-                            <circle cx="9" cy="7" r="4"/>
-                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-                            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-                          </svg>
-                          <span className="text-xs mt-1">Friends</span>
-                        </div>
-                        <div className="text-center">
-                          <div className="w-12 h-8 bg-white rounded-md flex items-center justify-center">
-                            <span className="text-black font-bold text-xl">+</span>
-                          </div>
-                        </div>
-                        <div className="text-center opacity-60">
-                          <div className="relative">
-                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                              <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
-                            </svg>
-                            <div className="absolute -top-1 -right-1 w-5 h-5 bg-red-500 rounded-full flex items-center justify-center">
-                              <span className="text-white text-xs font-bold">12</span>
-                            </div>
-                          </div>
-                          <span className="text-xs mt-1">Inbox</span>
-                        </div>
-                        <div className="text-center opacity-60">
-                          <div className="w-7 h-7 rounded-full bg-gray-400"></div>
-                          <span className="text-xs mt-1">Profile</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
                 </div>
               </div>
             </div>
@@ -564,7 +346,7 @@ const VideoScriptsPreview: React.FC = () => {
                                 </div>
                               </div>
                               <div>
-                                <div className="text-xs font-semibold text-muted-foreground mb-1">Voiceover:</div>
+                                <div className="text-xs font-semibold text-muted-foreground mb-1">Voriceover:</div>
                                 <div className="text-sm leading-relaxed">{scene.trim()}</div>
                               </div>
                             </div>
