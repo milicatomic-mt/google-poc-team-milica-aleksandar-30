@@ -421,7 +421,7 @@ const PreviewResultsScreen: React.FC = () => {
                     </div>
                     
                     {/* Bottom Section - Key Features */}
-                    <div className="absolute bottom-0 left-0 right-0 bg-white/95 backdrop-blur-sm p-2 border-t border-gray-200 rounded-b">
+                    <div className="absolute bottom-0 left-0 right-0 bg-white/95 backdrop-blur-sm p-2 rounded-b">
                       <div className="text-center">
                         <h3 className="text-black text-[9px] font-bold mb-1">Key Features</h3>
                         <p className="text-gray-600 text-[7px]">Discover what makes this product special for you.</p>
