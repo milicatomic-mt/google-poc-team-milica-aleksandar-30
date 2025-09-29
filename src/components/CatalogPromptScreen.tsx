@@ -296,7 +296,7 @@ const CatalogPromptScreen = () => {
               <div className="h-8 w-8 mr-3">
                 <RibbedSphere className="w-full h-full" />
               </div>
-            <h1 className="text-lg font-semibold text-foreground">
+            <h1 className="text-sm font-semibold text-foreground">
               {location.state?.editMode ? 'Edit Catalog' : 'Catalog Enrichment'}
             </h1>
             </div>

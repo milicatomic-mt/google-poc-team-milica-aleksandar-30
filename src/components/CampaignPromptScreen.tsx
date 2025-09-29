@@ -220,7 +220,7 @@ const CampaignPromptScreen = () => {
               <div className="h-8 w-8 mr-3">
                 <RibbedSphere className="w-full h-full" />
               </div>
-              <h1 className="text-lg font-semibold text-foreground">Image to Campaign</h1>
+              <h1 className="text-sm font-semibold text-foreground">Image to Campaign</h1>
             </div>
           </div>
 
