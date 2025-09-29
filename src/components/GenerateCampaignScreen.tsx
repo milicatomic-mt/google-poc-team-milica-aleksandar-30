@@ -14,13 +14,18 @@ const GenerateCampaignScreen = () => {
   const [hasStartedGeneration, setHasStartedGeneration] = useState(false);
 
   useEffect(() => {
-    // Dedupe guard across StrictMode mounts using sessionStorage
+    // Dedupe guard across StrictMode mounts using sessionStorage.
+    // Include location.key so each navigation triggers a fresh run, but still dedup StrictMode double mounts.
+    const stateAny = location.state as any;
+    const isEdit = !!stateAny?.editMode;
     const hashString = (str: string) => { let h = 0; for (let i = 0; i < str.length; i++) { h = ((h << 5) - h) + str.charCodeAt(i); h |= 0; } return Math.abs(h).toString(36); };
-    const state = location.state as any;
-    const requestHash = state ? hashString(JSON.stringify({
-      uploadedImage: (state.uploadedImage || '').slice(0, 256),
-      campaignPrompt: state.campaignPrompt,
-      target: state.selectedAudiences?.join(',') || ''
+    const requestHash = stateAny ? hashString(JSON.stringify({
+      uploadedImage: (stateAny.uploadedImage || '').slice(0, 256),
+      campaignPrompt: stateAny.campaignPrompt,
+      target: stateAny.selectedAudiences?.join(',') || '',
+      mode: isEdit ? 'edit' : 'create',
+      campaignId: stateAny.campaignId || '',
+      navKey: location.key || ''
     })) : '';
     const inflightKey = requestHash ? `campaign:inflight:${requestHash}` : '';
     if (inflightKey && sessionStorage.getItem(inflightKey)) {
@@ -238,12 +243,16 @@ const GenerateCampaignScreen = () => {
 
      generateContent().finally(() => {
        try {
-         const state = location.state as any;
+         const stateAny = location.state as any;
+         const isEdit = !!stateAny?.editMode;
          const hashString = (str: string) => { let h = 0; for (let i = 0; i < str.length; i++) { h = ((h << 5) - h) + str.charCodeAt(i); h |= 0; } return Math.abs(h).toString(36); };
-         const requestHash = state ? hashString(JSON.stringify({
-           uploadedImage: (state.uploadedImage || '').slice(0, 256),
-           campaignPrompt: state.campaignPrompt,
-           target: state.selectedAudiences?.join(',') || ''
+         const requestHash = stateAny ? hashString(JSON.stringify({
+           uploadedImage: (stateAny.uploadedImage || '').slice(0, 256),
+           campaignPrompt: stateAny.campaignPrompt,
+           target: stateAny.selectedAudiences?.join(',') || '',
+           mode: isEdit ? 'edit' : 'create',
+           campaignId: stateAny.campaignId || '',
+           navKey: location.key || ''
          })) : '';
          const inflightKey = requestHash ? `campaign:inflight:${requestHash}` : '';
          if (inflightKey) sessionStorage.setItem(inflightKey, 'done');
