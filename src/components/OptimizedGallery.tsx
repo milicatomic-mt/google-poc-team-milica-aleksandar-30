@@ -417,11 +417,11 @@ const CampaignContent: React.FC<{
   };
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
       
       {/* Banner Ads Card - Exact copy from PreviewResultsScreen */}
       <Card 
-        className="card-elegant backdrop-blur-xl bg-white/60 border-white/50 border-2 shadow-2xl hover:shadow-elegant-lg transition-all duration-smooth cursor-pointer"
+        className="card-elegant backdrop-blur-xl bg-white/60 border-white/50 border-2 shadow-2xl hover:shadow-elegant-lg transition-all duration-smooth cursor-pointer flex flex-col"
         onClick={() => onViewDetails('Banner Ads')}
       >
         <div className="px-4 py-3 flex items-center justify-between transition-all duration-smooth">
@@ -431,8 +431,8 @@ const CampaignContent: React.FC<{
           </div>
           {/* Removed download button from banner ads section */}
         </div>
-        <CardContent className="p-4">
-          <div className="h-80">
+        <CardContent className="p-4 flex-1 flex flex-col">
+          <div className="h-80 flex-1">
             {/* Top Row - Two Square Banners */}
             <div className="grid grid-cols-2 gap-3 mb-4">
               {/* Left Banner - Person with Headphones */}
@@ -542,7 +542,7 @@ const CampaignContent: React.FC<{
 
       {/* Web Creative Card - Exact copy from PreviewResultsScreen */}
       <Card 
-        className="card-elegant backdrop-blur-xl bg-white/60 border-white/50 border-2 shadow-2xl hover:shadow-elegant-lg transition-all duration-smooth cursor-pointer"
+        className="card-elegant backdrop-blur-xl bg-white/60 border-white/50 border-2 shadow-2xl hover:shadow-elegant-lg transition-all duration-smooth cursor-pointer flex flex-col"
         onClick={() => onViewDetails('Web Creative')}
       >
         <div className="px-4 py-3 flex items-center justify-between transition-all duration-smooth">
@@ -552,8 +552,8 @@ const CampaignContent: React.FC<{
           </div>
           {/* Removed download button from web creative section */}
         </div>
-        <CardContent className="p-4">
-          <div className="h-80 bg-gray-100 overflow-hidden border border-gray-300 shadow-sm" style={{borderRadius: '1px'}}>
+        <CardContent className="p-4 flex-1 flex flex-col">
+          <div className="h-80 flex-1 bg-gray-100 overflow-hidden border border-gray-300 shadow-sm" style={{borderRadius: '1px'}}>
             {/* Browser-like Screenshot Mockup */}
             <div className="h-full bg-white">
               {/* Browser Header */}
@@ -662,7 +662,7 @@ const CampaignContent: React.FC<{
 
       {/* Video Scripts Card - Exact copy from PreviewResultsScreen */}
       <Card 
-        className="card-elegant backdrop-blur-xl bg-white/60 border-white/50 border-2 shadow-2xl hover:shadow-elegant-lg transition-all duration-smooth cursor-pointer"
+        className="card-elegant backdrop-blur-xl bg-white/60 border-white/50 border-2 shadow-2xl hover:shadow-elegant-lg transition-all duration-smooth cursor-pointer flex flex-col"
         onClick={() => onViewDetails('Video Scripts')}
       >
         <div className="px-4 py-3 flex items-center justify-between transition-all duration-smooth">
@@ -672,8 +672,8 @@ const CampaignContent: React.FC<{
           </div>
           {/* Removed download button from video scripts section */}
         </div>
-        <CardContent className="p-4">
-          <div className="h-80 bg-black overflow-hidden relative" style={{borderRadius: '1px'}}>
+        <CardContent className="p-4 flex-1 flex flex-col">
+          <div className="h-80 flex-1 bg-black overflow-hidden relative" style={{borderRadius: '1px'}}>
             {/* Video Preview - Matching VideoScriptsPreview design */}
             <div className="relative w-full h-full bg-gradient-to-br from-primary/10 to-secondary/10">
               {getImage(0) ? (
@@ -721,7 +721,7 @@ const CampaignContent: React.FC<{
 
       {/* Email Templates Card - Exact copy from PreviewResultsScreen */}
       <Card 
-        className="card-elegant backdrop-blur-xl bg-white/60 border-white/50 border-2 shadow-2xl hover:shadow-elegant-lg transition-all duration-smooth cursor-pointer"
+        className="card-elegant backdrop-blur-xl bg-white/60 border-white/50 border-2 shadow-2xl hover:shadow-elegant-lg transition-all duration-smooth cursor-pointer flex flex-col"
         onClick={() => onViewDetails('Email Templates')}
       >
         <div className="px-4 py-3 flex items-center justify-between transition-all duration-smooth">
@@ -731,8 +731,8 @@ const CampaignContent: React.FC<{
           </div>
           {/* Removed download button from email templates section */}
         </div>
-        <CardContent className="p-4">
-          <div className="h-80 relative overflow-hidden">
+        <CardContent className="p-4 flex-1 flex flex-col">
+          <div className="h-80 flex-1 relative overflow-hidden">
             {/* Email Preview - Matching EmailTemplatesPreview design */}
             
             {/* Header with Background Image */}
