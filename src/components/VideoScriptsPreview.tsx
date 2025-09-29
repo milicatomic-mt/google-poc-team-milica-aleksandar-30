@@ -726,8 +726,8 @@ const VideoScriptsPreview: React.FC = () => {
           {/* 2. Full Video - Second with Title */}
           <div className="mb-8 bg-white rounded-lg p-8 shadow-lg">
             <div className="mb-6">
-              <h2 className="text-2xl font-bold text-gray-900 mb-2">Generated Video</h2>
-              <p className="text-gray-600">Your AI-generated video content</p>
+              <h2 className="text-2xl font-bold text-gray-900 mb-2">Full Size Video</h2>
+              <p className="text-gray-600">Smartly Generated with AI</p>
             </div>
             {generatedVideoUrl ? (
               <VideoPlayer
