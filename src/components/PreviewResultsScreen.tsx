@@ -504,38 +504,98 @@ const PreviewResultsScreen: React.FC = () => {
                   <ArrowUpRight className="w-5 h-5 text-black" />
                 </div>
                 <CardContent className="p-4">
-                  <div className="h-80 bg-black overflow-hidden relative" style={{borderRadius: '1px'}}>
-                    {/* Video Preview - Simple and consistent */}
-                    <div className="relative w-full h-full">
-                      {activeCampaignResults?.generated_images?.[0]?.url ? (
-                        <img src={activeCampaignResults.generated_images[0].url} alt="Video thumbnail" className="w-full h-full object-cover" />
-                      ) : uploadedImage ? (
-                        <img src={uploadedImage} alt="Video thumbnail" className="w-full h-full object-cover" />
-                      ) : null}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30"></div>
-                      
-                      {/* Play Button */}
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center backdrop-blur-md border border-white/20">
-                          <Play className="w-6 h-6 text-white ml-1" />
+                  <div className="h-80 flex gap-3 justify-center items-center">
+                    {/* Instagram Phone Mockup */}
+                    <div className="w-24 h-44 bg-black rounded-lg overflow-hidden relative shadow-lg">
+                      {/* Instagram Header */}
+                      <div className="bg-black p-2 flex items-center justify-between">
+                        <div className="flex items-center gap-1">
+                          <div className="w-3 h-3 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full"></div>
+                          <div className="text-white text-[6px] font-semibold">Instagram</div>
                         </div>
+                        <div className="text-white text-[8px]">9:41</div>
                       </div>
                       
-                      {/* Title Overlay */}
-                      <div className="absolute bottom-0 left-0 right-0 p-4">
-                        <div className="space-y-1">
-                          <h3 className="text-white text-sm font-bold uppercase tracking-wide">
-                            Professional Video Script
-                          </h3>
-                          <p className="text-white/90 text-xs uppercase tracking-wider">
-                            Multi-platform Optimized
-                          </p>
+                      {/* Main Content */}
+                      <div className="relative flex-1">
+                        {(activeCampaignResults?.generated_images?.[0]?.url || uploadedImage) && (
+                          <img 
+                            src={activeCampaignResults?.generated_images?.[0]?.url || uploadedImage} 
+                            alt="Instagram content" 
+                            className="w-full h-32 object-cover" 
+                          />
+                        )}
+                        <div className="absolute bottom-0 left-0 right-0 p-1">
+                          <div className="text-white text-[5px] leading-tight">
+                            Premium headphones for the best sound experience
+                          </div>
                         </div>
                       </div>
+                    </div>
+
+                    {/* TikTok Phone Mockup */}
+                    <div className="w-24 h-44 bg-black rounded-lg overflow-hidden relative shadow-lg">
+                      {/* TikTok Header */}
+                      <div className="bg-black p-2 flex items-center justify-between">
+                        <div className="flex items-center gap-1">
+                          <div className="w-3 h-3 bg-white rounded-full"></div>
+                          <div className="text-white text-[6px] font-semibold">For You</div>
+                        </div>
+                        <div className="text-white text-[8px]">9:41</div>
+                      </div>
                       
-                      {/* Duration Badge */}
-                      <div className="absolute top-3 right-3 bg-black/80 text-white text-xs px-2 py-1 rounded-full backdrop-blur-sm">
-                        0:30
+                      {/* Main Content */}
+                      <div className="relative flex-1">
+                        {(activeCampaignResults?.generated_images?.[0]?.url || uploadedImage) && (
+                          <img 
+                            src={activeCampaignResults?.generated_images?.[0]?.url || uploadedImage} 
+                            alt="TikTok content" 
+                            className="w-full h-32 object-cover" 
+                          />
+                        )}
+                        {/* Play Button */}
+                        <div className="absolute inset-0 flex items-center justify-center">
+                          <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm">
+                            <Play className="w-3 h-3 text-white ml-0.5" />
+                          </div>
+                        </div>
+                        <div className="absolute bottom-0 left-0 right-0 p-1">
+                          <div className="text-white text-[5px] leading-tight">
+                            Amazing sound quality #headphones
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Facebook Phone Mockup */}
+                    <div className="w-24 h-44 bg-blue-600 rounded-lg overflow-hidden relative shadow-lg">
+                      {/* Facebook Header */}
+                      <div className="bg-blue-600 p-2 flex items-center justify-between">
+                        <div className="text-white text-[6px] font-semibold">facebook</div>
+                        <div className="text-white text-[8px]">15:47</div>
+                      </div>
+                      
+                      {/* Main Content */}
+                      <div className="relative flex-1 bg-gray-100">
+                        <div className="p-1 bg-white">
+                          <div className="text-[5px] text-gray-900 font-semibold mb-1">Brand Name</div>
+                          {(activeCampaignResults?.generated_images?.[0]?.url || uploadedImage) && (
+                            <img 
+                              src={activeCampaignResults?.generated_images?.[0]?.url || uploadedImage} 
+                              alt="Facebook content" 
+                              className="w-full h-24 object-cover rounded" 
+                            />
+                          )}
+                          {/* Play Button */}
+                          <div className="absolute inset-0 flex items-center justify-center">
+                            <div className="w-6 h-6 bg-white/90 rounded-full flex items-center justify-center shadow-sm">
+                              <Play className="w-2 h-2 text-blue-600 ml-0.5" />
+                            </div>
+                          </div>
+                          <div className="text-[4px] text-gray-700 mt-1 leading-tight">
+                            Premium headphones with exceptional sound quality
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
