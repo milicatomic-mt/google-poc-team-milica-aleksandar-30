@@ -397,8 +397,8 @@ const PreviewResultsScreen: React.FC = () => {
                         <div 
                           className="inline-flex items-center text-[8px] px-2 py-1 rounded-full mb-3 w-fit"
                           style={{
-                            backgroundColor: 'hsl(45, 100%, 51%)',
-                            color: 'hsl(0, 0%, 100%)'
+                            backgroundColor: 'hsl(40, 40%, 85%)',
+                            color: 'hsl(0, 0%, 0%)'
                           }}
                         >
                           <span className="font-medium">New Launch</span>

@@ -119,8 +119,8 @@ const WebCreativePreview: React.FC = () => {
                     <div 
                       className="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium"
                       style={{
-                        backgroundColor: 'hsl(45, 100%, 51%)',
-                        color: 'hsl(0, 0%, 100%)'
+                        backgroundColor: 'hsl(40, 40%, 85%)',
+                        color: 'hsl(0, 0%, 0%)'
                       }}
                     >
                       New Launch
