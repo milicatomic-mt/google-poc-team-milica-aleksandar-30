@@ -657,7 +657,7 @@ const PreviewResultsScreen: React.FC = () => {
                     {/* Facebook Phone Mockup */}
                     <div className="flex-1 bg-white overflow-hidden relative shadow-xl border border-gray-300">
                       {/* Status Bar */}
-                      <div className="bg-blue-600 px-3 py-2 flex justify-between items-center text-white text-[10px]">
+                      <div className="bg-gray-800 px-3 py-2 flex justify-between items-center text-white text-[10px]">
                         <span className="font-medium">15:47</span>
                         <div className="flex items-center gap-1">
                           <div className="w-1 h-1 bg-white rounded-full"></div>
@@ -667,7 +667,7 @@ const PreviewResultsScreen: React.FC = () => {
                       </div>
                       
                       {/* Facebook Header */}
-                      <div className="bg-blue-600 px-3 py-2 flex justify-between items-center">
+                      <div className="bg-gray-800 px-3 py-2 flex justify-between items-center">
                         <span className="text-white text-[12px] font-bold">facebook</span>
                         <div className="flex gap-2">
                           <Plus className="w-4 h-4 text-white" />
@@ -679,7 +679,7 @@ const PreviewResultsScreen: React.FC = () => {
                       {/* Post Header */}
                       <div className="bg-white px-3 py-2 border-b border-gray-200">
                         <div className="flex items-center gap-2">
-                          <div className="w-6 h-6 bg-blue-600 rounded-full flex items-center justify-center">
+                          <div className="w-6 h-6 bg-gray-600 rounded-full flex items-center justify-center">
                             <span className="text-white text-[8px] font-bold">BMW</span>
                           </div>
                           <div>
@@ -711,7 +711,7 @@ const PreviewResultsScreen: React.FC = () => {
                       <div className="bg-white px-3 py-2 border-t border-gray-200">
                         <div className="flex justify-around">
                           <div className="flex items-center gap-1">
-                            <Heart className="w-3 h-3 text-blue-600" />
+                            <Heart className="w-3 h-3 text-gray-600" />
                             <span className="text-[7px] text-gray-600">Like</span>
                           </div>
                           <div className="flex items-center gap-1">
