@@ -270,7 +270,7 @@ const CampaignPromptScreen = () => {
             <h1 className="text-4xl font-semibold text-foreground mb-4">
               {editMode ? 'Edit Your Campaign' : 'Turn Your Image Into a Campaign'}
             </h1>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
               {editMode 
                 ? 'Update your campaign prompt and target audience settings below.'
                 : 'We\'ve generated a prompt from your photo. You can use it as is, tweak it, or start fresh.'

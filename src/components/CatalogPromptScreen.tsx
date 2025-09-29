@@ -348,7 +348,7 @@ const CatalogPromptScreen = () => {
             <h1 className="text-4xl font-semibold text-foreground mb-4">
               {location.state?.editMode ? 'Edit Your Catalog' : 'Catalog Enrichment'}
             </h1>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
               {location.state?.editMode 
                 ? 'Update your catalog details and regenerate the content with your changes.'
                 : 'We\'ve created a product description from your image. You can use it, edit it, or add more details.'

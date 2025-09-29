@@ -503,7 +503,7 @@ const UploadScreen: React.FC<UploadScreenProps> = ({ mode }) => {
           <h2 className="text-3xl font-bold text-foreground mb-4">
             {getModeDescription()}
           </h2>
-          <p className="text-xl text-muted-foreground font-medium">
+          <p className="text-lg text-muted-foreground font-medium">
             Scan QR Code to Upload from Mobile
           </p>
         </div>
