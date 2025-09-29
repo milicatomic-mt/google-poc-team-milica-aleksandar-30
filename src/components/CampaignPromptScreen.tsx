@@ -356,11 +356,11 @@ const CampaignPromptScreen = () => {
                      data-audience={age}
                      onClick={() => !isAutoSelecting && toggleAudience(age)}
                      disabled={isAutoSelecting}
-                       className={`px-3 py-2 rounded-full transition-all duration-300 ease-out tap-target font-medium backdrop-blur-md text-sm ${
-                        selectedAudiences.includes(age)
-                           ? 'bg-white/50 border border-white text-primary shadow-lg transform scale-105'
-                          : 'bg-white/30 border-2 border-gray-200 text-black hover:border-gray-300 hover:shadow-sm hover:bg-white/40 hover:scale-[1.02] transform scale-100'
-                      } ${isAutoSelecting && !selectedAudiences.includes(age) ? 'opacity-50' : 'opacity-100'}`}
+                        className={`px-3 py-2 rounded-full transition-all duration-300 ease-out tap-target font-normal backdrop-blur-md text-sm ${
+                         selectedAudiences.includes(age)
+                            ? 'bg-white/50 border border-white text-primary shadow-lg transform scale-105'
+                           : 'bg-transparent border border-white text-black hover:bg-white/10 hover:scale-[1.02] transform scale-100'
+                       } ${isAutoSelecting && !selectedAudiences.includes(age) ? 'opacity-50' : 'opacity-100'}`}
                    >
                      {age}
                    </button>
@@ -375,11 +375,11 @@ const CampaignPromptScreen = () => {
                      data-audience={interest}
                      onClick={() => !isAutoSelecting && toggleAudience(interest)}
                      disabled={isAutoSelecting}
-                       className={`px-3 py-2 rounded-full transition-all duration-300 ease-out tap-target font-medium backdrop-blur-md text-sm ${
-                        selectedAudiences.includes(interest)
-                           ? 'bg-white/50 border border-white text-primary shadow-lg transform scale-105'
-                          : 'bg-white/30 border-2 border-gray-200 text-black hover:border-gray-300 hover:shadow-sm hover:bg-white/40 hover:scale-[1.02] transform scale-100'
-                      } ${isAutoSelecting && !selectedAudiences.includes(interest) ? 'opacity-50' : 'opacity-100'}`}
+                        className={`px-3 py-2 rounded-full transition-all duration-300 ease-out tap-target font-normal backdrop-blur-md text-sm ${
+                         selectedAudiences.includes(interest)
+                            ? 'bg-white/50 border border-white text-primary shadow-lg transform scale-105'
+                           : 'bg-transparent border border-white text-black hover:bg-white/10 hover:scale-[1.02] transform scale-100'
+                       } ${isAutoSelecting && !selectedAudiences.includes(interest) ? 'opacity-50' : 'opacity-100'}`}
                    >
                      {interest}
                    </button>
@@ -394,11 +394,11 @@ const CampaignPromptScreen = () => {
                      data-audience={interest}
                      onClick={() => !isAutoSelecting && toggleAudience(interest)}
                      disabled={isAutoSelecting}
-                       className={`px-3 py-2 rounded-full transition-all duration-300 ease-out tap-target font-medium backdrop-blur-md text-sm ${
-                        selectedAudiences.includes(interest)
-                          ? 'bg-white/50 border border-white text-primary shadow-lg transform scale-105'
-                          : 'bg-white/30 border-2 border-gray-200 text-black hover:border-gray-300 hover:shadow-sm hover:bg-white/40 hover:scale-[1.02] transform scale-100'
-                      } ${isAutoSelecting && !selectedAudiences.includes(interest) ? 'opacity-50' : 'opacity-100'}`}
+                        className={`px-3 py-2 rounded-full transition-all duration-300 ease-out tap-target font-normal backdrop-blur-md text-sm ${
+                         selectedAudiences.includes(interest)
+                           ? 'bg-white/50 border border-white text-primary shadow-lg transform scale-105'
+                           : 'bg-transparent border border-white text-black hover:bg-white/10 hover:scale-[1.02] transform scale-100'
+                       } ${isAutoSelecting && !selectedAudiences.includes(interest) ? 'opacity-50' : 'opacity-100'}`}
                    >
                      {interest}
                    </button>
