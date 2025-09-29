@@ -77,20 +77,23 @@ const VideoScriptsPreview: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
-      <div className="relative bg-gradient-to-r from-primary to-secondary text-white">
-        {/* Back Button - Absolute Top Left */}
-        <div className="absolute top-8 left-8 z-10">
-          <Button onClick={handleBack} variant="secondary" size="sm" className="bg-white/20 hover:bg-white/30 text-white border-white/30">
-            <ArrowLeft className="w-4 h-4 mr-2" />
-            Back
-          </Button>
-        </div>
+      {/* Back Button - Positioned absolute top-left */}
+      <div className="absolute top-8 left-8 z-10">
+        <Button
+          variant="secondary"
+          onClick={handleBack}
+          className="tap-target hover-lift focus-ring bg-white border-white/30 hover:bg-white/90 rounded-full p-3 shadow-sm"
+          aria-label="Go back to previous step"
+        >
+          <ArrowLeft className="h-5 w-5 text-black" />
+        </Button>
+      </div>
 
-        {/* Title - Centered */}
-        <div className="text-center py-16">
-          <h1 className="text-4xl font-bold mb-2">Video Scripts</h1>
-          <p className="text-xl opacity-90">Optimized content for social media platforms</p>
+      {/* Header */}
+      <div className="flex items-center justify-center px-8 py-6 pt-20">
+        <div className="text-center">
+          <h1 className="text-3xl font-bold text-gray-900">Video Scripts</h1>
+          <p className="text-gray-600 text-sm mt-1">Optimized content for social media platforms</p>
         </div>
 
         {/* QR Download Button - Absolute Top Right */}
@@ -329,9 +332,9 @@ const VideoScriptsPreview: React.FC = () => {
               </div>
 
               {/* TikTok Mobile Mockup */}
-              <div className="bg-green-500 rounded-lg shadow-lg overflow-hidden max-w-sm">
+              <div className="bg-white rounded-lg shadow-lg overflow-hidden max-w-sm">
                 {/* TikTok Status Bar */}
-                <div className="text-white px-4 py-2 text-sm font-medium">
+                <div className="bg-green-500 text-white px-4 py-2 text-sm font-medium">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-1">
                       <span>9:41</span>
@@ -353,7 +356,7 @@ const VideoScriptsPreview: React.FC = () => {
                 </div>
 
                 {/* LIVE indicator and navigation */}
-                <div className="px-4 pb-4">
+                <div className="bg-green-500 px-4 pb-4">
                   <div className="flex items-center gap-4">
                     <div className="bg-red-500 text-white text-xs px-2 py-1 rounded">
                       LIVE
@@ -371,20 +374,18 @@ const VideoScriptsPreview: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Main Content Area */}
-                <div className="relative flex-1 min-h-[400px]">
-                  {/* Video Content */}
+                {/* Main Content Area - Full Green Background */}
+                <div className="relative bg-green-500 aspect-square">
+                  {/* Video Content - Fill entire green area */}
                   {generatedVideoUrl ? (
-                    <div className="absolute inset-0">
-                      <VideoPlayer
-                        videoUrl={generatedVideoUrl}
-                        posterUrl={getImage(0) || uploadedImage}
-                        title=""
-                        className="w-full h-full rounded-none"
-                      />
-                    </div>
+                    <VideoPlayer
+                      videoUrl={generatedVideoUrl}
+                      posterUrl={getImage(0) || uploadedImage}
+                      title=""
+                      className="w-full h-full rounded-none"
+                    />
                   ) : (
-                    <div className="absolute inset-0">
+                    <div className="relative w-full h-full">
                       {(getImage(0) || uploadedImage) && (
                         <OptimizedImage 
                           src={getImage(0) || uploadedImage}
