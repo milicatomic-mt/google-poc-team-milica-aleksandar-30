@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { ArrowLeft, X, Play, QrCode, Edit, ExternalLink } from 'lucide-react';
+import { ArrowLeft, X, Play, QrCode, Edit, ArrowUpRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import {
@@ -259,7 +259,7 @@ const PreviewResultsScreen: React.FC = () => {
                   <div className="flex items-center space-x-2">
                     <h3 className="text-foreground font-medium">Banner Ads</h3>
                   </div>
-                  <ExternalLink className="w-5 h-5 text-muted-foreground" />
+                  <ArrowUpRight className="w-5 h-5 text-black" />
                 </div>
                 <CardContent className="p-4">
                   <div className="h-80">
@@ -376,7 +376,7 @@ const PreviewResultsScreen: React.FC = () => {
                   <div className="flex items-center space-x-2">
                     <h3 className="text-foreground font-medium">Web Creative</h3>
                   </div>
-                  <ExternalLink className="w-5 h-5 text-muted-foreground" />
+                  <ArrowUpRight className="w-5 h-5 text-black" />
                 </div>
                 <CardContent className="p-4">
                   <div className="h-80 bg-gray-100 overflow-hidden border border-gray-300 shadow-sm" style={{borderRadius: '1px'}}>
@@ -501,7 +501,7 @@ const PreviewResultsScreen: React.FC = () => {
                   <div className="flex items-center space-x-2">
                     <h3 className="text-foreground font-medium">Video Scripts</h3>
                   </div>
-                  <ExternalLink className="w-5 h-5 text-muted-foreground" />
+                  <ArrowUpRight className="w-5 h-5 text-black" />
                 </div>
                 <CardContent className="p-4">
                   <div className="h-80 bg-black overflow-hidden relative" style={{borderRadius: '1px'}}>
@@ -551,7 +551,7 @@ const PreviewResultsScreen: React.FC = () => {
                   <div className="flex items-center space-x-2">
                     <h3 className="text-foreground font-medium">Email Templates</h3>
                   </div>
-                  <ExternalLink className="w-5 h-5 text-muted-foreground" />
+                  <ArrowUpRight className="w-5 h-5 text-black" />
                 </div>
                 <CardContent className="p-4">
                   <div className="h-80 relative">
