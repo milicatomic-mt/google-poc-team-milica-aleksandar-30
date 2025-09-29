@@ -418,8 +418,8 @@ const CampaignPromptScreen = () => {
               aria-label={editMode ? "Update campaign" : "Create campaign"}
             >
               <svg className="w-5 h-5 mr-2 fill-current" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 0C12 0 14.5 6.5 21 9C14.5 11.5 12 18 12 18C12 18 9.5 11.5 3 9C9.5 6.5 12 0 12 0Z"/>
-                <path d="M5 2C5 2 6 4.5 8.5 5.5C6 6.5 5 9 5 9C5 9 4 6.5 1.5 5.5C4 4.5 5 2 5 2Z"/>
+                <path d="M12 2L14.5 8.5L21 11L14.5 13.5L12 20L9.5 13.5L3 11L9.5 8.5L12 2Z"/>
+                <path d="M18 4L19 6L21 7L19 8L18 10L17 8L15 7L17 6L18 4Z"/>
               </svg>
               {editMode ? 'Update Campaign' : 'Create Campaign'}
             </Button>
