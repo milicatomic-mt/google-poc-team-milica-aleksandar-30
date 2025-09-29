@@ -123,7 +123,7 @@ const VideoScriptsPreview: React.FC = () => {
               <p className="text-gray-600">See how your content will appear on different platforms</p>
             </div>
             
-            <div className="flex flex-col lg:flex-row gap-0 justify-center items-start max-w-6xl mx-auto">
+            <div className="flex flex-col xl:flex-row gap-0 justify-center items-start max-w-7xl mx-auto">
               <div className="flex flex-col items-center flex-1">
                 <div className="bg-white rounded-lg shadow-lg overflow-hidden w-full max-w-sm h-[814px] relative">
                 <div className="bg-black text-white p-4">
@@ -507,6 +507,215 @@ const VideoScriptsPreview: React.FC = () => {
                     </div>
                   </div>
                 </div>
+                </div>
+              </div>
+
+              <div className="flex flex-col items-center flex-1">
+                <div className="bg-black rounded-lg shadow-lg overflow-hidden w-full max-w-sm h-[814px] relative">
+                  {/* Facebook Header */}
+                  <div className="bg-black text-white p-4">
+                    <div className="flex items-center justify-between text-sm font-medium mb-4">
+                      <span>15:47</span>
+                      <span className="font-bold text-lg text-blue-500">facebook</span>
+                      <div className="flex items-center gap-1">
+                        <div className="flex gap-1">
+                          <div className="w-1 h-1 bg-white rounded-full"></div>
+                          <div className="w-1 h-1 bg-white rounded-full"></div>
+                          <div className="w-1 h-1 bg-white rounded-full"></div>
+                        </div>
+                        <div className="w-6 h-3 bg-white rounded-sm ml-2"></div>
+                      </div>
+                    </div>
+
+                    {/* Facebook Top Navigation */}
+                    <div className="flex items-center justify-between mb-4">
+                      <span className="text-blue-500 font-bold text-lg">facebook</span>
+                      <div className="flex items-center gap-4">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                          <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                          <path d="M2 17l10 5 10-5"/>
+                          <path d="M2 12l10 5 10-5"/>
+                        </svg>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                          <circle cx="11" cy="11" r="8"/>
+                          <path d="M21 21l-4.35-4.35"/>
+                        </svg>
+                        <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center">
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="white">
+                            <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Post Header */}
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 rounded-full bg-gray-300"></div>
+                        <div>
+                          <div className="flex items-center gap-1">
+                            <span className="font-semibold text-sm text-white">BMW Group</span>
+                            <div className="w-4 h-4 bg-blue-500 rounded-full flex items-center justify-center">
+                              <span className="text-xs text-white">✓</span>
+                            </div>
+                          </div>
+                          <div className="flex items-center gap-1 text-xs text-gray-400">
+                            <span>Sponsored</span>
+                            <span>·</span>
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                              <circle cx="12" cy="12" r="10"/>
+                            </svg>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <button className="text-white">
+                          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <circle cx="12" cy="5" r="2"/>
+                            <circle cx="12" cy="12" r="2"/>
+                            <circle cx="12" cy="19" r="2"/>
+                          </svg>
+                        </button>
+                        <button className="text-white">
+                          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <line x1="18" y1="6" x2="6" y2="18"/>
+                            <line x1="6" y1="6" x2="18" y2="18"/>
+                          </svg>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Post Content */}
+                  <div className="bg-black text-white px-4 pb-4">
+                    <p className="text-sm mb-3">
+                      From FCEV prototype to series production – The BMW iX5 Hydrogen 🚙 ... See more
+                    </p>
+                  </div>
+
+                  {/* Video Content Area */}
+                  <div className="relative bg-black">
+                    {generatedVideoUrl ? (
+                      <div className="w-full aspect-square">
+                        <VideoPlayer
+                          videoUrl={generatedVideoUrl}
+                          posterUrl={getImage(0) || uploadedImage}
+                          title=""
+                          className="w-full h-full rounded-none aspect-square"
+                        />
+                      </div>
+                    ) : (
+                      <div className="relative w-full aspect-square">
+                        {(getImage(0) || uploadedImage) ? (
+                          <OptimizedImage 
+                            src={getImage(0) || uploadedImage}
+                            alt="Video preview"
+                            className="w-full h-full object-cover"
+                          />
+                        ) : (
+                          <div className="w-full h-full bg-green-500"></div>
+                        )}
+                        <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
+                          <div className="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center">
+                            <Play className="w-6 h-6 text-gray-700 ml-1" />
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Post Engagement */}
+                  <div className="bg-black text-white p-4">
+                    <div className="flex items-center justify-between mb-3">
+                      <div className="flex items-center gap-1">
+                        <div className="w-5 h-5 bg-blue-500 rounded-full flex items-center justify-center">
+                          <svg width="12" height="12" viewBox="0 0 24 24" fill="white">
+                            <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/>
+                          </svg>
+                        </div>
+                        <span className="text-sm">3.2K</span>
+                        <span className="text-sm text-gray-400 ml-2">45 comments</span>
+                        <span className="text-sm text-gray-400 ml-2">75 shares</span>
+                        <span className="text-sm text-gray-400 ml-2">5M views</span>
+                      </div>
+                    </div>
+
+                    {/* Action Buttons */}
+                    <div className="flex justify-around items-center py-2 border-t border-gray-800">
+                      <button className="flex items-center gap-2 text-gray-300 hover:text-white">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                          <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/>
+                        </svg>
+                        <span className="text-sm">Like</span>
+                      </button>
+                      <button className="flex items-center gap-2 text-gray-300 hover:text-white">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                          <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+                        </svg>
+                        <span className="text-sm">Comment</span>
+                      </button>
+                      <button className="flex items-center gap-2 text-gray-300 hover:text-white">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                          <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
+                          <polyline points="16,6 12,2 8,6"/>
+                          <line x1="12" y1="2" x2="12" y2="15"/>
+                        </svg>
+                        <span className="text-sm">Share</span>
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Bottom Navigation */}
+                  <div className="absolute bottom-0 left-0 right-0 bg-black border-t border-gray-800 p-3">
+                    <div className="flex justify-around">
+                      <div className="text-center">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" className="text-blue-500 mx-auto">
+                          <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+                        </svg>
+                        <span className="text-xs mt-1 text-blue-500">Home</span>
+                      </div>
+                      <div className="text-center">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-white mx-auto">
+                          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                          <line x1="16" y1="2" x2="16" y2="6"/>
+                          <line x1="8" y1="2" x2="8" y2="6"/>
+                          <line x1="3" y1="10" x2="21" y2="10"/>
+                        </svg>
+                        <span className="text-xs mt-1 text-white">Reels</span>
+                      </div>
+                      <div className="text-center">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-white mx-auto">
+                          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                          <circle cx="9" cy="7" r="4"/>
+                          <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                          <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                        </svg>
+                        <span className="text-xs mt-1 text-white">Friends</span>
+                      </div>
+                      <div className="text-center">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-white mx-auto">
+                          <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                          <line x1="8" y1="21" x2="16" y2="21"/>
+                          <line x1="12" y1="17" x2="12" y2="21"/>
+                        </svg>
+                        <span className="text-xs mt-1 text-white">Marketplace</span>
+                      </div>
+                      <div className="text-center relative">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-white mx-auto">
+                          <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+                          <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+                        </svg>
+                        <div className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full flex items-center justify-center">
+                          <span className="text-white text-xs">1</span>
+                        </div>
+                        <span className="text-xs mt-1 text-white">Notifications</span>
+                      </div>
+                      <div className="text-center">
+                        <div className="w-6 h-6 rounded-full bg-gray-300 mx-auto"></div>
+                        <span className="text-xs mt-1 text-white">Menu</span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
