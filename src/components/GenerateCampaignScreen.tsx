@@ -100,48 +100,29 @@ const GenerateCampaignScreen = () => {
         let campaignResult: any;
         
         if (state.editMode && state.campaignId) {
-          // Check if this campaign is already being processed
-          const { data: existingCampaign } = await supabase
-            .from('campaign_results')
-            .select('result, id')
-            .eq('id', state.campaignId)
-            .single();
-
-          if (existingCampaign?.result && Object.keys(existingCampaign.result).length > 0) {
-            console.log('Campaign already processed, skipping to results');
-            navigate('/preview-results', { 
-              state: { 
-                ...location.state, 
-                campaignId: state.campaignId,
-                campaignResults: existingCampaign.result
-              } 
-            });
-            return;
-          }
-
-          // Update existing campaign
-          setCurrentAction("Updating campaign content...");
+          // In edit mode, always regenerate content and clear existing video
+          setCurrentAction("Regenerating campaign content...");
           
-          // Update the campaign data in the database
-          const { data: updateData, error: updateError } = await supabase
+          // Clear existing results and video to force regeneration
+          const { error: clearError } = await supabase
             .from('campaign_results')
             .update({
               campaign_prompt: campaignData.campaign_prompt,
               target_audience: campaignData.target_audience,
-              image_url: imageUrl
+              image_url: imageUrl,
+              result: {}, // Clear existing results
+              generated_video_url: null // Clear existing video
             })
-            .eq('id', state.campaignId)
-            .select()
-            .single();
+            .eq('id', state.campaignId);
 
-          if (updateError) {
-            console.error('Failed to update campaign:', updateError);
+          if (clearError) {
+            console.error('Failed to update campaign:', clearError);
             throw new Error('Failed to update campaign');
           }
           
           campaignResult = { id: state.campaignId };
           
-          // Generate the updated campaign using AI
+          // Generate the updated campaign using AI (will include video generation)
           await generateCampaign(state.campaignId, campaignData);
         } else {
           // Create new campaign or reuse recent identical one (dedupe StrictMode)
