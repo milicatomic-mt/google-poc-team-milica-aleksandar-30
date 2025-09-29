@@ -100,30 +100,53 @@ const GenerateCampaignScreen = () => {
         let campaignResult: any;
         
         if (state.editMode && state.campaignId) {
-          // In edit mode, always regenerate content and clear existing video
-          setCurrentAction("Regenerating campaign content...");
+          // In edit mode, only update prompt/audience and regenerate video
+          setCurrentAction("Updating campaign details...");
           
-          // Clear existing results and video to force regeneration
-          const { error: clearError } = await supabase
+          // Update only the prompt and audience, keep existing results
+          const { data: existingCampaign, error: fetchError } = await supabase
+            .from('campaign_results')
+            .select('result')
+            .eq('id', state.campaignId)
+            .single();
+
+          if (fetchError) {
+            console.error('Failed to fetch existing campaign:', fetchError);
+            throw new Error('Failed to fetch existing campaign');
+          }
+
+          // Update campaign data but keep existing results, only clear video
+          const { error: updateError } = await supabase
             .from('campaign_results')
             .update({
               campaign_prompt: campaignData.campaign_prompt,
               target_audience: campaignData.target_audience,
               image_url: imageUrl,
-              result: {}, // Clear existing results
-              generated_video_url: null // Clear existing video
+              generated_video_url: null // Clear existing video to force regeneration
             })
             .eq('id', state.campaignId);
 
-          if (clearError) {
-            console.error('Failed to update campaign:', clearError);
+          if (updateError) {
+            console.error('Failed to update campaign:', updateError);
             throw new Error('Failed to update campaign');
           }
           
           campaignResult = { id: state.campaignId };
           
-          // Generate the updated campaign using AI (will include video generation)
-          await generateCampaign(state.campaignId, campaignData);
+          // Only regenerate video, not the entire campaign content
+          setCurrentAction("Regenerating video content...");
+          
+          // Trigger video generation with updated prompt
+          try {
+            await supabase.functions.invoke('generate-video', {
+              body: {
+                campaignId: state.campaignId,
+                videoPrompt: campaignData.campaign_prompt
+              }
+            });
+          } catch (videoError) {
+            console.warn('Video generation failed:', videoError);
+          }
         } else {
           // Create new campaign or reuse recent identical one (dedupe StrictMode)
           const twoMinutesAgo = new Date(Date.now() - 2 * 60 * 1000).toISOString();
