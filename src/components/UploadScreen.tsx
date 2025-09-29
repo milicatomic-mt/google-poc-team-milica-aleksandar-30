@@ -699,7 +699,7 @@ const UploadScreen: React.FC<UploadScreenProps> = ({ mode }) => {
             {/* Validation Feedback */}
             {validationResult && (
               <div className={`
-                flex items-center space-x-3 p-4 rounded-xl
+                flex items-center justify-center space-x-3 p-4 rounded-xl w-fit mx-auto
                 ${validationResult.type === 'success' ? 'bg-green-50 border border-green-200' :
                   validationResult.type === 'warning' ? 'bg-yellow-50 border border-yellow-200' :
                   'bg-red-50 border border-red-200'
