@@ -3,12 +3,14 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { ArrowLeft, QrCode } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import QRDownloadModal from '@/components/QRDownloadModal';
+import { extractColorsFromImage } from '@/lib/color-extraction';
 
 const WebCreativePreview: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { campaignResults, uploadedImage, campaignId, imageMapping, returnTo } = location.state || {};
   const [isDownloadModalOpen, setIsDownloadModalOpen] = useState(false);
+  const [tagColor, setTagColor] = useState<string | null>(null);
 
   useEffect(() => {
     if (!campaignResults) {
@@ -55,6 +57,19 @@ const WebCreativePreview: React.FC = () => {
     return imageMapping?.[`image_${index}`] || generatedImages?.[index]?.url || null;
   };
 
+  // Extract color from hero image
+  useEffect(() => {
+    const heroImage = getImage(0) || uploadedImage;
+    if (heroImage) {
+      extractColorsFromImage(heroImage).then(colors => {
+        setTagColor(colors.primary);
+      }).catch(() => {
+        // If extraction fails, keep default color
+        setTagColor(null);
+      });
+    }
+  }, [uploadedImage, imageMapping]);
+
   return (
     <div className="min-h-screen bg-gray-50 relative">
       {/* Back Button - Top Left */}
@@ -98,7 +113,14 @@ const WebCreativePreview: React.FC = () => {
               <div className="container mx-auto px-6">
                 <div className="grid lg:grid-cols-2 gap-12 items-center">
                   <div className="space-y-6">
-                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium bg-primary/10 text-primary border border-primary/20">
+                    <div 
+                      className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium border"
+                      style={tagColor ? {
+                        backgroundColor: `hsl(${tagColor} / 0.1)`,
+                        color: `hsl(${tagColor})`,
+                        borderColor: `hsl(${tagColor} / 0.2)`
+                      } : undefined}
+                    >
                       ✨ New Launch
                     </div>
                     <h1 className="text-4xl md:text-6xl font-bold text-foreground leading-tight">
