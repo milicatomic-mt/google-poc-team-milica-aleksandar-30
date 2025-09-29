@@ -358,8 +358,8 @@ const CampaignPromptScreen = () => {
                      disabled={isAutoSelecting}
                            className={`px-6 py-2 rounded-full transition-all duration-300 ease-out tap-target backdrop-blur-md text-sm ${
                            selectedAudiences.includes(age)
-                               ? 'bg-white border border-white text-primary shadow-lg transform scale-105 font-semibold'
-                              : 'bg-white/50 border border-white text-black hover:bg-white/10 hover:scale-[1.02] transform scale-100 font-normal'
+                               ? 'bg-white border-2 border-white text-primary shadow-lg transform scale-105 font-semibold'
+                              : 'bg-white/50 border-2 border-white text-black hover:bg-white/10 hover:scale-[1.02] transform scale-100 font-normal'
                          } ${isAutoSelecting && !selectedAudiences.includes(age) ? 'opacity-50' : 'opacity-100'}`}
                    >
                      {age}
@@ -377,8 +377,8 @@ const CampaignPromptScreen = () => {
                      disabled={isAutoSelecting}
                            className={`px-6 py-2 rounded-full transition-all duration-300 ease-out tap-target backdrop-blur-md text-sm ${
                            selectedAudiences.includes(interest)
-                               ? 'bg-white border border-white text-primary shadow-lg transform scale-105 font-semibold'
-                              : 'bg-white/50 border border-white text-black hover:bg-white/10 hover:scale-[1.02] transform scale-100 font-normal'
+                               ? 'bg-white border-2 border-white text-primary shadow-lg transform scale-105 font-semibold'
+                              : 'bg-white/50 border-2 border-white text-black hover:bg-white/10 hover:scale-[1.02] transform scale-100 font-normal'
                          } ${isAutoSelecting && !selectedAudiences.includes(interest) ? 'opacity-50' : 'opacity-100'}`}
                    >
                      {interest}
@@ -396,8 +396,8 @@ const CampaignPromptScreen = () => {
                      disabled={isAutoSelecting}
                           className={`px-6 py-2 rounded-full transition-all duration-300 ease-out tap-target backdrop-blur-md text-sm ${
                            selectedAudiences.includes(interest)
-                             ? 'bg-white border border-white text-primary shadow-lg transform scale-105 font-semibold'
-                             : 'bg-white/50 border border-white text-black hover:bg-white/10 hover:scale-[1.02] transform scale-100 font-normal'
+                             ? 'bg-white border-2 border-white text-primary shadow-lg transform scale-105 font-semibold'
+                             : 'bg-white/50 border-2 border-white text-black hover:bg-white/10 hover:scale-[1.02] transform scale-100 font-normal'
                          } ${isAutoSelecting && !selectedAudiences.includes(interest) ? 'opacity-50' : 'opacity-100'}`}
                    >
                      {interest}
