@@ -767,7 +767,7 @@ const VideoScriptsPreview: React.FC = () => {
                 <div key={index} className="bg-white rounded-lg p-8 shadow-lg space-y-4">
                   <div className="flex items-center gap-2">
                     <h3 className="text-2xl font-bold text-gray-900">
-                      {script.platform}
+                      {script.platform === 'You Tube' || script.platform === 'YouTube' ? 'Facebook' : script.platform}
                     </h3>
                   </div>
                   
