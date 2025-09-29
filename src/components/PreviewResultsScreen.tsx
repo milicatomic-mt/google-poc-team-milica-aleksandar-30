@@ -341,40 +341,7 @@ const PreviewResultsScreen: React.FC = () => {
                       </div>
                     </div>
 
-                    {/* First Bottom Banner - Light */}
-                    <div className="bg-gradient-to-r from-slate-200 via-gray-100 to-stone-200 rounded overflow-hidden mb-3 h-12 relative">
-                      <div className="flex items-center h-full">
-                        {/* Left - Product Image */}
-                        <div className="w-20 h-full flex items-center justify-center">
-                          {(imageMapping?.image_1 || uploadedImage) && (
-                            <img 
-                              src={imageMapping?.image_1 || uploadedImage} 
-                              alt="Premium Sound Product" 
-                              className="w-full h-full object-cover filter drop-shadow-lg" 
-                            />
-                          )}
-                        </div>
-                        
-                        {/* Middle - Text Content */}
-                        <div className="flex-1 ml-3 text-gray-900">
-                          <h3 className="text-gray-900 text-sm font-bold uppercase tracking-wide mb-1">
-                            PREMIUM SOUND
-                          </h3>
-                          <p className="text-gray-600 text-[7px] font-medium">
-                            WIRELESS BLUETOOTH CONNECTION WITH BASS RESONANCE
-                          </p>
-                        </div>
-                        
-                        {/* Right - CTA Button */}
-                        <div className="pr-3 flex-shrink-0">
-                          <button className="bg-gray-900 text-white text-[8px] px-3 py-1 font-semibold hover:bg-gray-800 transition-colors rounded-full">
-                            Shop Now
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Second Bottom Banner - Dark */}
+                    {/* Bottom Banner - Dark */}
                     <div className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 rounded overflow-hidden h-12 relative">
                       <div className="flex items-center h-full">
                         {/* Left - Product Image */}
