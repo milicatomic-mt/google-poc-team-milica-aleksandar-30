@@ -332,7 +332,7 @@ const VideoScriptsPreview: React.FC = () => {
               </div>
 
               {/* TikTok Mobile Mockup - Full screen video with overlaid UI like in reference */}
-              <div className="bg-black rounded-lg shadow-lg overflow-hidden max-w-sm h-[814px]">
+              <div className="bg-black rounded-lg shadow-lg overflow-hidden max-w-sm h-[814px] relative">
                 <div className="relative h-full">
                   {/* Full Screen Video Background - Fill entire container height minus navigation */}
                   <div className="absolute inset-0 pb-20">
