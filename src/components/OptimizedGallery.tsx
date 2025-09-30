@@ -236,7 +236,7 @@ const OptimizedGallery = () => {
 
       <div className="relative z-10">
       {/* Header */}
-      <div ref={headerRef} className="border-b border-white/40 bg-white/40 backdrop-blur-xl sticky top-0 z-10">
+      <div ref={headerRef} className="border-b border-white/40 bg-white/40 backdrop-blur-xl sticky top-0 z-30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center justify-between">
             {/* Left - Back Button */}
@@ -380,7 +380,7 @@ const GalleryItemDisplay: React.FC<{
     <Card className="w-full overflow-hidden bg-white border-0 shadow-sm">
       <CardContent className="p-0 relative">
         {/* Campaign/Catalog Badge - Top Right */}
-        <div className="absolute top-6 right-6 z-10">
+        <div className="absolute top-6 right-6 z-20">
           <Badge variant="outline" className="text-xs border-primary text-primary">
             {item.type === 'campaign' ? 'Campaign' : 'Catalog'}
           </Badge>
