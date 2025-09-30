@@ -634,8 +634,8 @@ const CampaignContent: React.FC<{
         <div className="px-2 py-2 flex items-center justify-between transition-all duration-smooth">
           <div className="flex items-center space-x-2">
             <h3 className="text-foreground font-medium">Social Video Collection</h3>
-            <span className="bg-muted text-primary text-xs px-2 py-1 rounded-full font-medium">1</span>
           </div>
+          <ArrowUpRight className="w-5 h-5 text-black" />
         </div>
         <CardContent className="p-2 flex-1 flex flex-col">
           <div className="h-80 flex gap-2 justify-between">
@@ -918,9 +918,8 @@ const CampaignContent: React.FC<{
         <div className="px-2 py-2 flex items-center justify-between transition-all duration-smooth">
           <div className="flex items-center space-x-2">
             <h3 className="text-foreground font-medium">Email Templates</h3>
-            <span className="bg-muted text-primary text-xs px-2 py-1 rounded-full font-medium">2</span>
           </div>
-          {/* Removed download button from email templates section */}
+          <ArrowUpRight className="w-5 h-5 text-black" />
         </div>
         <CardContent className="p-2 flex-1 flex flex-col">
           <div className="h-80 relative overflow-hidden">
