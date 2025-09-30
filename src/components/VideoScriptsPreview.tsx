@@ -129,7 +129,7 @@ const VideoScriptsPreview: React.FC = () => {
             <div className="flex flex-col lg:flex-row gap-6 justify-center items-start max-w-7xl mx-auto">
               <div className="flex flex-col items-center flex-1">
                 <h3 className="text-lg font-semibold text-gray-800 mb-4">Instagram</h3>
-                <div className="bg-white rounded-lg shadow-lg overflow-hidden w-full max-w-sm h-[814px] relative opacity-80">
+                <div className="bg-white rounded-lg shadow-lg overflow-hidden w-full max-w-sm h-[814px] relative">
                 <div className="bg-black text-white p-4">
                   <div className="flex items-center justify-between text-sm font-medium mb-4">
                     <span>9:41</span>
@@ -312,7 +312,7 @@ const VideoScriptsPreview: React.FC = () => {
 
               <div className="flex flex-col items-center flex-1">
                 <h3 className="text-lg font-semibold text-gray-800 mb-4">TikTok</h3>
-                <div className="bg-black rounded-lg shadow-lg overflow-hidden w-full max-w-sm h-[814px] relative opacity-80">
+                <div className="bg-black rounded-lg shadow-lg overflow-hidden w-full max-w-sm h-[814px] relative">
                 <div className="relative h-full">
                   {/* Full Screen Video Background - Fill entire container height minus navigation */}
                   <div className="absolute inset-0 pb-20">
@@ -515,7 +515,7 @@ const VideoScriptsPreview: React.FC = () => {
 
               <div className="flex flex-col items-center flex-1">
                 <h3 className="text-lg font-semibold text-gray-800 mb-4">Facebook</h3>
-                <div className="bg-black rounded-lg shadow-lg overflow-hidden w-full max-w-sm h-[814px] relative opacity-80">
+                <div className="bg-black rounded-lg shadow-lg overflow-hidden w-full max-w-sm h-[814px] relative">
                   {/* Facebook Header */}
                   <div className="bg-black text-white p-4">
                     <div className="flex items-center justify-between text-sm font-medium mb-4">
