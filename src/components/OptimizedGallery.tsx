@@ -201,7 +201,7 @@ const OptimizedGallery = () => {
         </video>
         
         {/* Dark Overlay */}
-        <div className="absolute inset-0 bg-black/25 z-[1]" />
+        <div className="absolute inset-0 bg-black/15 z-[1]" />
         <div className="relative z-10 min-h-screen flex flex-col">
           <div className="flex-1 flex items-center justify-center px-4 py-8">
             <div className="flex flex-col items-center justify-center space-y-6">
@@ -237,7 +237,7 @@ const OptimizedGallery = () => {
       </video>
       
       {/* Dark Overlay */}
-      <div className="absolute inset-0 bg-black/25 z-[1]" />
+      <div className="absolute inset-0 bg-black/15 z-[1]" />
       <div className="relative z-10">
       {/* Header */}
       <div ref={headerRef} className="border-b border-white/40 bg-white/40 backdrop-blur-xl sticky top-0 z-30">
