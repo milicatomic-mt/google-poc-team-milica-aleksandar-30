@@ -194,7 +194,7 @@ const ScreenSaver = () => {
                 <RibbedSphere className="w-full h-full" />
               </div>
               <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold">
-                <span className="text-black">Bring Your Products to </span><span className="text-[#707e57]">Life</span>
+                <span className="text-black">Bring Your Products to </span><span className="text-primary">Life</span>
               </h1>
             </div>
             <p className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl text-muted-foreground font-medium mx-auto min-h-[1.5rem] sm:min-h-[2rem] lg:min-h-[2.5rem] xl:min-h-[3rem] flex items-center justify-center px-4">
@@ -217,7 +217,7 @@ const ScreenSaver = () => {
           </div>
 
           {/* Get Started Button */}
-          <Button size="lg" className="tap-target focus-ring px-3 py-2 sm:px-4 sm:py-2 md:px-6 md:py-3 lg:px-8 lg:py-3 xl:px-10 xl:py-4 text-xs sm:text-xs md:text-sm lg:text-base xl:text-lg animate-button-breath rounded-full bg-[#707e57] text-white hover:bg-[#707e57]/90" onClick={e => {
+          <Button size="lg" className="tap-target focus-ring px-3 py-2 sm:px-4 sm:py-2 md:px-6 md:py-3 lg:px-8 lg:py-3 xl:px-10 xl:py-4 text-xs sm:text-xs md:text-sm lg:text-base xl:text-lg animate-button-breath rounded-full bg-primary text-primary-foreground hover:bg-primary/90" onClick={e => {
           e.stopPropagation();
           handleClick();
         }}>
