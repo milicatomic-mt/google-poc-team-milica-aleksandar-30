@@ -266,6 +266,11 @@ All colors MUST be HSL.
     line-height: 1.6;
   }
 
+  button:focus,
+  button:focus-visible {
+    outline: none !important;
+  }
+
   /* Typography Classes */
   h1 {
     font-size: var(--font-size-h1);
@@ -330,6 +335,16 @@ All colors MUST be HSL.
 
   .tap-target {
     @apply min-h-[48px] min-w-[48px] flex items-center justify-center;
+  }
+
+  .focus-ring {
+    @apply focus:outline-none focus-visible:outline-none;
+  }
+
+  .focus-ring:focus,
+  .focus-ring:focus-visible {
+    outline: none !important;
+    box-shadow: none !important;
   }
 
   /* Layout Helpers */
