@@ -275,9 +275,10 @@ const CatalogPromptScreen = () => {
         }
       }
       
-      // Auto-fill brand name from AI analysis
+      // Prepare brand name for animation
+      let brandNameToSet = '';
       if (aiAnalysisData.brandName && !brandName) {
-        setBrandName(aiAnalysisData.brandName);
+        brandNameToSet = aiAnalysisData.brandName;
       }
       
       // Animate selections with delays
@@ -297,6 +298,12 @@ const CatalogPromptScreen = () => {
         
         if (platformToSet) {
           setPlatform(platformToSet);
+          await new Promise(resolve => setTimeout(resolve, 600));
+        }
+        
+        // Auto-fill brand name at the end of the animation sequence
+        if (brandNameToSet) {
+          setBrandName(brandNameToSet);
         }
       };
       
