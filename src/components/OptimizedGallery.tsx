@@ -351,9 +351,9 @@ const GalleryItemDisplay: React.FC<{
   return (
     <Card className="w-full overflow-hidden bg-white border-0 shadow-sm">
       <CardContent className="p-0 relative">
-        {/* Campaign/Catalog Badge - Top Right */}
-        <div className="absolute top-6 right-6 z-10">
-          <Badge variant="outline" className="text-xs border-primary text-primary">
+        {/* Campaign/Catalog Badge - Sticky */}
+        <div className="sticky top-[73px] right-6 z-20 flex justify-end p-6 pb-0 pointer-events-none">
+          <Badge variant="outline" className="text-xs border-primary text-primary bg-white shadow-sm pointer-events-auto">
             {item.type === 'campaign' ? 'Campaign' : 'Catalog'}
           </Badge>
         </div>
