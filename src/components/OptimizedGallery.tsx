@@ -263,7 +263,7 @@ const OptimizedGallery = () => {
                 variant={selectedFilter === 'all' ? 'default' : 'outline'}
                 size="sm"
                 onClick={() => setSelectedFilter('all')}
-                className="text-xs rounded-full"
+                className={`text-xs rounded-full ${selectedFilter !== 'all' ? 'border-0' : ''}`}
               >
                 All
               </Button>
@@ -271,7 +271,7 @@ const OptimizedGallery = () => {
                 variant={selectedFilter === 'campaigns' ? 'default' : 'outline'}
                 size="sm"
                 onClick={() => setSelectedFilter('campaigns')}
-                className="text-xs rounded-full"
+                className={`text-xs rounded-full ${selectedFilter !== 'campaigns' ? 'border-0' : ''}`}
               >
                 Campaigns
               </Button>
@@ -279,7 +279,7 @@ const OptimizedGallery = () => {
                 variant={selectedFilter === 'catalogs' ? 'default' : 'outline'}
                 size="sm"
                 onClick={() => setSelectedFilter('catalogs')}
-                className="text-xs rounded-full"
+                className={`text-xs rounded-full ${selectedFilter !== 'catalogs' ? 'border-0' : ''}`}
               >
                 Catalogs
               </Button>
