@@ -124,7 +124,7 @@ const VideoScriptsPreview: React.FC = () => {
               <p className="text-gray-600">See how your content will appear on different platforms</p>
             </div>
             
-            <div className="flex flex-col xl:flex-row gap-0 justify-center items-start max-w-7xl mx-auto">
+            <div className="flex flex-col lg:flex-row gap-6 justify-center items-start max-w-7xl mx-auto">
               <div className="flex flex-col items-center flex-1">
                 <h3 className="text-lg font-semibold text-gray-800 mb-4">Instagram</h3>
                 <div className="bg-white rounded-lg shadow-lg overflow-hidden w-full max-w-sm h-[814px] relative">
