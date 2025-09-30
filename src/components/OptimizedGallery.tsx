@@ -367,7 +367,7 @@ const GalleryItemDisplay: React.FC<{
   const generatedVideoUrl = itemDetails.generated_video_url;
 
   return (
-    <Card className="w-full overflow-hidden bg-white border-0 shadow-sm">
+    <Card className="w-full overflow-hidden bg-white/40 backdrop-blur-xl border border-white/40 shadow-sm">
       <CardContent className="p-0 relative">
         {/* Campaign/Catalog Badge - Top Right */}
         <div className="absolute top-6 right-6 z-20">
