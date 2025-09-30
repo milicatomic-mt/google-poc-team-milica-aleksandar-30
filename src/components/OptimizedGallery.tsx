@@ -202,9 +202,6 @@ const OptimizedGallery = () => {
         >
           <source src="/background-video.mp4" type="video/mp4" />
         </video>
-        
-        {/* Dark Overlay */}
-        <div className="absolute inset-0 bg-black/15 z-[1]" />
         <div className="relative z-10 min-h-screen flex flex-col">
           <div className="flex-1 flex items-center justify-center px-4 py-8">
             <div className="flex flex-col items-center justify-center space-y-6">
