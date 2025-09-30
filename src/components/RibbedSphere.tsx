@@ -119,7 +119,7 @@ const AnimatedRibbedSphere = () => {
 
   return (
     <mesh ref={meshRef} material={material}>
-      <sphereGeometry args={[1, 80, 80]} />
+      <sphereGeometry args={[1, 32, 32]} />
     </mesh>
   );
 };
@@ -169,26 +169,31 @@ const RibbedSphere: React.FC<RibbedSphereProps> = ({ className = "" }) => {
         camera={{ position: [0, 0, 3], fov: 45 }}
         style={{ width: '100%', height: '100%' }}
         onCreated={(state) => {
-          // Add context lost listener to detect WebGL issues
           const canvas = state.gl.domElement;
+          
+          // Handle context lost
           canvas.addEventListener('webglcontextlost', (event) => {
-            console.warn('WebGL context lost');
             event.preventDefault();
-            setHasWebGLError(true);
+            console.warn('WebGL context lost, attempting restore');
+          });
+          
+          // Handle context restored
+          canvas.addEventListener('webglcontextrestored', () => {
+            console.log('WebGL context restored');
           });
         }}
         gl={{ 
           preserveDrawingBuffer: false,
           antialias: false,
           alpha: true,
-          powerPreference: "default"
+          powerPreference: "low-power",
+          failIfMajorPerformanceCaveat: true
         }}
       >
         <ambientLight intensity={0.6} />
         <directionalLight 
           position={[2, 2, 2]} 
           intensity={0.8}
-          castShadow
         />
         <directionalLight 
           position={[-1, -1, 1]} 
