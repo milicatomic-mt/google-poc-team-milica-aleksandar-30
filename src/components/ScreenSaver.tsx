@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { HelpCircle } from 'lucide-react';
 import RibbedSphere from '@/components/RibbedSphere';
+import { HelpGuideModal } from '@/components/HelpGuideModal';
 
 // Import card images
 import campaignExample1 from '@/assets/campaign-example-1.webp';
@@ -150,17 +150,9 @@ const ScreenSaver = () => {
       {/* Top Navigation */}
       <div className="absolute top-0 left-0 right-0 z-30 flex justify-between items-start p-8">
         {/* Help & Guide - Top Left */}
-        <Button
-          variant="outline"
-          size="lg"
-          className="tap-target focus-ring group bg-white/20 border-white/30 hover:bg-white/30 rounded-full"
-          onClick={e => e.stopPropagation()}
-        >
-          <HelpCircle className="mr-2 w-5 h-5 text-primary group-hover:text-primary/80 transition-colors" />
-          <span className="text-primary group-hover:text-primary/80 transition-colors">
-            Help & Guide
-          </span>
-        </Button>
+        <div onClick={e => e.stopPropagation()}>
+          <HelpGuideModal />
+        </div>
 
         {/* Previous Works - Top Right */}
         <Button
