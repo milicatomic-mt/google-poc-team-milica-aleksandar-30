@@ -261,7 +261,7 @@ const PreviewResultsScreen: React.FC = () => {
               
               {/* Banner Ads Card */}
               <Card 
-                className="card-elegant backdrop-blur-xl bg-white/60 transition-all duration-smooth cursor-pointer"
+                className="card-elegant backdrop-blur-xl bg-white/60 border-white/50 border-2 shadow-2xl hover:shadow-elegant-lg transition-all duration-smooth cursor-pointer"
                 onClick={() => handleOpenCategory('Banner Ads')}
               >
                 <div className="px-4 py-3 flex items-center justify-between transition-all duration-smooth">
@@ -379,7 +379,7 @@ const PreviewResultsScreen: React.FC = () => {
 
               {/* Web Creative Card */}
               <Card 
-                className="card-elegant backdrop-blur-xl bg-white/60 transition-all duration-smooth cursor-pointer"
+                className="card-elegant backdrop-blur-xl bg-white/60 border-white/50 border-2 shadow-2xl hover:shadow-elegant-lg transition-all duration-smooth cursor-pointer"
                 onClick={() => handleOpenCategory('Web Creative')}
               >
                 <div className="px-4 py-3 flex items-center justify-between transition-all duration-smooth">
@@ -444,7 +444,7 @@ const PreviewResultsScreen: React.FC = () => {
 
               {/* Social Video Collection Card */}
               <Card 
-                className="card-elegant backdrop-blur-xl bg-white/60 transition-all duration-smooth cursor-pointer"
+                className="card-elegant backdrop-blur-xl bg-white/60 border-white/50 border-2 shadow-2xl hover:shadow-elegant-lg transition-all duration-smooth cursor-pointer"
                 onClick={() => handleOpenCategory('Social Video Collection')}
               >
                 <div className="px-4 py-3 flex items-center justify-between transition-all duration-smooth">
@@ -732,7 +732,7 @@ const PreviewResultsScreen: React.FC = () => {
 
               {/* Email Templates Card */}
               <Card 
-                className="card-elegant backdrop-blur-xl bg-white/60 transition-all duration-smooth cursor-pointer"
+                className="card-elegant backdrop-blur-xl bg-white/60 border-white/50 border-2 shadow-2xl hover:shadow-elegant-lg transition-all duration-smooth cursor-pointer"
                 onClick={() => handleOpenCategory('Email Templates')}
               >
                 <div className="px-3 py-3 flex items-center justify-between transition-all duration-smooth">
