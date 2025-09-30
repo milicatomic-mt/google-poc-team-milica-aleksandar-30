@@ -369,18 +369,12 @@ const GalleryItemDisplay: React.FC<{
   return (
     <Card className="w-full overflow-hidden bg-white/40 backdrop-blur-xl border border-white/40 shadow-sm">
       <CardContent className="p-0 relative">
-        {/* Campaign/Catalog Badge - Top Right */}
-        <div className="absolute top-6 right-6 z-20">
-          <Badge variant="outline" className="text-xs border-primary text-primary">
-            {item.type === 'campaign' ? 'Campaign' : 'Catalog'}
-          </Badge>
-        </div>
         
         {/* Header */}
-        <div className="bg-white p-6 border-b">
-          <div className="flex items-center justify-between pr-24">
+        <div className="bg-white/40 backdrop-blur-xl border-b border-white/40 p-6">
+          <div className="flex items-center justify-between">
             <div>
-              <h2 className="text-lg font-semibold">{item.title}</h2>
+              <h2 className="text-2xl font-semibold">{item.title}</h2>
               <p className="text-sm text-muted-foreground">
                 {formatDate(item.created_at)}
               </p>
