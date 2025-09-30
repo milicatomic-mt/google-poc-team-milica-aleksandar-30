@@ -381,7 +381,7 @@ const GalleryItemDisplay: React.FC<{
                 {formatDate(item.created_at)}
               </p>
             </div>
-            <Badge className="text-xs bg-primary/20 text-primary border-0">
+            <Badge className="text-xs bg-primary/10 text-primary border-0">
               {item.type === 'campaign' ? 'Campaign' : 'Catalog'}
             </Badge>
           </div>
