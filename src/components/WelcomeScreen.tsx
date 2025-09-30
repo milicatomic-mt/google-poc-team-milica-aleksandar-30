@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger, DialogClose } from '@/components/ui/dialog';
 import { X, ArrowRight, Package, Megaphone, Check } from 'lucide-react';
 import RibbedSphere from '@/components/RibbedSphere';
+import { HelpGuideModal } from '@/components/HelpGuideModal';
 import catalogSample from '@/assets/catalog-sample.jpg';
 import campaignSample from '@/assets/campaign-sample.jpg';
 
@@ -89,6 +90,11 @@ const WelcomeScreen = () => {
       <div className="relative z-10 flex min-h-screen flex-col">
         {/* Header */}
         <header className="container-padding pt-12 relative">
+          {/* Help Button - Top Left */}
+          <div className="absolute top-12 left-8">
+            <HelpGuideModal />
+          </div>
+
           {/* Exit Button - Top Right */}
           <div className="absolute top-12 right-8">
             <Dialog>
