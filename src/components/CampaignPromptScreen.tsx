@@ -274,7 +274,12 @@ const CampaignPromptScreen = () => {
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
               {editMode 
                 ? 'Update your campaign prompt and target audience settings below.'
-                : "Here's a product description based on your image. Tweak it, regenerate it, add details, or keep it just the way it is."
+                : (
+                  <>
+                    Here's a product description based on your image. Tweak it, regenerate it,<br />
+                    add details, or keep it just the way it is.
+                  </>
+                )
               }
             </p>
             {isLoadingExistingData && (
