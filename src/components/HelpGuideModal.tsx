@@ -53,12 +53,15 @@ export const HelpGuideModal = () => {
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <Button 
-          variant="secondary" 
-          className="tap-target focus-ring bg-white border-white/30 hover:bg-white/90 rounded-full h-10 px-4 shadow-sm"
+        <Button
+          variant="outline"
+          size="lg"
+          className="tap-target focus-ring group bg-white/20 border-white/30 hover:bg-white/30 rounded-full"
         >
-          <HelpCircle className="h-5 w-5 text-black mr-2" />
-          <span className="text-black">Help</span>
+          <HelpCircle className="mr-2 w-5 h-5 text-primary group-hover:text-primary/80 transition-colors" />
+          <span className="text-primary group-hover:text-primary/80 transition-colors">
+            Help & Guide
+          </span>
         </Button>
       </SheetTrigger>
       <SheetContent 
