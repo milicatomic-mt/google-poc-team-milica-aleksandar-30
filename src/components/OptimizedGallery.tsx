@@ -552,9 +552,9 @@ const CampaignContent: React.FC<{
           </div>
         </div>
         <CardContent className="p-4 flex-1 flex flex-col">
-          <div className="h-80 flex-1 bg-gray-50 overflow-y-auto border border-gray-200 shadow-sm" style={{borderRadius: '4px'}}>
+          <div className="h-80 bg-gray-50 overflow-hidden border border-gray-200 shadow-sm" style={{borderRadius: '4px'}}>
             {/* Web Creative Preview - Matching WebCreativePreview structure */}
-            <div className="bg-white">
+            <div className="bg-white h-full">
               {/* Hero Section */}
               <section className="py-8 bg-gradient-to-br from-primary/10 via-background to-secondary/10">
                 <div className="container mx-auto px-3">
