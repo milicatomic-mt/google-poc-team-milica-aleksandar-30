@@ -196,13 +196,13 @@ const GenerateCampaignScreen = () => {
           console.log('Calling generateCampaign with:', { id: campaignResult.id, data: campaignData });
           
           // Generate the campaign using AI
-          setCurrentAction("Generating comprehensive campaign materials...");
+          setCurrentAction("Generating campaign materials...");
           setProgress(70);
           
           await generateCampaign(campaignResult.id, campaignData);
           
-          setCurrentAction("Creating your promotional video...");
-          setProgress(80);
+          setCurrentAction("Generating video campaign...");
+          setProgress(90);
           
           console.log('generateCampaign completed');
         }
