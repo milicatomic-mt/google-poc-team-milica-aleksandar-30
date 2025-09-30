@@ -66,7 +66,7 @@ export const HelpGuideModal = () => {
       </SheetTrigger>
       <SheetContent 
         side="left" 
-        className="w-full sm:max-w-md bg-white text-foreground overflow-y-auto h-[calc(100vh-48px)] mt-6 ml-6 mb-6 rounded-lg p-12"
+        className="w-full sm:max-w-md bg-white/80 backdrop-blur-md border border-white text-foreground overflow-y-auto h-[calc(100vh-48px)] mt-6 ml-6 mb-6 rounded-lg p-12"
       >
         <SheetHeader className="text-left space-y-3 pb-6">
           <SheetTitle className="text-2xl font-semibold text-foreground">
