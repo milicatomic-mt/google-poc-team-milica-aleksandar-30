@@ -59,8 +59,8 @@ export const HelpGuideModal = () => {
           size="lg"
           className="tap-target focus-ring group bg-white/20 border-white/30 hover:bg-white/30 rounded-full"
         >
-          <HelpCircle className="mr-2 w-5 h-5 text-primary group-hover:text-primary/80 transition-colors" />
-          <span className="text-primary group-hover:text-primary/80 transition-colors">
+          <HelpCircle className="mr-2 w-5 h-5 text-black group-hover:text-black/80 transition-colors" />
+          <span className="text-black group-hover:text-black/80 transition-colors">
             Help & Guide
           </span>
         </Button>
