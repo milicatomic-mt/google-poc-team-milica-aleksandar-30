@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import RibbedSphere from '@/components/RibbedSphere';
@@ -15,7 +15,8 @@ const sentences = [
   "Transform your ideas into compelling marketing content with AI-powered creativity",
   "Generate product titles, descriptions, and catalogs in seconds"
 ];
-const ScreenSaver = () => {
+
+const ScreenSaver = React.memo(() => {
   const navigate = useNavigate();
   const [displayedText, setDisplayedText] = useState('');
   const [isTypingComplete, setIsTypingComplete] = useState(false);
@@ -24,39 +25,39 @@ const ScreenSaver = () => {
   const [currentSentenceIndex, setCurrentSentenceIndex] = useState(0);
   const [cardsInitialized, setCardsInitialized] = useState(false);
   
-  // Card data with images and titles
-  const cards = [
+  // Memoize cards data to prevent re-creation
+  const cards = useMemo(() => [
     {
       id: 1,
       image: campaignExample1,
       title: "Skincare Campaign",
-      height: "h-40 sm:h-48 md:h-64 lg:h-72 xl:h-80 2xl:h-96" // tallest outer card (left end)
+      height: "h-40 sm:h-48 md:h-64 lg:h-72 xl:h-80 2xl:h-96"
     },
     {
       id: 2,
       image: campaignExample2,
       title: "App Launch Campaign",
-      height: "h-28 sm:h-36 md:h-48 lg:h-56 xl:h-64 2xl:h-72" // medium card
+      height: "h-28 sm:h-36 md:h-48 lg:h-56 xl:h-64 2xl:h-72"
     },
     {
       id: 3,
       image: adidasShoe,
       title: "Product Showcase",
-      height: "h-24 sm:h-32 md:h-40 lg:h-48 xl:h-56 2xl:h-64" // smallest center card
+      height: "h-24 sm:h-32 md:h-40 lg:h-48 xl:h-56 2xl:h-64"
     },
     {
       id: 4,
       image: campaignExample4,
       title: "Website Design",
-      height: "h-28 sm:h-36 md:h-48 lg:h-56 xl:h-64 2xl:h-72" // medium card
+      height: "h-28 sm:h-36 md:h-48 lg:h-56 xl:h-64 2xl:h-72"
     },
     {
       id: 5,
       image: campaignExample5,
       title: "E-commerce Campaign",
-      height: "h-40 sm:h-48 md:h-64 lg:h-72 xl:h-80 2xl:h-96" // tallest outer card (right end)
+      height: "h-40 sm:h-48 md:h-64 lg:h-72 xl:h-80 2xl:h-96"
     }
-  ];
+  ], []);
 
   // Typing animation with sentence cycling
   useEffect(() => {
@@ -182,7 +183,11 @@ const ScreenSaver = () => {
           <div className="mb-8">
             <div className="flex flex-col items-center justify-center mb-3">
               <div className="h-16 w-16 sm:h-20 sm:w-20 md:h-28 md:w-28 lg:h-32 lg:w-32 xl:h-40 xl:w-40 mb-6 sm:mb-7 md:mb-8">
-                <RibbedSphere className="w-full h-full" />
+                <div className="w-full h-full rounded-full bg-gradient-to-br from-gray-100 via-gray-200 to-gray-300 shadow-lg animate-pulse" 
+                     style={{
+                       boxShadow: '0 4px 20px rgba(0,0,0,0.1), inset 0 2px 10px rgba(255,255,255,0.5)'
+                     }} 
+                />
               </div>
               <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold">
                 <span className="text-black">Bring Your Products to </span><span className="text-primary">Life</span>
@@ -257,5 +262,8 @@ const ScreenSaver = () => {
         <p>Tap anywhere to start creating compelling marketing content with AI assistance</p>
       </div>
     </div>;
-};
+});
+
+ScreenSaver.displayName = 'ScreenSaver';
+
 export default ScreenSaver;
