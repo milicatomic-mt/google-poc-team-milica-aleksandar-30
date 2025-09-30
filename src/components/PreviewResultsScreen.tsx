@@ -276,7 +276,7 @@ const PreviewResultsScreen: React.FC = () => {
                     <div className="grid grid-cols-2 gap-3 mb-3">
                       
                       {/* Left Banner - Product Focus */}
-                      <div className="aspect-square bg-stone-100 rounded overflow-hidden relative">
+                      <div className="aspect-square bg-stone-200 rounded overflow-hidden relative">
                         <div className="flex items-center h-full">
                           {/* Left - Product Image */}
                           <div className="w-1/2 h-full flex items-center justify-center">
@@ -391,7 +391,7 @@ const PreviewResultsScreen: React.FC = () => {
                 <CardContent className="p-2">
                   <div className="h-80 bg-gray-100 overflow-hidden shadow-sm rounded relative">
                     {/* Website Landing Page Layout */}
-                    <div className="h-full bg-stone-100 flex rounded">
+                    <div className="h-full bg-stone-200 flex rounded">
                       {/* Left Side - Content */}
                       <div className="flex-1 p-4 flex flex-col justify-center">
                         {/* New Launch Badge */}
@@ -744,7 +744,7 @@ const PreviewResultsScreen: React.FC = () => {
                 <CardContent className="p-2">
                   <div className="h-80 relative rounded">
                     {/* Modern Email Client Interface */}
-                    <div className="bg-stone-100 backdrop-blur-sm overflow-hidden h-full border border-white/20 shadow-inner rounded">
+                    <div className="bg-stone-200 backdrop-blur-sm overflow-hidden h-full border border-white/20 shadow-inner rounded">
                       {/* Email Client Header */}
                       <div className="bg-gradient-to-r from-slate-50 to-gray-50 px-3 py-2 border-b border-gray-200">
                         <div className="flex items-center justify-between">
@@ -773,7 +773,7 @@ const PreviewResultsScreen: React.FC = () => {
                         </div>
 
                         {/* Product Showcase - Expanded */}
-                        <div className="bg-gradient-to-br from-stone-100 to-slate-50 px-3 py-4 relative">
+                        <div className="bg-gradient-to-br from-stone-200 to-slate-50 px-3 py-4 relative">
                           <div className="flex items-center gap-3">
                             {/* Product Image */}
                             <div className="relative">
