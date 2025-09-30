@@ -201,10 +201,10 @@ const PreviewResultsScreen: React.FC = () => {
             {/* Center - Title and Subtitle */}
             <div className="absolute left-1/2 transform -translate-x-1/2 text-center">
               <h2 className="text-3xl font-bold text-foreground mb-2">
-                Campaign Creative Preview
+                Your Campaign is Ready
               </h2>
               <p className="text-lg text-muted-foreground">
-                Your assets across channels at a glance
+                Download your creative and start using it right away
               </p>
               
               {/* Edit and Download buttons beneath title */}
