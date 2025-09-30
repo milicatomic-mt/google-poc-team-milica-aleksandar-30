@@ -457,7 +457,7 @@ const CatalogPromptScreen = () => {
               {/* Category */}
               <div>
                 <Select value={productCategory} onValueChange={setProductCategory}>
-                  <SelectTrigger className="h-12 text-base bg-white/30 border border-gray-300 backdrop-blur-md shadow-sm hover:shadow-md hover:bg-white/40 transition-all duration-200 focus:ring-2 focus:ring-primary/50">
+                  <SelectTrigger className="h-12 text-base bg-white/30 border border-gray-300 backdrop-blur-md shadow-sm hover:shadow-md hover:bg-white/40 transition-all duration-200 focus:ring-2 focus:ring-primary/50 [&>span]:data-[placeholder]:text-gray-400">
                     <SelectValue placeholder="Select or enter category" />
                   </SelectTrigger>
                   <SelectContent className="bg-white backdrop-blur-md border-gray-200 z-50">
@@ -485,7 +485,7 @@ const CatalogPromptScreen = () => {
               {/* Brand Tone */}
               <div>
                 <Select value={brandTone} onValueChange={setBrandTone}>
-                  <SelectTrigger className="h-12 text-base bg-white/30 border border-gray-300 backdrop-blur-md shadow-sm hover:shadow-md hover:bg-white/40 transition-all duration-200 focus:ring-2 focus:ring-primary/50">
+                  <SelectTrigger className="h-12 text-base bg-white/30 border border-gray-300 backdrop-blur-md shadow-sm hover:shadow-md hover:bg-white/40 transition-all duration-200 focus:ring-2 focus:ring-primary/50 [&>span]:data-[placeholder]:text-gray-400">
                     <SelectValue placeholder="Select brand tone" />
                   </SelectTrigger>
                   <SelectContent className="bg-white backdrop-blur-md border-gray-200 z-50">
@@ -501,7 +501,7 @@ const CatalogPromptScreen = () => {
               {/* Platform */}
               <div>
                 <Select value={platform} onValueChange={setPlatform}>
-                  <SelectTrigger className="h-12 text-base bg-white/30 border border-gray-300 backdrop-blur-md shadow-sm hover:shadow-md hover:bg-white/40 transition-all duration-200 focus:ring-2 focus:ring-primary/50">
+                  <SelectTrigger className="h-12 text-base bg-white/30 border border-gray-300 backdrop-blur-md shadow-sm hover:shadow-md hover:bg-white/40 transition-all duration-200 focus:ring-2 focus:ring-primary/50 [&>span]:data-[placeholder]:text-gray-400">
                     <SelectValue placeholder="Select platform" />
                   </SelectTrigger>
                   <SelectContent className="bg-white backdrop-blur-md border-gray-200 z-50">
