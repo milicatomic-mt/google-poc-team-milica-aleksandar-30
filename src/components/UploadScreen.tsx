@@ -36,6 +36,7 @@ const UploadScreen: React.FC<UploadScreenProps> = ({ mode }) => {
   
   const fileInputRef = useRef<HTMLInputElement>(null);
   const cameraInputRef = useRef<HTMLInputElement>(null);
+  const abortControllerRef = useRef<AbortController | null>(null);
 
   // Create QR session on component mount
   useEffect(() => {
@@ -92,9 +93,24 @@ const UploadScreen: React.FC<UploadScreenProps> = ({ mode }) => {
           
           // Analyze image with AI and then generate images (campaign only)
           if (currentMode === 'campaign' || currentMode === 'catalog') {
+            // Cancel any existing operations before starting new one
+            if (abortControllerRef.current) {
+              abortControllerRef.current.abort();
+            }
+            
+            // Create new abort controller for QR flow
+            abortControllerRef.current = new AbortController();
+            const signal = abortControllerRef.current.signal;
+            
             setIsAnalyzingImage(true);
             try {
               const analysisData = await analyzeImageWithAI(imageForState);
+              
+              if (signal.aborted) {
+                console.log('🔍[QR] Analysis was cancelled');
+                return;
+              }
+              
               console.log('🔍[QR] Analysis data:', analysisData);
 
               if (currentMode === 'campaign' && analysisData?.imagePrompts && analysisData.imagePrompts.length > 0) {
@@ -103,6 +119,12 @@ const UploadScreen: React.FC<UploadScreenProps> = ({ mode }) => {
                   const { data: imageData, error: imageError } = await supabase.functions.invoke('generate-images', {
                     body: { prompts: analysisData.imagePrompts }
                   });
+                  
+                  if (signal.aborted) {
+                    console.log('✅[QR] Image generation was cancelled');
+                    return;
+                  }
+                  
                   if (imageError) {
                     console.error('❌[QR] Error generating images:', imageError);
                     toast.error('Failed to generate images: ' + imageError.message);
@@ -113,6 +135,10 @@ const UploadScreen: React.FC<UploadScreenProps> = ({ mode }) => {
                     console.log('⚠️[QR] No generated images in response:', imageData);
                   }
                 } catch (generateErr: any) {
+                  if (signal.aborted) {
+                    console.log('✅[QR] Image generation was cancelled');
+                    return;
+                  }
                   console.error('❌[QR] Exception calling generate-images:', generateErr);
                   toast.error('Exception generating images: ' + generateErr.message);
                 }
@@ -121,12 +147,20 @@ const UploadScreen: React.FC<UploadScreenProps> = ({ mode }) => {
               }
 
               // Store full analysis data (including any generated images)
-              sessionStorage.setItem('aiAnalysisData', JSON.stringify(analysisData));
-            } catch (error) {
+              if (!signal.aborted) {
+                sessionStorage.setItem('aiAnalysisData', JSON.stringify(analysisData));
+              }
+            } catch (error: any) {
+              if (signal.aborted) {
+                console.log('🔍[QR] Analysis was cancelled');
+                return;
+              }
               console.error('Failed to analyze image:', error);
               toast.error('Failed to analyze image');
             } finally {
-              setIsAnalyzingImage(false);
+              if (!signal.aborted) {
+                setIsAnalyzingImage(false);
+              }
             }
           }
         }
@@ -229,10 +263,26 @@ const UploadScreen: React.FC<UploadScreenProps> = ({ mode }) => {
   };
 
   const handleFile = async (file: File) => {
+    // Cancel any existing operations
+    if (abortControllerRef.current) {
+      abortControllerRef.current.abort();
+    }
+    
+    // Create new abort controller for this operation
+    abortControllerRef.current = new AbortController();
+    const signal = abortControllerRef.current.signal;
+    
     setIsValidating(true);
     
     try {
       const validation = await validateImage(file);
+      
+      // Check if cancelled
+      if (signal.aborted) {
+        console.log('File processing was cancelled');
+        return;
+      }
+      
       setValidationResult(validation);
       
       if (validation.isValid || validation.type === 'warning') {
@@ -243,6 +293,12 @@ const UploadScreen: React.FC<UploadScreenProps> = ({ mode }) => {
           reader.readAsDataURL(file);
         });
         
+        // Check if cancelled
+        if (signal.aborted) {
+          console.log('File processing was cancelled');
+          return;
+        }
+        
         setUploadedImage(base64Image);
         setUploadedFile(file); // Store the file object
         toast.success('Image uploaded successfully!');
@@ -252,6 +308,12 @@ const UploadScreen: React.FC<UploadScreenProps> = ({ mode }) => {
           setIsAnalyzingImage(true);
           try {
             const analysisData = await analyzeImageWithAI(base64Image);
+            
+            // Check if cancelled after analysis
+            if (signal.aborted) {
+              console.log('Analysis was cancelled');
+              return;
+            }
             
             // Debug logging for campaign flow
             console.log('🔍 Analysis complete - Mode:', currentMode);
@@ -268,6 +330,12 @@ const UploadScreen: React.FC<UploadScreenProps> = ({ mode }) => {
                   body: { prompts: analysisData.imagePrompts }
                 });
                 
+                // Check if cancelled after image generation
+                if (signal.aborted) {
+                  console.log('Image generation was cancelled');
+                  return;
+                }
+                
                 if (imageError) {
                   console.error('❌ Error generating images:', imageError);
                   toast.error('Failed to generate images: ' + imageError.message);
@@ -278,7 +346,11 @@ const UploadScreen: React.FC<UploadScreenProps> = ({ mode }) => {
                 } else {
                   console.log('⚠️ No generated images in response:', imageData);
                 }
-              } catch (generateError) {
+              } catch (generateError: any) {
+                if (signal.aborted) {
+                  console.log('Image generation was cancelled');
+                  return;
+                }
                 console.error('❌ Exception calling generate-images:', generateError);
                 toast.error('Exception generating images: ' + generateError.message);
               }
@@ -290,21 +362,35 @@ const UploadScreen: React.FC<UploadScreenProps> = ({ mode }) => {
             }
             
             // Store full analysis data including generated images
-            sessionStorage.setItem('aiAnalysisData', JSON.stringify(analysisData));
-          } catch (error) {
+            if (!signal.aborted) {
+              sessionStorage.setItem('aiAnalysisData', JSON.stringify(analysisData));
+            }
+          } catch (error: any) {
+            if (signal.aborted) {
+              console.log('Analysis was cancelled');
+              return;
+            }
             console.error('Failed to analyze image or generate images:', error);
           } finally {
-            setIsAnalyzingImage(false);
+            if (!signal.aborted) {
+              setIsAnalyzingImage(false);
+            }
           }
         }
       } else {
         toast.error(validation.message);
       }
     } catch (error) {
+      if (signal.aborted) {
+        console.log('File processing was cancelled');
+        return;
+      }
       toast.error('Error validating image');
       setValidationResult({ isValid: false, message: 'Error validating image', type: 'error' });
     } finally {
-      setIsValidating(false);
+      if (!signal.aborted) {
+        setIsValidating(false);
+      }
     }
   };
 
@@ -371,13 +457,20 @@ const UploadScreen: React.FC<UploadScreenProps> = ({ mode }) => {
   };
 
   const handleRemoveImage = () => {
+    // Cancel any ongoing operations
+    if (abortControllerRef.current) {
+      abortControllerRef.current.abort();
+      abortControllerRef.current = null;
+    }
+    
     setUploadedImage(null);
     setUploadedFile(null);
     setValidationResult(null);
     setIsAnalyzingImage(false);
+    setIsValidating(false);
     // Clear any stored AI analysis data
     sessionStorage.removeItem('aiAnalysisData');
-    toast.success('Image removed');
+    toast.success('Image removed and processing stopped');
   };
 
   const handleContinue = () => {
