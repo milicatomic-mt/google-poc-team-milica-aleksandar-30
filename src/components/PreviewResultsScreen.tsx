@@ -270,7 +270,7 @@ const PreviewResultsScreen: React.FC = () => {
                   </div>
                   <ArrowUpRight className="w-5 h-5 text-black" />
                 </div>
-                <CardContent className="p-4">
+                <CardContent className="p-3">
                   <div className="h-80 rounded">
                     {/* Top Row - Two Square Banners */}
                     <div className="grid grid-cols-2 gap-3 mb-3">
@@ -388,7 +388,7 @@ const PreviewResultsScreen: React.FC = () => {
                   </div>
                   <ArrowUpRight className="w-5 h-5 text-black" />
                 </div>
-                <CardContent className="p-4">
+                <CardContent className="p-3">
                   <div className="h-80 bg-gray-100 overflow-hidden shadow-sm rounded relative">
                     {/* Website Landing Page Layout */}
                     <div className="h-full bg-white flex rounded">
@@ -453,7 +453,7 @@ const PreviewResultsScreen: React.FC = () => {
                   </div>
                   <ArrowUpRight className="w-5 h-5 text-black" />
                 </div>
-                <CardContent className="p-4">
+                <CardContent className="p-3">
                   <div className="h-80 flex gap-2 justify-between">
                     
                     {/* Instagram Phone Mockup */}
@@ -735,13 +735,13 @@ const PreviewResultsScreen: React.FC = () => {
                 className="card-elegant backdrop-blur-xl bg-white/60 border-white/50 border-2 shadow-2xl hover:shadow-elegant-lg transition-all duration-smooth cursor-pointer"
                 onClick={() => handleOpenCategory('Email Templates')}
               >
-                <div className="px-4 py-3 flex items-center justify-between transition-all duration-smooth">
+                <div className="px-3 py-3 flex items-center justify-between transition-all duration-smooth">
                   <div className="flex items-center space-x-2">
                     <h3 className="text-foreground font-medium">Email Templates</h3>
                   </div>
                   <ArrowUpRight className="w-5 h-5 text-black" />
                 </div>
-                <CardContent className="p-4">
+                <CardContent className="p-3">
                   <div className="h-80 relative rounded">
                     {/* Modern Email Client Interface */}
                     <div className="bg-white backdrop-blur-sm overflow-hidden h-full border border-white/20 shadow-inner rounded">
