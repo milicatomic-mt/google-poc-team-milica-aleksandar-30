@@ -267,6 +267,17 @@ const OptimizedGallery = () => {
       </div>
     </div>
 
+      {/* Filter Badge - Sticky */}
+      {selectedFilter !== 'all' && (
+        <div className="sticky top-[73px] z-20 bg-gray-150/95 backdrop-blur-sm py-3 border-b border-white/20">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <Badge variant="outline" className="text-sm border-primary text-primary bg-white shadow-sm">
+              {selectedFilter === 'campaigns' ? 'Campaign' : 'Catalog'}
+            </Badge>
+          </div>
+        </div>
+      )}
+
       {/* Gallery Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {filteredItems.length === 0 ? (
