@@ -46,7 +46,7 @@ const faqItems = [
   {
     id: 'item-6',
     question: 'How do I download my creations?',
-    answer: 'Once your content is generated, click the "Download" button to access all assets. You can download individual files or bundle everything into a convenient ZIP file. All content is available in multiple formats optimized for different platforms.',
+    answer: 'Once your content is generated, you can download all assets via QR code. Simply scan the QR code with your mobile device to access and download individual files or bundle everything into a convenient ZIP file. All content is available in multiple formats optimized for different platforms.',
   },
 ];
 
