@@ -271,7 +271,7 @@ const PreviewResultsScreen: React.FC = () => {
                   <ArrowUpRight className="w-5 h-5 text-black" />
                 </div>
                 <CardContent className="p-2">
-                  <div className="h-80 rounded">
+                  <div className="h-80 rounded pb-2">
                     {/* Top Row - Two Square Banners */}
                     <div className="grid grid-cols-2 gap-3 mb-3">
                       
