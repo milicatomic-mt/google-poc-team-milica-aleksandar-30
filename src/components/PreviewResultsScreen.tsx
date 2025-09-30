@@ -276,7 +276,7 @@ const PreviewResultsScreen: React.FC = () => {
                     <div className="grid grid-cols-2 gap-3 mb-3">
                       
                       {/* Left Banner - Product Focus */}
-                      <div className="aspect-square bg-white rounded overflow-hidden relative">
+                      <div className="aspect-square bg-stone-100 rounded overflow-hidden relative">
                         <div className="flex items-center h-full">
                           {/* Left - Product Image */}
                           <div className="w-1/2 h-full flex items-center justify-center">
