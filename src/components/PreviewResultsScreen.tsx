@@ -241,7 +241,7 @@ const PreviewResultsScreen: React.FC = () => {
                   <X className="h-4 w-4 text-black" />
                 </Button>
               </AlertDialogTrigger>
-              <AlertDialogContent className="border-none shadow-lg max-w-md p-6">
+              <AlertDialogContent className="bg-white border-none shadow-lg max-w-md p-6">
                 <AlertDialogHeader>
                   <AlertDialogTitle>Exit to Homepage?</AlertDialogTitle>
                   <AlertDialogDescription>
