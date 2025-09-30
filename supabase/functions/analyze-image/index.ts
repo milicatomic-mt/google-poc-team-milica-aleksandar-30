@@ -62,8 +62,6 @@ serve(async (req) => {
     const data = await response.json();
     const generatedText = data.candidates?.[0]?.content?.parts?.[0]?.text || '';
     
-    console.log('Raw Gemini response:', generatedText);
-    
     // Try to extract all analysis data from the response
     let suggestions = [];
     let imagePrompts = [];
@@ -85,8 +83,6 @@ serve(async (req) => {
         tone = parsedResponse.tone || "Professional";
         platforms = parsedResponse.platforms || ["Instagram", "Facebook"];
         brandName = parsedResponse.brandName || null;
-        
-        console.log('Parsed brandName from JSON:', brandName);
       } else {
         // Fallback: try to extract arrays separately
         const arrayMatches = generatedText.match(/\[[\s\S]*?\]/g);
@@ -140,25 +136,6 @@ serve(async (req) => {
             targetAudience.push(audience.charAt(0).toUpperCase() + audience.slice(1));
           }
         }
-        
-        // Try to extract brand name from text if not in JSON
-        if (!brandName && generatedText) {
-          // Common brand patterns - look for capitalized words that might be brands
-          const brandPatterns = [
-            /(?:brand|product)[\s:]+([A-Z][a-zA-Z]+(?:\s[A-Z][a-zA-Z]+)?)/i,
-            /([A-Z][a-zA-Z]+(?:\s[A-Z][a-zA-Z]+)?)\s+(?:shoes|sneakers|product|brand)/i,
-            /featuring\s+(?:the\s+)?([A-Z][a-zA-Z]+(?:\s[A-Z][a-zA-Z]+)?)/i
-          ];
-          
-          for (const pattern of brandPatterns) {
-            const match = generatedText.match(pattern);
-            if (match && match[1]) {
-              brandName = match[1].trim();
-              console.log('Extracted brand name from text:', brandName);
-              break;
-            }
-          }
-        }
       }
       
       // Ensure we have fallback suggestions
@@ -204,10 +181,8 @@ serve(async (req) => {
       tone = "Professional";
       platforms = ["Instagram", "Facebook"];
     }
-    
-    console.log('Final brandName being returned:', brandName);
 
-    return new Response(JSON.stringify({
+    return new Response(JSON.stringify({ 
       suggestions: suggestions,
       imagePrompts: imagePrompts,
       targetAudience: targetAudience,
