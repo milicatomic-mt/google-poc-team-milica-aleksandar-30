@@ -226,18 +226,6 @@ const OptimizedGallery = () => {
   return (
     <div className="min-h-screen w-full bg-gray-150 relative">
       {/* Background Video */}
-      <video 
-        className="absolute inset-0 w-full h-full object-cover object-center z-0" 
-        autoPlay 
-        loop 
-        muted 
-        playsInline
-      >
-        <source src="/background-video.mp4" type="video/mp4" />
-      </video>
-      
-      {/* Dark Overlay */}
-      <div className="absolute inset-0 bg-black/15 z-[1]" />
       <div className="relative z-10">
       {/* Header */}
       <div ref={headerRef} className="border-b border-white/40 bg-white/40 backdrop-blur-xl sticky top-0 z-30">
@@ -442,7 +430,7 @@ const CampaignContent: React.FC<{
       
       {/* Banner Ads Card - Exact copy from PreviewResultsScreen */}
       <Card 
-        className="card-elegant backdrop-blur-xl bg-white/60 border-white/50 border-2 shadow-lg hover:shadow-xl transition-all duration-smooth cursor-pointer flex flex-col"
+        className="card-elegant backdrop-blur-xl bg-white/60 border-white/50 border-2 shadow-sm hover:shadow-sm transition-all duration-smooth cursor-pointer flex flex-col"
         onClick={() => onViewDetails('Banner Ads')}
       >
         <div className="px-2 py-2 flex items-center justify-between transition-all duration-smooth">
@@ -560,7 +548,7 @@ const CampaignContent: React.FC<{
 
       {/* Web Creative Card - Matching WebCreativePreview design */}
       <Card 
-        className="card-elegant backdrop-blur-xl bg-white/60 border-white/50 border-2 shadow-lg hover:shadow-xl transition-all duration-smooth cursor-pointer flex flex-col"
+        className="card-elegant backdrop-blur-xl bg-white/60 border-white/50 border-2 shadow-sm hover:shadow-sm transition-all duration-smooth cursor-pointer flex flex-col"
         onClick={() => onViewDetails('Web Creative')}
       >
         <div className="px-2 py-2 flex items-center justify-between transition-all duration-smooth">
@@ -625,7 +613,7 @@ const CampaignContent: React.FC<{
 
       {/* Social Video Collection Card - Matching PreviewResultsScreen design */}
       <Card 
-        className="card-elegant backdrop-blur-xl bg-white/60 border-white/50 border-2 shadow-lg hover:shadow-xl transition-all duration-smooth cursor-pointer flex flex-col"
+        className="card-elegant backdrop-blur-xl bg-white/60 border-white/50 border-2 shadow-sm hover:shadow-sm transition-all duration-smooth cursor-pointer flex flex-col"
         onClick={() => onViewDetails('Social Video Collection')}
       >
         <div className="px-2 py-2 flex items-center justify-between transition-all duration-smooth">
@@ -909,7 +897,7 @@ const CampaignContent: React.FC<{
 
       {/* Email Templates Card - Exact copy from PreviewResultsScreen */}
       <Card 
-        className="card-elegant backdrop-blur-xl bg-white/60 border-white/50 border-2 shadow-lg hover:shadow-xl transition-all duration-smooth cursor-pointer flex flex-col"
+        className="card-elegant backdrop-blur-xl bg-white/60 border-white/50 border-2 shadow-sm hover:shadow-sm transition-all duration-smooth cursor-pointer flex flex-col"
         onClick={() => onViewDetails('Email Templates')}
       >
         <div className="px-2 py-2 flex items-center justify-between transition-all duration-smooth">
@@ -1010,7 +998,7 @@ const CatalogContent: React.FC<{
       
       {/* Catalog Enrichment Card - Matching campaign card styling */}
       <Card 
-        className="card-elegant backdrop-blur-xl bg-white/60 border-white/50 border-2 shadow-2xl hover:shadow-elegant-lg transition-all duration-smooth cursor-pointer"
+        className="card-elegant backdrop-blur-xl bg-white/60 border-white/50 border-2 shadow-sm hover:shadow-sm transition-all duration-smooth cursor-pointer"
       >
         <div className="px-4 py-3 flex items-center justify-between transition-all duration-smooth">
           <div className="flex items-center space-x-2">
@@ -1127,7 +1115,7 @@ const CatalogContent: React.FC<{
 
       {/* Catalog Details Card - Matching campaign card styling */}
       <Card 
-        className="card-elegant backdrop-blur-xl bg-white/60 border-white/50 border-2 shadow-2xl hover:shadow-elegant-lg transition-all duration-smooth cursor-pointer"
+        className="card-elegant backdrop-blur-xl bg-white/60 border-white/50 border-2 shadow-sm hover:shadow-sm transition-all duration-smooth cursor-pointer"
       >
         <div className="px-4 py-3 flex items-center justify-between transition-all duration-smooth">
           <div className="flex items-center space-x-2">
