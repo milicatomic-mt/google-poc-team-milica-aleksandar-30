@@ -210,11 +210,8 @@ const OptimizedGallery = () => {
 
               {/* Loading Text */}
               <div className="text-center animate-fade-in animation-delay-300 min-h-[80px] flex flex-col justify-center">
-                <p className="text-2xl font-semibold text-foreground mb-2">
-                  Loading your gallery...
-                </p>
-                <p className="text-sm text-muted-foreground">
-                  Preparing your creative content
+                <p className="text-2xl font-semibold text-foreground">
+                  Loading Gallery
                 </p>
               </div>
             </div>
