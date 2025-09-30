@@ -391,7 +391,7 @@ const PreviewResultsScreen: React.FC = () => {
                 <CardContent className="p-2">
                   <div className="h-80 bg-gray-100 overflow-hidden shadow-sm rounded relative">
                     {/* Website Landing Page Layout */}
-                    <div className="h-full bg-stone-50 flex rounded">
+                    <div className="h-full bg-stone-100 flex rounded">
                       {/* Left Side - Content */}
                       <div className="flex-1 p-4 flex flex-col justify-center">
                         {/* New Launch Badge */}
