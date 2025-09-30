@@ -4,6 +4,9 @@ import RibbedSphere from '@/components/RibbedSphere';
 import { saveCampaignRequest, generateCampaign, uploadBase64Image } from '@/lib/database';
 import type { CampaignCreationRequest } from '@/types/api';
 import { Progress } from '@/components/ui/progress';
+import { Button } from '@/components/ui/button';
+import { X } from 'lucide-react';
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger, DialogClose } from '@/components/ui/dialog';
 import { supabase } from "@/integrations/supabase/client";
 
 const GenerateCampaignScreen = () => {
@@ -298,6 +301,31 @@ const GenerateCampaignScreen = () => {
       </video>
       
       <div className="relative z-10 min-h-screen flex flex-col">
+        {/* Close Button */}
+        <div className="absolute top-12 right-8 z-20">
+          <Dialog>
+            <DialogTrigger asChild>
+              <Button variant="secondary" className="tap-target focus-ring bg-white border-white/30 hover:bg-white/90 rounded-full h-8 px-3 shadow-sm">
+                <X className="h-4 w-4 text-black" />
+              </Button>
+            </DialogTrigger>
+            <DialogContent>
+              <DialogHeader>
+                <DialogTitle>Exit to Homepage?</DialogTitle>
+                <DialogDescription>
+                  Are you sure you want to exit? Any current progress will be lost.
+                </DialogDescription>
+              </DialogHeader>
+              <DialogFooter>
+                <DialogClose asChild>
+                  <Button variant="outline" className="rounded-full">Cancel</Button>
+                </DialogClose>
+                <Button onClick={() => navigate('/')} className="rounded-full">Exit</Button>
+              </DialogFooter>
+            </DialogContent>
+          </Dialog>
+        </div>
+        
         <div className="flex-1 flex items-center justify-center px-4 py-8">
           <div className="flex flex-col items-center justify-center space-y-6">
             {/* Animated Sphere - 220x220px */}
