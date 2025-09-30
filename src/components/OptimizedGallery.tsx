@@ -284,16 +284,6 @@ const OptimizedGallery = () => {
           </div>
         </div>
 
-      {/* Sticky Type Tag below header */}
-      {selectedFilter !== 'all' && (
-        <div className="sticky z-20 bg-background/80 backdrop-blur-sm border-b border-border" style={{ top: headerHeight }}>
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2">
-            <Badge variant="outline" className="text-sm border-primary text-primary bg-background shadow-sm">
-              {selectedFilter === 'campaigns' ? 'Campaign' : 'Catalog'}
-            </Badge>
-          </div>
-        </div>
-      )}
 
       {/* Gallery Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
