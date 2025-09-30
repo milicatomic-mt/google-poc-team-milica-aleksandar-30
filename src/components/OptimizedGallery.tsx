@@ -363,7 +363,7 @@ const GalleryItemDisplay: React.FC<{
       <CardContent className="p-0 relative">
         
         {/* Header */}
-        <div className="bg-white/40 backdrop-blur-xl border-b border-white/40 p-6">
+        <div className="border-b border-white/40 p-6">
           <div className="flex items-center justify-between">
             <div>
               <h2 className="text-2xl font-semibold">
