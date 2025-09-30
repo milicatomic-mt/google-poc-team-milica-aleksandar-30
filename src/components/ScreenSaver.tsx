@@ -114,20 +114,15 @@ const ScreenSaver = () => {
   useEffect(() => {
     if (!cardsVisible) return;
 
-    const dissolveLoop = () => {
-      const interval = setInterval(() => {
-        setCardsVisible(false);
-        setTimeout(() => {
-          setCardsVisible(true);
-        }, 1000); // 1s dissolve transition
-      }, 30000); // 30s visible duration
+    const interval = setInterval(() => {
+      setCardsVisible(false);
+      setTimeout(() => {
+        setCardsVisible(true);
+      }, 1000); // 1s dissolve transition
+    }, 30000); // 30s visible duration
 
-      return interval;
-    };
-
-    const interval = dissolveLoop();
     return () => clearInterval(interval);
-  }, [cardsVisible]);
+  }, [isTypingComplete]);
   const handleClick = () => {
     navigate('/welcome');
   };
