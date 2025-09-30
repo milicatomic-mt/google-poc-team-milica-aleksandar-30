@@ -744,7 +744,7 @@ const PreviewResultsScreen: React.FC = () => {
                 <CardContent className="p-2">
                   <div className="h-80 relative rounded">
                     {/* Modern Email Client Interface */}
-                    <div className="bg-white backdrop-blur-sm overflow-hidden h-full border border-white/20 shadow-inner rounded">
+                    <div className="bg-stone-100 backdrop-blur-sm overflow-hidden h-full border border-white/20 shadow-inner rounded">
                       {/* Email Client Header */}
                       <div className="bg-gradient-to-r from-slate-50 to-gray-50 px-3 py-2 border-b border-gray-200">
                         <div className="flex items-center justify-between">
@@ -773,7 +773,7 @@ const PreviewResultsScreen: React.FC = () => {
                         </div>
 
                         {/* Product Showcase - Expanded */}
-                        <div className="bg-gradient-to-br from-white to-slate-50 px-3 py-4 relative">
+                        <div className="bg-gradient-to-br from-stone-100 to-slate-50 px-3 py-4 relative">
                           <div className="flex items-center gap-3">
                             {/* Product Image */}
                             <div className="relative">
