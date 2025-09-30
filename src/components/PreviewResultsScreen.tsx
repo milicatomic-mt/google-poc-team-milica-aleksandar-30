@@ -264,7 +264,7 @@ const PreviewResultsScreen: React.FC = () => {
                 className="card-elegant backdrop-blur-xl bg-white/60 border-white/50 border-2 shadow-2xl hover:shadow-elegant-lg transition-all duration-smooth cursor-pointer"
                 onClick={() => handleOpenCategory('Banner Ads')}
               >
-                <div className="px-4 py-3 flex items-center justify-between transition-all duration-smooth">
+                <div className="px-2 py-2 flex items-center justify-between transition-all duration-smooth">
                   <div className="flex items-center space-x-2">
                     <h3 className="text-foreground font-medium">Banner Ads</h3>
                   </div>
@@ -382,7 +382,7 @@ const PreviewResultsScreen: React.FC = () => {
                 className="card-elegant backdrop-blur-xl bg-white/60 border-white/50 border-2 shadow-2xl hover:shadow-elegant-lg transition-all duration-smooth cursor-pointer"
                 onClick={() => handleOpenCategory('Web Creative')}
               >
-                <div className="px-4 py-3 flex items-center justify-between transition-all duration-smooth">
+                <div className="px-2 py-2 flex items-center justify-between transition-all duration-smooth">
                   <div className="flex items-center space-x-2">
                     <h3 className="text-foreground font-medium">Web Creative</h3>
                   </div>
@@ -447,7 +447,7 @@ const PreviewResultsScreen: React.FC = () => {
                 className="card-elegant backdrop-blur-xl bg-white/60 border-white/50 border-2 shadow-2xl hover:shadow-elegant-lg transition-all duration-smooth cursor-pointer"
                 onClick={() => handleOpenCategory('Social Video Collection')}
               >
-                <div className="px-4 py-3 flex items-center justify-between transition-all duration-smooth">
+                <div className="px-2 py-2 flex items-center justify-between transition-all duration-smooth">
                   <div className="flex items-center space-x-2">
                     <h3 className="text-foreground font-medium">Social Video Collection</h3>
                   </div>
@@ -735,7 +735,7 @@ const PreviewResultsScreen: React.FC = () => {
                 className="card-elegant backdrop-blur-xl bg-white/60 border-white/50 border-2 shadow-2xl hover:shadow-elegant-lg transition-all duration-smooth cursor-pointer"
                 onClick={() => handleOpenCategory('Email Templates')}
               >
-                <div className="px-3 py-3 flex items-center justify-between transition-all duration-smooth">
+                <div className="px-2 py-2 flex items-center justify-between transition-all duration-smooth">
                   <div className="flex items-center space-x-2">
                     <h3 className="text-foreground font-medium">Email Templates</h3>
                   </div>
