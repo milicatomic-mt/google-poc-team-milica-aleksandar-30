@@ -424,7 +424,7 @@ const PreviewResultsScreen: React.FC = () => {
                           <button className="bg-black text-white text-[8px] px-3 py-1.5 rounded-full font-medium">
                             Shop 'Her' Now
                           </button>
-                          <button className="border border-gray-300 text-gray-700 text-[8px] px-3 py-1.5 rounded-full font-medium">
+                          <button className="bg-white text-gray-700 text-[8px] px-3 py-1.5 rounded-full font-medium">
                             Learn More
                           </button>
                         </div>
