@@ -72,7 +72,7 @@ export const HelpGuideModal = () => {
         <div className="flex-shrink-0">
           <SheetHeader className="text-left space-y-3 pb-6">
             <div className="flex items-center gap-2">
-              <HelpCircle className="h-6 w-6 text-primary" />
+              <HelpCircle className="h-6 w-6 text-black" />
               <SheetTitle className="text-2xl font-semibold text-foreground">
                 Help & Guide
               </SheetTitle>
