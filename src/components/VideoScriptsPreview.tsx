@@ -593,7 +593,9 @@ const VideoScriptsPreview: React.FC = () => {
                   {/* Post Content */}
                   <div className="bg-black text-white px-4 pb-4">
                     <p className="text-sm mb-3 p-2 rounded">
-                      From FCEV prototype to series production – The BMW iX5 Hydrogen 🚙 ... See more
+                      {videoScripts?.[0]?.script?.split('\n\n')[0]?.substring(0, 80) || 
+                       campaignResults?.email_copy?.body?.substring(0, 80) || 
+                       'Discover our latest product innovation'} ... See more
                     </p>
                   </div>
 

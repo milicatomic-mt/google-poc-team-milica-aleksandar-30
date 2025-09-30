@@ -684,7 +684,9 @@ const PreviewResultsScreen: React.FC = () => {
                       {/* Post Content */}
                       <div className="bg-gray-800 px-3 py-2">
                         <p className="text-white text-[8px] mb-2">
-                          From FCEV prototype to series production – The BMW iX5 Hydrogen 🚙 ... See more
+                          {activeCampaignResults?.video_scripts?.[0]?.script?.split('\n\n')[0]?.substring(0, 80) || 
+                           activeCampaignResults?.email_copy?.body?.substring(0, 80) || 
+                           'Discover our latest product innovation'} ... See more
                         </p>
                       </div>
                       
