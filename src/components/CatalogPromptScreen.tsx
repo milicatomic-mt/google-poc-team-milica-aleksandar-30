@@ -5,6 +5,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { ArrowLeft, RefreshCw, X } from 'lucide-react';
+import SparkIcon from '@/assets/spark-icon.svg';
 import RibbedSphere from '@/components/RibbedSphere';
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger, DialogClose } from '@/components/ui/dialog';
 import { toast } from 'sonner';
@@ -536,9 +537,7 @@ const CatalogPromptScreen = () => {
               aria-label="Create catalog enrichment"
             >
               Create Catalog Enrichment
-              <svg className="w-[24px] h-[24px] ml-3 fill-white flex-shrink-0" viewBox="0 0 800 800" style={{minWidth: '24px', minHeight: '24px'}}>
-                <path d="M504.999 295.947C453.359 244.288 418.014 154.079 400.473 72C382.905 154.096 347.597 244.324 295.938 295.982C244.299 347.605 154.062 382.951 72 400.527C154.096 418.068 244.315 453.393 295.955 505.053C347.595 556.693 382.94 646.921 400.508 729C418.049 646.904 453.384 556.676 505.015 505.018C556.655 453.378 646.892 418.049 728.954 400.473C646.877 382.932 556.657 347.589 504.999 295.947Z"/>
-              </svg>
+              <img src={SparkIcon} alt="" className="w-6 h-6 ml-3 flex-shrink-0" />
             </Button>
           </div>
         </footer>
