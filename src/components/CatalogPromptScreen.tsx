@@ -147,13 +147,17 @@ const CatalogPromptScreen = () => {
             const foundPlatform = platforms.find(p => 
               p.toLowerCase().includes(matchingPlatform.toLowerCase())
             );
-            if (foundPlatform) {
-              setPlatform(foundPlatform);
-            }
-          }
+        if (foundPlatform) {
+          setPlatform(foundPlatform);
         }
-        
-        toast.success('New prompt generated!');
+      }
+    }
+    
+    if (data.brandName) {
+      setBrandName(data.brandName);
+    }
+    
+    toast.success('New prompt generated!');
       }
     } catch (error) {
       console.error('Error regenerating prompt:', error);
@@ -269,6 +273,11 @@ const CatalogPromptScreen = () => {
             platformToSet = foundPlatform;
           }
         }
+      }
+      
+      // Auto-fill brand name from AI analysis
+      if (aiAnalysisData.brandName && !brandName) {
+        setBrandName(aiAnalysisData.brandName);
       }
       
       // Animate selections with delays
