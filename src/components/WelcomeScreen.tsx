@@ -136,7 +136,7 @@ const WelcomeScreen = () => {
               <div className="relative h-64 mb-6 overflow-hidden rounded-lg">
                 <img src={campaignSample} alt="Campaign advertisement mockup" className="w-full h-full object-cover transition-transform duration-smooth group-hover:scale-105" />
                 <div className="absolute inset-0 bg-gradient-to-t from-background/20 to-transparent" />
-                <div className="absolute top-4 right-4 p-2 bg-white rounded-full shadow-md">
+                <div className="absolute top-4 left-4 p-2 bg-white rounded-full shadow-md">
                   <Megaphone className="w-6 h-6 text-black" />
                 </div>
                 {/* Selection Checkmark Overlay */}
@@ -165,7 +165,7 @@ const WelcomeScreen = () => {
               <div className="relative h-64 mb-6 overflow-hidden rounded-lg">
                 <img src={catalogSample} alt="Catalog enrichment sample" className="w-full h-full object-cover transition-transform duration-smooth group-hover:scale-105" />
                 <div className="absolute inset-0 bg-gradient-to-t from-background/20 to-transparent" />
-                <div className="absolute top-4 right-4 p-2 bg-white rounded-full shadow-md">
+                <div className="absolute top-4 left-4 p-2 bg-white rounded-full shadow-md">
                   <Package className="w-6 h-6 text-black" />
                 </div>
                 {/* Selection Checkmark Overlay */}
