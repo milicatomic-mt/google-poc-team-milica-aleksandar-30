@@ -495,7 +495,7 @@ const PreviewResultsScreen: React.FC = () => {
                         <div className="flex gap-2">
                           <div className="flex flex-col items-center">
                             <div className="w-8 h-8 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full p-0.5">
-                              <img src={uploadedImage || activeCampaignResults?.generated_images?.[0]?.url} alt="Your story" className="w-full h-full rounded-full object-cover" />
+                              <img src={profileAvatar} alt="Your story" className="w-full h-full rounded-full object-cover" />
                             </div>
                             <span className="text-white text-[6px] mt-0.5">Your story</span>
                           </div>
