@@ -763,15 +763,11 @@ const PreviewResultsScreen: React.FC = () => {
                           <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/10"></div>
                           <div className="absolute top-0 right-0 w-16 h-16 bg-white/5 rounded-full blur-xl"></div>
                           <div className="relative z-10 text-center">
-                            <div className="inline-flex items-center gap-1 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-2 py-1 mb-2">
-                              <div className="w-1 h-1 bg-green-400 rounded-full"></div>
-                              <span className="text-[6px] font-medium text-white">New Launch</span>
-                            </div>
                             <h2 className="text-[10px] font-bold text-white mb-1 leading-tight">
-                              Transform Your Experience ✨
+                              Premium sound
                             </h2>
-                            <p className="text-[6px] text-gray-300 leading-relaxed">
-                              Discover premium solutions designed for you
+                            <p className="text-[6px] text-white/90 uppercase tracking-wider">
+                              MINIMALIST DESIGN
                             </p>
                           </div>
                         </div>
@@ -788,50 +784,29 @@ const PreviewResultsScreen: React.FC = () => {
                                   <img src={uploadedImage} alt="Product" className="w-full h-full object-cover" />
                                 ) : null}
                               </div>
-                              <div className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full flex items-center justify-center">
-                                <span className="text-[5px] text-white font-bold">!</span>
-                              </div>
                             </div>
                             
                             {/* Product Info - Expanded */}
                             <div className="flex-1 min-w-0">
                               <h3 className="text-[10px] font-bold text-gray-900 leading-tight mb-2">
-                                Exclusive Premium Collection
+                                Premium wireless headphones with a sleek ivory finish, designed for immersive sound and all-day comfort.
                               </h3>
                               <p className="text-[7px] text-gray-600 leading-relaxed mb-3">
-                                Limited time offer - Save up to 40% on our bestselling products. Premium quality meets exceptional value in this curated selection.
+                                {activeCampaignResults?.email_copy?.body?.substring(0, 120) || 'Experience high-quality audio with these stylish over-ear wireless headphones. Featuring soft cushioned ear pads...'}
                               </p>
                               <div className="flex items-center gap-2 mb-2">
                                 <div className="bg-gradient-to-r from-slate-700 to-slate-800 text-white text-[6px] px-3 py-1 rounded-full font-medium shadow-sm">
                                   Shop Now
                                 </div>
-                                <div className="text-[6px] text-gray-500">Free shipping included</div>
                               </div>
                             </div>
                           </div>
                         </div>
 
-                        {/* Features Section - Condensed */}
-                        <div className="bg-gray-50 px-3 py-1.5">
-                          <div className="grid grid-cols-3 gap-1">
-                            <div className="text-center">
-                              <div className="w-3 h-3 bg-gradient-to-br from-slate-500 to-slate-600 rounded-full mx-auto mb-0.5 flex items-center justify-center">
-                                <div className="w-1 h-1 bg-white rounded-full"></div>
-                              </div>
-                              <div className="text-[4px] font-semibold text-gray-700">Premium</div>
-                            </div>
-                            <div className="text-center">
-                              <div className="w-3 h-3 bg-gradient-to-br from-slate-500 to-slate-600 rounded-full mx-auto mb-0.5 flex items-center justify-center">
-                                <div className="w-1 h-1 bg-white rounded-full"></div>
-                              </div>
-                              <div className="text-[4px] font-semibold text-gray-700">Fast</div>
-                            </div>
-                            <div className="text-center">
-                              <div className="w-3 h-3 bg-gradient-to-br from-slate-500 to-slate-600 rounded-full mx-auto mb-0.5 flex items-center justify-center">
-                                <div className="w-1 h-1 bg-white rounded-full"></div>
-                              </div>
-                              <div className="text-[4px] font-semibold text-gray-700">Returns</div>
-                            </div>
+                        {/* Footer - Condensed */}
+                        <div className="bg-slate-900/90 px-3 py-1.5">
+                          <div className="text-center text-[5px] text-slate-300">
+                            © 2024 Premium Sound. All rights reserved.
                           </div>
                         </div>
                       </div>
