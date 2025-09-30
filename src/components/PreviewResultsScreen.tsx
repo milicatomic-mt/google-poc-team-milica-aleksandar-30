@@ -20,6 +20,7 @@ import type { CampaignCreationResponse } from '@/types/api';
 import { VideoPlayer } from '@/components/VideoPlayer';
 import QRDownloadModal from '@/components/QRDownloadModal';
 import { extractColorsFromImage } from '@/lib/color-extraction';
+import profileAvatar from '@/assets/profile-avatar.png';
 
 const PreviewResultsScreen: React.FC = () => {
   const location = useLocation();
@@ -659,15 +660,11 @@ const PreviewResultsScreen: React.FC = () => {
                       <div className="bg-gray-800 px-3 py-2 border-b border-gray-700">
                         <div className="flex items-center gap-2">
                           <div className="w-7 h-7 bg-gray-600 rounded-full overflow-hidden flex items-center justify-center">
-                            {(activeCampaignResults?.generated_images?.[0]?.url || uploadedImage) ? (
-                              <img 
-                                src={activeCampaignResults?.generated_images?.[0]?.url || uploadedImage} 
-                                alt="Brand profile" 
-                                className="w-full h-full object-cover" 
-                              />
-                            ) : (
-                              <span className="text-white text-[8px] font-bold">Brand</span>
-                            )}
+                            <img 
+                              src={profileAvatar}
+                              alt="Brand profile" 
+                              className="w-full h-full object-cover" 
+                            />
                           </div>
                           <div>
                             <div className="text-white text-[9px] font-bold">

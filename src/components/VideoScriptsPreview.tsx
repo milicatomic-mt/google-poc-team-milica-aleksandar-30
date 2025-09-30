@@ -7,7 +7,7 @@ import QRDownloadModal from '@/components/QRDownloadModal';
 import { VideoPlayer } from '@/components/VideoPlayer';
 import { OptimizedImage } from '@/components/ui/optimized-image';
 import type { CampaignCreationResponse } from '@/types/api';
-import profileImage from '@/assets/profile-image.png';
+import profileImage from '@/assets/profile-avatar.png';
 
 const VideoScriptsPreview: React.FC = () => {
   const location = useLocation();
