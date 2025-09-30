@@ -105,10 +105,10 @@ const EmailTemplatesPreview: React.FC = () => {
               }}
             >
               <h1 className="text-4xl font-bold text-white mb-4 drop-shadow-lg">
-                {emailCopy?.subject || 'Premium sound'}
+                {campaignResults?.landing_page_concept?.hero_text || emailCopy?.subject || 'Premium sound'}
               </h1>
               <p className="text-lg text-white/90 uppercase tracking-wider drop-shadow">
-                {campaignResults?.product_name || 'MINIMALIST DESIGN'}
+                {campaignResults?.landing_page_concept?.sub_text || 'MINIMALIST DESIGN'}
               </p>
             </div>
 
@@ -147,7 +147,7 @@ const EmailTemplatesPreview: React.FC = () => {
             >
               <div className="text-center">
                 <h2 className="text-3xl font-bold text-slate-900 mb-6">
-                  {campaignResults?.product_description || 'Premium wireless headphones with a sleek ivory finish, designed for immersive sound and all-day comfort.'}
+                  {campaignResults?.banner_ads?.[0]?.headline || emailCopy?.subject || 'Premium wireless headphones with a sleek ivory finish, designed for immersive sound and all-day comfort.'}
                 </h2>
                 
                 <p className="text-lg text-slate-600 leading-relaxed mb-8">
