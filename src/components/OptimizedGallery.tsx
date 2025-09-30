@@ -12,6 +12,9 @@ import QRDownloadModal from '@/components/QRDownloadModal';
 import { OptimizedImage } from '@/components/ui/optimized-image';
 import { useImageCache } from '@/hooks/useImageCache';
 import { toast } from "sonner";
+import profileAvatar from '@/assets/profile-avatar.png';
+import profileKaren from '@/assets/profile-karen.png';
+import profileZack from '@/assets/profile-zack.png';
 
 const OptimizedGallery = () => {
   const navigate = useNavigate();
@@ -673,19 +676,19 @@ const CampaignContent: React.FC<{
                 <div className="flex gap-2">
                   <div className="flex flex-col items-center">
                     <div className="w-8 h-8 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full p-0.5">
-                      <img src={uploadedImage || getImage(0)} alt="Your story" className="w-full h-full rounded-full object-cover" />
+                      <img src={profileAvatar} alt="Your story" className="w-full h-full rounded-full object-cover" />
                     </div>
                     <span className="text-white text-[6px] mt-0.5">Your story</span>
                   </div>
                   <div className="flex flex-col items-center">
                     <div className="w-8 h-8 bg-gray-600 rounded-full p-0.5">
-                      <div className="w-full h-full bg-gray-400 rounded-full"></div>
+                      <img src={profileKaren} alt="joshua_l" className="w-full h-full rounded-full object-cover" />
                     </div>
                     <span className="text-gray-400 text-[6px] mt-0.5">joshua_l</span>
                   </div>
                   <div className="flex flex-col items-center">
                     <div className="w-8 h-8 bg-gray-600 rounded-full p-0.5">
-                      <div className="w-full h-full bg-gray-400 rounded-full"></div>
+                      <img src={profileZack} alt="craig.done" className="w-full h-full rounded-full object-cover" />
                     </div>
                     <span className="text-gray-400 text-[6px] mt-0.5">craig.done</span>
                   </div>
@@ -737,7 +740,7 @@ const CampaignContent: React.FC<{
                   <Search className="w-4 h-4 text-gray-400" />
                   <Plus className="w-4 h-4 text-gray-400" />
                   <Heart className="w-4 h-4 text-gray-400" />
-                  <div className="w-4 h-4 bg-gray-400 rounded-full"></div>
+                  <img src={profileAvatar} alt="Profile" className="w-4 h-4 rounded-full object-cover" />
                 </div>
               </div>
             </div>
@@ -840,15 +843,11 @@ const CampaignContent: React.FC<{
               <div className="bg-gray-800 px-3 py-2 border-b border-gray-700">
                 <div className="flex items-center gap-2">
                   <div className="w-7 h-7 bg-gray-600 rounded-full overflow-hidden flex items-center justify-center">
-                    {getImage(0) ? (
-                      <OptimizedImage 
-                        src={getImage(0)} 
-                        alt="Brand profile" 
-                        className="w-full h-full object-cover" 
-                      />
-                    ) : (
-                      <span className="text-white text-[8px] font-bold">Brand</span>
-                    )}
+                    <img 
+                      src={profileAvatar}
+                      alt="Brand profile" 
+                      className="w-full h-full object-cover" 
+                    />
                   </div>
                   <div>
                     <div className="text-white text-[9px] font-bold">BMW Group ✓</div>
