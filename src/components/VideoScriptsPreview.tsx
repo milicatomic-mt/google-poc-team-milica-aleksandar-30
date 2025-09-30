@@ -152,13 +152,13 @@ const VideoScriptsPreview: React.FC = () => {
                     </div>
                     <div className="flex flex-col items-center">
                       <div className="w-16 h-16 rounded-full bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-600 p-0.5">
-                        <div className="w-full h-full rounded-full bg-gray-300"></div>
+                        <img src={profileImage} alt="karenme" className="w-full h-full rounded-full object-cover border-2 border-black" />
                       </div>
                       <span className="text-xs mt-1">karenme</span>
                     </div>
                     <div className="flex flex-col items-center">
                       <div className="w-16 h-16 rounded-full bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-600 p-0.5">
-                        <div className="w-full h-full rounded-full bg-gray-400"></div>
+                        <img src={profileImage} alt="zackjohn" className="w-full h-full rounded-full object-cover border-2 border-black" />
                       </div>
                       <span className="text-xs mt-1">zackjohn</span>
                     </div>
@@ -301,7 +301,7 @@ const VideoScriptsPreview: React.FC = () => {
                       </svg>
                     </button>
                     <button>
-                      <div className="w-6 h-6 rounded-full bg-gray-300"></div>
+                      <img src={profileImage} alt="Profile" className="w-6 h-6 rounded-full object-cover" />
                     </button>
                   </div>
                 </div>
@@ -717,7 +717,7 @@ const VideoScriptsPreview: React.FC = () => {
                         <span className="text-xs mt-1 text-white">Notifications</span>
                       </div>
                       <div className="text-center">
-                        <div className="w-6 h-6 rounded-full bg-gray-300 mx-auto"></div>
+                        <img src={profileImage} alt="Profile" className="w-6 h-6 rounded-full object-cover mx-auto" />
                         <span className="text-xs mt-1 text-white">Menu</span>
                       </div>
                     </div>

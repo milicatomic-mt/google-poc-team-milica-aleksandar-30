@@ -499,13 +499,13 @@ const PreviewResultsScreen: React.FC = () => {
                           </div>
                           <div className="flex flex-col items-center">
                             <div className="w-8 h-8 bg-gray-600 rounded-full p-0.5">
-                              <div className="w-full h-full bg-gray-400 rounded-full"></div>
+                              <img src={profileAvatar} alt="joshua_l" className="w-full h-full rounded-full object-cover" />
                             </div>
                             <span className="text-gray-400 text-[6px] mt-0.5">joshua_l</span>
                           </div>
                           <div className="flex flex-col items-center">
                             <div className="w-8 h-8 bg-gray-600 rounded-full p-0.5">
-                              <div className="w-full h-full bg-gray-400 rounded-full"></div>
+                              <img src={profileAvatar} alt="craig.done" className="w-full h-full rounded-full object-cover" />
                             </div>
                             <span className="text-gray-400 text-[6px] mt-0.5">craig.done</span>
                           </div>
@@ -557,7 +557,7 @@ const PreviewResultsScreen: React.FC = () => {
                           <Search className="w-4 h-4 text-gray-400" />
                           <Plus className="w-4 h-4 text-gray-400" />
                           <Heart className="w-4 h-4 text-gray-400" />
-                          <div className="w-4 h-4 bg-gray-400 rounded-full"></div>
+                          <img src={profileAvatar} alt="Profile" className="w-4 h-4 rounded-full object-cover" />
                         </div>
                       </div>
                     </div>
