@@ -61,10 +61,11 @@ const ScreenSaver = () => {
   useEffect(() => {
     let currentIndex = 0;
     let typingInterval: NodeJS.Timeout;
-    let sentenceCycleInterval: NodeJS.Timeout;
+    let sentenceCycleTimeout: NodeJS.Timeout;
+    let localSentenceIndex = 0;
     
-    const startTyping = () => {
-      const currentText = sentences[currentSentenceIndex];
+    const startTyping = (sentenceIndex: number) => {
+      const currentText = sentences[sentenceIndex];
       setDisplayedText('');
       setIsTypingComplete(false);
       currentIndex = 0;
@@ -77,23 +78,25 @@ const ScreenSaver = () => {
         } else {
           setIsTypingComplete(true);
           clearInterval(typingInterval);
+          
+          // Schedule next sentence after completion
+          sentenceCycleTimeout = setTimeout(() => {
+            localSentenceIndex = (localSentenceIndex + 1) % sentences.length;
+            setCurrentSentenceIndex(localSentenceIndex);
+            startTyping(localSentenceIndex);
+          }, 20000);
         }
-      }, 18); // Typing speed: 18ms per character
+      }, 18);
     };
 
     // Start initial typing
-    startTyping();
-
-    // Set up sentence cycling
-    sentenceCycleInterval = setInterval(() => {
-      setCurrentSentenceIndex(prev => (prev + 1) % sentences.length);
-    }, 20000); // Switch sentence every 20000ms
+    startTyping(localSentenceIndex);
 
     return () => {
       clearInterval(typingInterval);
-      clearInterval(sentenceCycleInterval);
+      clearTimeout(sentenceCycleTimeout);
     };
-  }, [currentSentenceIndex]);
+  }, []); // Empty dependency array - only run once
 
   // Card animation - starts after typing completes
   useEffect(() => {
