@@ -161,7 +161,7 @@ const ScreenSaver = () => {
         <Button
           variant="outline"
           size="lg"
-          className="tap-target focus-ring group bg-white/20 border-white/30 hover:bg-white/30 rounded-full"
+          className="tap-target group bg-white/20 border-white/30 hover:bg-white/30 rounded-full"
           onClick={e => {
             e.stopPropagation();
             navigate('/gallery');
