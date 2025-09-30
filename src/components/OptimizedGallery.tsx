@@ -186,7 +186,7 @@ const OptimizedGallery = () => {
 
   if (isLoading) {
     return (
-      <div className="relative min-h-screen w-full overflow-hidden bg-gray-300">
+      <div className="relative min-h-screen w-full overflow-hidden bg-gray-500">
         {/* Background Video */}
         <video 
           className="absolute inset-0 w-full h-full object-cover object-center opacity-60 z-0" 
