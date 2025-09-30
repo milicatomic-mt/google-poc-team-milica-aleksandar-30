@@ -65,8 +65,8 @@ All colors MUST be HSL.
     --shadow-sm: 0 2px 4px 0 hsl(0 0% 0% / 0.09);
     --shadow: 0 6px 12px -1px hsl(0 0% 0% / 0.14), 0 4px 8px -2px hsl(0 0% 0% / 0.14);
     --shadow-lg: 0 16px 32px -3px hsl(0 0% 0% / 0.14), 0 8px 16px -4px hsl(0 0% 0% / 0.14);
-    --shadow-glow: 0 0 0 1px hsl(231 48% 48% / 0.3), 0 10px 20px -5px hsl(231 48% 48% / 0.3);
-    --shadow-blue: 0 8px 32px -8px hsl(231 48% 48% / 0.4), 0 0 0 1px hsl(231 48% 48% / 0.2);
+    --shadow-glow: 0 0 0 1px hsl(0 0% 0% / 0.1), 0 10px 20px -5px hsl(0 0% 0% / 0.15);
+    --shadow-blue: 0 8px 32px -8px hsl(0 0% 0% / 0.15), 0 0 0 1px hsl(0 0% 0% / 0.1);
     --shadow-coral: 0 0 0 1px hsl(6 100% 69% / 0.3), 0 10px 20px -5px hsl(6 100% 69% / 0.3);
 
     /* Typography Scale */
@@ -159,7 +159,7 @@ All colors MUST be HSL.
     --gradient-glow: linear-gradient(135deg, hsl(231 48% 62% / 0.2), hsl(231 48% 46% / 0.2));
 
     /* Shadows - Dark Mode */
-    --shadow-glow: 0 0 0 1px hsl(231 48% 52% / 0.4), 0 10px 20px -5px hsl(231 48% 52% / 0.4);
+    --shadow-glow: 0 0 0 1px hsl(0 0% 100% / 0.1), 0 10px 20px -5px hsl(0 0% 0% / 0.3);
     --shadow-coral: 0 0 0 1px hsl(6 90% 65% / 0.4), 0 10px 20px -5px hsl(6 90% 65% / 0.4);
 
     --sidebar-background: 240 5.9% 10%;
@@ -382,7 +382,7 @@ All colors MUST be HSL.
   }
 
   .btn-gradient:hover {
-    box-shadow: var(--shadow-blue), 0 0 40px -10px hsl(231 48% 48% / 0.3);
+    box-shadow: var(--shadow-blue);
   }
 
   /* Text Gradients */
