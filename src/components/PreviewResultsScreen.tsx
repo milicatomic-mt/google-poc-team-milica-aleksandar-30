@@ -242,7 +242,7 @@ const PreviewResultsScreen: React.FC = () => {
                 <AlertDialogHeader>
                   <AlertDialogTitle>Exit to Homepage?</AlertDialogTitle>
                   <AlertDialogDescription>
-                    Are you sure you want to exit? Any current selection will be lost.
+                    Your results are saved. You can view or download them anytime in the Gallery.
                   </AlertDialogDescription>
                 </AlertDialogHeader>
                 <AlertDialogFooter>
