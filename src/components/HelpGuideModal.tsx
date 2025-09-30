@@ -67,18 +67,21 @@ export const HelpGuideModal = () => {
       </SheetTrigger>
       <SheetContent 
         side="left" 
-        className="w-full sm:max-w-md bg-white/70 backdrop-blur-md border border-white text-foreground overflow-y-auto h-[calc(100vh-48px)] mt-6 ml-6 mb-6 rounded-lg p-12"
+        className="w-full sm:max-w-md bg-white/70 backdrop-blur-md border border-white text-foreground overflow-y-auto h-[calc(100vh-48px)] mt-6 ml-6 mb-6 rounded-lg p-12 flex flex-col"
       >
-        <SheetHeader className="text-left space-y-3 pb-6">
-          <SheetTitle className="text-2xl font-semibold text-foreground">
-            Help & Guide
-          </SheetTitle>
-          <SheetDescription className="text-muted-foreground text-sm">
-            Find answers to common questions about our platform and features
-          </SheetDescription>
-        </SheetHeader>
+        <div className="flex-shrink-0">
+          <SheetHeader className="text-left space-y-3 pb-6">
+            <SheetTitle className="text-2xl font-semibold text-foreground">
+              Help & Guide
+            </SheetTitle>
+            <SheetDescription className="text-muted-foreground text-sm">
+              Find answers to common questions about our platform and features
+            </SheetDescription>
+          </SheetHeader>
+        </div>
 
-        <Accordion type="single" collapsible className="w-full space-y-3">
+        <div className="flex-1 overflow-y-auto">
+          <Accordion type="single" collapsible className="w-full space-y-3">
           {faqItems.map((item) => (
             <AccordionItem 
               key={item.id} 
@@ -94,9 +97,10 @@ export const HelpGuideModal = () => {
             </AccordionItem>
           ))}
         </Accordion>
+        </div>
 
         {/* Bottom branding */}
-        <div className="mt-auto pt-8 flex items-center gap-3">
+        <div className="flex-shrink-0 pt-8 flex items-center gap-3">
           <div className="h-8 w-8 flex-shrink-0">
             <RibbedSphere className="w-full h-full" />
           </div>
