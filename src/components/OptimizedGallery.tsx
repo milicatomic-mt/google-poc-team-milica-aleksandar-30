@@ -540,7 +540,7 @@ const CampaignContent: React.FC<{
         </CardContent>
       </Card>
 
-      {/* Web Creative Card - Exact copy from PreviewResultsScreen */}
+      {/* Web Creative Card - Matching WebCreativePreview design */}
       <Card 
         className="card-elegant backdrop-blur-xl bg-white/60 border-white/50 border-2 shadow-2xl hover:shadow-elegant-lg transition-all duration-smooth cursor-pointer flex flex-col"
         onClick={() => onViewDetails('Web Creative')}
@@ -550,111 +550,138 @@ const CampaignContent: React.FC<{
             <h3 className="text-foreground font-medium">Web Creative</h3>
             <span className="bg-muted text-primary text-xs px-2 py-1 rounded-full font-medium">1</span>
           </div>
-          {/* Removed download button from web creative section */}
         </div>
         <CardContent className="p-4 flex-1 flex flex-col">
-          <div className="h-80 flex-1 bg-gray-100 overflow-hidden border border-gray-300 shadow-sm" style={{borderRadius: '1px'}}>
-            {/* Browser-like Screenshot Mockup */}
-            <div className="h-full bg-white">
-              {/* Browser Header */}
-              <div className="bg-gray-200 px-2 py-1 flex items-center gap-1 border-b">
-                <div className="flex gap-1">
-                  <div className="w-2 h-2 bg-red-400 rounded-full"></div>
-                  <div className="w-2 h-2 bg-slate-400 rounded-full"></div>
-                  <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-                </div>
-                <div className="flex-1 bg-white mx-2 rounded px-2 py-0.5">
-                  <div className="text-[6px] text-gray-500">https://yoursite.com</div>
-                </div>
-              </div>
-
-              {/* Landing Page with Background Image */}
-              <div className="h-full relative overflow-hidden">
-                {/* Background Image with Overlay */}
-                <div className="absolute inset-0">
-                   {getImage(0) ? (
-                     <OptimizedImage
-                       src={getImage(0)} 
-                       alt="Background" 
-                       className="w-full h-full object-cover transition-opacity duration-300 opacity-100"
-                     />
-                   ) : (
-                     <div className="w-full h-full bg-gradient-to-br from-blue-500 to-purple-600"></div>
-                   )}
-                  {/* Dark overlay for better text readability */}
-                  <div className="absolute inset-0 bg-black/40"></div>
-                  {/* Gradient overlay for better text contrast */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30"></div>
-                </div>
-
-                {/* Navigation Bar - Floating */}
-                <div className="relative z-10 bg-white/10 backdrop-blur-md border-b border-white/20">
-                  <div className="px-3 py-1 flex justify-between items-center">
-                    <div className="text-[8px] font-bold text-white">BRAND</div>
-                    <div className="flex gap-3 text-[6px] text-white/80">
-                      <span>Home</span> <span>Products</span> <span>About</span>
+          <div className="h-80 flex-1 bg-gray-50 overflow-y-auto border border-gray-200 shadow-sm" style={{borderRadius: '4px'}}>
+            {/* Web Creative Preview - Matching WebCreativePreview structure */}
+            <div className="bg-white">
+              {/* Hero Section */}
+              <section className="py-8 bg-gradient-to-br from-primary/10 via-background to-secondary/10">
+                <div className="container mx-auto px-3">
+                  <div className="grid grid-cols-2 gap-4 items-center">
+                    <div className="space-y-2">
+                      <div 
+                        className="inline-flex items-center px-2 py-0.5 rounded-full text-[6px] font-medium"
+                        style={{
+                          backgroundColor: 'hsl(40, 40%, 85%)',
+                          color: 'hsl(0, 0%, 0%)'
+                        }}
+                      >
+                        New Launch
+                      </div>
+                      <h1 className="text-[10px] font-bold text-foreground leading-tight">
+                        {activeCampaignResults?.landing_page_concept?.hero_text || 
+                         activeCampaignResults?.banner_ads?.[0]?.headline || 
+                         'Transform Your Experience Today'}
+                      </h1>
+                      <p className="text-[6px] text-muted-foreground leading-relaxed">
+                        {activeCampaignResults?.landing_page_concept?.sub_text || 
+                         activeCampaignResults?.banner_ads?.[0]?.description || 
+                         'Discover innovative solutions.'}
+                      </p>
+                      <div className="flex flex-wrap gap-1">
+                        <div className="bg-black text-white text-[5px] px-2 py-1 rounded">
+                          {activeCampaignResults?.landing_page_concept?.cta || 
+                           activeCampaignResults?.banner_ads?.[0]?.cta || 
+                           'Get Started'}
+                        </div>
+                        <div className="bg-white text-black border border-black text-[5px] px-2 py-1 rounded">
+                          Learn More
+                        </div>
+                      </div>
+                    </div>
+                    <div className="relative flex items-center justify-center">
+                      {getImage(0) && (
+                        <OptimizedImage 
+                          src={getImage(0)} 
+                          alt="Product showcase"
+                          className="w-full h-24 object-contain"
+                        />
+                      )}
                     </div>
                   </div>
                 </div>
+              </section>
 
-                {/* Hero Content - Centered with Text Overlays */}
-                <div className="relative z-10 h-full flex flex-col justify-center items-center text-center px-4">
-                  {/* Campaign Badge - Using actual campaign data */}
-                  <div className="inline-flex items-center px-2 py-0.5 rounded-full bg-primary/80 backdrop-blur-md border border-primary/50 mb-2">
-                    <div className="text-[5px] font-medium text-white">✨ New Launch</div>
+              {/* Product Highlights */}
+              <section className="py-6 bg-muted/30">
+                <div className="container mx-auto px-3">
+                  <div className="text-center space-y-1 mb-3">
+                    <h2 className="text-[8px] font-bold text-foreground">Key Features</h2>
+                    <p className="text-[5px] text-muted-foreground">
+                      Discover what makes this special.
+                    </p>
                   </div>
-                  
-                  {/* Main Headline - Using actual campaign data */}
-                  <h1 className="text-[10px] font-bold text-white leading-tight mb-2 max-w-28 drop-shadow-lg">
-                    {activeCampaignResults?.landing_page_concept?.hero_text ||
-                     activeCampaignResults?.banner_ads?.[0]?.headline || 
-                     'Your Custom Headline'}
-                  </h1>
-                  
-                  {/* Subtext - Using actual campaign data */}
-                  <p className="text-[5px] text-white/90 leading-relaxed mb-2 max-w-24 drop-shadow-md">
-                    {activeCampaignResults?.landing_page_concept?.sub_text ||
-                     activeCampaignResults?.banner_ads?.[0]?.description || 
-                     'Your custom description here'}
-                  </p>
-                  
-                  {/* Template indicator */}
-                  <div className="text-[4px] text-slate-300 mb-3 font-medium">+ Standard Template Sections Below</div>
-                  
-                  {/* CTA Button - Using actual campaign data */}
-                  <div className="bg-white text-gray-900 text-[6px] px-3 py-1 rounded-full font-medium shadow-lg hover:bg-white/90 transition-all mb-3">
-                    {activeCampaignResults?.landing_page_concept?.cta ||
-                     activeCampaignResults?.banner_ads?.[0]?.cta || 
-                     'Your CTA'}
+                  <div className="grid grid-cols-3 gap-2">
+                    {[
+                      { title: "Premium Quality", description: "Built with finest materials", icon: "⭐" },
+                      { title: "Fast Delivery", description: "Order in 24-48 hours", icon: "🚀" },
+                      { title: "Money Back", description: "30-day guarantee", icon: "💎" }
+                    ].map((feature, idx) => (
+                      <div key={idx} className="text-center space-y-1 p-2 rounded bg-card border border-border">
+                        <div className="text-[10px]">{feature.icon}</div>
+                        <h3 className="text-[6px] font-semibold text-foreground">{feature.title}</h3>
+                        <p className="text-[4px] text-muted-foreground">{feature.description}</p>
+                      </div>
+                    ))}
                   </div>
+                </div>
+              </section>
 
-                  {/* Standard Template Features Preview */}
-                  <div className="bg-white/10 backdrop-blur-md rounded px-3 py-1 border border-white/20">
-                    <div className="flex items-center gap-2 text-center">
-                      <div className="text-[4px] text-white/70 font-medium">Template includes:</div>
-                      <div className="flex items-center gap-1">
-                        <div className="w-1 h-1 bg-blue-400 rounded-full"></div>
-                        <div className="text-[4px] text-white font-medium">Features</div>
+              {/* Detailed Product Section */}
+              <section className="py-6">
+                <div className="container mx-auto px-3">
+                  <div className="grid grid-cols-2 gap-3 items-center">
+                    <div className="space-y-2">
+                      <h2 className="text-[8px] font-bold text-foreground">
+                        Why Choose Our Product?
+                      </h2>
+                      <div className="space-y-1">
+                        {[
+                          { title: "Advanced Technology", desc: "Cutting-edge innovation" },
+                          { title: "Sustainable Materials", desc: "Eco-friendly construction" },
+                          { title: "Expert Support", desc: "24/7 customer service" }
+                        ].map((item, idx) => (
+                          <div key={idx} className="flex items-start gap-1">
+                            <div className="w-2 h-2 rounded-full bg-primary flex items-center justify-center flex-shrink-0 mt-0.5">
+                              <div className="w-0.5 h-0.5 bg-primary-foreground rounded-full"></div>
+                            </div>
+                            <div>
+                              <h3 className="text-[5px] font-semibold text-foreground">{item.title}</h3>
+                              <p className="text-[4px] text-muted-foreground">{item.desc}</p>
+                            </div>
+                          </div>
+                        ))}
                       </div>
-                      <div className="flex items-center gap-1">
-                        <div className="w-1 h-1 bg-green-400 rounded-full"></div>
-                        <div className="text-[4px] text-white font-medium">Reviews</div>
-                      </div>
-                      <div className="flex items-center gap-1">
-                        <div className="w-1 h-1 bg-purple-400 rounded-full"></div>
-                        <div className="text-[4px] text-white font-medium">Pricing</div>
-                      </div>
+                    </div>
+                    <div className="grid grid-cols-2 gap-1">
+                      {generatedImages.slice(0, 4).map((img, idx) => (
+                        <OptimizedImage 
+                          key={idx}
+                          src={img.url} 
+                          alt={`Product view ${idx + 1}`}
+                          className="w-full h-12 object-cover rounded"
+                        />
+                      ))}
                     </div>
                   </div>
                 </div>
+              </section>
 
-                {/* Footer - Bottom Overlay */}
-                <div className="absolute bottom-0 left-0 right-0 z-10 bg-black/20 backdrop-blur-sm border-t border-white/10">
-                  <div className="px-2 py-1">
-                    <div className="text-[4px] text-white/70 text-center">© 2024 Brand. All rights reserved.</div>
+              {/* Final CTA */}
+              <section className="py-6 bg-black text-white">
+                <div className="container mx-auto px-3">
+                  <div className="text-center space-y-1">
+                    <h2 className="text-[8px] font-bold">Ready to Get Started?</h2>
+                    <p className="text-[5px]">
+                      Join thousands of satisfied customers.
+                    </p>
+                    <div className="bg-white text-black text-[5px] px-2 py-1 rounded inline-block">
+                      {activeCampaignResults?.landing_page_concept?.cta || 'Get Started Today'}
+                    </div>
                   </div>
                 </div>
-              </div>
+              </section>
             </div>
           </div>
         </CardContent>
