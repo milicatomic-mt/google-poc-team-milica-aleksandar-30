@@ -3,7 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { ArrowLeft, Play, Image, FileText, Calendar, Download, QrCode, X } from 'lucide-react';
+import { ArrowLeft, Play, Image, FileText, Calendar, Download, QrCode, X, Camera, Heart, MessageCircle, Send, Share, Plus, Search, MoreHorizontal, Bookmark } from 'lucide-react';
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger, DialogClose } from '@/components/ui/dialog';
 import RibbedSphere from '@/components/RibbedSphere';
 import { useGalleryData, useGalleryItemDetails, type GalleryItem } from '@/hooks/useGalleryData';
@@ -687,7 +687,7 @@ const CampaignContent: React.FC<{
         </CardContent>
       </Card>
 
-      {/* Social Video Collection Card - Exact copy from PreviewResultsScreen */}
+      {/* Social Video Collection Card - Matching PreviewResultsScreen design */}
       <Card 
         className="card-elegant backdrop-blur-xl bg-white/60 border-white/50 border-2 shadow-2xl hover:shadow-elegant-lg transition-all duration-smooth cursor-pointer flex flex-col"
         onClick={() => onViewDetails('Social Video Collection')}
@@ -697,51 +697,280 @@ const CampaignContent: React.FC<{
             <h3 className="text-foreground font-medium">Social Video Collection</h3>
             <span className="bg-muted text-primary text-xs px-2 py-1 rounded-full font-medium">1</span>
           </div>
-          {/* Removed download button from Social Video Collection section */}
         </div>
         <CardContent className="p-4 flex-1 flex flex-col">
-          <div className="h-80 bg-black overflow-hidden relative" style={{borderRadius: '1px'}}>
-            {/* Video Preview - Matching VideoScriptsPreview design */}
-            <div className="relative w-full h-full bg-gradient-to-br from-primary/10 to-secondary/10">
-              {getImage(0) ? (
-                <OptimizedImage 
-                  src={getImage(0)} 
-                  alt="Video preview"
-                  className="w-full h-full object-cover"
-                />
-              ) : (
-                <div className="w-full h-full bg-gradient-to-br from-primary/20 to-secondary/20"></div>
-              )}
-              <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
-                <div className="w-12 h-12 bg-white/90 rounded-full flex items-center justify-center shadow-lg">
-                  <Play className="w-4 h-4 text-gray-700 ml-0.5" />
+          <div className="h-80 flex gap-2 justify-between">
+            
+            {/* Instagram Phone Mockup */}
+            <div className="flex-1 bg-black overflow-hidden relative border border-gray-300 rounded">
+              {/* Status Bar */}
+              <div className="bg-black px-3 py-1 flex justify-between items-center text-white text-[8px]">
+                <div className="flex items-center gap-1">
+                  <span className="font-medium">9:41</span>
+                </div>
+                <div className="flex items-center gap-1">
+                  <div className="flex gap-1">
+                    <div className="w-1 h-1 bg-white rounded-full"></div>
+                    <div className="w-1 h-1 bg-white rounded-full"></div>
+                    <div className="w-1 h-1 bg-white rounded-full"></div>
+                  </div>
+                  <div className="w-3 h-1.5 bg-white rounded-sm"></div>
+                  <div className="w-2 h-2 bg-white rounded-sm"></div>
                 </div>
               </div>
               
-              {/* Script Overlays */}
-              <div className="absolute top-2 left-2 right-2">
-                <div className="bg-black/60 backdrop-blur-sm rounded px-2 py-1">
-                  <div className="text-[6px] text-white font-medium">TikTok Script</div>
-                  <div className="text-[4px] text-white/80">
-                    {activeCampaignResults?.video_scripts?.[0]?.platform || 'TikTok'}: {activeCampaignResults?.video_scripts?.[0]?.script?.substring(0, 50) || 'Hook: Transform your daily routine...'}
+              {/* Instagram Header */}
+              <div className="bg-black px-3 py-2 border-b border-gray-800">
+                <div className="flex items-center justify-between mb-2">
+                  <div className="flex items-center gap-2">
+                    <Camera className="w-4 h-4 text-white" />
+                    <div className="text-white text-[12px] font-bold tracking-wider">Instagram</div>
+                  </div>
+                  <div className="flex gap-3">
+                    <Plus className="w-4 h-4 text-white" />
+                    <Heart className="w-4 h-4 text-white" />
+                    <Send className="w-4 h-4 text-white" />
+                  </div>
+                </div>
+                
+                {/* Stories */}
+                <div className="flex gap-2">
+                  <div className="flex flex-col items-center">
+                    <div className="w-8 h-8 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full p-0.5">
+                      <img src={uploadedImage || getImage(0)} alt="Your story" className="w-full h-full rounded-full object-cover" />
+                    </div>
+                    <span className="text-white text-[6px] mt-0.5">Your story</span>
+                  </div>
+                  <div className="flex flex-col items-center">
+                    <div className="w-8 h-8 bg-gray-600 rounded-full p-0.5">
+                      <div className="w-full h-full bg-gray-400 rounded-full"></div>
+                    </div>
+                    <span className="text-gray-400 text-[6px] mt-0.5">joshua_l</span>
+                  </div>
+                  <div className="flex flex-col items-center">
+                    <div className="w-8 h-8 bg-gray-600 rounded-full p-0.5">
+                      <div className="w-full h-full bg-gray-400 rounded-full"></div>
+                    </div>
+                    <span className="text-gray-400 text-[6px] mt-0.5">craig.done</span>
                   </div>
                 </div>
               </div>
               
-              <div className="absolute bottom-2 left-2 right-2">
-                <div className="bg-black/60 backdrop-blur-sm rounded px-2 py-1">
-                  <div className="text-[6px] text-white font-medium">Instagram Script</div>
-                  <div className="text-[4px] text-white/80">
-                    {activeCampaignResults?.video_scripts?.[1]?.platform || 'Instagram'}: {activeCampaignResults?.video_scripts?.[1]?.script?.substring(0, 30) || 'CTA: Swipe up to shop now!'}
+              {/* Main Content */}
+              <div className="relative flex-1">
+                <div className="bg-black p-2 mb-2">
+                  <div className="flex items-center gap-2 mb-2">
+                    <div className="w-6 h-6 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full p-0.5">
+                      <img src={uploadedImage || getImage(0)} alt="Profile" className="w-full h-full rounded-full object-cover" />
+                    </div>
+                    <div>
+                      <div className="text-white text-[8px] font-semibold">joshua_l</div>
+                      <div className="text-gray-400 text-[6px]">Sponsored</div>
+                    </div>
+                  </div>
+                </div>
+                {getImage(0) && (
+                  <OptimizedImage 
+                    src={getImage(0)} 
+                    alt="Instagram content" 
+                    className="w-full h-48 object-cover"
+                  />
+                )}
+                <div className="bg-black p-2">
+                  <div className="flex justify-between items-center mb-1">
+                    <div className="flex gap-2">
+                      <Heart className="w-4 h-4 text-white" />
+                      <MessageCircle className="w-4 h-4 text-white" />
+                      <Send className="w-4 h-4 text-white" />
+                    </div>
+                    <Bookmark className="w-4 h-4 text-white" />
+                  </div>
+                  <div className="text-white text-[7px] font-semibold mb-1">
+                    Liked by craig.done and 43,840 others
+                  </div>
+                  <div className="text-white text-[7px]">
+                    <span className="font-semibold">joshua_l</span> The game in Japan was amazing
                   </div>
                 </div>
               </div>
               
-              {/* Duration Badge */}
-              <div className="absolute top-2 right-2 bg-black/80 text-white text-[5px] px-1 py-0.5 rounded backdrop-blur-sm">
-                0:30
+              {/* Bottom Navigation */}
+              <div className="bg-black px-3 py-2 border-t border-gray-700">
+                <div className="flex justify-around">
+                  <div className="w-4 h-4 bg-gray-700 rounded-sm"></div>
+                  <Search className="w-4 h-4 text-gray-400" />
+                  <Plus className="w-4 h-4 text-gray-400" />
+                  <Heart className="w-4 h-4 text-gray-400" />
+                  <div className="w-4 h-4 bg-gray-400 rounded-full"></div>
+                </div>
               </div>
             </div>
+
+            {/* TikTok Phone Mockup */}
+            <div className="flex-1 bg-black overflow-hidden relative border border-gray-300 rounded">
+              {/* Status Bar */}
+              <div className="bg-black px-3 py-1 flex justify-between items-center text-white text-[8px]">
+                <div className="flex items-center gap-1">
+                  <span className="font-medium">9:41</span>
+                </div>
+                <div className="flex items-center gap-1">
+                  <div className="flex gap-1">
+                    <div className="w-1 h-1 bg-white rounded-full"></div>
+                    <div className="w-1 h-1 bg-white rounded-full"></div>
+                    <div className="w-1 h-1 bg-white rounded-full"></div>
+                  </div>
+                  <div className="w-3 h-1.5 bg-white rounded-sm"></div>
+                  <div className="w-2 h-2 bg-white rounded-sm"></div>
+                </div>
+              </div>
+              
+              {/* TikTok Header */}
+              <div className="bg-black px-3 py-2 flex justify-center border-b border-gray-800">
+                <div className="flex gap-6">
+                  <span className="text-gray-400 text-[11px]">Following</span>
+                  <span className="text-white text-[11px] font-bold border-b-2 border-white pb-1">For You</span>
+                </div>
+              </div>
+              
+              {/* Main Content */}
+              <div className="relative flex-1">
+                {getImage(0) && (
+                  <OptimizedImage 
+                    src={getImage(0)} 
+                    alt="TikTok content" 
+                    className="w-full h-64 object-cover"
+                  />
+                )}
+                
+                {/* Play Button */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-12 h-12 bg-white/90 rounded-full flex items-center justify-center">
+                    <Play className="w-6 h-6 text-black ml-1" fill="black" />
+                  </div>
+                </div>
+                
+                {/* Right Side Actions */}
+                <div className="absolute right-2 bottom-16 flex flex-col gap-3">
+                  <div className="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center">
+                    <Heart className="w-4 h-4 text-white" />
+                  </div>
+                  <div className="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center">
+                    <MessageCircle className="w-4 h-4 text-white" />
+                  </div>
+                  <div className="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center">
+                    <Share className="w-4 h-4 text-white" />
+                  </div>
+                </div>
+                
+                {/* Bottom Text */}
+                <div className="absolute bottom-0 left-0 right-0 p-2 bg-gradient-to-t from-black/70 to-transparent">
+                  <div className="text-white text-[8px] font-bold mb-1">TOMORROW X TOGETHER ✓</div>
+                  <div className="text-white text-[7px]">Let's keep dancing until the sun rises😊</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Facebook Phone Mockup */}
+            <div className="flex-1 bg-gray-900 overflow-hidden relative border border-gray-300 rounded">
+              {/* Status Bar */}
+              <div className="bg-gray-800 px-3 py-1 flex justify-between items-center text-white text-[8px]">
+                <div className="flex items-center gap-1">
+                  <span className="font-medium">15:47</span>
+                </div>
+                <div className="flex items-center gap-1">
+                  <div className="flex gap-1">
+                    <div className="w-1 h-1 bg-white rounded-full"></div>
+                    <div className="w-1 h-1 bg-white rounded-full"></div>
+                    <div className="w-1 h-1 bg-white rounded-full"></div>
+                  </div>
+                  <div className="w-3 h-1.5 bg-white rounded-sm"></div>
+                  <div className="w-2 h-2 bg-white rounded-sm"></div>
+                </div>
+              </div>
+              
+              {/* Facebook Header */}
+              <div className="bg-gray-800 px-3 py-2 flex justify-between items-center border-b border-gray-700">
+                <div className="flex items-center gap-2">
+                  <span className="text-white text-[14px] font-bold">facebook</span>
+                </div>
+                <div className="flex gap-3">
+                  <Plus className="w-4 h-4 text-white" />
+                  <Search className="w-4 h-4 text-white" />
+                  <MessageCircle className="w-4 h-4 text-white" />
+                </div>
+              </div>
+              
+              {/* Post Header */}
+              <div className="bg-gray-800 px-3 py-2 border-b border-gray-700">
+                <div className="flex items-center gap-2">
+                  <div className="w-7 h-7 bg-gray-600 rounded-full overflow-hidden flex items-center justify-center">
+                    {getImage(0) ? (
+                      <OptimizedImage 
+                        src={getImage(0)} 
+                        alt="Brand profile" 
+                        className="w-full h-full object-cover" 
+                      />
+                    ) : (
+                      <span className="text-white text-[8px] font-bold">Brand</span>
+                    )}
+                  </div>
+                  <div>
+                    <div className="text-white text-[9px] font-bold">BMW Group ✓</div>
+                    <div className="text-gray-400 text-[7px]">Sponsored • 5</div>
+                  </div>
+                  <div className="ml-auto">
+                    <MoreHorizontal className="w-3 h-3 text-gray-400" />
+                  </div>
+                </div>
+              </div>
+              
+              {/* Post Content */}
+              <div className="bg-gray-800 px-3 py-2">
+                <p className="text-white text-[8px] mb-2">
+                  From FCEV prototype to series production – The BMW iX5 Hydrogen 🚙 ... See more
+                </p>
+              </div>
+              
+              {/* Main Content */}
+              <div className="relative flex-1 bg-gray-800">
+                {getImage(0) && (
+                  <OptimizedImage 
+                    src={getImage(0)} 
+                    alt="Facebook content" 
+                    className="w-full h-full object-cover"
+                  />
+                )}
+                
+                {/* Play Button */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-10 h-10 bg-black/70 rounded-full flex items-center justify-center">
+                    <Play className="w-5 h-5 text-white ml-0.5" fill="white" />
+                  </div>
+                </div>
+              </div>
+              
+              {/* Post Actions */}
+              <div className="absolute bottom-0 left-0 right-0 bg-gray-800/95 backdrop-blur-sm px-3 py-2 border-t border-gray-700">
+                <div className="flex justify-around">
+                  <div className="flex items-center gap-1">
+                    <Heart className="w-3 h-3 text-gray-300" />
+                    <span className="text-[7px] text-gray-300">Like</span>
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <MessageCircle className="w-3 h-3 text-gray-300" />
+                    <span className="text-[7px] text-gray-300">Comment</span>
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <Share className="w-3 h-3 text-gray-300" />
+                    <span className="text-[7px] text-gray-300">Share</span>
+                  </div>
+                </div>
+                <div className="text-center text-[6px] text-gray-400 mt-1">
+                  45 comments • 75 shares • 5M views
+                </div>
+              </div>
+            </div>
+            
           </div>
         </CardContent>
       </Card>
