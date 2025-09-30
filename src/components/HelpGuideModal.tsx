@@ -66,7 +66,7 @@ export const HelpGuideModal = () => {
       </SheetTrigger>
       <SheetContent 
         side="left" 
-        className="w-full sm:max-w-lg bg-white text-foreground overflow-y-auto"
+        className="w-full sm:max-w-md bg-white text-foreground overflow-y-auto h-[85vh] mt-[7.5vh] rounded-r-3xl"
       >
         <SheetHeader className="text-left space-y-3 pb-6">
           <SheetTitle className="text-2xl font-semibold text-foreground">
@@ -77,17 +77,17 @@ export const HelpGuideModal = () => {
           </SheetDescription>
         </SheetHeader>
 
-        <Accordion type="single" collapsible className="w-full space-y-2" defaultValue="item-1">
+        <Accordion type="single" collapsible className="w-full space-y-3">
           {faqItems.map((item) => (
             <AccordionItem 
               key={item.id} 
               value={item.id}
-              className="border border-border rounded-lg px-4 bg-white"
+              className="border-none"
             >
-              <AccordionTrigger className="text-left font-medium text-foreground hover:no-underline py-4">
+              <AccordionTrigger className="text-left text-sm font-normal text-foreground hover:no-underline py-3 px-0">
                 {item.question}
               </AccordionTrigger>
-              <AccordionContent className="text-muted-foreground text-sm leading-relaxed pb-4">
+              <AccordionContent className="text-muted-foreground text-sm leading-relaxed pb-3 px-0">
                 {item.answer}
               </AccordionContent>
             </AccordionItem>
