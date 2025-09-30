@@ -556,7 +556,9 @@ const VideoScriptsPreview: React.FC = () => {
                         <img src={profileImage} alt="Profile" className="w-10 h-10 rounded-full object-cover" />
                         <div>
                           <div className="flex items-center gap-1">
-                            <span className="font-semibold text-sm text-white">BMW Group</span>
+                            <span className="font-semibold text-sm text-white">
+                              {campaignResults?.email_copy?.subject?.split(' ').slice(0, 2).join(' ') || 'Premium Sound'}
+                            </span>
                             <div className="w-4 h-4 bg-blue-500 rounded-full flex items-center justify-center">
                               <span className="text-xs text-white">✓</span>
                             </div>

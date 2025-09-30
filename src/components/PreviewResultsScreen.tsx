@@ -670,7 +670,9 @@ const PreviewResultsScreen: React.FC = () => {
                             )}
                           </div>
                           <div>
-                            <div className="text-white text-[9px] font-bold">BMW Group ✓</div>
+                            <div className="text-white text-[9px] font-bold">
+                              {activeCampaignResults?.email_copy?.subject?.split(' ').slice(0, 2).join(' ') || 'Premium Sound'} ✓
+                            </div>
                             <div className="text-gray-400 text-[7px]">Sponsored • 5</div>
                           </div>
                           <div className="ml-auto">
