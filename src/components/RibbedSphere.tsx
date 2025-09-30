@@ -119,7 +119,7 @@ const AnimatedRibbedSphere = () => {
 
   return (
     <mesh ref={meshRef} material={material}>
-      <sphereGeometry args={[1, 80, 80]} />
+      <sphereGeometry args={[1, 32, 32]} />
     </mesh>
   );
 };
@@ -181,14 +181,14 @@ const RibbedSphere: React.FC<RibbedSphereProps> = ({ className = "" }) => {
           preserveDrawingBuffer: false,
           antialias: false,
           alpha: true,
-          powerPreference: "default"
+          powerPreference: "low-power",
+          failIfMajorPerformanceCaveat: true
         }}
       >
         <ambientLight intensity={0.6} />
         <directionalLight 
           position={[2, 2, 2]} 
           intensity={0.8}
-          castShadow
         />
         <directionalLight 
           position={[-1, -1, 1]} 
