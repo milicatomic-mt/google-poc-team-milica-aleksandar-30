@@ -22,6 +22,7 @@ const ScreenSaver = () => {
   const [showCards, setShowCards] = useState(false);
   const [cardsVisible, setCardsVisible] = useState(false);
   const [currentSentenceIndex, setCurrentSentenceIndex] = useState(0);
+  const [cardsInitialized, setCardsInitialized] = useState(false);
   
   // Card data with images and titles
   const cards = [
@@ -95,24 +96,22 @@ const ScreenSaver = () => {
     };
   }, [currentSentenceIndex]);
 
-  // Card animation - starts after typing completes
+  // Card animation - starts after typing completes (ONLY ONCE)
   useEffect(() => {
-    if (!isTypingComplete) return;
+    if (!isTypingComplete || cardsInitialized) return;
 
-    const startCardAnimation = () => {
-      setShowCards(true);
-      // Delay before cards become visible (rise up animation)
-      setTimeout(() => {
-        setCardsVisible(true);
-      }, 500);
-    };
+    setShowCards(true);
+    setCardsInitialized(true);
+    
+    // Delay before cards become visible (rise up animation)
+    setTimeout(() => {
+      setCardsVisible(true);
+    }, 500);
+  }, [isTypingComplete, cardsInitialized]);
 
-    startCardAnimation();
-  }, [isTypingComplete]);
-
-  // Dissolve/reappear loop - starts after cards are shown
+  // Dissolve/reappear loop - runs independently after cards are initialized
   useEffect(() => {
-    if (!cardsVisible) return;
+    if (!cardsInitialized) return;
 
     const interval = setInterval(() => {
       setCardsVisible(false);
@@ -122,7 +121,7 @@ const ScreenSaver = () => {
     }, 30000); // 30s visible duration
 
     return () => clearInterval(interval);
-  }, [isTypingComplete]);
+  }, [cardsInitialized]);
   const handleClick = () => {
     navigate('/welcome');
   };
