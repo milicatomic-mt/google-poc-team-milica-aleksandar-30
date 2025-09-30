@@ -1,6 +1,7 @@
 import React from 'react';
 import { HelpCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import RibbedSphere from '@/components/RibbedSphere';
 import {
   Sheet,
   SheetContent,
@@ -93,6 +94,16 @@ export const HelpGuideModal = () => {
             </AccordionItem>
           ))}
         </Accordion>
+
+        {/* Bottom branding */}
+        <div className="mt-auto pt-8 flex items-center gap-3">
+          <div className="h-8 w-8 flex-shrink-0">
+            <RibbedSphere className="w-full h-full" />
+          </div>
+          <p className="text-xs text-gray-500">
+            Bring Your Products to Life
+          </p>
+        </div>
       </SheetContent>
     </Sheet>
   );
