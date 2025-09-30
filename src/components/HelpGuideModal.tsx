@@ -87,7 +87,7 @@ export const HelpGuideModal = () => {
               <AccordionTrigger className="text-left text-base font-semibold text-foreground hover:no-underline py-3 px-0">
                 {item.question}
               </AccordionTrigger>
-              <AccordionContent className="text-muted-foreground text-sm leading-relaxed pb-3 px-0">
+              <AccordionContent className="text-black text-sm leading-relaxed pb-3 px-0">
                 {item.answer}
               </AccordionContent>
             </AccordionItem>
