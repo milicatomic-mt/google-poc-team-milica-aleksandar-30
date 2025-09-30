@@ -445,10 +445,10 @@ const CampaignContent: React.FC<{
       
       {/* Banner Ads Card - Exact copy from PreviewResultsScreen */}
       <Card 
-        className="card-elegant backdrop-blur-xl bg-white/30 border-white/50 border-2 shadow-md hover:shadow-lg transition-all duration-smooth cursor-pointer flex flex-col"
+        className="card-elegant backdrop-blur-xl bg-white/60 border-white/50 border-2 shadow-2xl hover:shadow-elegant-lg transition-all duration-smooth cursor-pointer flex flex-col"
         onClick={() => onViewDetails('Banner Ads')}
       >
-        <div className="px-4 py-3 flex items-center justify-between transition-all duration-smooth">
+        <div className="px-2 py-2 flex items-center justify-between transition-all duration-smooth">
           <div className="flex items-center space-x-2">
             <h3 className="text-foreground font-medium">Banner Ads</h3>
           </div>
@@ -563,10 +563,10 @@ const CampaignContent: React.FC<{
 
       {/* Web Creative Card - Matching WebCreativePreview design */}
       <Card 
-        className="card-elegant backdrop-blur-xl bg-white/30 border-white/50 border-2 shadow-md hover:shadow-lg transition-all duration-smooth cursor-pointer flex flex-col"
+        className="card-elegant backdrop-blur-xl bg-white/60 border-white/50 border-2 shadow-2xl hover:shadow-elegant-lg transition-all duration-smooth cursor-pointer flex flex-col"
         onClick={() => onViewDetails('Web Creative')}
       >
-        <div className="px-4 py-3 flex items-center justify-between transition-all duration-smooth">
+        <div className="px-2 py-2 flex items-center justify-between transition-all duration-smooth">
           <div className="flex items-center space-x-2">
             <h3 className="text-foreground font-medium">Web Creative</h3>
           </div>
@@ -628,10 +628,10 @@ const CampaignContent: React.FC<{
 
       {/* Social Video Collection Card - Matching PreviewResultsScreen design */}
       <Card 
-        className="card-elegant backdrop-blur-xl bg-white/30 border-white/50 border-2 shadow-md hover:shadow-lg transition-all duration-smooth cursor-pointer flex flex-col"
+        className="card-elegant backdrop-blur-xl bg-white/60 border-white/50 border-2 shadow-2xl hover:shadow-elegant-lg transition-all duration-smooth cursor-pointer flex flex-col"
         onClick={() => onViewDetails('Social Video Collection')}
       >
-        <div className="px-4 py-3 flex items-center justify-between transition-all duration-smooth">
+        <div className="px-2 py-2 flex items-center justify-between transition-all duration-smooth">
           <div className="flex items-center space-x-2">
             <h3 className="text-foreground font-medium">Social Video Collection</h3>
             <span className="bg-muted text-primary text-xs px-2 py-1 rounded-full font-medium">1</span>
@@ -912,10 +912,10 @@ const CampaignContent: React.FC<{
 
       {/* Email Templates Card - Exact copy from PreviewResultsScreen */}
       <Card 
-        className="card-elegant backdrop-blur-xl bg-white/30 border-white/50 border-2 shadow-md hover:shadow-lg transition-all duration-smooth cursor-pointer flex flex-col"
+        className="card-elegant backdrop-blur-xl bg-white/60 border-white/50 border-2 shadow-2xl hover:shadow-elegant-lg transition-all duration-smooth cursor-pointer flex flex-col"
         onClick={() => onViewDetails('Email Templates')}
       >
-        <div className="px-4 py-3 flex items-center justify-between transition-all duration-smooth">
+        <div className="px-2 py-2 flex items-center justify-between transition-all duration-smooth">
           <div className="flex items-center space-x-2">
             <h3 className="text-foreground font-medium">Email Templates</h3>
             <span className="bg-muted text-primary text-xs px-2 py-1 rounded-full font-medium">2</span>
