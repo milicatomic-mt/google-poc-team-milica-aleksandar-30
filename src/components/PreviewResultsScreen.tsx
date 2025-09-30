@@ -261,7 +261,7 @@ const PreviewResultsScreen: React.FC = () => {
               
               {/* Banner Ads Card */}
               <Card 
-                className="card-elegant backdrop-blur-xl bg-white/60 border-white/50 border-2 shadow-2xl hover:shadow-elegant-lg transition-all duration-smooth cursor-pointer"
+                className="card-elegant backdrop-blur-xl bg-white/60 transition-all duration-smooth cursor-pointer"
                 onClick={() => handleOpenCategory('Banner Ads')}
               >
                 <div className="px-4 py-3 flex items-center justify-between transition-all duration-smooth">
@@ -379,7 +379,7 @@ const PreviewResultsScreen: React.FC = () => {
 
               {/* Web Creative Card */}
               <Card 
-                className="card-elegant backdrop-blur-xl bg-white/60 border-white/50 border-2 shadow-2xl hover:shadow-elegant-lg transition-all duration-smooth cursor-pointer"
+                className="card-elegant backdrop-blur-xl bg-white/60 transition-all duration-smooth cursor-pointer"
                 onClick={() => handleOpenCategory('Web Creative')}
               >
                 <div className="px-4 py-3 flex items-center justify-between transition-all duration-smooth">
@@ -389,7 +389,7 @@ const PreviewResultsScreen: React.FC = () => {
                   <ArrowUpRight className="w-5 h-5 text-black" />
                 </div>
                 <CardContent className="p-2">
-                  <div className="h-80 bg-gray-100 overflow-hidden shadow-sm rounded relative">
+                  <div className="h-80 bg-gray-100 overflow-hidden rounded relative">
                     {/* Website Landing Page Layout */}
                     <div className="h-full bg-stone-200 flex rounded">
                       {/* Left Side - Content */}
@@ -444,7 +444,7 @@ const PreviewResultsScreen: React.FC = () => {
 
               {/* Social Video Collection Card */}
               <Card 
-                className="card-elegant backdrop-blur-xl bg-white/60 border-white/50 border-2 shadow-2xl hover:shadow-elegant-lg transition-all duration-smooth cursor-pointer"
+                className="card-elegant backdrop-blur-xl bg-white/60 transition-all duration-smooth cursor-pointer"
                 onClick={() => handleOpenCategory('Social Video Collection')}
               >
                 <div className="px-4 py-3 flex items-center justify-between transition-all duration-smooth">
@@ -457,7 +457,7 @@ const PreviewResultsScreen: React.FC = () => {
                   <div className="h-80 flex gap-2 justify-between">
                     
                     {/* Instagram Phone Mockup */}
-                    <div className="flex-1 bg-black overflow-hidden relative border border-gray-300 rounded">
+                    <div className="flex-1 bg-black overflow-hidden relative rounded">
                       {/* Status Bar */}
                       <div className="bg-black px-3 py-1 flex justify-between items-center text-white text-[8px]">
                         <div className="flex items-center gap-1">
@@ -562,7 +562,7 @@ const PreviewResultsScreen: React.FC = () => {
                     </div>
 
                     {/* TikTok Phone Mockup */}
-                    <div className="flex-1 bg-black overflow-hidden relative border border-gray-300 rounded">
+                    <div className="flex-1 bg-black overflow-hidden relative rounded">
                       {/* Status Bar */}
                       <div className="bg-black px-3 py-1 flex justify-between items-center text-white text-[8px]">
                         <div className="flex items-center gap-1">
@@ -626,7 +626,7 @@ const PreviewResultsScreen: React.FC = () => {
                     </div>
 
                     {/* Facebook Phone Mockup */}
-                    <div className="flex-1 bg-gray-900 overflow-hidden relative border border-gray-300 rounded">
+                    <div className="flex-1 bg-gray-900 overflow-hidden relative rounded">
                       {/* Status Bar */}
                       <div className="bg-gray-800 px-3 py-1 flex justify-between items-center text-white text-[8px]">
                         <div className="flex items-center gap-1">
@@ -732,7 +732,7 @@ const PreviewResultsScreen: React.FC = () => {
 
               {/* Email Templates Card */}
               <Card 
-                className="card-elegant backdrop-blur-xl bg-white/60 border-white/50 border-2 shadow-2xl hover:shadow-elegant-lg transition-all duration-smooth cursor-pointer"
+                className="card-elegant backdrop-blur-xl bg-white/60 transition-all duration-smooth cursor-pointer"
                 onClick={() => handleOpenCategory('Email Templates')}
               >
                 <div className="px-3 py-3 flex items-center justify-between transition-all duration-smooth">
@@ -744,7 +744,7 @@ const PreviewResultsScreen: React.FC = () => {
                 <CardContent className="p-2">
                   <div className="h-80 relative rounded">
                     {/* Modern Email Client Interface */}
-                    <div className="bg-stone-200 backdrop-blur-sm overflow-hidden h-full border border-white/20 shadow-inner rounded">
+                    <div className="bg-stone-200 backdrop-blur-sm overflow-hidden h-full rounded">
                       {/* Email Client Header */}
                       <div className="bg-gradient-to-r from-slate-50 to-gray-50 px-3 py-2 border-b border-gray-200">
                         <div className="flex items-center justify-between">
@@ -777,7 +777,7 @@ const PreviewResultsScreen: React.FC = () => {
                           <div className="flex items-center gap-3">
                             {/* Product Image */}
                             <div className="relative">
-                              <div className="w-16 h-16 bg-primary/10 rounded-lg overflow-hidden shadow-sm border border-white/50">
+                              <div className="w-16 h-16 bg-primary/10 rounded-lg overflow-hidden">
                                 {activeCampaignResults?.generated_images?.[0]?.url ? (
                                   <img src={activeCampaignResults.generated_images[0].url} alt="Product" className="w-full h-full object-cover" />
                                 ) : uploadedImage ? (
