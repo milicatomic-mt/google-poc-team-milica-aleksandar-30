@@ -67,7 +67,7 @@ const ScreenSaver = () => {
     const startTyping = () => {
       const currentText = sentences[currentSentenceIndex];
       setDisplayedText('');
-      setIsTypingComplete(false);
+      // Don't reset isTypingComplete - keep cards stable
       currentIndex = 0;
       
       typingInterval = setInterval(() => {
