@@ -21,6 +21,26 @@ const OptimizedGallery = () => {
   const [selectedItemForDownload, setSelectedItemForDownload] = useState<any>(null);
   const { preloadImages, getCachedImageUrl } = useImageCache();
 
+  // Measure sticky header height to position the tag directly beneath it
+  const headerRef = useRef<HTMLDivElement | null>(null);
+  const [headerHeight, setHeaderHeight] = useState(0);
+  useEffect(() => {
+    const el = headerRef.current;
+    if (!el) return;
+    const measure = () => setHeaderHeight(el.offsetHeight || 0);
+    measure();
+    let ro: ResizeObserver | null = null;
+    if ('ResizeObserver' in window) {
+      ro = new ResizeObserver(() => measure());
+      ro.observe(el);
+    }
+    window.addEventListener('resize', measure);
+    return () => {
+      window.removeEventListener('resize', measure);
+      if (ro) ro.disconnect();
+    };
+  }, []);
+
   // Scroll position: prepare restore on mount
   const savedScrollPositionRef = useRef<number | null>(null);
   const shouldRestoreRef = useRef<boolean>(false);
@@ -219,7 +239,7 @@ const OptimizedGallery = () => {
 
       <div className="relative z-10">
       {/* Header */}
-      <div className="border-b border-white/40 bg-white/40 backdrop-blur-xl sticky top-0 z-10">
+      <div ref={headerRef} className="border-b border-white/40 bg-white/40 backdrop-blur-xl sticky top-0 z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center justify-between">
             {/* Left - Back Button */}
@@ -263,9 +283,20 @@ const OptimizedGallery = () => {
                 Catalogs
               </Button>
             </div>
+            </div>
           </div>
-      </div>
-    </div>
+        </div>
+
+      {/* Sticky Type Tag below header */}
+      {selectedFilter !== 'all' && (
+        <div className="sticky z-20 bg-background/80 backdrop-blur-sm border-b border-border" style={{ top: headerHeight }}>
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2">
+            <Badge variant="outline" className="text-sm border-primary text-primary bg-background shadow-sm">
+              {selectedFilter === 'campaigns' ? 'Campaign' : 'Catalog'}
+            </Badge>
+          </div>
+        </div>
+      )}
 
       {/* Gallery Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -351,9 +382,9 @@ const GalleryItemDisplay: React.FC<{
   return (
     <Card className="w-full overflow-hidden bg-white border-0 shadow-sm">
       <CardContent className="p-0 relative">
-        {/* Campaign/Catalog Badge - Sticky below header */}
-        <div className="sticky top-[73px] right-6 z-30 flex justify-end px-6 pt-6 pb-2 pointer-events-none">
-          <Badge variant="outline" className="text-xs border-primary text-primary bg-white shadow-sm pointer-events-auto">
+        {/* Campaign/Catalog Badge - Top Right */}
+        <div className="absolute top-6 right-6 z-10">
+          <Badge variant="outline" className="text-xs border-primary text-primary">
             {item.type === 'campaign' ? 'Campaign' : 'Catalog'}
           </Badge>
         </div>
