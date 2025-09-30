@@ -240,7 +240,7 @@ const ScreenSaver = () => {
                   }
                 `}
                 style={{
-                  transitionDelay: cardsVisible ? `${index * 200}ms` : '0ms'
+                  transitionDelay: cardsVisible ? `${index * 300}ms` : '0ms'
                 }}
               >
                 <img
