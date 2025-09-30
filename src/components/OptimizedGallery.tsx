@@ -374,11 +374,16 @@ const GalleryItemDisplay: React.FC<{
         <div className="bg-white/40 backdrop-blur-xl border-b border-white/40 p-6">
           <div className="flex items-center justify-between">
             <div>
-              <h2 className="text-2xl font-semibold">{item.title}</h2>
+              <h2 className="text-2xl font-semibold">
+                {item.title.replace(/\s*-\s*e\.g\..*$/i, '').replace(/\s*\(e\.g\..*?\)/gi, '')}
+              </h2>
               <p className="text-sm text-muted-foreground">
                 {formatDate(item.created_at)}
               </p>
             </div>
+            <Badge variant="outline" className="text-xs border-primary text-primary">
+              {item.type === 'campaign' ? 'Campaign' : 'Catalog'}
+            </Badge>
           </div>
         </div>
 
