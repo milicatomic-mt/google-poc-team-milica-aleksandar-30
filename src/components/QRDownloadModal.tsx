@@ -77,7 +77,7 @@ const QRDownloadModal: React.FC<QRDownloadModalProps> = ({
         onClose();
       }
     }}>
-      <DialogContent className="sm:max-w-md bg-white">
+      <DialogContent className="sm:max-w-md">
         <DialogHeader>
           <DialogTitle className="text-center text-xl font-semibold text-gray-900">
             {title}
