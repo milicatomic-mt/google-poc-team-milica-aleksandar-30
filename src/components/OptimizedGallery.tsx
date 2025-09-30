@@ -451,7 +451,7 @@ const CampaignContent: React.FC<{
           </div>
           <ArrowUpRight className="w-5 h-5 text-black" />
         </div>
-        <CardContent className="p-4 flex-1 flex flex-col">
+        <CardContent className="p-2 flex-1 flex flex-col">
           <div className="h-80 rounded">
             {/* Top Row - Two Square Banners */}
             <div className="grid grid-cols-2 gap-3 mb-3">
@@ -523,7 +523,7 @@ const CampaignContent: React.FC<{
             </div>
 
             {/* Bottom Banner - Dark */}
-            <div className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 rounded overflow-hidden h-20 relative">
+            <div className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 rounded overflow-hidden h-16 relative">
               <div className="flex items-center h-full">
                 {/* Left - Product Image */}
                 <div className="w-20 h-full flex items-center justify-center">
@@ -569,7 +569,7 @@ const CampaignContent: React.FC<{
           </div>
           <ArrowUpRight className="w-5 h-5 text-black" />
         </div>
-        <CardContent className="p-4">
+        <CardContent className="p-2">
           <div className="h-80 bg-gray-100 overflow-hidden shadow-sm rounded relative">
             {/* Website Landing Page Layout */}
             <div className="h-full bg-white flex rounded">
@@ -634,7 +634,7 @@ const CampaignContent: React.FC<{
             <span className="bg-muted text-primary text-xs px-2 py-1 rounded-full font-medium">1</span>
           </div>
         </div>
-        <CardContent className="p-4 flex-1 flex flex-col">
+        <CardContent className="p-2 flex-1 flex flex-col">
           <div className="h-80 flex gap-2 justify-between">
             
             {/* Instagram Phone Mockup */}
@@ -923,7 +923,7 @@ const CampaignContent: React.FC<{
           </div>
           {/* Removed download button from email templates section */}
         </div>
-        <CardContent className="p-4 flex-1 flex flex-col">
+        <CardContent className="p-2 flex-1 flex flex-col">
           <div className="h-80 relative overflow-hidden">
             {/* Email Preview - Matching EmailTemplatesPreview design */}
             
@@ -1023,7 +1023,7 @@ const CatalogContent: React.FC<{
             <span className="bg-muted text-primary text-xs px-2 py-1 rounded-full font-medium">1</span>
           </div>
         </div>
-        <CardContent className="p-4">
+        <CardContent className="p-2">
           <div className="h-80 bg-gray-100 overflow-hidden border border-gray-300 shadow-sm" style={{borderRadius: '1px'}}>
             {/* Catalog Preview Layout */}
             <div className="h-full bg-white">
@@ -1140,7 +1140,7 @@ const CatalogContent: React.FC<{
             <span className="bg-muted text-primary text-xs px-2 py-1 rounded-full font-medium">SEO</span>
           </div>
         </div>
-        <CardContent className="p-4">
+        <CardContent className="p-2">
           <div className="space-y-4">
             {/* Platform & Tone */}
             <div className="grid grid-cols-2 gap-3">
