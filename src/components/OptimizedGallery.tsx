@@ -186,7 +186,7 @@ const OptimizedGallery = () => {
       <div className="relative min-h-screen w-full overflow-hidden bg-background">
         {/* Background Video */}
         <video 
-          className="absolute inset-0 w-full h-full object-cover object-center opacity-60 z-0" 
+          className="absolute inset-0 w-full h-full object-cover object-center z-0" 
           autoPlay 
           loop 
           muted 
@@ -200,6 +200,8 @@ const OptimizedGallery = () => {
           <source src="/background-video.mp4" type="video/mp4" />
         </video>
         
+        {/* Dark Overlay */}
+        <div className="absolute inset-0 bg-black/40 z-[1]" />
         <div className="relative z-10 min-h-screen flex flex-col">
           <div className="flex-1 flex items-center justify-center px-4 py-8">
             <div className="flex flex-col items-center justify-center space-y-6">
@@ -225,7 +227,7 @@ const OptimizedGallery = () => {
     <div className="min-h-screen w-full bg-gray-150 relative">
       {/* Background Video */}
       <video 
-        className="absolute inset-0 w-full h-full object-cover object-center opacity-60 z-0" 
+        className="absolute inset-0 w-full h-full object-cover object-center z-0" 
         autoPlay 
         loop 
         muted 
@@ -233,7 +235,9 @@ const OptimizedGallery = () => {
       >
         <source src="/background-video.mp4" type="video/mp4" />
       </video>
-
+      
+      {/* Dark Overlay */}
+      <div className="absolute inset-0 bg-black/40 z-[1]" />
       <div className="relative z-10">
       {/* Header */}
       <div ref={headerRef} className="border-b border-white/40 bg-white/40 backdrop-blur-xl sticky top-0 z-30">
