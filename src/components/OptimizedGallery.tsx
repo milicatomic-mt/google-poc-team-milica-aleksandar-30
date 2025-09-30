@@ -439,7 +439,7 @@ const CampaignContent: React.FC<{
       
       {/* Banner Ads Card - Exact copy from PreviewResultsScreen */}
       <Card 
-        className="card-elegant backdrop-blur-xl bg-white/60 border-white/50 border-2 shadow-2xl hover:shadow-elegant-lg transition-all duration-smooth cursor-pointer flex flex-col"
+        className="card-elegant backdrop-blur-xl bg-white/30 border-white/50 border-2 shadow-md hover:shadow-lg transition-all duration-smooth cursor-pointer flex flex-col"
         onClick={() => onViewDetails('Banner Ads')}
       >
         <div className="px-4 py-3 flex items-center justify-between transition-all duration-smooth">
@@ -557,7 +557,7 @@ const CampaignContent: React.FC<{
 
       {/* Web Creative Card - Matching WebCreativePreview design */}
       <Card 
-        className="card-elegant backdrop-blur-xl bg-white/60 border-white/50 border-2 shadow-2xl hover:shadow-elegant-lg transition-all duration-smooth cursor-pointer flex flex-col"
+        className="card-elegant backdrop-blur-xl bg-white/30 border-white/50 border-2 shadow-md hover:shadow-lg transition-all duration-smooth cursor-pointer flex flex-col"
         onClick={() => onViewDetails('Web Creative')}
       >
         <div className="px-4 py-3 flex items-center justify-between transition-all duration-smooth">
@@ -622,7 +622,7 @@ const CampaignContent: React.FC<{
 
       {/* Social Video Collection Card - Matching PreviewResultsScreen design */}
       <Card 
-        className="card-elegant backdrop-blur-xl bg-white/60 border-white/50 border-2 shadow-2xl hover:shadow-elegant-lg transition-all duration-smooth cursor-pointer flex flex-col"
+        className="card-elegant backdrop-blur-xl bg-white/30 border-white/50 border-2 shadow-md hover:shadow-lg transition-all duration-smooth cursor-pointer flex flex-col"
         onClick={() => onViewDetails('Social Video Collection')}
       >
         <div className="px-4 py-3 flex items-center justify-between transition-all duration-smooth">
@@ -910,7 +910,7 @@ const CampaignContent: React.FC<{
 
       {/* Email Templates Card - Exact copy from PreviewResultsScreen */}
       <Card 
-        className="card-elegant backdrop-blur-xl bg-white/60 border-white/50 border-2 shadow-2xl hover:shadow-elegant-lg transition-all duration-smooth cursor-pointer flex flex-col"
+        className="card-elegant backdrop-blur-xl bg-white/30 border-white/50 border-2 shadow-md hover:shadow-lg transition-all duration-smooth cursor-pointer flex flex-col"
         onClick={() => onViewDetails('Email Templates')}
       >
         <div className="px-4 py-3 flex items-center justify-between transition-all duration-smooth">
