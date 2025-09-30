@@ -342,7 +342,7 @@ const PreviewResultsScreen: React.FC = () => {
                     </div>
 
                     {/* Bottom Banner - Dark */}
-                    <div className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 rounded overflow-hidden h-20 relative">
+                    <div className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 rounded overflow-hidden h-16 relative">
                       <div className="flex items-center h-full">
                         {/* Left - Product Image */}
                         <div className="w-20 h-full flex items-center justify-center">
