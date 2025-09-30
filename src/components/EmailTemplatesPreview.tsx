@@ -104,8 +104,12 @@ const EmailTemplatesPreview: React.FC = () => {
                   : 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
               }}
             >
-              <h1 className="text-4xl font-bold text-white mb-4 drop-shadow-lg">Premium sound</h1>
-              <p className="text-lg text-white/90 uppercase tracking-wider drop-shadow">MINIMALIST DESIGN</p>
+              <h1 className="text-4xl font-bold text-white mb-4 drop-shadow-lg">
+                {emailCopy?.subject || 'Premium sound'}
+              </h1>
+              <p className="text-lg text-white/90 uppercase tracking-wider drop-shadow">
+                {campaignResults?.product_name || 'MINIMALIST DESIGN'}
+              </p>
             </div>
 
             {/* Product Showcase Section */}
@@ -143,7 +147,7 @@ const EmailTemplatesPreview: React.FC = () => {
             >
               <div className="text-center">
                 <h2 className="text-3xl font-bold text-slate-900 mb-6">
-                  Premium wireless headphones with a sleek ivory finish, designed for immersive sound and all-day comfort.
+                  {campaignResults?.product_description || 'Premium wireless headphones with a sleek ivory finish, designed for immersive sound and all-day comfort.'}
                 </h2>
                 
                 <p className="text-lg text-slate-600 leading-relaxed mb-8">
