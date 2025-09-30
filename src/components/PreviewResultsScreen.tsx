@@ -270,7 +270,7 @@ const PreviewResultsScreen: React.FC = () => {
                   </div>
                   <ArrowUpRight className="w-5 h-5 text-black" />
                 </div>
-                <CardContent className="p-3">
+                <CardContent className="p-2">
                   <div className="h-80 rounded">
                     {/* Top Row - Two Square Banners */}
                     <div className="grid grid-cols-2 gap-3 mb-3">
@@ -388,7 +388,7 @@ const PreviewResultsScreen: React.FC = () => {
                   </div>
                   <ArrowUpRight className="w-5 h-5 text-black" />
                 </div>
-                <CardContent className="p-3">
+                <CardContent className="p-2">
                   <div className="h-80 bg-gray-100 overflow-hidden shadow-sm rounded relative">
                     {/* Website Landing Page Layout */}
                     <div className="h-full bg-white flex rounded">
@@ -453,7 +453,7 @@ const PreviewResultsScreen: React.FC = () => {
                   </div>
                   <ArrowUpRight className="w-5 h-5 text-black" />
                 </div>
-                <CardContent className="p-3">
+                <CardContent className="p-2">
                   <div className="h-80 flex gap-2 justify-between">
                     
                     {/* Instagram Phone Mockup */}
@@ -741,7 +741,7 @@ const PreviewResultsScreen: React.FC = () => {
                   </div>
                   <ArrowUpRight className="w-5 h-5 text-black" />
                 </div>
-                <CardContent className="p-3">
+                <CardContent className="p-2">
                   <div className="h-80 relative rounded">
                     {/* Modern Email Client Interface */}
                     <div className="bg-white backdrop-blur-sm overflow-hidden h-full border border-white/20 shadow-inner rounded">
