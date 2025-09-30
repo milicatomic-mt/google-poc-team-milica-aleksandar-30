@@ -69,10 +69,10 @@ const GenerateCampaignScreen = () => {
         // Simulate loading steps with progress updates
         const loadingSteps = [
           { text: "Preparing your content...", progress: 0 },
-          { text: "Analyzing your image...", progress: 25 },
-          { text: "Creating campaign strategy...", progress: 50 },
-          { text: "Generating marketing content...", progress: 75 },
-          { text: "Finalizing your campaign...", progress: 90 }
+          { text: "Analyzing your product image...", progress: 15 },
+          { text: "Creating marketing strategy...", progress: 30 },
+          { text: "Generating campaign content...", progress: 50 },
+          { text: "Creating ad copy and banners...", progress: 65 }
         ];
 
         // Update loading steps
@@ -156,9 +156,13 @@ const GenerateCampaignScreen = () => {
           campaignResult = { id: state.campaignId };
           
           // Only regenerate video, not the entire campaign content
-          setCurrentAction("Regenerating video content...");
+          setCurrentAction("Preparing video content...");
+          setProgress(75);
           
           // Trigger video generation with updated prompt
+          setCurrentAction("Creating your promotional video...");
+          setProgress(80);
+          
           try {
             await supabase.functions.invoke('generate-video', {
               body: {
@@ -166,8 +170,12 @@ const GenerateCampaignScreen = () => {
                 videoPrompt: campaignData.campaign_prompt
               }
             });
+            setCurrentAction("Finalizing video production...");
+            setProgress(85);
           } catch (videoError) {
             console.warn('Video generation failed:', videoError);
+            setCurrentAction("Completing campaign setup...");
+            setProgress(85);
           }
         } else {
           // Create new campaign or reuse recent identical one (dedupe StrictMode)
@@ -188,13 +196,20 @@ const GenerateCampaignScreen = () => {
           console.log('Calling generateCampaign with:', { id: campaignResult.id, data: campaignData });
           
           // Generate the campaign using AI
+          setCurrentAction("Generating comprehensive campaign materials...");
+          setProgress(70);
+          
           await generateCampaign(campaignResult.id, campaignData);
+          
+          setCurrentAction("Creating your promotional video...");
+          setProgress(80);
           
           console.log('generateCampaign completed');
         }
         
         // Start polling for results so we only navigate when content is ready
-        setCurrentAction("Finalizing and assembling results...");
+        setCurrentAction("Assembling campaign materials...");
+        setProgress(85);
 
         const maxAttempts = 45; // ~90s
         const intervalMs = 2000;
@@ -216,6 +231,8 @@ const GenerateCampaignScreen = () => {
 
             const hasResult = data?.result && Object.keys(data.result as any || {}).length > 0;
             if (hasResult) {
+              setCurrentAction("Processing video content...");
+              setProgress(90);
               const genImgs = Array.isArray((data as any).generated_images) ? (data as any).generated_images : [];
               finalResults = { ...(data!.result as any), generated_images: genImgs };
               break;
@@ -224,26 +241,36 @@ const GenerateCampaignScreen = () => {
             console.warn('Polling exception', e);
           }
 
-          // Keep progress at 90% while polling
-          setProgress(90);
+          // Update progress with more specific status based on what we're waiting for
+          if (attempt < 15) {
+            setCurrentAction("Generating marketing materials...");
+            setProgress(Math.min(85, 70 + (attempt * 1)));
+          } else if (attempt < 30) {
+            setCurrentAction("Creating promotional video...");
+            setProgress(Math.min(90, 85 + ((attempt - 15) * 0.3)));
+          } else {
+            setCurrentAction("Finalizing video production...");
+            setProgress(90);
+          }
           await new Promise((r) => setTimeout(r, intervalMs));
         }
         
         // If results not ready, keep user on progress screen (do not navigate)
         if (!finalResults) {
-          setCurrentAction("Still preparing your results...");
-          setProgress(90);
+          setCurrentAction("Video content is still being processed...");
+          setProgress(95);
           return;
         }
 
-        // Smoothly progress from 90% to 100%
-        setCurrentAction("Completing your campaign...");
-        for (let i = 91; i <= 100; i++) {
+        // Smoothly progress from current to 100%
+        setCurrentAction("Finalizing your complete campaign...");
+        for (let i = Math.max(91, progress); i <= 100; i++) {
+          if (i === 95) setCurrentAction("Campaign ready!");
+          if (i === 100) setCurrentAction("Complete!");
           setProgress(i);
           await new Promise(resolve => setTimeout(resolve, 50)); // 50ms per percent
         }
         
-        setCurrentAction("Complete!");
         await new Promise(resolve => setTimeout(resolve, 500)); // Brief pause at 100%
         
         // Navigate only after smooth completion
