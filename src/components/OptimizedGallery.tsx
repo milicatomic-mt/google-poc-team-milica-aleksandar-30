@@ -267,17 +267,6 @@ const OptimizedGallery = () => {
       </div>
     </div>
 
-      {/* Filter Badge - Sticky */}
-      {selectedFilter !== 'all' && (
-        <div className="sticky top-[73px] z-20 bg-gray-150/95 backdrop-blur-sm py-3 border-b border-white/20">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <Badge variant="outline" className="text-sm border-primary text-primary bg-white shadow-sm">
-              {selectedFilter === 'campaigns' ? 'Campaign' : 'Catalog'}
-            </Badge>
-          </div>
-        </div>
-      )}
-
       {/* Gallery Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {filteredItems.length === 0 ? (
@@ -362,9 +351,9 @@ const GalleryItemDisplay: React.FC<{
   return (
     <Card className="w-full overflow-hidden bg-white border-0 shadow-sm">
       <CardContent className="p-0 relative">
-        {/* Campaign/Catalog Badge - Top Right */}
-        <div className="absolute top-6 right-6 z-10">
-          <Badge variant="outline" className="text-xs border-primary text-primary">
+        {/* Campaign/Catalog Badge - Sticky below header */}
+        <div className="sticky top-[73px] right-6 z-30 flex justify-end px-6 pt-6 pb-2 pointer-events-none">
+          <Badge variant="outline" className="text-xs border-primary text-primary bg-white shadow-sm pointer-events-auto">
             {item.type === 'campaign' ? 'Campaign' : 'Catalog'}
           </Badge>
         </div>
