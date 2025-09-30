@@ -21,6 +21,8 @@ import { VideoPlayer } from '@/components/VideoPlayer';
 import QRDownloadModal from '@/components/QRDownloadModal';
 import { extractColorsFromImage } from '@/lib/color-extraction';
 import profileAvatar from '@/assets/profile-avatar.png';
+import profileKaren from '@/assets/profile-karen.png';
+import profileZack from '@/assets/profile-zack.png';
 
 const PreviewResultsScreen: React.FC = () => {
   const location = useLocation();
@@ -499,13 +501,13 @@ const PreviewResultsScreen: React.FC = () => {
                           </div>
                           <div className="flex flex-col items-center">
                             <div className="w-8 h-8 bg-gray-600 rounded-full p-0.5">
-                              <img src={profileAvatar} alt="joshua_l" className="w-full h-full rounded-full object-cover" />
+                              <img src={profileKaren} alt="joshua_l" className="w-full h-full rounded-full object-cover" />
                             </div>
                             <span className="text-gray-400 text-[6px] mt-0.5">joshua_l</span>
                           </div>
                           <div className="flex flex-col items-center">
                             <div className="w-8 h-8 bg-gray-600 rounded-full p-0.5">
-                              <img src={profileAvatar} alt="craig.done" className="w-full h-full rounded-full object-cover" />
+                              <img src={profileZack} alt="craig.done" className="w-full h-full rounded-full object-cover" />
                             </div>
                             <span className="text-gray-400 text-[6px] mt-0.5">craig.done</span>
                           </div>

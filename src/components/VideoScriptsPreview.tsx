@@ -8,6 +8,8 @@ import { VideoPlayer } from '@/components/VideoPlayer';
 import { OptimizedImage } from '@/components/ui/optimized-image';
 import type { CampaignCreationResponse } from '@/types/api';
 import profileImage from '@/assets/profile-avatar.png';
+import profileKaren from '@/assets/profile-karen.png';
+import profileZack from '@/assets/profile-zack.png';
 
 const VideoScriptsPreview: React.FC = () => {
   const location = useLocation();
@@ -152,13 +154,13 @@ const VideoScriptsPreview: React.FC = () => {
                     </div>
                     <div className="flex flex-col items-center">
                       <div className="w-16 h-16 rounded-full bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-600 p-0.5">
-                        <img src={profileImage} alt="karenme" className="w-full h-full rounded-full object-cover border-2 border-black" />
+                        <img src={profileKaren} alt="karenme" className="w-full h-full rounded-full object-cover border-2 border-black" />
                       </div>
                       <span className="text-xs mt-1">karenme</span>
                     </div>
                     <div className="flex flex-col items-center">
                       <div className="w-16 h-16 rounded-full bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-600 p-0.5">
-                        <img src={profileImage} alt="zackjohn" className="w-full h-full rounded-full object-cover border-2 border-black" />
+                        <img src={profileZack} alt="zackjohn" className="w-full h-full rounded-full object-cover border-2 border-black" />
                       </div>
                       <span className="text-xs mt-1">zackjohn</span>
                     </div>
@@ -501,7 +503,7 @@ const VideoScriptsPreview: React.FC = () => {
                           <span className="text-xs mt-1">Inbox</span>
                         </div>
                         <div className="text-center opacity-60">
-                          <div className="w-7 h-7 rounded-full bg-gray-400"></div>
+                          <img src={profileImage} alt="Profile" className="w-7 h-7 rounded-full object-cover mx-auto" />
                           <span className="text-xs mt-1">Profile</span>
                         </div>
                       </div>
