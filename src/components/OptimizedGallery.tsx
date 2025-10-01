@@ -19,7 +19,16 @@ import profileZack from '@/assets/profile-zack.png';
 const OptimizedGallery = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const [selectedFilter, setSelectedFilter] = useState<'all' | 'campaigns' | 'catalogs'>('all');
+  
+  // Initialize filter from sessionStorage if available
+  const [selectedFilter, setSelectedFilter] = useState<'all' | 'campaigns' | 'catalogs'>(() => {
+    try {
+      const savedFilter = sessionStorage.getItem('gallery-filter');
+      return (savedFilter as 'all' | 'campaigns' | 'catalogs') || 'all';
+    } catch {
+      return 'all';
+    }
+  });
   const [isDownloadModalOpen, setIsDownloadModalOpen] = useState(false);
   const [selectedItemForDownload, setSelectedItemForDownload] = useState<any>(null);
   const { preloadImages, getCachedImageUrl } = useImageCache();
@@ -132,10 +141,11 @@ const OptimizedGallery = () => {
   };
 
   const handleViewDetails = (category: string, item: GalleryItem, itemDetails: any) => {
-    // Save current scroll position before navigating
+    // Save current scroll position and filter before navigating
     try {
       sessionStorage.setItem('gallery-scroll-position', String(window.scrollY));
       sessionStorage.setItem('gallery-restore', '1');
+      sessionStorage.setItem('gallery-filter', selectedFilter);
     } catch {}
     const routeMap = {
       'Web Creative': '/web-creative',
