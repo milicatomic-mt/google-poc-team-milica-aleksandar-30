@@ -234,7 +234,7 @@ const OptimizedGallery = () => {
   }
 
   return (
-    <div className="min-h-screen w-full bg-gray-100 relative">
+    <div className="min-h-screen w-full bg-gray-300 relative">
       {/* Background Video */}
       <div className="relative z-10">
       {/* Header */}
