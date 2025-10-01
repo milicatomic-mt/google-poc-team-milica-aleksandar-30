@@ -339,13 +339,62 @@ const GalleryItemDisplay: React.FC<{
 
   if (isLoading) {
     return (
-      <Card className="w-full">
-        <CardContent className="p-4">
-          <div className="flex items-center justify-center">
-            <div className="w-8 h-8 animate-spin">
-              <RibbedSphere className="w-full h-full" />
+      <Card className="w-full overflow-hidden bg-white/40 backdrop-blur-xl border border-white/40 shadow-sm">
+        <CardContent className="p-0">
+          {/* Header Skeleton */}
+          <div className="border-b border-white/40 p-6">
+            <div className="flex items-center justify-between">
+              <div className="space-y-2 flex-1">
+                <div className="h-8 w-3/4 bg-white/60 rounded animate-pulse" />
+                <div className="h-4 w-1/4 bg-white/50 rounded animate-pulse" />
+              </div>
+              <div className="h-6 w-20 bg-white/50 rounded-full animate-pulse" />
             </div>
-            <span className="ml-3 text-muted-foreground">Loading content...</span>
+          </div>
+
+          {/* Content Skeleton */}
+          <div className="p-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              {/* Card Skeleton 1 */}
+              <div className="border-2 border-white/50 rounded-lg overflow-hidden">
+                <div className="p-2 border-b border-white/40">
+                  <div className="h-6 w-32 bg-white/50 rounded animate-pulse" />
+                </div>
+                <div className="p-2">
+                  <div className="h-80 bg-white/50 rounded animate-pulse" />
+                </div>
+              </div>
+
+              {/* Card Skeleton 2 */}
+              <div className="border-2 border-white/50 rounded-lg overflow-hidden">
+                <div className="p-2 border-b border-white/40">
+                  <div className="h-6 w-32 bg-white/50 rounded animate-pulse" />
+                </div>
+                <div className="p-2">
+                  <div className="h-80 bg-white/50 rounded animate-pulse" />
+                </div>
+              </div>
+
+              {/* Card Skeleton 3 */}
+              <div className="border-2 border-white/50 rounded-lg overflow-hidden">
+                <div className="p-2 border-b border-white/40">
+                  <div className="h-6 w-32 bg-white/50 rounded animate-pulse" />
+                </div>
+                <div className="p-2">
+                  <div className="h-80 bg-white/50 rounded animate-pulse" />
+                </div>
+              </div>
+
+              {/* Card Skeleton 4 */}
+              <div className="border-2 border-white/50 rounded-lg overflow-hidden">
+                <div className="p-2 border-b border-white/40">
+                  <div className="h-6 w-32 bg-white/50 rounded animate-pulse" />
+                </div>
+                <div className="p-2">
+                  <div className="h-80 bg-white/50 rounded animate-pulse" />
+                </div>
+              </div>
+            </div>
           </div>
         </CardContent>
       </Card>
