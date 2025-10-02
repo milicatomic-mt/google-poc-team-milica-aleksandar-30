@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { X, Copy, CheckCircle, Edit, Download } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
 import { toast } from 'sonner';
@@ -52,7 +52,6 @@ const CatalogResultsScreen: React.FC = () => {
   const [currentAction, setCurrentAction] = useState("Preparing catalog generation...");
   const [progress, setProgress] = useState(0);
   const [isDownloadModalOpen, setIsDownloadModalOpen] = useState(false);
-  const [hasStartedGeneration, setHasStartedGeneration] = useState(false);
   const [savedRequestId, setSavedRequestId] = useState<string | null>(null);
 
   useEffect(() => {
@@ -64,7 +63,10 @@ const CatalogResultsScreen: React.FC = () => {
     // Dedupe guard across StrictMode mounts using sessionStorage with timestamp
     const hashString = (str: string) => {
       let hash = 0;
-      for (let i = 0; i < str.length; i++) { hash = ((hash << 5) - hash) + str.charCodeAt(i); hash |= 0; }
+      for (let i = 0; i < str.length; i++) { 
+        hash = ((hash << 5) - hash) + str.charCodeAt(i); 
+        hash |= 0; 
+      }
       return Math.abs(hash).toString(36);
     };
     const requestHash = hashString(JSON.stringify({
@@ -92,37 +94,16 @@ const CatalogResultsScreen: React.FC = () => {
         setIsGenerating(true);
         setError(null);
 
-        // Simulate loading steps with progress updates
-        const loadingSteps = [
-          { text: "Preparing catalog generation...", progress: 0 },
-          { text: "Analyzing product image...", progress: 25 },
-          { text: "Generating SEO-optimized content...", progress: 50 },
-          { text: "Creating features and descriptions...", progress: 75 },
-          { text: "Finalizing catalog content...", progress: 90 }
-        ];
-
-        // Update loading steps
-        for (let i = 0; i < loadingSteps.length; i++) {
-          setCurrentAction(loadingSteps[i].text);
-          setProgress(loadingSteps[i].progress);
-          await new Promise(resolve => setTimeout(resolve, 1200)); // Wait 1.2s between steps
-        }
+        // Set initial progress
+        setCurrentAction("Preparing catalog generation...");
+        setProgress(10);
 
         // Handle image upload if it's a base64 data URL with caching to avoid duplicates in StrictMode
-        // Simple hash function
-        const hashString = (str: string) => {
-          let hash = 0;
-          for (let i = 0; i < str.length; i++) {
-            hash = ((hash << 5) - hash) + str.charCodeAt(i);
-            hash |= 0;
-          }
-          return Math.abs(hash).toString(36);
-        };
 
         let imageUrl = catalogData.uploadedImage;
         if (catalogData.uploadedImage && catalogData.uploadedImage.startsWith('data:image/')) {
           setCurrentAction("Uploading your image...");
-          // Don't reset progress - keep it at current level (90%)
+          setProgress(30);
           const uploadKey = 'catalog:upload:' + hashString(catalogData.uploadedImage.slice(0, 256));
           const cachedUrl = sessionStorage.getItem(uploadKey);
           if (cachedUrl) {
@@ -148,6 +129,9 @@ const CatalogResultsScreen: React.FC = () => {
 
         // Extract generated images from analysis data
         const generatedImages = catalogData.aiAnalysisData?.generatedImages || [];
+
+        setCurrentAction("Checking for existing catalog...");
+        setProgress(50);
 
         const twoMinutesAgo = new Date(Date.now() - 2 * 60 * 1000).toISOString();
         let query: any = supabase
@@ -198,6 +182,7 @@ const CatalogResultsScreen: React.FC = () => {
           
           // Only regenerate the description, keep other fields from existing result
           setCurrentAction("Updating product description...");
+          setProgress(70);
           const results = await generateCatalog(savedRequest.id, catalogRequest);
           
           // Merge with existing results, only updating description
@@ -223,19 +208,14 @@ const CatalogResultsScreen: React.FC = () => {
           setSavedRequestId(savedRequest.id);
           
           // Generate the full catalog content using AI
+          setCurrentAction("Generating catalog content...");
+          setProgress(70);
           const results = await generateCatalog(savedRequest.id, catalogRequest);
           setCatalogResults(results);
         }
 
-        // Smoothly progress from 90% to 100%
-        setCurrentAction("Completing your catalog...");
-        for (let i = 91; i <= 100; i++) {
-          setProgress(i);
-          await new Promise(resolve => setTimeout(resolve, 50)); // 50ms per percent
-        }
-        
         setCurrentAction("Complete!");
-        await new Promise(resolve => setTimeout(resolve, 500)); // Brief pause at 100%
+        setProgress(100);
 
         toast.success('Catalog content generated successfully!');
 
@@ -245,7 +225,9 @@ const CatalogResultsScreen: React.FC = () => {
       } finally {
         setIsGenerating(false);
         // Clear the inflight key after completion
-        try { sessionStorage.removeItem(inflightKey); } catch {}
+        try { 
+          sessionStorage.removeItem(inflightKey); 
+        } catch {}
       }
     };
 
@@ -261,10 +243,6 @@ const CatalogResultsScreen: React.FC = () => {
       await navigator.clipboard.writeText(text);
       setCopiedField(fieldName);
       toast.success(`${fieldName} copied to clipboard!`);
-      
-      setTimeout(() => {
-        setCopiedField(null);
-      }, 2000);
     } catch (error) {
       toast.error('Failed to copy to clipboard');
     }
