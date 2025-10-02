@@ -39,7 +39,6 @@ const GenerateCampaignScreen = () => {
         const timestamp = parseInt(inflightData);
         const fiveSecondsAgo = Date.now() - 5000;
         if (timestamp > fiveSecondsAgo) {
-          console.log('GenerateCampaignScreen: deduped duplicate mount');
           return;
         }
       }
@@ -47,21 +46,16 @@ const GenerateCampaignScreen = () => {
     }
 
     const generateContent = async () => {
-      console.log('=== GenerateCampaignScreen: generateContent started ===');
-      
       try {
         const state = location.state;
-        console.log('Campaign state:', state);
         
         if (!state) {
-          console.error('No state found, navigating to home');
           navigate('/');
           return;
         }
 
         // Validate required data
         if (!state.uploadedImage || !state.campaignPrompt) {
-          console.error('Missing required data:', { uploadedImage: !!state.uploadedImage, campaignPrompt: !!state.campaignPrompt });
           navigate('/');
           return;
         }
@@ -102,9 +96,7 @@ const GenerateCampaignScreen = () => {
               imageUrl = await uploadBase64Image(state.uploadedImage, 'campaign-uploads');
               sessionStorage.setItem(uploadKey, imageUrl);
             }
-            console.log('Image uploaded successfully:', imageUrl);
           } catch (error) {
-            console.error('Failed to upload image:', error);
             throw new Error('Failed to upload image');
           }
         }
@@ -133,7 +125,6 @@ const GenerateCampaignScreen = () => {
             .single();
 
           if (fetchError) {
-            console.error('Failed to fetch existing campaign:', fetchError);
             throw new Error('Failed to fetch existing campaign');
           }
 
@@ -149,7 +140,6 @@ const GenerateCampaignScreen = () => {
             .eq('id', state.campaignId);
 
           if (updateError) {
-            console.error('Failed to update campaign:', updateError);
             throw new Error('Failed to update campaign');
           }
           
@@ -173,7 +163,6 @@ const GenerateCampaignScreen = () => {
             setCurrentAction("Finalizing video production...");
             setProgress(85);
           } catch (videoError) {
-            console.warn('Video generation failed:', videoError);
             setCurrentAction("Completing campaign setup...");
             setProgress(85);
           }
@@ -193,8 +182,6 @@ const GenerateCampaignScreen = () => {
           
           campaignResult = existing ? { id: existing.id } : await saveCampaignRequest(campaignData, generatedImages);
           
-          console.log('Calling generateCampaign with:', { id: campaignResult.id, data: campaignData });
-          
           // Generate the campaign using AI
           setCurrentAction("Generating campaign materials...");
           setProgress(70);
@@ -203,8 +190,6 @@ const GenerateCampaignScreen = () => {
           
           setCurrentAction("Generating video campaign...");
           setProgress(90);
-          
-          console.log('generateCampaign completed');
         }
         
         // Start polling for results so we only navigate when content is ready
@@ -226,7 +211,7 @@ const GenerateCampaignScreen = () => {
               .single();
 
             if (error) {
-              console.warn('Polling error while fetching campaign results', error);
+              // Polling error while fetching campaign results
             }
 
             const hasResult = data?.result && Object.keys(data.result as any || {}).length > 0;
@@ -238,7 +223,7 @@ const GenerateCampaignScreen = () => {
               break;
             }
           } catch (e) {
-            console.warn('Polling exception', e);
+            // Polling exception
           }
 
           // Update progress with more specific status based on what we're waiting for
@@ -282,7 +267,6 @@ const GenerateCampaignScreen = () => {
           } 
         });
       } catch (error) {
-        console.error('Error while generating campaign', error);
         setCurrentAction('There was an issue generating your campaign. Retrying...');
         setProgress(10);
         // Do NOT navigate; keep user on progress screen.
@@ -320,7 +304,6 @@ const GenerateCampaignScreen = () => {
         playsInline
         preload="metadata"
         onError={(e) => {
-          console.warn('Background video failed to load');
           e.currentTarget.style.display = 'none';
         }}
       >

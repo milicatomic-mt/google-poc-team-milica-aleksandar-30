@@ -19,22 +19,16 @@ const DownloadContentScreen = () => {
     const type = searchParams.get('type');
     const token = searchParams.get('token');
 
-    console.log('DownloadContentScreen loaded with params:', { type, token });
-    console.log('Current URL:', window.location.href);
-
     if (!type || !token) {
-      console.error('Missing required parameters:', { type, token });
       setError('Invalid download link');
       return;
     }
 
     if (type !== 'zip') {
-      console.error('Unsupported file type:', type);
       setError('Unsupported file type');
       return;
     }
 
-    console.log('Starting download with valid parameters');
     // Auto-start download
     handleDownload(type, token);
   }, [searchParams]);
@@ -107,7 +101,7 @@ const DownloadContentScreen = () => {
               zip.file(`uploaded-image.${fileExtension}`, imageBlob);
             }
           } catch (error) {
-            console.warn('Could not add image to ZIP:', error);
+            // Could not add image to ZIP
           }
         }
 
@@ -140,11 +134,10 @@ const DownloadContentScreen = () => {
             }
             URL.revokeObjectURL(url);
           } catch (cleanupError) {
-            console.warn('Cleanup error (non-critical):', cleanupError);
+            // Cleanup error (non-critical)
           }
         }, 100);
       } catch (downloadError) {
-        console.error('Download trigger error:', downloadError);
         // Even if click fails, try direct navigation for mobile
         try {
           window.open(url, '_blank');
@@ -155,7 +148,6 @@ const DownloadContentScreen = () => {
       }
     } catch (err) {
       setError('Failed to process download');
-      console.error('Download error:', err);
     } finally {
       setIsDownloading(false);
     }

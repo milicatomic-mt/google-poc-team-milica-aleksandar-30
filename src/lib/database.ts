@@ -25,7 +25,6 @@ export const uploadBase64Image = async (base64Data: string, folder: string = 'up
       });
     
     if (error) {
-      console.error('Storage upload error:', error);
       throw error;
     }
     
@@ -36,7 +35,6 @@ export const uploadBase64Image = async (base64Data: string, folder: string = 'up
     
     return publicUrl;
   } catch (error) {
-    console.error('Error uploading base64 image:', error);
     throw error;
   }
 };
@@ -62,10 +60,7 @@ export const saveCampaignRequest = async (data: CampaignCreationRequest, generat
 };
 
 export const generateCampaign = async (campaignId: string, data: CampaignCreationRequest) => {
-  console.log('generateCampaign called with:', { campaignId, data });
-
   try {
-    console.log('Invoking generate-campaign edge function...');
     const { data: result, error } = await supabase.functions.invoke('generate-campaign', {
       body: {
         campaignId,
@@ -76,16 +71,12 @@ export const generateCampaign = async (campaignId: string, data: CampaignCreatio
     });
 
     if (error) {
-      console.error('generate-campaign error:', error);
       throw error;
     }
-
-    console.log('generate-campaign result:', result);
 
     // If we got a video prompt, generate the video
     if (result?.videoPrompt) {
       try {
-        console.log('Invoking generate-video edge function...');
         await supabase.functions.invoke('generate-video', {
           body: {
             campaignId,
@@ -93,13 +84,12 @@ export const generateCampaign = async (campaignId: string, data: CampaignCreatio
           }
         });
       } catch (videoError) {
-        console.warn('Video generation failed, but continuing with campaign:', videoError);
+        // Video generation failed, but continuing with campaign
       }
     }
 
     return result;
   } catch (err) {
-    console.error('generateCampaign exception:', err);
     throw err;
   }
 };
@@ -125,10 +115,7 @@ export const saveCatalogRequest = async (data: CatalogEnrichmentRequest, generat
 };
 
 export const generateCatalog = async (catalogId: string, data: CatalogEnrichmentRequest) => {
-  console.log('generateCatalog called with:', { catalogId, data });
-
   try {
-    console.log('Invoking generate-catalog edge function...');
     const { data: result, error } = await supabase.functions.invoke('generate-catalog', {
       body: {
         catalogId,
@@ -141,14 +128,11 @@ export const generateCatalog = async (catalogId: string, data: CatalogEnrichment
     });
 
     if (error) {
-      console.error('generate-catalog error:', error);
       throw error;
     }
 
-    console.log('generate-catalog result:', result);
     return result as CatalogEnrichmentResponse;
   } catch (err) {
-    console.error('generateCatalog exception:', err);
     throw err;
   }
 };

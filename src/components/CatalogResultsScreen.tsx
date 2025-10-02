@@ -85,16 +85,12 @@ const CatalogResultsScreen: React.FC = () => {
       const timestamp = parseInt(inflightData);
       const fiveSecondsAgo = Date.now() - 5000;
       if (timestamp > fiveSecondsAgo) {
-        console.log('CatalogResultsScreen: deduped duplicate mount');
         return;
       }
     }
     sessionStorage.setItem(inflightKey, Date.now().toString());
 
     const generateCatalogContent = async () => {
-      console.log('=== CatalogResultsScreen: generateCatalogContent started ===');
-      console.log('Catalog data:', catalogData);
-      
       try {
         setIsGenerating(true);
         setError(null);
@@ -138,9 +134,7 @@ const CatalogResultsScreen: React.FC = () => {
             try {
               imageUrl = await uploadBase64Image(catalogData.uploadedImage, 'catalog-uploads');
               sessionStorage.setItem(uploadKey, imageUrl);
-              console.log('Image uploaded successfully:', imageUrl);
             } catch (error) {
-              console.error('Failed to upload image:', error);
               throw new Error('Failed to upload image');
             }
           }
@@ -184,7 +178,6 @@ const CatalogResultsScreen: React.FC = () => {
             .single();
 
           if (fetchError) {
-            console.error('Failed to fetch existing catalog:', fetchError);
             throw new Error('Failed to fetch existing catalog');
           }
 
@@ -200,7 +193,6 @@ const CatalogResultsScreen: React.FC = () => {
             .eq('id', catalogData.catalogId);
 
           if (updateError) {
-            console.error('Failed to update catalog:', updateError);
             throw new Error('Failed to update catalog');
           }
           
@@ -233,11 +225,8 @@ const CatalogResultsScreen: React.FC = () => {
           
           setSavedRequestId(savedRequest.id);
           
-          console.log('Calling generateCatalog with:', { id: savedRequest.id, request: catalogRequest });
-          
           // Generate the full catalog content using AI
           const results = await generateCatalog(savedRequest.id, catalogRequest);
-          console.log('generateCatalog returned:', results);
           setCatalogResults(results);
         }
 

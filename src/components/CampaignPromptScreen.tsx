@@ -104,8 +104,6 @@ const CampaignPromptScreen = () => {
   };
 
   const handleCreateCampaign = () => {
-    console.log('Create campaign clicked with prompt:', prompt.trim());
-    console.log('Selected audiences:', selectedAudiences);
     if (prompt.trim()) {
       // Navigate directly to generate campaign with properly mapped data
       navigate('/generate-campaign', { 
@@ -205,7 +203,6 @@ const CampaignPromptScreen = () => {
         playsInline
         preload="metadata"
         onError={(e) => {
-          console.warn('Background video failed to load');
           e.currentTarget.style.display = 'none';
         }}
       >

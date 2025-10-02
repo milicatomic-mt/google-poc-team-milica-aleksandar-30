@@ -22,10 +22,9 @@ const VideoScriptsPreview: React.FC = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  // Debug: Check if we have campaign results
+  // Check if we have campaign results
   useEffect(() => {
     if (!campaignResults) {
-      console.log('No campaign results found, redirecting...');
       navigate('/');
       return;
     }
