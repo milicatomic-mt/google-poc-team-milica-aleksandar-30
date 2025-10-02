@@ -14,50 +14,35 @@ const GenerateCampaignScreen = () => {
   const navigate = useNavigate();
   const [currentAction, setCurrentAction] = useState("Preparing your content...");
   const [progress, setProgress] = useState(0);
+  const [hasStartedGeneration, setHasStartedGeneration] = useState(false);
 
-  // Utility function for hashing
-  const hashString = (str: string) => { 
-    let h = 0; 
-    for (let i = 0; i < str.length; i++) { 
-      h = ((h << 5) - h) + str.charCodeAt(i); 
-      h |= 0; 
-    } 
-    return Math.abs(h).toString(36); 
-  };
-
-  // Check if generation is already in progress
-  const isGenerationInProgress = () => {
+  useEffect(() => {
+    // Dedupe guard across StrictMode mounts using sessionStorage.
+    // Include location.key so each navigation triggers a fresh run, but still dedup StrictMode double mounts.
     const stateAny = location.state as any;
-    if (!stateAny) return false;
-    
     const isEdit = !!stateAny?.editMode;
-    const requestHash = hashString(JSON.stringify({
+    const hashString = (str: string) => { let h = 0; for (let i = 0; i < str.length; i++) { h = ((h << 5) - h) + str.charCodeAt(i); h |= 0; } return Math.abs(h).toString(36); };
+    const requestHash = stateAny ? hashString(JSON.stringify({
       uploadedImage: (stateAny.uploadedImage || '').slice(0, 256),
       campaignPrompt: stateAny.campaignPrompt,
       target: stateAny.selectedAudiences?.join(',') || '',
       mode: isEdit ? 'edit' : 'create',
       campaignId: stateAny.campaignId || '',
       navKey: location.key || ''
-    }));
+    })) : '';
+    const inflightKey = requestHash ? `campaign:inflight:${requestHash}` : '';
     
-    const inflightKey = `campaign:inflight:${requestHash}`;
-    const inflightData = sessionStorage.getItem(inflightKey);
-    
-    if (inflightData) {
-      const timestamp = parseInt(inflightData);
-      const fiveSecondsAgo = Date.now() - 5000;
-      if (timestamp > fiveSecondsAgo) {
-        return true;
+    // Check if generation is already in progress (within last 5 seconds)
+    if (inflightKey) {
+      const inflightData = sessionStorage.getItem(inflightKey);
+      if (inflightData) {
+        const timestamp = parseInt(inflightData);
+        const fiveSecondsAgo = Date.now() - 5000;
+        if (timestamp > fiveSecondsAgo) {
+          return;
+        }
       }
-    }
-    
-    sessionStorage.setItem(inflightKey, Date.now().toString());
-    return false;
-  };
-
-  useEffect(() => {
-    if (isGenerationInProgress()) {
-      return;
+      sessionStorage.setItem(inflightKey, Date.now().toString());
     }
 
     const generateContent = async () => {
@@ -75,16 +60,33 @@ const GenerateCampaignScreen = () => {
           return;
         }
 
-        // Set initial progress
-        setCurrentAction("Preparing your content...");
-        setProgress(10);
+        // Simulate loading steps with progress updates
+        const loadingSteps = [
+          { text: "Preparing your content...", progress: 0 },
+          { text: "Analyzing your product image...", progress: 15 },
+          { text: "Creating marketing strategy...", progress: 30 },
+          { text: "Generating campaign content...", progress: 50 },
+          { text: "Creating ad copy and banners...", progress: 65 }
+        ];
+
+        // Update loading steps
+        for (let i = 0; i < loadingSteps.length; i++) {
+          setCurrentAction(loadingSteps[i].text);
+          setProgress(loadingSteps[i].progress);
+          await new Promise(resolve => setTimeout(resolve, 1200)); // Wait 1.2s between steps
+        }
 
         // Handle image upload if it's a base64 data URL (cache to avoid duplicates in StrictMode)
+        const hashString = (str: string) => {
+          let hash = 0;
+          for (let i = 0; i < str.length; i++) { hash = ((hash << 5) - hash) + str.charCodeAt(i); hash |= 0; }
+          return Math.abs(hash).toString(36);
+        };
 
         let imageUrl = state.uploadedImage;
         if (state.uploadedImage && state.uploadedImage.startsWith('data:image/')) {
           setCurrentAction("Uploading your image...");
-          setProgress(30);
+          // Don't jump back, continue from current progress
           try {
             const uploadKey = 'campaign:upload:' + hashString(state.uploadedImage.slice(0, 256));
             const cachedUrl = sessionStorage.getItem(uploadKey);
@@ -114,7 +116,6 @@ const GenerateCampaignScreen = () => {
         if (state.editMode && state.campaignId) {
           // In edit mode, only update prompt/audience and regenerate video
           setCurrentAction("Updating campaign details...");
-          setProgress(50);
           
           // Update only the prompt and audience, keep existing results
           const { data: existingCampaign, error: fetchError } = await supabase
@@ -145,8 +146,12 @@ const GenerateCampaignScreen = () => {
           campaignResult = { id: state.campaignId };
           
           // Only regenerate video, not the entire campaign content
+          setCurrentAction("Preparing video content...");
+          setProgress(75);
+          
+          // Trigger video generation with updated prompt
           setCurrentAction("Creating your promotional video...");
-          setProgress(70);
+          setProgress(80);
           
           try {
             await supabase.functions.invoke('generate-video', {
@@ -156,10 +161,10 @@ const GenerateCampaignScreen = () => {
               }
             });
             setCurrentAction("Finalizing video production...");
-            setProgress(80);
+            setProgress(85);
           } catch (videoError) {
             setCurrentAction("Completing campaign setup...");
-            setProgress(80);
+            setProgress(85);
           }
         } else {
           // Create new campaign or reuse recent identical one (dedupe StrictMode)
@@ -179,17 +184,17 @@ const GenerateCampaignScreen = () => {
           
           // Generate the campaign using AI
           setCurrentAction("Generating campaign materials...");
-          setProgress(50);
+          setProgress(70);
           
           await generateCampaign(campaignResult.id, campaignData);
           
           setCurrentAction("Generating video campaign...");
-          setProgress(70);
+          setProgress(90);
         }
         
         // Start polling for results so we only navigate when content is ready
         setCurrentAction("Assembling campaign materials...");
-        setProgress(80);
+        setProgress(85);
 
         const maxAttempts = 45; // ~90s
         const intervalMs = 2000;
@@ -224,7 +229,7 @@ const GenerateCampaignScreen = () => {
           // Update progress with more specific status based on what we're waiting for
           if (attempt < 15) {
             setCurrentAction("Generating marketing materials...");
-            setProgress(Math.min(85, 80 + (attempt * 0.3)));
+            setProgress(Math.min(85, 70 + (attempt * 1)));
           } else if (attempt < 30) {
             setCurrentAction("Creating promotional video...");
             setProgress(Math.min(90, 85 + ((attempt - 15) * 0.3)));
@@ -242,8 +247,16 @@ const GenerateCampaignScreen = () => {
           return;
         }
 
-        setCurrentAction("Complete!");
-        setProgress(100);
+        // Smoothly progress from current to 100%
+        setCurrentAction("Finalizing your complete campaign...");
+        for (let i = Math.max(91, progress); i <= 100; i++) {
+          if (i === 95) setCurrentAction("Campaign ready!");
+          if (i === 100) setCurrentAction("Complete!");
+          setProgress(i);
+          await new Promise(resolve => setTimeout(resolve, 50)); // 50ms per percent
+        }
+        
+        await new Promise(resolve => setTimeout(resolve, 500)); // Brief pause at 100%
         
         // Navigate only after smooth completion
         navigate('/preview-results', { 
@@ -261,23 +274,22 @@ const GenerateCampaignScreen = () => {
     };
 
      generateContent().finally(() => {
-       // Clear the inflight key after completion
        try {
          const stateAny = location.state as any;
-         if (stateAny) {
-           const isEdit = !!stateAny?.editMode;
-           const requestHash = hashString(JSON.stringify({
-             uploadedImage: (stateAny.uploadedImage || '').slice(0, 256),
-             campaignPrompt: stateAny.campaignPrompt,
-             target: stateAny.selectedAudiences?.join(',') || '',
-             mode: isEdit ? 'edit' : 'create',
-             campaignId: stateAny.campaignId || '',
-             navKey: location.key || ''
-           }));
-           const inflightKey = `campaign:inflight:${requestHash}`;
-           sessionStorage.removeItem(inflightKey);
-         }
-       } catch {}
+         const isEdit = !!stateAny?.editMode;
+         const hashString = (str: string) => { let h = 0; for (let i = 0; i < str.length; i++) { h = ((h << 5) - h) + str.charCodeAt(i); h |= 0; } return Math.abs(h).toString(36); };
+         const requestHash = stateAny ? hashString(JSON.stringify({
+           uploadedImage: (stateAny.uploadedImage || '').slice(0, 256),
+           campaignPrompt: stateAny.campaignPrompt,
+           target: stateAny.selectedAudiences?.join(',') || '',
+           mode: isEdit ? 'edit' : 'create',
+           campaignId: stateAny.campaignId || '',
+           navKey: location.key || ''
+         })) : '';
+          const inflightKey = requestHash ? `campaign:inflight:${requestHash}` : '';
+          // Clear the inflight key after completion
+          if (inflightKey) sessionStorage.removeItem(inflightKey);
+        } catch {}
      });
    }, []);
 
