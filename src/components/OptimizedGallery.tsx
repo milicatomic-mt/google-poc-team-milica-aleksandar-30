@@ -3,7 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { ArrowLeft, Play, X, Camera, Heart, MessageCircle, Send, Share, Plus, Search, MoreHorizontal, Bookmark, ArrowUpRight } from 'lucide-react';
+import { ArrowLeft, Play, Camera, Heart, MessageCircle, Send, Share, Plus, Search, MoreHorizontal, Bookmark, ArrowUpRight } from 'lucide-react';
 import RibbedSphere from '@/components/RibbedSphere';
 import { useGalleryData, useGalleryItemDetails, type GalleryItem } from '@/hooks/useGalleryData';
 import QRDownloadModal from '@/components/QRDownloadModal';

@@ -6,7 +6,6 @@ import { Button } from '@/components/ui/button';
 import QRDownloadModal from '@/components/QRDownloadModal';
 import { VideoPlayer } from '@/components/VideoPlayer';
 import { OptimizedImage } from '@/components/ui/optimized-image';
-import type { CampaignCreationResponse } from '@/types/api';
 import profileImage from '@/assets/profile-avatar.png';
 import profileKaren from '@/assets/profile-karen.png';
 import profileZack from '@/assets/profile-zack.png';

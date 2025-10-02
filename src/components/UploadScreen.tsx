@@ -1,7 +1,7 @@
 import React, { useState, useCallback, useRef, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { HelpCircle, ArrowLeft, Upload, Image, CheckCircle, AlertCircle, Camera, X, QrCode, ArrowRight } from 'lucide-react';
+import { ArrowLeft, Upload, CheckCircle, AlertCircle, Camera, X, QrCode, ArrowRight } from 'lucide-react';
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger, DialogClose } from '@/components/ui/dialog';
 import { toast } from 'sonner';
 import { QRCodeSVG } from 'qrcode.react';
