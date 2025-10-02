@@ -11,7 +11,6 @@ interface VideoPlayerProps {
 
 export const VideoPlayer = ({ videoUrl, posterUrl, title = "AI Generated Video", className = "" }: VideoPlayerProps) => {
   const [isPlaying, setIsPlaying] = useState(false);
-  const [isMuted, setIsMuted] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -72,7 +71,6 @@ export const VideoPlayer = ({ videoUrl, posterUrl, title = "AI Generated Video",
         preload="metadata"
         controls
         playsInline
-        muted={isMuted}
         onClick={togglePlay}
         aria-label={title}
         src={videoUrl}
