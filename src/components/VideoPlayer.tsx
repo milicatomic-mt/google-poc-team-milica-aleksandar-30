@@ -1,5 +1,4 @@
 import { useState, useRef } from "react";
-import { Play, Pause, Volume2, VolumeX } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 
@@ -13,7 +12,6 @@ interface VideoPlayerProps {
 export const VideoPlayer = ({ videoUrl, posterUrl, title = "AI Generated Video", className = "" }: VideoPlayerProps) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
-  const [showControls, setShowControls] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -26,13 +24,6 @@ export const VideoPlayer = ({ videoUrl, posterUrl, title = "AI Generated Video",
         videoRef.current.play();
       }
       setIsPlaying(!isPlaying);
-    }
-  };
-
-  const toggleMute = () => {
-    if (videoRef.current) {
-      videoRef.current.muted = !isMuted;
-      setIsMuted(!isMuted);
     }
   };
 
@@ -67,8 +58,6 @@ export const VideoPlayer = ({ videoUrl, posterUrl, title = "AI Generated Video",
   return (
     <div 
       className={`aspect-video bg-black rounded-lg overflow-hidden relative group ${className}`}
-      onMouseEnter={() => setShowControls(true)}
-      onMouseLeave={() => setShowControls(false)}
     >
       {/* Video Element */}
       <video
