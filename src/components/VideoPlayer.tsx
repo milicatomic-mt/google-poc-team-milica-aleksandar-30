@@ -1,5 +1,5 @@
 import { useState, useRef } from "react";
-import { Play, Pause, Volume2, VolumeX, Maximize } from "lucide-react";
+import { Play, Pause, Volume2, VolumeX } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 
@@ -35,17 +35,6 @@ export const VideoPlayer = ({ videoUrl, posterUrl, title = "AI Generated Video",
       setIsMuted(!isMuted);
     }
   };
-
-  const toggleFullscreen = () => {
-    if (videoRef.current) {
-      if (document.fullscreenElement) {
-        document.exitFullscreen();
-      } else {
-        videoRef.current.requestFullscreen();
-      }
-    }
-  };
-
 
   const handleVideoLoad = () => {
     setIsLoading(false);
