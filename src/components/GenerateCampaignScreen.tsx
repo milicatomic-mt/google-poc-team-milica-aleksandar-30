@@ -14,7 +14,6 @@ const GenerateCampaignScreen = () => {
   const navigate = useNavigate();
   const [currentAction, setCurrentAction] = useState("Preparing your content...");
   const [progress, setProgress] = useState(0);
-  const [hasStartedGeneration, setHasStartedGeneration] = useState(false);
 
   useEffect(() => {
     // Dedupe guard across StrictMode mounts using sessionStorage.
