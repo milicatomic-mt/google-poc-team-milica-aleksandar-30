@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { useSearchParams, useNavigate } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Upload, CheckCircle, AlertCircle, X } from 'lucide-react';
 import { toast } from 'sonner';
@@ -8,13 +8,11 @@ import RibbedSphere from '@/components/RibbedSphere';
 
 const MobileUploadScreen: React.FC = () => {
   const [searchParams] = useSearchParams();
-  const navigate = useNavigate();
   const sessionToken = searchParams.get('session');
   
   const [uploadedImage, setUploadedImage] = useState<string | null>(null);
   const [isUploading, setIsUploading] = useState(false);
   const [isValidSession, setIsValidSession] = useState<boolean | null>(null);
-  const [imageSent, setImageSent] = useState(false);
   
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -35,7 +33,6 @@ const MobileUploadScreen: React.FC = () => {
           setIsValidSession(true);
           if (session.uploaded_image_url) {
             setUploadedImage(session.uploaded_image_url);
-            setImageSent(true);
           }
         }
       } catch (error) {
@@ -79,7 +76,6 @@ const MobileUploadScreen: React.FC = () => {
       });
 
       setUploadedImage(imageUrl);
-      setImageSent(true);
       toast.success('Image sent to screen!');
       
       // Show success message but don't auto-close
