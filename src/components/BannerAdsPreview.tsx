@@ -7,8 +7,7 @@ import QRDownloadModal from '@/components/QRDownloadModal';
 const BannerAdsPreview: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { campaignResults, uploadedImage, campaignId, imageMapping, returnTo } = location.state || {};
-  const activeCampaignResults = campaignResults;
+  const { campaignResults, uploadedImage, imageMapping, returnTo } = location.state || {};
   const [isDownloadModalOpen, setIsDownloadModalOpen] = useState(false);
 
   // Ensure page starts at the top on mount
@@ -33,7 +32,6 @@ const BannerAdsPreview: React.FC = () => {
       state: { 
         campaignResults, 
         uploadedImage, 
-        campaignId, 
         imageMapping,
         fromDetail: true 
       }
