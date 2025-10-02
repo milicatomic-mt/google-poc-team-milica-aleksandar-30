@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { ArrowLeft, X, Play, QrCode, Edit, ArrowUpRight, Camera, Heart, MessageCircle, Send, Share, Plus, Search, MoreHorizontal, Bookmark } from 'lucide-react';
+import { X, Play, QrCode, Edit, ArrowUpRight, Camera, Heart, MessageCircle, Send, Share, Plus, Search, MoreHorizontal, Bookmark } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import {
@@ -17,9 +17,7 @@ import {
 import RibbedSphere from '@/components/RibbedSphere';
 import { supabase } from "@/integrations/supabase/client";
 import type { CampaignCreationResponse } from '@/types/api';
-import { VideoPlayer } from '@/components/VideoPlayer';
 import QRDownloadModal from '@/components/QRDownloadModal';
-import { extractColorsFromImage } from '@/lib/color-extraction';
 import profileAvatar from '@/assets/profile-avatar.png';
 import profileKaren from '@/assets/profile-karen.png';
 import profileZack from '@/assets/profile-zack.png';
@@ -32,7 +30,6 @@ const PreviewResultsScreen: React.FC = () => {
   const [generatedVideoUrl, setGeneratedVideoUrl] = useState<string | null>(null);
   const [isDownloadModalOpen, setIsDownloadModalOpen] = useState(false);
   const [isContentReady, setIsContentReady] = useState(!!campaignResults);
-  const [complementaryColor, setComplementaryColor] = useState<string | null>(null);
 
   // Fetch campaign results if not provided but campaignId is available
   useEffect(() => {
@@ -84,17 +81,6 @@ const PreviewResultsScreen: React.FC = () => {
       return () => clearTimeout(timer);
     }
   }, [activeCampaignResults]);
-
-  // Extract color from uploaded image
-  useEffect(() => {
-    if (uploadedImage) {
-      extractColorsFromImage(uploadedImage).then(colors => {
-        setComplementaryColor(colors.secondary);
-      }).catch(() => {
-        setComplementaryColor(null);
-      });
-    }
-  }, [uploadedImage]);
 
   const handleBack = () => {
     // Navigate to campaign-prompt for editing with campaign data
