@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
@@ -24,7 +24,6 @@ const CampaignPromptScreen = () => {
   const [isAutoSelecting, setIsAutoSelecting] = useState(false);
   
   const uploadedImage = location.state?.uploadedImage;
-  const uploadedFile = location.state?.uploadedFile;
   const editMode = location.state?.editMode;
   const campaignId = location.state?.campaignId;
 
@@ -56,11 +55,9 @@ const CampaignPromptScreen = () => {
         
         // Stop auto-selecting when we've processed all audiences
         if (index === audiences.length - 1) {
-          setTimeout(() => {
-            setIsAutoSelecting(false);
-          }, 250);
+          setTimeout(() => setIsAutoSelecting(false), 250);
         }
-      }, index * 250); // Shorter delay for smoother experience
+      }, index * 250);
     });
   };
 
@@ -77,7 +74,7 @@ const CampaignPromptScreen = () => {
         clearInterval(typeInterval);
         setIsTyping(false);
       }
-    }, 15); // Faster typing speed
+    }, 15);
   };
 
   const handleRegenerate = () => {
@@ -182,7 +179,7 @@ const CampaignPromptScreen = () => {
     };
 
     loadExistingCampaignData();
-  }, [editMode, campaignId]);
+  }, [editMode, campaignId, prompt, allSuggestions.length, selectedAudiences.length]);
 
   // Auto-adjust height when prompt changes
   useEffect(() => {
