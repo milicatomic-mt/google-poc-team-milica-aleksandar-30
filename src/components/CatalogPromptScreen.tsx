@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
@@ -71,6 +71,17 @@ const CatalogPromptScreen = () => {
     "TikTok Shop"
   ];
 
+  // Category mapping for AI analysis
+  const categoryMapping: { [key: string]: string } = {
+    "Fashion & Apparel": "Clothing & Apparel",
+    "Beauty & Personal Care": "Beauty & Personal Care",
+    "Electronics & Tech": "Electronics & Tech",
+    "Home & Garden": "Home & Garden",
+    "Food & Beverage": "Food & Beverages",
+    "Sports & Fitness": "Sports & Outdoor",
+    "Health & Wellness": "Health & Wellness"
+  };
+
   const typePrompt = (text: string) => {
     setIsTyping(true);
     setDisplayedPrompt('');
@@ -84,7 +95,7 @@ const CatalogPromptScreen = () => {
         clearInterval(typeInterval);
         setIsTyping(false);
       }
-    }, 15); // Faster typing speed
+    }, 15);
   };
 
   const handleRegenerate = async () => {
@@ -116,16 +127,6 @@ const CatalogPromptScreen = () => {
         
         // Auto-fill fields from AI analysis
         if (data.category) {
-          const categoryMapping: { [key: string]: string } = {
-            "Fashion & Apparel": "Clothing & Apparel",
-            "Beauty & Personal Care": "Beauty & Personal Care",
-            "Electronics & Tech": "Electronics & Tech",
-            "Home & Garden": "Home & Garden",
-            "Food & Beverage": "Food & Beverages",
-            "Sports & Fitness": "Sports & Outdoor",
-            "Health & Wellness": "Health & Wellness"
-          };
-          
           const mappedCategory = categoryMapping[data.category] || data.category;
           if (predefinedCategories.includes(mappedCategory)) {
             setProductCategory(mappedCategory);
@@ -238,16 +239,6 @@ const CatalogPromptScreen = () => {
       let platformToSet = '';
       
       if (aiAnalysisData.category && !productCategory) {
-        const categoryMapping: { [key: string]: string } = {
-          "Fashion & Apparel": "Clothing & Apparel",
-          "Beauty & Personal Care": "Beauty & Personal Care",
-          "Electronics & Tech": "Electronics & Tech",
-          "Home & Garden": "Home & Garden",
-          "Food & Beverage": "Food & Beverages",
-          "Sports & Fitness": "Sports & Outdoor",
-          "Health & Wellness": "Health & Wellness"
-        };
-        
         const mappedCategory = categoryMapping[aiAnalysisData.category] || aiAnalysisData.category;
         if (predefinedCategories.includes(mappedCategory)) {
           categoryToSet = mappedCategory;
@@ -309,7 +300,7 @@ const CatalogPromptScreen = () => {
       
       animateSelections();
     }
-  }, [location.state, prompt, productCategory, brandTone, platform, isAnimatingSelections]);
+  }, [location.state, prompt, productCategory, brandTone, platform, brandName, isAnimatingSelections]);
 
   // Auto-adjust height when prompt changes
   useEffect(() => {
